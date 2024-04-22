@@ -1,34 +1,34 @@
 @charset "utf-8";
 @import url(reset.css);
 
-:root{
-    --F-H2:28px;
-    --F-H1:32px;
-    --F-H3:24px;
-    --F-H4:20px;
-    --F-H5:18px;
-    --F-H6:14px;
-    --F-p:16px;
+:root {
+  --f-H2: 28px;
+  --f-H1: 32px;
+  --f-H3: 24px;
+  --f-H4: 20px;
+  --f-H5: 18px;
+  --f-H6: 14px;
+  --f-p: 16px;
 
-    --background-color: #FFF;
-    --main-color: #F5F5F5;
-    --sub-color: #11359A;
-    --C-deepblue: #364A63 ;
-    --C-lightgray: #8094AE ;
-    --C-yellow: #F4BD0E ;
-    --C-lightblue: #09C2DE ;
-    --C-lightgreen: #1EE0AC ;
-    --C-lightred: #E85347 ;
-    --C-blue: #465FFF ;
-    --C-button-color: #7749F8;
-    --button-hover-color: #5227CC;
-    --menu-font-color: #6E82A5;
-    --menu-font-hover-color: #7F8DFF;
-    --menu-BG-color: #101924;
-    --active-button-color: #798BFF ;
-    --Nonactive-button-color: #6C757D ;
-    --complete-button-color: #28A745 ;
-    --cancle-button-color: #DC3545 ;
-    --C-active-check-button-color: #499EED ;
-    --C-Nonactive-check-button-color: #8A8686 ;
+  --c-background: #fff;
+  --c-main: #f5f5f5;
+  --c-sub: #11359a;
+  --c-deepblue: #364a63;
+  --c-lightgray: #8094ae;
+  --c-yellow: #f4bd0e;
+  --c-lightblue: #09c2de;
+  --c-lightgreen: #1ee0ac;
+  --c-lightred: #e85347;
+  --c-blue: #465fff;
+  --c-button: #7749f8;
+  --c-button-hover: #5227cc;
+  --c-menu-font: #6e82a5;
+  --c-menu-font-hover: #7f8dff;
+  --c-menu-BG: #101924;
+  --c-active-button: #798bff;
+  --c-Nonactive-button: #6c757d;
+  --c-complete-button: #28a745;
+  --c-cancle-button: #dc3545;
+  --c-active-check-button: #499eed;
+  --c-Nonactive-check-button: #8a8686;
 }

@@ -1,6 +1,6 @@
 <?php
  $hostname = 'localhost';
- $dbuserid = 'worldhello ';
+ $dbuserid = 'worldhello';
  $dbpasswd = '';
  $dbname = '';
 
