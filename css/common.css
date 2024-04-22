@@ -2,5 +2,33 @@
 @import url(reset.css);
 
 :root{
-    --
+    --F-H2:28px;
+    --F-H1:32px;
+    --F-H3:24px;
+    --F-H4:20px;
+    --F-H5:18px;
+    --F-H6:14px;
+    --F-p:16px;
+
+    --background-color: #FFF;
+    --main-color: #F5F5F5;
+    --sub-color: #11359A;
+    --C-deepblue: #364A63 ;
+    --C-lightgray: #8094AE ;
+    --C-yellow: #F4BD0E ;
+    --C-lightblue: #09C2DE ;
+    --C-lightgreen: #1EE0AC ;
+    --C-lightred: #E85347 ;
+    --C-blue: #465FFF ;
+    --C-button-color: #7749F8;
+    --button-hover-color: #5227CC;
+    --menu-font-color: #6E82A5;
+    --menu-font-hover-color: #7F8DFF;
+    --menu-BG-color: #101924;
+    --active-button-color: #798BFF ;
+    --Nonactive-button-color: #6C757D ;
+    --complete-button-color: #28A745 ;
+    --cancle-button-color: #DC3545 ;
+    --C-active-check-button-color: #499EED ;
+    --C-Nonactive-check-button-color: #8A8686 ;
 }
