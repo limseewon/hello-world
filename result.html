@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PUDDING</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
+    />
+    <!-- normalize css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!--bootstrap css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/css/bootstrap.min.css"
+      integrity="sha512-Z/def5z5u2aR89OuzYcxmDJ0Bnd5V1cKqBEbvLOiUNWdg9PQeXVvXLI90SE4QOHGlfLqUnDNVAYyZi8UwUTmWQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- tabler-icons  -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
+    />
+
+    <!-- jquery ui css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/black-tie/jquery-ui.min.css"
+      integrity="sha512-+Z63RrG0zPf5kR9rHp9NlTMM29nxf02r1tkbfwTRGaHir2Bsh4u8A79PiUKkJq5V5QdugkL+KPfISvl67adC+Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- 스포카 -->
+    <!-- <link
+      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
+      rel="stylesheet"
+      type="text/css"
+    /> -->
+
+    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
+    <link rel="stylesheet" href="css/common.css" />
+
+    <style>
+      section {
+        width: 100%;
+      }
+      header {
+        width: 290px;
+        color: white;
+        background: var(--c-menu-BG);
+      }
+      header .headerContainer {
+        width: 290px;
+        height: 100%;
+        /* position: fixed; */
+        background: var(--c-menu-BG);
+        img {
+          background: white;
+          width: 160px;
+          height: 155px;
+        }
+      }
+      #logo {
+        margin-bottom: 60px;
+      }
+      #logo h1 {
+        position: absolute;
+        text-indent: -9999em;
+        opacity: 0;
+        visibility: hidden;
+      }
+      .gnb li a {
+        display: block;
+        width: 290px;
+        height: 70px;
+        font-size: var(--f-H3);
+        color: var(--c-menu-font);
+        padding-left: 30px;
+      }
+      .gnb li a:hover {
+        font-size: var(--f-H3);
+        color: var(--c-menu-font-hover);
+      }
+      .gnb li a span + span {
+        margin-left: 10px;
+      }
+      .wrapper {
+        /* width: 100%; */
+      }
+      .top_section {
+        width: 100%;
+        height: 64px;
+        background: white;
+        border-bottom: 1px solid #c9c9c9;
+        /* position: relative; */
+        h3 {
+          color: black;
+        }
+      }
+      .main {
+        /* width: 100%; */
+        width: 100%;
+        height: 100vh;
+        background: var(--c-contentBG);
+        padding: 32px 25px 0 25px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="d-flex">
+      <header>
+        <section class="headerContainer">
+          <div class="d-flex justify-content-center" id="logo">
+            <h1>logo</h1>
+            <img src="./img/Group 50.png" alt="logo.jpg" />
+          </div>
+          <div class="gnb">
+            <ul class="d-flex flex-column">
+              <li>
+                <a href="#">
+                  <span class="material-symbols-outlined"> dashboard </span>
+                  <span>대시 보드</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="material-symbols-outlined"> assignment </span>
+                  <span>공지 사항</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="material-symbols-outlined"> live_tv </span>
+                  <span>강의 관리</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="material-symbols-outlined"> face </span>
+                  <span>회원 관리</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="material-symbols-outlined"> local_atm </span>
+                  <span>쿠폰 관리</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="material-symbols-outlined"> bar_chart </span>
+                  <span>성과 분석</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="material-symbols-outlined"> help </span>
+                  <span>질의 응답</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="material-symbols-outlined"> logout </span>
+                  <span>Logout</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </header>
+      <section class="wrapper">
+        <div class="top_section">
+            <h3>test</h3>
+        </div>
+        <div class="main">
+            <div class="main_container">
+                <div class="main">
+                    <div class="">
+                        <h2 class="result-text h2">성과 분석</h2>
+                        <div class="result_box_top">
+                            <div class="">
+                                <h2 class="content-title">5월 매출 베스트 강좌</h2>
+                                <div class="contents-box d-flex">
+                                    <div class="box">
+                                        <img
+                                            src="/img/front-best-lecture.png"
+                                            alt="#"
+                                            title="front-best-recture"
+                                            id="best-lecture-img"
+                                        />
+                                        <h3 id="best-lecture-title"> 프론트엔드</h3>
+                                        <p id="best-lecture-p">
+                                            프론트엔드 웹 개발의 모든 것 초격차 패키지 Online.
+                                        </p>
+                                        <button type="button" class="btn btn-primary" id="lecture-go">
+                                            강의 보러 가기
+                                        </button>
+                                    </div>
+                                    <div class="box">
+                                        <img
+                                            src="/img/back-best-lecture.png"
+                                            alt="#"
+                                            title="back-best-lecture"
+                                            id="best-lecture-img"
+                                        />
+                                        <h3 id="best-lecture-title">백엔드</h3>
+                                        <p id="best-lecture-p">
+                                            시그니처 백엔드 Path 초격차 패키지 Online.
+                                        </p>
+                                        <button type="button" class="btn btn-primary" id="lecture-go">
+                                            강의 보러 가기
+                                        </button>
+                                    </div>
+                                    <div class="box">
+                                        <img
+                                            src="/img/devops-best-lecture.png"
+                                            alt="#"
+                                            title="devops-best-recture"
+                                            id="best-lecture-img"
+                                        />
+                                        <h3 id="best-lecture-title">DevOps/Infra Best</h3>
+                                        <p id="best-lecture-p">
+                                            한번에 끝내는 CI/CD의 모든 것 Docker부터 GitOps까지.
+                                        </p>
+                                        <button type="button" class="btn btn-primary" id="lecture-go">
+                                            강의 보러 가기
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <h2 class="content-title">누적 조회수 베스트 강좌</h2>
+                                    <div class="contents-box d-flex">
+                                        <div class="box">
+                                              <div class="box1">
+                                                <img
+                                                  src="/img/many-view.png"
+                                                  alt="#"
+                                                  title="many-view-recture"
+                                                  id="many-view"
+                                                />
+                                            <button type="button" class="btn btn-primary" id="lecture-go">
+                                                강의 보러 가기
+                                            </button>
+                                        </div>
+                                    </div>
+                            </div>   
+                        </div>
+                        <div class="result_box_bottom d-flex justify-content-between">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+    </section>
+    <!-- jquery -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+      integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- jqueryui js -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
+      integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- bootstrap js -->
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"
+      integrity="sha512-ToL6UYWePxjhDQKNioSi4AyJ5KkRxY+F1+Fi7Jgh0Hp5Kk2/s8FD7zusJDdonfe5B00Qw+B8taXxF6CFLnqNCw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- modernizr js -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="js/common.js"></script>
+  </body>
+  <script>
+    let documentHeight = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
+    document.querySelector("header").style.height = documentHeight + "px";
+  </script>
+</html>
