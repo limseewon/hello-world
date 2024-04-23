@@ -60,6 +60,43 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+
+/* lim */
+.result-text{
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.box {
+  width: 230px;
+  height: 237px;
+}
+.contents-box {
+  width: 760px;
+  height: 320px;
+  background-color: #fff;
+  padding-left: 16px;
+  padding-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+.content-title{
+  padding-bottom: 17px;
+}
+#best-lecture-img{
+  padding-bottom: 11px;
+}
+#best-lecture-title{
+  padding-bottom: 11px;
+  color: #7F8DFF;
+}
+#best-lecture-p{
+  padding-bottom: 11px;
+}
+.result_box_top{
+  display: flex;
+}
+/* 
 .bg-container {
   width: 1630px;
   height: 1016px;
@@ -103,7 +140,6 @@ body {
 #best-lecture-title {
   font-size: 24px;
   color: #7f8dff;
-  /* padding-top: 6px; */
 }
 #best-lecture-p {
   padding-bottom: 9px;
@@ -114,11 +150,10 @@ body {
 
 .many-views {
   margin-left: 50px;
-  /* padding-top: 254px; */
 }
 
 #many-view {
   width: 385px;
   height: 206px;
   margin-top: 57px;
-}
+} */
