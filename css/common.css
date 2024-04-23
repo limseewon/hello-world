@@ -52,16 +52,59 @@ body {
   font-size: 28px;
   font-weight: bold;
 }
+.contents{
+  margin-left: 30px;
+  margin-left: 30px;
+  display: flex;
+}
 .contents-box{
   width: 760px;
   height: 320px;
   background-color: #fff;
-  margin-left: 31px;
+  padding-left: 15px;
+  padding-top: 30px;
+  display: flex;
+  gap: 20px ;
 }
 .content-title{
   font-size: 24px;
   margin-top: 90px;
+<<<<<<< HEAD
   margin-bottom: 17px;
   margin-left: 31px;
+}
+>>>>>>> lim-sudo
+=======
+  margin-bottom: 10px;
+}
+.box1{
+  width: 230px;
+  height: 237px;
+
+}
+#best-lecture-img{
+  padding-bottom: 11px;
+}
+#best-lecture-title{
+  font-size: 24px;
+  color: #7F8DFF;
+  /* padding-top: 6px; */
+}
+#best-lecture-p{
+  padding-bottom: 9px;
+}
+#lecture-go{
+  bottom: 20px;
+}
+
+.many-views{
+  margin-left: 50px;
+  /* padding-top: 254px; */
+}
+
+#many-view{
+  width: 385px;
+  height: 206px;
+  margin-top: 57px;
 }
 >>>>>>> lim-sudo
