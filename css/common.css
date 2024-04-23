@@ -94,6 +94,7 @@ body {
   margin-bottom: 10px;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* .box1{
   width: 230px;
   height: 237px;
@@ -106,6 +107,11 @@ body {
   width: 230px;
   height: 237px;
 >>>>>>> main
+=======
+.box1 {
+  width: 230px;
+  height: 237px;
+>>>>>>> 3d7b8ec2152fdf1f35de2082b6ca0a869ff92382
 }
 #best-lecture-img {
   padding-bottom: 11px;
