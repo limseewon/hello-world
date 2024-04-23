@@ -66,10 +66,13 @@
   margin-top: 90px;
   margin-bottom: 10px;
 }
-.box1{
+/* .box1{
   width: 230px;
   height: 237px;
 
+} */
+.box{
+  flex-direction: column;
 }
 #best-lecture-img{
   padding-bottom: 11px;
