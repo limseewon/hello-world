@@ -32,36 +32,37 @@
   --c-active-check-button: #499eed;
   --c-Nonactive-check-button: #8a8686;
 }
+/* layout */
+/* typography */
+/* breadcrumb */
 
-<<<<<<< HEAD
+
 body {
   font-family: 'Roboto', sans-serif;
 }
-=======
 
-.bg-container{
+.bg-container {
   width: 1630px;
   height: 1016px;
   margin-top: 64px;
   margin-left: 290px;
-  background-color: #F5F6FA;
+  background-color: #f5f6fa;
 }
-.banner-title{
+.banner-title {
   padding-top: 32px;
   padding-left: 25px;
   font-size: 28px;
   font-weight: bold;
 }
-.contents-box{
+.contents-box {
   width: 760px;
   height: 320px;
   background-color: #fff;
   margin-left: 31px;
 }
-.content-title{
+.content-title {
   font-size: 24px;
   margin-top: 90px;
   margin-bottom: 17px;
   margin-left: 31px;
 }
->>>>>>> lim-sudo
