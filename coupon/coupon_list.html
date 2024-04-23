@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<div class="sub_header d-flex justify-content-between align-items-center">
+      <h2 class="main_tt">쿠폰관리</h2>
+      <form action="#" class="d-flex align-items-center coupon_keyword_search">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="쿠폰명을 입력하세요."
+            aria-label="쿠폰명을 입력하세요."
+            name="search"
+          >
+        </div>
+        <button class="btn btn-dark">검색</button>
+      </form>
+      <a href="coupon_create.php" class="btn btn-primary">쿠폰등록</a>
+    </div><!-- //sub_header -->
+  
+    <form action="#" class="coupon_filter">
+      <h2 class="hidden">클릭하여 진행중 또는 종료된 쿠폰을 확인하세요.</h2>
+      <div class="coupon_status_search d-flex justify-content-betweenn white_bg align-items-center">
+        <div class="filter_1">
+          <h3 class="b_text01">총 쿠폰 개수</h3>
+          <label for="all" class="b_text02"><em class="main_tt"></em>개</label>
+          <input type="radio" value="-1" class="hidden" id="all" name="coupon_filter">
+        </div>
+        <div class="filter_2">
+          <h3 class="b_text01">활성화 쿠폰 개수</h3>
+          <label for="ing" class="b_text02"><em class="main_tt"></em>개</label>
+          <input type="radio" value="1" class="hidden" id="ing" name="coupon_filter">
+        </div>
+        <div class="filter_3">
+          <h3 class="b_text01">비활성화 쿠폰 개수</h3>
+          <label for="end" class="b_text02"><em class="main_tt"></em>개</label>
+          <input type="radio" value="0" class="hidden" id="end" name="coupon_filter">
+        </div>
+      </div>
+      <button class="hidden">필터실행</button>
+    </form><!-- coupon_filter -->
+
+    <div class="coupons">
+      <h2 class="hidden">쿠폰리스트</h2>
+      <ul class="d-flex flex-wrap justify-content-between g-5">
+        
+
+        <li class="coupon shadow_box border white_bg d-flex" data-cpid="">
+          <img src="" alt="" class="border">
+          <div class="text_box">
+            
+            <h3 class="b_text01" title=""></h3>
+            <p>사용기한 : </p>
+            <p>최소사용금액 : <span class="number"></span>원</p>
+            <p>
+               : 
+              <span class="number"></span>
+            </p>
+          </div>
+
+          <div class="icons">
+            <a href=""><i class="ti ti-edit pen_icon"></i></a>
+            <a href="" class="del_btn"><i class="ti ti-trash bin_icon"></i></a>
+          </div>
+
+          <div class="form-check form-switch cp_status_toggle">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="flexSwitchCheckDefault"
+              
+            >
+            <label class="form-check-label" for="flexSwitchCheckDefault">
+            </label>
+          </div>
+        </li>
+
+        
+
+        
+        <p>등록된 쿠폰이 없습니다.</p>
+
+        
+      </ul>
+    </div>
+    
+
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center pager">
+      <ul class="pagination coupon_pager">
+        
+      </ul>
+    </nav>
+</body>
+</html>
+
+   
