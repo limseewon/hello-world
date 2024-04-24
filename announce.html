@@ -115,7 +115,26 @@
         padding: 32px 25px 0 25px;
       }
       tr{
-        line-height: 50px;
+        line-height: 34px;
+      }
+      .edit{
+        gap: 30px;
+        align-items: center;
+      }
+      .block-top{
+        gap: 20px;
+      }
+      .form-control{
+        width: 750px;
+        height: 50px;
+      }
+      .form-select{
+        width: 250px;
+        height: 50px;
+        margin-top: 7px;
+      }
+      .bar-top{
+        justify-content: space-between;
       }
     </style>
   </head>
@@ -186,16 +205,29 @@
         <div class="main">
           <div class="main_container">
             <h2>공지 사항</h2>
+            <div class="bar-top d-flex">
+              <nav class="navbar navbar-light bg-light">
+                <div class="container-fluid">
+                  <form class="block-top d-flex">
+                    <input class="form-control me-2" type="search" placeholder="제목을 입력하시오." aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                </div>
+              </nav>
+              <select class="form-select form-select-lg mb-3" aria-label="Large select example">
+                <option selected>조회수</option>
+                <option value="1">가장 많음</option>
+                <option value="2">가장 적음</option>
+              </select>
+              <select class="form-select form-select-lg mb-3" aria-label="Large select example">
+                <option selected>작성일</option>
+                <option value="1">최신순</option>
+                <option value="2">한달 이내</option>
+                <option value="3">일년 이내</option>
+              </select>
+            </div>
             <table class="table table-hover table-striped">
               <thead class="table-dark">
-                <nav class="navbar navbar-light bg-light">
-                  <div class="container-fluid">
-                    <form class="d-flex">
-                      <input class="form-control me-2" type="search" placeholder="제목을 입력하시오." aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                  </div>
-                </nav>
                 <tr>
                   <th scope="col">No.</th>
                   <th scope="col">제목</th>
@@ -212,7 +244,18 @@
                   <td>운영자</td>
                   <td>1024</td>
                   <td>2024.04.24</td>
-                  <td><a href="#">수정 / 삭제</a></td>
+                  <td class="edit d-flex">
+                    <a href="#">
+                      <span class="material-symbols-outlined">
+                        border_color
+                      </span>
+                    </a>
+                    <a href="#">
+                      <span class="material-symbols-outlined">
+                        delete
+                        </span>
+                    </a>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">2</th>
@@ -220,7 +263,18 @@
                   <td>운영자</td>
                   <td>1024</td>
                   <td>2024.04.24</td>
-                  <td><a href="#">수정 / 삭제</a></td>
+                  <td class="edit d-flex">
+                    <a href="#">
+                      <span class="material-symbols-outlined">
+                        border_color
+                      </span>
+                    </a>
+                    <a href="#">
+                      <span class="material-symbols-outlined">
+                        delete
+                        </span>
+                    </a>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">3</th>
@@ -228,14 +282,36 @@
                   <td>운영자</td>
                   <td>127</td>
                   <td>2024.04.24</td>
-                  <td><a href="#">수정 / 삭제</a></td>
+                  <td class="edit d-flex">
+                    <a href="#">
+                      <span class="material-symbols-outlined">
+                        border_color
+                      </span>
+                    </a>
+                    <a href="#">
+                      <span class="material-symbols-outlined">
+                        delete
+                        </span>
+                    </a>
+                  </td>
                 </tr>
                 <th scope="row">4</th>
                 <td><a href="#">안녕하세요! 반갑습니다!</a></td>
                 <td>운영자</td>
                 <td>564</td>
                 <td>2024.04.24</td>
-                <td><a href="#">수정 / 삭제</a></td>
+                <td class="edit d-flex">
+                  <a href="#">
+                    <span class="material-symbols-outlined">
+                      border_color
+                    </span>
+                  </a>
+                  <a href="#">
+                    <span class="material-symbols-outlined">
+                      delete
+                      </span>
+                  </a>
+                </td>
               </tr>
               <tr>
                 <th scope="row">5</th>
@@ -243,7 +319,18 @@
                 <td>운영자</td>
                 <td>455</td>
                 <td>2024.04.24</td>
-                <td><a href="#">수정 / 삭제</a></td>
+                <td class="edit d-flex">
+                  <a href="#">
+                    <span class="material-symbols-outlined">
+                      border_color
+                    </span>
+                  </a>
+                  <a href="#">
+                    <span class="material-symbols-outlined">
+                      delete
+                      </span>
+                  </a>
+                </td>
               </tr>
               <tr>
                 <th scope="row">6</th>
@@ -251,7 +338,18 @@
                 <td>운영자</td>
                 <td>767</td>
                 <td>2024.04.24</td>
-                <td><a href="#">수정 / 삭제</a></td>
+                <td class="edit d-flex">
+                  <a href="#">
+                    <span class="material-symbols-outlined">
+                      border_color
+                    </span>
+                  </a>
+                  <a href="#">
+                    <span class="material-symbols-outlined">
+                      delete
+                      </span>
+                  </a>
+                </td>
               </tr>
               <tr>
                 <th scope="row">7</th>
@@ -259,7 +357,18 @@
                 <td>운영자</td>
                 <td>843</td>
                 <td>2024.04.24</td>
-                <td><a href="#">수정 / 삭제</a></td>
+                <td class="edit d-flex">
+                  <a href="#">
+                    <span class="material-symbols-outlined">
+                      border_color
+                    </span>
+                  </a>
+                  <a href="#">
+                    <span class="material-symbols-outlined">
+                      delete
+                      </span>
+                  </a>
+                </td>
               </tr>
               <tr>
                 <th scope="row">8</th>
@@ -267,7 +376,18 @@
                 <td>운영자</td>
                 <td>908</td>
                 <td>2024.04.24</td>
-                <td><a href="#">수정 / 삭제</a></td>
+                <td class="edit d-flex">
+                  <a href="#">
+                    <span class="material-symbols-outlined">
+                      border_color
+                    </span>
+                  </a>
+                  <a href="#">
+                    <span class="material-symbols-outlined">
+                      delete
+                      </span>
+                  </a>
+                </td>
               </tr>
               <tr>
                 <th scope="row">9</th>
@@ -275,7 +395,18 @@
                 <td>운영자</td>
                 <td>523</td>
                 <td>2024.04.24</td>
-                <td><a href="#">수정 / 삭제</a></td>
+                <td class="edit d-flex">
+                  <a href="#">
+                    <span class="material-symbols-outlined">
+                      border_color
+                    </span>
+                  </a>
+                  <a href="#">
+                    <span class="material-symbols-outlined">
+                      delete
+                      </span>
+                  </a>
+                </td>
               </tr>
               <tr>
                 <th scope="row">10</th>
@@ -283,7 +414,18 @@
                 <td>운영자</td>
                 <td>231</td>
                 <td>2024.04.24</td>
-                <td><a href="#">수정 / 삭제</a></td>
+                <td class="edit d-flex">
+                  <a href="#">
+                    <span class="material-symbols-outlined">
+                      border_color
+                    </span>
+                  </a>
+                  <a href="#">
+                    <span class="material-symbols-outlined">
+                      delete
+                      </span>
+                  </a>
+                </td>
               </tr>
               </tbody>
             </table>
