@@ -34,6 +34,7 @@
   --c-active-check-button: #499eed;
   --c-Nonactive-check-button: #8a8686;
   --c-contentBG: #f5f6fa;
+  --space_updown: 30px;
 }
 /* layout */
 .main_wrapper {
