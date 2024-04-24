@@ -25,7 +25,10 @@
       referrerpolicy="no-referrer"
     />
     <!-- tabler-icons  -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
+    />
 
     <!-- jquery ui css -->
     <link
@@ -73,9 +76,7 @@
         width: 1102px;
         height: 334px;
       }
-      h2 {
-        margin-bottom: 30px;
-      }
+      
       .board {
         margin: 0 30px 30px 0;
       }
@@ -168,18 +169,26 @@
             <h2>대시 보드</h2>
             <div class="main_top d-flex">
               <div class="left_top">
-                <div class="profit contents-box d-flex align-items-center justify-content-between">
+                <div
+                  class="profit contents-box d-flex align-items-center justify-content-between"
+                >
                   <span class="bold">4월달 수익</span>
                   <span>2,564,000 원</span>
                   <span>화살표</span>
-                  <span class="settlement">정산기간 2024년 4월 1일 ~ 2024년 4월 30일</span>
+                  <span class="settlement"
+                    >정산기간 2024년 4월 1일 ~ 2024년 4월 30일</span
+                  >
                 </div>
-                <div class="student contents-box d-flex align-items-center justify-content-between">
+                <div
+                  class="student contents-box d-flex align-items-center justify-content-between"
+                >
                   <span class="bold">총 수강생 수</span>
                   <span>456명</span>
                   <span>화살표</span>
                 </div>
-                <div class="evaluation contents-box d-flex align-items-center justify-content-between">
+                <div
+                  class="evaluation contents-box d-flex align-items-center justify-content-between"
+                >
                   <span class="bold">평균 수강만족도</span>
                   <span>★★★★★</span>
                   <span>4.26</span>
@@ -274,6 +283,6 @@
       document.documentElement.scrollHeight,
       document.documentElement.offsetHeight
     );
-    document.querySelector('header').style.height = documentHeight + 'px';
+    document.querySelector("header").style.height = documentHeight + "px";
   </script>
 </html>
