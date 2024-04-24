@@ -195,36 +195,3 @@ body {
   display: flex;
   gap: 20px;
 }
-.content-title {
-  font-size: 24px;
-  margin-top: 90px;
-  margin-left: 31px;
-  margin-bottom: 10px;
-}
-.box1 {
-  width: 230px;
-  height: 237px;
-}
-#best-lecture-img {
-  padding-bottom: 11px;
-}
-#best-lecture-title {
-  font-size: 24px;
-  color: #7f8dff;
-}
-#best-lecture-p {
-  padding-bottom: 9px;
-}
-#lecture-go {
-  bottom: 20px;
-}
-
-.many-views {
-  margin-left: 50px;
-}
-
-#many-view {
-  width: 385px;
-  height: 206px;
-  margin-top: 57px;
-} */
