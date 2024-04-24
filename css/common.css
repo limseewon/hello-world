@@ -15,7 +15,7 @@
   --c-background: #fff;
   --c-main: #f5f5f5;
   --c-sub: #11359a;
-  --c-deepblue: #364a63;
+  --c-font: #364a63;
   --c-lightgray: #8094ae;
   --c-yellow: #f4bd0e;
   --c-lightblue: #09c2de;
@@ -103,6 +103,7 @@ header .headerContainer {
 /* typography */
 h2 {
   font-size: var(--f-H2);
+  font-weight: bold;
 }
 h3 {
   font-size: var(--f-H3);
@@ -124,6 +125,7 @@ p {
 
 body {
   font-family: 'Roboto', sans-serif;
+  color: var(--c-font);
 }
 
 /* lim */
