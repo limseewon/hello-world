@@ -116,18 +116,18 @@
       }
       /* 쿠폰 최원석 */
             .sub_header {
-        margin-bottom: var(--base_unit);
+        margin-bottom: var(--space_updown);
       }
 
       .sub_header .btn {
-        line-height: var(--base_unit);
+        line-height: var(--space_updown);
       }
 
       .coupon_keyword_search {
-        gap: calc(var(--base_unit)/2);
+        gap: calc(var(--space_updown)/2);
         flex: 1;
         justify-content: end;
-        margin-right: calc(var(--base_unit)/2);
+        margin-right: calc(var(--space_updown)/2);
       }
       .coupon_keyword_search .input-group {
         width: 52%;
@@ -137,11 +137,10 @@
         cursor: pointer;
       }
       .coupon_status_search {
-        border-top: 1px solid;
-        border-bottom: 1px solid;
+        
         text-align: center;
-        height: calc(var(--base_unit)*5);
-        margin-bottom: calc(var(--base_unit)*2);
+        height: calc(var(--space_updown)*5);
+        margin-bottom: calc(var(--space_updown)*2);
       }
 
       .coupon_status_search > div {
@@ -149,7 +148,7 @@
       }
 
       .coupon_status_search > div + div {
-        border-left: 1px solid;
+        
       }
 
       .coupon_status_search > div em {
@@ -176,7 +175,7 @@
 
       .coupons .coupon {
         width: 49%;
-        height: calc(var(--base_unit)*7);
+        height: calc(var(--space_updown)*7);
         position: relative;
         padding: 15px;
       }
@@ -189,7 +188,7 @@
       .coupons ul {
         margin-bottom: 0;  
         padding-left: 0;/* reboot? */
-        gap: var(--base_unit) 0;
+        gap: var(--space_updown) 0;
       }
 
       .coupons .coupon .text_box {
@@ -233,8 +232,11 @@
         transform: scale(1.5);
       }
       /* 쿠폰 */
+
+
+      .couponbox {margin: 0 auto; width: 391px; height: 391px; border-radius: 50%; border: 1px solid #000;}
       .sub_header h2 {
-        margin-bottom: calc(var(--base_unit)*2);
+        margin-bottom: calc(var(--space_updown)*2);
       }
 
       .coupon_info {
@@ -267,7 +269,7 @@
       }
 
       .coupon_info .thumbnail .thumb_btn {
-        margin-top: var(--base_unit);
+        margin-top: var(--space_updown);
         width: 100%;
         font-size: 16px;
         font-weight: bold;
@@ -275,7 +277,7 @@
 
       .coupon_info .coupon_info_box {
         flex: 1;
-        gap: var(--base_unit);
+        gap: var(--space_updown);
       }
 
       .coupon_info .coupon_info_box .input-group {
@@ -283,7 +285,7 @@
       }
 
       .coupon_info .coupon_info_box label {
-        margin-bottom: var(--base_unit);
+        margin-bottom: var(--space_updown);
         line-height: 1;
         width: 100%;
       }
@@ -305,8 +307,8 @@
       }
 
       .coupon_info .coupon_info_box .coupon_status_check {
-        gap: var(--base_unit);
-        margin-top: var(--base_unit);
+        gap: var(--space_updown);
+        margin-top: var(--space_updown);
       }
 
       .coupon_info .coupon_info_box .coupon_status label {
@@ -316,7 +318,7 @@
 
 
       .coupon_option {
-        margin-top: calc(var(--base_unit)*1.5);
+        margin-top: calc(var(--space_updown)*1.5);
         gap: 4%;
       }
 
@@ -326,7 +328,7 @@
 
       .coupon_option .form-check {
         gap: 15px;
-        margin-top: var(--base_unit);
+        margin-top: var(--space_updown);
       }
 
       .coupon_option label {
@@ -343,8 +345,8 @@
       }
 
       .submit_btns {
-        margin: calc(var(--base_unit)*2) 0;
-        gap: calc(var(--base_unit)/2);
+        margin: calc(var(--space_updown)*2) 0;
+        gap: calc(var(--space_updown)/2);
       }
        /* TYPOGRAPHY */
 
@@ -474,25 +476,12 @@
       <div class="main">
         <div class="main_container">
           <h2>쿠폰관리</h2>
-        </div>
-        <div class="sub_header d-flex justify-content-between align-items-center">
-      
-          <form action="#" class="d-flex align-items-center coupon_keyword_search">
-            <div class="input-group">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="쿠폰명을 입력하세요."
-                aria-label="쿠폰명을 입력하세요."
-                name="search"
-              >
-            </div>
-            <button class="btn btn-dark">검색</button>
-          </form>
-          <a href="coupon_create.php" class="btn btn-primary">쿠폰등록</a>
-        </div><!-- //sub_header -->
+        </div>   
       
         <form action="#" class="coupon_filter">
+          <div class="couponbox">
+
+          </div>
           <h2 class="hidden">클릭하여 진행중 또는 종료된 쿠폰을 확인하세요.</h2>
           <div class="coupon_status_search d-flex justify-content-betweenn white_bg align-items-center">
             <div class="filter_1">
@@ -513,6 +502,22 @@
           </div>
           <button class="hidden">필터실행</button>
         </form><!-- coupon_filter -->
+        <div class="sub_header d-flex justify-content-between align-items-center">
+      
+          <form action="#" class="d-flex align-items-center coupon_keyword_search">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="쿠폰명을 입력하세요."
+                aria-label="쿠폰명을 입력하세요."
+                name="search"
+              >
+            </div>
+            <button class="btn btn-dark">검색</button>
+          </form>
+          <a href="coupon_create.php" class="btn btn-primary">쿠폰등록</a>
+        </div><!-- //sub_header -->
     
         <div class="coupons">
           <h2 class="hidden">쿠폰리스트</h2>
