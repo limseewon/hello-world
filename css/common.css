@@ -36,7 +36,7 @@
   --c-contentBG: #f5f6fa;
 }
 /* layout */
-.main_wrapper {
+.wrapper {
   width: 100%;
 }
 header {
@@ -100,10 +100,15 @@ header .headerContainer {
   padding: 32px 25px 0 25px;
 }
 
+tr{
+  line-height: 50px;
+}
+
 /* typography */
 h2 {
   font-size: var(--f-H2);
   font-weight: bold;
+  margin-bottom: 30px;
 }
 h3 {
   font-size: var(--f-H3);
