@@ -48,6 +48,7 @@
 
     <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
     <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/lim.css" />
 
     <style>
       section {
@@ -112,6 +113,9 @@
         height: 100vh;
         background: var(--c-contentBG);
         padding: 32px 25px 0 25px;
+      }
+      tr{
+        line-height: 50px;
       }
     </style>
   </head>
@@ -184,7 +188,14 @@
             <h2>공지 사항</h2>
             <table class="table table-hover table-striped">
               <thead class="table-dark">
-                
+                <nav class="navbar navbar-light bg-light">
+                  <div class="container-fluid">
+                    <form class="d-flex">
+                      <input class="form-control me-2" type="search" placeholder="제목을 입력하시오." aria-label="Search">
+                      <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                  </div>
+                </nav>
                 <tr>
                   <th scope="col">No.</th>
                   <th scope="col">제목</th>
@@ -203,7 +214,6 @@
                   <td>2024.04.24</td>
                   <td><a href="#">수정 / 삭제</a></td>
                 </tr>
-                <hr>
                 <tr>
                   <th scope="row">2</th>
                   <td><a href="#">안녕하세요! 반갑습니다!</a></td>
