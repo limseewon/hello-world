@@ -79,6 +79,9 @@ header .headerContainer {
 .gnb li a span + span {
   margin-left: 10px;
 }
+.content_wrapper {
+  width: 100%;
+}
 .top_section {
   width: 100%;
   height: 64px;
