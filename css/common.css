@@ -70,6 +70,7 @@ body {
 .box {
   width: 230px;
   height: 237px;
+  flex: 1;
 }
 .contents-box {
   width: 760px;
@@ -95,6 +96,8 @@ body {
 }
 .result_box_top{
   display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 /* 
 .bg-container {
