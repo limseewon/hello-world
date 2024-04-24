@@ -1,5 +1,4 @@
 $(function () {
-  $('.main_wrapper').load('./header.html');
   let documentHeight = Math.max(
     document.body.scrollHeight,
     document.body.offsetHeight,
