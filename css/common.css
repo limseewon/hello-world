@@ -88,14 +88,19 @@ header .headerContainer {
 .gnb li a span + span {
   margin-left: 10px;
 }
+
+
+
 .content_wrapper {
   width: 100%;
 }
 .top_section {
-  width: 100%;
+  width: calc(100vw - 290px);
   height: 64px;
+  position: fixed;
   background: white;
   border-bottom: 1px solid #c9c9c9;
+  padding-right: 66px;
   /* position: relative; */
   h3 {
     color: black;
@@ -107,6 +112,7 @@ header .headerContainer {
   height: 100vh;
   background: var(--c-contentBG);
   padding: 32px 25px 0 25px;
+  margin-top: 64px;
 }
 
 tr{
