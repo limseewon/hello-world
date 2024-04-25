@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>강의 관리</title>
@@ -26,10 +26,7 @@
       referrerpolicy="no-referrer"
     />
     <!-- tabler-icons  -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
 
     <!-- jquery ui css -->
     <link
@@ -46,9 +43,9 @@
       type="text/css"
     /> -->
 
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/>
-    <link rel="stylesheet" href="/css/common.css"/>
-    <link rel="stylesheet" href="/css/reset.css"/>
+    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
+    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
 
     <style>
       section {
@@ -116,7 +113,6 @@
       }
       /* 강의관리-최원석 */
 
-      
       .primary_btn {
         background-color: var(--c-button);
       }
@@ -148,7 +144,7 @@
       .category_add .row {
         margin-bottom: var(--space_updown);
       }
-      input[type="text"],
+      input[type='text'],
       select,
       .btn {
         height: 45px;
@@ -368,7 +364,7 @@
         display: inline-block;
         margin-left: 0;
         vertical-align: 0;
-        content: "";
+        content: '';
         border-top: none;
         border-right: none;
         border-bottom: 0;
@@ -432,7 +428,7 @@
       /* 강의등록/강의수정 */
 
       h1 {
-        font-family: "jua";
+        font-family: 'jua';
       }
 
       .c_mt {
@@ -443,7 +439,7 @@
       }
 
       select,
-      input[type="file"]::file-selector-button,
+      input[type='file']::file-selector-button,
       input {
         height: 45px;
       }
@@ -580,7 +576,7 @@
       /* TYPOGRAPHY */
 
       .main_tt {
-        font-family: "Jua", sans-serif;
+        font-family: 'Jua', sans-serif;
         font-size: 32px;
         font-weight: 500;
       }
@@ -631,276 +627,248 @@
         margin: 50px;
       }
       .btn {
-  font-size: 16px;
-  height: 45px;
-  padding-left: 30px;
-  padding-right: 30px;
-}
+        font-size: 16px;
+        height: 45px;
+        padding-left: 30px;
+        padding-right: 30px;
+      }
     </style>
-</head>
-<body>
-  <section class="d-flex">
-    <header>
-      <section class="headerContainer">
-        <div class="d-flex justify-content-center" id="logo">
-          <h1>logo</h1>
-          <img src="../img/Group 50.png" alt="logo.jpg" />
-        </div>
-        <div class="gnb">
-          <ul class="d-flex flex-column">
-            <li>
-              <a href="#">
-                <span class="material-symbols-outlined"> dashboard </span>
-                <span>대시 보드</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="material-symbols-outlined"> assignment </span>
-                <span>공지 사항</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="material-symbols-outlined"> live_tv </span>
-                <span>강의 관리</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="material-symbols-outlined"> face </span>
-                <span>회원 관리</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="material-symbols-outlined"> local_atm </span>
-                <span>쿠폰 관리</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="material-symbols-outlined"> bar_chart </span>
-                <span>성과 분석</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="material-symbols-outlined"> help </span>
-                <span>질의 응답</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="material-symbols-outlined"> logout </span>
-                <span>Logout</span>
-              </a>
-            </li>
-          </ul>
+  </head>
+  <body>
+    <section class="d-flex">
+      <header>
+        <section class="headerContainer">
+          <div class="d-flex justify-content-center" id="logo">
+            <h1>logo</h1>
+            <img src="../img/Group 50.png" alt="logo.jpg" />
+          </div>
+          <div class="gnb">
+            <ul class="d-flex flex-column">
+              <li>
+                <a href="index.html">
+                  <span class="material-symbols-outlined"> dashboard </span>
+                  <span>대시 보드</span>
+                </a>
+              </li>
+              <li>
+                <a href="/announce.html">
+                  <span class="material-symbols-outlined"> assignment </span>
+                  <span>공지 사항</span>
+                </a>
+              </li>
+              <li>
+                <a href="/class/course_list.html">
+                  <span class="material-symbols-outlined"> live_tv </span>
+                  <span>강의 관리</span>
+                </a>
+              </li>
+              <li>
+                <a href="/member_mg.html">
+                  <span class="material-symbols-outlined"> face </span>
+                  <span>회원 관리</span>
+                </a>
+              </li>
+              <li>
+                <a href="/coupon/coupon_list.html">
+                  <span class="material-symbols-outlined"> local_atm </span>
+                  <span>쿠폰 관리</span>
+                </a>
+              </li>
+              <li>
+                <a href="/performance.html">
+                  <span class="material-symbols-outlined"> bar_chart </span>
+                  <span>성과 분석</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="material-symbols-outlined"> help </span>
+                  <span>질의 응답</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="material-symbols-outlined"> logout </span>
+                  <span>Logout</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </header>
+      <section class="wrapper">
+        <div class="top_section"><h3>test</h3></div>
+        <div class="main">
+          <div class="main_container">
+            <h2>강의 관리</h2>
+          </div>
+          <section>
+            <div class="link_btn">
+              <a href="course_create.php" class="btn btn-dark">신규 강의 등록</a>
+              <a href="category.php" class="btn btn-dark">카테고리 관리</a>
+            </div>
+            <form action="#" class="course_sort">
+              <div class="row">
+                <div class="col-md-4">
+                  <select class="form-select" aria-label="Default select example" id="cate1" name="cate1">
+                    <option selected disabled>대분류</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <select class="form-select" aria-label="Default select example" id="cate2" name="cate2">
+                    <option selected disabled>중분류</option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <select class="form-select" aria-label="Default select example" id="cate3" name="cate3">
+                    <option selected disabled>소분류</option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-flex align-items-center level_price">
+                <div class="d-flex flex-row">
+                  <h3 class="b_text01">난이도</h3>
+                  <span>
+                    <input type="checkbox" name="level1" id="basic" value="초급" class="form-check-input" />
+                    <label for="basic">초급</label>
+                  </span>
+                  <span>
+                    <input type="checkbox" name="level2" id="Intermediate" value="중급" class="form-check-input" />
+                    <label for="Intermediate">중급</label>
+                  </span>
+                  <span>
+                    <input type="checkbox" name="level3" id="Advanced" value="고급" class="form-check-input" />
+                    <label for="Advanced">고급</label>
+                  </span>
+                </div>
+              </div>
+              <div class="d-flex flex-row price_check">
+                <h3 class="b_text01">가격</h3>
+                <span>
+                  <input type="radio" name="price_status" id="pay" value="유료" class="form-check-input" />
+                  <label for="pay">유료</label>
+                </span>
+                <span>
+                  <input type="radio" name="price_status" id="free" value="무료" class="form-check-input" />
+                  <label for="free">무료</label>
+                </span>
+              </div>
+              <div class="d-flex search_bar">
+                <label for="search" class="hidden"></label>
+                <input
+                  type="text"
+                  name="name"
+                  id="search"
+                  class="form-control"
+                  placeholder="강의명으로 검색하세요"
+                  aria-label="Username"
+                />
+                <button class="btn btn-primary btn_pr">검색</button>
+              </div>
+            </form>
+
+            <!-- 리스트 -->
+            <form action="clist_save.php" method="POST" class="course_list_wrap">
+              <ul>
+                <li class="course_list row shadow_box">
+                  <input type="hidden" name="cid[]" value="" />
+                  <div class="col-md-8 d-flex">
+                    <img src="" alt="" class="border" />
+                    <div class="course_info">
+                      <div>
+                        <h3 class="course_list_title b_text01">
+                          <a href=">"></a>
+                          <span class="badge rounded-pill blue_bg b-pd"> </span>
+                          <span class="badge level_badge rounded-pill b-pd"> </span>
+                        </h3>
+                        <p></p>
+                      </div>
+                      <p class="duration"><i class="ti ti-calendar-event"></i><span>수강기간</span><span> </span></p>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <nav
+                      style="
+                        --bs-breadcrumb-divider: url(
+                          &#34;data:image/svg + xml,
+                          %3Csvgxmlns='http://www.w3.org/2000/svg'width='8'height='8'%3E%3Cpathd='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z'fill='%236c757d'/%3E%3C/svg%3E&#34;
+                        );
+                      "
+                      aria-label="breadcrumb"
+                    >
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"> </a></li>
+                        <li class="breadcrumb-item active" aria-current="page"></li>
+                        <li class="breadcrumb-item active" aria-current="page"></li>
+                      </ol>
+                    </nav>
+
+                    <div class="d-flex align-items-end status_box">
+                      <span class="price content_stt"> <span class="number"></span><span> 원</span> </span>
+                      <span class="d-flex flex-column align-items-end status_wrap">
+                        <select name="act[]" id="act[]" class="form-select" aria-label="Default select example">
+                          <option disabled>상태</option>
+                          <option value="활성">활성</option>
+                          <option value="비활성">비활성</option>
+                        </select>
+                        <span class="price_btn_wrap">
+                          <a href="" class="btn btn-primary btn_g">수정</a>
+                          <a href="" class="btn btn-danger">삭제</a>
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+              <button class="btn btn-primary btn_g all_modify_btn">변경 일괄 수정</button>
+            </form>
+
+            <nav aria-label="Page navigation example" class="d-flex justify-content-center pager">
+              <ul class="pagination coupon_pager"></ul>
+            </nav>
+          </section>
         </div>
       </section>
-    </header>
-    <section class="wrapper">
-      <div class="top_section"><h3>test</h3></div>
-      <div class="main">
-        <div class="main_container">
-          <h2>강의 관리</h2>
-        </div>
-        <section>
-    
-          <div class="link_btn">
-            <a href="course_create.php" class="btn btn-dark">신규 강의 등록</a>
-            <a href="category.php" class="btn btn-dark">카테고리 관리</a>
-          </div>
-          <form action="#" class="course_sort">
-            <div class="row">
-              <div class="col-md-4">
-                <select class="form-select" aria-label="Default select example" id="cate1" name="cate1" >
-                  <option selected disabled>대분류</option>
-        
-                 
-                </select>
-              </div>
-              <div class="col-md-4">
-                <select class="form-select" aria-label="Default select example" id="cate2" name="cate2" >
-                  <option selected disabled>중분류</option>
-                </select>
-              </div>
-              <div class="col-md-4">
-                <select class="form-select" aria-label="Default select example" id="cate3" name="cate3">
-                  <option selected disabled>소분류</option>
-                </select>
-              </div>
-            </div>
-            <div class="d-flex align-items-center level_price">
-              <div class="d-flex flex-row">
-                <h3 class="b_text01">난이도</h3>
-                <span>
-                  <input type="checkbox" name="level1" id="basic" value="초급" class="form-check-input">
-                  <label for="basic">초급</label>
-                </span>
-                <span>
-                  <input type="checkbox" name="level2" id="Intermediate" value="중급" class="form-check-input">
-                  <label for="Intermediate">중급</label>
-                </span>
-                <span>
-                  <input type="checkbox" name="level3" id="Advanced" value="고급" class="form-check-input">
-                  <label for="Advanced">고급</label>
-                </span>
-              </div>
-              
-              
-            </div>
-            <div class="d-flex flex-row price_check">
-              <h3 class="b_text01">가격</h3>
-              <span>
-                <input type="radio" name="price_status" id="pay" value="유료" class="form-check-input">
-                <label for="pay">유료</label>
-              </span>
-              <span>
-                <input type="radio" name="price_status" id="free" value="무료" class="form-check-input">
-                <label for="free">무료</label>
-              </span>
-            </div>
-            <div class="d-flex search_bar">
-              <label for="search" class="hidden"></label>
-              <input type="text" name="name" id="search" class="form-control" placeholder="강의명으로 검색하세요" aria-label="Username">
-              <button class="btn btn-primary btn_pr">검색</button>
-            </div>
-          </form>
-        
-          <!-- 리스트 -->
-          <form action="clist_save.php" method="POST" class="course_list_wrap">
-            <ul>
-              
-                  <li class="course_list row shadow_box">
-                    <input type="hidden" name="cid[]" value="">
-                    <div class="col-md-8 d-flex">
-                      <img src="" alt="" class="border">
-                      <div class="course_info">
-                        <div>
-                          <h3 class="course_list_title b_text01"><a href=">"></a>
-                            <span class="badge rounded-pill blue_bg b-pd">
-                              
-                            </span>
-                            <span class="badge level_badge rounded-pill b-pd
-                        
-                      ">
-                              
-                            </span>
-                          </h3>
-                          <p>
-                            
-                          </p>
-                        </div>
-                        <p class="duration"><i class="ti ti-calendar-event"></i><span>수강기간</span><span>
-                            
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <nav
-                        style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
-                        aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a href="#">
-                             
-                            </a></li>
-                          <li class="breadcrumb-item active" aria-current="page">
-                            
-                          </li>
-                          <li class="breadcrumb-item active" aria-current="page">
-                           
-                          </li>
-        
-                        </ol>
-                      </nav>
-        
-                      <div class="d-flex align-items-end status_box">
-                        <span class="price content_stt">
-                          <span class="number"></span><span> 원</span>
-                        </span>
-                        <span class="d-flex flex-column align-items-end status_wrap">
-                          <select name="act[]" id="act[]" class="form-select"
-                            aria-label="Default select example">
-                            <option disabled>상태</option>
-                            <option value="활성" >활성</option>
-                            <option value="비활성" >비활성</option>
-                          </select>
-                          <span class="price_btn_wrap">
-                            <a href="" class="btn btn-primary btn_g">수정</a>
-                            <a href="" class="btn btn-danger">삭제</a>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                  </li>
-            
-            </ul>
-            <button class="btn btn-primary btn_g all_modify_btn">변경 일괄 수정</button>
-          </form>
-        
-           <nav aria-label="Page navigation example" class="d-flex justify-content-center pager">
-              <ul class="pagination coupon_pager">
-                
-              </ul>
-            </nav>
-        </section>
-      </div>
     </section>
-  </section>
-  <!-- jquery -->
-  <script
-  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
-  integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-></script>
-<!-- jqueryui js -->
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
-  integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-></script>
-<!-- bootstrap js -->
+    <!-- jquery -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+      integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- jqueryui js -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
+      integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- bootstrap js -->
 
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"
-  integrity="sha512-ToL6UYWePxjhDQKNioSi4AyJ5KkRxY+F1+Fi7Jgh0Hp5Kk2/s8FD7zusJDdonfe5B00Qw+B8taXxF6CFLnqNCw=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"
+      integrity="sha512-ToL6UYWePxjhDQKNioSi4AyJ5KkRxY+F1+Fi7Jgh0Hp5Kk2/s8FD7zusJDdonfe5B00Qw+B8taXxF6CFLnqNCw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
 
-<!-- modernizr js -->
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
-  referrerpolicy="no-referrer"
-></script>
+    <!-- modernizr js -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
 
-<script src="js/common.js"></script>
-</body>
-<script>
-let documentHeight = Math.max(
-  document.body.scrollHeight,
-  document.body.offsetHeight,
-  document.documentElement.clientHeight,
-  document.documentElement.scrollHeight,
-  document.documentElement.offsetHeight
-);
-document.querySelector("header").style.height = documentHeight + "px";
-</script>
+    <script src="js/common.js"></script>
+  </body>
+  <script>
+    let documentHeight = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
+    document.querySelector('header').style.height = documentHeight + 'px';
+  </script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

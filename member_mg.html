@@ -26,10 +26,7 @@
       referrerpolicy="no-referrer"
     />
     <!-- tabler-icons  -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
 
     <!-- jquery ui css -->
     <link
@@ -103,37 +100,37 @@
           <div class="gnb">
             <ul class="d-flex flex-column">
               <li>
-                <a href="#">
+                <a href="index.html">
                   <span class="material-symbols-outlined"> dashboard </span>
                   <span>대시 보드</span>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/announce.html">
                   <span class="material-symbols-outlined"> assignment </span>
                   <span>공지 사항</span>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/class/course_list.html">
                   <span class="material-symbols-outlined"> live_tv </span>
                   <span>강의 관리</span>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/member_mg.html">
                   <span class="material-symbols-outlined"> face </span>
                   <span>회원 관리</span>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/coupon/coupon_list.html">
                   <span class="material-symbols-outlined"> local_atm </span>
                   <span>쿠폰 관리</span>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/performance.html">
                   <span class="material-symbols-outlined"> bar_chart </span>
                   <span>성과 분석</span>
                 </a>
@@ -161,28 +158,19 @@
             <h2>회원 관리</h2>
             <form action="" class="d-flex">
               <div class="filter d-flex">
-                <select
-                  class="form-select lecture"
-                  aria-label="Default select example"
-                >
+                <select class="form-select lecture" aria-label="Default select example">
                   <option selected>강좌명</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
                 </select>
-                <select
-                  class="form-select progress_rate"
-                  aria-label="Default select example"
-                >
+                <select class="form-select progress_rate" aria-label="Default select example">
                   <option selected>진도율</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
                 </select>
-                <select
-                  class="form-select period"
-                  aria-label="Default select example"
-                >
+                <select class="form-select period" aria-label="Default select example">
                   <option selected>수강 기간</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
@@ -190,27 +178,17 @@
                 </select>
               </div>
               <div class="search d-flex">
-                <select
-                  class="form-select search_filter"
-                  aria-label="Default select example"
-                >
+                <select class="form-select search_filter" aria-label="Default select example">
                   <option selected>닉네임</option>
                   <option value="1">One</option>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
                 </select>
                 <div class="form-floating">
-                  <input
-                    type="search"
-                    class="form-control"
-                    id="search_member"
-                    placeholder=""
-                  />
+                  <input type="search" class="form-control" id="search_member" placeholder="" />
                   <label for="search">검색어를 입력하세요</label>
                 </div>
-                <button type="submit" class="btn btn-primary search_btn">
-                  검색
-                </button>
+                <button type="submit" class="btn btn-primary search_btn">검색</button>
               </div>
             </form>
             <table class="table table-hover table-striped">
@@ -218,15 +196,8 @@
                 <tr>
                   <th scope="col">
                     <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="member_cb"
-                      />
-                      <label class="form-check-label" for="member_cb">
-                        전체선택
-                      </label>
+                      <input class="form-check-input" type="checkbox" value="" id="member_cb" />
+                      <label class="form-check-label" for="member_cb"> 전체선택 </label>
                     </div>
                   </th>
                   <th scope="col">아이디</th>
@@ -320,6 +291,6 @@
       document.documentElement.scrollHeight,
       document.documentElement.offsetHeight
     );
-    document.querySelector("header").style.height = documentHeight + "px";
+    document.querySelector('header').style.height = documentHeight + 'px';
   </script>
 </html>
