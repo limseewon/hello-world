@@ -634,6 +634,11 @@
   padding-left: 30px;
   padding-right: 30px;
 }
+.thumbnail_box{
+      width: 200px;
+      height: 140px;
+      background-color: #6f6f6f;
+    }
     </style>
 </head>
 <body>
@@ -853,9 +858,59 @@
         
               <div class="you_upload">
                 <div class="you_upload_content">
+                  <div class="thumbnail_box"></div>
                   <div class="row">
                     <div class="col-2">
-                      <P>강의썸네일</P>
+                      
+                      <P>썸네일 강의명</P>     
+                    </div>
+                    <div class="col-3">
+                      <P>차시명</P>
+                    </div>
+                    <div class="col-6">
+                      <P>강의url</P>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="youtube c_mb mt-3">
+                  <div class="row justify-content-between">
+                    <div class="col-2 youtube_thumb">
+                      <input type="file" class="form-control" name="youtube_thumb[]">
+                    </div>
+                    <div class="col-3 youtube_name">
+                      <input type="text" class="form-control" name="youtube_name[]" value="">
+                    </div>
+                    <div class="col-6 youtube_url">
+                      <input type="url" class="form-control" name="youtube_url[]" value="">
+                    </div>
+                    <div class="col-1 trash_icon">
+                      <label for="delete-youtube"><i class="ti ti-trash bin_icon"></i></label>
+                      <input type="checkbox" class="delete-youtube hidden" id="delete-youtube" name="delete_youtube[]" value="">
+                    </div>
+                    <div class="youtubeThumbBox">
+                      <span class="hidden">기존파일</span>
+                      <img src="" alt="">
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+              <div class="add_listBtn">
+                <a href="">
+                  
+                </a>
+              </div>
+            </div>
+            <div class="upload c_mt">
+              <label class="form-label content_tt c_mb">강의 추천파일</label>
+        
+              <div class="you_upload">
+                <div class="you_upload_content">
+                  <div class="thumbnail_box"></div>
+                  <div class="row">
+                    <div class="col-2">
+                      <P>썸네일 강의명</P>                    
                     </div>
                     <div class="col-3">
                       <P>강의명</P>
