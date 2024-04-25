@@ -136,6 +136,13 @@
       .bar-top{
         justify-content: space-between;
       }
+      .pagination{
+        margin-top: 20px;
+        justify-content: center;
+      }
+      .c_button {
+        display: flex;
+      }
     </style>
   </head>
   <body>
@@ -204,7 +211,7 @@
         <div class="top_section"><h3>test</h3></div>
         <div class="main">
           <div class="main_container">
-            <h2>공지 사항</h2>
+            <h2 class="h2">공지 사항</h2>
             <div class="bar-top d-flex">
               <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
@@ -431,7 +438,7 @@
             </table>
           </div>
           <nav aria-label="...">
-            <ul class="pagination">
+            <ul class="pagination d-flex">
               <li class="page-item disabled">
                 <span class="page-link">이전</span>
               </li>
@@ -443,7 +450,11 @@
                 <a class="page-link" href="#">다음</a>
               </li>
             </ul>
+            <div class="c_button">
+              <button class="btn_complete btn btn-primary">게시글 등록</button>
+            </div>
           </nav>
+
         </div>
       </section>
     </section>
