@@ -297,7 +297,7 @@
       }
 
       .coupon_info .coupon_info_box .coupon_name {
-        width: 100%;
+        width: 60.5%;
       }
       .coupon_info .coupon_info_box .coupon_min_price {
         width: 63%;
@@ -405,6 +405,7 @@
   padding-left: 30px;
   padding-right: 30px;
 }
+
     </style>
 </head>
 <body>
@@ -488,7 +489,7 @@
               <div class="info_top">
                 <div class="field coupon_name input-group">
                   <label for="coupon_name" class="content_tt">쿠폰명</label>
-                  <input type="text" name="cp_name" id="coupon_name" class="form-control"
+                  <input type="text" name="cp_name" id="coupon_name" class="form-control coupon_width"
                     placeholder="쿠폰명을 입력하세요." required>
                 </div>
               </div>
@@ -533,6 +534,11 @@
                   <label class="form-check-label b_text01" for="coupon_sale_0">할인율</label>
                   <input type="number" name="cp_ratio" id="cp_ratio" class="form-control input"
                   placeholder="10" min="5" max="100" step="5">%
+                </div>
+                <div class="form-check d-flex align-items-center">
+                  <input class="form-check-input" type="radio" name="cp_type" id="coupon_sale_0" value="정률">
+                  <label class="form-check-label b_text01" for="coupon_sale_0">비할인</label>
+                  
                 </div>
               </div>
             </div>
