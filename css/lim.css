@@ -84,17 +84,16 @@
     font-weight: bold;
   }
   .navbar{
-    width: 500px;
+    width: 780px;
+    gap: 40px;
     padding-bottom: 35px;
   }
   .navbar > .container-fluid{
     flex-wrap: nowrap;
   }
   .table{
-    padding-left: 36px;
     width: 1540px;
     margin: 0 auto;
-    position: relative;
   }
   .pagination{
     margin: 0;
