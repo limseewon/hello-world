@@ -36,6 +36,15 @@
   --c-contentBG: #f5f6fa;
   --space_updown: 30px;
 }
+.btn-primary {
+  background: #7749F8;
+}
+.btn-primary:hover {
+  background: #5642ee;
+}
+.btn-primary:active {
+  background: #353ade;
+}
 /* layout */
 .wrapper {
   width: 100%;
