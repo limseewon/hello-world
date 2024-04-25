@@ -43,7 +43,6 @@
       type="text/css"
     /> -->
 
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
     <link rel="stylesheet" href="css/common.css" />
     <!-- <link rel="stylesheet" href="css/lim.css" /> -->
 
@@ -90,6 +89,27 @@
     </style>
   </head>
   <body>
+    <div class="modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">회원 정보</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="profile">
+              <span class="material-symbols-outlined">account_circle</span>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </section>
     <section class="main_wrapper d-flex">
       <header>
         <section class="headerContainer">
@@ -151,7 +171,7 @@
           </div>
         </section>
       </header>
-      <section class="wrapper">
+      <section class="content_wrapper">
         <div class="top_section"><h3>test</h3></div>
         <div class="main">
           <div class="main_container">
@@ -292,5 +312,13 @@
       document.documentElement.offsetHeight
     );
     document.querySelector('header').style.height = documentHeight + 'px';
+
+    const myModalAlternative = new bootstrap.Modal('.modal')
+    $('tr').click(function() {
+      myModalAlternative.show()
+    })
+
+
+
   </script>
 </html>

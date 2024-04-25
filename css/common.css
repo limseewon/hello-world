@@ -46,18 +46,17 @@
   background: #353ade;
 }
 /* layout */
-.wrapper {
-  width: 100%;
+.content_wrapper {
+  margin-left: 290px;
 }
 header {
   width: 290px;
   color: white;
   background: var(--c-menu-BG);
+  position: fixed;
 }
 header .headerContainer {
-  width: 290px;
-  height: 100%;
-  /* position: fixed; */
+  height: 100%;  
   background: var(--c-menu-BG);
   img {
     background: white;
