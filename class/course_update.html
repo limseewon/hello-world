@@ -639,11 +639,12 @@
       height: 140px;
       background-color: #6f6f6f;
     }
-    .course_width { width: 500px;}
+    .course_width { width: 49%;}
+    .category_margin {margin-top: calc(var(--space_updown) * 3);}
     </style>
 </head>
 <body>
-  <section class="d-flex">
+  <section class="main_wrapper d-flex">
     <header>
       <section class="headerContainer">
         <div class="d-flex justify-content-center" id="logo">
@@ -659,31 +660,31 @@
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/announce.html">
                 <span class="material-symbols-outlined"> assignment </span>
                 <span>공지 사항</span>
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/class/course_list.html">
                 <span class="material-symbols-outlined"> live_tv </span>
                 <span>강의 관리</span>
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/member_mg.html">
                 <span class="material-symbols-outlined"> face </span>
                 <span>회원 관리</span>
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/coupon/coupon_list.html">
                 <span class="material-symbols-outlined"> local_atm </span>
                 <span>쿠폰 관리</span>
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="/performance.html">
                 <span class="material-symbols-outlined"> bar_chart </span>
                 <span>성과 분석</span>
               </a>
@@ -705,7 +706,17 @@
       </section>
     </header>
     <section class="content_wrapper">
-      <div class="top_section"><h3>test</h3></div>
+      <div class="top_section d-flex justify-content-end">
+        <div class="profile d-flex align-items-center">
+          <span class="material-symbols-outlined">account_circle</span>
+          <div class="d-flex flex-column">
+            <span>관리자</span>
+            <span>코딩좋아</span>
+          </div>
+          <span class="material-symbols-outlined">notifications</span>
+          <!-- <span>jsdafjo@naver.com</span> -->
+        </div>
+      </div>
       <div class="main">
         <div class="main_container">
           <h2>강의 수정</h2>
@@ -715,7 +726,7 @@
             <input type="hidden" name="image_table_id" id="image_table_id" value="">
             <input type="hidden" name="content" id="content" value="">
             <input type="hidden" name="cid" id="cid" value="">
-            <div class="categorywrap">
+            <div class="categorywrap category_margin">
               <label class="form-label content_tt c_mb">카테고리</label>
               <div class="categorys row">
                 <div class="category col">
