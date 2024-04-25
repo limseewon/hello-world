@@ -86,11 +86,17 @@
       #member_cb {
         margin-right: 10px;
       }
+      .msg_btn {
+        line-height: 0;
+        padding: 0;
+        box-sizing: border-box;
+        border: none;
+      }
     </style>
   </head>
   <body>
-    <div class="modal" tabindex="-1">
-      <div class="modal-dialog">
+    <div class="member_modal modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">회원 정보</h5>
@@ -99,16 +105,193 @@
           <div class="modal-body">
             <div class="profile">
               <span class="material-symbols-outlined">account_circle</span>
+              <div>
+                <span>수강생</span>
+                <span>코딩좋아</span>
+              </div>
+              <span>jsdafjo@naver.com</span>
+              <button type="button" class="msg_btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">                  <span class="material-symbols-outlined"> mail </span>
+              </button>
+            </div>
+            <hr>
+            <div class="information">
+              <ul>
+                <li><span>아이디</span><span>cording212</span></li>
+                <li><span>최근 접속일</span><span>2024-04-22</span></li>
+                <li><span>가입일</span><span>2024-04-12</span></li>
+                <li><span>연락처</span><span>010-1234-5678</span></li>
+                <li><span>최근 학습 강의</span><span>Angular, 앵귤러 100분 핵심 강의</span></li>
+              </ul>
+            </div>
+            <div>
+              <span>수강 강의</span>
+              <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  A list item
+                  <span class="badge text-bg-primary rounded-pill">14</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  A second list item
+                  <span class="badge text-bg-primary rounded-pill">2</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  A third list item
+                  <span class="badge text-bg-primary rounded-pill">1</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <span>보유 쿠폰</span>
+              <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small>3 days ago</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <small>And some small print.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-body-secondary">3 days ago</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <small class="text-body-secondary">And some muted small print.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-body-secondary">3 days ago</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <small class="text-body-secondary">And some muted small print.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-body-secondary">3 days ago</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <small class="text-body-secondary">And some muted small print.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-body-secondary">3 days ago</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <small class="text-body-secondary">And some muted small print.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-body-secondary">3 days ago</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <small class="text-body-secondary">And some muted small print.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-body-secondary">3 days ago</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <small class="text-body-secondary">And some muted small print.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-body-secondary">3 days ago</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <small class="text-body-secondary">And some muted small print.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-body-secondary">3 days ago</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <small class="text-body-secondary">And some muted small print.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-body-secondary">3 days ago</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <small class="text-body-secondary">And some muted small print.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-body-secondary">3 days ago</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <small class="text-body-secondary">And some muted small print.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-body-secondary">3 days ago</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <small class="text-body-secondary">And some muted small print.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-body-secondary">3 days ago</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <small class="text-body-secondary">And some muted small print.</small>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">List group item heading</h5>
+                    <small class="text-body-secondary">3 days ago</small>
+                  </div>
+                  <p class="mb-1">Some placeholder content in a paragraph.</p>
+                  <small class="text-body-secondary">And some muted small print.</small>
+                </a>
+              </div>
             </div>
           </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">회원 삭제</button>
+            <button type="button" class="btn btn-success">휴면 전환</button>
+          </div>
+        </div>
+      </div>
+    </div> 
+    
+    <div class="message_modal modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">메시지 전송</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">받는 사람:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Message:</label>
+                <textarea class="form-control" id="message-text"></textarea>
+              </div>
+            </form>
+          </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+            <button type="button" class="btn btn-primary">메시지 전송</button>
           </div>
         </div>
       </div>
     </div>
-
     </section>
     <section class="main_wrapper d-flex">
       <header>
@@ -313,11 +496,13 @@
     );
     document.querySelector('header').style.height = documentHeight + 'px';
 
-    const myModalAlternative = new bootstrap.Modal('.modal')
-    $('tr').click(function() {
-      myModalAlternative.show()
+    const memberModal = new bootstrap.Modal('.member_modal')
+    const messageModal = new bootstrap.Modal('.message_modal')
+    $('tbody tr').click(function() {
+      memberModal.show()
     })
 
+    
 
 
   </script>
