@@ -51,6 +51,14 @@
             width: 1556px;
             height: 643px;
         }
+        .btn {
+            width: 105px;
+            height: 48px;
+        }
+        .notice-btn{
+            padding-top: 65px;
+            justify-content: space-between;
+        }
     </style>
   </head>
   <body>
@@ -120,38 +128,55 @@
         <div class="main">
           <div class="main_container">
             <h2 class="h2">공지사항</h2>
-            <div class="contents-box">                    
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
-                    </tbody>
-                  </table>
+            <table class="table contents-box d-flex">
+                <tbody>
+                  <tr>
+                    <th scope="row"></th>
+                    <td><a href="#">제목</a></td>
+                    <td>안녕하세요! 공지드리겠습니다!</td>
+                    <td>홍길동</td>
+                    <td>1094</td>
+                    <td>2024.04.24</td>
+                    <td class="edit d-flex">
+                      <a href="#">
+                        <span class="material-symbols-outlined">
+                          border_color
+                        </span>
+                      </a>
+                      <a href="#">
+                        <span class="material-symbols-outlined">
+                          delete
+                          </span>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td><a href="#">내용</a></td>
+                    <td class="con">안녕하세요 회원 여러분! 앞으로의 모든 중요 사항들은 공지사항 페이지에 공지하도록 하겠습니다! 다들 열심히 공부하시고, 원하시는 결과 얻으시길 바랍니다!</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td><a href="#">첨부파일</a></td>
+                    <td>20240418.png</td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+          </div>
+          <div class="notice-btn d-flex">
+            <div class="left-button">   
+                <button type="button" class="btn btn-primary">이전</button>
+                <button type="button" class="btn btn-primary">다음</button>
+            </div>
+            <div class="right-button">
+                <button type="button" class="btn btn-primary">수정</button>
+                <button type="button" class="btn btn-primary">삭제</button>
             </div>
           </div>
+          
         </div>
       </section>
     </section>
