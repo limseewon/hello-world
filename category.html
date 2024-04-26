@@ -106,7 +106,7 @@
         font-size: 22px;
       }
       .modal-body label {
-        margin: 10px 0;
+        margin-bottom: 10px;
       }
       .category_list .dropdown {
         width: 100%;
@@ -479,47 +479,6 @@
             <!-- <span>jsdafjo@naver.com</span> -->
           </div>
         </div>
-<<<<<<< HEAD
-      </div>
-      <div class="main">
-        <div class="main_container">
-          <h2>카테고리 관리</h2>
-          <section class="category_add category_margin">
-            <h3 class="content_tt">카테고리 등록</h3>
-            <!-- Button trigger modal -->
-            <div class="category_add_btns btnmargin">
-              <button type="button" class="btn btn-primary margin-r" data-bs-toggle="modal" data-bs-target="#cate1Modal">
-                대분류 등록
-              </button>
-              <button type="button" class="btn btn-primary margin-r" data-bs-toggle="modal" data-bs-target="#cate2Modal">
-                중분류 등록
-              </button>
-              <button type="button" class="btn btn-primary margin-r" data-bs-toggle="modal" data-bs-target="#cate3Modal">
-                소분류 등록
-              </button>
-            </div>
-          
-            <!-- Modal 1 -->
-            <div class="modal cmodal fade" id="cate1Modal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h2 class="modal-title fs-5" id="exampleModalLabel1">
-                      대분류 등록
-                    </h2>
-                  </div>
-                  <div class="modal-body">
-                    <label for="name1" class="category_">카테고리명</label>
-                    <input type="text" class="form-control" name="name1" id="name1" placeholder="대분류명을 입력하세요.">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-success btn_g " data-step="1" data-bs-dismiss="modal">
-                      등록
-                    </button>
-                    <button type="button" class=" btn btn-danger " data-bs-dismiss="modal" aria-label="Close">
-                      취소
-                    </button>
-=======
         <div class="main">
           <div class="main_container">
             <h2>카테고리 관리</h2>
@@ -577,14 +536,13 @@
                       />
                     </div>
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary btn_g" data-step="1" data-bs-dismiss="modal">
+                      <button type="submit" class="btn btn-success btn_g" data-step="1" data-bs-dismiss="modal">
                         등록
                       </button>
-                      <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
                         취소
                       </button>
                     </div>
->>>>>>> main
                   </div>
                 </div>
               </div>
@@ -622,26 +580,13 @@
                       />
                     </div>
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary btn_g" data-step="2" data-bs-dismiss="modal">
+                      <button type="submit" class="btn btn-success btn_g" data-step="2" data-bs-dismiss="modal">
                         등록
                       </button>
-                      <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
                         취소
                       </button>
                     </div>
-<<<<<<< HEAD
-                    <label for="name2">카테고리명</label>
-                    <input type="text" class="form-control" name="name2" id="name2" placeholder="중분류명을 입력하세요.">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-success btn_g " data-step="2" data-bs-dismiss="modal">
-                      등록
-                    </button>
-                    <button type="button" class=" btn btn-danger " data-bs-dismiss="modal" aria-label="Close">
-                      취소
-                    </button>
-=======
->>>>>>> main
                   </div>
                 </div>
               </div>
@@ -684,29 +629,16 @@
                     <div class="modal-footer">
                       <button
                         type="submit"
-                        class="btn btn-primary btn_g btnmargin"
+                        class="btn btn-success btn_g btnmargin"
                         data-step="3"
                         data-bs-dismiss="modal"
                       >
                         등록
                       </button>
-                      <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
                         취소
                       </button>
                     </div>
-<<<<<<< HEAD
-                    <label for="name3">카테고리명</label>
-                    <input type="text" class="form-control" name="name3" id="name3" placeholder="소분류명을 입력하세요.">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-success btn_g btnmargin" data-step="3" data-bs-dismiss="modal">
-                      등록
-                    </button>
-                    <button type="button" class=" btn btn-danger " data-bs-dismiss="modal" aria-label="Close">
-                      취소
-                    </button>
-=======
->>>>>>> main
                   </div>
                 </div>
               </div>
@@ -780,7 +712,7 @@
                         data-cateid="<?= $c->cateid ?>" data-bs-dismiss="modal">
                         수정
                       </button>
-                      <button type="button" class="btn btn-danger " data-bs-dismiss="modal" aria-label="Close">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
                         취소
                       </button>
                     </div>
@@ -807,7 +739,7 @@
                         data-cateid="<?= $c->cateid ?>" data-bs-dismiss="modal">
                         수정
                       </button>
-                      <button type="button" class="btn btn-danger " data-bs-dismiss="modal" aria-label="Close">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
                         취소
                       </button>
                     </div>
@@ -834,7 +766,7 @@
                         data-cateid="<?= $c->cateid ?>" data-bs-dismiss="modal">
                         수정
                       </button>
-                      <button type="button" class="btn btn-danger " data-bs-dismiss="modal" aria-label="Close">
+                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
                         취소
                       </button>
                     </div>
