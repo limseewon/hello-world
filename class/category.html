@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>카테고리 관리</title>
@@ -26,10 +26,7 @@
       referrerpolicy="no-referrer"
     />
     <!-- tabler-icons  -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
 
     <!-- jquery ui css -->
     <link
@@ -46,9 +43,8 @@
       type="text/css"
     /> -->
 
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/>
-    <link rel="stylesheet" href="/css/common.css"/>
-    <link rel="stylesheet" href="/css/reset.css"/>
+    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
+    <link rel="stylesheet" href="../css/common.css" />
 
     <style>
       section {
@@ -97,7 +93,7 @@
       .wrapper {
         /* width: 100%; */
       }
-      
+
       .top_section {
         width: 100%;
         height: 64px;
@@ -132,7 +128,7 @@
       .category_{margin-bottom: 15px;} */
       /* 강의관리-최원석 */
       .primary_btn {
-        background-color: var( --c-button);
+        background-color: var(--c-button);
       }
       p {
         margin-bottom: 0;
@@ -162,7 +158,7 @@
       .category_add .row {
         margin-bottom: var(--space_updown);
       }
-      input[type="text"],
+      input[type='text'],
       select,
       .btn {
         height: 45px;
@@ -382,7 +378,7 @@
         display: inline-block;
         margin-left: 0;
         vertical-align: 0;
-        content: "";
+        content: '';
         border-top: none;
         border-right: none;
         border-bottom: 0;
@@ -390,7 +386,9 @@
       }
 
       /*강의보기*/
-      .category_ts {margin-bottom: 80px;}
+      .category_ts {
+        margin-bottom: 80px;
+      }
       ol,
       ul {
         padding-left: 0;
@@ -436,7 +434,6 @@
       .category_add .back_btn {
         position: absolute;
         right: 0;
-        
       }
 
       .course_view .course_list_title {
@@ -447,7 +444,7 @@
       /* 강의등록/강의수정 */
 
       h1 {
-        font-family: "jua";
+        font-family: 'jua';
       }
 
       .c_mt {
@@ -458,7 +455,7 @@
       }
 
       select,
-      input[type="file"]::file-selector-button,
+      input[type='file']::file-selector-button,
       input {
         height: 45px;
       }
@@ -595,7 +592,7 @@
       /* TYPOGRAPHY */
 
       .main_tt {
-        font-family: "Jua", sans-serif;
+        font-family: 'Jua', sans-serif;
         font-size: 32px;
         font-weight: 500;
       }
@@ -651,376 +648,454 @@
         padding-left: 30px;
         padding-right: 30px;
       }
-      .category_margin {margin-top: calc(var(--space_updown) * 3); }
+      .category_margin {
+        margin-top: calc(var(--space_updown) * 3);
+      }
     </style>
-</head>
-<body>
-  <section class="main_wrapper d-flex">
-    <header>
-      <section class="headerContainer">
-        <div class="d-flex justify-content-center" id="logo">
-          <h1>logo</h1>
-          <img src="../img/Group 50.png" alt="logo.jpg" />
-        </div>
-        <div class="gnb">
-          <ul class="d-flex flex-column">
-            <li>
-              <a href="../index.html">
-                <span class="material-symbols-outlined"> dashboard </span>
-                <span>대시 보드</span>
-              </a>
-            </li>
-            <li>
-              <a href="/announce.html">
-                <span class="material-symbols-outlined"> assignment </span>
-                <span>공지 사항</span>
-              </a>
-            </li>
-            <li>
-              <a href="/class/course_list.html">
-                <span class="material-symbols-outlined"> live_tv </span>
-                <span>강의 관리</span>
-              </a>
-            </li>
-            <li>
-              <a href="/member_mg.html">
-                <span class="material-symbols-outlined"> face </span>
-                <span>회원 관리</span>
-              </a>
-            </li>
-            <li>
-              <a href="/coupon/coupon_list.html">
-                <span class="material-symbols-outlined"> local_atm </span>
-                <span>쿠폰 관리</span>
-              </a>
-            </li>
-            <li>
-              <a href="/performance.html">
-                <span class="material-symbols-outlined"> bar_chart </span>
-                <span>성과 분석</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="material-symbols-outlined"> help </span>
-                <span>질의 응답</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="material-symbols-outlined"> logout </span>
-                <span>Logout</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-    </header>
-    <section class="content_wrapper">
-      <div class="top_section d-flex justify-content-end">
-        <div class="profile d-flex align-items-center">
-          <span class="material-symbols-outlined">account_circle</span>
-          <div class="d-flex flex-column">
-            <span>관리자</span>
-            <span>코딩좋아</span>
+  </head>
+  <body>
+    <section class="main_wrapper d-flex">
+      <header>
+        <section class="headerContainer">
+          <div class="d-flex justify-content-center" id="logo">
+            <h1>logo</h1>
+            <img src="../img/Group 50.png" alt="logo.jpg" />
           </div>
-          <span class="material-symbols-outlined">notifications</span>
-          <!-- <span>jsdafjo@naver.com</span> -->
+          <div class="gnb">
+            <ul class="d-flex flex-column">
+              <li>
+                <a href="../index.html">
+                  <span class="material-symbols-outlined"> dashboard </span>
+                  <span>대시 보드</span>
+                </a>
+              </li>
+              <li>
+                <a href="/announce.html">
+                  <span class="material-symbols-outlined"> assignment </span>
+                  <span>공지 사항</span>
+                </a>
+              </li>
+              <li>
+                <a href="/class/course_list.html">
+                  <span class="material-symbols-outlined"> live_tv </span>
+                  <span>강의 관리</span>
+                </a>
+              </li>
+              <li>
+                <a href="/member_mg.html">
+                  <span class="material-symbols-outlined"> face </span>
+                  <span>회원 관리</span>
+                </a>
+              </li>
+              <li>
+                <a href="/coupon/coupon_list.html">
+                  <span class="material-symbols-outlined"> local_atm </span>
+                  <span>쿠폰 관리</span>
+                </a>
+              </li>
+              <li>
+                <a href="/performance.html">
+                  <span class="material-symbols-outlined"> bar_chart </span>
+                  <span>성과 분석</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="material-symbols-outlined"> help </span>
+                  <span>질의 응답</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="material-symbols-outlined"> logout </span>
+                  <span>Logout</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </header>
+      <section class="content_wrapper">
+        <div class="top_section d-flex justify-content-end">
+          <div class="profile d-flex align-items-center">
+            <span class="material-symbols-outlined">account_circle</span>
+            <div class="d-flex flex-column">
+              <span>관리자</span>
+              <span>코딩좋아</span>
+            </div>
+            <span class="material-symbols-outlined">notifications</span>
+            <!-- <span>jsdafjo@naver.com</span> -->
+          </div>
         </div>
-      </div>
-      <div class="main">
-        <div class="main_container">
-          <h2>카테고리 관리</h2>
-          <section class="category_add category_margin">
-            <h3 class="content_tt">카테고리 등록</h3>
-            <!-- Button trigger modal -->
-            <div class="category_add_btns btnmargin">
-              <button type="button" class="btn btn-primary margin-r" data-bs-toggle="modal" data-bs-target="#cate1Modal">
-                대분류 등록
-              </button>
-              <button type="button" class="btn btn-primary margin-r" data-bs-toggle="modal" data-bs-target="#cate2Modal">
-                중분류 등록
-              </button>
-              <button type="button" class="btn btn-primary margin-r" data-bs-toggle="modal" data-bs-target="#cate3Modal">
-                소분류 등록
-              </button>
-            </div>
-          
-            <!-- Modal 1 -->
-            <div class="modal cmodal fade" id="cate1Modal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h2 class="modal-title fs-5" id="exampleModalLabel1">
-                      대분류 등록
-                    </h2>
-                  </div>
-                  <div class="modal-body">
-                    <label for="name1" class="category_">카테고리명</label>
-                    <input type="text" class="form-control" name="name1" id="name1" placeholder="대분류명을 입력하세요.">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn_g " data-step="1" data-bs-dismiss="modal">
-                      등록
-                    </button>
-                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
-                      취소
-                    </button>
+        <div class="main">
+          <div class="main_container">
+            <h2>카테고리 관리</h2>
+            <section class="category_add category_margin">
+              <h3 class="content_tt">카테고리 등록</h3>
+              <!-- Button trigger modal -->
+              <div class="category_add_btns btnmargin">
+                <button
+                  type="button"
+                  class="btn btn-primary margin-r"
+                  data-bs-toggle="modal"
+                  data-bs-target="#cate1Modal"
+                >
+                  대분류 등록
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary margin-r"
+                  data-bs-toggle="modal"
+                  data-bs-target="#cate2Modal"
+                >
+                  중분류 등록
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary margin-r"
+                  data-bs-toggle="modal"
+                  data-bs-target="#cate3Modal"
+                >
+                  소분류 등록
+                </button>
+              </div>
+
+              <!-- Modal 1 -->
+              <div
+                class="modal cmodal fade"
+                id="cate1Modal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel1"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h2 class="modal-title fs-5" id="exampleModalLabel1">대분류 등록</h2>
+                    </div>
+                    <div class="modal-body">
+                      <label for="name1" class="category_">카테고리명</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="name1"
+                        id="name1"
+                        placeholder="대분류명을 입력하세요."
+                      />
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary btn_g" data-step="1" data-bs-dismiss="modal">
+                        등록
+                      </button>
+                      <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
+                        취소
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          
-            <!-- Modal 2-->
-            <div class="modal cmodal fade" id="cate2Modal" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h2 class="modal-title fs-5" id="exampleModalLabel2">
-                      중분류 등록
-                    </h2>
-                  </div>
-                  <div class="modal-body">
-                    <div class="row">
-                     
-                      <div class="col-md-12">
-                        <select class="form-select " aria-label="Default select example" id="pcode2">
-                          <option selected disabled>대분류를 선택해주세요.</option>
-                          
+
+              <!-- Modal 2-->
+              <div
+                class="modal cmodal fade"
+                id="cate2Modal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel2"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h2 class="modal-title fs-5" id="exampleModalLabel2">중분류 등록</h2>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <select class="form-select" aria-label="Default select example" id="pcode2">
+                            <option selected disabled>대분류를 선택해주세요.</option>
+
                             <option value=""></option>
-                         
-                        </select>
+                          </select>
+                        </div>
                       </div>
+                      <label for="name2">카테고리명</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="name2"
+                        id="name2"
+                        placeholder="중분류명을 입력하세요."
+                      />
                     </div>
-                    <label for="name2">카테고리명</label>
-                    <input type="text" class="form-control" name="name2" id="name2" placeholder="중분류명을 입력하세요.">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn_g " data-step="2" data-bs-dismiss="modal">
-                      등록
-                    </button>
-                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
-                      취소
-                    </button>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary btn_g" data-step="2" data-bs-dismiss="modal">
+                        등록
+                      </button>
+                      <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
+                        취소
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            
-          
-            <!-- Modal 3-->
-            <div class="modal cmodal fade" id="cate3Modal" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h2 class="modal-title fs-5" id="exampleModalLabel3">
-                      소분류 등록
-                    </h2>
-                  </div>
-                  <div class="modal-body">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <select class="form-select" aria-label="Default select example" id="pcode2_1">
-                          <option selected disabled>대분류</option>
-                          
-                        </select>
-                      </div>
-                      <div class="col-md-6">
-                        <select class="form-select" aria-label="Default select example" id="pcode3">
-                          <option selected disabled>대분류를 먼저 선택해주세요</option>
-                        </select>
-                      </div>
+
+              <!-- Modal 3-->
+              <div
+                class="modal cmodal fade"
+                id="cate3Modal"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel3"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h2 class="modal-title fs-5" id="exampleModalLabel3">소분류 등록</h2>
                     </div>
-                    <label for="name3">카테고리명</label>
-                    <input type="text" class="form-control" name="name3" id="name3" placeholder="소분류명을 입력하세요.">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn_g btnmargin" data-step="3" data-bs-dismiss="modal">
-                      등록
-                    </button>
-                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
-                      취소
-                    </button>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <select class="form-select" aria-label="Default select example" id="pcode2_1">
+                            <option selected disabled>대분류</option>
+                          </select>
+                        </div>
+                        <div class="col-md-6">
+                          <select class="form-select" aria-label="Default select example" id="pcode3">
+                            <option selected disabled>대분류를 먼저 선택해주세요</option>
+                          </select>
+                        </div>
+                      </div>
+                      <label for="name3">카테고리명</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="name3"
+                        id="name3"
+                        placeholder="소분류명을 입력하세요."
+                      />
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="submit"
+                        class="btn btn-primary btn_g btnmargin"
+                        data-step="3"
+                        data-bs-dismiss="modal"
+                      >
+                        등록
+                      </button>
+                      <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
+                        취소
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <!-- 카테고리 리스트 -->
-            <div class="category_list">
-              <h3 class="content_tt">카테고리 리스트</h3>
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="dropdown big_cate">
-                    <button class="btn btn-secondary dropdown-toggle col-md-12 form-select" type="button"
-                      data-bs-toggle="dropdown" aria-expanded="false">
-                      대분류
-                    </button>
-                    <ul class="dropdown-menu" id="cate1" style="width: 100%">
-                      
-                        <li class="list-group-item big d-flex justify-content-between align-items-center"
-                          data-cate="">
+              <!-- 카테고리 리스트 -->
+              <div class="category_list">
+                <h3 class="content_tt">카테고리 리스트</h3>
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="dropdown big_cate">
+                      <button
+                        class="btn btn-secondary dropdown-toggle col-md-12 form-select"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        대분류
+                      </button>
+                      <ul class="dropdown-menu" id="cate1" style="width: 100%">
+                        <li class="list-group-item big d-flex justify-content-between align-items-center" data-cate="">
                           <span class="cate_size"></span>
                           <div class="cate_edit_btns d-flex gap-2">
-                            <a href="" data-bs-toggle="modal"
-                              data-bs-target="#cateModifyModal1"><i class=" ti ti-edit pen_icon"></i></a>
+                            <a href="" data-bs-toggle="modal" data-bs-target="#cateModifyModal1"
+                              ><i class="ti ti-edit pen_icon"></i
+                            ></a>
                             <a href="#"><i class="ti ti-trash bin_icon"></i></a>
                           </div>
                         </li>
-                      
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="dropdown md_cate">
-                    <button class="btn btn-secondary dropdown-toggle col-md-12 form-select" type="button"
-                      data-bs-toggle="dropdown" aria-expanded="false">
-                      중분류
-                    </button>
-                    <ul class="dropdown-menu" id="cate2" style="width: 100%">
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="dropdown sm_cate">
-                    <button class="btn btn-secondary dropdown-toggle col-md-12 form-select" type="button"
-                      data-bs-toggle="dropdown" aria-expanded="false">
-                      소분류
-                    </button>
-                    <ul class="dropdown-menu " id="cate3" style="width: 100%">
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          
-            <!-- 대분류수정 Modal -->
-            <div class="modal fade" id="cateModifyModal1" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h2 class="modal-title fs-5" id="exampleModalLabel4">
-                      카테고리 수정
-                    </h2>
-                  </div>
-                  <form class="modal-body" action="category_update.php" method="POST">
-                    <input type="hidden" name="cateid" class="catename" value="">
-                    <label for="name4">카테고리명</label>
-                    <input type="text" class="form-control modal_cate_name" name="catename" id="name4" value="">
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary btn_g cate_modify" data-step="1"
-                        data-cateid="<?= $c->cateid ?>" data-bs-dismiss="modal">
-                        수정
-                      </button>
-                      <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
-                        취소
-                      </button>
+                      </ul>
                     </div>
-          
-                  </form>
-                </div>
-              </div>
-            </div>
-            <!-- 중분류수정 Modal -->
-            <div class="modal fade" id="cateModifyModal2" tabindex="-1" aria-labelledby="exampleModalLabel5" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h2 class="modal-title fs-5" id="exampleModalLabel5">
-                      카테고리 수정
-                    </h2>
                   </div>
-                  <form class="modal-body" action="" method="POST">
-                    <input type="hidden" name="cateid" class="catename" value="">
-                    <label for="name5">카테고리명</label>
-                    <input type="text" class="form-control modal_cate_name" name="catename" id="name5" value="">
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary btn_g cate_modify" data-step="2"
-                        data-cateid="<?= $c->cateid ?>" data-bs-dismiss="modal">
-                        수정
+                  <div class="col-md-4">
+                    <div class="dropdown md_cate">
+                      <button
+                        class="btn btn-secondary dropdown-toggle col-md-12 form-select"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        중분류
                       </button>
-                      <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
-                        취소
-                      </button>
+                      <ul class="dropdown-menu" id="cate2" style="width: 100%"></ul>
                     </div>
-          
-                  </form>
-                </div>
-              </div>
-            </div>
-            <!-- 소분류수정 Modal -->
-            <div class="modal fade" id="cateModifyModal3" tabindex="-1" aria-labelledby="exampleModalLabel6" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h2 class="modal-title fs-5" id="exampleModalLabel6">
-                      카테고리 수정
-                    </h2>
                   </div>
-                  <form class="modal-body" action="" method="POST">
-                    <input type="hidden" name="cateid" class="catename" value="">
-                    <label for="name6">카테고리명</label>
-                    <input type="text" class="form-control modal_cate_name" name="catename" id="name6" value="">
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary btn_g cate_modify" data-step="3"
-                        data-cateid="<?= $c->cateid ?>" data-bs-dismiss="modal">
-                        수정
+                  <div class="col-md-4">
+                    <div class="dropdown sm_cate">
+                      <button
+                        class="btn btn-secondary dropdown-toggle col-md-12 form-select"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        소분류
                       </button>
-                      <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
-                        취소
-                      </button>
+                      <ul class="dropdown-menu" id="cate3" style="width: 100%"></ul>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
-            </div>
-            <a href="course_list.php" class="btn btn-dark base_mt back_btn">돌아가기</a>
-          </section>
+
+              <!-- 대분류수정 Modal -->
+              <div
+                class="modal fade"
+                id="cateModifyModal1"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel4"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h2 class="modal-title fs-5" id="exampleModalLabel4">카테고리 수정</h2>
+                    </div>
+                    <form class="modal-body" action="category_update.php" method="POST">
+                      <input type="hidden" name="cateid" class="catename" value="" />
+                      <label for="name4">카테고리명</label>
+                      <input type="text" class="form-control modal_cate_name" name="catename" id="name4" value="" />
+                      <div class="modal-footer">
+                        <button
+                          type="submit"
+                          class="btn btn-primary btn_g cate_modify"
+                          data-step="1"
+                          data-cateid="<?= $c->cateid ?>"
+                          data-bs-dismiss="modal"
+                        >
+                          수정
+                        </button>
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
+                          취소
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- 중분류수정 Modal -->
+              <div
+                class="modal fade"
+                id="cateModifyModal2"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel5"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h2 class="modal-title fs-5" id="exampleModalLabel5">카테고리 수정</h2>
+                    </div>
+                    <form class="modal-body" action="" method="POST">
+                      <input type="hidden" name="cateid" class="catename" value="" />
+                      <label for="name5">카테고리명</label>
+                      <input type="text" class="form-control modal_cate_name" name="catename" id="name5" value="" />
+                      <div class="modal-footer">
+                        <button
+                          type="submit"
+                          class="btn btn-primary btn_g cate_modify"
+                          data-step="2"
+                          data-cateid="<?= $c->cateid ?>"
+                          data-bs-dismiss="modal"
+                        >
+                          수정
+                        </button>
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
+                          취소
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- 소분류수정 Modal -->
+              <div
+                class="modal fade"
+                id="cateModifyModal3"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel6"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h2 class="modal-title fs-5" id="exampleModalLabel6">카테고리 수정</h2>
+                    </div>
+                    <form class="modal-body" action="" method="POST">
+                      <input type="hidden" name="cateid" class="catename" value="" />
+                      <label for="name6">카테고리명</label>
+                      <input type="text" class="form-control modal_cate_name" name="catename" id="name6" value="" />
+                      <div class="modal-footer">
+                        <button
+                          type="submit"
+                          class="btn btn-primary btn_g cate_modify"
+                          data-step="3"
+                          data-cateid="<?= $c->cateid ?>"
+                          data-bs-dismiss="modal"
+                        >
+                          수정
+                        </button>
+                        <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
+                          취소
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <a href="course_list.php" class="btn btn-dark base_mt back_btn">돌아가기</a>
+            </section>
+          </div>
         </div>
-      </div>
+      </section>
     </section>
-  </section>
-  <!-- jquery -->
-  <script
-  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
-  integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-  ></script>
-  <!-- jqueryui js -->
-  <script
-  src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
-  integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-  ></script>
-  <!-- bootstrap js -->
+    <!-- jquery -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+      integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- jqueryui js -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
+      integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- bootstrap js -->
 
-  <script
-  src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"
-  integrity="sha512-ToL6UYWePxjhDQKNioSi4AyJ5KkRxY+F1+Fi7Jgh0Hp5Kk2/s8FD7zusJDdonfe5B00Qw+B8taXxF6CFLnqNCw=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-  ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"
+      integrity="sha512-ToL6UYWePxjhDQKNioSi4AyJ5KkRxY+F1+Fi7Jgh0Hp5Kk2/s8FD7zusJDdonfe5B00Qw+B8taXxF6CFLnqNCw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
 
-  <!-- modernizr js -->
-  <script
-  src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
-  referrerpolicy="no-referrer"
-  ></script>
+    <!-- modernizr js -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
 
-  <script src="js/common.js"></script>
+    <script src="js/common.js"></script>
   </body>
   <script>
-  let documentHeight = Math.max(
-  document.body.scrollHeight,
-  document.body.offsetHeight,
-  document.documentElement.clientHeight,
-  document.documentElement.scrollHeight,
-  document.documentElement.offsetHeight
-  );
-  document.querySelector("header").style.height = documentHeight + "px";
+    let documentHeight = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
+    document.querySelector('header').style.height = documentHeight + 'px';
   </script>
 </html>
-
-
