@@ -1,8 +1,8 @@
 <?php
- $hostname = 'localhost';
+ $hostname = 'worldhello.dothome.co.kr';
  $dbuserid = 'worldhello';
- $dbpasswd = '';
- $dbname = '';
+ $dbpasswd = 'sudo0212!';
+ $dbname = 'worldhello';
 
  $mysqli = new mysqli($hostname, $dbuserid, $dbpasswd, $dbname);
 
