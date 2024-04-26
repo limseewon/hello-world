@@ -47,10 +47,7 @@
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/lim.css" />
     <style>
-        .contents-box{
-            width: 1556px;
-            height: 643px;
-        }
+
         .btn {
             width: 105px;
             height: 48px;
@@ -91,10 +88,11 @@
           padding-top: 35px;
         }
         .regist{
-          width: 100%;
+          /* width: 100%; */
           height: auto;
           background: #fff;
           padding: 20px;
+          border: 1px solid #ced4da;
         }
         .btn-primary{
           width: 106px;
@@ -169,7 +167,17 @@
         </section>
       </header>
       <section class="content_wrapper">
-        <div class="top_section"><h3>test</h3></div>
+        <div class="top_section d-flex justify-content-end">
+          <div class="profile d-flex align-items-center">
+            <span class="material-symbols-outlined">account_circle</span>
+            <div class="d-flex flex-column">
+              <span>관리자</span>
+              <span>코딩좋아</span>
+            </div>
+            <span class="material-symbols-outlined">notifications</span>
+            <!-- <span>jsdafjo@naver.com</span> -->
+          </div>
+        </div>
         <div class="main">
           <div class="main_container">
             <h2 class="h2">게시글 등록</h2>
