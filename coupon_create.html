@@ -48,72 +48,9 @@
 
     <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/>
     <link rel="stylesheet" href="/css/common.css"/>
-    <link rel="stylesheet" href="/css/reset.css"/>
-      
+    
     <style>
-      section {
-        width: 100%;
-      }
-      header {
-        width: 290px;
-        color: white;
-        background: var(--c-menu-BG);
-      }
-      header .headerContainer {
-        width: 290px;
-        height: 100%;
-        /* position: fixed; */
-        background: var(--c-menu-BG);
-        img {
-          background: white;
-          width: 160px;
-          height: 155px;
-        }
-      }
-      #logo {
-        margin-bottom: 60px;
-      }
-      #logo h1 {
-        position: absolute;
-        text-indent: -9999em;
-        opacity: 0;
-        visibility: hidden;
-      }
-      .gnb li a {
-        display: block;
-        width: 290px;
-        height: 70px;
-        font-size: var(--f-H3);
-        color: var(--c-menu-font);
-        padding-left: 30px;
-      }
-      .gnb li a:hover {
-        font-size: var(--f-H3);
-        color: var(--c-menu-font-hover);
-      }
-      .gnb li a span + span {
-        margin-left: 10px;
-      }
-      .wrapper {
-        /* width: 100%; */
-      }
-      .top_section {
-        width: 100%;
-        height: 64px;
-        background: white;
-        border-bottom: 1px solid #c9c9c9;
-        /* position: relative; */
-        h3 {
-          color: black;
-        }
-      }
-      .main {
-        /* width: 100%; */
-        width: 100%;
-        height: 100vh;
-        background: var(--c-contentBG);
-        padding: 32px 25px 0 25px;
-      }
+     
       /* 쿠폰 최원석 */
       .sub_header {
         margin-bottom: var(--space_updown);
@@ -400,11 +337,18 @@
         margin: 50px;
       }
       .btn {
-  font-size: 16px;
-  height: 45px;
-  padding-left: 30px;
-  padding-right: 30px;
-}
+      font-size: 16px;
+      height: 45px;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+    .coupon_bottom { 
+      margin-bottom: 146px;}
+    .show_picture { 
+      width: 630px; 
+     }
+     .coupon_box2 { width: 50%;}
+     .just-s-b{ justify-content: space-between;}
 
     </style>
 </head>
@@ -483,19 +427,19 @@
         </div>
       </div>
       <div class="main">
-        <div class="main_container">
+        <div class="main_container coupon_bottom">
           <h2>쿠폰등록</h2>
         </div>
         <form action="coupon_create_ok.php" class="coupon_create_form" method="POST" enctype="multipart/form-data">
-          <fieldset class="coupon_info d-flex">
+          <fieldset class="coupon_info d-flex just-s-b">
             <legend class="hidden">쿠폰정보</legend>
-            <div class="thumbnail">
+            <div class="thumbnail coupon_box2">
               <input type="hidden" id="imgSRC" name="imgSRC" value="">
               <input type="file" class="hidden" name="cp_image" id="thumbnail" required>
-              <div class="show_thumb border"></div>
+              <div class="show_thumb border show_picture"></div>
               <button type="button" class="btn primary_bg btn-primary thumb_btn">사진등록</button>
             </div>
-            <div class="coupon_info_box d-flex flex-column">
+            <div class="coupon_info_box d-flex flex-column coupon_box2">
               <div class="info_top">
                 <div class="field coupon_name input-group">
                   <label for="coupon_name" class="content_tt">쿠폰명</label>
