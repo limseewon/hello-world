@@ -52,125 +52,8 @@
     <style>
      
       /* 쿠폰 최원석 */
-      .sub_header {
-        margin-bottom: var(--space_updown);
-      }
-
-      .sub_header .btn {
-        line-height: var(--space_updown);
-      }
-
-      .coupon_keyword_search {
-        gap: calc(var(--space_updown)/2);
-        flex: 1;
-        justify-content: end;
-        margin-right: calc(var(--space_updown)/2);
-      }
-      .coupon_keyword_search .input-group {
-        width: 52%;
-      }
-
-      .coupon_filter label {
-        cursor: pointer;
-      }
-      .coupon_status_search {
-        border-top: 1px solid;
-        border-bottom: 1px solid;
-        text-align: center;
-        height: calc(var(--space_updown)*5);
-        margin-bottom: calc(var(--space_updown)*2);
-      }
-
-      .coupon_status_search > div {
-        width: 33.33%;
-      }
-
-      .coupon_status_search > div + div {
-        border-left: 1px solid;
-      }
-
-      .coupon_status_search > div em {
-        margin-right: 5px;
-      }
-
-      .coupon_status_search label {
-        position: relative;
-      }
-
-      .coupon_status_search label:hover {
-        color: var(--point_primary);
-      }
-
-      .coupon_status_search label:hover:after {
-        content: '';
-        position: absolute;
-        bottom: 8px;
-        height: 1.5px;
-        left: 2px;
-        right: 2px;
-        background-color: var(--point_primary);
-      }
-
-      .coupons .coupon {
-        width: 49%;
-        height: calc(var(--space_updown)*7);
-        position: relative;
-        padding: 15px;
-      }
-
-      .coupons .coupon img {
-        width: 45%;
-        object-fit: cover;
-      }
-
-      .coupons ul {
-        margin-bottom: 0;  
-        padding-left: 0;/* reboot? */
-        gap: var(--space_updown) 0;
-      }
-
-      .coupons .coupon .text_box {
-        margin-left: 20px;
-        width: calc(55% - 40px);
-      }
-
-      .coupons .coupon h3 {
-        font-weight: bold;
-        margin: 10px 0;
-
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis; 
-      }
-
-      .coupons .coupon h3 a:hover {
-        color: var(--point_primary);
-        border-bottom: 1px solid var(--point_primary);
-      }
-
-      .coupons .coupon p {
-        margin-bottom: 0;
-      }
-
-
-      .coupons .coupon .icons,
-      .coupons .coupon .form-check {
-        position: absolute;
-        right: 15px;
-      }
-
-      .coupons .coupon .icons {
-        font-size: 25px;
-        top: 10px;
-      }
-
-      .coupons .coupon .form-check {
-        bottom: 15px;
-        transform: scale(1.5);
-      }
-      /* 쿠폰 */
-      .sub_header h2 {
+  
+  .sub_header h2 {
         margin-bottom: calc(var(--space_updown)*2);
       }
 
@@ -178,14 +61,16 @@
         gap: 3%;
       }
       .coupon_info .thumbnail {
-        width: 30%;
+        width: 50%;
         min-width: 300px;
+        
       }
 
       .coupon_info .thumbnail .show_thumb {
         padding-top: 70%;
         position: relative;
         overflow: hidden;
+        width: 92%;
       }
 
       .coupon_info .thumbnail .show_thumb img {
@@ -205,7 +90,7 @@
 
       .coupon_info .thumbnail .thumb_btn {
         margin-top: var(--space_updown);
-        width: 100%;
+        width: 92%;
         font-size: 16px;
         font-weight: bold;
       }
@@ -234,10 +119,10 @@
       }
 
       .coupon_info .coupon_info_box .coupon_name {
-        width: 60.5%;
+        width: 95.5%;
       }
       .coupon_info .coupon_info_box .coupon_min_price {
-        width: 63%;
+        width: 99%;
         gap: 0 10px;
       }
 
@@ -345,10 +230,15 @@
     .coupon_bottom { 
       margin-bottom: 146px;}
     .show_picture { 
-      width: 630px; 
+      width: 715px; 
+      height: 245px;
+      
      }
+     .coupon_ju { display: flex; justify-content: center; width: 100%;}
      .coupon_box2 { width: 50%;}
      .just-s-b{ justify-content: space-between;}
+     .thumb_bbtn { background: var(--c-complete-button);}
+     .thumb_bbtn:hover { background: var(--c-complete-button-hover);}
 
     </style>
 </head>
@@ -437,7 +327,7 @@
               <input type="hidden" id="imgSRC" name="imgSRC" value="">
               <input type="file" class="hidden" name="cp_image" id="thumbnail" required>
               <div class="show_thumb border show_picture"></div>
-              <button type="button" class="btn primary_bg btn-primary thumb_btn">사진등록</button>
+              <button type="button" class="btn primary_bg btn-primary thumb_btn thumb_bbtn">사진등록</button>
             </div>
             <div class="coupon_info_box d-flex flex-column coupon_box2">
               <div class="info_top">
