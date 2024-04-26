@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>카테고리 관리</title>
@@ -26,7 +26,10 @@
       referrerpolicy="no-referrer"
     />
     <!-- tabler-icons  -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
+    />
 
     <!-- jquery ui css -->
     <link
@@ -43,10 +46,10 @@
       type="text/css"
     /> -->
 
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
-    <link rel="stylesheet" href="/css/common.css" />
-    <link rel="stylesheet" href="/css/reset.css" />
-
+    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/>
+    <link rel="stylesheet" href="/css/common.css"/>
+    <link rel="stylesheet" href="/css/reset.css"/>
+      
     <style>
       section {
         width: 100%;
@@ -121,10 +124,10 @@
       }
 
       .coupon_keyword_search {
-        gap: calc(var(--space_updown) / 2);
+        gap: calc(var(--space_updown)/2);
         flex: 1;
         justify-content: end;
-        margin-right: calc(var(--space_updown) / 2);
+        margin-right: calc(var(--space_updown)/2);
       }
       .coupon_keyword_search .input-group {
         width: 52%;
@@ -134,9 +137,11 @@
         cursor: pointer;
       }
       .coupon_status_search {
+        border-top: 1px solid;
+        border-bottom: 1px solid;
         text-align: center;
-        height: calc(var(--space_updown) * 5);
-        margin-bottom: calc(var(--space_updown) * 2);
+        height: calc(var(--space_updown)*5);
+        margin-bottom: calc(var(--space_updown)*2);
       }
 
       .coupon_status_search > div {
@@ -144,6 +149,7 @@
       }
 
       .coupon_status_search > div + div {
+        border-left: 1px solid;
       }
 
       .coupon_status_search > div em {
@@ -170,7 +176,7 @@
 
       .coupons .coupon {
         width: 49%;
-        height: calc(var(--space_updown) * 7);
+        height: calc(var(--space_updown)*7);
         position: relative;
         padding: 15px;
       }
@@ -181,8 +187,8 @@
       }
 
       .coupons ul {
-        margin-bottom: 0;
-        padding-left: 0; /* reboot? */
+        margin-bottom: 0;  
+        padding-left: 0;/* reboot? */
         gap: var(--space_updown) 0;
       }
 
@@ -198,7 +204,7 @@
         width: 100%;
         white-space: nowrap;
         overflow: hidden;
-        text-overflow: ellipsis;
+        text-overflow: ellipsis; 
       }
 
       .coupons .coupon h3 a:hover {
@@ -209,6 +215,7 @@
       .coupons .coupon p {
         margin-bottom: 0;
       }
+
 
       .coupons .coupon .icons,
       .coupons .coupon .form-check {
@@ -225,17 +232,10 @@
         bottom: 15px;
         transform: scale(1.5);
       }
+      
       /* 쿠폰 */
-
-      .couponbox {
-        margin: 0 auto;
-        width: 391px;
-        height: 391px;
-        border-radius: 50%;
-        border: 1px solid #000;
-      }
       .sub_header h2 {
-        margin-bottom: calc(var(--space_updown) * 2);
+        margin-bottom: calc(var(--space_updown)*2);
       }
 
       .coupon_info {
@@ -254,12 +254,8 @@
 
       .coupon_info .thumbnail .show_thumb img {
         position: absolute;
-        right: 0;
-        bottom: 0;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        right: 0; bottom: 0; top: 0; left: 0;
+        width: 100%; height: 100%;
         object-fit: cover;
       }
 
@@ -268,7 +264,7 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%,-50%);
       }
 
       .coupon_info .thumbnail .thumb_btn {
@@ -302,7 +298,7 @@
       }
 
       .coupon_info .coupon_info_box .coupon_name {
-        width: 100%;
+        width: 60.5%;
       }
       .coupon_info .coupon_info_box .coupon_min_price {
         width: 63%;
@@ -319,8 +315,9 @@
         padding-left: 5px;
       }
 
+
       .coupon_option {
-        margin-top: calc(var(--space_updown) * 1.5);
+        margin-top: calc(var(--space_updown)*1.5);
         gap: 4%;
       }
 
@@ -347,13 +344,13 @@
       }
 
       .submit_btns {
-        margin: calc(var(--space_updown) * 2) 0;
-        gap: calc(var(--space_updown) / 2);
+        margin: calc(var(--space_updown)*2) 0;
+        gap: calc(var(--space_updown)/2);
       }
-      /* TYPOGRAPHY */
+       /* TYPOGRAPHY */
 
-      .main_tt {
-        font-family: 'Jua', sans-serif;
+       .main_tt {
+        font-family: "Jua", sans-serif;
         font-size: 32px;
         font-weight: 500;
       }
@@ -409,163 +406,194 @@
         padding-left: 30px;
         padding-right: 30px;
       }
+      .coupon_ju { display: flex; justify-content: center;background-color: aqua; width: 100%;}
     </style>
-  </head>
-  <body>
-    <section class="main_wrapper d-flex">
-      <header>
-        <section class="headerContainer">
-          <div class="d-flex justify-content-center" id="logo">
-            <h1>logo</h1>
-            <img src="./img/Group 50.png" alt="logo.jpg" />
-          </div>
-          <div class="gnb">
-            <ul class="d-flex flex-column">
-              <li>
-                <a href="#">
-                  <span class="material-symbols-outlined"> dashboard </span>
-                  <span>대시 보드</span>
-                </a>
-              </li>
-              <li>
-                <a href="/announce.html">
-                  <span class="material-symbols-outlined"> assignment </span>
-                  <span>공지 사항</span>
-                </a>
-              </li>
-              <li>
-                <a href="/class/course_list.html">
-                  <span class="material-symbols-outlined"> live_tv </span>
-                  <span>강의 관리</span>
-                </a>
-              </li>
-              <li>
-                <a href="/member_mg.html">
-                  <span class="material-symbols-outlined"> face </span>
-                  <span>회원 관리</span>
-                </a>
-              </li>
-              <li>
-                <a href="/coupon/coupon_list.html">
-                  <span class="material-symbols-outlined"> local_atm </span>
-                  <span>쿠폰 관리</span>
-                </a>
-              </li>
-              <li>
-                <a href="/performance.html">
-                  <span class="material-symbols-outlined"> bar_chart </span>
-                  <span>성과 분석</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span class="material-symbols-outlined"> help </span>
-                  <span>질의 응답</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span class="material-symbols-outlined"> logout </span>
-                  <span>Logout</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </section>
-      </header>
-      <section class="content_wrapper">
-        <div class="top_section d-flex justify-content-end">
-          <div class="profile d-flex align-items-center">
-            <span class="material-symbols-outlined">account_circle</span>
-            <div class="d-flex flex-column">
-              <span>관리자</span>
-              <span>코딩좋아</span>
-            </div>
-            <span class="material-symbols-outlined">notifications</span>
-            <!-- <span>jsdafjo@naver.com</span> -->
-          </div>
+</head>
+<body>
+  <section class="main_wrapper d-flex">
+    <header>
+      <section class="headerContainer">
+        <div class="d-flex justify-content-center" id="logo">
+          <h1>logo</h1>
+          <img src="./img/Group 50.png" alt="logo.jpg" />
         </div>
-        <div class="main">
-          <div class="main_container">
-            <h2>쿠폰관리</h2>
-          </div>
-
-          <form action="#" class="coupon_filter">
-            <div class="couponbox"></div>
-            <h2 class="hidden">클릭하여 진행중 또는 종료된 쿠폰을 확인하세요.</h2>
-            <div class="coupon_status_search d-flex justify-content-betweenn white_bg align-items-center">
-              <div class="filter_1">
-                <h3 class="b_text01">총 쿠폰 개수</h3>
-                <label for="all" class="b_text02"><em class="main_tt"></em>개</label>
-                <input type="radio" value="-1" class="hidden" id="all" name="coupon_filter" />
-              </div>
-              <div class="filter_2">
-                <h3 class="b_text01">활성화 쿠폰 개수</h3>
-                <label for="ing" class="b_text02"><em class="main_tt"></em>개</label>
-                <input type="radio" value="1" class="hidden" id="ing" name="coupon_filter" />
-              </div>
-              <div class="filter_3">
-                <h3 class="b_text01">비활성화 쿠폰 개수</h3>
-                <label for="end" class="b_text02"><em class="main_tt"></em>개</label>
-                <input type="radio" value="0" class="hidden" id="end" name="coupon_filter" />
-              </div>
-            </div>
-            <button class="hidden">필터실행</button>
-          </form>
-          <!-- coupon_filter -->
-          <div class="sub_header d-flex justify-content-between align-items-center">
-            <form action="#" class="d-flex align-items-center coupon_keyword_search">
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="쿠폰명을 입력하세요."
-                  aria-label="쿠폰명을 입력하세요."
-                  name="search"
-                />
-              </div>
-              <button class="btn btn-dark">검색</button>
-            </form>
-            <a href="coupon_create.php" class="btn btn-primary">쿠폰등록</a>
-          </div>
-          <!-- //sub_header -->
-
-          <div class="coupons">
-            <h2 class="hidden">쿠폰리스트</h2>
-            <ul class="d-flex flex-wrap justify-content-between g-5">
-              <li class="coupon shadow_box border white_bg d-flex" data-cpid="">
-                <img src="" alt="" class="border" />
-                <div class="text_box">
-                  <h3 class="b_text01" title=""></h3>
-                  <p>사용기한 :</p>
-                  <p>최소사용금액 : <span class="number"></span>원</p>
-                  <p>
-                    :
-                    <span class="number"></span>
-                  </p>
-                </div>
-
-                <div class="icons">
-                  <a href=""><i class="ti ti-edit pen_icon"></i></a>
-                  <a href="" class="del_btn"><i class="ti ti-trash bin_icon"></i></a>
-                </div>
-
-                <div class="form-check form-switch cp_status_toggle">
-                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
-                  <label class="form-check-label" for="flexSwitchCheckDefault"> </label>
-                </div>
-              </li>
-
-              <p>등록된 쿠폰이 없습니다.</p>
-            </ul>
-          </div>
-
-          <nav aria-label="Page navigation example" class="d-flex justify-content-center pager">
-            <ul class="pagination coupon_pager"></ul>
-          </nav>
+        <div class="gnb">
+          <ul class="d-flex flex-column">
+            <li>
+              <a href="#">
+                <span class="material-symbols-outlined"> dashboard </span>
+                <span>대시 보드</span>
+              </a>
+            </li>
+            <li>
+              <a href="/announce.html">
+                <span class="material-symbols-outlined"> assignment </span>
+                <span>공지 사항</span>
+              </a>
+            </li>
+            <li>
+              <a href="/class/course_list.html">
+                <span class="material-symbols-outlined"> live_tv </span>
+                <span>강의 관리</span>
+              </a>
+            </li>
+            <li>
+              <a href="/member_mg.html">
+                <span class="material-symbols-outlined"> face </span>
+                <span>회원 관리</span>
+              </a>
+            </li>
+            <li>
+              <a href="/coupon/coupon_list.html">
+                <span class="material-symbols-outlined"> local_atm </span>
+                <span>쿠폰 관리</span>
+              </a>
+            </li>
+            <li>
+              <a href="/performance.html">
+                <span class="material-symbols-outlined"> bar_chart </span>
+                <span>성과 분석</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="material-symbols-outlined"> help </span>
+                <span>질의 응답</span>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <span class="material-symbols-outlined"> logout </span>
+                <span>Logout</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </section>
+    </header>
+    <section class="content_wrapper">
+      <div class="top_section d-flex justify-content-end">
+        <div class="profile d-flex align-items-center">
+          <span class="material-symbols-outlined">account_circle</span>
+          <div class="d-flex flex-column">
+            <span>관리자</span>
+            <span>코딩좋아</span>
+          </div>
+          <span class="material-symbols-outlined">notifications</span>
+          <!-- <span>jsdafjo@naver.com</span> -->
+        </div>
+      </div>
+      <div class="main">
+        <div class="main_container">
+          <h2>쿠폰수정</h2>
+        </div>
+        <div class="sub_header d-flex justify-content-between align-items-center">
+      
+        </div><!-- //sub_header -->
+        
+        <form action="coupon_update_ok.php?cpid=" class="coupon_create_form" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="cpid" value="">
+          <fieldset class="coupon_info d-flex coupon_ju">
+            <legend class="hidden">쿠폰정보</legend>
+            <div class="thumbnail">
+              <input type="hidden" id="imgSRC" name="imgSRC" value="">
+              <input type="file" class="hidden" name="cp_image" id="thumbnail">
+              <div class="show_thumb border">
+                <img src="" alt="">
+              </div>
+              <button type="button" class="btn primary_bg btn-primary thumb_btn ">사진등록</button>
+            </div>
+            <div class="coupon_info_box d-flex flex-column">
+              <div class="info_top">
+                <div class="field coupon_name input-group">
+                  <label for="coupon_name" class="content_tt">쿠폰명</label>
+                  <input type="text" name="cp_name" id="coupon_name" class="form-control"
+                    value="" required>
+                </div>
+              </div>
+        
+              <div class="info_bottom d-flex">
+                <div class="field coupon_min_price input-group d-flex align-items-center">
+                  <label for="coupon_limit" class="content_tt">최소사용금액</label>
+                  <input type="number" name="cp_limit" id="coupon_limit" class="form-control number"
+                    placeholder="10,000" min="10000" max="1000000" step="1000" value="" required>원
+                </div>
+                
+              </div>
+              <div class="field coupon_status">
+                <h3 class="content_tt">상태</h3>
+                <div class="coupon_status_check d-flex">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cp_status" id="coupon_status_1" value="1" >
+                    <label class="form-check-label b_text01" for="coupon_status_1">활성화</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cp_status" id="coupon_status_0" value="0" >
+                    <label class="form-check-label b_text01" for="coupon_status_0">비활성화</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        
+          <fieldset class="coupon_option d-flex">
+            <legend class="hidden">쿠폰옵션</legend>
+            <div class="coupon_sale">
+              <h3 class="content_tt">할인</h3>
+              <div class="coupon_sale_check">
+                <div class="form-check d-flex align-items-center">
+                  <input class="form-check-input number" type="radio" name="cp_type" id="coupon_sale_1" value="정액" >
+                  <label class="form-check-label b_text01" for="coupon_sale_1">할인가</label>
+                  <input type="number" name="cp_price" id="cp_price" class="form-control input number"
+                  placeholder="1,000" min="1000" max="1000000" step="1000" value="">원
+                </div>
+                <div class="form-check d-flex align-items-center">
+                  <input class="form-check-input" type="radio" name="cp_type" id="coupon_sale_0" value="정률">
+                  <label class="form-check-label b_text01" for="coupon_sale_0">할인율</label>
+                  <input type="number" name="cp_ratio" id="cp_ratio" class="form-control input"
+                  placeholder="10" min="5" max="100" step="5" value="">%
+                </div>
+                <div class="form-check d-flex align-items-center">
+                  <input class="form-check-input" type="radio" name="cp_type" id="coupon_sale_0" value="정률">
+                  <label class="form-check-label b_text01" for="coupon_sale_0">비할인</label>
+                  
+                </div>
+              </div>
+            </div>
+              
+            <div class="coupon_limit_date">
+              <h3 class="content_tt">사용기한</h3>
+              <div class="coupon_limit_date_check">
+                <div class="form-check d-flex align-items-center">
+                  <input class="form-check-input" type="radio" name="cp_date_type" id="coupon_limit_date_1" >
+                  <label class="form-check-label b_text01" for="coupon_limit_date_1">무제한</label>
+                </div>
+                <div class="form-check d-flex align-items-center">
+                  <input class="form-check-input" type="radio" name="cp_date_type" id="coupon_limit_date_0" >
+                  <label class="form-check-label b_text01" for="coupon_limit_date_0">제한</label>
+                  <div class="col period_select2">
+                    <select class="form-select" name="cp_date" aria-label="Default select example">
+                      <option value="1" >1개월</option>
+                      <option value="2" >2개월</option>
+                      <option value="3" >3개월</option>
+                      <option value="6" >6개월</option>
+                      <option value="12" >12개월</option>
+                    </select>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        
+          <div class="submit_btns d-flex justify-content-end">
+            <button class="btn btn-primary">수정 완료</button>
+            <button class="btn btn-dark coupon_cancel" type="button">수정 취소</button>
+          </div>
+        </form>
+      </div>
     </section>
+  </section>
     <!-- jquery -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
@@ -605,6 +633,9 @@
       document.documentElement.scrollHeight,
       document.documentElement.offsetHeight
     );
-    document.querySelector('header').style.height = documentHeight + 'px';
+    document.querySelector("header").style.height = documentHeight + "px";
   </script>
 </html>
+
+
+    
