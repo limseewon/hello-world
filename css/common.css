@@ -187,4 +187,12 @@ body {
   flex-wrap: wrap;
   gap: 20px;
 }
-
+.regist-btn{
+  background-color: var(--c-complete-button);
+}
+.edit-btn{
+  background-color: var(--c-complete-button);
+}
+.cancle-btn{
+  background-color: var(--c-cancle-button);
+}
