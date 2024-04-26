@@ -16,6 +16,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
     <!--bootstrap css -->
     <link
       rel="stylesheet"
@@ -43,58 +44,64 @@
     /> -->
 
     <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
-    <link rel="stylesheet" href="/css/common.css" />
-
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/lim.css" />
     <style>
-      .left_top > div {
-        width: 331px;
-        height: 138px;
-        margin-bottom: 30px;
-        margin-right: 30px;
-      }
-      .profit {
-        position: relative;
-      }
-      .profit > div {
-        margin-bottom: 30px;
-      }
-      .profit > span {
-        margin: 0 auto;
-      }
-      .lecture_chart {
-        width: 1219px;
-        height: 474px;
-      }
-      .board div {
-        width: 448px;
-        height: 152px;
-      }
-      .sale {
-        width: 1102px;
-        height: 334px;
-      }
 
-      .board {
-        margin: 0 30px 30px 0;
-      }
-      .announce {
-        gap: 30px;
-        margin-bottom: 30px;
-      }
-      .qna {
-        gap: 30px;
-      }
-      .form-select {
-        width: 500px;
-        height: 60px;
-      }
-      .settlement {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-      }
+        .btn {
+            width: 105px;
+            height: 48px;
+        }
+        .notice-btn{
+            padding-top: 65px;
+            justify-content: space-between;
+        }
+        .title-box{
+          width: 883px;
+          height: 40px;
+        }
+        .con-box{
+          width: 1170px; 
+          height: 505px;
+        }
+        .input-group > .form-control{
+          position: none;
+          flex: none;
+          width: 560px;
+          height: 40px;
+        }
+        .title{
+          gap: 50px;
+          align-items: center;
+          padding-left: 60px;
+          padding-top: 26px;
+        }
+        .con{
+          gap: 50px;
+          padding-left: 60px;
+          padding-top: 35px;
+        }
+        .file{ 
+          gap: 20px ;
+          align-items: center;
+          padding-left: 60px;
+          padding-top: 35px;
+        }
+        .regist{
+          /* width: 100%; */
+          height: auto;
+          background: #fff;
+          padding: 20px;
+          border: 1px solid #ced4da;
+        }
+        .btn-primary{
+          width: 106px;
+          height: 40px;
+          border-radius: 0%;
+        }
+        .right-button{
+          padding-left: 250px;
+        }
     </style>
   </head>
   <body>
@@ -108,37 +115,37 @@
           <div class="gnb">
             <ul class="d-flex flex-column">
               <li>
-                <a href="index.html">
+                <a href="#">
                   <span class="material-symbols-outlined"> dashboard </span>
                   <span>대시 보드</span>
                 </a>
               </li>
               <li>
-                <a href="/announce.html">
+                <a href="#">
                   <span class="material-symbols-outlined"> assignment </span>
                   <span>공지 사항</span>
                 </a>
               </li>
               <li>
-                <a href="/class/course_list.html">
+                <a href="#">
                   <span class="material-symbols-outlined"> live_tv </span>
                   <span>강의 관리</span>
                 </a>
               </li>
               <li>
-                <a href="/member_mg.html">
+                <a href="#">
                   <span class="material-symbols-outlined"> face </span>
                   <span>회원 관리</span>
                 </a>
               </li>
               <li>
-                <a href="/coupon/coupon_list.html">
+                <a href="#">
                   <span class="material-symbols-outlined"> local_atm </span>
                   <span>쿠폰 관리</span>
                 </a>
               </li>
               <li>
-                <a href="/performance.html">
+                <a href="#">
                   <span class="material-symbols-outlined"> bar_chart </span>
                   <span>성과 분석</span>
                 </a>
@@ -160,76 +167,48 @@
         </section>
       </header>
       <section class="content_wrapper">
-        <div class="top_section"><h3>test</h3></div>
+        <div class="top_section d-flex justify-content-end">
+          <div class="profile d-flex align-items-center">
+            <span class="material-symbols-outlined">account_circle</span>
+            <div class="d-flex flex-column">
+              <span>관리자</span>
+              <span>코딩좋아</span>
+            </div>
+            <span class="material-symbols-outlined">notifications</span>
+            <!-- <span>jsdafjo@naver.com</span> -->
+          </div>
+        </div>
         <div class="main">
           <div class="main_container">
-            <h2>대시 보드</h2>
-            <div class="main_top d-flex">
-              <div class="left_top">
-                <div class="profit contents-box d-flex align-items-center justify-content-between">
-                  <span class="bold">4월달 수익</span>
-                  <span>2,564,000 원</span>
-                  <span>화살표</span>
-                  <span class="settlement">정산기간 2024년 4월 1일 ~ 2024년 4월 30일</span>
-                </div>
-                <div class="student contents-box d-flex align-items-center justify-content-between">
-                  <span class="bold">총 수강생 수</span>
-                  <span>456명</span>
-                  <span>화살표</span>
-                </div>
-                <div class="evaluation contents-box d-flex align-items-center justify-content-between">
-                  <span class="bold">평균 수강만족도</span>
-                  <span>★★★★★</span>
-                  <span>4.26</span>
-                </div>
+            <h2 class="h2">게시글 등록</h2>
+            <div class="regist">
+              <div class="mb-3 d-flex title">
+                <label for="formGroupExampleInput" class="form-label">제목</label>
+                <input type="text" class="form-control title-box" id="formGroupExampleInput" placeholder="제목을 입력하시오.">
+                <label for="formGroupExampleInput" class="form-label">홍길동</label>
+                <label for="formGroupExampleInput" class="form-label">1024</label>
+                <label for="formGroupExampleInput" class="form-label">2000.00.00</label>
+                <label for="formGroupExampleInput" class="form-label">수정 / 삭제</label>
               </div>
-              <div class="lecture_chart contents-box">
-                <select class="form-select" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-                <div class="d-flex">
-                  <div class="bold">수강신청수</div>
-                  <div class="bold">수강진도율</div>
-                </div>
+              <div class="mb-3 d-flex con">
+                <label for="formGroupExampleInput" class="form-label">제목</label>
+                <input type="text" class="form-control con-box" id="formGroupExampleInput" placeholder="내용을 입력하시오. (1200자 제한)">
               </div>
-            </div>
-            <div class="main_bottom d-flex">
-              <div class="board">
-                <div class="announce contents-box d-flex">
-                  <p class="bold">공지사항</p>
-                  <ul>
-                    <li><a href="">게시물</a></li>
-                    <li><a href="">게시물</a></li>
-                    <li><a href="">게시물</a></li>
-                    <li><a href="">게시물</a></li>
-                  </ul>
-                </div>
-
-                <div class="qna contents-box d-flex">
-                  <p class="bold">질의응답</p>
-                  <ul>
-                    <li><a href="">게시물</a></li>
-                    <li><a href="">게시물</a></li>
-                    <li><a href="">게시물</a></li>
-                    <li><a href="">게시물</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="sale contents-box d-flex">
-                <div class="category">
-                  <p class="bold">분야별 판매량</p>
-                  <div class="chart"></div>
-                </div>
-                <div class="language">
-                  <p class="bold">언어별 판매량</p>
-                  <div class="chart"></div>
+              <div>
+                <div class="input-group d-flex file">
+                  <label for="formGroupExampleInput" class="form-label">첨부파일</label>
+                  <input type="file" class="form-control file-box" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                  <button type="button" class="btn btn-primary">파일 추가</button>
+                  <div class="right-button">
+                    <button type="button" class="btn btn-primary regist-btn">등록</button>
+                    <button type="button" class="btn btn-primary cancle-btn">취소</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          
+          
         </div>
       </section>
     </section>
@@ -261,6 +240,11 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
       referrerpolicy="no-referrer"
     ></script>
+
+    <!-- summernote modernizr js -->
+    <script type="text/javascript"> 
+        $(document).ready(function() { $("#content").summernote(); }) 
+      </script>
 
     <script src="js/common.js"></script>
   </body>
