@@ -48,8 +48,8 @@
     <link rel="stylesheet" href="css/lim.css" />
     <style>
         .contents-box{
-            width: 1556px;
-            height: 643px;
+            width: 100%;
+            height: auto;
         }
         .btn {
             width: 105px;
@@ -59,6 +59,8 @@
             padding-top: 65px;
             justify-content: space-between;
         }
+
+
     </style>
   </head>
   <body>
@@ -124,10 +126,20 @@
         </section>
       </header>
       <section class="content_wrapper">
-        <div class="top_section"><h3>test</h3></div>
+        <div class="top_section d-flex justify-content-end">
+          <div class="profile d-flex align-items-center">
+            <span class="material-symbols-outlined">account_circle</span>
+            <div class="d-flex flex-column">
+              <span>관리자</span>
+              <span>코딩좋아</span>
+            </div>
+            <span class="material-symbols-outlined">notifications</span>
+            <!-- <span>jsdafjo@naver.com</span> -->
+          </div>
+        </div>
         <div class="main">
           <div class="main_container">
-            <h2 class="h2">공지사항</h2>
+            <h2 class="h2">공지 사항</h2>
             <table class="table contents-box d-flex">
                 <tbody>
                   <tr>
@@ -172,8 +184,8 @@
                 <button type="button" class="btn btn-primary">다음</button>
             </div>
             <div class="right-button">
-                <button type="button" class="btn btn-primary">수정</button>
-                <button type="button" class="btn btn-primary">삭제</button>
+                <button type="button" class="btn btn-primary edit-btn">수정</button>
+                <button type="button" class="btn btn-primary cancle-btn">삭제</button>
             </div>
           </div>
           
