@@ -577,8 +577,15 @@
       height: 140px;
       background-color: #6f6f6f;
     }
-    .course_width { width: 759px;}
-    .category_margin {margin-top: calc(var(--space_updown) * 3); }
+    .course_width { 
+      width: 759px;
+    }
+    .category_margin {
+      margin-top: calc(var(--space_updown) * 3); 
+    }
+    .b_danger_a {
+      display: flex; align-items: center; 
+    }
     </style>
 </head>
 <body>
@@ -843,8 +850,8 @@
               </div>
             </div>
             <div class="c_button d-flex justify-content-center align-items-center">
-              <button class="btn_complete btn btn-primary">등록완료</button>
-              <button class="btn btn-dark">등록취소</button>
+              <button class="btn_complete btn btn-success">등록완료</button>
+              <button class="btn btn-danger b_danger_a">등록취소</button>
             </div>
           </form>
         </section>
