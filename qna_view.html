@@ -43,6 +43,11 @@
       type="text/css"
     /> -->
 
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    
     <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/lim.css" />
@@ -101,6 +106,9 @@
         }
         .right-button{
           padding-left: 250px;
+        }
+        .reply{
+
         }
     </style>
   </head>
@@ -191,8 +199,8 @@
                 <label for="formGroupExampleInput" class="form-label">수정 / 삭제</label>
               </div>
               <div class="mb-3 d-flex con">
-                <label for="formGroupExampleInput" class="form-label">제목</label>
-                <input type="text" class="form-control con-box" id="formGroupExampleInput" placeholder="내용을 입력하시오. (1200자 제한)">
+                <label for="formGroupExampleInput" class="form-label">내용</label>
+                <div id="summernote" name="desc" class="w-100" ></div>
               </div>
               <div>
                 <div class="input-group d-flex file">
@@ -200,11 +208,66 @@
                   <input type="file" class="form-control file-box" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                   <button type="button" class="btn btn-primary">파일 추가</button>
                   <div class="right-button">
-                    <button type="button" class="btn btn-primary regist-btn">등록</button>
-                    <button type="button" class="btn btn-primary cancle-btn">취소</button>
+                    <button type="button" class="btn btn-success regist-btn">등록</button>
+                    <button type="button" class="btn btn-danger cancle-btn">취소</button>
                   </div>
                 </div>
               </div>
+              <div class="row 9-5 reply">
+                <sectoin>
+                    <form class="row g-3">
+        
+                        <div class="col-md-9 col-lg-8">
+                            <label for="articleComment" hidden>댓글</label>
+                            <textarea class="form-control" id="articleComment" placeholder="댓글 쓰기.." rows="3"
+                                      required></textarea>
+                        </div>
+                        <div class="col-md-3 col-lg-4">
+                            <label for="comment-submit" hidden>댓글 쓰기</label>
+                            <button class="btn btn-primary" id="comment-submit" type="submit">쓰기</button>
+                        </div>
+        
+                    </form>
+        
+                    <ul id="article-comments" class="row col-md-10 col-lg-8 pt-3">
+                        <li>
+                            <form>
+                                <input hidden class="article-id">
+                                <div class="row">
+                                    <div class="row col-md-10 col-lg-9">
+                                        <strong>Jyc</strong>
+                                        <small>
+                                            <time>2022-01-01</time>
+                                        </small>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+                                            Lorem ipsum dolor sit amet
+                                        </p>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                        <li>
+                            <form>
+                                <input hidden class="article-id">
+                                <div class="row">
+                                    <div class="row col-md-10 col-lg-9">
+                                        <strong>Jyc</strong>
+                                        <small>
+                                            <time>2022-01-01</time>
+                                        </small>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+                                            Lorem ipsum dolor sit amet
+                                        </p>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+        
+                </sectoin>
+            </div>
             </div>
           </div>
           
@@ -241,14 +304,13 @@
       referrerpolicy="no-referrer"
     ></script>
 
-    <!-- summernote modernizr js -->
-    <script type="text/javascript"> 
-        $(document).ready(function() { $("#content").summernote(); }) 
-      </script>
-
-    <script src="js/common.js"></script>
+    
   </body>
   <script>
+    $(document).ready(function(){
+      $('#summernote').summernote();
+    });
+
     let documentHeight = Math.max(
       document.body.scrollHeight,
       document.body.offsetHeight,

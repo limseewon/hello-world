@@ -196,8 +196,8 @@
                   <input type="file" class="form-control file-box" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                   <button type="button" class="btn btn-primary">파일 추가</button>
                   <div class="right-button">
-                    <button type="button" class="btn btn-primary regist-btn">등록</button>
-                    <button type="button" class="btn btn-primary cancle-btn">취소</button>
+                    <button type="button" class="btn btn-success regist-btn">등록</button>
+                    <button type="button" class="btn btn-danger cancle-btn">취소</button>
                   </div>
                 </div>
               </div>
@@ -239,7 +239,9 @@
 
     <!-- summernote modernizr js -->
     <script type="text/javascript"> 
-        $(document).ready(function() { $("#content").summernote(); }) 
+      $(document).ready(function(){
+        $('#summernote').summernote();
+      });
       </script>
 
     <script src="js/common.js"></script>
