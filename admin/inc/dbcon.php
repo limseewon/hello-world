@@ -1,5 +1,5 @@
 <?php
- $hostname = 'worldhello.dothome.co.kr';
+ $hostname = 'localhost';
  $dbuserid = 'worldhello';
  $dbpasswd = 'sudo0212!';
  $dbname = 'worldhello';
