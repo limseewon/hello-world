@@ -43,6 +43,11 @@
       type="text/css"
     /> -->
 
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    
     <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/lim.css" />
@@ -191,8 +196,8 @@
                 <label for="formGroupExampleInput" class="form-label">수정 / 삭제</label>
               </div>
               <div class="mb-3 d-flex con">
-                <label for="formGroupExampleInput" class="form-label">제목</label>
-                <input type="text" class="form-control con-box" id="formGroupExampleInput" placeholder="내용을 입력하시오. (1200자 제한)">
+                <label for="formGroupExampleInput" class="form-label">내용</label>
+                <div id="summernote" name="desc" class="w-100" ></div>
               </div>
               <div>
                 <div class="input-group d-flex file">
