@@ -55,9 +55,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
   </head>
   <body>
 
+<!-- <section class="main_wrapper d-flex"> 태그를 삭제하고 그 자리에 아래와 같이 header.php를 넣어주세요.-->
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
 ?>
+<!-- 작성한 html코드를 아래와 같이 넣어주세요. -->
             <h2>대시 보드</h2>
             <div class="main_top d-flex">
               <div class="left_top">
@@ -125,10 +127,12 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
               </div>
             </div>
           </div>
+<!-- 코드 작성 후아래 footer.php를 로드해서 <section class="main_wrapper d-flex">태그를 닫아주세요 -->
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
 ?>
 
+<!-- 여기서부터 본인이 필요한 js를 로드해주세요 -->
 <!-- jquery -->
 <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
@@ -161,4 +165,4 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
     <script src="/helloworld/js/common.js"></script>
   </body>
 </html>
-
+<!-- 마지막에 body태그와 html태그를 닫아주세요. -->
