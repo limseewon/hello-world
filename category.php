@@ -1,4 +1,3 @@
-
 <?php
 $title = "카테고리";
 $css_route = "css/common.css";
