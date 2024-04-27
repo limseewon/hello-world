@@ -1,20 +1,19 @@
 <?php
 $title = "카테고리";
-$css_route = "css/common.css";
-// $js_route = "";
-// include_once $_SERVER['DOCUMENT_ROOT'] . '';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/category_func.php'; 
 
-
-
+$js_route = "class/js/course.js";
+session_start();
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'; 
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/class/category_func.php'; 
 
 $sql = "SELECT * FROM category WHERE step=1";
-$result = $mysqli->query($sql);
+$result = $mysqli->query($sql);     
 while ($rs = $result->fetch_object()) {
   $rsc[] = $rs;
 }
 ?>
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
@@ -53,10 +52,11 @@ while ($rs = $result->fetch_object()) {
       rel="stylesheet"
       type="text/css"
     /> -->
-
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/>
+    
+    <!-- <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" /> -->
     <link rel="stylesheet" href="/helloworld/css/common.css"/>
     <link rel="stylesheet" href="/helloworld/css/index.css"/>
+    
 
     <style>
       
@@ -258,7 +258,7 @@ while ($rs = $result->fetch_object()) {
       }
       .add_list a {
         color: #6f6f6f;
-        padding-top: 2px;
+        padding-top: 2px; 
       }
 
       .btn_complete {
@@ -416,11 +416,14 @@ while ($rs = $result->fetch_object()) {
       .base_bttn { 
         display: flex; align-items: center;
       }
+      .form_widthd { width: 467px; height: 45px;}
+      .form_widthd2 { width: 221px; height: 45px;}
+      /* .form_widthd3 { width: 704px; height: 45px;} */
     </style>
   
-  <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
-?>
+        <?php
+          include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
+        ?>
             <h2>카테고리 관리</h2>
             <section class="category_add category_margin">
               <h3 class="content_tt">카테고리 등록</h3>
@@ -477,12 +480,12 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
                           }
                         ?>
                         <div class="col-md-12">
-                          <select class="form-select" aria-label="Default select example" id="pcode2">
+                          <select class="form-select form_widthd" aria-label="Default select example" id="pcode2">
                             <option selected disabled>대분류를 선택해주세요.</option>
                             <?php
                               foreach ($cate2 as $p) {
                               ?>
-                                <option value=""></option>
+                                <option value="<?= $p->cateid ?>"><?= $p->name ?></option>
                             <?php } ?>
                           </select>
                         </div>
@@ -523,7 +526,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
                     <div class="modal-body">
                       <div class="row">
                         <div class="col-md-6">
-                          <select class="form-select" aria-label="Default select example" id="pcode2_1">
+                          <select class="form-select form_widthd2" aria-label="Default select example" id="pcode2_1">
                             <option selected disabled>대분류</option>
                             <?php
                               foreach ($cate1 as $c) {
@@ -533,7 +536,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
                           </select>
                         </div>
                         <div class="col-md-6">
-                          <select class="form-select" aria-label="Default select example" id="pcode3">
+                          <select class="form-select form_widthd2" aria-label="Default select example" id="pcode3">
                             <option selected disabled>대분류를 먼저 선택해주세요</option>
                           </select>
                         </div>
@@ -570,7 +573,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
                   <div class="col-md-4">
                     <div class="dropdown big_cate">
                       <button
-                        class="btn btn-secondary dropdown-toggle col-md-12 form-select"
+                        class="btn btn-secondary dropdown-toggle col-md-12 form-select form_widthd3"
                         type="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false" >
@@ -595,7 +598,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
                 </div>
                 <div class="col-md-4">
                   <div class="dropdown md_cate">
-                    <button class="btn btn-secondary dropdown-toggle col-md-12 form-select" type="button"
+                    <button class="btn btn-secondary dropdown-toggle col-md-12 form-select form_widthd3" type="button"
                       data-bs-toggle="dropdown" aria-expanded="false">
                       중분류
                     </button>
@@ -605,7 +608,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
                 </div>
                 <div class="col-md-4">
                   <div class="dropdown sm_cate">
-                    <button class="btn btn-secondary dropdown-toggle col-md-12 form-select" type="button"
+                    <button class="btn btn-secondary dropdown-toggle col-md-12 form-select form_widthd3" type="button"
                       data-bs-toggle="dropdown" aria-expanded="false">
                       소분류
                     </button>
@@ -697,59 +700,17 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
                 </div>
               </div>
             </div>
-            <a href="course_list.php" class="btn btn-dark base_mt back_btn base_bttn">돌아가기</a>
+            <a href="../class/course_list.php" class="btn btn-dark base_mt back_btn base_bttn">돌아가기</a>
           </section>
         </div>
       </div>
       <?php
       include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       ?>
-  
-  <!-- jquery -->
-  <script
-  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
-  integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-  ></script>
-  <!-- jqueryui js -->
-  <script
-  src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
-  integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-  ></script>
-  <!-- bootstrap js -->
+    
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"
-      integrity="sha512-ToL6UYWePxjhDQKNioSi4AyJ5KkRxY+F1+Fi7Jgh0Hp5Kk2/s8FD7zusJDdonfe5B00Qw+B8taXxF6CFLnqNCw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-
-    <!-- modernizr js -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
-      referrerpolicy="no-referrer"
-    ></script>
-
-    <script src="js/common.js"></script>
-  </body>
-  <script>
-    let documentHeight = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.clientHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight
-    );
-    document.querySelector('header').style.height = documentHeight + 'px';
-  </script>
-  
-
-  <script src="/helloworld/js/makeoption.js"></script>
-  <script src="/helloworld/js/makeoption2.js"></script>
+  <script src="/helloworld/category/js/makeoption.js"></script>
+  <script src="/helloworld/category/js/makeoption2.js"></script>
   <script>
 
     // 카테고리 등록
@@ -860,4 +821,47 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
       $('.modal').find('.modal_cate_name').val(cateName);
       $('.catename').val(cateid);
     });
-  </script>
+  </script> 
+  <!-- jquery -->
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+  integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+  ></script>
+  <!-- jqueryui js -->
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
+  integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+  ></script>
+  <!-- bootstrap js -->
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"
+      integrity="sha512-ToL6UYWePxjhDQKNioSi4AyJ5KkRxY+F1+Fi7Jgh0Hp5Kk2/s8FD7zusJDdonfe5B00Qw+B8taXxF6CFLnqNCw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- modernizr js -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="/helloworld/js/common.js"></script>
+    <script>
+      let documentHeight = Math.max(
+        document.body.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.clientHeight,
+        document.documentElement.scrollHeight,
+        document.documentElement.offsetHeight
+      );
+      document.querySelector('header').style.height = documentHeight + 'px';
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </body>
+  </html>

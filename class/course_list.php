@@ -565,6 +565,7 @@
       .form_check-b { 
         margin-top: .25em;
       }
+      /* .form_widi {width: 708px; } */
     </style>
   </head>
   <body>
@@ -577,22 +578,22 @@
           <section>
             <div class="link_btn">
               <a href="course_create.php" class="btn btn-dark">신규 강의 등록</a>
-              <a href="category.php" class="btn btn-dark">카테고리 관리</a>
+              <a href="/helloworld/class/category.php" class="btn btn-dark">카테고리 관리</a>
             </div>
             <form action="#" class="course_sort">
               <div class="row">
                 <div class="col-md-4">
-                  <select class="form-select" aria-label="Default select example" id="cate1" name="cate1">
+                  <select class="form-select form_widi" aria-label="Default select example" id="cate1" name="cate1">
                     <option selected disabled>대분류</option>
                   </select>
                 </div>
                 <div class="col-md-4">
-                  <select class="form-select" aria-label="Default select example" id="cate2" name="cate2">
+                  <select class="form-select form_widi" aria-label="Default select example" id="cate2" name="cate2">
                     <option selected disabled>중분류</option>
                   </select>
                 </div>
                 <div class="col-md-4">
-                  <select class="form-select" aria-label="Default select example" id="cate3" name="cate3">
+                  <select class="form-select form_widi" aria-label="Default select example" id="cate3" name="cate3">
                     <option selected disabled>소분류</option>
                   </select>
                 </div>
@@ -684,7 +685,7 @@
                           <option value="비활성">비활성</option>
                         </select>
                         <span class="price_btn_wrap">
-                          <a href="" class="btn btn-success btn_g">수정</a>
+                          <a href="course_update.php" class="btn btn-success btn_g">수정</a>
                           <a href="" class="btn btn-danger">삭제</a>
                         </span>
                       </span>
@@ -733,7 +734,7 @@
       referrerpolicy="no-referrer"
     ></script>
 
-    <script src="js/common.js"></script>
+    <script src="helloworld/js/common.js"></script>
   </body>
   <script>
     let documentHeight = Math.max(
