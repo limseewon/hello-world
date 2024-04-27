@@ -413,7 +413,7 @@
                 </div>
 
                 <div class="icons">
-                  <a href=""><i class="ti ti-edit pen_icon"></i></a>
+                  <a href="coupon_update.php"><i class="ti ti-edit pen_icon"></i></a>
                   <a href="" class="del_btn"><i class="ti ti-trash bin_icon"></i></a>
                 </div>
 

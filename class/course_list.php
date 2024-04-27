@@ -566,6 +566,7 @@
         margin-top: .25em;
       }
       /* .form_widi {width: 708px; } */
+      .form_widi {height: 50px; }
     </style>
   </head>
   <body>
