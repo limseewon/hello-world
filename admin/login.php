@@ -1,6 +1,8 @@
 <?php
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+session_start();
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
 
 
@@ -18,6 +20,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
     <style>
       
+      
     </style>
   </head>
   <body>
@@ -26,11 +29,16 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
         <img src="/helloworld/img/logo.png" alt="logo.jpg" />
       </div>
       <form action="login_ok.php" method="POST" class="d-flex flex-column " novalidate>
+      <form action="login_ok.php" method="POST" class="d-flex flex-column " novalidate>
         <div class="form-floating">
+          <input type="text" class="form-control" id="userid" name="userid" placeholder="Id" />
+          <label for="userid">Id</label>
           <input type="text" class="form-control" id="userid" name="userid" placeholder="Id" />
           <label for="userid">Id</label>
         </div>
         <div class="form-floating">
+          <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Password" />
+          <label for="passwd">Password</label>
           <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Password" />
           <label for="passwd">Password</label>
           <div class="invalid-tooltip">Please choose a unique and valid username.</div>

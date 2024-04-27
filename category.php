@@ -1,19 +1,18 @@
-
 <?php
-
 $title = "카테고리";
 $css_route = "css/common.css";
 // $js_route = "";
 // include_once $_SERVER['DOCUMENT_ROOT'] . '';
-// include_once $_SERVER['DOCUMENT_ROOT'] . '/admin/inc/category_func.php'; 
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/category_func.php'; 
 
 
 
-// $sql = "SELECT * FROM category WHERE step=1";
-// $result = $mysqli->query($sql);
-// while ($rs = $result->fetch_object()) {
-//   $rsc[] = $rs;
-// }
+
+$sql = "SELECT * FROM category WHERE step=1";
+$result = $mysqli->query($sql);
+while ($rs = $result->fetch_object()) {
+  $rsc[] = $rs;
+}
 ?>
 
     <link
@@ -818,8 +817,8 @@ $css_route = "css/common.css";
   </script>
   
 
-  <script src="js/makeoption.js"></script>
-  <script src="js/makeoption2.js"></script>
+  <script src="/helloworld/js/makeoption.js"></script>
+  <script src="/helloworld/js/makeoption2.js"></script>
   <script>
 
     // 카테고리 등록
