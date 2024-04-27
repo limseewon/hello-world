@@ -1,0 +1,17 @@
+#logo img {
+  width: 418px;
+  height: 415px;
+}
+
+#login_id,
+#login_pw,
+.btn {
+  width: 360px;
+  height: 58px;
+}
+#login_pw {
+  margin: 16px 0 16px 0;
+}
+form {
+  margin-bottom: 16px;
+}
