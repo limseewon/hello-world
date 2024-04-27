@@ -69,18 +69,18 @@
         background-color: #f8f8f8;
       }
       .course_sort {
-        margin-bottom: calc(var(--space_updown) * 2);
+        margin-bottom: calc(var(--c-space_updown) * 2);
       }
       .link_btn {
         display: flex;
         justify-content: flex-end;
-        gap: calc(var(--space_updown) * 0.5);
+        gap: calc(var(--c-space_updown) * 0.5);
         margin-bottom: 25px;
       }
       .course_sort .row,
       .course_list .row,
       .category_add .row {
-        margin-bottom: var(--space_updown);
+        margin-bottom: var(--c-space_updown);
       }
       input[type="text"],
       select,
@@ -105,10 +105,10 @@
         margin-left: 8px;
       }
       .level_price h3 {
-        margin-right: calc(var(--space_updown) * 0.5);
+        margin-right: calc(var(--c-space_updown) * 0.5);
       }
       .level_price h3.b_text01 {
-        margin-right: calc(var(--space_updown) * 0.5);
+        margin-right: calc(var(--c-space_updown) * 0.5);
         margin-block-start: 0;
         margin-block-end: 0;
         font-weight: bold;
@@ -133,7 +133,7 @@
       }
 
       .course_list_title {
-        margin-bottom: calc(var(--space_updown) * 0.5);
+        margin-bottom: calc(var(--c-space_updown) * 0.5);
       }
       .duration {
         color: #505050;
@@ -191,16 +191,16 @@
         margin-right: 15px;
       }
       .duration * {
-        margin-right: calc(var(--space_updown) * 0.5);
+        margin-right: calc(var(--c-space_updown) * 0.5);
       }
       .duration i {
-        margin-right: calc(var(--space_updown) * 0.2);
+        margin-right: calc(var(--c-space_updown) * 0.2);
       }
 
       .status_wrap {
         display: flex;
         flex-direction: column;
-        gap: calc(var(--space_updown) * 0.3);
+        gap: calc(var(--c-space_updown) * 0.3);
       }
 
       .status_wrap select {
@@ -220,29 +220,29 @@
         border-color: #cdcdcd;
       }
       .tt_mb {
-        margin-bottom: calc(var(--space_updown) * 2);
+        margin-bottom: calc(var(--c-space_updown) * 2);
       }
       .base_mt {
-        margin-top: var(--space_updown);
+        margin-top: var(--c-space_updown);
       }
       .category_add_btns {
         display: flex;
-        gap: calc(var(--space_updown) * 0.5);
+        gap: calc(var(--c-space_updown) * 0.5);
       }
       .category_add h3.content_tt {
-        margin-bottom: var(--space_updown);
+        margin-bottom: var(--c-space_updown);
       }
       .category_list {
-        margin-top: calc(var(--space_updown) * 1.5);
+        margin-top: calc(var(--c-space_updown) * 1.5);
       }
       .category_list form {
-        margin-bottom: calc(var(--space_updown) * 1);
+        margin-bottom: calc(var(--c-space_updown) * 1);
       }
       .table_wrap {
         width: 100%;
       }
       .category_list table {
-        margin-bottom: calc(var(--space_updown) * 3);
+        margin-bottom: calc(var(--c-space_updown) * 3);
         text-align: center;
         border-radius: 10px;
         width: 45%;
@@ -325,7 +325,7 @@
       .course_view img {
         width: 390px;
         height: 274px;
-        margin-right: var(--space_updown);
+        margin-right: var(--c-space_updown);
       }
       .course_view .view_category {
         position: absolute;
@@ -334,7 +334,7 @@
       }
       .course_status {
         position: relative;
-        margin-top: var(--space_updown);
+        margin-top: var(--c-space_updown);
       }
       .status_wrap {
         position: absolute;
@@ -370,10 +370,10 @@
       }
 
       .c_mt {
-        margin-top: calc(var(--space_updown) * 1.5);
+        margin-top: calc(var(--c-space_updown) * 1.5);
       }
       .c_mb {
-        margin-bottom: calc(var(--space_updown));
+        margin-bottom: calc(var(--c-space_updown));
       }
 
       select,
@@ -395,13 +395,11 @@
         align-items: center;
       }
 
-      .button .cancel {
-        background-color: var(--point_navy_hover);
-      }
+    
 
       .add_listBtn {
         text-align: center;
-        margin: calc(var(--space_updown) * 2) 0 calc(var(--space_updown) * 2.5);
+        margin: calc(var(--c-space_updown) * 2) 0 calc(var(--c-space_updown) * 2.5);
       }
       .add_list a {
         color: #6f6f6f;
@@ -418,7 +416,7 @@
       }
 
       .c_button {
-        padding-bottom: calc(var(--space_updown) * 2.5);
+        padding-bottom: calc(var(--c-space_updown) * 2.5);
       }
 
       .file_input > img {
@@ -503,7 +501,7 @@
         height: 90px;
         object-fit: contain;
         margin-right: 0;
-        border: 1px solid var(--bs-border-color);
+        border: 1px solid var(--c-lightgray);
         border-radius: 6px;
       }
 
@@ -564,11 +562,26 @@
       width: 759px;
     }
     .category_margin {
-      margin-top: calc(var(--space_updown) * 3); 
+      margin-top: calc(var(--c-space_updown) * 3); 
     }
     .b_danger_a {
       display: flex; align-items: center; 
     }
+    .check_width_box { 
+      position: relative;
+    }
+    .check_width { 
+      position: absolute;
+      top:65px; left:calc(-1% + 20px); 
+    }
+    .check_width2 {  
+      left:calc(8% + 20px);
+    }
+    .check_width3 {  
+      left:calc(17% + 20px);
+    }
+    
+    
     </style>
 </head>
 <body>
@@ -694,23 +707,23 @@
                 </div>
                 
             </div>
-            <div class="row level level_status c_mt d-flex">
+            <div class="row level level_status c_mt d-flex check_width_box">
               <label class="form-label content_tt c_mb c_cb ">난이도</label>
-              <div class="col">
-                <input class="form-check-input" type="radio" name="level" id="low" value="초급">
+              <div class="col check_width ">
+                <input class="form-check-input " type="radio" name="level" id="low" value="초급">
                 <label class="form-check-label" for="low">초급</label>
               </div>
-              <div class="col">
-                <input class="form-check-input" type="radio" name="level" id="middle" value="중급">
+              <div class="col check_width check_width2">
+                <input class="form-check-input " type="radio" name="level" id="middle" value="중급">
                 <label class="form-check-label" for="middle">중급</label>
               </div>
-              <div class="col">
-                <input class="form-check-input" type="radio" name="level" id="high" value="고급">
+              <div class="col check_width check_width3">
+                <input class="form-check-input " type="radio" name="level" id="high" value="고급">
                 <label class="form-check-label" for="high">고급</label>
               </div>
             </div>        
             <div class="periodwrap d-flex gap-5 c_mt">
-              <div class="row period mb-6">
+              <div class="row period mb-6 c_mt">
                 <label for="due_status" class="form-label content_tt c_mb c_cb">수강기간</label>
                 <div class="col period_select1">
                   <select class="form-select" name="due_status" id="due_status" aria-label="Default select example">
