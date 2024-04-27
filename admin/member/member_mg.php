@@ -253,6 +253,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
     
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
+
+
 ?>
             <h2>회원 관리</h2>
             <form action="" class="d-flex">

@@ -3,13 +3,14 @@
   height: 415px;
 }
 
-#login_id,
-#login_pw,
+#userid,
+#passwd,
 .btn {
   width: 360px;
   height: 58px;
+  /* background: #000; */
 }
-#login_pw {
+#passwd {
   margin: 16px 0 16px 0;
 }
 form {
