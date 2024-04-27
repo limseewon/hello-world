@@ -47,7 +47,8 @@
     /> -->
 
     <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/>
-    <link rel="stylesheet" href="/css/common.css"/>
+    <link rel="stylesheet" href="/helloworld/css/common.css"/>
+    <link rel="stylesheet" href="/helloworld/css/index.css"/>
     
       
     <style>

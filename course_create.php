@@ -47,7 +47,8 @@
     /> -->
 
     <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/>
-    <link rel="stylesheet" href="/css/common.css"/>
+    <link rel="stylesheet" href="/helloworld/css/common.css"/>
+    <link rel="stylesheet" href="/helloworld/css/index.css"/>
     
 
     <style>
@@ -559,7 +560,7 @@
       background-color: #6f6f6f;
     }
     .course_width { 
-      width: 759px;
+      width: 48.5%;
     }
     .category_margin {
       margin-top: calc(var(--c-space_updown) * 3); 
@@ -581,85 +582,16 @@
       left:calc(17% + 20px);
     }
     
+    .form_width { width: 488px; height: 45px;}
+    .form_width2 { width: 200px; height: 45px; }
     
     </style>
 </head>
 <body>
-  <section class="main_wrapper d-flex">
-    <header>
-      <section class="headerContainer">
-        <div class="d-flex justify-content-center" id="logo">
-          <h1>logo</h1>
-          <img src="./img/Group 50.png" alt="logo.jpg" />
-        </div>
-        <div class="gnb">
-          <ul class="d-flex flex-column">
-            <li>
-              <a href="#">
-                <span class="material-symbols-outlined"> dashboard </span>
-                <span>대시 보드</span>
-              </a>
-            </li>
-            <li>
-              <a href="/announce.html">
-                <span class="material-symbols-outlined"> assignment </span>
-                <span>공지 사항</span>
-              </a>
-            </li>
-            <li>
-              <a href="/course_list.html">
-                <span class="material-symbols-outlined"> live_tv </span>
-                <span>강의 관리</span>
-              </a>
-            </li>
-            <li>
-              <a href="/member_mg.html">
-                <span class="material-symbols-outlined"> face </span>
-                <span>회원 관리</span>
-              </a>
-            </li>
-            <li>
-              <a href="/coupon_list.html">
-                <span class="material-symbols-outlined"> local_atm </span>
-                <span>쿠폰 관리</span>
-              </a>
-            </li>
-            <li>
-              <a href="/performance.html">
-                <span class="material-symbols-outlined"> bar_chart </span>
-                <span>성과 분석</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="material-symbols-outlined"> help </span>
-                <span>질의 응답</span>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <span class="material-symbols-outlined"> logout </span>
-                <span>Logout</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-    </header>
-    <section class="content_wrapper">
-      <div class="top_section d-flex justify-content-end">
-        <div class="profile d-flex align-items-center">
-          <span class="material-symbols-outlined">account_circle</span>
-          <div class="d-flex flex-column">
-            <span>관리자</span>
-            <span>코딩좋아</span>
-          </div>
-          <span class="material-symbols-outlined">notifications</span>
-          <!-- <span>jsdafjo@naver.com</span> -->
-        </div>
-      </div>
-      <div class="main">
-        <div class="main_container">
+  <?php
+  include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
+  ?>
+  
           <h2>강의 등록</h2>
         </div>
         <section class="category_mb category_margin">   
@@ -670,19 +602,19 @@
               <label for="cate1" class="form-label content_tt c_mb c_cb">카테고리</label>
               <div class="categorys row">
                 <div class="category col">
-                  <select class="form-select" aria-label="Default select example" id="cate1" name="cate1" required>
+                  <select class="form-select form_width" aria-label="Default select example" id="cate1" name="cate1" required>
                    
                       <option value="" data-name=""></option>
                    
                   </select>
                 </div>
                 <div class="category col">
-                  <select class="form-select" aria-label="Default select example" id="cate2" name="cate2">
+                  <select class="form-select form_width" aria-label="Default select example" id="cate2" name="cate2">
                     <option value="" disabled selected>중분류 선택</option>
                   </select>
                 </div>
                 <div class="category col">
-                  <select class="form-select" aria-label="Default select example" id="cate3" name="cate3">
+                  <select class="form-select form_width" aria-label="Default select example" id="cate3" name="cate3">
                     <option value="" disabled selected>소분류 선택</option>
                   </select>
                 </div>
@@ -696,7 +628,7 @@
                 <div class="row price_select">
                   <label for="price_menu" class="form-label content_tt c_mb c_cb">강의가격</label>
                   <div class="col">
-                    <select class="form-select" name="price_status" id="price_menu" aria-label="Default select example">
+                    <select class="form-select form_width" name="price_status" id="price_menu" aria-label="Default select example">
                       <option value="유료" selected>유료</option>
                       <option value="무료">무료</option>
                     </select>
@@ -726,13 +658,13 @@
               <div class="row period mb-6 c_mt">
                 <label for="due_status" class="form-label content_tt c_mb c_cb">수강기간</label>
                 <div class="col period_select1">
-                  <select class="form-select" name="due_status" id="due_status" aria-label="Default select example">
+                  <select class="form-select form_width2" name="due_status" id="due_status" aria-label="Default select example">
                     <option value="제한" selected>제한</option>
                     <option value="무제한">무제한</option>
                   </select>
                 </div>
                 <div class="col period_select2">
-                  <select class="form-select" name="due" id="due" aria-label="Default select examh5le">
+                  <select class="form-select form_width" name="due" id="due" aria-label="Default select examh5le">
                     <option value="" selected disabled>기간선택</option>
                     <option value="무제한">무제한</option>
                     <option value="3개월">3개월</option>
@@ -853,7 +785,9 @@
         </section>
       </div>
     </section>
-  </section>
+    <?php
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
+    ?>
   <!-- jquery -->
   <script
   src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"

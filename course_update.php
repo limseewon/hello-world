@@ -43,8 +43,8 @@
     /> -->
 
     <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/>
-    <link rel="stylesheet" href="/css/common.css"/>
-    
+    <link rel="stylesheet" href="/helloworld/css/common.css"/>
+    <link rel="stylesheet" href="/helloworld/css/index.css"/>
 
     <style>
       
@@ -397,7 +397,7 @@
         background-color: #6f6f6f;
       }
       .course_width { 
-        width: 49%;
+        width: 48.5%;
       }
       .category_margin {
         margin-top: calc(var(--c-space_updown) * 3);
@@ -419,7 +419,9 @@
       .check_width3 {  
         left:calc(17% + 20px);
       }
-    
+      .form_width { width: 488px; height: 45px;}
+      .form_width2 { width: 200px; height: 45px; }
+      
     </style>
   </head>
   <body>
@@ -509,19 +511,19 @@
                 <label class="form-label content_tt c_mb">카테고리</label>
                 <div class="categorys row">
                   <div class="category col">
-                    <select class="form-select" aria-label="Default select example" id="cate1" name="cate1" required>
+                    <select class="form-select form_width" aria-label="Default select example" id="cate1" name="cate1" required>
                       <option value="" hidden>선택하세요</option>
 
                       <option value="" data-name=""></option>
                     </select>
                   </div>
                   <div class="category col">
-                    <select class="form-select" aria-label="Default select example" id="cate2" name="cate2">
+                    <select class="form-select form_width" aria-label="Default select example" id="cate2" name="cate2">
                       <option disabled selected></option>
                     </select>
                   </div>
                   <div class="category col">
-                    <select class="form-select" aria-label="Default select example" id="cate3" name="cate3">
+                    <select class="form-select form_width" aria-label="Default select example" id="cate3" name="cate3">
                       <option disabled selected></option>
                     </select>
                   </div>
@@ -546,7 +548,7 @@
                   <label for="price_status" class="form-label content_tt c_mb">강의가격</label>
                   <div class="col">
                     <select
-                      class="form-select"
+                      class="form-select form_width"
                       name="price_status"
                       id="price_status"
                       aria-label="Default select example"
@@ -587,16 +589,16 @@
               </div>
 
               <div class="periodwrap d-flex gap-5 c_mt">
-                <div class="row period mb-6 c_mt">
+                <div class="row period mb-6 c_mt ">
                   <label class="form-label content_tt c_mb">수강기간</label>
-                  <div class="col period_select1">
-                    <select class="form-select" name="due_status" id="due_status" aria-label="Default select example">
+                  <div class="col period_select1 margin-rightf ">
+                    <select class="form-select form_width2 " name="due_status" id="due_status" aria-label="Default select example">
                       <option value="제한">제한</option>
                       <option value="무제한">무제한</option>
                     </select>
                   </div>
                   <div class="col period_select2">
-                    <select class="form-select" name="due" id="due" aria-label="Default select examh5le">
+                    <select class="form-select form_width" name="due" id="due" aria-label="Default select examh5le">
                       <option value="" disabled>기간선택</option>
                       <option value="무제한">무제한</option>
                       <option value="3개월">3개월</option>
