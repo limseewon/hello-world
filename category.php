@@ -1,9 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>카테고리 관리</title>
+
+<?php
+$title = "카테고리";
+$css_route = "css/common.css";
+// $js_route = "";
+// include_once $_SERVER['DOCUMENT_ROOT'] . '';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/category_func.php'; 
+
+
+
+
+$sql = "SELECT * FROM category WHERE step=1";
+$result = $mysqli->query($sql);
+while ($rs = $result->fetch_object()) {
+  $rsc[] = $rs;
+}
+?>
+
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
@@ -43,9 +55,8 @@
       type="text/css"
     /> -->
 
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/>
-    <link rel="stylesheet" href="/css/common.css"/>
-      
+    <!-- <link rel="stylesheet" href="helloworld/css/jqueryui/jquery-ui.theme.min.css"/> -->
+    <link rel="stylesheet" href="css/common.css"/>
 
     <style>
       
@@ -406,8 +417,7 @@
         display: flex; align-items: center;
       }
     </style>
-  </head>
-  <body>
+  
     <section class="main_wrapper d-flex">
       <header>
         <section class="headerContainer">
@@ -531,11 +541,21 @@
                     </div>
                     <div class="modal-body">
                       <div class="row">
+                        <?php
+                          $query = "SELECT * FROM category WHERE step=1";
+                          $result = $mysqli->query($query);
+                          while ($rs = $result->fetch_object()) {
+                            $cate2[] = $rs;
+                          }
+                        ?>
                         <div class="col-md-12">
                           <select class="form-select" aria-label="Default select example" id="pcode2">
                             <option selected disabled>대분류를 선택해주세요.</option>
-
-                            <option value=""></option>
+                            <?php
+                              foreach ($cate2 as $p) {
+                              ?>
+                                <option value=""></option>
+                            <?php } ?>
                           </select>
                         </div>
                       </div>
@@ -566,8 +586,7 @@
                 id="cate3Modal"
                 tabindex="-1"
                 aria-labelledby="exampleModalLabel3"
-                aria-hidden="true"
-              >
+                aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -578,6 +597,11 @@
                         <div class="col-md-6">
                           <select class="form-select" aria-label="Default select example" id="pcode2_1">
                             <option selected disabled>대분류</option>
+                            <?php
+                              foreach ($cate1 as $c) {
+                                ?>
+                                <option value="<?= $c->cateid ?>"><?= $c->name ?></option>
+                              <?php } ?>
                           </select>
                         </div>
                         <div class="col-md-6">
@@ -621,21 +645,23 @@
                         class="btn btn-secondary dropdown-toggle col-md-12 form-select"
                         type="button"
                         data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
+                        aria-expanded="false" >
                         대분류
                       </button>
                       <ul class="dropdown-menu" id="cate1" style="width: 100%">
-                        <li class="list-group-item big d-flex justify-content-between align-items-center" data-cate="">
-                          <span class="cate_size"></span>
+                      <?php
+                        foreach ($cate1 as $c) {
+                          ?>
+                        <li class="list-group-item big d-flex justify-content-between align-items-center" data-cate="<?= $c->cateid ?>">
+                          <span class="cate_size"><?= $c->name; ?></span>
                           <div class="cate_edit_btns d-flex gap-2">
-                            <a href="" data-bs-toggle="modal" data-bs-target="#cateModifyModal1"
+                            <a href="category_update.php?cateid=<?= $c->cateid ?>" data-bs-toggle="modal" data-bs-target="#cateModifyModal1"
                               ><i class="ti ti-edit pen_icon"></i
                             ></a>
                             <a href="#"><i class="ti ti-trash bin_icon"></i></a>
                           </div>
                         </li>
-                      
+                      <?php } ?>
                     </ul>
                   </div>
                 </div>
@@ -673,7 +699,7 @@
                     </h2>
                   </div>
                   <form class="modal-body" action="category_update.php" method="POST">
-                    <input type="hidden" name="cateid" class="catename" value="">
+                    <input type="hidden" name="cateid" class="catename" value="<?= $c->cateid; ?>">
                     <label for="name4">카테고리명</label>
                     <input type="text" class="form-control modal_cate_name" name="catename" id="name4" value="">
                     <div class="modal-footer">
@@ -699,8 +725,8 @@
                       카테고리 수정
                     </h2>
                   </div>
-                  <form class="modal-body" action="" method="POST">
-                    <input type="hidden" name="cateid" class="catename" value="">
+                  <form class="modal-body" action="category_update.php?cateid=<?= $c->cateid; ?>" method="POST">
+                    <input type="hidden" name="cateid" class="catename" value="<?= $c->cateid; ?>">
                     <label for="name5">카테고리명</label>
                     <input type="text" class="form-control modal_cate_name" name="catename" id="name5" value="">
                     <div class="modal-footer">
@@ -726,8 +752,8 @@
                       카테고리 수정
                     </h2>
                   </div>
-                  <form class="modal-body" action="" method="POST">
-                    <input type="hidden" name="cateid" class="catename" value="">
+                  <form class="modal-body" action="category_update.php?cateid=<?= $c->cateid ?>" method="POST">
+                    <input type="hidden" name="cateid" class="catename" value="<?= $c->cateid; ?>">
                     <label for="name6">카테고리명</label>
                     <input type="text" class="form-control modal_cate_name" name="catename" id="name6" value="">
                     <div class="modal-footer">
@@ -748,7 +774,7 @@
         </div>
       </div>
     </section>
-  </section>
+  
   <!-- jquery -->
   <script
   src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
@@ -790,4 +816,118 @@
     );
     document.querySelector('header').style.height = documentHeight + 'px';
   </script>
-</html>
+  
+
+  <script src="/helloworld/js/makeoption.js"></script>
+  <script src="/helloworld/js/makeoption2.js"></script>
+  <script>
+
+    // 카테고리 등록
+    let catename1 = '';
+    let cateid = '';
+
+    let categorySubmitBtn = $('.cmodal button[type="submit"]');
+
+    $('#pcode2').change(function () {
+      $('#code2').val($(this).val());
+    });
+
+    $('#pcode3').change(function () {
+      $('#code3').val($(this).val());
+    });
+
+    categorySubmitBtn.click(function () {
+      let step = $(this).attr('data-step');
+      save_category(step);
+    });
+
+    function save_category(step) {
+
+      let name = $(`#name${step}`).val();
+      let pcode = $(`#pcode${step}`).val();
+
+      if (step > 1 && !pcode) {
+        alert('대분류를 먼저 선택하세요');
+        return; 
+      }
+      if (!name) {
+        alert('카테고리명을 입력하세요');
+        return;
+      }
+      let data = {
+        name: name,
+        pcode: pcode,
+        step: step
+      }
+      console.log(data);
+
+      $.ajax({
+        async: false,
+        type: 'post',
+        data: data,
+        url: "save_category.php",
+        dataType: 'json', 
+        error: function (error) {
+          console.log('Error:', error);
+        },
+        success: function (return_data) {
+          console.log(return_data.result);
+
+          if (return_data.result == 1) {
+            alert('카테고리가 등록되었습니다');
+            location.reload();
+          } else if (return_data.result == -1) {
+            alert('코드나 분류명이 이미 사용중입니다.');
+            location.reload();
+          } else {
+            alert('등록실패');
+          }
+        }
+      });//ajax
+    }
+
+    // 카테고리 삭제
+    $('.dropdown-menu').on('click', '.bin_icon', function () {
+      let trElement = $(this).closest('li');
+      let cateid = trElement.attr('data-cate');
+      let cateName = trElement.find('span').text();
+
+      let data = {
+        cateid: cateid
+      }
+
+      if (confirm(`해당 카테고리를 삭제할까요?:\n카테고리명: ${cateName}`)) {
+        $.ajax({
+          type: 'post',
+          data: data,
+          url: "category_delete.php",
+          dataType: 'json',
+          success: function (return_data) {
+            if (return_data.result === 'success') {
+              console.log('retun_data', return_data)
+              trElement.remove();
+              alert('카테고리가 삭제되었습니다.');
+              location.reload();
+            } else {
+              alert('카테고리 삭제에 실패하였습니다.');
+            }
+          },
+          error: function (error) {
+            console.log('Error:', error);
+            alert('카테고리 삭제중에 오류가 발생했습니다.');
+          }
+        });
+      }
+    });
+
+
+    // 카테고리 수정
+    //리스트 내 수정버튼 클릭 시 할일
+    $('.dropdown-menu').on('click', '.pen_icon', function () {
+      let trElement = $(this).closest('li');
+      let cateid = trElement.attr('data-cate');
+      let cateName = trElement.find('.cate_size').text();
+      $('.modal').find('.modal_cate_name').val(cateName);
+      $('.catename').val(cateid);
+    });
+  </script>

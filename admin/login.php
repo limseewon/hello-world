@@ -1,6 +1,6 @@
 <?php
-
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/dbcon.php';
+session_start();
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
 ?>
 
@@ -10,42 +10,27 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/dbcon.php';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="css/login.css">
     <title>HelloWorld</title>
 
     <style>
-      #logo img {
-        width: 418px;
-        height: 415px;
-      }
-
-      #login_id,
-      #login_pw,
-      .btn {
-        width: 360px;
-        height: 58px;
-      }
-      #login_pw {
-        margin: 16px 0 16px 0;
-      }
-      form {
-        margin-bottom: 16px;
-      }
+      
     </style>
   </head>
   <body>
     <main class="d-flex flex-column align-items-center">
       <div id="logo">
-        <a href="#"><img src="./img/Group 50.png" alt="logo.jpg" /></a>
+        <img src="../img/logo.png" alt="logo.jpg" />
       </div>
-      <form action="" method="POST" class="d-flex flex-column align-items-center" novalidate>
+      <form action="login_ok.php" method="POST" class="d-flex flex-column " novalidate>
         <div class="form-floating">
-          <input type="text" class="form-control" id="login_id" name="login_id" placeholder="Id" />
-          <label for="login_id">Id</label>
+          <input type="text" class="form-control" id="userid" name="userid" placeholder="Id" />
+          <label for="userid">Id</label>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="login_pw" name="login_pw" placeholder="Password" />
-          <label for="login_pw">Password</label>
+          <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Password" />
+          <label for="passwd">Password</label>
           <div class="invalid-tooltip">Please choose a unique and valid username.</div>
         </div>
         <div class="position-relative">

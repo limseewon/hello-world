@@ -1,3 +1,8 @@
+<?php
+session_start();
+// include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,61 +43,15 @@
     />
     <!-- 스포카 -->
     <!-- <link
-      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
+      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"      
       rel="stylesheet"
       type="text/css"
     /> -->
 
-    <link rel="stylesheet" href="css/common.css" />
-    <!-- <link rel="stylesheet" href="css/lim.css" /> -->
-
-    <style>
-      form {
-        gap: 390px;
-        margin-bottom: 50px;
-      }
-      .filter {
-        gap: 30px;
-      }
-
-      .lecture,
-      .progress_rate,
-      .period,
-      .search_filter,
-      #search_member,
-      .search_btn {
-        height: 54px;
-      }
-      .lecture {
-        width: 319px;
-      }
-      .progress_rate {
-        width: 111px;
-      }
-      .period,
-      .search_filter {
-        width: 134px;
-      }
-      #search_member {
-        width: 360px;
-      }
-      .search_btn {
-        width: 62px;
-      }
-      .search {
-        gap: 5px;
-      }
-
-      #member_cb {
-        margin-right: 10px;
-      }
-      .msg_btn {
-        line-height: 0;
-        padding: 0;
-        box-sizing: border-box;
-        border: none;
-      }
-    </style>
+    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
+    <link rel="stylesheet" href="/helloworld/css/common.css" />
+    <link rel="stylesheet" href="/helloworld/css/member_mg.css" />
+    
   </head>
   <body>
     <div class="member_modal modal" tabindex="-1">
@@ -265,7 +224,6 @@
         </div>
       </div>
     </div> 
-    
     <div class="message_modal modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -292,72 +250,10 @@
         </div>
       </div>
     </div>
-    </section>
-    <section class="main_wrapper d-flex">
-      <header>
-        <section class="headerContainer">
-          <div class="d-flex justify-content-center" id="logo">
-            <h1>logo</h1>
-            <img src="./img/Group 50.png" alt="logo.jpg" />
-          </div>
-          <div class="gnb">
-            <ul class="d-flex flex-column">
-              <li>
-                <a href="index.html">
-                  <span class="material-symbols-outlined"> dashboard </span>
-                  <span>대시 보드</span>
-                </a>
-              </li>
-              <li>
-                <a href="/announce.html">
-                  <span class="material-symbols-outlined"> assignment </span>
-                  <span>공지 사항</span>
-                </a>
-              </li>
-              <li>
-                <a href="/class/course_list.html">
-                  <span class="material-symbols-outlined"> live_tv </span>
-                  <span>강의 관리</span>
-                </a>
-              </li>
-              <li>
-                <a href="/member_mg.html">
-                  <span class="material-symbols-outlined"> face </span>
-                  <span>회원 관리</span>
-                </a>
-              </li>
-              <li>
-                <a href="/coupon/coupon_list.html">
-                  <span class="material-symbols-outlined"> local_atm </span>
-                  <span>쿠폰 관리</span>
-                </a>
-              </li>
-              <li>
-                <a href="/performance.html">
-                  <span class="material-symbols-outlined"> bar_chart </span>
-                  <span>성과 분석</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span class="material-symbols-outlined"> help </span>
-                  <span>질의 응답</span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <span class="material-symbols-outlined"> logout </span>
-                  <span>Logout</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </section>
-      </header>
-      <section class="content_wrapper">
-        <div class="top_section"><h3>test</h3></div>
-        <div class="main">
-          <div class="main_container">
+    
+<?php
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
+?>
             <h2>회원 관리</h2>
             <form action="" class="d-flex">
               <div class="filter d-flex">
@@ -452,11 +348,11 @@
               </ul>
             </nav>
           </div>
-        </div>
-      </section>
-    </section>
-    <!-- jquery -->
-    <script
+<?php
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
+?>
+<!-- jquery -->
+<script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
       integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
       crossorigin="anonymous"
@@ -484,26 +380,14 @@
       referrerpolicy="no-referrer"
     ></script>
 
-    <script src="js/common.js"></script>
+    <script src="/helloworld/js/common.js"></script>
+    <script>
+      const memberModal = new bootstrap.Modal('.member_modal')
+      const messageModal = new bootstrap.Modal('.message_modal')
+      $('tbody tr').click(function() {
+        memberModal.show()
+      })
+    </script>
   </body>
-  <script>
-    let documentHeight = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.clientHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight
-    );
-    document.querySelector('header').style.height = documentHeight + 'px';
-
-    const memberModal = new bootstrap.Modal('.member_modal')
-    const messageModal = new bootstrap.Modal('.message_modal')
-    $('tbody tr').click(function() {
-      memberModal.show()
-    })
-
-    
-
-
-  </script>
 </html>
+
