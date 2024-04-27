@@ -1,6 +1,5 @@
 <?php
-session_start();
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/inc/dbcon.php';
 
 $name = $_POST['name'];
 $search_where = '';

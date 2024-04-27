@@ -738,4 +738,5 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
     );
     document.querySelector('header').style.height = documentHeight + 'px';
   </script>
+  </body>
 </html>
