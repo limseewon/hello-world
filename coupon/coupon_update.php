@@ -232,7 +232,7 @@
      .just-s-b { 
       justify-content: space-between;
     }
-
+    .form_hei { height: 45px;}
 
     </style>
 </head>
@@ -329,7 +329,7 @@
                   <input class="form-check-input" type="radio" name="cp_date_type" id="coupon_limit_date_0" >
                   <label class="form-check-label b_text01" for="coupon_limit_date_0">제한</label>
                   <div class="col period_select2">
-                    <select class="form-select" name="cp_date" aria-label="Default select example">
+                    <select class="form-select form_hei" name="cp_date" aria-label="Default select example">
                       <option value="1" >1개월</option>
                       <option value="2" >2개월</option>
                       <option value="3" >3개월</option>
