@@ -67,38 +67,41 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
       .block-top{
         gap: 20px;
       }
-      .container-fluid{
-        padding: 0;
-      }
       .form-control{
         width: 750px;
         height: 50px;
       }
-      .form-select-lg{
+      .form-select{
         width: 250px;
         height: 50px;
         margin-top: 7px;
       }
       .bar-top{
         justify-content: space-between;
-        width: 100%;
       }
       .pagination{
         margin-top: 20px;
         justify-content: center;
+      }
+      .container-fluid{
+        padding: 0;
       }
       .c_button {
         position: absolute;
         right: 200px;
         bottom: 15px;
       }
+      .lock{
+        align-items: center;
+        gap: 10px;
+      }
     </style>
   </head>
   <body>
-  <?php
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
-    ?>
-            <h2 class="h2">공지 사항</h2>
+    <?php
+        include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
+        ?>
+            <h2 class="h2">질의응답</h2>
             <div class="bar-top d-flex">
               <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
@@ -109,9 +112,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                 </div>
               </nav>
               <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-                <option selected>조회수</option>
-                <option value="1">가장 많음</option>
-                <option value="2">가장 적음</option>
+                <option selected>답변</option>
+                <option value="1">완료</option>
+                <option value="2">미완료</option>
               </select>
               <select class="form-select form-select-lg mb-3" aria-label="Large select example">
                 <option selected>작성일</option>
@@ -127,6 +130,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                   <th scope="col">제목</th>
                   <th scope="col">작성자</th>
                   <th scope="col">조회수</th>
+                  <th scope="col">답변</th>
                   <th scope="col">작성일</th>
                   <th scope="col">수정 / 삭제</th>
                 </tr>
@@ -135,8 +139,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                 <tr>
                   <th scope="row">1</th>
                   <td><a href="#">안녕하세요! 반갑습니다!</a></td>
-                  <td>운영자</td>
+                  <td class="lock d-flex">홍길동<span class="material-symbols-outlined">
+                    lock
+                    </span></td>
                   <td>1024</td>
+                  <td>완료</td>
                   <td>2024.04.24</td>
                   <td class="edit d-flex">
                     <a href="#">
@@ -156,6 +163,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                   <td><a href="#">안녕하세요! 반갑습니다!</a></td>
                   <td>운영자</td>
                   <td>1024</td>
+                  <td>완료</td>
                   <td>2024.04.24</td>
                   <td class="edit d-flex">
                     <a href="#">
@@ -175,6 +183,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                   <td><a href="#">안녕하세요! 반갑습니다!</a></td>
                   <td>운영자</td>
                   <td>127</td>
+                  <td>완료</td>
                   <td>2024.04.24</td>
                   <td class="edit d-flex">
                     <a href="#">
@@ -193,6 +202,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                 <td><a href="#">안녕하세요! 반갑습니다!</a></td>
                 <td>운영자</td>
                 <td>564</td>
+                <td>완료</td>
                 <td>2024.04.24</td>
                 <td class="edit d-flex">
                   <a href="#">
@@ -212,6 +222,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                 <td><a href="#">안녕하세요! 반갑습니다!</a></td>
                 <td>운영자</td>
                 <td>455</td>
+                <td>완료</td>
                 <td>2024.04.24</td>
                 <td class="edit d-flex">
                   <a href="#">
@@ -231,6 +242,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                 <td><a href="#">안녕하세요! 반갑습니다!</a></td>
                 <td>운영자</td>
                 <td>767</td>
+                <td>완료</td>
                 <td>2024.04.24</td>
                 <td class="edit d-flex">
                   <a href="#">
@@ -250,6 +262,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                 <td><a href="#">안녕하세요! 반갑습니다!</a></td>
                 <td>운영자</td>
                 <td>843</td>
+                <td>완료</td>
                 <td>2024.04.24</td>
                 <td class="edit d-flex">
                   <a href="#">
@@ -269,6 +282,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                 <td><a href="#">안녕하세요! 반갑습니다!</a></td>
                 <td>운영자</td>
                 <td>908</td>
+                <td>완료</td>
                 <td>2024.04.24</td>
                 <td class="edit d-flex">
                   <a href="#">
@@ -288,6 +302,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                 <td><a href="#">안녕하세요! 반갑습니다!</a></td>
                 <td>운영자</td>
                 <td>523</td>
+                <td>완료</td>
                 <td>2024.04.24</td>
                 <td class="edit d-flex">
                   <a href="#">
@@ -307,6 +322,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                 <td><a href="#">안녕하세요! 반갑습니다!</a></td>
                 <td>운영자</td>
                 <td>231</td>
+                <td>완료</td>
                 <td>2024.04.24</td>
                 <td class="edit d-flex">
                   <a href="#">
@@ -338,12 +354,12 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
               </li>
             </ul>
             <div class="c_button">
-              <button class="btn_complete btn btn-success regist-btn">게시글 등록</button>
+              <button class="btn_complete btn btn-success">게시글 등록</button>
             </div>
           </nav>
           <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
-?>
+              include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
+              ?>
     <!-- jquery -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
