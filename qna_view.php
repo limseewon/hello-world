@@ -43,78 +43,141 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
     />
     <!-- 스포카 -->
     <!-- <link
-      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"      
+      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
       rel="stylesheet"
       type="text/css"
     /> -->
 
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    
     <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
     <link rel="stylesheet" href="/helloworld/css/common.css" />
     <link rel="stylesheet" href="/helloworld/css/index.css" />
     <style>
 
+        .btn {
+            width: 105px;
+            height: 48px;
+        }
+        .notice-btn{
+            padding-top: 65px;
+            justify-content: space-between;
+        }
+        .title-box{
+          width: 883px;
+          height: 40px;
+        }
+        .con-box{
+          width: 1170px; 
+          height: 505px;
+        }
+        .input-group > .form-control{
+          position: none;
+          flex: none;
+          width: 560px;
+          height: 40px;
+        }
+        .title{
+          gap: 100px;
+          align-items: center;
+          padding-left: 60px;
+          padding-top: 26px;
+        }
+        .con{
+          gap: 100px;
+          align-items: center;
+          padding-left: 60px;
+          padding-top: 35px;
+        }
+        .file{ 
+          gap: 65px;
+          padding-left: 60px;
+          padding-top: 35px;
+        }
+
+        .regist{
+          /* width: 100%; */
+          height: auto;
+          background: #fff;
+          padding: 20px;
+          border: 1px solid #ced4da;
+        }
+        .btn{
+          width: 100px;
+          height: 35px;
+        }
+        .right-button{
+          padding-left: 250px;
+        }
+        .comments{
+          padding-left: 60px;
+          align-items: center;
+        }
+        .lock{
+        align-items: center;
+        gap: 10px;
+      }
+      .question{
+        padding-right: 550px;
+      }
+      .img{
+        padding-left: 200px;
+      }
+      .reply{
+        padding-right: 1270px;
+      }
     </style>
   </head>
   <body>
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
-              <h2 class="result-text h2">성과 분석</h2>
-              <div class="result_box_top">
-                <div class="">
-                  <h2 class="content-title">5월 매출 베스트 강좌</h2>
-                  <div class="contents-box d-flex">
-                    <div class="box">
-                      <img src="/img/front-best-lecture.png" alt="#" title="front-best-recture" id="best-lecture-img" />
-                      <h3 id="best-lecture-title"> 프론트엔드</h3>
-                      <p id="best-lecture-p">프론트엔드 웹 개발의 모든 것 초격차 패키지 Online.</p>
-                      <button type="button" class="btn btn-primary" id="lecture-go">강의 보러 가기</button>
-                    </div>
-                    <div class="box">
-                      <img src="/img/back-best-lecture.png" alt="#" title="back-best-lecture" id="best-lecture-img" />
-                      <h3 id="best-lecture-title">백엔드</h3>
-                      <p id="best-lecture-p">시그니처 백엔드 Path 초격차 패키지 Online.</p>
-                      <button type="button" class="btn btn-primary" id="lecture-go">강의 보러 가기</button>
-                    </div>
-                    <div class="box">
-                      <img src="/img/devops-best-lecture.png" alt="#" title="devops-best-recture" id="best-lecture-img" />
-                      <h3 id="best-lecture-title">DevOps/Infra Best</h3>
-                      <p id="best-lecture-p">한번에 끝내는 CI/CD의 모든 것 Docker부터 GitOps까지.</p>
-                      <button type="button" class="btn btn-primary" id="lecture-go">강의 보러 가기</button>
-                    </div>
-                  </div>
-                  <h2 class="content-title">누적 조회수 베스트 강좌</h2>
-                  <div class="contents-box d-flex">
-                    <div class="box">
-                      <img src="/img/many-view.png" alt="#" title="many-view-recture" id="many-view" />
-                      <button type="button" class="btn btn-primary" id="lecture-go">강의 보러 가기</button>
-                    </div>
-                  </div>   
-                </div>
-              <div class="result_box_bottom d-flex justify-content-between">
-                <div class="">
-                  <h2 class="content-title">가입 / 탈퇴 회원</h2>
-                  <div class="contents-box d-flex">
-                    <div class="box">
-                      
-                    </div>
-                  </div>
-                  <h2 class="content-title">누적 조회수 베스트 강좌</h2>
-                  <div class="contents-box d-flex">
-                    <div class="box">
-                      
-                    </div>
-                  </div>   
-                </div>
+            <h2 class="h2">질의응답</h2>
+            <div class="regist">
+              <div class="mb-3 d-flex title">
+                <p>제목</p>
+                <p class="question">안녕하세요 질문있습니다!</p>
+                <p class="lock d-flex">홍길동<span class="material-symbols-outlined">
+                  lock
+                  </span>
+                </p>
+                <p>2000.00.00</p>
+                <p class="edit"><a href="#">
+                  <span class="material-symbols-outlined">
+                    border_color
+                  </span>
+                </a>
+                <a href="#">
+                  <span class="material-symbols-outlined">
+                    delete
+                    </span>
+                </a></p>
+
               </div>
-              <?php
-<<<<<<< HEAD
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
-?>
-=======
+              <div class="mb-3 d-flex con">
+                <p>내용</p>
+                <p>운영자님! Q&A 게시글 등록하고 싶은데 등록하기 전에 알아야 할 사항이 있을까요? 항상 화이팅입니다!</p>
+              </div>
+                <div class="d-flex file">
+                  <p>첨부 파일</p>
+                  <p>logo.png</p>
+                  <img src="/img/logo.png" alt="" class="img"> 
+
+                </div>
+                <hr>
+                <div class="comments d-flex">
+                    <p class="reply">댓글[2]</p>
+                    <button type="button" class="btn btn-success">댓글쓰기</button>
+                </div>
+                <hr>
+            </div>
+          </div>
+          <?php
               include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
               ?>
->>>>>>> lim-sudo
     <!-- jquery -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
@@ -144,9 +207,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       referrerpolicy="no-referrer"
     ></script>
 
-    <script src="js/common.js"></script>
+    
   </body>
   <script>
+    $(document).ready(function(){
+      $('#summernote').summernote();
+    });
+
     let documentHeight = Math.max(
       document.body.scrollHeight,
       document.body.offsetHeight,

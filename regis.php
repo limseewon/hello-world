@@ -43,78 +43,102 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
     />
     <!-- 스포카 -->
     <!-- <link
-      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"      
+      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
       rel="stylesheet"
       type="text/css"
     /> -->
 
     <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
-    <link rel="stylesheet" href="/helloworld/css/common.css" />
-    <link rel="stylesheet" href="/helloworld/css/index.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/lim.css" />
     <style>
 
+        .btn {
+            width: 105px;
+            height: 48px;
+        }
+        .notice-btn{
+            padding-top: 65px;
+            justify-content: space-between;
+        }
+        .title-box{
+          width: 883px;
+          height: 40px;
+        }
+        .con-box{
+          width: 1170px; 
+          height: 505px;
+        }
+        .input-group > .form-control{
+          position: none;
+          flex: none;
+          width: 560px;
+          height: 40px;
+        }
+        .title{
+          gap: 50px;
+          align-items: center;
+          padding-left: 60px;
+          padding-top: 26px;
+        }
+        .con{
+          gap: 50px;
+          padding-left: 60px;
+          padding-top: 35px;
+        }
+        .file{ 
+          gap: 20px ;
+          align-items: center;
+          padding-left: 60px;
+          padding-top: 35px;
+        }
+        .regist{
+          /* width: 100%; */
+          height: auto;
+          background: #fff;
+          padding: 20px;
+          border: 1px solid #ced4da;
+        }
+        .btn-primary{
+          width: 106px;
+          height: 40px;
+          border-radius: 0%;
+        }
+        .right-button{
+          padding-left: 250px;
+        }
     </style>
   </head>
   <body>
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
-              <h2 class="result-text h2">성과 분석</h2>
-              <div class="result_box_top">
-                <div class="">
-                  <h2 class="content-title">5월 매출 베스트 강좌</h2>
-                  <div class="contents-box d-flex">
-                    <div class="box">
-                      <img src="/img/front-best-lecture.png" alt="#" title="front-best-recture" id="best-lecture-img" />
-                      <h3 id="best-lecture-title"> 프론트엔드</h3>
-                      <p id="best-lecture-p">프론트엔드 웹 개발의 모든 것 초격차 패키지 Online.</p>
-                      <button type="button" class="btn btn-primary" id="lecture-go">강의 보러 가기</button>
-                    </div>
-                    <div class="box">
-                      <img src="/img/back-best-lecture.png" alt="#" title="back-best-lecture" id="best-lecture-img" />
-                      <h3 id="best-lecture-title">백엔드</h3>
-                      <p id="best-lecture-p">시그니처 백엔드 Path 초격차 패키지 Online.</p>
-                      <button type="button" class="btn btn-primary" id="lecture-go">강의 보러 가기</button>
-                    </div>
-                    <div class="box">
-                      <img src="/img/devops-best-lecture.png" alt="#" title="devops-best-recture" id="best-lecture-img" />
-                      <h3 id="best-lecture-title">DevOps/Infra Best</h3>
-                      <p id="best-lecture-p">한번에 끝내는 CI/CD의 모든 것 Docker부터 GitOps까지.</p>
-                      <button type="button" class="btn btn-primary" id="lecture-go">강의 보러 가기</button>
-                    </div>
+            <h2 class="h2">게시글 등록</h2>
+            <div class="regist">
+              <div class="mb-3 d-flex title">
+                <label for="formGroupExampleInput" class="form-label">제목</label>
+                <input type="text" class="form-control title-box" id="formGroupExampleInput" placeholder="제목을 입력하시오.">
+              </div>
+              <div class="mb-3 d-flex con">
+                <label for="formGroupExampleInput" class="form-label">내용</label>
+                <input type="text" class="form-control con-box" id="formGroupExampleInput" placeholder="내용을 입력하시오. (1200자 제한)">
+              </div>
+              <div>
+                <div class="input-group d-flex file">
+                  <label for="formGroupExampleInput" class="form-label">첨부파일</label>
+                  <input type="file" class="form-control file-box" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                  <button type="button" class="btn btn-primary">파일 추가</button>
+                  <div class="right-button">
+                    <button type="button" class="btn btn-success regist-btn">등록</button>
+                    <button type="button" class="btn btn-danger cancle-btn">취소</button>
                   </div>
-                  <h2 class="content-title">누적 조회수 베스트 강좌</h2>
-                  <div class="contents-box d-flex">
-                    <div class="box">
-                      <img src="/img/many-view.png" alt="#" title="many-view-recture" id="many-view" />
-                      <button type="button" class="btn btn-primary" id="lecture-go">강의 보러 가기</button>
-                    </div>
-                  </div>   
-                </div>
-              <div class="result_box_bottom d-flex justify-content-between">
-                <div class="">
-                  <h2 class="content-title">가입 / 탈퇴 회원</h2>
-                  <div class="contents-box d-flex">
-                    <div class="box">
-                      
-                    </div>
-                  </div>
-                  <h2 class="content-title">누적 조회수 베스트 강좌</h2>
-                  <div class="contents-box d-flex">
-                    <div class="box">
-                      
-                    </div>
-                  </div>   
                 </div>
               </div>
-              <?php
-<<<<<<< HEAD
+            </div>
+          </div>
+          <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
 ?>
-=======
-              include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
-              ?>
->>>>>>> lim-sudo
     <!-- jquery -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
@@ -143,6 +167,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
       referrerpolicy="no-referrer"
     ></script>
+
+    <!-- summernote modernizr js -->
+    <script type="text/javascript"> 
+      $(document).ready(function(){
+        $('#summernote').summernote();
+      });
+      </script>
 
     <script src="js/common.js"></script>
   </body>

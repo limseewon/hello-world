@@ -43,7 +43,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
     />
     <!-- 스포카 -->
     <!-- <link
-      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"      
+      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
       rel="stylesheet"
       type="text/css"
     /> -->
@@ -52,6 +52,19 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
     <link rel="stylesheet" href="/helloworld/css/common.css" />
     <link rel="stylesheet" href="/helloworld/css/index.css" />
     <style>
+        .contents-box{
+            width: 100%;
+            height: auto;
+        }
+        .btn {
+            width: 105px;
+            height: 48px;
+        }
+        .notice-btn{
+            padding-top: 65px;
+            justify-content: space-between;
+        }
+
 
     </style>
   </head>
@@ -59,62 +72,59 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
-              <h2 class="result-text h2">성과 분석</h2>
-              <div class="result_box_top">
-                <div class="">
-                  <h2 class="content-title">5월 매출 베스트 강좌</h2>
-                  <div class="contents-box d-flex">
-                    <div class="box">
-                      <img src="/img/front-best-lecture.png" alt="#" title="front-best-recture" id="best-lecture-img" />
-                      <h3 id="best-lecture-title"> 프론트엔드</h3>
-                      <p id="best-lecture-p">프론트엔드 웹 개발의 모든 것 초격차 패키지 Online.</p>
-                      <button type="button" class="btn btn-primary" id="lecture-go">강의 보러 가기</button>
-                    </div>
-                    <div class="box">
-                      <img src="/img/back-best-lecture.png" alt="#" title="back-best-lecture" id="best-lecture-img" />
-                      <h3 id="best-lecture-title">백엔드</h3>
-                      <p id="best-lecture-p">시그니처 백엔드 Path 초격차 패키지 Online.</p>
-                      <button type="button" class="btn btn-primary" id="lecture-go">강의 보러 가기</button>
-                    </div>
-                    <div class="box">
-                      <img src="/img/devops-best-lecture.png" alt="#" title="devops-best-recture" id="best-lecture-img" />
-                      <h3 id="best-lecture-title">DevOps/Infra Best</h3>
-                      <p id="best-lecture-p">한번에 끝내는 CI/CD의 모든 것 Docker부터 GitOps까지.</p>
-                      <button type="button" class="btn btn-primary" id="lecture-go">강의 보러 가기</button>
-                    </div>
-                  </div>
-                  <h2 class="content-title">누적 조회수 베스트 강좌</h2>
-                  <div class="contents-box d-flex">
-                    <div class="box">
-                      <img src="/img/many-view.png" alt="#" title="many-view-recture" id="many-view" />
-                      <button type="button" class="btn btn-primary" id="lecture-go">강의 보러 가기</button>
-                    </div>
-                  </div>   
-                </div>
-              <div class="result_box_bottom d-flex justify-content-between">
-                <div class="">
-                  <h2 class="content-title">가입 / 탈퇴 회원</h2>
-                  <div class="contents-box d-flex">
-                    <div class="box">
-                      
-                    </div>
-                  </div>
-                  <h2 class="content-title">누적 조회수 베스트 강좌</h2>
-                  <div class="contents-box d-flex">
-                    <div class="box">
-                      
-                    </div>
-                  </div>   
-                </div>
-              </div>
-              <?php
-<<<<<<< HEAD
+            <h2 class="h2">공지 사항</h2>
+            <table class="table contents-box d-flex">
+                <tbody>
+                  <tr>
+                    <th scope="row d-flex"></th>
+                    <td><a href="#">제목</a></td>
+                    <td>안녕하세요! 공지드리겠습니다!</td>
+                    <td>홍길동</td>
+                    <td>1094</td>
+                    <td>2024.04.24</td>
+                    <td class="edit d-flex">
+                      <a href="#">
+                        <span class="material-symbols-outlined">
+                          border_color
+                        </span>
+                      </a>
+                      <a href="#">
+                        <span class="material-symbols-outlined">
+                          delete
+                          </span>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td><a href="#">내용</a></td>
+                    <td class="con">안녕하세요 회원 여러분! 앞으로의 모든 중요 사항들은 공지사항 페이지에 공지하도록 하겠습니다! 다들 열심히 공부하시고, 원하시는 결과 얻으시길 바랍니다!</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td><a href="#">첨부파일</a></td>
+                    <td>20240418.png</td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+          </div>
+          <div class="notice-btn d-flex">
+            <div class="left-button">   
+                <button type="button" class="btn btn-primary">이전</button>
+                <button type="button" class="btn btn-primary">다음</button>
+            </div>
+            <div class="right-button">
+                <button type="button" class="btn btn-success edit-btn">수정</button>
+                <button type="button" class="btn btn-danger cancle-btn">삭제</button>
+            </div>
+          </div>
+          
+          <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
 ?>
-=======
-              include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
-              ?>
->>>>>>> lim-sudo
     <!-- jquery -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
