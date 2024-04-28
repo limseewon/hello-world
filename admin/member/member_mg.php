@@ -1,7 +1,18 @@
 <?php
 session_start();
-// include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
+$memberSql = "SELECT * FROM MEMBERS";
+$memberResult = $mysqli->query($memberSql);
+while ($rs = $memberResult->fetch_object()){
+  $memberArr[] = $rs;
+}
+
+$couponSql = "SELECT * FROM user_coupons uc JOIN members mb ON mb.userid=uc.userid WHERE mb.userid=uc.userid AND uc.status=1";
+$couponResult = $mysqli->query($couponSql);
+while ($rs = $couponResult->fetch_object()){
+  $couponArr[] = $rs;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,19 +77,19 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
               <span class="material-symbols-outlined">account_circle</span>
               <div>
                 <span>수강생</span>
-                <span>코딩좋아</span>
+                <span><?=$ma->username?></span>
               </div>
-              <span>jsdafjo@naver.com</span>
+              <span><?=$ma->email?></span>
               <button type="button" class="msg_btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">                  <span class="material-symbols-outlined"> mail </span>
               </button>
             </div>
             <hr>
             <div class="information">
               <ul>
-                <li><span>아이디</span><span>cording212</span></li>
-                <li><span>최근 접속일</span><span>2024-04-22</span></li>
-                <li><span>가입일</span><span>2024-04-12</span></li>
-                <li><span>연락처</span><span>010-1234-5678</span></li>
+                <li><span>아이디</span><span><?=$ma->userid?></span></li>
+                <li><span>최근 접속일</span><span><?=$ma->recent_in?></span></li>
+                <li><span>가입일</span><span><?=$ma->regdate?></span></li>
+                <li><span>연락처</span><span><?=$ma->tel?></span></li>
                 <li><span>최근 학습 강의</span><span>Angular, 앵귤러 100분 핵심 강의</span></li>
               </ul>
             </div>
@@ -102,118 +113,24 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
             <div>
               <span>보유 쿠폰</span>
               <div class="list-group">
+                <?php
+                if(isset($couponArr)){
+                  foreach($couponArr as $ca){
+
+                  
+                ?>
                 <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                   <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small>3 days ago</small>
+                    <h5 class="mb-1"><?=$ca->reason?></h5>
+                    <small><?=$ca->use_max_date?></small>
                   </div>
                   <p class="mb-1">Some placeholder content in a paragraph.</p>
                   <small>And some small print.</small>
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small class="text-body-secondary">3 days ago</small>
-                  </div>
-                  <p class="mb-1">Some placeholder content in a paragraph.</p>
-                  <small class="text-body-secondary">And some muted small print.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small class="text-body-secondary">3 days ago</small>
-                  </div>
-                  <p class="mb-1">Some placeholder content in a paragraph.</p>
-                  <small class="text-body-secondary">And some muted small print.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small class="text-body-secondary">3 days ago</small>
-                  </div>
-                  <p class="mb-1">Some placeholder content in a paragraph.</p>
-                  <small class="text-body-secondary">And some muted small print.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small class="text-body-secondary">3 days ago</small>
-                  </div>
-                  <p class="mb-1">Some placeholder content in a paragraph.</p>
-                  <small class="text-body-secondary">And some muted small print.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small class="text-body-secondary">3 days ago</small>
-                  </div>
-                  <p class="mb-1">Some placeholder content in a paragraph.</p>
-                  <small class="text-body-secondary">And some muted small print.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small class="text-body-secondary">3 days ago</small>
-                  </div>
-                  <p class="mb-1">Some placeholder content in a paragraph.</p>
-                  <small class="text-body-secondary">And some muted small print.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small class="text-body-secondary">3 days ago</small>
-                  </div>
-                  <p class="mb-1">Some placeholder content in a paragraph.</p>
-                  <small class="text-body-secondary">And some muted small print.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small class="text-body-secondary">3 days ago</small>
-                  </div>
-                  <p class="mb-1">Some placeholder content in a paragraph.</p>
-                  <small class="text-body-secondary">And some muted small print.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small class="text-body-secondary">3 days ago</small>
-                  </div>
-                  <p class="mb-1">Some placeholder content in a paragraph.</p>
-                  <small class="text-body-secondary">And some muted small print.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small class="text-body-secondary">3 days ago</small>
-                  </div>
-                  <p class="mb-1">Some placeholder content in a paragraph.</p>
-                  <small class="text-body-secondary">And some muted small print.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small class="text-body-secondary">3 days ago</small>
-                  </div>
-                  <p class="mb-1">Some placeholder content in a paragraph.</p>
-                  <small class="text-body-secondary">And some muted small print.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small class="text-body-secondary">3 days ago</small>
-                  </div>
-                  <p class="mb-1">Some placeholder content in a paragraph.</p>
-                  <small class="text-body-secondary">And some muted small print.</small>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">List group item heading</h5>
-                    <small class="text-body-secondary">3 days ago</small>
-                  </div>
-                  <p class="mb-1">Some placeholder content in a paragraph.</p>
-                  <small class="text-body-secondary">And some muted small print.</small>
-                </a>
+                <?php
+                  }
+                }
+                ?>
               </div>
             </div>
           </div>
@@ -254,10 +171,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
 
-$sql = "SELECT * FROM MEMBERS";
-$result = $mysqli->query($sql);
-while ($rs = $result->fetch_object())
-  print_r($rs);
+
 ?>
             <h2>회원 관리</h2>
             <form action="" class="d-flex">
@@ -312,26 +226,33 @@ while ($rs = $result->fetch_object())
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <?php
+                if(isset($memberArr)) {
+                  foreach($memberArr as $ma){
+
+                
+                ?>
+                <tr data-ui="<?=$ma->mid?>">
                   <th scope="row">
                     <input class="form-check-input" type="checkbox" />
                   </th>
-                  <td>first</td>
-                  <td>Mark</td>
-                  <td>Otto@mdo.com</td>
-                  <td>활성</td>
-                  <td>2024-04-07</td>
+                  <td><?=$ma->userid?></td>
+                  <td><?=$ma->username?></td>
+                  <td><?=$ma->email?></td>
+                  <td><?php
+                    if($ma->status) {
+                      echo '활성';
+                    } else {
+                      echo '휴면';
+                    }
+                  
+                  ?></td>
+                  <td><?=$ma->regdate?></td>
                 </tr>
-                <tr>
-                  <th scope="row">
-                    <input class="form-check-input" type="checkbox" />
-                  </th>
-                  <td>first</td>
-                  <td>Mark</td>
-                  <td>Otto@mdo.com</td>
-                  <td>휴면</td>
-                  <td>2024-04-07</td>
-                </tr>
+                <?php
+                  }
+                }
+                ?>
               </tbody>
             </table>
             <button class="btn btn-success">선택회원 메시지 전송</button>
