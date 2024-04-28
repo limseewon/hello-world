@@ -1,3 +1,10 @@
+<?php
+ $title="강의 등록";
+ 
+ $js_route = "course/js/course.js";
+include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +53,7 @@
       type="text/css"
     /> -->
 
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/>
+    <!-- <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/> -->
     <link rel="stylesheet" href="/helloworld/css/common.css"/>
     <link rel="stylesheet" href="/helloworld/css/index.css"/>
     
@@ -603,9 +610,12 @@
               <div class="categorys row">
                 <div class="category col">
                   <select class="form-select form_width" aria-label="Default select example" id="cate1" name="cate1" required>
-                   
-                      <option value="" data-name=""></option>
-                   
+                    <option value="" disabled selected>대분류 선택</option>
+                      <?php
+                        foreach($cate1 as $c){            
+                      ?>
+                    <option value="<?php echo $c->cateid ?>" data-name="<?php echo $c->name ?>"><?php echo $c->name ?></option>
+                      <?php } ?>
                   </select>
                 </div>
                 <div class="category col">
@@ -788,6 +798,14 @@
     <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
     ?>
+
+  <script>
+    $(".you_upload").on("click", "#trash", function () {
+      $(this).closest(".youtube").remove();
+    });
+  </script>
+  <script src="/helloworld/course/js/makeoption.js"></script>
+    
   <!-- jquery -->
   <script
   src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
@@ -817,7 +835,7 @@
     referrerpolicy="no-referrer"
   ></script>
 
-  <script src="js/common.js"></script>
+  <!-- <script src="js/common.js"></script> -->
   </body>
   <script>
   let documentHeight = Math.max(
