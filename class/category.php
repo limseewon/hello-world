@@ -416,8 +416,14 @@ while ($rs = $result->fetch_object()) {
       .base_bttn { 
         display: flex; align-items: center;
       }
-      .form_widthd { width: 467px; height: 45px;}
-      .form_widthd2 { width: 221px; height: 45px;}
+      .form_widthd { 
+        width: 467px; 
+        height: 45px;
+      }
+      .form_widthd2 { 
+        width: 221px; 
+        height: 45px;
+      }
       /* .form_widthd3 { width: 704px; height: 45px;} */
     </style>
   
