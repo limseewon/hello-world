@@ -1,8 +1,12 @@
 <?php
  $title="강의 등록";
- 
- $js_route = "course/js/course.js";
-include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
+ $css_route = "css/choi.css";
+ $js_route = "js/course.js";
+
+ session_start();
+ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'; 
+ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/class/category_func.php';
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +15,12 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>강의 등록</title>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
@@ -56,543 +66,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
     <!-- <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/> -->
     <link rel="stylesheet" href="/helloworld/css/common.css"/>
     <link rel="stylesheet" href="/helloworld/css/index.css"/>
-    
-
-    <style>
-      
-      /* 강의관리-최원석 */
-      
-      p {
-        margin-bottom: 0;
-      }
-      .btn {
-        height: 45px;
-        white-space: nowrap;
-        box-sizing: border-box;
-      }
-      .btn_g {
-        margin-right: 15px;
-      }
-      .content_wrap {
-        background-color: #f8f8f8;
-      }
-      .course_sort {
-        margin-bottom: calc(var(--c-space_updown) * 2);
-      }
-      .link_btn {
-        display: flex;
-        justify-content: flex-end;
-        gap: calc(var(--c-space_updown) * 0.5);
-        margin-bottom: 25px;
-      }
-      .course_sort .row,
-      .course_list .row,
-      .category_add .row {
-        margin-bottom: var(--c-space_updown);
-      }
-      input[type="text"],
-      select,
-      .btn {
-        height: 45px;
-        font-size: 16px;
-      }
-      .level_price {
-        height: 45px;
-        display: flex;
-        align-items: center;
-      }
-      .level_price div {
-        align-items: center;
-      }
-      .level_price label {
-        font-size: 16px;
-        margin: 0 12px 0 3px;
-        line-height: 45px;
-        display: inline-block;
-        vertical-align: text-bottom;
-        margin-left: 8px;
-      }
-      .level_price h3 {
-        margin-right: calc(var(--c-space_updown) * 0.5);
-      }
-      .level_price h3.b_text01 {
-        margin-right: calc(var(--c-space_updown) * 0.5);
-        margin-block-start: 0;
-        margin-block-end: 0;
-        font-weight: bold;
-        vertical-align: bottom;
-        display: inline-block;
-      }
-      .price_check {
-        margin-left: 10px;
-      }
-      .course_list img {
-        width: 226px;
-        height: 162px;
-        margin-right: 20px;
-      }
-
-      .course_list {
-        width: 100%;
-        background: #fff;
-        border-radius: 12px;
-        padding: 27px;
-        margin-bottom: 27px;
-      }
-
-      .course_list_title {
-        margin-bottom: calc(var(--c-space_updown) * 0.5);
-      }
-      .duration {
-        color: #505050;
-        font-style: 13px;
-      }
-      .course_list .ui-selectmenu-button.ui-button {
-        width: 134px;
-        margin-bottom: 10px;
-      }
-      .course_list .primary_bg {
-        margin-right: 6px;
-      }
-
-      .course_list .col-md-4 {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: end;
-      }
-      .breadcrumb-item {
-        font-size: 14px;
-      }
-      .course_info {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-      .course_list select {
-        margin-bottom: 5px;
-      }
-      .level_price span {
-        display: flex;
-        align-items: center;
-      }
-      .status_box {
-        position: relative;
-        width: 100%;
-      }
-      .status_box .price {
-        position: absolute;
-        right: 220px;
-        width: 200px;
-        text-align: right;
-      }
-      .course_list .price {
-        font-weight: bold;
-      }
-      .price_btn_wrap {
-        flex-wrap: wrap;
-      }
-      .search_bar {
-        flex: 1;
-      }
-      .search_bar input {
-        margin-right: 15px;
-      }
-      .duration * {
-        margin-right: calc(var(--c-space_updown) * 0.5);
-      }
-      .duration i {
-        margin-right: calc(var(--c-space_updown) * 0.2);
-      }
-
-      .status_wrap {
-        display: flex;
-        flex-direction: column;
-        gap: calc(var(--c-space_updown) * 0.3);
-      }
-
-      .status_wrap select {
-        width: 100%;
-      }
-
-      a.btn {
-        line-height: 32px;
-      }
-      /*카테고리*/
-
-      .btn-check:checked + .btn,
-      .btn.active,
-      .btn.show,
-      .btn:first-child:active,
-      :not(.btn-check) + .btn:active {
-        border-color: #cdcdcd;
-      }
-      .tt_mb {
-        margin-bottom: calc(var(--c-space_updown) * 2);
-      }
-      .base_mt {
-        margin-top: var(--c-space_updown);
-      }
-      .category_add_btns {
-        display: flex;
-        gap: calc(var(--c-space_updown) * 0.5);
-      }
-      .category_add h3.content_tt {
-        margin-bottom: var(--c-space_updown);
-      }
-      .category_list {
-        margin-top: calc(var(--c-space_updown) * 1.5);
-      }
-      .category_list form {
-        margin-bottom: calc(var(--c-space_updown) * 1);
-      }
-      .table_wrap {
-        width: 100%;
-      }
-      .category_list table {
-        margin-bottom: calc(var(--c-space_updown) * 3);
-        text-align: center;
-        border-radius: 10px;
-        width: 45%;
-      }
-      .category_list table tr * {
-        padding: 5px;
-      }
-      .category_list table thead * {
-        margin-top: 30px;
-        padding: 10px;
-        font-size: 20px;
-        font-weight: bold;
-      }
-      .category_list table tbody * {
-        padding: 5px;
-        font-size: 16px;
-      }
-      .category_list table td {
-        width: 25%;
-      }
-      .category_list table i {
-        font-size: 22px;
-      }
-      .modal-body label {
-        margin-bottom: 10px;
-      }
-      .category_list .dropdown {
-        width: 100%;
-      }
-      .dropdown ul {
-        width: 100%;
-        padding-top: 0;
-        padding-bottom: 0;
-      }
-      .dropdown ul li {
-        width: 100%;
-        height: 45px;
-        padding: 0 15px;
-        /* border-bottom: 1px solid #c9e5f7; */
-      }
-      .list-group-item + .list-group-item {
-        border-top-width: 0;
-        height: 45px;
-        box-sizing: border-box;
-        padding: 0 15px;
-      }
-      .dropdown ul li:last-child {
-        border-bottom: none;
-      }
-      .dropdown ul li:hover {
-        background-color: #ecf2ff;
-      }
-      .dropdown i {
-        font-size: 20px;
-      }
-      .dropdown-toggle::after {
-        display: inline-block;
-        margin-left: 0;
-        vertical-align: 0;
-        content: "";
-        border-top: none;
-        border-right: none;
-        border-bottom: 0;
-        border-left: none;
-      }
-
-      /*강의보기*/
-
-      ol,
-      ul {
-        padding-left: 0;
-      }
-      .course_view .course_list {
-        padding: 120px 100px;
-        position: relative;
-      }
-      .course_list > div {
-        position: relative;
-      }
-      .course_view img {
-        width: 390px;
-        height: 274px;
-        margin-right: var(--c-space_updown);
-      }
-      .course_view .view_category {
-        position: absolute;
-        bottom: 100%;
-        right: 0;
-      }
-      .course_status {
-        position: relative;
-        margin-top: var(--c-space_updown);
-      }
-      .status_wrap {
-        position: absolute;
-        bottom: 0;
-        right: 10px;
-      }
-      .course_view .badge {
-        font-size: 20px;
-        margin-left: 10px;
-      }
-      .course_view,
-      .course_list_wrap,
-      .category_add {
-        position: relative;
-        margin-bottom: 60px;
-      }
-      .course_view .back_btn,
-      .course_list_wrap .all_modify_btn,
-      .category_add .back_btn {
-        position: absolute;
-        right: 0;
-      }
-
-      .course_view .course_list_title {
-        display: flex;
-        align-items: center;
-      }
-
-      /* 강의등록/강의수정 */
-
-      h1 {
-        font-family: "jua";
-      }
-
-      .c_mt {
-        margin-top: calc(var(--c-space_updown) * 1.5);
-      }
-      .c_mb {
-        margin-bottom: calc(var(--c-space_updown));
-      }
-
-      select,
-      input[type="file"]::file-selector-button,
-      input {
-        height: 45px;
-      }
-
-      .price_select,
-      .level_select,
-      .period,
-      .act {
-        width: 50%;
-      }
-
-      .trash i,
-      .trash_icon i {
-        font-size: 35px;
-        align-items: center;
-      }
+    <link rel="stylesheet" href="/helloworld/css/choi.css"/>
 
     
-
-      .add_listBtn {
-        text-align: center;
-        margin: calc(var(--c-space_updown) * 2) 0 calc(var(--c-space_updown) * 2.5);
-      }
-      .add_list a {
-        color: #6f6f6f;
-        padding-top: 2px;
-      }
-
-      .btn_complete {
-        margin-right: 15px;
-      }
-
-      .level_status {
-        height: 45px;
-        gap: 10px;
-      }
-
-      .c_button {
-        padding-bottom: calc(var(--c-space_updown) * 2.5);
-      }
-
-      .file_input > img {
-        width: 150px;
-        margin-top: 10px;
-        border-radius: 5px;
-      }
-
-      .product_options > img {
-        width: 150px;
-      }
-
-      .you_upload_content p,
-      .youtube p,
-      .youtube_v p {
-        text-align: center;
-        margin-top: 13px;
-        font-weight: 600;
-      }
-
-      .course_info > h3 {
-        width: 100%;
-      }
-
-      .youtube_thumb {
-        position: relative;
-      }
-
-      .youtube_link > div {
-        text-align: center;
-        align-items: center;
-      }
-
-      /* 강의수정 */
-
-      .youtubeThumbBox {
-        margin: 10px auto;
-        width: 100%;
-      }
-
-      .youtubeThumbBox img {
-        width: 150px;
-        border-radius: 5px;
-      }
-
-      /* 강의보기 */
-
-      .youtubeNameBox,
-      .youtubeUrlBox {
-        height: 50px;
-        background-color: #f8f8f8;
-        border-radius: 6px;
-      }
-
-      .youtubeNameBox,
-      .youtubeViewcon,
-      .youtubeViewname {
-        width: 70%;
-      }
-
-      .youtubeUrlBox,
-      .youtubeViewurl,
-      .youtubeViewthumb {
-        width: 30%;
-      }
-
-      .youtubeNameBox p,
-      .youtubeUrlBox p {
-        text-align: center;
-        margin-top: 12px;
-        font-weight: 600;
-      }
-
-      .youtube_con {
-        width: 100%;
-        height: 150px;
-        border-bottom: 1px solid #c2c4c7;
-      }
-
-      .youtube_con img {
-        width: 150px;
-        height: 90px;
-        object-fit: contain;
-        margin-right: 0;
-        border: 1px solid var(--c-lightgray);
-        border-radius: 6px;
-      }
-
-      .youtubeViewcon,
-      .youtubeViewcon img {
-        align-items: center;
-      }
-      /* 강의 쿠폰 공통 */
-
-      .main_tt {
-        font-family: "Jua", sans-serif;
-        font-size: 32px;
-        font-weight: 500;
-      }
-
-      .main_stt {
-        font-size: 28px;
-        font-weight: bold;
-      }
-
-      .content_tt {
-        font-size: 24px;
-        font-weight: bold;
-      }
-
-      .content_stt {
-        font-size: 20px;
-        font-weight: 400;
-      }
-
-      .b_text01 {
-        font-size: 18px;
-        font-weight: 400;
-        line-height: 1.4;
-      }
-
-      .b_text02 {
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 1.4;
-      }
-      
-      .tt {
-        margin: 50px;
-      }
-          .btn {
-      font-size: 16px;
-      height: 45px;
-      padding-left: 30px;
-      padding-right: 30px;
-    }
-    .thumbnail_box{
-      width: 200px;
-      height: 140px;
-      background-color: #6f6f6f;
-    }
-    .course_width { 
-      width: 48.5%;
-    }
-    .category_margin {
-      margin-top: calc(var(--c-space_updown) * 3); 
-    }
-    .b_danger_a {
-      display: flex; align-items: center; 
-    }
-    .check_width_box { 
-      position: relative;
-    }
-    .check_width { 
-      position: absolute;
-      top:65px; left:calc(-1% + 20px); 
-    }
-    .check_width2 {  
-      left:calc(8% + 20px);
-    }
-    .check_width3 {  
-      left:calc(17% + 20px);
-    }
-    
-    .form_width { width: 488px; height: 45px;}
-    .form_width2 { width: 200px; height: 45px; }
-    
-    </style>
 </head>
 <body>
   <?php
@@ -644,7 +120,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
                     </select>
                   </div>
                   <div class="col price">
-                    <input type="number" class="form-control" name="price" id="price" min="0" max="1000000" step="10000" placeholder="금액">
+                    <input type="number" class="form-control" name="price" id="price" min="0" max="100000" step="1000" placeholder="금액">
                   </div>
                 </div>
                 
@@ -743,7 +219,12 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
               </div>
               <div class="add_listBtn">
                 <a href="">
-                  
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M3.99951 15.9977C3.99951 17.5736 4.3099 19.134 4.91296 20.5899C5.51601 22.0458 6.39993 23.3687 7.51423 24.483C8.62853 25.5973 9.9514 26.4812 11.4073 27.0843C12.8632 27.6873 14.4236 27.9977 15.9995 27.9977C17.5754 27.9977 19.1358 27.6873 20.5917 27.0843C22.0476 26.4812 23.3705 25.5973 24.4848 24.483C25.5991 23.3687 26.483 22.0458 27.0861 20.5899C27.6891 19.134 27.9995 17.5736 27.9995 15.9977C27.9995 14.4218 27.6891 12.8614 27.0861 11.4055C26.483 9.9496 25.5991 8.62673 24.4848 7.51243C23.3705 6.39813 22.0476 5.51421 20.5917 4.91116C19.1358 4.3081 17.5754 3.99771 15.9995 3.99771C14.4236 3.99771 12.8632 4.3081 11.4073 4.91116C9.9514 5.51421 8.62853 6.39813 7.51423 7.51243C6.39993 8.62673 5.51601 9.9496 4.91296 11.4055C4.3099 12.8614 3.99951 14.4218 3.99951 15.9977Z" stroke="#6F6F6F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M11.9995 15.9998H19.9995" stroke="#6F6F6F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15.9995 12.0002V20.0002" stroke="#6F6F6F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  리스트 추가
                 </a>
               </div>
             </div>
@@ -781,11 +262,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
                   </div>
                 </div>
               </div>
-              <div class="add_listBtn">
-                <a href="">
-                  
-                </a>
-              </div>
+              
             </div>
             <div class="c_button d-flex justify-content-center align-items-center">
               <button class="btn_complete btn btn-success">등록완료</button>
@@ -804,7 +281,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
       $(this).closest(".youtube").remove();
     });
   </script>
-  <script src="/helloworld/course/js/makeoption.js"></script>
+  <script src="/helloworld/js/makeoption.js"></script>
+  <script src="/helloworld/js/course.js"></script>
+  
     
   <!-- jquery -->
   <script
@@ -847,6 +326,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
   );
   document.querySelector("header").style.height = documentHeight + "px";
   </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </body>
 </html>
 

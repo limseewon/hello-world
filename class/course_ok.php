@@ -1,5 +1,6 @@
 <?php
   include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/inc/dbcon.php';
+  
 
 
   $mysqli->autocommit(FALSE); //커밋이 안되도록 지정, 일단 바로 저장하지 못하도록 하는 기능

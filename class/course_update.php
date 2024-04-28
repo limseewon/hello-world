@@ -1,14 +1,26 @@
 <?php
 
-
  $title="강의 수정";
- 
+ $css_route = "css/choi.css";
  $js_route = "class/js/course.js";
 
-include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/inc/dbcon.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
+ session_start();
+ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'; 
+ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/class/category_func.php';
 
-
+ $cid = $_GET['cid'];
+ $sql = "SELECT * FROM courses WHERE cid={$cid}";
+ $result = $mysqli -> query($sql);
+ $rs = $result -> fetch_object();
+ 
+ 
+ $imgsql = "SELECT * FROM lecture WHERE cid={$cid}";
+ $result = $mysqli -> query($imgsql);
+ 
+ while($is = $result -> fetch_object()){
+   $addImgs[]=$is;
+ }
 
 ?>
 
@@ -22,6 +34,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>강의수정</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
@@ -60,388 +77,13 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
       type="text/css"
     /> -->
 
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/>
+    <!-- <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/> -->
     <link rel="stylesheet" href="/helloworld/css/common.css"/>
     <link rel="stylesheet" href="/helloworld/css/index.css"/>
+    <link rel="stylesheet" href="/helloworld/css/choi.css"/>
     
 
-    <style>
-      
-      /*카테고리 최원석*/
-
-      .btn-check:checked + .btn,
-      .btn.active,
-      .btn.show,
-      .btn:first-child:active,
-      :not(.btn-check) + .btn:active {
-        border-color: #cdcdcd;
-      }
-      .tt_mb {
-        margin-bottom: calc(var(--c-space_updown) * 2);
-      }
-      .base_mt {
-        margin-top: var(--c-space_updown);
-      }
-      .category_add_btns {
-        display: flex;
-        gap: calc(var(--c-space_updown) * 0.5);
-      }
-      .category_add h3.content_tt {
-        margin-bottom: var(--c-space_updown);
-      }
-      .category_list {
-        margin-top: calc(var(--c-space_updown) * 1.5);
-      }
-      .category_list form {
-        margin-bottom: calc(var(--c-space_updown) * 1);
-      }
-      .table_wrap {
-        width: 100%;
-      }
-      .category_list table {
-        margin-bottom: calc(var(--c-space_updown) * 3);
-        text-align: center;
-        border-radius: 10px;
-        width: 45%;
-      }
-      .category_list table tr * {
-        padding: 5px;
-      }
-      .category_list table thead * {
-        margin-top: 30px;
-        padding: 10px;
-        font-size: 20px;
-        font-weight: bold;
-      }
-      .category_list table tbody * {
-        padding: 5px;
-        font-size: 16px;
-      }
-      .category_list table td {
-        width: 25%;
-      }
-      .category_list table i {
-        font-size: 22px;
-      }
-      .modal-body label {
-        margin-bottom: 10px;
-      }
-      .category_list .dropdown {
-        width: 100%;
-      }
-      .dropdown ul {
-        width: 100%;
-        padding-top: 0;
-        padding-bottom: 0;
-      }
-      .dropdown ul li {
-        width: 100%;
-        height: 45px;
-        padding: 0 15px;
-        /* border-bottom: 1px solid #c9e5f7; */
-      }
-      .list-group-item + .list-group-item {
-        border-top-width: 0;
-        height: 45px;
-        box-sizing: border-box;
-        padding: 0 15px;
-      }
-      .dropdown ul li:last-child {
-        border-bottom: none;
-      }
-      .dropdown ul li:hover {
-        background-color: #ecf2ff;
-      }
-      .dropdown i {
-        font-size: 20px;
-      }
-      .dropdown-toggle::after {
-        display: inline-block;
-        margin-left: 0;
-        vertical-align: 0;
-        content: '';
-        border-top: none;
-        border-right: none;
-        border-bottom: 0;
-        border-left: none;
-      }
-
-      /*강의보기*/
-
-      ol,
-      ul {
-        padding-left: 0;
-      }
-      .course_view .course_list {
-        padding: 120px 100px;
-        position: relative;
-      }
-      .course_list > div {
-        position: relative;
-      }
-      .course_view img {
-        width: 390px;
-        height: 274px;
-        margin-right: var(--c-space_updown);
-      }
-      .course_view .view_category {
-        position: absolute;
-        bottom: 100%;
-        right: 0;
-      }
-      .course_status {
-        position: relative;
-        margin-top: var(--c-space_updown);
-      }
-      .status_wrap {
-        position: absolute;
-        bottom: 0;
-        right: 10px;
-      }
-      .course_view .badge {
-        font-size: 20px;
-        margin-left: 10px;
-      }
-      .course_view,
-      .course_list_wrap,
-      .category_add {
-        position: relative;
-        margin-bottom: 60px;
-      }
-      .course_view .back_btn,
-      .course_list_wrap .all_modify_btn,
-      .category_add .back_btn {
-        position: absolute;
-        right: 0;
-      }
-
-      .course_view .course_list_title {
-        display: flex;
-        align-items: center;
-      }
-
-      /* 강의등록/강의수정 */
-
-      h1 {
-        font-family: 'jua';
-      }
-
-      .c_mt {
-        margin-top: calc(var(--c-space_updown) * 1.5);
-      }
-      .c_mb {
-        margin-bottom: calc(var(--c-space_updown));
-      }
-
-      select,
-      input[type='file']::file-selector-button,
-      input {
-        height: 45px;
-      }
-
-      .price_select,
-      .level_select,
-      .period,
-      .act {
-        width: 50%;
-      }
-
-      .trash i,
-      .trash_icon i {
-        font-size: 35px;
-        align-items: center;
-      }
-
-    
-
-      .add_listBtn {
-        text-align: center;
-        margin: calc(var(--c-space_updown) * 2) 0 calc(var(--c-space_updown) * 2.5);
-      }
-      .add_list a {
-        color: #6f6f6f;
-        padding-top: 2px;
-      }
-
-      .btn_complete {
-        margin-right: 15px;
-      }
-
-      .level_status {
-        height: 45px;
-        gap: 10px;
-      }
-
-      .c_button {
-        padding-bottom: calc(var(--c-space_updown) * 2.5);
-      }
-
-      .file_input > img {
-        width: 150px;
-        margin-top: 10px;
-        border-radius: 5px;
-      }
-
-      .product_options > img {
-        width: 150px;
-      }
-
-      .you_upload_content p,
-      .youtube p,
-      .youtube_v p {
-        text-align: center;
-        margin-top: 13px;
-        font-weight: 600;
-      }
-
-      .course_info > h3 {
-        width: 100%;
-      }
-
-      .youtube_thumb {
-        position: relative;
-      }
-
-      .youtube_link > div {
-        text-align: center;
-        align-items: center;
-      }
-
-      /* 강의수정 */
-
-      .youtubeThumbBox {
-        margin: 10px auto;
-        width: 100%;
-      }
-
-      .youtubeThumbBox img {
-        width: 150px;
-        border-radius: 5px;
-      }
-
-      /* 강의보기 */
-
-      .youtubeNameBox,
-      .youtubeUrlBox {
-        height: 50px;
-        background-color: #f8f8f8;
-        border-radius: 6px;
-      }
-
-      .youtubeNameBox,
-      .youtubeViewcon,
-      .youtubeViewname {
-        width: 70%;
-      }
-
-      .youtubeUrlBox,
-      .youtubeViewurl,
-      .youtubeViewthumb {
-        width: 30%;
-      }
-
-      .youtubeNameBox p,
-      .youtubeUrlBox p {
-        text-align: center;
-        margin-top: 12px;
-        font-weight: 600;
-      }
-
-      .youtube_con {
-        width: 100%;
-        height: 150px;
-        border-bottom: 1px solid #c2c4c7;
-      }
-
-      .youtube_con img {
-        width: 150px;
-        height: 90px;
-        object-fit: contain;
-        margin-right: 0;
-        border: 1px solid var(--c-lightgray);
-        border-radius: 6px;
-      }
-
-      .youtubeViewcon,
-      .youtubeViewcon img {
-        align-items: center;
-      }
-      /* 강의 쿠폰 공통 */
-
-      .main_tt {
-        font-family: 'Jua', sans-serif;
-        font-size: 32px;
-        font-weight: 500;
-      }
-
-      .main_stt {
-        font-size: 28px;
-        font-weight: bold;
-      }
-
-      .content_tt {
-        font-size: 24px;
-        font-weight: bold;
-      }
-
-      .content_stt {
-        font-size: 20px;
-        font-weight: 400;
-      }
-
-      .b_text01 {
-        font-size: 18px;
-        font-weight: 400;
-        line-height: 1.4;
-      }
-
-      .b_text02 {
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 1.4;
-      }
-      
-      .tt {
-        margin: 50px;
-      }
-      .btn {
-        font-size: 16px;
-        height: 45px;
-        padding-left: 30px;
-        padding-right: 30px;
-      }
-      .thumbnail_box{
-        width: 200px;
-        height: 140px;
-        background-color: #6f6f6f;
-      }
-      .course_width { 
-        width: 48.5%;
-      }
-      .category_margin {
-        margin-top: calc(var(--c-space_updown) * 3);
-      }
-      .b_danger_a {
-        display: flex; align-items: center; 
-      }
-      .check_width_box { 
-        position: relative;
-      }
-      .check_width { 
-        position: absolute;
-        top:65px; 
-        left:calc(-1% + 20px); 
-      }
-      .check_width2 {  
-        left:calc(8% + 20px);
-      }
-      .check_width3 {  
-        left:calc(17% + 20px);
-      }
-      .form_width { width: 488px; height: 45px;}
-      .form_width2 { width: 200px; height: 45px; }
-      
-    </style>
+   
     
   </head>
   
@@ -464,8 +106,20 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
                   <div class="category col">
                     <select class="form-select form_width" aria-label="Default select example" id="cate1" name="cate1" required>
                       <option value="" hidden>선택하세요</option>
-
-                      <option value="" data-name=""></option>
+                      <?php
+                        $cateString = $rs->cate;
+                        $parts = explode('/', $cateString);
+                
+                        $big_cate = $parts[0];
+                        $md_cate = $parts[1];
+                        $sm_cate = $parts[2];
+                      ?>  
+                      <?php
+                        foreach($cate1 as $c){      
+                          if($big_cate == $c->name) {$selected='selected';}else{$selected='';};     
+                      ?>
+                      <option value="<?php echo $c->cateid ?>" data-name="<?php echo $c->name ?>"><?php echo $c->name ?>"></option>
+                      <?php } ?>  
                     </select>
                   </div>
                   <div class="category col">
@@ -490,8 +144,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
                   id="name"
                   placeholder="강의명을 입력하세요."
                   required
-                  value=""
-                />
+                  value="<?= $rs->name; ?>">
               </div>
 
               <div class="section3 d-flex gap-5 c_mt">
@@ -502,10 +155,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
                       class="form-select form_width"
                       name="price_status"
                       id="price_status"
-                      aria-label="Default select example"
-                    >
-                      <option value="유료">유료</option>
-                      <option value="무료">무료</option>
+                      aria-label="Default select example">
+                      <option value="유료">유료 <?php if($rs->price_status == "유료") echo 'selected' ?></option>
+                      <option value="무료">무료 <?php if($rs->price_status == "무료") echo 'selected' ?></option>
                     </select>
                   </div>
                   <div class="col price">
@@ -517,7 +169,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
                       min="0"
                       max="1000000"
                       step="10000"
-                      value=""
+                      value="<?= $rs->price; ?>"
                       placeholder="금액"
                     />
                   </div>
@@ -526,15 +178,15 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
               <div class="row level level_status c_mt check_width_box">
                 <label class="form-label content_tt c_mb ">난이도</label>
                 <div class="col check_width">
-                  <input class="form-check-input " type="radio" name="level" id="low" value="초급" />
+                  <input class="form-check-input " type="radio" name="level" id="low" value="초급" <?php if($rs->level == "초급") echo 'checked' ?>>
                   <label class="form-check-label" for="low">초급</label>
                 </div>
                 <div class="col check_width check_width2">
-                  <input class="form-check-input " type="radio" name="level" id="middle" value="중급" />
+                  <input class="form-check-input " type="radio" name="level" id="middle" value="중급" <?php if($rs->level == "중급") echo 'checked' ?>>
                   <label class="form-check-label" for="middle">중급</label>
                 </div>
                 <div class="col check_width check_width3">
-                  <input class="form-check-input " type="radio" name="level" id="high" value="고급" />
+                  <input class="form-check-input " type="radio" name="level" id="high" value="고급" <?php if($rs->level == "고급") echo 'checked' ?>>
                   <label class="form-check-label" for="high">고급</label>
                 </div>
               </div>
@@ -544,18 +196,18 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
                   <label class="form-label content_tt c_mb">수강기간</label>
                   <div class="col period_select1 margin-rightf ">
                     <select class="form-select form_width2 " name="due_status" id="due_status" aria-label="Default select example">
-                      <option value="제한">제한</option>
-                      <option value="무제한">무제한</option>
+                      <option value="제한" <?php if($rs->due_status == "제한") echo 'selected' ?>>제한</option>
+                      <option value="무제한" <?php if($rs->due_status == "무제한") echo 'selected' ?>>무제한</option>
                     </select>
                   </div>
                   <div class="col period_select2">
                     <select class="form-select form_width" name="due" id="due" aria-label="Default select examh5le">
-                      <option value="" disabled>기간선택</option>
-                      <option value="무제한">무제한</option>
-                      <option value="3개월">3개월</option>
-                      <option value="6개월">6개월</option>
-                      <option value="9개월">9개월</option>
-                      <option value="12개월">12개월</option>
+                    <option value="" disabled>기간선택</option>
+                    <option value="무제한" <?php if($rs->due == "무제한") echo 'selected' ?>>무제한</option>
+                    <option value="3개월" <?php if($rs->due == "3개월") echo 'selected' ?>>3개월</option>
+                    <option value="6개월" <?php if($rs->due == "6개월") echo 'selected' ?>>6개월</option>
+                    <option value="9개월" <?php if($rs->due == "9개월") echo 'selected' ?>>9개월</option>
+                    <option value="12개월" <?php if($rs->due == "12개월") echo 'selected' ?>>12개월</option>
                     </select>
                   </div>
                 </div>
@@ -563,24 +215,24 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
               <div class="row act c_mt">
                 <label class="form-check-label content_tt c_mb">상태</label>
                 <div class="col-2 d-flex align-items-center level_status">
-                  <input class="form-check-input" type="radio" name="act" id="active" value="활성" />
+                  <input class="form-check-input" type="radio" name="act" id="active" value="활성" <?php if($rs->act == "활성") echo 'checked' ?>>
                   <label class="form-check-label" for="active">활성</label>
                 </div>
                 <div class="col-2 d-flex align-items-center level_status">
-                  <input class="form-check-input" type="radio" name="act" id="inactive" value="비활성" />
+                  <input class="form-check-input" type="radio" name="act" id="inactive" value="비활성" <?php if($rs->act == "비활성") echo 'checked' ?>>
                   <label class="form-check-label" for="inactive">비활성</label>
                 </div>
               </div>
 
               <div class="content_detail c_mt">
                 <h3 class="content_tt c_mb">상세내용</h3>
-                <div id="product_detail"></div>
+                <div id="product_detail"><?= $rs->content; ?></div>
               </div>
 
               <div class="file_input c_mt">
                 <label for="thumbnail" class="form-label content_tt c_mb">썸네일</label>
                 <input type="file" class="form-control" name="thumbnail" id="thumbnail" />
-                <img src="" alt="" />
+                <img src="<?= $rs->thumbnail; ?>" alt="" />
               </div>
 
               <div class="upload c_mt">
@@ -601,34 +253,43 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
                       </div>
                     </div>
                   </div>
-
+                  <?php
+                    $i = 1;
+                    if(isset($addImgs)){
+                    foreach($addImgs as $ai){
+                  ?>  
                   <div class="youtube c_mb mt-3">
                     <div class="row justify-content-between">
                       <div class="col-2 youtube_thumb">
                         <input type="file" class="form-control" name="youtube_thumb[]" />
                       </div>
                       <div class="col-3 youtube_name">
-                        <input type="text" class="form-control" name="youtube_name[]" value="" />
+                        <input type="text" class="form-control" name="youtube_name[]" value="<?= $ai -> youtube_name?>" />
                       </div>
                       <div class="col-6 youtube_url">
-                        <input type="url" class="form-control" name="youtube_url[]" value="" />
+                        <input type="url" class="form-control" name="youtube_url[]" value="<?= $ai -> youtube_url?>" />
                       </div>
                       <div class="col-1 trash_icon">
-                        <label for="delete-youtube"><i class="ti ti-trash bin_icon"></i></label>
+                        <label for="delete-youtube<?= $i; ?>"><i class="ti ti-trash bin_icon"></i></label>
                         <input
                           type="checkbox"
                           class="delete-youtube hidden"
-                          id="delete-youtube"
+                          id="delete-youtube<?= $i; ?>"
                           name="delete_youtube[]"
-                          value=""
+                          value="<?= $ai->l_idx ?>"
                         />
                       </div>
                       <div class="youtubeThumbBox">
                         <span class="hidden">기존파일</span>
-                        <img src="" alt="" />
+                        <img src="<?= $ai -> youtube_thumb?>" alt="" />
                       </div>
                     </div>
                   </div>
+                  <?php
+                  $i++;
+                      }
+                    }
+                    ?>
                 </div>
                 <div class="add_listBtn">
                   <a href=""> </a>
@@ -652,24 +313,24 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
                       </div>
                     </div>
                   </div>
-
+                  
                   <div class="youtube c_mb mt-3">
                     <div class="row justify-content-between">
                       <div class="col-2 youtube_thumb">
-                        <input type="file" class="form-control" name="youtube_thumb[]" />
+                        <input type="file" class="form-control" name="youtube_thumb[]"/>
                       </div>
                       <div class="col-3 youtube_name">
-                        <input type="text" class="form-control" name="youtube_name[]" value="" />
+                        <input type="text" class="form-control" name="youtube_name[]" value="">
                       </div>
                       <div class="col-6 youtube_url">
-                        <input type="url" class="form-control" name="youtube_url[]" value="" />
+                        <input type="url" class="form-control" name="youtube_url[]" value="">
                       </div>
                       <div class="col-1 trash_icon">
                         <label for="delete-youtube"><i class="ti ti-trash bin_icon"></i></label>
                         <input
                           type="checkbox"
                           class="delete-youtube hidden"
-                          id="delete-youtube"
+                          id="delete-youtube <?= $i; ?>" name="delete_youtube[]" value=""
                           name="delete_youtube[]"
                           value=""
                         />
@@ -680,9 +341,17 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
                       </div>
                     </div>
                   </div>
+                  
                 </div>
                 <div class="add_listBtn">
-                  <a href=""> </a>
+                  <a href="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                      <path d="M3.99951 15.9977C3.99951 17.5736 4.3099 19.134 4.91296 20.5899C5.51601 22.0458 6.39993 23.3687 7.51423 24.483C8.62853 25.5973 9.9514 26.4812 11.4073 27.0843C12.8632 27.6873 14.4236 27.9977 15.9995 27.9977C17.5754 27.9977 19.1358 27.6873 20.5917 27.0843C22.0476 26.4812 23.3705 25.5973 24.4848 24.483C25.5991 23.3687 26.483 22.0458 27.0861 20.5899C27.6891 19.134 27.9995 17.5736 27.9995 15.9977C27.9995 14.4218 27.6891 12.8614 27.0861 11.4055C26.483 9.9496 25.5991 8.62673 24.4848 7.51243C23.3705 6.39813 22.0476 5.51421 20.5917 4.91116C19.1358 4.3081 17.5754 3.99771 15.9995 3.99771C14.4236 3.99771 12.8632 4.3081 11.4073 4.91116C9.9514 5.51421 8.62853 6.39813 7.51423 7.51243C6.39993 8.62673 5.51601 9.9496 4.91296 11.4055C4.3099 12.8614 3.99951 14.4218 3.99951 15.9977Z" stroke="#6F6F6F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M11.9995 15.9998H19.9995" stroke="#6F6F6F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M15.9995 12.0002V20.0002" stroke="#6F6F6F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    리스트 추가
+                  </a>
                 </div>
               
               <div class="c_button d-flex justify-content-center align-items-center">
@@ -697,6 +366,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
       <?php
       include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       ?>
+
+    <script src="/helloworld/js/makeoption.js"></script>
     <!-- jquery -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
@@ -726,7 +397,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
       referrerpolicy="no-referrer"
     ></script>
 
-    <script src="js/common.js"></script>
+    <script src="/helloworld/js/common.js"></script>
   </body>
   <script>
     let documentHeight = Math.max(
@@ -738,5 +409,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/category_func.php';
     );
     document.querySelector('header').style.height = documentHeight + 'px';
   </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </body>
 </html>
