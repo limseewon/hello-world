@@ -7,7 +7,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
         <section class="headerContainer">
           <div class="d-flex justify-content-center" id="logo">
             <h1>logo</h1>
-            <img src="/helloworld/img/logo.png" alt="logo.jpg" />
+            <img src="/helloworld/img/logo.png" alt="logo.jpg"/>
           </div>
           <div class="gnb">
             <ul class="d-flex flex-column">
@@ -24,7 +24,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                 </a>
               </li>
               <li>
-                <a href="/class/course_list.html">
+                <a href="/helloworld/class/course_list.php">
                   <span class="material-symbols-outlined"> live_tv </span>
                   <span>강의 관리</span>
                 </a>
@@ -36,7 +36,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                 </a>
               </li>
               <li>
-                <a href="/coupon/coupon_list.html">
+                <a href="/helloworld/coupon/coupon_list.php">
                   <span class="material-symbols-outlined"> local_atm </span>
                   <span>쿠폰 관리</span>
                 </a>

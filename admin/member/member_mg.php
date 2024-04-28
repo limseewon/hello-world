@@ -254,7 +254,10 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
 
-
+$sql = "SELECT * FROM MEMBERS";
+$result = $mysqli->query($sql);
+while ($rs = $result->fetch_object())
+  print_r($rs);
 ?>
             <h2>회원 관리</h2>
             <form action="" class="d-flex">
