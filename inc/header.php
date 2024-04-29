@@ -18,7 +18,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                 </a>
               </li>
               <li>
-                <a href="/announce.html">
+                <a href="/helloworld/announce.php">
                   <span class="material-symbols-outlined"> assignment </span>
                   <span>공지 사항</span>
                 </a>
@@ -42,13 +42,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                 </a>
               </li>
               <li>
-                <a href="/performance.html">
+                <a href="/helloworld/performance.php">
                   <span class="material-symbols-outlined"> bar_chart </span>
                   <span>성과 분석</span>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/helloworld/qna.php">
                   <span class="material-symbols-outlined"> help </span>
                   <span>질의 응답</span>
                 </a>
