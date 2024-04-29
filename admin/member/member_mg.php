@@ -8,11 +8,11 @@ while ($rs = $memberResult->fetch_object()){
   $memberArr[] = $rs;
 }
 
-$couponSql = "SELECT * FROM user_coupons uc JOIN members mb ON mb.userid=uc.userid WHERE mb.userid=uc.userid AND uc.status=1";
-$couponResult = $mysqli->query($couponSql);
-while ($rs = $couponResult->fetch_object()){
-  $couponArr[] = $rs;
-}
+// $couponSql = "SELECT * FROM user_coupons uc JOIN members mb ON mb.userid=uc.userid WHERE mb.userid=uc.userid AND uc.status=1";
+// $couponResult = $mysqli->query($couponSql);
+// while ($rs = $couponResult->fetch_object()){
+//   $couponArr[] = $rs;
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,19 +77,19 @@ while ($rs = $couponResult->fetch_object()){
               <span class="material-symbols-outlined">account_circle</span>
               <div>
                 <span>수강생</span>
-                <span><?=$ma->username?></span>
+                <span id="modal_username"></span>
               </div>
-              <span><?=$ma->email?></span>
+              <span id="modal_email"></span>
               <button type="button" class="msg_btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">                  <span class="material-symbols-outlined"> mail </span>
               </button>
             </div>
             <hr>
             <div class="information">
               <ul>
-                <li><span>아이디</span><span><?=$ma->userid?></span></li>
-                <li><span>최근 접속일</span><span><?=$ma->recent_in?></span></li>
-                <li><span>가입일</span><span><?=$ma->regdate?></span></li>
-                <li><span>연락처</span><span><?=$ma->tel?></span></li>
+                <li><span>아이디</span><span id="modal_id"></span></li>
+                <li><span>최근 접속일</span><span id="modal_recent"></span></li>
+                <li><span>가입일</span><span id="modal_regdate"></span></li>
+                <li><span>연락처</span><span id="modal_tel"></span></li>
                 <li><span>최근 학습 강의</span><span>Angular, 앵귤러 100분 핵심 강의</span></li>
               </ul>
             </div>
@@ -115,9 +115,7 @@ while ($rs = $couponResult->fetch_object()){
               <div class="list-group">
                 <?php
                 if(isset($couponArr)){
-                  foreach($couponArr as $ca){
-
-                  
+                  foreach($couponArr as $ca){                  
                 ?>
                 <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                   <div class="d-flex w-100 justify-content-between">
@@ -135,7 +133,7 @@ while ($rs = $couponResult->fetch_object()){
             </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">회원 삭제</button>
+            <button type="button" class="btn btn-danger member_del" data-bs-dismiss="modal">회원 삭제</button>
             <button type="button" class="btn btn-success">휴면 전환</button>
           </div>
         </div>
@@ -167,6 +165,20 @@ while ($rs = $couponResult->fetch_object()){
         </div>
       </div>
     </div>
+    <div class="modal member_del_confirm" tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">정말 삭제하시겠습니까?</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary member_del_ok" data-bs-dismiss="modal">삭제</button>
+                  <button type="button" class="btn btn-danger">취소</button>
+                </div>
+              </div>
+            </div>
+          </div>
     
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
@@ -228,9 +240,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
               <tbody>
                 <?php
                 if(isset($memberArr)) {
-                  foreach($memberArr as $ma){
-
-                
+                  foreach($memberArr as $ma){                
                 ?>
                 <tr data-ui="<?=$ma->mid?>">
                   <th scope="row">
@@ -310,9 +320,85 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
     <script>
       const memberModal = new bootstrap.Modal('.member_modal')
       const messageModal = new bootstrap.Modal('.message_modal')
+      const memberDelModal = new bootstrap.Modal('.member_del_confirm')
       $('tbody tr').click(function() {
-        memberModal.show()
+        let mid =$(this).attr('data-ui')
+        let data = {
+          mid : mid
+        }
+        console.log('test',data)
+        $('.member_del').click(function() {
+        memberDelModal.show()
+        })
+        $('.member_del_ok').click(function() {
+          $.ajax({
+                 url:'member_del.php',
+                 async:false,
+                 type: 'POST',
+                 data:data,
+                 dataType:'json',
+                 error:function(){},
+                 success:function(data){
+                    console.log(data.result);     
+                    if(data.result=='ok'){
+                        alert('해당 회원 정보를 삭제했습니다.'); 
+                        location.reload();   
+                    } else {
+                        alert('회원 정보를 삭제하지 못했습니다. 다시 시도해주세요.'); 
+                    }
+                    
+                 }
+            });
+        })
+        $.ajax({
+                 url:'member_modal.php',
+                 async:false,
+                 type: 'POST',
+                 data:data,
+                 dataType:'json',
+                 error:function(){},
+                 success:function(data){
+                    console.log(data.result);
+                    $('#modal_username').text(data.result.username)
+                    $('#modal_id').text(data.result.userid)
+                    $('#modal_recent').text(data.result.recent_in)
+                    $('#modal_regdate').text(data.result.regdate)
+                    $('#modal_tel').text(data.result.tel)
+                    // if(data.result == '중복'){
+                    //     alert('이미 장바구니에 담았습니다.');                        
+                    // } else if(data.result=='ok'){
+                      memberModal.show()
+                    // } else {
+                    //     alert('담기 실패!'); 
+                    // }
+                    
+                 }
+            });
       })
+
+      // $('tbody tr').on('click', function(e){
+            
+            
+            // e.preventDefault();
+            // //상품코드, 옵션명, 수량
+            // let target = $('.widget-desc input[type="radio"]:checked');
+            // let pid = ;            
+            // let optname = target.attr('data-name');
+            // let qty = Number($('#qty').val());
+            // let total = Number($('#subtotal span').text());
+
+            // let data = {
+            //     pid : pid,
+            //     optname: optname,
+            //     qty :qty,
+            //     total:total
+            // }
+            // console.log(data);
+
+            
+        // });
+      
+
     </script>
   </body>
 </html>
