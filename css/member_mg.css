@@ -43,3 +43,7 @@ form {
   box-sizing: border-box;
   border: none;
 }
+
+tbody tr:hover {
+  cursor: pointer;
+}

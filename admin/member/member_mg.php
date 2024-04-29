@@ -13,6 +13,7 @@ while ($rs = $memberResult->fetch_object()){
 // while ($rs = $couponResult->fetch_object()){
 //   $couponArr[] = $rs;
 // }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -134,7 +135,7 @@ while ($rs = $memberResult->fetch_object()){
           </div>
           <div class="modal-footer d-flex justify-content-center">
             <button type="button" class="btn btn-danger member_del" data-bs-dismiss="modal">회원 삭제</button>
-            <button type="button" class="btn btn-success">휴면 전환</button>
+            <button type="button" class="btn btn-success modeal_sleep"></button>
           </div>
         </div>
       </div>
@@ -166,19 +167,19 @@ while ($rs = $memberResult->fetch_object()){
       </div>
     </div>
     <div class="modal member_del_confirm" tabindex="-1">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">정말 삭제하시겠습니까?</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary member_del_ok" data-bs-dismiss="modal">삭제</button>
-                  <button type="button" class="btn btn-danger">취소</button>
-                </div>
-              </div>
-            </div>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">정말 삭제하시겠습니까?</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary member_del_ok" data-bs-dismiss="modal">삭제</button>
+            <button type="button" class="btn btn-danger">취소</button>
+          </div>
+        </div>
+      </div>
+    </div>
     
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
@@ -322,6 +323,12 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       const messageModal = new bootstrap.Modal('.message_modal')
       const memberDelModal = new bootstrap.Modal('.member_del_confirm')
       $('tbody tr').click(function() {
+        if (!$(event.target).is('input[type="checkbox"]')) {
+        // 체크박스가 아닌 경우에만 원하는 이벤트 작성
+        // 여기에 원하는 동작을 추가하세요.
+        
+        
+
         let mid =$(this).attr('data-ui')
         let data = {
           mid : mid
@@ -350,6 +357,32 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
                  }
             });
         })
+
+        $('.modeal_sleep').click(function() {
+          let statusText = $(this).text()
+          let data = {
+            mid : mid,
+            statusText : statusText
+          }
+          $.ajax({
+                 url:'member_sleep.php',
+                 async:false,
+                 type: 'POST',
+                 data:data,
+                 dataType:'json',
+                 error:function(){},
+                 success:function(data){
+                    console.log(data.result);     
+                    if(data.result=='ok'){
+                        alert('회원 상태를 업데이트했습니다.'); 
+                        location.reload();   
+                    } else {
+                        alert('회원 정보를 업데이트하지 못했습니다. 다시 시도해주세요.'); 
+                    }
+                    
+                 }
+            });
+        })
         $.ajax({
                  url:'member_modal.php',
                  async:false,
@@ -364,6 +397,14 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
                     $('#modal_recent').text(data.result.recent_in)
                     $('#modal_regdate').text(data.result.regdate)
                     $('#modal_tel').text(data.result.tel)
+
+                    if (data.result.status == 1) {
+                      $('.modeal_sleep').text('휴면 전환')
+                    } else {
+                      $('.modeal_sleep').text('휴면 해제')
+                    }
+
+                    
                     // if(data.result == '중복'){
                     //     alert('이미 장바구니에 담았습니다.');                        
                     // } else if(data.result=='ok'){
@@ -374,8 +415,19 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
                     
                  }
             });
+          }
       })
 
+
+      $('#member_cb').change(function() {
+    if ($(this).is(':checked')) {
+        // 할 일을 여기에 작성하세요.
+        $('tbody input[type="checkbox"]').prop('checked', true);
+    } else {
+        // 체크 해제 시에 할 일을 여기에 작성하세요.
+        $('tbody input[type="checkbox"]').prop('checked', false);
+    }
+});
       // $('tbody tr').on('click', function(e){
             
             

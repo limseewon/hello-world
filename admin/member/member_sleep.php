@@ -3,6 +3,7 @@ session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
 $mid = $_POST['mid'];
+$statusText = $_POST['statusText'];
 
 if(isset($_SESSION['UID'])){
     $userid = $_SESSION['UID'];
@@ -12,21 +13,25 @@ if(isset($_SESSION['UID'])){
     $userid = '';
 }
 
-$sql = "SELECT * FROM members mb JOIN user_coupons uc ON mb.userid = uc.userid JOIN coupons c ON uc.couponid = c.cid WHERE mb.mid = '{$mid}' AND uc.status = 1";
+if ($statusText == '휴면 전환') {
+  $status = 0;
+} else {
+  $status = 1;
+}
 
+$sql = "UPDATE members
+SET status = '{$status}'
+WHERE mid='{$mid}';
+
+";
 $result = $mysqli -> query($sql);
-$row = $result -> fetch_object(); // $row->cnt
 
 if($result){      
-  $data = array('result' => $row);
+  $data = array('result' => 'ok');
         
 } else {
   $data = array('result' => 'fail');
 }     
-
-
-
-
 
 echo json_encode($data);
 

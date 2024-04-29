@@ -12,8 +12,6 @@ if(isset($_SESSION['UID'])){
     $userid = '';
 }
 
-
-
 $sql = "DELETE FROM members WHERE mid='{$mid}';";
 $result = $mysqli -> query($sql);
 
