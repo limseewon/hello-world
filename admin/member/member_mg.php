@@ -228,7 +228,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
                 if(isset($memberArr)) {
                   foreach($memberArr as $ma){                
                 ?>
-                <tr data-ui="<?=$ma->mid?>">
+                <tr data-ui="<?=$ma->mid?>" data-user="<?=$ma->userid?>">
                   <th scope="row">
                     <input class="form-check-input" type="checkbox" />
                   </th>
@@ -251,8 +251,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
                 ?>
               </tbody>
             </table>
-            <button class="btn btn-success">선택회원 메시지 전송</button>
-            <button class="btn btn-danger">선택회원 삭제</button>
+            <button class="btn btn-success all_message">선택회원 메시지 전송</button>
+            <button class="btn btn-danger all_del">선택회원 삭제</button>
             <nav aria-label="..." class="d-flex justify-content-center">
               <ul class="pagination">
                 <li class="page-item disabled">
@@ -378,6 +378,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
                     $('#modal_recent').text(data.result[0].recent_in)
                     $('#modal_regdate').text(data.result[0].regdate)
                     $('#modal_tel').text(data.result[0].tel)
+                    
+                    $('#recipient-name').val(data.result[0].userid)
                     console.log('휴면',data.result[0])
                     if (data.result[0].status == 1) {
                       $('.modeal_sleep').text('휴면 전환')
@@ -424,6 +426,19 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
           $('tbody input[type="checkbox"]').prop('checked', false);
       }
       });
+
+      $('.all_message').click(function () {
+        let recipient= []
+        $('tbody input:checked').each(function() {      
+          recipient.push($(this).closest('tr').attr('data-user'));
+
+
+        })
+        console.log('recipient', recipient)
+        $('#recipient-name').val(recipient.join(' , '))
+
+        messageModal.show()
+      })
 
       // $('tbody tr').on('click', function(e){
             // e.preventDefault();
