@@ -1,7 +1,7 @@
 <?php
 session_start();
 // include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,6 +41,10 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css"
+    integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- 스포카 -->
     <!-- <link
       href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"      
@@ -59,7 +63,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
-              <h2 class="result-text h2">성과 분석</h2>
+              <h2>성과 분석</h2>
               <div class="result_box_top">
                 <div class="">
                   <h2 class="content-title">5월 매출 베스트 강좌</h2>
@@ -102,19 +106,38 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                   <h2 class="content-title">누적 조회수 베스트 강좌</h2>
                   <div class="contents-box d-flex">
                     <div class="box">
-                      
+                    <div class="row like_report pd48 gap-4">
+                      <div class="col kcard">
+                        <h6 class="mc-gray1 text-center">언어별 판매량</h6>
+                        <div class="charts d-flex justify-content-between">
+                          <div class="chart d-flex flex-column gap-3">
+                            <p class="mc-gray1 text-center fw-bold">기초 강의</p>
+                            <div class="chart-container">
+                              <canvas id="pie-chart2"></canvas>
+                            </div>
+                          </div>
+                          <div class="chart d-flex flex-column gap-3">
+                            <p class="mc-gray1 text-center fw-bold">프론트엔드</p>
+                            <div class="chart-container">
+                              <canvas id="pie-chart"></canvas>
+                            </div>
+                          </div>
+                          <div class="chart d-flex flex-column gap-3">
+                            <p class="mc-gray1 text-center fw-bold">백엔드</p>
+                            <div class="chart-container">
+                              <canvas id="pie-chart3"></canvas>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     </div>
                   </div>   
                 </div>
               </div>
               <?php
-<<<<<<< HEAD
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
-?>
-=======
               include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
               ?>
->>>>>>> lim-sudo
     <!-- jquery -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
@@ -155,5 +178,18 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       document.documentElement.offsetHeight
     );
     document.querySelector('header').style.height = documentHeight + 'px';
+
+    const config = {
+      type: 'pie',
+      data: data,
+      options:{
+        maintainAspectRatio:false,
+      }
+    };
+
+    const myPieChart = new Chart(
+      document.getElementById('pie-chart'),
+      config
+    );
   </script>
 </html>

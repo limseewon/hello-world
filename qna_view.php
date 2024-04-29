@@ -129,13 +129,35 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
       .reply{
         padding-right: 1270px;
       }
+      .cancle-btn{
+            width: 105px;
+            height: 48px;
+        }
+        .review .btn{
+          white-space: nowrap;
+        }  
+        .form-control {
+            display: block;
+            width: 100%;
+            height: 45px;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: .15s ease-in-out .15s ease-in-out;
+        }
     </style>
   </head>
   <body>
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
-            <h2 class="h2">질의응답</h2>
+            <h2>질의 응답</h2>
             <div class="regist">
               <div class="mb-3 d-flex title">
                 <p>제목</p>
@@ -168,16 +190,22 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
 
                 </div>
                 <hr>
-                <div class="comments d-flex">
-                    <p class="reply">댓글[2]</p>
-                    <button type="button" class="btn btn-success">댓글쓰기</button>
+                <div>
+                  <form method="post" class="wrap justify-content-start align-item-center review"></form>
+                  <input type="hidden" name="post_id" value="168">
+                  <input type="hidden" name="parent_comment_id" value="0">
+                  <input type="hidden" name="depth" value="0">
+                  <img src="" alt="">
+                  <textarea name="comment" class="form-control" placeholder="내용을 추가하시오."></textarea>
+                  <button type="submit" class="btn b_text01">댓글 쓰기</button>
                 </div>
                 <hr>
             </div>
+            <button type="button" class="btn btn-danger cancle-btn">닫기</button>
           </div>
           <?php
-              include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
-              ?>
+            include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
+          ?>
     <!-- jquery -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"

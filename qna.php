@@ -88,8 +88,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
       }
       .c_button {
         position: absolute;
-        right: 200px;
-        bottom: 15px;
+        right: 150px;
+        bottom: 55px;
       }
       .lock{
         align-items: center;
@@ -101,7 +101,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
     <?php
         include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
         ?>
-            <h2 class="h2">질의응답</h2>
+            <h2>질의 응답</h2>
             <div class="bar-top d-flex">
               <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
@@ -340,7 +340,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
               </tbody>
             </table>
           </div>
-          <nav aria-label="...">
+          <nav class="...">
             <ul class="pagination d-flex">
               <li class="page-item disabled">
                 <span class="page-link">이전</span>
@@ -354,7 +354,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
               </li>
             </ul>
             <div class="c_button">
-              <button class="btn_complete btn btn-success">게시글 등록</button>
+              <button class="btn_complete btn btn-success"><a href="/helloworld/regis.php">게시글 등록</a></button>
             </div>
           </nav>
           <?php
@@ -400,5 +400,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
       document.documentElement.offsetHeight
     );
     document.querySelector("header").style.height = documentHeight + "px";
+    document.getElementById(".btn_complete").addEventListener("click", function() {
+      // 원하는 URL로 리다이렉트
+      window.location.href = "/helloworld/regis.php";
+    });
   </script>
 </html>
