@@ -67,6 +67,7 @@
     <link rel="stylesheet" href="/helloworld/css/common.css"/>
     <link rel="stylesheet" href="/helloworld/css/index.css"/>
     <link rel="stylesheet" href="/helloworld/css/choi.css"/>
+    
 
     
 </head>
@@ -180,14 +181,14 @@
             <div class="file_input c_mt">
               
               <label for="thumbnail" class="form-label content_tt c_mb c_cb">썸네일</label>
-              <div class="thumbnail_box"></div>
+              <!-- <div class="thumbnail_box"></div> -->
               <input type="file" class="form-control c_mt" name="thumbnail" id="thumbnail">
             </div>        
             <div class="upload c_mt">
               <label class="form-label content_tt c_mb c_cb">강의영상 업로드</label>
               <div class="you_upload">
                 <div class="you_upload_content">
-                  <div class="thumbnail_box "></div>
+                  <!-- <div class="thumbnail_box "></div> -->
                   <div class="row c_mb">     
                     <div class="col-2 youtube_thumb">
                       <P>썸네일 강의명</P>
@@ -228,42 +229,7 @@
                 </a>
               </div>
             </div>
-            <div class="upload c_mt">
-              <label class="form-label content_tt c_mb c_cb">강의 추천 파일</label>
-              <div class="you_upload">
-                <div class="you_upload_content">
-                  <div class="thumbnail_box"></div>
-                  <div class="row c_mb">              
-                    <div class="col-2 youtube_thumb">
-                      <P>썸네일 강의명</P>
-                    </div>
-                    <div class="col-3 youtube_name">
-                      <P>차시명</P>
-                    </div>
-                    <div class="col-6 youtube_url">
-                      <P>강의url</P>
-                    </div>
-                  </div>
-                </div>
-                <div class="youtube c_mb">
-                  <div class="row justify-content-between">
-                    <div class="col-2 youtube_thumb">
-                      <input type="file" class="form-control" name="youtube_thumb[]" id="youtube_thumb">
-                    </div>
-                    <div class="col-3 youtube_name">
-                      <input type="text" class="form-control" name="youtube_name[]" id="youtube_name" placeholder="강의명을 입력하세요">
-                    </div>
-                    <div class="col-6 youtube_url">
-                      <input type="url" class="form-control" name="youtube_url[]" id="youtube_url" placeholder="강의URL을 넣어주세요">
-                    </div>
-                    <div class="col-1 trash">
-                      <i class="ti ti-trash bin_icon"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
+            
             <div class="c_button d-flex justify-content-center align-items-center">
               <button class="btn_complete btn btn-success">등록완료</button>
               <button class="btn btn-danger b_danger_a">등록취소</button>
@@ -282,7 +248,7 @@
     });
   </script>
   <script src="/helloworld/js/makeoption.js"></script>
-  <script src="/helloworld/js/course.js"></script>
+  
   
     
   <!-- jquery -->

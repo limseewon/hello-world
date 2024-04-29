@@ -1,9 +1,22 @@
+<?php
+$title="쿠폰등록";
+$js_route = "js/coupon.js";
+$js_route = "coupon/js/coupon.js";  
+
+
+session_start();
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'; 
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>카테고리 관리</title>
+    <title>쿠폰 등록</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
@@ -318,7 +331,7 @@
                   <input class="form-check-input" type="radio" name="cp_date_type" id="coupon_limit_date_0">
                   <label class="form-check-label b_text01" for="coupon_limit_date_0">제한</label>
                   <div class="col period_select2">
-                    <select class="form-select form_hei" name="cp_date" aria-label="Default select example" disabled>
+                    <select class="form-select form_heid" name="cp_date" aria-label="Default select example" disabled>
                       <option value="1" selected>1개월</option>
                       <option value="2">2개월</option>
                       <option value="3">3개월</option>
@@ -343,6 +356,8 @@
     <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
     ?>
+
+
   <!-- jquery -->
   <script
   src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
@@ -372,7 +387,7 @@
   referrerpolicy="no-referrer"
 ></script>
 
-<script src="js/common.js"></script>
+<script src="/helloworld/js/common.js"></script>
 </body>
 <script>
 let documentHeight = Math.max(
@@ -384,6 +399,7 @@ let documentHeight = Math.max(
 );
 document.querySelector("header").style.height = documentHeight + "px";
 </script>
+</body>
 </html>
 
    

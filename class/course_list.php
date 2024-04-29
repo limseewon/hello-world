@@ -5,7 +5,7 @@ $js_route = "class/js/course.js";
 
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
-// include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'; 
+
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/class/category_func.php';
 
 
@@ -259,15 +259,15 @@ while ($rs2 = $result2->fetch_object()) {
                 <div class="d-flex flex-row">
                   <h3 class="b_text01 ">난이도</h3>
                   <span>
-                    <input type="checkbox" name="level1" id="basic" value="초급" class="form-check-input" />
+                    <input type="checkbox" name="level1" id="basic" value="초급" class="form-check-input"/>
                     <label for="basic">초급</label>
                   </span>
                   <span>
-                    <input type="checkbox" name="level2" id="Intermediate" value="중급" class="form-check-input" />
+                    <input type="checkbox" name="level2" id="Intermediate" value="중급" class="form-check-input"/>
                     <label for="Intermediate">중급</label>
                   </span>
                   <span>
-                    <input type="checkbox" name="level3" id="Advanced" value="고급" class="form-check-input" />
+                    <input type="checkbox" name="level3" id="Advanced" value="고급" class="form-check-input"/>
                     <label for="Advanced">고급</label>
                   </span>
                 </div>
@@ -275,11 +275,11 @@ while ($rs2 = $result2->fetch_object()) {
               <div class="d-flex flex-row  mairgin_t">
                 <h3 class="b_text01 b-text_b">가격</h3>
                 <span class="price_m">
-                  <input type="radio" name="price_status" id="pay" value="유료" class="form-check-input " />
+                  <input type="radio" name="price_status" id="pay" value="유료" class="form-check-input"/>
                   <label class="form_check-b" for="pay">유료</label>
                 </span>
                 <span>
-                  <input type="radio" name="price_status" id="free" value="무료" class="form-check-input " />
+                  <input type="radio" name="price_status" id="free" value="무료" class="form-check-input"/>
                   <label class="form_check-b" for="free">무료</label>
                 </span>
               </div>
@@ -291,8 +291,7 @@ while ($rs2 = $result2->fetch_object()) {
                   id="search"
                   class="form-control"
                   placeholder="강의명으로 검색하세요"
-                  aria-label="Username"
-                />
+                  aria-label="Username"/>
                 <button class="btn btn-primary btn_pr">검색</button>
               </div>
             </form>
@@ -457,7 +456,7 @@ while ($rs2 = $result2->fetch_object()) {
       ?>
 
 
-      <script src="/helloworld/class/js/makeoption.js"></script>
+      <script src="/helloworld/js/makeoption.js"></script>
       
       <script>
         //강의 가격 천단위, 변환
