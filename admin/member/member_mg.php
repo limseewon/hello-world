@@ -8,11 +8,12 @@ while ($rs = $memberResult->fetch_object()){
   $memberArr[] = $rs;
 }
 
-$couponSql = "SELECT * FROM user_coupons uc JOIN members mb ON mb.userid=uc.userid WHERE mb.userid=uc.userid AND uc.status=1";
-$couponResult = $mysqli->query($couponSql);
-while ($rs = $couponResult->fetch_object()){
-  $couponArr[] = $rs;
-}
+// $couponSql = "SELECT * FROM user_coupons uc JOIN members mb ON mb.userid=uc.userid WHERE mb.userid=uc.userid AND uc.status=1";
+// $couponResult = $mysqli->query($couponSql);
+// while ($rs = $couponResult->fetch_object()){
+//   $couponArr[] = $rs;
+// }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +60,7 @@ while ($rs = $couponResult->fetch_object()){
       type="text/css"
     /> -->
 
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
+    <!-- <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" /> -->
     <link rel="stylesheet" href="/helloworld/css/common.css" />
     <link rel="stylesheet" href="/helloworld/css/member_mg.css" />
     
@@ -77,19 +78,19 @@ while ($rs = $couponResult->fetch_object()){
               <span class="material-symbols-outlined">account_circle</span>
               <div>
                 <span>수강생</span>
-                <span><?=$ma->username?></span>
+                <span id="modal_username"></span>
               </div>
-              <span><?=$ma->email?></span>
+              <span id="modal_email"></span>
               <button type="button" class="msg_btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">                  <span class="material-symbols-outlined"> mail </span>
               </button>
             </div>
             <hr>
             <div class="information">
               <ul>
-                <li><span>아이디</span><span><?=$ma->userid?></span></li>
-                <li><span>최근 접속일</span><span><?=$ma->recent_in?></span></li>
-                <li><span>가입일</span><span><?=$ma->regdate?></span></li>
-                <li><span>연락처</span><span><?=$ma->tel?></span></li>
+                <li><span>아이디</span><span id="modal_id"></span></li>
+                <li><span>최근 접속일</span><span id="modal_recent"></span></li>
+                <li><span>가입일</span><span id="modal_regdate"></span></li>
+                <li><span>연락처</span><span id="modal_tel"></span></li>
                 <li><span>최근 학습 강의</span><span>Angular, 앵귤러 100분 핵심 강의</span></li>
               </ul>
             </div>
@@ -112,31 +113,14 @@ while ($rs = $couponResult->fetch_object()){
             </div>
             <div>
               <span>보유 쿠폰</span>
-              <div class="list-group">
-                <?php
-                if(isset($couponArr)){
-                  foreach($couponArr as $ca){
-
-                  
-                ?>
-                <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><?=$ca->reason?></h5>
-                    <small><?=$ca->use_max_date?></small>
-                  </div>
-                  <p class="mb-1">Some placeholder content in a paragraph.</p>
-                  <small>And some small print.</small>
-                </a>
-                <?php
-                  }
-                }
-                ?>
+              <div class="coupon_list">
+                
               </div>
             </div>
           </div>
           <div class="modal-footer d-flex justify-content-center">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">회원 삭제</button>
-            <button type="button" class="btn btn-success">휴면 전환</button>
+            <button type="button" class="btn btn-danger member_del" data-bs-dismiss="modal">회원 삭제</button>
+            <button type="button" class="btn btn-success modeal_sleep"></button>
           </div>
         </div>
       </div>
@@ -163,6 +147,20 @@ while ($rs = $couponResult->fetch_object()){
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
             <button type="button" class="btn btn-primary">메시지 전송</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal member_del_confirm" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">정말 삭제하시겠습니까?</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary member_del_ok" data-bs-dismiss="modal">삭제</button>
+            <button type="button" class="btn btn-danger">취소</button>
           </div>
         </div>
       </div>
@@ -228,11 +226,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
               <tbody>
                 <?php
                 if(isset($memberArr)) {
-                  foreach($memberArr as $ma){
-
-                
+                  foreach($memberArr as $ma){                
                 ?>
-                <tr data-ui="<?=$ma->mid?>">
+                <tr data-ui="<?=$ma->mid?>" data-user="<?=$ma->userid?>">
                   <th scope="row">
                     <input class="form-check-input" type="checkbox" />
                   </th>
@@ -255,8 +251,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
                 ?>
               </tbody>
             </table>
-            <button class="btn btn-success">선택회원 메시지 전송</button>
-            <button class="btn btn-danger">선택회원 삭제</button>
+            <button class="btn btn-success all_message">선택회원 메시지 전송</button>
+            <button class="btn btn-danger all_del">선택회원 삭제</button>
             <nav aria-label="..." class="d-flex justify-content-center">
               <ul class="pagination">
                 <li class="page-item disabled">
@@ -310,9 +306,159 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
     <script>
       const memberModal = new bootstrap.Modal('.member_modal')
       const messageModal = new bootstrap.Modal('.message_modal')
-      $('tbody tr').click(function() {
-        memberModal.show()
+      const memberDelModal = new bootstrap.Modal('.member_del_confirm')
+      $('tbody tr').click(function(e) {
+        if (!$(e.target).is('input[type="checkbox"]')) {
+          // 체크박스가 아닌 경우에만 원하는 이벤트 작성
+          // 여기에 원하는 동작을 추가하세요.
+          let mid =$(this).attr('data-ui')
+          let data = {
+            mid : mid
+          }
+          // console.log(data)
+          $('.member_del').click(function() {
+            memberDelModal.show()
+          })
+          $('.member_del_ok').click(function() {
+            $.ajax({
+                  url:'member_del.php',
+                  async:false,
+                  type: 'POST',
+                  data:data,
+                  dataType:'json',
+                  error:function(){},
+                  success:function(data){
+                      console.log(data.result);     
+                      if(data.result=='ok'){
+                          alert('해당 회원 정보를 삭제했습니다.'); 
+                          location.reload();   
+                      } else {
+                          alert('회원 정보를 삭제하지 못했습니다. 다시 시도해주세요.'); 
+                      }
+                      
+                  }
+              });
+          })
+          $('.modeal_sleep').click(function() {
+            let statusText = $(this).text()
+            let data = {
+              mid : mid,
+              statusText : statusText
+            }
+            $.ajax({
+                  url:'member_sleep.php',
+                  async:false,
+                  type: 'POST',
+                  data:data,
+                  dataType:'json',
+                  error:function(){},
+                  success:function(data){
+                      console.log(data.result);     
+                      if(data.result=='ok'){
+                          alert('회원 상태를 업데이트했습니다.'); 
+                          location.reload();   
+                      } else {
+                          alert('회원 정보를 업데이트하지 못했습니다. 다시 시도해주세요.'); 
+                      }
+                      
+                  }
+            });
+          })
+          $.ajax({
+                 url:'member_modal.php',
+                 async:false,
+                 type: 'POST',
+                 data:data,
+                 dataType:'json',
+                 error:function(){},
+                 success:function(data){
+                    // console.log(data.result[0]);
+                    $('#modal_username').text(data.result[0].username)
+                    $('#modal_id').text(data.result[0].userid)
+                    $('#modal_recent').text(data.result[0].recent_in)
+                    $('#modal_regdate').text(data.result[0].regdate)
+                    $('#modal_tel').text(data.result[0].tel)
+                    
+                    $('#recipient-name').val(data.result[0].userid)
+                    console.log('휴면',data.result[0])
+                    if (data.result[0].status == 1) {
+                      $('.modeal_sleep').text('휴면 전환')
+                    } else {
+                      $('.modeal_sleep').text('휴면 해제')
+                    }
+                    // if(data.result == '중복'){
+                    //     alert('이미 장바구니에 담았습니다.');                        
+                    // } else if(data.result=='ok'){
+                      
+                    // } else {
+                    //     alert('담기 실패!'); 
+                    // }
+                    let coupon =''
+                    for (let rs of data.result) {
+                      console.log(rs)
+                      if (rs.coupon_status == 1) {
+                        coupon += `
+                      <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">${rs.coupon_name}</h5>
+                          <small>${rs.use_max_date}</small>
+                        </div>
+                        <p class="mb-1">${rs.coupon_price}</small>
+                      </a>
+                      `  
+                      }
+                      
+                    }
+                    coupon == '' ? $('.coupon_list').html('없음') : $('.coupon_list').html(coupon)
+                    memberModal.show()
+                 }
+          });
+        }
       })
+
+
+      $('#member_cb').change(function() {
+      if ($(this).is(':checked')) {
+          // 할 일을 여기에 작성하세요.
+          $('tbody input[type="checkbox"]').prop('checked', true);
+      } else {
+          // 체크 해제 시에 할 일을 여기에 작성하세요.
+          $('tbody input[type="checkbox"]').prop('checked', false);
+      }
+      });
+
+      $('.all_message').click(function () {
+        let recipient= []
+        $('tbody input:checked').each(function() {      
+          recipient.push($(this).closest('tr').attr('data-user'));
+
+
+        })
+        console.log('recipient', recipient)
+        $('#recipient-name').val(recipient.join(' , '))
+
+        messageModal.show()
+      })
+
+      // $('tbody tr').on('click', function(e){
+            // e.preventDefault();
+            // //상품코드, 옵션명, 수량
+            // let target = $('.widget-desc input[type="radio"]:checked');
+            // let pid = ;            
+            // let optname = target.attr('data-name');
+            // let qty = Number($('#qty').val());
+            // let total = Number($('#subtotal span').text());
+
+            // let data = {
+            //     pid : pid,
+            //     optname: optname,
+            //     qty :qty,
+            //     total:total
+            // }
+            // console.log(data);
+        // });
+      
+
     </script>
   </body>
 </html>

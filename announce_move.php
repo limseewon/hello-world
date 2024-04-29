@@ -72,7 +72,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
-            <h2 class="h2">공지 사항</h2>
+            <h2>공지 사항</h2>
             <table class="table contents-box d-flex">
                 <tbody>
                   <tr>
@@ -118,7 +118,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
             </div>
             <div class="right-button">
                 <button type="button" class="btn btn-success edit-btn">수정</button>
-                <button type="button" class="btn btn-danger cancle-btn">삭제</button>
+                <button type="button" class="btn btn-danger cancle-btn">닫기</button>
             </div>
           </div>
           
@@ -165,5 +165,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       document.documentElement.offsetHeight
     );
     document.querySelector('header').style.height = documentHeight + 'px';
+
+    $('.cancle-btn').click(function(e){
+      e.preventDefault();
+      history.back();
+      // if (confirm('닫으시겠습니까? :0')){
+      //   history.back();
+      // }
+    });
   </script>
 </html>

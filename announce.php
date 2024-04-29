@@ -89,8 +89,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
       }
       .c_button {
         position: absolute;
-        right: 200px;
-        bottom: 15px;
+        right: 150px;
+        bottom: 55px;
       }
     </style>
   </head>
@@ -98,7 +98,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
-            <h2 class="h2">공지 사항</h2>
+            <h2>공지 사항</h2>
             <div class="bar-top d-flex">
               <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
@@ -338,7 +338,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
               </li>
             </ul>
             <div class="c_button">
-              <button class="btn_complete btn btn-success regist-btn">게시글 등록</button>
+              <button class="btn_complete btn btn-success"><a href="/helloworld/regis.php">게시글 등록</a></button>
             </div>
           </nav>
           <?php
