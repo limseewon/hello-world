@@ -60,7 +60,7 @@ while ($rs = $memberResult->fetch_object()){
       type="text/css"
     /> -->
 
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
+    <!-- <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" /> -->
     <link rel="stylesheet" href="/helloworld/css/common.css" />
     <link rel="stylesheet" href="/helloworld/css/member_mg.css" />
     
@@ -113,23 +113,8 @@ while ($rs = $memberResult->fetch_object()){
             </div>
             <div>
               <span>보유 쿠폰</span>
-              <div class="list-group">
-                <?php
-                if(isset($couponArr)){
-                  foreach($couponArr as $ca){                  
-                ?>
-                <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                  <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"><?=$ca->reason?></h5>
-                    <small><?=$ca->use_max_date?></small>
-                  </div>
-                  <p class="mb-1">Some placeholder content in a paragraph.</p>
-                  <small>And some small print.</small>
-                </a>
-                <?php
-                  }
-                }
-                ?>
+              <div class="coupon_list">
+                
               </div>
             </div>
           </div>
@@ -322,68 +307,64 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       const memberModal = new bootstrap.Modal('.member_modal')
       const messageModal = new bootstrap.Modal('.message_modal')
       const memberDelModal = new bootstrap.Modal('.member_del_confirm')
-      $('tbody tr').click(function() {
-        if (!$(event.target).is('input[type="checkbox"]')) {
-        // 체크박스가 아닌 경우에만 원하는 이벤트 작성
-        // 여기에 원하는 동작을 추가하세요.
-        
-        
-
-        let mid =$(this).attr('data-ui')
-        let data = {
-          mid : mid
-        }
-        console.log('test',data)
-        $('.member_del').click(function() {
-        memberDelModal.show()
-        })
-        $('.member_del_ok').click(function() {
-          $.ajax({
-                 url:'member_del.php',
-                 async:false,
-                 type: 'POST',
-                 data:data,
-                 dataType:'json',
-                 error:function(){},
-                 success:function(data){
-                    console.log(data.result);     
-                    if(data.result=='ok'){
-                        alert('해당 회원 정보를 삭제했습니다.'); 
-                        location.reload();   
-                    } else {
-                        alert('회원 정보를 삭제하지 못했습니다. 다시 시도해주세요.'); 
-                    }
-                    
-                 }
-            });
-        })
-
-        $('.modeal_sleep').click(function() {
-          let statusText = $(this).text()
+      $('tbody tr').click(function(e) {
+        // if (!$(e.target).is('input[type="checkbox"]')) {
+          // 체크박스가 아닌 경우에만 원하는 이벤트 작성
+          // 여기에 원하는 동작을 추가하세요.
+          let mid =$(this).attr('data-ui')
           let data = {
-            mid : mid,
-            statusText : statusText
+            mid : mid
           }
-          $.ajax({
-                 url:'member_sleep.php',
-                 async:false,
-                 type: 'POST',
-                 data:data,
-                 dataType:'json',
-                 error:function(){},
-                 success:function(data){
-                    console.log(data.result);     
-                    if(data.result=='ok'){
-                        alert('회원 상태를 업데이트했습니다.'); 
-                        location.reload();   
-                    } else {
-                        alert('회원 정보를 업데이트하지 못했습니다. 다시 시도해주세요.'); 
-                    }
-                    
-                 }
+          // console.log(data)
+          $('.member_del').click(function() {
+            memberDelModal.show()
+          })
+          $('.member_del_ok').click(function() {
+            $.ajax({
+                  url:'member_del.php',
+                  async:false,
+                  type: 'POST',
+                  data:data,
+                  dataType:'json',
+                  error:function(){},
+                  success:function(data){
+                      console.log(data.result);     
+                      if(data.result=='ok'){
+                          alert('해당 회원 정보를 삭제했습니다.'); 
+                          location.reload();   
+                      } else {
+                          alert('회원 정보를 삭제하지 못했습니다. 다시 시도해주세요.'); 
+                      }
+                      
+                  }
+              });
+          })
+          $('.modeal_sleep').click(function() {
+            let statusText = $(this).text()
+            let data = {
+              mid : mid,
+              statusText : statusText
+            }
+            $.ajax({
+                  url:'member_sleep.php',
+                  async:false,
+                  type: 'POST',
+                  data:data,
+                  dataType:'json',
+                  error:function(){},
+                  success:function(data){
+                      console.log(data.result);     
+                      if(data.result=='ok'){
+                          alert('회원 상태를 업데이트했습니다.'); 
+                          location.reload();   
+                      } else {
+                          alert('회원 정보를 업데이트하지 못했습니다. 다시 시도해주세요.'); 
+                      }
+                      
+                  }
             });
-        })
-        $.ajax({
+          })
+          $.ajax({
                  url:'member_modal.php',
                  async:false,
                  type: 'POST',
@@ -391,46 +372,60 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
                  dataType:'json',
                  error:function(){},
                  success:function(data){
-                    console.log(data.result);
-                    $('#modal_username').text(data.result.username)
-                    $('#modal_id').text(data.result.userid)
-                    $('#modal_recent').text(data.result.recent_in)
-                    $('#modal_regdate').text(data.result.regdate)
-                    $('#modal_tel').text(data.result.tel)
+                    // console.log(data.result[0]);
+                    $('#modal_username').text(data.result[0].username)
+                    $('#modal_id').text(data.result[0].userid)
+                    $('#modal_recent').text(data.result[0].recent_in)
+                    $('#modal_regdate').text(data.result[0].regdate)
+                    $('#modal_tel').text(data.result[0].tel)
 
-                    if (data.result.status == 1) {
+                    if (data.result[0].status == 1) {
                       $('.modeal_sleep').text('휴면 전환')
                     } else {
                       $('.modeal_sleep').text('휴면 해제')
                     }
-
-                    
                     // if(data.result == '중복'){
                     //     alert('이미 장바구니에 담았습니다.');                        
                     // } else if(data.result=='ok'){
-                      memberModal.show()
+                      
                     // } else {
                     //     alert('담기 실패!'); 
                     // }
-                    
+                    let coupon =''
+                    for (let rs of data.result) {
+                      console.log(rs)
+                      if (rs.status == 1) {
+                        coupon += `
+                      <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">${rs.coupon_name}</h5>
+                          <small>${rs.use_max_date}</small>
+                        </div>
+                        <p class="mb-1">${rs.coupon_price}</small>
+                      </a>
+                      `  
+                      }
+                      
+                    }
+                    coupon == '' ? $('.coupon_list').html('없음') : $('.coupon_list').html(coupon)
+                    memberModal.show()
                  }
-            });
-          }
+          });
+        // }
       })
 
 
-      $('#member_cb').change(function() {
-    if ($(this).is(':checked')) {
-        // 할 일을 여기에 작성하세요.
-        $('tbody input[type="checkbox"]').prop('checked', true);
-    } else {
-        // 체크 해제 시에 할 일을 여기에 작성하세요.
-        $('tbody input[type="checkbox"]').prop('checked', false);
-    }
-});
+      // $('#member_cb').change(function() {
+      // if ($(this).is(':checked')) {
+      //     // 할 일을 여기에 작성하세요.
+      //     $('tbody input[type="checkbox"]').prop('checked', true);
+      // } else {
+      //     // 체크 해제 시에 할 일을 여기에 작성하세요.
+      //     $('tbody input[type="checkbox"]').prop('checked', false);
+      // }
+      // });
+
       // $('tbody tr').on('click', function(e){
-            
-            
             // e.preventDefault();
             // //상품코드, 옵션명, 수량
             // let target = $('.widget-desc input[type="radio"]:checked');
@@ -446,8 +441,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
             //     total:total
             // }
             // console.log(data);
-
-            
         // });
       
 
