@@ -3,7 +3,7 @@ session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
 $mid = $_POST['mid'];
-// $mid = 4;
+// $mid = 6;
 
 
 if(isset($_SESSION['UID'])){
@@ -15,8 +15,12 @@ if(isset($_SESSION['UID'])){
 }
 
 // $sql = "SELECT * FROM members where mid='{$mid}'";
-$sql = "SELECT mb.*, c.coupon_name, c.coupon_price,c.coupon_ratio,uc.use_max_date, uc.status as coupon_status FROM members mb JOIN user_coupons uc ON mb.userid = uc.userid JOIN coupons c ON uc.couponid = c.cid WHERE mb.mid = '{$mid}'";
-// echo $sql;
+// $sql = "SELECT mb.*, c.coupon_name, c.coupon_price,c.coupon_ratio,uc.use_max_date, uc.status as coupon_status FROM members mb JOIN user_coupons uc ON mb.userid = uc.userid JOIN coupons c ON uc.couponid = c.cid WHERE mb.mid = '{$mid}'";
+$sql = "SELECT mb.*, c.coupon_name, c.coupon_price, c.coupon_ratio, uc.use_max_date, uc.status as coupon_status 
+        FROM members mb 
+        LEFT JOIN user_coupons uc ON mb.userid = uc.userid 
+        LEFT JOIN coupons c ON uc.couponid = c.cid 
+        WHERE mb.mid = '{$mid}'";
 
 $result = $mysqli -> query($sql);
 while($row = $result -> fetch_object() ){
