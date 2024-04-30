@@ -69,19 +69,19 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                   <h2 class="content-title">5월 매출 베스트 강좌</h2>
                   <div class="contents-box d-flex">
                     <div class="box">
-                      <img src="/img/front-best-lecture.png" alt="#" title="front-best-recture" id="best-lecture-img" />
+                      <img src="/helloworld/img/front-best-lecture.png" alt="#" title="front-best-recture" id="best-lecture-img" />
                       <h3 id="best-lecture-title"> 프론트엔드</h3>
                       <p id="best-lecture-p">프론트엔드 웹 개발의 모든 것 초격차 패키지 Online.</p>
                       <button type="button" class="btn btn-primary" id="lecture-go">강의 보러 가기</button>
                     </div>
                     <div class="box">
-                      <img src="/img/back-best-lecture.png" alt="#" title="back-best-lecture" id="best-lecture-img" />
+                      <img src="/helloworld/img/back-best-lecture.png" alt="#" title="back-best-lecture" id="best-lecture-img" />
                       <h3 id="best-lecture-title">백엔드</h3>
                       <p id="best-lecture-p">시그니처 백엔드 Path 초격차 패키지 Online.</p>
                       <button type="button" class="btn btn-primary" id="lecture-go">강의 보러 가기</button>
                     </div>
                     <div class="box">
-                      <img src="/img/devops-best-lecture.png" alt="#" title="devops-best-recture" id="best-lecture-img" />
+                      <img src="/helloworld/img/devops-best-lecture.png" alt="#" title="devops-best-recture" id="best-lecture-img" />
                       <h3 id="best-lecture-title">DevOps/Infra Best</h3>
                       <p id="best-lecture-p">한번에 끝내는 CI/CD의 모든 것 Docker부터 GitOps까지.</p>
                       <button type="button" class="btn btn-primary" id="lecture-go">강의 보러 가기</button>
@@ -90,7 +90,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                   <h2 class="content-title">누적 조회수 베스트 강좌</h2>
                   <div class="contents-box d-flex">
                     <div class="box">
-                      <img src="/img/many-view.png" alt="#" title="many-view-recture" id="many-view" />
+                      <img src="/helloworld/img/many-view.png" alt="#" title="many-view-recture" id="many-view" />
                       <button type="button" class="btn btn-primary" id="lecture-go">강의 보러 가기</button>
                     </div>
                   </div>   
