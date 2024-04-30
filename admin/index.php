@@ -92,8 +92,7 @@ $profitRs = $profitResult->fetch_object();
             <div class="main_top d-flex">
               <div class="left_top">
                 <div class="profit contents-box d-flex align-items-center justify-content-between">
-                  <span class="bold"><?=date('m');
-?>월달 수익</span>
+                  <span class="bold"><?=date('m');?>월달 수익</span>
                   <span><?=number_format($profitRs->sum);?>원</span>
                   <span class="material-symbols-outlined"> keyboard_double_arrow_down </span>
                 </div>
@@ -110,9 +109,9 @@ $profitRs = $profitResult->fetch_object();
               </div>
               <div class="lecture_chart contents-box">
                 <select class="form-select" aria-label="Default select example">
-                <option selected disabled>강의 선택</option>
+                  <option selected disabled>강의 선택</option>
                   <?php
-                   if(isset($coursesArr)){
+                  if(isset($coursesArr)){
                     foreach($coursesArr as $ca){
                   ?>  
                     <option><?=$ca->name?></option>
@@ -120,9 +119,15 @@ $profitRs = $profitResult->fetch_object();
                   }}
                   ?>
                 </select>
-                <div class="d-flex">
-                  <div class="bold">수강신청수</div>
-                  <div class="bold">수강진도율</div>
+                <div class="chart-wrapper d-flex">
+                  <p class="bold">수강신청수</p>                    
+                  <div class="chart-container">
+                    <canvas id="bar-chart"></canvas>
+                  </div>
+                  <p class="bold">수강진도율</p>
+                  <div class="chart-container">
+                    <canvas id="pie-chart"></canvas>
+                  </div>
                 </div>
               </div>
             </div>
@@ -199,7 +204,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       referrerpolicy="no-referrer"
     ></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/helloworld/js/common.js"></script>
+    <script src="/helloworld/js/index.js"></script>
   </body>
 </html>
 <!-- 마지막에 body태그와 html태그를 닫아주세요. -->
