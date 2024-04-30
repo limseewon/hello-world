@@ -279,7 +279,7 @@ $coupon = $result -> fetch_object();
                 <div class="field coupon_min_price input-group d-flex align-items-center">
                   <label for="coupon_limit" class="content_tt">할인조건</label>
                   <input type="number" name="cp_limit" id="coupon_limit" class="form-control number"
-                    placeholder="10,000" min="10000" max="1000000" step="1000" value="<?= $coupon->cp_limit?>" required>원이상 구매
+                    placeholder="1,000" min="1000" max="100000" step="1000" value="<?= $coupon->cp_limit?>" required>원이상 구매
                 </div>
                 
               </div>
@@ -308,7 +308,7 @@ $coupon = $result -> fetch_object();
                   <input class="form-check-input number" type="radio" name="cp_type" id="coupon_sale_1" value="정액" <?php if($coupon->cp_type == '정액'){echo 'checked';} ?>>
                   <label class="form-check-label b_text01" for="coupon_sale_1">할인가</label>
                   <input type="number" name="cp_price" id="cp_price" class="form-control input number"
-                  placeholder="1,000" min="1000" max="1000000" step="1000" value="<?php if($coupon->cp_type == '정액'){echo $coupon->cp_price;}?>">원
+                  placeholder="1,000" min="1000" max="100000" step="1000" value="<?php if($coupon->cp_type == '정액'){echo $coupon->cp_price;}?>">원
                 </div>
                 <div class="form-check d-flex align-items-center">
                   <input class="form-check-input" type="radio" name="cp_type" id="coupon_sale_0" value="정률" <?php if($coupon->cp_type == '정률'){echo 'checked';} ?>>
@@ -317,14 +317,11 @@ $coupon = $result -> fetch_object();
                   placeholder="10" min="5" max="100" step="5" value="<?php if($coupon->cp_type == '정률'){echo $coupon->cp_ratio;}?>">%
                 </div>
                 <div class="form-check d-flex align-items-center">
-                  <input class="form-check-input" type="radio" name="cp_type" id="coupon_sale_2" value="제로">
-                  <?php if($coupon->cp_type == '제로'){echo 'checked';} ?>
+                  <input class="form-check-input" type="radio" name="cp_type" id="coupon_sale_0" value="비할인" <?php if($coupon->cp_type == '비할인'){echo 'checked';} ?>>
                   <label class="form-check-label b_text01" for="coupon_sale_2">비할인</label>
-                  <input type="textr" name="cp_ratio2" id="cp_ratio2" class="form-control input2"
-                  value="<?php if($coupon->cp_type == '제로'){echo $coupon->cp_;}?>">%
-                  
                   
                 </div>
+                
               </div>
             </div>
               

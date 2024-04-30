@@ -119,12 +119,7 @@
       position: relative;
       width: 100%;
     }
-    .status_box .price {
-      position: absolute;
-      right: 220px;
-      width: 200px;
-      text-align: right;
-    }
+    
     .course_list .price {
       font-weight: bold;
     }
@@ -1015,12 +1010,7 @@
           position: relative;
           width: 100%;
         }
-        .status_box .price {
-          position: absolute;
-          right: 220px;
-          width: 200px;
-          text-align: right;
-        }
+       
         .course_list .price {
           font-weight: bold;
         }
@@ -1973,16 +1963,18 @@
       }
       .status_box .price {
         position: absolute;
-        right: 220px;
+        top:150px;
+        right: 320px;
         width: 200px;
         text-align: right;
-      }
+      } 
       .course_list .price {
         font-weight: bold;
       }
       .price_btn_wrap {
         flex-wrap: wrap;
       }
+      
       .search_bar {
         flex: 1;
       }
@@ -2193,18 +2185,28 @@
         font-size: 35px;
         align-items: center;
       }
-
-    
-
-      .add_listBtn {
+      .add_listBtn { 
         text-align: center;
         margin: calc(var(--c-space_updown) * 2) 0 calc(var(--c-space_updown) * 2.5);
       }
       .add_list a {
-        color: #6f6f6f;
+        color: var(--c-contentBG);;
         padding-top: 2px;
+        
       }
-
+      .addlip {
+        width: 150px;
+        height: 50px;
+        border-radius: 20px;
+        display: block;
+        background-color: var(--c-contentBG);
+        justify-content: center;
+        display: flex; 
+        align-items: center;
+        
+        margin: 0 auto;
+      }
+      
       .btn_complete {
         margin-right: 15px;
       }
@@ -2320,7 +2322,7 @@
         font-size: 28px;
         font-weight: bold;
       }
-
+      
       .content_tt {
         font-size: 24px;
         font-weight: bold;

@@ -205,14 +205,9 @@ while ($rs2 = $result2->fetch_object()) {
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <!-- 스포카 -->
-    <!-- <link
-      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
-      rel="stylesheet"
-      type="text/css"
-    /> -->
+ 
 
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/>
+    
     <link rel="stylesheet" href="/helloworld/css/common.css"/>
     <link rel="stylesheet" href="/helloworld/css/index.css"/>
     <link rel="stylesheet" href="/helloworld/css/choi.css"/>
@@ -378,8 +373,8 @@ while ($rs2 = $result2->fetch_object()) {
                       </ol>
                     </nav>
 
-                    <div class="d-flex align-items-end status_box">
-                      <span class="price content_stt">
+                    <div class="d-flex align-items-end status_box contpo">
+                      <span class="price content_stt contpo2">
                         <span class="number"><?=$item->price; ?></span><span> 원</span>
                       </span>
                       <span class="d-flex flex-column align-items-end status_wrap">
@@ -498,7 +493,7 @@ while ($rs2 = $result2->fetch_object()) {
       referrerpolicy="no-referrer"
     ></script>
 
-    <script src="helloworld/js/common.js"></script>
+    <script src="/helloworld/js/common.js"></script>
   </body>
   <script>
     let documentHeight = Math.max(
