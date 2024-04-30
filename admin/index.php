@@ -121,8 +121,18 @@ $profitRs = $profitResult->fetch_object();
                   ?>
                 </select>
                 <div class="d-flex">
-                  <div class="bold">수강신청수</div>
-                  <div class="bold">수강진도율</div>
+                  <div class="bold">
+                    <p>수강신청수</p>
+                    <div class="chart-container">
+                      <canvas id="bar-chart"></canvas>
+                    </div>
+                </div>
+                  <div class="bold">
+                    <p>수강진도율</p>
+                    <div class="chart-container">
+                      <canvas id="pie-chart"></canvas>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -199,7 +209,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       referrerpolicy="no-referrer"
     ></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/helloworld/js/common.js"></script>
+    <script src="/helloworld/js/index.js"></script>
   </body>
 </html>
 <!-- 마지막에 body태그와 html태그를 닫아주세요. -->
