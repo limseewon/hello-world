@@ -144,14 +144,7 @@ while($rs = $result -> fetch_object()){
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <!-- 스포카 -->
-    <!-- <link
-      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
-      rel="stylesheet"
-      type="text/css"
-    /> -->
-
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/>
+    
     <link rel="stylesheet" href="/helloworld/css/common.css"/>
     <link rel="stylesheet" href="/helloworld/css/index.css"/>
     
@@ -523,7 +516,7 @@ while($rs = $result -> fetch_object()){
                   ?>
                   <h3 class="b_text01" title="<?= $coupon->cp_name ?>"><?= $coupon->cp_name ?></h3>
                   <p>사용기한 : <?php if($coupon->cp_date == ''){echo '무제한';}else{echo $coupon->cp_date.'개월';} ?></p>
-                  <p>최소사용금액 : <span class="number"><?= $coupon->cp_limit ?></span>원</p>
+                  <p>할인조건 : <span class="number"><?= $coupon->cp_limit ?></span>원이상 구매</p>
                   <p>
                   <?php if($coupon->cp_type == '정액'){echo '할인액';}else{echo '할인율';} ?> :
                     <span class="number"><?php if($coupon->cp_type == '정액'){echo $coupon->cp_price;}else{echo $coupon->cp_ratio;} ?></span><span><?php if($coupon->cp_type == '정액'){echo '원';}else{echo '%';} ?></span>
@@ -617,7 +610,8 @@ while($rs = $result -> fetch_object()){
       referrerpolicy="no-referrer"
     ></script>
 
-    <script src="js/common.js"></script>
+    <script src="/helloworld/js/common.js"></script>
+    <script src="/helloworld/js/coupon.js"></script>
   </body>
   <script>
     let documentHeight = Math.max(

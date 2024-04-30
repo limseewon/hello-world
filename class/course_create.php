@@ -16,10 +16,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>강의 등록</title>
     
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
     
     <link
       rel="stylesheet"
@@ -56,14 +56,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <!-- 스포카 -->
-    <!-- <link
-      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
-      rel="stylesheet"
-      type="text/css"
-    /> -->
-
-    <!-- <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/> -->
+    
     <link rel="stylesheet" href="/helloworld/css/common.css"/>
     <link rel="stylesheet" href="/helloworld/css/index.css"/>
     <link rel="stylesheet" href="/helloworld/css/choi.css"/>
@@ -79,7 +72,7 @@
           <h2>강의 등록</h2>
         </div>
         <section class="category_mb category_margin">   
-          <form action="course_ok.php" method="POST" id="course_form" enctype="multipart/form-data">
+          <form action="course_ok.php" method="POST" id="course_form" class="product_save" enctype="multipart/form-data">
             <input type="hidden" name="progress[]" id="progress" value="1">
             <input type="hidden" name="content" id="content" value="">
             <div class="categorywrap">
@@ -229,7 +222,48 @@
                 </a>
               </div>
             </div>
-            
+            <div class="upload c_mt">
+              <label class="form-label content_tt c_mb c_cb">강의파일</label>
+              <div class="you_upload2">
+                <div class="you_upload_content">
+                  <!-- <div class="thumbnail_box "></div> -->
+                  <div class="row c_mb">     
+                    <div class="col-2 youtube_thumb">
+                      <P>썸네일 강의파일</P>
+                    </div>
+                    <div class="col-3 youtube_name course_file">
+                      <P>강의 파일명</P>
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="youtube2 c_mb">
+                  <div class="row justify-content-between">
+                    <div class="col-2 youtube_thumb">
+                      <input type="file" class="form-control" name="course_file[]" id="course_file">
+                    </div>
+                    <div class="col-3 youtube_name">
+                      <input type="text" class="form-control" name="course_file_name[]" id="course_file_name" placeholder="강의파일명을 입력하세요">
+                    </div>
+                    
+                    <div class="col-1 trash osd">
+                      <i class="ti ti-trash bin_icon"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="add_listBtn2">
+                <a href="">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M3.99951 15.9977C3.99951 17.5736 4.3099 19.134 4.91296 20.5899C5.51601 22.0458 6.39993 23.3687 7.51423 24.483C8.62853 25.5973 9.9514 26.4812 11.4073 27.0843C12.8632 27.6873 14.4236 27.9977 15.9995 27.9977C17.5754 27.9977 19.1358 27.6873 20.5917 27.0843C22.0476 26.4812 23.3705 25.5973 24.4848 24.483C25.5991 23.3687 26.483 22.0458 27.0861 20.5899C27.6891 19.134 27.9995 17.5736 27.9995 15.9977C27.9995 14.4218 27.6891 12.8614 27.0861 11.4055C26.483 9.9496 25.5991 8.62673 24.4848 7.51243C23.3705 6.39813 22.0476 5.51421 20.5917 4.91116C19.1358 4.3081 17.5754 3.99771 15.9995 3.99771C14.4236 3.99771 12.8632 4.3081 11.4073 4.91116C9.9514 5.51421 8.62853 6.39813 7.51423 7.51243C6.39993 8.62673 5.51601 9.9496 4.91296 11.4055C4.3099 12.8614 3.99951 14.4218 3.99951 15.9977Z" stroke="#6F6F6F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M11.9995 15.9998H19.9995" stroke="#6F6F6F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15.9995 12.0002V20.0002" stroke="#6F6F6F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  리스트 추가
+                </a>
+              </div>
+            </div>
+        </form>
             <div class="c_button d-flex justify-content-center align-items-center">
               <button class="btn_complete btn btn-success">등록완료</button>
               <button class="btn btn-danger b_danger_a">등록취소</button>
@@ -242,92 +276,7 @@
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
     ?>
 
-  <script>
-    $(".you_upload").on("click", "#trash", function () {
-      $(this).closest(".youtube").remove();
-    });
 
-
-
-    $("#product_detail").summernote({
-  height: 400,
-});
-
-let price = $("#price");
-
-$("#price_menu").change(function () {
-  let option1 = $(this).val();
-
-  if (option1 == "무료") {
-    price.prop("disabled", true);
-    price.val("0");
-  } else {
-    price.prop("disabled", false);
-  }
-});
-
-let month = $("#due");
-month.find("option").eq(1).hide();
-
-$("#due_status").change(function () {
-  let option2 = $(this).val();
-  console.log(option2);
-
-  if (option2 == "무제한") {
-    month.prop("disabled", true);
-    month.val("무제한");
-  } else {
-    month.prop("disabled", false);
-    month.find("option").eq(1).hide();
-  }
-});
-
-$(".add_listBtn a").click(function (e) {
-  e.preventDefault();
-
-  let youtube =
-    '<div class="youtube c_mb mt-3"><div class="row justify-content-between">' +
-    '<div class="col-2 youtube_thumb"><input type="file" class="form-control" name="youtube_thumb[]">' +
-    "</div>" +
-    '<div class="col-3 youtube_name">' +
-    '<input type="text" class="form-control" name="youtube_name[]" placeholder="강의명을 입력하세요.">' +
-    "</div>" +
-    '<div class="col-6 youtube_url">' +
-    '<input type="url" class="form-control" name="youtube_url[]" placeholder="강의URL을 넣어주세요.">' +
-    "</div>" +
-    '<div class="col-1 trash_icon" id="trash">' +
-    '<i class="ti ti-trash bin_icon"></i>' +
-    "</div>" +
-    "</div>" +
-    "</div>";
-
-  $(".you_upload").append(youtube);
-});
-
-$(".trash_icon").change(function () {
-  if (confirm("정말로 삭제하시겠습니까?")) {
-    if ($(this).filter(":checked")) {
-      $(this).closest(".youtube").hide();
-    }
-  } else {
-    $(this).find(".trash_icon input").prop("checked", false);
-  }
-});
-
-$("#course_form").submit(function () {
-  let markupStr = $("#product_detail").summernote("code");
-  let content = encodeURIComponent(markupStr);
-  $("#content").val(content);
-
-  if ($("#product_detail").summernote("isEmpty")) {
-    alert("상세설명을 입력하세요");
-    return false;
-  }
-});
-
-  </script>
-  <script src="/helloworld/js/makeoption.js"></script>
-  
   
     
   <!-- jquery -->
@@ -337,6 +286,9 @@ $("#course_form").submit(function () {
   crossorigin="anonymous"
   referrerpolicy="no-referrer"
   ></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
   <!-- jqueryui js -->
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
@@ -359,7 +311,25 @@ $("#course_form").submit(function () {
     referrerpolicy="no-referrer"
   ></script>
 
-  <!-- <script src="js/common.js"></script> -->
+  <script>
+    $(".you_upload, .you_upload2").on("click", "#trash", function () {
+    $(this).closest(".youtube, .youtube2").remove();
+    });
+    // $(".you_upload").on("click", "#trash", function () {
+    //   $(this).closest(".youtube").remove();
+    // });
+
+    // $(".you_upload2").on("click", "#trash", function () {
+    //   $(this).closest(".youtube2").remove();
+    // });
+
+ 
+
+    
+  </script>
+  <script src="/helloworld/js/makeoption.js"></script>
+  <script src="/helloworld/js/course.js"></script>
+  
   </body>
   <script>
   let documentHeight = Math.max(
@@ -371,7 +341,7 @@ $("#course_form").submit(function () {
   );
   document.querySelector("header").style.height = documentHeight + "px";
   </script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   </body>
 </html>
 

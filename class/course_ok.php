@@ -36,6 +36,8 @@
     $act = $_POST['act'];
     $content = rawurldecode($_POST['content']);
     $youtube_name = $_POST['youtube_name']?? '';
+    $course_file = $_POST['course_file']?? '';
+    $course_file_name = $_POST['course_file_name']?? '';
     // $progress = $_POST['progress']??0;
 
     
@@ -72,10 +74,11 @@
             history.back();            
           </script>";
         }
+        
     }
 
-    $sql = "INSERT INTO courses (cate, name, price_status , price, level, due_status, due, act, content, thumbnail) 
-    VALUES ('{$cate}','{$name}','{$price_status}','{$price}','{$level}','{$due_status}','{$due}','{$act}','{$content}','{$thumbnail}')";
+    $sql = "INSERT INTO courses (cate, name, price_status , price, level, due_status, due, act, content, thumbnail, course_file, course_file_name) 
+    VALUES ('{$cate}','{$name}','{$price_status}','{$price}','{$level}','{$due_status}','{$due}','{$act}','{$content}','{$thumbnail}','{$course_file}','{$course_file_name}')";
 
 
     $result = $mysqli->query($sql);
@@ -123,12 +126,15 @@
               </script>";
             }
           }
-          $sql1 = "INSERT INTO lecture (cid, l_idx, youtube_thumb, youtube_name, youtube_url) VALUES ({$cid}, {$i}, '{$upload_youtube_thumb[$i]}', '{$youtube_name[$i]}', '{$youtube_url[$i]}')";
-          // var_dump($sql1);
-          $result2 = $mysqli-> query($sql1);
+            $sql1 = "INSERT INTO lecture (cid, l_idx, youtube_thumb, youtube_name, youtube_url) VALUES ({$cid}, {$i}, '{$upload_youtube_thumb[$i]}', '{$youtube_name[$i]}', '{$youtube_url[$i]}')";
+            // var_dump($sql1);
+            $result2 = $mysqli-> query($sql1);
+
+          
           }
 
       }
+
 
       $mysqli->commit();//디비에 커밋한다.
 
@@ -145,3 +151,8 @@
       exit;
     }
 ?>
+
+
+
+
+

@@ -24,7 +24,7 @@ try{
     echo "
     <script>
       alert('쿠폰등록성공!');
-      location.href = '/pudding-LMS-website/admin/coupon/coupon_list.php';
+      location.href = '/helloworld/coupon/coupon_list.php';
     </script>
     ";
   }

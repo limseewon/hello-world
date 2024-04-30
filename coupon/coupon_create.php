@@ -17,6 +17,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>쿠폰 등록</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
@@ -52,14 +53,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <!-- 스포카 -->
-    <!-- <link
-      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
-      rel="stylesheet"
-      type="text/css"
-    /> -->
+ 
 
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/>
+    
     <link rel="stylesheet" href="/helloworld/css/common.css"/>
     <link rel="stylesheet" href="/helloworld/css/index.css"/>
     
@@ -274,9 +270,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
       
               <div class="info_bottom d-flex">
                 <div class="field coupon_min_price input-group d-flex align-items-center">
-                  <label for="coupon_limit" class="content_tt">최소사용금액</label>
+                  <label for="coupon_limit" class="content_tt">할인조건</label>
                   <input type="number" name="cp_limit" id="coupon_limit" class="form-control number"
-                    placeholder="10,000" min="10000" max="1000000" step="1000" required>원
+                    placeholder="10,000" min="10000" max="1000000" step="1000" required>원이상 구매
                 </div>
                 
               </div>
@@ -314,8 +310,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                   placeholder="10" min="5" max="100" step="5">%
                 </div>
                 <div class="form-check d-flex align-items-center">
-                  <input class="form-check-input" type="radio" name="cp_type" id="coupon_sale_0" value="정률">
-                  <label class="form-check-label b_text01" for="coupon_sale_0">비할인</label>
+                  <input class="form-check-input" type="radio" name="cp_type" id="coupon_sale_2" value="제로">
+                  <label class="form-check-label b_text01" for="coupon_sale_2">비할인</label>
                   
                 </div>
               </div>
@@ -342,9 +338,25 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                 </div>
               </div>
             </div>
-              
-            
+    
           </fieldset>
+          <div>
+            <div>
+              <label for="optionCate1">옵션 선택</label>
+
+              <?php
+              if(isset($optArr)){
+                $optionName = $optArr[0]->cate;
+              }
+              ?>
+                
+              <select name="optionCate1" id="optionCate1">              
+                <option value="컬러" <?php if($optionName == '컬러'){ echo 'selected';} ?>>컬러</option>
+                <option value="사이즈" <?php if($optionName == '사이즈'){ echo 'selected';} ?>>사이즈</option>
+              </select>
+            </div>
+            
+          </div>
       
           <div class="submit_btns d-flex justify-content-end">
             <button class=" coupon_submit_btn btn btn-success">등록 완료</button>
@@ -388,6 +400,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
 ></script>
 
 <script src="/helloworld/js/common.js"></script>
+<script src="/helloworld/js/coupon.js"></script>
 </body>
 <script>
 let documentHeight = Math.max(
