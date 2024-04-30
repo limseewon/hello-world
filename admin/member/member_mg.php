@@ -2,17 +2,29 @@
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
-$memberSql = "SELECT * FROM MEMBERS";
-$memberResult = $mysqli->query($memberSql);
-while ($rs = $memberResult->fetch_object()){
+$coursesSql = "SELECT * FROM courses";
+$coursesResult = $mysqli->query($coursesSql);
+while ($coursesRs = $coursesResult->fetch_object()){
+  $coursesArr[] = $coursesRs;
+}
+
+$paginationTarget = 'members';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/pagination.php';
+
+$sql = "SELECT * FROM members where 1=1"; //모든 상품 조회 쿼리
+$sql .= '';
+$order = " order by mid";
+$sql .= $order;
+$limit = " LIMIT $startLimit, $endLimit";
+$sql .= $limit;
+// echo $sql;
+$result = $mysqli->query($sql);
+
+while ($rs = $result->fetch_object()) {
   $memberArr[] = $rs;
 }
 
-// $couponSql = "SELECT * FROM user_coupons uc JOIN members mb ON mb.userid=uc.userid WHERE mb.userid=uc.userid AND uc.status=1";
-// $couponResult = $mysqli->query($couponSql);
-// while ($rs = $couponResult->fetch_object()){
-//   $couponArr[] = $rs;
-// }
+
 
 ?>
 <!DOCTYPE html>
@@ -175,30 +187,22 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
             <form action="" class="d-flex">
               <div class="filter d-flex">
                 <select class="form-select lecture" aria-label="Default select example">
-                  <option selected>강좌명</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-                <select class="form-select progress_rate" aria-label="Default select example">
-                  <option selected>진도율</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-                <select class="form-select period" aria-label="Default select example">
-                  <option selected>수강 기간</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option selected disabled>강좌명</option>
+                  <?php
+                  if(isset($coursesArr)){
+                    foreach($coursesArr as $ca) {
+                  ?>
+                  <option value="<?=$ca->cid?>"><?=$ca->name?></option>
+                  <?php
+                  }}
+                  ?>
                 </select>
               </div>
               <div class="search d-flex">
                 <select class="form-select search_filter" aria-label="Default select example">
                   <option selected>닉네임</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option value="1">아이디</option>
+                  
                 </select>
                 <div class="form-floating">
                   <input type="search" class="form-control" id="search_member" placeholder="" />
@@ -253,7 +257,41 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
             </table>
             <button class="btn btn-success all_message">선택회원 메시지 전송</button>
             <button class="btn btn-danger all_del">선택회원 삭제</button>
-            <nav aria-label="..." class="d-flex justify-content-center">
+            
+            <div class="d-flex justify-content-center">
+              <ul class="pagination">
+                <?php
+                if($pageNumber > 1){
+                  echo "<li class=\"page-item\"><a href=\"member_mg.php?pageNumber=1\" class=\"page-link\" >처음</a></li>";
+                  //이전
+                  if($block_num > 1){
+                    $prev = 1 + ($block_num - 2) * $block_ct;
+                    echo "<li class=\"page-item\"><a href=\"member_mg.php?pageNumber=$prev\" class=\"page-link\">이전</a></li>";
+                  }
+                }
+              
+                  for($i=$block_start;$i<=$block_end;$i++){
+                    if($i == $pageNumber){
+                      echo "<li class=\"page-item active\"><a href=\"member_mg.php?pageNumber=$i\" class=\"page-link\">$i</a></li>";
+                    }else{
+                      echo "<li class=\"page-item\"><a href=\"member_mg.php?pageNumber=$i\" class=\"page-link\">$i</a></li>";
+                    }            
+                  }  
+
+                  if($pageNumber < $total_page){
+                    if($total_block > $block_num){
+                      $next = $block_num * $block_ct + 1;
+                      echo "<li class=\"page-item\"><a href=\"member_mg.php?pageNumber=$next\" class=\"page-link\">다음</a></li>";
+                    }
+                    echo "<li class=\"page-item\"><a href=\"member_mg.php?pageNumber=$total_page\" class=\"page-link\">마지막</a></li>";
+                  }        
+                ?>
+              </ul>
+            </div>    
+            
+            
+            
+            <!-- <nav aria-label="..." class="d-flex justify-content-center">
               <ul class="pagination">
                 <li class="page-item disabled">
                   <span class="page-link">이전</span>
@@ -268,7 +306,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
                   <a class="page-link" href="#">다음</a>
                 </li>
               </ul>
-            </nav>
+            </nav> -->
           </div>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';

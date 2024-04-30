@@ -48,7 +48,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
       type="text/css"
     /> -->
 
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
+    <!-- <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" /> -->
     <link rel="stylesheet" href="/helloworld/css/common.css" />
     <link rel="stylesheet" href="/helloworld/css/index.css" />
     
@@ -58,34 +58,67 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
 <!-- <section class="main_wrapper d-flex"> 태그를 삭제하고 그 자리에 아래와 같이 header.php를 넣어주세요.-->
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
+
+
+$memberCountSql = "SELECT count(*) as ct FROM MEMBERS";
+$memberResult = $mysqli->query($memberCountSql);
+$memberRs = $memberResult->fetch_object();
+
+$noticeSql = "SELECT * FROM notice ORDER BY nid limit 5";
+$noticeResult = $mysqli->query($noticeSql);
+while ($noticeRs = $noticeResult->fetch_object()) {
+  $noticeArr[] = $noticeRs;
+}
+
+$coursesSql = "SELECT * FROM courses";
+$coursesResult = $mysqli->query($coursesSql);
+while ($coursesRs = $coursesResult->fetch_object()) {
+  $coursesArr[] = $coursesRs;
+}
+
+$sfSql= "SELECT AVG(satisfaction) as avg FROM ordered_courses;";
+$sfResult = $mysqli->query($sfSql);
+$sfRs = $sfResult->fetch_object();
+
+
+$profitSql= "SELECT SUM(c.price) as sum FROM courses c JOIN ordered_courses oc ON oc.course_id = c.cid WHERE YEAR(regdate) = YEAR(CURRENT_DATE()) AND MONTH(regdate) = MONTH(CURRENT_DATE());";
+$profitResult = $mysqli->query($profitSql);
+$profitRs = $profitResult->fetch_object();
+
+
 ?>
 <!-- 작성한 html코드를 아래와 같이 넣어주세요. -->
             <h2>대시 보드</h2>
             <div class="main_top d-flex">
               <div class="left_top">
                 <div class="profit contents-box d-flex align-items-center justify-content-between">
-                  <span class="bold">4월달 수익</span>
-                  <span>2,564,000 원</span>
-                  <span>화살표</span>
-                  <span class="settlement">정산기간 2024년 4월 1일 ~ 2024년 4월 30일</span>
+                  <span class="bold"><?=date('m');
+?>월달 수익</span>
+                  <span><?=number_format($profitRs->sum);?>원</span>
+                  <span class="material-symbols-outlined"> keyboard_double_arrow_down </span>
                 </div>
                 <div class="student contents-box d-flex align-items-center justify-content-between">
                   <span class="bold">총 수강생 수</span>
-                  <span>456명</span>
-                  <span>화살표</span>
+                  <span><?=$memberRs->ct;?>명</span>
+                  <span class="material-symbols-outlined"> keyboard_double_arrow_up </span>
                 </div>
                 <div class="evaluation contents-box d-flex align-items-center justify-content-between">
                   <span class="bold">평균 수강만족도</span>
                   <span>★★★★★</span>
-                  <span>4.26</span>
+                  <span><?=round($sfRs->avg, 2);?></span>
                 </div>
               </div>
               <div class="lecture_chart contents-box">
                 <select class="form-select" aria-label="Default select example">
-                  <option selected>Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                <option selected disabled>강의 선택</option>
+                  <?php
+                   if(isset($coursesArr)){
+                    foreach($coursesArr as $ca){
+                  ?>  
+                    <option><?=$ca->name?></option>
+                  <?php
+                  }}
+                  ?>
                 </select>
                 <div class="d-flex">
                   <div class="bold">수강신청수</div>
@@ -98,10 +131,14 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
                 <div class="announce contents-box d-flex">
                   <p class="bold">공지사항</p>
                   <ul>
-                    <li><a href="">게시물</a></li>
-                    <li><a href="">게시물</a></li>
-                    <li><a href="">게시물</a></li>
-                    <li><a href="">게시물</a></li>
+                    <?php
+                    if (isset($noticeArr)){
+                      foreach($noticeArr as $na) {
+                    ?>
+                    <li><a href="<?=$na->nid?>"><?=$na->title?></a></li>
+                    <?php
+                    }}
+                    ?>
                   </ul>
                 </div>
 
