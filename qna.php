@@ -2,6 +2,8 @@
 session_start();
 // include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,217 +128,58 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
             <table class="table table-hover table-striped">
               <thead class="table-dark">
                 <tr>
-                  <th scope="col">No.</th>
+                  <th scope="col">No&#46;</th>
                   <th scope="col">제목</th>
                   <th scope="col">작성자</th>
                   <th scope="col">조회수</th>
                   <th scope="col">답변</th>
                   <th scope="col">작성일</th>
-                  <th scope="col">수정 / 삭제</th>
+                  <th scope="col">수정 &#47; 삭제</th>
                 </tr>
               </thead>
               <tbody>
+              <?php
+              // board테이블에서 idx를 기준으로 내림차순해서 10개까지 표시
+              $sql = "SELECT * from qna order by idx desc limit 0,10";
+              $result = $mysqli->query($sql);
+            
+              // output data of each row
+              while($row = $result->fetch_assoc()) {
+              
+                  //title변수에 DB에서 가져온 title을 선택
+                  $title=$row["title"];
+                  if(iconv_strlen($title)>30)
+                  {
+                    //title이 30을 넘어서면 ...표시
+                    $title=str_replace($row["title"],iconv_substr($row["title"],0,30,"utf-8")."...",$row["title"]);
+                  }
+              ?>
                 <tr>
-                  <th scope="row">1</th>
-                  <td><a href="#">안녕하세요! 반갑습니다!</a></td>
-                  <td class="lock d-flex">홍길동<span class="material-symbols-outlined">
+                  <th scope="row"><?= $row['idx'];?></th>
+                  <td><a href="qna_detail.php?id=<?= $row['idx']; ?>"><?= $title; ?></a></td>
+                  <td class="lock d-flex"><?= $row['name'];?></td>
+                  <!-- <span class="material-symbols-outlined">
                     lock
-                    </span></td>
-                  <td>1024</td>
-                  <td>완료</td>
-                  <td>2024.04.24</td>
+                </span> -->
+                  <td><?= $row['view'];?></td>
+                  <td><?= $row['reply'];?></td>
+                  <td><?= $row['date'];?></td>
                   <td class="edit d-flex">
                     <a href="#">
-                      <span class="material-symbols-outlined">
-                        border_color
-                      </span>
-                    </a>
-                    <a href="#">
-                      <span class="material-symbols-outlined">
-                        delete
+                        <span class="material-symbols-outlined">
+                            border_color
                         </span>
                     </a>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td><a href="#">안녕하세요! 반갑습니다!</a></td>
-                  <td>운영자</td>
-                  <td>1024</td>
-                  <td>완료</td>
-                  <td>2024.04.24</td>
-                  <td class="edit d-flex">
-                    <a href="#">
-                      <span class="material-symbols-outlined">
-                        border_color
-                      </span>
-                    </a>
-                    <a href="#">
-                      <span class="material-symbols-outlined">
-                        delete
+                    <a href="qna_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                        <span class="material-symbols-outlined">
+                            delete
                         </span>
                     </a>
-                  </td>
+                </td>
                 </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td><a href="#">안녕하세요! 반갑습니다!</a></td>
-                  <td>운영자</td>
-                  <td>127</td>
-                  <td>완료</td>
-                  <td>2024.04.24</td>
-                  <td class="edit d-flex">
-                    <a href="#">
-                      <span class="material-symbols-outlined">
-                        border_color
-                      </span>
-                    </a>
-                    <a href="#">
-                      <span class="material-symbols-outlined">
-                        delete
-                        </span>
-                    </a>
-                  </td>
-                </tr>
-                <th scope="row">4</th>
-                <td><a href="#">안녕하세요! 반갑습니다!</a></td>
-                <td>운영자</td>
-                <td>564</td>
-                <td>완료</td>
-                <td>2024.04.24</td>
-                <td class="edit d-flex">
-                  <a href="#">
-                    <span class="material-symbols-outlined">
-                      border_color
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="material-symbols-outlined">
-                      delete
-                      </span>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">5</th>
-                <td><a href="#">안녕하세요! 반갑습니다!</a></td>
-                <td>운영자</td>
-                <td>455</td>
-                <td>완료</td>
-                <td>2024.04.24</td>
-                <td class="edit d-flex">
-                  <a href="#">
-                    <span class="material-symbols-outlined">
-                      border_color
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="material-symbols-outlined">
-                      delete
-                      </span>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">6</th>
-                <td><a href="#">안녕하세요! 반갑습니다!</a></td>
-                <td>운영자</td>
-                <td>767</td>
-                <td>완료</td>
-                <td>2024.04.24</td>
-                <td class="edit d-flex">
-                  <a href="#">
-                    <span class="material-symbols-outlined">
-                      border_color
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="material-symbols-outlined">
-                      delete
-                      </span>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">7</th>
-                <td><a href="#">안녕하세요! 반갑습니다!</a></td>
-                <td>운영자</td>
-                <td>843</td>
-                <td>완료</td>
-                <td>2024.04.24</td>
-                <td class="edit d-flex">
-                  <a href="#">
-                    <span class="material-symbols-outlined">
-                      border_color
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="material-symbols-outlined">
-                      delete
-                      </span>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">8</th>
-                <td><a href="#">안녕하세요! 반갑습니다!</a></td>
-                <td>운영자</td>
-                <td>908</td>
-                <td>완료</td>
-                <td>2024.04.24</td>
-                <td class="edit d-flex">
-                  <a href="#">
-                    <span class="material-symbols-outlined">
-                      border_color
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="material-symbols-outlined">
-                      delete
-                      </span>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">9</th>
-                <td><a href="#">안녕하세요! 반갑습니다!</a></td>
-                <td>운영자</td>
-                <td>523</td>
-                <td>완료</td>
-                <td>2024.04.24</td>
-                <td class="edit d-flex">
-                  <a href="#">
-                    <span class="material-symbols-outlined">
-                      border_color
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="material-symbols-outlined">
-                      delete
-                      </span>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">10</th>
-                <td><a href="#">안녕하세요! 반갑습니다!</a></td>
-                <td>운영자</td>
-                <td>231</td>
-                <td>완료</td>
-                <td>2024.04.24</td>
-                <td class="edit d-flex">
-                  <a href="#">
-                    <span class="material-symbols-outlined">
-                      border_color
-                    </span>
-                  </a>
-                  <a href="#">
-                    <span class="material-symbols-outlined">
-                      delete
-                      </span>
-                  </a>
-                </td>
-              </tr>
+                <?php
+                  } 
+                ?>
               </tbody>
             </table>
           </div>
@@ -354,7 +197,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
               </li>
             </ul>
             <div class="c_button">
-              <button class="btn_complete btn btn-success"><a href="/helloworld/regis.php">게시글 등록</a></button>
+              <button class="btn_complete btn btn-success"><a href="/helloworld/qna_write.php">게시글 등록</a></button>
             </div>
           </nav>
           <?php
@@ -404,5 +247,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
       // 원하는 URL로 리다이렉트
       window.location.href = "/helloworld/regis.php";
     });
+    document.querySelector(".btn_complete").addEventListener("click", function() {
+  // 원하는 URL로 리다이렉트
+  window.location.href = "/helloworld/qna_write.php";
+});
   </script>
 </html>

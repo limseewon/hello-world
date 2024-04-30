@@ -161,23 +161,21 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
             <div class="regist">
               <div class="mb-3 d-flex title">
                 <p>제목</p>
-                <p class="question">안녕하세요 질문있습니다!</p>
-                <p class="lock d-flex">홍길동<span class="material-symbols-outlined">
+                <p class="question"><?= $row['title']; ?></p>
+                <p class="lock d-flex"><?= $row['name']; ?>
+                <!-- <span class="material-symbols-outlined">
                   lock
-                  </span>
+                  </span> -->
                 </p>
-                <p>2000.00.00</p>
-                <p class="edit"><a href="#">
-                  <span class="material-symbols-outlined">
-                    border_color
-                  </span>
-                </a>
+                <p><?= $row['date']; ?></p>
+                <p class="edit">
                 <a href="#">
-                  <span class="material-symbols-outlined">
-                    delete
-                    </span>
-                </a></p>
-
+                    <span class="material-symbols-outlined">border_color</span>
+                </a>
+                <a href="qna_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                    <span class="material-symbols-outlined">delete</span>
+                </a>
+                </p>
               </div>
               <div class="mb-3 d-flex con">
                 <p>내용</p>
