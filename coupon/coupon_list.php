@@ -214,7 +214,7 @@ while($rs = $result -> fetch_object()){
       }
 
       .coupons .coupon img {
-        width: 45%;
+        width: 100%;
         object-fit: cover;
       }
 
@@ -516,16 +516,16 @@ while($rs = $result -> fetch_object()){
                   ?>
                   <h3 class="b_text01" title="<?= $coupon->cp_name ?>"><?= $coupon->cp_name ?></h3>
                   <p>사용기한 : <?php if($coupon->cp_date == ''){echo '무제한';}else{echo $coupon->cp_date.'개월';} ?></p>
-                  <p>할인조건 : <span class="number"><?= $coupon->cp_limit ?></span>원이상 구매</p>
+                  <p>최소사용금액 : <span class="number"><?= $coupon->cp_limit ?></span>원</p>
                   <p>
-                  <?php if($coupon->cp_type == '정액'){echo '할인액';}else{echo '할인율';} ?> :
+                    <?php if($coupon->cp_type == '정액'){echo '할인액';}else{echo '할인율';} ?> : 
                     <span class="number"><?php if($coupon->cp_type == '정액'){echo $coupon->cp_price;}else{echo $coupon->cp_ratio;} ?></span><span><?php if($coupon->cp_type == '정액'){echo '원';}else{echo '%';} ?></span>
                   </p>
                 </div>
 
                 <div class="icons">
                   <a href="/helloworld/coupon/coupon_update.php?cpid=<?= $coupon->cpid ?>"><i class="ti ti-edit pen_icon"></i></a>
-                  <a href="pudding-LMS-website/admin/coupon/coupon_delete_ok.php?cpid=<?= $coupon->cpid ?>" class="del_btn"><i class="ti ti-trash bin_icon"></i></a>
+                  <a href="/helloworld/coupon/coupon_delete_ok.php?cpid=<?= $coupon->cpid ?>" class="del_btn"><i class="ti ti-trash bin_icon"></i></a>
                 </div>
 
                 <div class="form-check form-switch cp_status_toggle">
@@ -546,33 +546,33 @@ while($rs = $result -> fetch_object()){
             </ul>
           </div>
 
-          <nav aria-label="Page navigation example" class="d-flex justify-content-center pager">
-      <ul class="pagination coupon_pager">
-        <?php
-            if($pageNumber>1 && $block_num > 1 ){
-              $prev = ($block_num - 2) * $block_ct + 1;
-              echo "<li class=\"page-item\"><a href=\"?pageNumber=$prev\" class=\"page-link\" aria-label=\"Previous\"><span aria-hidden=\"true\">&lsaquo;</span></a></li>";
-            } else{
-              echo "<li class=\"page-item disabled\"><a href=\"\" class=\"page-link\" aria-label=\"Previous\"><span aria-hidden=\"true\">&lsaquo;</span></a></li>";
-            }
+          <nav aria-label="Page navigation example" class="d-flex justify-content-center pager tt">
+            <ul class="pagination coupon_pager">
+              <?php
+                  if($pageNumber>1 && $block_num > 1 ){
+                    $prev = ($block_num - 2) * $block_ct + 1;
+                    echo "<li class=\"page-item\"><a href=\"?pageNumber=$prev\" class=\"page-link\" aria-label=\"Previous\"><span aria-hidden=\"true\">&lsaquo;</span></a></li>";
+                  } else{
+                    echo "<li class=\"page-item disabled\"><a href=\"\" class=\"page-link\" aria-label=\"Previous\"><span aria-hidden=\"true\">&lsaquo;</span></a></li>";
+                  }
 
 
-            for($i=$block_start;$i<=$block_end;$i++){
-              if($pageNumber == $i){
-                  echo "<li class=\"page-item active\"><a href=\"?coupon_filter=$cp_filter&search=$cp_search&pageNumber=$i\" class=\"page-link\" data-page=\"$i\">$i</a></li>";
-              }else{
-                  echo "<li class=\"page-item\"><a href=\"?coupon_filter=$cp_filter&search=$cp_search&pageNumber=$i\" class=\"page-link\" data-page=\"$i\">$i</a></li>";
+                  for($i=$block_start;$i<=$block_end;$i++){
+                    if($pageNumber == $i){
+                        echo "<li class=\"page-item active\"><a href=\"?coupon_filter=$cp_filter&search=$cp_search&pageNumber=$i\" class=\"page-link\" data-page=\"$i\">$i</a></li>";
+                    }else{
+                        echo "<li class=\"page-item\"><a href=\"?coupon_filter=$cp_filter&search=$cp_search&pageNumber=$i\" class=\"page-link\" data-page=\"$i\">$i</a></li>";
 
-              }
-            }
+                    }
+                  }
 
 
-            if($pageNumber<$total_page && $block_num < $total_block){
-              $next = $block_num * $block_ct + 1;
-              echo "<li class=\"page-item\"><a href=\"?pageNumber=$next\" class=\"page-link\" aria-label=\"Next\"><span aria-hidden=\"true\">&rsaquo;</span></a></li>";
-            } else{
-              echo "<li class=\"page-item disabled\"><a href=\"?pageNumber=$total_page\" class=\"page-link\" aria-label=\"Next\"><span aria-hidden=\"true\">&rsaquo;</span></a></li>";
-            }
+                  if($pageNumber<$total_page && $block_num < $total_block){
+                    $next = $block_num * $block_ct + 1;
+                    echo "<li class=\"page-item\"><a href=\"?pageNumber=$next\" class=\"page-link\" aria-label=\"Next\"><span aria-hidden=\"true\">&rsaquo;</span></a></li>";
+                  } else{
+                    echo "<li class=\"page-item disabled\"><a href=\"?pageNumber=$total_page\" class=\"page-link\" aria-label=\"Next\"><span aria-hidden=\"true\">&rsaquo;</span></a></li>";
+                  }
               ?>
             </ul>
           </nav>

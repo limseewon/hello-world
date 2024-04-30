@@ -74,20 +74,22 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
         width: 50%;
         min-width: 300px;
         
+        
       }
 
       .coupon_info .thumbnail .show_thumb {
-        padding-top: 70%;
+        
         position: relative;
         overflow: hidden;
         width: 92%;
+        
       }
 
       .coupon_info .thumbnail .show_thumb img {
         position: absolute;
         right: 0; bottom: 0; top: 0; left: 0;
-        width: 100%; height: 100%;
-        object-fit: cover;
+        width: 100%; 
+        
       }
 
       .coupon_info .thumbnail .show_thumb:before {
@@ -225,7 +227,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
       margin-bottom: 146px;}
     .show_picture { 
       width: 715px; 
-      height: 245px;
+      height: 292px;
       
      }
      .coupon_ju { 
@@ -272,7 +274,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                 <div class="field coupon_min_price input-group d-flex align-items-center">
                   <label for="coupon_limit" class="content_tt">할인조건</label>
                   <input type="number" name="cp_limit" id="coupon_limit" class="form-control number"
-                    placeholder="10,000" min="10000" max="1000000" step="1000" required>원이상 구매
+                    placeholder="1,000" min="1000" max="1000000" step="1000" required>원이상 구매
                 </div>
                 
               </div>
@@ -310,10 +312,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                   placeholder="10" min="5" max="100" step="5">%
                 </div>
                 <div class="form-check d-flex align-items-center">
-                  <input class="form-check-input" type="radio" name="cp_type" id="coupon_sale_2" value="제로">
-                  <label class="form-check-label b_text01" for="coupon_sale_2">비할인</label>
+                  <input class="form-check-input" type="radio" name="cp_type" id="coupon_sale_2" value="비할인">
+                  <label class="form-check-label b_text01" for="coupon_sale_2">비할인 </label>
                   
                 </div>
+                
               </div>
             </div>
             <div class="coupon_limit_date">
@@ -340,23 +343,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
             </div>
     
           </fieldset>
-          <div>
-            <div>
-              <label for="optionCate1">옵션 선택</label>
-
-              <?php
-              if(isset($optArr)){
-                $optionName = $optArr[0]->cate;
-              }
-              ?>
-                
-              <select name="optionCate1" id="optionCate1">              
-                <option value="컬러" <?php if($optionName == '컬러'){ echo 'selected';} ?>>컬러</option>
-                <option value="사이즈" <?php if($optionName == '사이즈'){ echo 'selected';} ?>>사이즈</option>
-              </select>
-            </div>
-            
-          </div>
+          
       
           <div class="submit_btns d-flex justify-content-end">
             <button class=" coupon_submit_btn btn btn-success">등록 완료</button>

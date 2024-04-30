@@ -58,10 +58,10 @@ $(".add_listBtn2 a").click(function (e) {
 
   let youtube2 =
     '<div class="youtube c_mb mt-3"><div class="row justify-content-between">' +
-    '<div class="col-2 youtube_thumb"><input type="file" class="form-control" name="youtube_thumb[]">' +
+    '<div class="col-2 youtube_thumb"><input type="file" class="form-control" name="course_file[]">' +
     "</div>" +
     '<div class="col-3 youtube_name">' +
-    '<input type="text" class="form-control" name="youtube_name[]" placeholder="강의파일명을 입력하세요.">' +
+    '<input type="text" class="form-control" name="course_file_name[]" placeholder="강의파일명을 입력하세요.">' +
     "</div>" +
     '<div class="col-6 youtube_url">' +
     '' +
