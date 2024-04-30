@@ -21,9 +21,8 @@ if ($statusText == '휴면 전환') {
 
 $sql = "UPDATE members
 SET status = '{$status}'
-WHERE mid='{$mid}';
+WHERE mid='{$mid}'";
 
-";
 $result = $mysqli -> query($sql);
 
 if($result){      

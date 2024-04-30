@@ -3,6 +3,8 @@ session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
 $mid = $_POST['mid'];
+// $mid = 4;
+
 
 if(isset($_SESSION['UID'])){
     $userid = $_SESSION['UID'];
@@ -12,24 +14,21 @@ if(isset($_SESSION['UID'])){
     $userid = '';
 }
 
-$sql = "SELECT * FROM members mb JOIN user_coupons uc ON mb.userid = uc.userid JOIN coupons c ON uc.couponid = c.cid WHERE mb.mid = '{$mid}' AND uc.status = 1";
+// $sql = "SELECT * FROM members where mid='{$mid}'";
+$sql = "SELECT mb.*, c.coupon_name, c.coupon_price,c.coupon_ratio,uc.use_max_date, uc.status as coupon_status FROM members mb JOIN user_coupons uc ON mb.userid = uc.userid JOIN coupons c ON uc.couponid = c.cid WHERE mb.mid = '{$mid}'";
+// echo $sql;
 
 $result = $mysqli -> query($sql);
-$row = $result -> fetch_object(); // $row->cnt
+while($row = $result -> fetch_object() ){
+  $modalArr[] = $row;
+}
+ 
 
 if($result){      
-  $data = array('result' => $row);
+  $data = array('result' => $modalArr);
         
 } else {
   $data = array('result' => 'fail');
 }     
-
-
-
-
-
 echo json_encode($data);
-
-
-
 ?>

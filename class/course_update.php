@@ -97,30 +97,30 @@
           </div>
           <section>
             <form action="update_ok.php" method="POST" id="course_form" enctype="multipart/form-data">
-              <input type="hidden" name="image_table_id" id="image_table_id" value="" />
-              <input type="hidden" name="content" id="content" value="" />
-              <input type="hidden" name="cid" id="cid" value="" />
+              <input type="hidden" name="image_table_id" id="image_table_id" value=""/>
+              <input type="hidden" name="content" id="content" value=""/>
+              <input type="hidden" name="cid" id="cid" value="<?= $rs->cid?>"/>
               <div class="categorywrap category_margin">
                 <label class="form-label content_tt c_mb">카테고리</label>
                 <div class="categorys row">
                   <div class="category col">
-                    <select class="form-select form_width" aria-label="Default select example" id="cate1" name="cate1" required>
-                      <option value="" hidden>선택하세요</option>
-                      <?php
+                  <select class="form-select" aria-label="Default select example" id="cate1" name="cate1" required>
+                    <option value="" hidden>선택하세요</option>
+                    <?php
                         $cateString = $rs->cate;
                         $parts = explode('/', $cateString);
                 
                         $big_cate = $parts[0];
                         $md_cate = $parts[1];
                         $sm_cate = $parts[2];
-                      ?>  
-                      <?php
-                        foreach($cate1 as $c){      
-                          if($big_cate == $c->name) {$selected='selected';}else{$selected='';};     
-                      ?>
-                      <option value="<?php echo $c->cateid ?>" data-name="<?php echo $c->name ?>"><?php echo $c->name ?>"></option>
-                      <?php } ?>  
-                    </select>
+                    ?>  
+                    <?php
+                      foreach($cate1 as $c){      
+                        if($big_cate == $c->name) {$selected='selected';}else{$selected='';};     
+                    ?>
+                    <option value="<?php echo $c->cateid ?>" <?= $selected; ?> data-name="<?php echo $c->name ?>"><?php echo $c->name ?></option>
+                    <?php } ?>
+                  </select>
                   </div>
                   <div class="category col">
                     <select class="form-select form_width" aria-label="Default select example" id="cate2" name="cate2">
@@ -240,7 +240,7 @@
 
                 <div class="you_upload">
                   <div class="you_upload_content">
-                    <div class="thumbnail_box"></div>
+                    <!-- <div class="thumbnail_box"></div> -->
                     <div class="row">
                       <div class="col-2">
                         <p>썸네일 강의명</p>
@@ -292,58 +292,6 @@
                     ?>
                 </div>
                 <div class="add_listBtn">
-                  <a href=""> </a>
-                </div>
-              </div>
-              <div class="upload c_mt">
-                <label class="form-label content_tt c_mb">강의 추천파일</label>
-
-                <div class="you_upload">
-                  <div class="you_upload_content">
-                    <div class="thumbnail_box"></div>
-                    <div class="row">
-                      <div class="col-2">
-                        <p>썸네일 강의명</p>
-                      </div>
-                      <div class="col-3">
-                        <p>차시명</p>
-                      </div>
-                      <div class="col-6">
-                        <p>강의url</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="youtube c_mb mt-3">
-                    <div class="row justify-content-between">
-                      <div class="col-2 youtube_thumb">
-                        <input type="file" class="form-control" name="youtube_thumb[]"/>
-                      </div>
-                      <div class="col-3 youtube_name">
-                        <input type="text" class="form-control" name="youtube_name[]" value="">
-                      </div>
-                      <div class="col-6 youtube_url">
-                        <input type="url" class="form-control" name="youtube_url[]" value="">
-                      </div>
-                      <div class="col-1 trash_icon">
-                        <label for="delete-youtube"><i class="ti ti-trash bin_icon"></i></label>
-                        <input
-                          type="checkbox"
-                          class="delete-youtube hidden"
-                          id="delete-youtube <?= $i; ?>" name="delete_youtube[]" value=""
-                          name="delete_youtube[]"
-                          value=""
-                        />
-                      </div>
-                      <div class="youtubeThumbBox">
-                        <span class="hidden">기존파일</span>
-                        <img src="" alt="" />
-                      </div>
-                    </div>
-                  </div>
-                  
-                </div>
-                <div class="add_listBtn">
                   <a href="">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                       <path d="M3.99951 15.9977C3.99951 17.5736 4.3099 19.134 4.91296 20.5899C5.51601 22.0458 6.39993 23.3687 7.51423 24.483C8.62853 25.5973 9.9514 26.4812 11.4073 27.0843C12.8632 27.6873 14.4236 27.9977 15.9995 27.9977C17.5754 27.9977 19.1358 27.6873 20.5917 27.0843C22.0476 26.4812 23.3705 25.5973 24.4848 24.483C25.5991 23.3687 26.483 22.0458 27.0861 20.5899C27.6891 19.134 27.9995 17.5736 27.9995 15.9977C27.9995 14.4218 27.6891 12.8614 27.0861 11.4055C26.483 9.9496 25.5991 8.62673 24.4848 7.51243C23.3705 6.39813 22.0476 5.51421 20.5917 4.91116C19.1358 4.3081 17.5754 3.99771 15.9995 3.99771C14.4236 3.99771 12.8632 4.3081 11.4073 4.91116C9.9514 5.51421 8.62853 6.39813 7.51423 7.51243C6.39993 8.62673 5.51601 9.9496 4.91296 11.4055C4.3099 12.8614 3.99951 14.4218 3.99951 15.9977Z" stroke="#6F6F6F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -353,7 +301,7 @@
                     리스트 추가
                   </a>
                 </div>
-              
+              </div>
               <div class="c_button d-flex justify-content-center align-items-center">
                 <button class="btn_complete btn btn-success">수정완료</button>
                 <a href="course_list.php" class="btn btn-danger b_danger_a">수정취소</a>
