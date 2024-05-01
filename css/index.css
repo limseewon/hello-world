@@ -6,6 +6,7 @@
 }
 .profit {
   position: relative;
+  /* color: red; */
 }
 .profit > div {
   margin-bottom: 300px;
@@ -48,12 +49,24 @@
   white-space: nowrap;
 }
 .chart-container {
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 4px;
 }
 .chart-wrapper {
-  gap: 30px;
+  gap: 100px;
+}
+
+.course_select {
+  margin-bottom: 30px;
+}
+
+.qna p {
+  white-space: nowrap;
+}
+
+.board_list {
+  white-space: nowrap;
 }

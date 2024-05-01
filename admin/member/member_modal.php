@@ -16,10 +16,10 @@ if(isset($_SESSION['UID'])){
 
 // $sql = "SELECT * FROM members where mid='{$mid}'";
 // $sql = "SELECT mb.*, c.coupon_name, c.coupon_price,c.coupon_ratio,uc.use_max_date, uc.status as coupon_status FROM members mb JOIN user_coupons uc ON mb.userid = uc.userid JOIN coupons c ON uc.couponid = c.cid WHERE mb.mid = '{$mid}'";
-$sql = "SELECT mb.*, c.coupon_name, c.coupon_price, c.coupon_ratio, uc.use_max_date, uc.status as coupon_status 
+$sql = "SELECT mb.*, c.cp_name, c.cp_price, c.cp_ratio, uc.use_max_date, uc.status as cp_status 
         FROM members mb 
         LEFT JOIN user_coupons uc ON mb.userid = uc.userid 
-        LEFT JOIN coupons c ON uc.couponid = c.cid 
+        LEFT JOIN coupons c ON uc.couponid = c.cpid 
         WHERE mb.mid = '{$mid}'";
 
 $result = $mysqli -> query($sql);
