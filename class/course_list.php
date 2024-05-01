@@ -450,7 +450,7 @@ while ($rs2 = $result2->fetch_object()) {
       include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       ?>
 
-
+<div>test</div>
       <script src="/helloworld/js/makeoption.js"></script>
       
       <script>
