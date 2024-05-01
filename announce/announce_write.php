@@ -147,7 +147,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
             <h2>질문 등록</h2>
-            <form action="announce_write_ok.php" method="POST">
+            <form action="announce_write_ok.php" method="POST" id="content_save">
+            <input type="hidden" name="contents" id="contents">
               <div class="regist">
               <div class="mb-3 d-flex title">
                 <label for="formGroupExampleInput" class="form-label">제목</label>
@@ -157,7 +158,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
               </div>
                 <div class="notice_create_form_div d-flex con">
                   <label for="summernote" class="form-label">내용</label>
-                  <div id="summernote"></div>
+                  <div id="summernote" ></div>
                 </div>
                 <div>
                   <div class="input-group d-flex file">
@@ -222,7 +223,32 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
     <script type="text/javascript"> 
       $(document).ready(function(){
         $('#summernote').summernote();
+
+        $('#content_save').on('submit', save);
+
+    function save() {
+      let markupStr = $('#summernote').summernote('code');
+      let contents = encodeURIComponent(markupStr);
+      $('#contents').val(contents);
+
+      // if(!$('#thumbnail').val()){
+      //   alert('대표 이미지를 등록하세요');       
+      //   return false;
+      // }
+      // if ($('#summernote').summernote('isEmpty')) {
+      //   alert('상품 설명을 입력하세요');
+      //   $('#summernote').summernote('focus');
+      //   return false;
+      // }
+      // if(!$('#product_image_id').val()){
+      //   alert('최소 하나의 추가 이미지를 등록하세요.');
+      //   return false;
+      // }
+
+    }
+
       });
+      
       </script>
 
     <script src="js/common.js"></script>

@@ -4,9 +4,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
 // 제목과 본문 내용, 파일 데이터를 받아옴
 $title = $_POST['title'];
-$content = $_POST['summernote'];
+$content  = rawurldecode($_POST['contents']);
 $name = $_POST['name']; // 이름 데이터 받아오기
-// $files = $_FILES['optionImage1'];
+$files = $_FILES['optionImage1'];
 
 // 작성자 정보 가져오기 (로그인한 사용자 정보 또는 기본값 설정)
 // $name = isset($_SESSION['username']) ? $_SESSION['username'] : '익명';
@@ -51,7 +51,9 @@ if ($result) {
         }
     }
 
-    echo "<script>alert('질문이 등록되었습니다.'); location.href='announce.php';</script>";
+    echo "<script>alert('질문이 등록되었습니다.'); 
+    // location.href='announce.php';
+    </script>";
 } else {
     echo "<script>alert('질문 등록에 실패했습니다.'); history.back();</script>";
 }
