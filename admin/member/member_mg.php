@@ -75,7 +75,6 @@ while ($rs = $result->fetch_object()) {
     <!-- <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" /> -->
     <link rel="stylesheet" href="/helloworld/css/common.css" />
     <link rel="stylesheet" href="/helloworld/css/member_mg.css" />
-    
   </head>
   <body>
     <div class="member_modal modal" tabindex="-1">
@@ -180,8 +179,6 @@ while ($rs = $result->fetch_object()) {
     
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
-
-
 ?>
             <h2>회원 관리</h2>
             <form action="" class="d-flex">
@@ -366,16 +363,17 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
                   dataType:'json',
                   error:function(){},
                   success:function(data){
-                      console.log(data.result);     
+                      console.log(data.result);
                       if(data.result=='ok'){
                           alert('해당 회원 정보를 삭제했습니다.'); 
-                          location.reload();   
+                          
                       } else {
                           alert('회원 정보를 삭제하지 못했습니다. 다시 시도해주세요.'); 
                       }
-                      
+                      location.reload();
                   }
-              });
+            });
+            
           })
           $('.modeal_sleep').click(function() {
             let statusText = $(this).text()
@@ -434,14 +432,14 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
                     let coupon =''
                     for (let rs of data.result) {
                       console.log(rs)
-                      if (rs.coupon_status == 1) {
+                      if (rs.cp_status == 1) {
                         coupon += `
                       <a href="#" class="list-group-item list-group-item-action" aria-current="true">
                         <div class="d-flex w-100 justify-content-between">
-                          <h5 class="mb-1">${rs.coupon_name}</h5>
+                          <h5 class="mb-1">${rs.cp_name}</h5>
                           <small>${rs.use_max_date}</small>
                         </div>
-                        <p class="mb-1">${rs.coupon_price}</small>
+                        <p class="mb-1">${rs.cp_price}</small>
                       </a>
                       `  
                       }

@@ -69,6 +69,11 @@ $noticeResult = $mysqli->query($noticeSql);
 while ($noticeRs = $noticeResult->fetch_object()) {
   $noticeArr[] = $noticeRs;
 }
+$qnaSql = "SELECT * FROM qna ORDER BY idx limit 5";
+$qnaResult = $mysqli->query($qnaSql);
+while ($qnaRs = $qnaResult->fetch_object()) {
+  $qnaArr[] = $qnaRs;
+}
 
 $coursesSql = "SELECT * FROM courses";
 $coursesResult = $mysqli->query($coursesSql);
@@ -108,13 +113,13 @@ $profitRs = $profitResult->fetch_object();
                 </div>
               </div>
               <div class="lecture_chart contents-box">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select course_select" aria-label="Default select example">
                   <option selected disabled>강의 선택</option>
                   <?php
                   if(isset($coursesArr)){
                     foreach($coursesArr as $ca){
                   ?>  
-                    <option><?=$ca->name?></option>
+                    <option value="<?=$ca->cid?>"><?=$ca->name?></option>
                   <?php
                   }}
                   ?>
@@ -139,8 +144,16 @@ $profitRs = $profitResult->fetch_object();
                     <?php
                     if (isset($noticeArr)){
                       foreach($noticeArr as $na) {
+                        $str = $na->title;
+                        $returnStr = '';
+                        $maxLength = 25;
+                        if (mb_strlen($str) >= $maxLength) {
+                          $returnStr = mb_substr($str, 0, $maxLength - 3) . '...';
+                        } else {
+                          $returnStr = $str;
+                        }
                     ?>
-                    <li><a href="<?=$na->nid?>"><?=$na->title?></a></li>
+                    <li class="board_list"><a href="<?=$na->nid?>"><?=$na->title?></a></li>
                     <?php
                     }}
                     ?>
@@ -150,10 +163,22 @@ $profitRs = $profitResult->fetch_object();
                 <div class="qna contents-box d-flex">
                   <p class="bold">질의응답</p>
                   <ul>
-                    <li><a href="">게시물</a></li>
-                    <li><a href="">게시물</a></li>
-                    <li><a href="">게시물</a></li>
-                    <li><a href="">게시물</a></li>
+                    <?php
+                    if (isset($qnaArr)){
+                      foreach($qnaArr as $qa) {
+                        $str = $qa->title;
+                        $returnStr = '';
+                        $maxLength = 25;
+                        if (mb_strlen($str) >= $maxLength) {
+                          $returnStr = mb_substr($str, 0, $maxLength - 3) . '...';
+                        } else {
+                          $returnStr = $str;
+                        }
+                    ?>
+                    <li class="board_list"><a href="<?=$qa->idx?>"><?=$returnStr?></a></li>
+                    <?php
+                    }}
+                    ?>
                   </ul>
                 </div>
               </div>
