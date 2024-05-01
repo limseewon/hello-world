@@ -16,7 +16,6 @@ courseSelect.change(function () {
       console.log('실패');
     },
     success: function (data) {
-      console.log(data.result);
       months = [];
       ordered = [];
       $.each(data.result, function (key, value) {

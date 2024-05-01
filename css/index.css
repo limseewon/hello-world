@@ -6,7 +6,7 @@
 }
 .profit {
   position: relative;
-  color: red !important;
+  /* color: red !important; */
 }
 .profit > div {
   margin-bottom: 300px;
