@@ -9,7 +9,6 @@ courseSelect.change(function () {
   };
   $.ajax({
     url: 'index_course.php',
-    async: false,
     type: 'POST',
     data: data,
     dataType: 'json',
@@ -18,11 +17,8 @@ courseSelect.change(function () {
     },
     success: function (data) {
       console.log(data.result);
-
       months = [];
       ordered = [];
-
-      // $.each() 함수를 사용하여 객체의 속성을 반복하고 키와 값을 추출합니다.
       $.each(data.result, function (key, value) {
         months.push(key);
         ordered.push(value);
@@ -56,7 +52,6 @@ courseSelect.change(function () {
           },
         ],
       };
-
       const barConfig = {
         type: 'bar',
         data: barData,
@@ -70,9 +65,11 @@ courseSelect.change(function () {
           },
         },
       };
-
       let ctx = document.getElementById('bar-chart');
-      const stackedBar = new Chart(ctx, barConfig);
+      if (window.stackedBar !== undefined) {
+        window.stackedBar.destroy();
+      }
+      window.stackedBar = new Chart(ctx, barConfig);
 
       const pidData = {
         labels: ['Red', 'Blue', 'Yellow'],
@@ -85,7 +82,6 @@ courseSelect.change(function () {
           },
         ],
       };
-
       const pidConfig = {
         type: 'doughnut',
         data: pidData,
@@ -94,7 +90,6 @@ courseSelect.change(function () {
           cutout: '0%',
         },
       };
-
       const myPieChart = new Chart(document.getElementById('pie-chart'), pidConfig);
     },
   });
