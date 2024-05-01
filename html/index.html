@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HelloWorld</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"
+    />
+    <!-- normalize css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!--bootstrap css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/css/bootstrap.min.css"
+      integrity="sha512-Z/def5z5u2aR89OuzYcxmDJ0Bnd5V1cKqBEbvLOiUNWdg9PQeXVvXLI90SE4QOHGlfLqUnDNVAYyZi8UwUTmWQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- tabler-icons  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+
+    <!-- jquery ui css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/black-tie/jquery-ui.min.css"
+      integrity="sha512-+Z63RrG0zPf5kR9rHp9NlTMM29nxf02r1tkbfwTRGaHir2Bsh4u8A79PiUKkJq5V5QdugkL+KPfISvl67adC+Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- 스포카 -->
+    <!-- <link
+      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
+      rel="stylesheet"
+      type="text/css"
+    /> -->
+
+    <link rel="stylesheet" href="css/jqueryui/jquery-ui.theme.min.css" />
+    <link rel="stylesheet" href="css/common.css" />
+
+    <style>
+      .left_top > div {
+        width: 331px;
+        height: 138px;
+        margin-bottom: 30px;
+        margin-right: 30px;
+      }
+      .profit {
+        position: relative;
+      }
+      .profit > div {
+        margin-bottom: 30px;
+      }
+      .profit > span {
+        margin: 0 auto;
+      }
+      .lecture_chart {
+        width: 1219px;
+        height: 474px;
+      }
+      .board div {
+        width: 448px;
+        height: 152px;
+      }
+      .sale {
+        width: 1102px;
+        height: 334px;
+      }
+
+      .board {
+        margin: 0 30px 30px 0;
+      }
+      .announce {
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+      .qna {
+        gap: 30px;
+      }
+      .form-select {
+        width: 500px;
+        height: 60px;
+      }
+      .settlement {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="main_wrapper d-flex">
+      <header>
+        <section class="headerContainer">
+          <div class="d-flex justify-content-center" id="logo">
+            <h1>logo</h1>
+            <img src="./img/Group 50.png" alt="logo.jpg" />
+          </div>
+          <div class="gnb">
+            <ul class="d-flex flex-column">
+              <li>
+                <a href="index.html">
+                  <span class="material-symbols-outlined"> dashboard </span>
+                  <span>대시 보드</span>
+                </a>
+              </li>
+              <li>
+                <a href="/announce.html">
+                  <span class="material-symbols-outlined"> assignment </span>
+                  <span>공지 사항</span>
+                </a>
+              </li>
+              <li>
+                <a href="/class/course_list.html">
+                  <span class="material-symbols-outlined"> live_tv </span>
+                  <span>강의 관리</span>
+                </a>
+              </li>
+              <li>
+                <a href="/member_mg.html">
+                  <span class="material-symbols-outlined"> face </span>
+                  <span>회원 관리</span>
+                </a>
+              </li>
+              <li>
+                <a href="/coupon/coupon_list.html">
+                  <span class="material-symbols-outlined"> local_atm </span>
+                  <span>쿠폰 관리</span>
+                </a>
+              </li>
+              <li>
+                <a href="/performance.html">
+                  <span class="material-symbols-outlined"> bar_chart </span>
+                  <span>성과 분석</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="material-symbols-outlined"> help </span>
+                  <span>질의 응답</span>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <span class="material-symbols-outlined"> logout </span>
+                  <span>Logout</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </header>
+      <section class="content_wrapper">
+        <div class="top_section"><h3>test</h3></div>
+        <div class="main">
+          <div class="main_container">
+            <h2>대시 보드</h2>
+            <div class="main_top d-flex">
+              <div class="left_top">
+                <div class="profit contents-box d-flex align-items-center justify-content-between">
+                  <span class="bold">4월달 수익</span>
+                  <span>2,564,000 원</span>
+                  <span>화살표</span>
+                  <span class="settlement">정산기간 2024년 4월 1일 ~ 2024년 4월 30일</span>
+                </div>
+                <div class="student contents-box d-flex align-items-center justify-content-between">
+                  <span class="bold">총 수강생 수</span>
+                  <span>456명</span>
+                  <span>화살표</span>
+                </div>
+                <div class="evaluation contents-box d-flex align-items-center justify-content-between">
+                  <span class="bold">평균 수강만족도</span>
+                  <span>★★★★★</span>
+                  <span>4.26</span>
+                </div>
+              </div>
+              <div class="lecture_chart contents-box">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Open this select menu</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+                <div class="d-flex">
+                  <div class="bold">수강신청수</div>
+                  <div class="bold">수강진도율</div>
+                </div>
+              </div>
+            </div>
+            <div class="main_bottom d-flex">
+              <div class="board">
+                <div class="announce contents-box d-flex">
+                  <p class="bold">공지사항</p>
+                  <ul>
+                    <li><a href="">게시물</a></li>
+                    <li><a href="">게시물</a></li>
+                    <li><a href="">게시물</a></li>
+                    <li><a href="">게시물</a></li>
+                  </ul>
+                </div>
+
+                <div class="qna contents-box d-flex">
+                  <p class="bold">질의응답</p>
+                  <ul>
+                    <li><a href="">게시물</a></li>
+                    <li><a href="">게시물</a></li>
+                    <li><a href="">게시물</a></li>
+                    <li><a href="">게시물</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="sale contents-box d-flex">
+                <div class="category">
+                  <p class="bold">분야별 판매량</p>
+                  <div class="chart"></div>
+                </div>
+                <div class="language">
+                  <p class="bold">언어별 판매량</p>
+                  <div class="chart"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+    <!-- jquery -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+      integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- jqueryui js -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
+      integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- bootstrap js -->
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"
+      integrity="sha512-ToL6UYWePxjhDQKNioSi4AyJ5KkRxY+F1+Fi7Jgh0Hp5Kk2/s8FD7zusJDdonfe5B00Qw+B8taXxF6CFLnqNCw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- modernizr js -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="js/common.js"></script>
+  </body>
+  <script>
+    let documentHeight = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
+    document.querySelector('header').style.height = documentHeight + 'px';
+  </script>
+</html>

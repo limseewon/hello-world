@@ -1,0 +1,49 @@
+form {
+  gap: 390px;
+  margin-bottom: 50px;
+}
+.filter {
+  gap: 30px;
+}
+
+.lecture,
+.progress_rate,
+.period,
+.search_filter,
+#search_member,
+.search_btn {
+  height: 54px;
+}
+.lecture {
+  width: 319px;
+}
+.progress_rate {
+  width: 111px;
+}
+.period,
+.search_filter {
+  width: 134px;
+}
+#search_member {
+  width: 360px;
+}
+.search_btn {
+  width: 62px;
+}
+.search {
+  gap: 5px;
+}
+
+#member_cb {
+  margin-right: 10px;
+}
+.msg_btn {
+  line-height: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+}
+
+tbody tr:hover {
+  cursor: pointer;
+}
