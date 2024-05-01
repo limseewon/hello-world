@@ -1,7 +1,6 @@
 <?php
 session_start();
-// include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,8 +53,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
     /> -->
 
     <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
-    <link rel="stylesheet" href="css/common.css" />
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="/helloworld/css/common.css" />
+    <link rel="stylesheet" href="/helloworld/css/index.css" />
     <style>
 
         .regist-btn,
@@ -136,45 +135,55 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
         .form-label{
           margin-top: 11px;
         }
+        .name-box {
+          width: 200px;
+          height: 40px;
+          margin-left: 20px;
+        }
     </style>
   </head>
   <body>
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
-            <h2>게시글 등록</h2>
-            <div class="regist">
+            <h2>질문 등록</h2>
+            <form action="announce_write_ok.php" method="POST">
+              <div class="regist">
               <div class="mb-3 d-flex title">
-                <label for="formGroupExampleInput" class="form-label" >제목</label>
-                <input type="text" class="form-control title-box" name="title" id="formGroupExampleInput title" placeholder="제목을 입력하시오." required>
+                <label for="formGroupExampleInput" class="form-label">제목</label>
+                <input type="text" class="form-control title-box" name="title" id="title" placeholder="제목을 입력하시오." required>
+                <label for="formGroupExampleInput">이름</label>
+                <input type="text" class="form-control name-box" name="name" id="name" placeholder="이름을 입력하시오." required>
               </div>
-              <div class="notice_create_form_div d-flex con">
-                <label for="summernote" class="form-label">내용</label>
-                <div id="summernote"></div>
-              </div>
-              <div>
-                <div class="input-group d-flex file">
-                  <div class="add d-flex">
-                    <label for="formGroupExampleInput" class="form-label">첨부파일</label>
-                    <table class="table_1">
-                      <tbody id="option1">
-                        <tr id="optionTr1">
-                          <td>
-                            <input type="file" class="form-control file-box" id="inputGroupFile04 file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="optionImage1[]">
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                <div class="notice_create_form_div d-flex con">
+                  <label for="summernote" class="form-label">내용</label>
+                  <div id="summernote"></div>
                   </div>
-                  <button type="button" class="btn btn-primary optAddBtn">파일 추가</button>
-                  <div class="right-button">
-                    <button type="submit" class="btn btn-success regist-btn">등록</button>
-                    <button type="button" class="btn btn-danger cancle-btn">취소</button>
+                </div>
+                <div>
+                  <div class="input-group d-flex file">
+                    <div class="add d-flex">
+                      <label for="formGroupExampleInput" class="form-label">첨부파일</label>
+                      <table class="table_1">
+                        <tbody id="option1">
+                          <tr id="optionTr1">
+                            <td>
+                              <input type="file" class="form-control file-box" id="inputGroupFile04 file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="optionImage1[]">
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <button type="button" class="btn btn-primary optAddBtn">파일 추가</button>
+                    <div class="right-button">
+                      <button type="submit" class="btn btn-success regist-btn">등록</button>
+                      <button type="button" class="btn btn-danger cancle-btn">취소</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </form>
+ 
           <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
 ?>

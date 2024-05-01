@@ -1,7 +1,20 @@
 <?php
 session_start();
-// include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
+
+// 공지사항 ID 받아오기
+$notice_id = $_GET['id'];
+
+// 조회수 증가
+$sql = "UPDATE notice SET view = view + 1 WHERE idx = $notice_id";
+$result = $mysqli->query($sql);
+
+
+// 공지사항 데이터 가져오기
+$sql = "SELECT * FROM notice WHERE idx = $notice_id";
+$result = $mysqli->query($sql);
+$row = $result->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,11 +54,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    
-    <!-- summernote -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css"
-    integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- 스포카 -->
     <!-- <link
       href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
@@ -54,28 +62,23 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
     /> -->
 
     <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
-    <link rel="stylesheet" href="css/common.css" />
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="/helloworld/css/common.css" />
+    <link rel="stylesheet" href="/helloworld/css/index.css" />
     <style>
-
-        .regist-btn,
-         .cancle-btn{
+        .contents-box{
+            width: 100%;
+            height: auto;
+        }
+        .btn {
             width: 105px;
             height: 48px;
-        }
-        .note-btn{
-          width: 69px;
-          height: 35px;
         }
         .notice-btn{
             padding-top: 65px;
             justify-content: space-between;
         }
-        .note-editing-area{
-          height: 300px;
-        }
         .title-box{
-          width: 1160px;
+          width: 883px;
           height: 40px;
         }
         .con-box{
@@ -89,22 +92,23 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
           height: 40px;
         }
         .title{
-          gap: 50px;
+          gap: 70px;
           align-items: center;
           padding-left: 60px;
           padding-top: 26px;
         }
         .con{
-          gap: 50px;
-          padding-left: 60px;
-          padding-top: 35px;
-        }
-        .file{ 
-          gap: 20px ;
+          gap: 100px;
           align-items: center;
           padding-left: 60px;
           padding-top: 35px;
         }
+        .file{ 
+          gap: 65px;
+          padding-left: 60px;
+          padding-top: 35px;
+        }
+
         .regist{
           /* width: 100%; */
           height: auto;
@@ -112,69 +116,111 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
           padding: 20px;
           border: 1px solid #ced4da;
         }
-        .btn-primary{
-          width: 106px;
-          height: 40px;
-          border-radius: 0%;
+        .btn{
+          width: 100px;
+          height: 35px;
         }
         .right-button{
-          position: absolute;
-          right: 230px;
-          /* padding-left: 245px; */
+          padding-left: 250px;
         }
-        .form-control{
-          width: 500px;
+        .comments{
+          padding-left: 60px;
+          align-items: center;
         }
-        .add{
-          gap: 20px;
+        .lock{
+        align-items: center;
+        gap: 10px;
+      }
+      .question{
+        padding-right: 550px;
+      }
+      .img{
+        padding-left: 200px;
+      }
+      .reply{
+        padding-right: 1270px;
+      }
+        .review .btn{
+          white-space: nowrap;
+        }  
+        .form-control {
+            display: block;
+            width: 100%;
+            height: 45px;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: .15s ease-in-out .15s ease-in-out;
+        } 
+        .tt{
+            padding-right:30px;
         }
-        #option1{
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
+        .pos{
+            right: 100px;
+            position: absolute;
+            align-items: center;
+            gap:45px;
         }
-        .form-label{
-          margin-top: 11px;
+        .edit{
+            padding-right: 10px;
         }
+
     </style>
   </head>
   <body>
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
-            <h2>게시글 등록</h2>
+            <h2>공지 사항</h2>
             <div class="regist">
-              <div class="mb-3 d-flex title">
-                <label for="formGroupExampleInput" class="form-label" >제목</label>
-                <input type="text" class="form-control title-box" name="title" id="formGroupExampleInput title" placeholder="제목을 입력하시오." required>
-              </div>
-              <div class="notice_create_form_div d-flex con">
-                <label for="summernote" class="form-label">내용</label>
-                <div id="summernote"></div>
-              </div>
-              <div>
-                <div class="input-group d-flex file">
-                  <div class="add d-flex">
-                    <label for="formGroupExampleInput" class="form-label">첨부파일</label>
-                    <table class="table_1">
-                      <tbody id="option1">
-                        <tr id="optionTr1">
-                          <td>
-                            <input type="file" class="form-control file-box" id="inputGroupFile04 file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="optionImage1[]">
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <button type="button" class="btn btn-primary optAddBtn">파일 추가</button>
-                  <div class="right-button">
-                    <button type="submit" class="btn btn-success regist-btn">등록</button>
-                    <button type="button" class="btn btn-danger cancle-btn">취소</button>
-                  </div>
-                </div>
-              </div>
+        <div class="mb-3 d-flex title">
+            <p class="tt">제목</p>
+            <p class="question"><?= $row['title']; ?></p>
+            <div class="pos d-flex">
+                <p><?= $row['name']; ?>
+                <!-- <span class="material-symbols-outlined">lock</span> -->
+                </p>
+                <p><?= $row['regdate']; ?></p>
+                <p>
+                  <a href="qna_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
+                        <span class="material-symbols-outlined">
+                            border_color
+                        </span>
+                    </a>
+                    <a href="qna_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                        <span class="material-symbols-outlined">delete</span>
+                    </a>
+                </p>
             </div>
+        </div>
+        <div class="mb-3 d-flex con">
+            <p>내용</p>
+            <?= $row['content']; ?>
+        </div>
+        <!-- 첨부 파일 출력 부분 -->
+        <div class="d-flex file">
+            <p>첨부 파일</p>
+            <p>logo.png</p>
+            <img src="" alt="" class="img"> 
+        </div>
+        </div>
+        <div class="notice-btn d-flex">
+          <div class="left-button">   
+            <button type="button" class="btn btn-primary">이전</button>
+            <button type="button" class="btn btn-primary">다음</button>
           </div>
+          <div class="right-button">
+            <button type="submit" class="btn btn-success edit-btn">수정</button>
+            <button type="button" class="btn btn-danger cancle-btn">닫기</button>
+          </div>
+        </div>
+          
           <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
 ?>
@@ -207,16 +253,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       referrerpolicy="no-referrer"
     ></script>
 
-    <!-- summernote modernizr js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js"
-    integrity="sha512-6F1RVfnxCprKJmfulcxxym1Dar5FsT/V2jiEUvABiaEiFWoQ8yHvqRM/Slf0qJKiwin6IDQucjXuolCfCKnaJQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript"> 
-      $(document).ready(function(){
-        $('#summernote').summernote();
-      });
-      </script>
-
     <script src="js/common.js"></script>
   </body>
   <script>
@@ -228,36 +264,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       document.documentElement.offsetHeight
     );
     document.querySelector('header').style.height = documentHeight + 'px';
-    $("#summernote").summernote({
-      height: 150,
-      placeholder: '공지사항 내용을 입력해 주세요',
-      resize: false,
-      lang: "ko-KR",
-      disableResizeEditor: true,
-    });
-    $(".notice_create_form").submit(function () {
-      let markupStr = $("#summernote").summernote("code");
-      // let content1 = stripHtml(markupStr);
-      let content1 = markupStr.replace('<p>','').replace('</p>','');
-      let content = encodeURIComponent(content1);
-      $(".content").val(content);
-      console.log(content);
 
-      if ($("#summernote").summernote("isEmpty")) {
-        alert("상세설명을 입력하세요");
-        return false;
-      }
-    });
     $('.cancle-btn').click(function(e){
       e.preventDefault();
-      if (confirm('등록 취소하시겠습니까? :0')){
-        history.back();
-      }
-    });
-    $('.optAddBtn').click(function(){
-      let addHtml = $('#optionTr1').html();
-          addHtml =  `<tr>${addHtml}</tr>`;
-      $('#option1').append(addHtml);
+      history.back();
+      // if (confirm('닫으시겠습니까? :0')){
+      //   history.back();
+      // }
     });
   </script>
 </html>
