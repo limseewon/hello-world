@@ -218,16 +218,7 @@ CREATE TABLE `courses` (
 -- 테이블의 덤프 데이터 `courses`
 --
 
-INSERT INTO `courses` (`cid`, `cate`, `name`, `price_status`, `price`, `level`, `due_status`, `due`, `act`, `content`, `thumbnail`, `course_file`, `course_file_name`) VALUES
-(9, '웹/html/css', '아무개', '0', 0, '중급', '0', '0', '0', '', '/helloworld/img/class/20240429101058660773.png'),
-(10, '웹/html/css', '아무개', '0', 0, '중급', '0', '0', '활성', '', '/helloworld/img/class/20240429101058660773.png'),
-(11, '웹/html/css', '아무개', '무료', 0, '중급', '무제한', '무제한', '비활성', '', '/helloworld/img/class/20240429101058660773.png'),
-(21, '웹/html/css', '아무개', '유료', 0, '중급', '무제한', '무제한', '비활성', '', '/helloworld/img/class/20240429103806137610.png'),
-(22, '웹/html/css', 'ㄴㅁㅇㄹㄴㅇㅁㄹ', '유료', 100000, '중급', '제한', '9개월', '활성', '', '/helloworld/img/class/20240429104229164908.png'),
-(25, '웹/html/css', '테스트12', '유료', 100000, '중급', '제한', '9개월', '활성', '', '/helloworld/img/class/20240429104734675785.png'),
-(26, '웹/html/css', 'ㅇㄴㅁㄻㄴㅇ', '유료', 0, '중급', '제한', '6개월', '활성', '', '/helloworld/img/class/20240429104759979077.png'),
-(37, '웹/html/css', 'sdff', '무료', 100000, '중급', '무제한', '6개월', '활성', '', '/helloworld/img/class/20240430042751442016.jpg'),
-(38, '웹/html/css', 'sdggds', '무료', 0, '초급', '무제한', '무제한', '활성', '', '/helloworld/img/class/20240430043206434713.png'),
+INSERT INTO `courses` (`cid`, `cate`, `name`, `price_status`, `price`, `level`, `due_status`, `due`, `act`, `content`, `thumbnail`) VALUES
 (39, '프로그래밍', '파이썬 입문', '유료', 20000, '초급', '무제한', '무제한', '활성', '파이썬 프로그래밍 언어의 기초를 배웁니다. 변수, 조건문, 반복문 등의 기본 문법을 익힙니다.', '/helloworld/img/class/20240430043206434713.png'),
 (40, '디자인', '포토샵 마스터', '유료', 35000, '중급', '무제한', '무제한', '활성', '포토샵 도구 및 기능을 활용하여 이미지 편집 및 디자인 기술을 익힙니다.', '/helloworld/img/class/20240430043206434714.png'),
 (41, '비즈니스', '마케팅 전략', '유료', 45000, '중급', '무제한', '무제한', '활성', '시장 분석, 타겟팅, 브랜딩 등 성공적인 마케팅 전략을 수립하는 방법을 배웁니다.', '/helloworld/img/class/20240430043206434715.png'),
@@ -384,7 +375,7 @@ INSERT INTO `members` (`mid`, `userid`, `email`, `username`, `passwd`, `recent_i
 --
 
 CREATE TABLE `notice` (
-  `nid` int(11) NOT NULL,
+  `idx` int(11) NOT NULL,
   `title` varchar(30) NOT NULL,
   `name` text NOT NULL,
   `view` varchar(1000) NOT NULL,
