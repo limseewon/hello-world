@@ -263,11 +263,12 @@
                 </a>
               </div>
             </div>
-        </form>
             <div class="c_button d-flex justify-content-center align-items-center">
               <button class="btn_complete btn btn-success">등록완료</button>
               <button class="btn btn-danger b_danger_a">등록취소</button>
             </div>
+        </form>
+            
           </form>
         </section>
       </div>
