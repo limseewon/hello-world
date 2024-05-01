@@ -21,10 +21,13 @@
     $rs22 = $result22->fetch_object();
     $cate2 =  $rs22->name;
 
-    $query33 = "SELECT name FROM category WHERE cateid='".$cate3." '";
-    $result33 = $mysqli->query($query33); //쿼리실행결과를 $result 할당
-    $rs33 = $result33->fetch_object();
-    $cate3 =  $rs33->name;
+    if(isset($cate3) &&  $cate3 !== ''){
+
+      $query33 = "SELECT name FROM category WHERE cateid='".$cate3." '";
+      $result33 = $mysqli->query($query33); //쿼리실행결과를 $result 할당
+      $rs33 = $result33->fetch_object();
+      $cate3 =  $rs33->name;
+    }
 
     $cate = $cate1.'/'.$cate2.'/'.$cate3;
     $name = $_POST['name'];
@@ -36,10 +39,15 @@
     $act = $_POST['act'];
     $content = rawurldecode($_POST['content']);
     $youtube_name = $_POST['youtube_name']?? '';
-    $course_file = $_POST['course_file']?? '';
-    $course_file_name = $_POST['course_file_name']?? '';
+    $course_file = $_FILES['course_file']?? [];
+    
+    if($_POST['course_file_name']){
+
+      $course_file_name = implode(",", $_POST['course_file_name']);
+    }
     // $progress = $_POST['progress']??0;
 
+    // print_r($course_file); 
     
     //파일업로드
     if($_FILES['thumbnail']['name']){
@@ -77,8 +85,45 @@
         
     }
 
+
+    if($_FILES['course_file']['name']){
+      for($i = 0; $i<count($_FILES['course_file']['name']);$i++){
+
+        if($_FILES['course_file']['size'][$i]> 10240000){
+          echo "<script>
+            alert('10MB 이하만 첨부할 수 있습니다.');    
+            history.back();      
+          </script>";
+          exit;
+        } 
+
+  
+        $save_dir = $_SERVER['DOCUMENT_ROOT']."/helloworld/img/classfile/";
+        $filename = $_FILES['course_file']['name'][$i]; //insta.jpg
+        $ext = pathinfo($filename, PATHINFO_EXTENSION); //jpg
+        $newfilename2 = date("YmdHis").substr(rand(), 0,6); //20238171184015
+        $newfilename = $newfilename2.".".$ext; //20238171184015.jpg
+  
+        if(move_uploaded_file($_FILES['course_file']['tmp_name'][$i], $save_dir.$newfilename)){  
+          $file_name[] = "/helloworld/img/classfile/".$newfilename;
+          $file_names = implode(",", $file_name);
+
+        } else{
+          echo "<script>
+            alert('파일 등록 실패!');    
+           // history.back();            
+          </script>";
+        }
+
+
+      }
+    }
+
+
+
+
     $sql = "INSERT INTO courses (cate, name, price_status , price, level, due_status, due, act, content, thumbnail, course_file, course_file_name) 
-    VALUES ('{$cate}','{$name}','{$price_status}','{$price}','{$level}','{$due_status}','{$due}','{$act}','{$content}','{$thumbnail}','{$course_file}','{$course_file_name}')";
+    VALUES ('{$cate}','{$name}','{$price_status}','{$price}','{$level}','{$due_status}','{$due}','{$act}','{$content}','{$thumbnail}','{$file_names}','{$course_file_name}')";
 
 
     $result = $mysqli->query($sql);
@@ -126,32 +171,35 @@
               </script>";
             }
           }
-            $sql1 = "INSERT INTO lecture (cid, l_idx, youtube_thumb, youtube_name, youtube_url) VALUES ({$cid}, {$i}, '{$upload_youtube_thumb[$i]}', '{$youtube_name[$i]}', '{$youtube_url[$i]}')";
-            // var_dump($sql1);
-            $result2 = $mysqli-> query($sql1);
+            $sql1 = "INSERT INTO lecture (cid, youtube_thumb, youtube_name, youtube_url) VALUES ({$cid}, '{$upload_youtube_thumb[$i]}', '{$youtube_name[$i]}', '{$youtube_url[$i]}')";
 
+
+            $mysqli-> query($sql1);
           
           }
 
       }
 
 
-      $mysqli->commit();//디비에 커밋한다.
+      $mysqli->commit();//디비에 커밋한다.  
 
       echo "<script>
       alert('강의 등록 완료!');
-    location.href='/helloworld/class/course_list.php';</script>";
-      }
+   location.href='/helloworld/class/course_list.php';</script>";
+    }
     } catch(Exception $e){
       $mysqli->rollback();//저장한 테이블이 있다면 롤백한다.
       echo "<script>
       alert('강의 등록 실패');
-      history.back();
+     history.back();
       </script>";
       exit;
     }
-?>
 
+
+
+    
+?>
 
 
 
