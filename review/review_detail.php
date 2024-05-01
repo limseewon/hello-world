@@ -14,6 +14,18 @@ $result = $mysqli->query($sql);
 $sql = "SELECT * FROM review WHERE idx = '$review_id'";
 $result = $mysqli->query($sql);
 $row = $result->fetch_assoc();
+
+// 이전 공지사항 ID 가져오기
+$sql_prev = "SELECT MAX(idx) AS prev_id FROM review WHERE idx < $review_id";
+$result_prev = $mysqli->query($sql_prev);
+$row_prev = $result_prev->fetch_assoc();
+$prev_id = $row_prev['prev_id'];
+
+// 다음 공지사항 ID 가져오기
+$sql_next = "SELECT MIN(idx) AS next_id FROM review WHERE idx > $review_id";
+$result_next = $mysqli->query($sql_next);
+$row_next = $result_next->fetch_assoc();
+$next_id = $row_next['next_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -188,7 +200,9 @@ $row = $result->fetch_assoc();
             <p class="tt">제목</p>
             <p class="question"><?= $row['title']; ?></p>
             <div class="pos d-flex">
-                <p class="lock d-flex"><?= $row['name']; ?></p>
+                <p class="lock d-flex">작성자: <?= $row['name']; ?></p>
+                <p>조회수: <?= $row['view'];?></p>
+                <p>평점: <?= $row['hit'];?>/5</p>
                 <!-- <span class="material-symbols-outlined">lock</span> -->
                 <p><?= $row['date']; ?></p>
                 <p>
@@ -200,21 +214,31 @@ $row = $result->fetch_assoc();
         </div>
         <div class="mb-3 d-flex con">
             <p>내용</p>
-            <p><?= $row['content']; ?></p>
+            <?= $row['content']; ?>
         </div>
         <!-- 첨부 파일 출력 부분 -->
-        <!-- 댓글 작성 폼 -->
-        <!-- <div>
-            <form method="post" class="wrap justify-content-start align-item-center review"></form>
-            <input type="hidden" name="post_id" value="168">
-            <input type="hidden" name="parent_comment_id" value="0">
-            <input type="hidden" name="depth" value="0">
-            <img src="" alt="">
-            <textarea name="comment" class="form-control" placeholder="내용을 추가하시오."></textarea>
-            <button type="submit" class="btn b_text01">댓글 쓰기</button>
-        </div> -->
-    </div>
-    <button type="submit" class="btn btn-danger cancle-btn">닫기</button>
+        <div class="d-flex file">
+            <p>첨부 파일</p>
+            <!-- <p><?= $row['file']; ?></p> -->
+        </div>
+        <div class="notice-btn d-flex">
+          <div class="left-button">
+            <?php if ($prev_id !== null) : ?>
+              <a href="review_detail.php?id=<?= $prev_id; ?>" class="btn btn-primary">이전</a>
+            <?php else : ?>
+              <a href="#" class="btn btn-primary disabled">이전</a>
+            <?php endif; ?>
+
+            <?php if ($next_id !== null) : ?>
+              <a href="review_detail.php?id=<?= $next_id; ?>" class="btn btn-primary">다음</a>
+            <?php else : ?>
+              <a href="#" class="btn btn-primary disabled">다음</a>
+            <?php endif; ?>
+          </div>
+          <div class="right-button">
+            <button type="button" class="btn btn-danger cancle-btn">닫기</button>
+          </div>
+        </div>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php'; ?>
     <!-- 기존 script 태그 내용 -->
     <script
@@ -253,7 +277,7 @@ $row = $result->fetch_assoc();
     });
     $('.cancle-btn').click(function(e){
       e.preventDefault();
-        history.back();
+      location.href = 'review.php';
     });
     let documentHeight = Math.max(
       document.body.scrollHeight,

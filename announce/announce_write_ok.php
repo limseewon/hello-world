@@ -6,7 +6,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 $title = $_POST['title'];
 $content  = rawurldecode($_POST['contents']);
 $name = $_POST['name']; // 이름 데이터 받아오기
-$files = $_FILES['optionImage1'];
+// $files = $_FILES['optionImage1'];
 
 // 작성자 정보 가져오기 (로그인한 사용자 정보 또는 기본값 설정)
 // $name = isset($_SESSION['username']) ? $_SESSION['username'] : '익명';
@@ -36,23 +36,23 @@ if ($result) {
     }
 
     // 파일 업로드 처리
-    foreach ($files['name'] as $key => $value) {
-        $file_name = $files['name'][$key];
-        $file_tmp = $files['tmp_name'][$key];
-        $file_error = $files['error'][$key];
+    // foreach ($files['name'] as $key => $value) {
+    //     $file_name = $files['name'][$key];
+    //     $file_tmp = $files['tmp_name'][$key];
+    //     $file_error = $files['error'][$key];
 
-        if ($file_error == 0) {
-            $file_destination = $upload_dir . $notice_id . '_' . $file_name;
-            if (move_uploaded_file($file_tmp, $file_destination)) {
-                // 파일 정보 데이터베이스에 저장
-                $sql_file = "INSERT INTO notice_files (qna_id, file_name, file_path) VALUES ('$notice_id', '$file_name', '$file_destination')";
-                $mysqli->query($sql_file);
-            }
-        }
-    }
+    //     if ($file_error == 0) {
+    //         $file_destination = $upload_dir . $notice_id . '_' . $file_name;
+    //         if (move_uploaded_file($file_tmp, $file_destination)) {
+    //             // 파일 정보 데이터베이스에 저장
+    //             $sql_file = "INSERT INTO notice_files (qna_id, file_name, file_path) VALUES ('$notice_id', '$file_name', '$file_destination')";
+    //             $mysqli->query($sql_file);
+    //         }
+    //     }
+    // }
 
     echo "<script>alert('질문이 등록되었습니다.'); 
-    // location.href='announce.php';
+    location.href='announce.php';
     </script>";
 } else {
     echo "<script>alert('질문 등록에 실패했습니다.'); history.back();</script>";

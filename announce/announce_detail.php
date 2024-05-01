@@ -29,7 +29,6 @@ $row_next = $result_next->fetch_assoc();
 $next_id = $row_next['next_id'];
 ?>
 
-?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -197,7 +196,8 @@ $next_id = $row_next['next_id'];
             <p class="tt">제목</p>
             <p class="question"><?= $row['title']; ?></p>
             <div class="pos d-flex">
-                <p><?= $row['name']; ?>
+                <p>작성자: <?= $row['name']; ?>
+                <p>조회수: <?= $row['view'];?></p>
                 <!-- <span class="material-symbols-outlined">lock</span> -->
                 </p>
                 <p><?= $row['regdate']; ?></p>
@@ -215,21 +215,28 @@ $next_id = $row_next['next_id'];
         </div>
         <div class="mb-3 d-flex con">
             <p>내용</p>
-            <p><?= $row['content']; ?></p>
+            <?= $row['content']; ?>
         </div>
         <!-- 첨부 파일 출력 부분 -->
         <div class="d-flex file">
             <p>첨부 파일</p>
             <p><?= $row['file']; ?></p>
         </div>
-        </div>
         <div class="notice-btn d-flex">
-          <div class="left-button">   
-          <a href="announce_detail.php?id=<?= $prev_id; ?>" class="btn btn-primary">이전</a>
-            <a href="announce_detail.php?id=<?= $next_id; ?>" class="btn btn-primary">다음</a>
+          <div class="left-button">
+            <?php if ($prev_id !== null) : ?>
+              <a href="announce_detail.php?id=<?= $prev_id; ?>" class="btn btn-primary">이전</a>
+            <?php else : ?>
+              <a href="#" class="btn btn-primary disabled">이전</a>
+            <?php endif; ?>
+
+            <?php if ($next_id !== null) : ?>
+              <a href="announce_detail.php?id=<?= $next_id; ?>" class="btn btn-primary">다음</a>
+            <?php else : ?>
+              <a href="#" class="btn btn-primary disabled">다음</a>
+            <?php endif; ?>
           </div>
           <div class="right-button">
-            <!-- <button type="submit" class="btn btn-success edit-btn">수정</button> -->
             <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');" class="btn btn-success edit-btn">수정</a>
             <button type="button" class="btn btn-danger cancle-btn">닫기</button>
           </div>
@@ -281,10 +288,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
 
     $('.cancle-btn').click(function(e){
       e.preventDefault();
-      history.back();
-      // if (confirm('닫으시겠습니까? :0')){
-      //   history.back();
-      // }
+      location.href = 'announce.php';
     });
   </script>
 </html>

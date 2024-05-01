@@ -158,7 +158,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
               </div>
                 <div class="notice_create_form_div d-flex con">
                   <label for="summernote" class="form-label">내용</label>
-                  <div id="summernote" ></div>
+                  <div id="summernote"></div>
                 </div>
                 <div>
                   <div class="input-group d-flex file">

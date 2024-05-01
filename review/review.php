@@ -47,7 +47,18 @@ if ($keyword) {
 $sql = "SELECT * FROM review $search_where ORDER BY idx DESC LIMIT 0, 10";
 $result = $mysqli->query($sql);
 
+// 조회수 옵션 가져오기
+$view_option = isset($_GET['view_option']) ? $_GET['view_option'] : '';
 
+// 조회수에 따른 정렬 쿼리
+$order_by = '';
+if ($view_option == '1') {
+    $order_by = 'ORDER BY view DESC'; // 조회수 많은 순
+} elseif ($view_option == '2') {
+    $order_by = 'ORDER BY view ASC'; // 조회수 적은 순
+} else {
+    $order_by = 'ORDER BY idx DESC'; // 기본 정렬
+}
 
 ?>
 <!DOCTYPE html>

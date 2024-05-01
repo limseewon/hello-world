@@ -3,10 +3,10 @@ session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 $notice_id = $_GET['id'];
 
-// 질문 삭제
+// 수정할 공지사항 데이터 가져오기
 $sql = "SELECT * FROM notice WHERE idx = $notice_id";
 $result = $mysqli->query($sql);
-$sqlarr = $result -> fetch_object();
+$row = $result->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -154,16 +154,18 @@ $sqlarr = $result -> fetch_object();
     ?>
             <h2>공지사항 수정</h2>
             <form action="announce_write_ok.php" method="POST">
+            <input type="hidden" name="notice_id" value="<?= $notice_id ?>">
+            <input type="hidden" name="contents" id="contents">
               <div class="regist">
               <div class="mb-3 d-flex title">
                 <label for="formGroupExampleInput" class="form-label">제목</label>
-                <input type="text" class="form-control title-box" name="title" id="title" placeholder="제목을 입력하시오." required value="<?= $sqlarr -> title; ?>">
+                <input type="text" class="form-control title-box" name="title" id="title" placeholder="제목을 입력하시오." required value="<?= $row['title']; ?>">
                 <label for="formGroupExampleInput">이름</label>
-                <input type="text" class="form-control name-box" name="name" id="name" placeholder="이름을 입력하시오." required value="<?= $sqlarr -> name; ?>">
+                <input type="text" class="form-control name-box" name="name" id="name" placeholder="이름을 입력하시오." required value="<?= $row['name']; ?>">
               </div>
                 <div class="notice_create_form_div d-flex con">
                   <label for="summernote" class="form-label">내용</label>
-                  <div id="summernote"><?= $sqlarr -> content; ?></div>
+                  <div id="summernote"><?= $row['content']?></div>
                 </div>
                 <div>
                   <div class="input-group d-flex file">
@@ -173,7 +175,7 @@ $sqlarr = $result -> fetch_object();
                         <tbody id="option1">
                           <tr id="optionTr1">
                             <td>
-                              <input type="file" class="form-control file-box" id="inputGroupFile04 file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="optionImage1[]">
+                              <input type="file" class="form-control file-box" id="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="optionImage1[]">
                             </td>
                           </tr>
                         </tbody>
@@ -228,6 +230,30 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
     <script type="text/javascript"> 
       $(document).ready(function(){
         $('#summernote').summernote();
+        // summernote 초기화 시 기존 내용 설정
+    $("#summernote").summernote("code", '<?= $row['content']; ?>');
+        $('#content_save').on('submit', save);
+
+        function save() {
+      let markupStr = $('#summernote').summernote('code');
+      let contents = encodeURIComponent(markupStr);
+      $('#contents').val(contents);
+
+      // if(!$('#thumbnail').val()){
+      //   alert('대표 이미지를 등록하세요');       
+      //   return false;
+      // }
+      // if ($('#summernote').summernote('isEmpty')) {
+      //   alert('상품 설명을 입력하세요');
+      //   $('#summernote').summernote('focus');
+      //   return false;
+      // }
+      // if(!$('#product_image_id').val()){
+      //   alert('최소 하나의 추가 이미지를 등록하세요.');
+      //   return false;
+      // }
+
+    }
       });
       </script>
 
@@ -249,19 +275,19 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       lang: "ko-KR",
       disableResizeEditor: true,
     });
-    $(".notice_create_form").submit(function () {
-      let markupStr = $("#summernote").summernote("code");
-      // let content1 = stripHtml(markupStr);
-      let content1 = markupStr.replace('<p>','').replace('</p>','');
-      let content = encodeURIComponent(content1);
-      $(".content").val(content);
-      console.log(content);
+    // $(".notice_create_form").submit(function () {
+    //   let markupStr = $("#summernote").summernote("code");
+    //   // let content1 = stripHtml(markupStr);
+    //   let content1 = markupStr.replace('<p>','').replace('</p>','');
+    //   let content = encodeURIComponent(content1);
+    //   $(".content").val(content);
+    //   console.log(content);
 
-      if ($("#summernote").summernote("isEmpty")) {
-        alert("상세설명을 입력하세요");
-        return false;
-      }
-    });
+    //   if ($("#summernote").summernote("isEmpty")) {
+    //     alert("상세설명을 입력하세요");
+    //     return false;
+    //   }
+    // });
     $('.cancle-btn').click(function(e){
       e.preventDefault();
       if (confirm('등록 취소하시겠습니까? :0')){
