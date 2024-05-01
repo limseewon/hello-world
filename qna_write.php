@@ -53,8 +53,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
     /> -->
 
     <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
-    <link rel="stylesheet" href="/helloworld/css/common.css" />
-    <link rel="stylesheet" href="/helloworld/css/index.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/index.css" />
     <style>
 
         .regist-btn,
@@ -147,7 +147,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
             <h2>질문 등록</h2>
-            <form action="announce_write_ok.php" method="POST">
+            <form action="qna_write_ok.php" method="POST">
               <div class="regist">
               <div class="mb-3 d-flex title">
                 <label for="formGroupExampleInput" class="form-label">제목</label>
@@ -157,7 +157,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
               </div>
                 <div class="notice_create_form_div d-flex con">
                   <label for="summernote" class="form-label">내용</label>
-                  <div id="summernote"></div>
+                  <div id="summernote"></textarea>
                   </div>
                 </div>
                 <div>

@@ -147,7 +147,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
             <h2>질문 등록</h2>
-            <form action="announce_write_ok.php" method="POST">
+            <form action="qna_write_ok.php" method="POST">
               <div class="regist">
               <div class="mb-3 d-flex title">
                 <label for="formGroupExampleInput" class="form-label">제목</label>

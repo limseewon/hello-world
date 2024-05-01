@@ -205,12 +205,12 @@ $row = $result->fetch_assoc();
         </div>
         <div class="mb-3 d-flex con">
             <p>내용</p>
-            <p><?= $row['content']; ?></p>
+            <p><?= $row['summernote']; ?></p>
         </div>
         <!-- 첨부 파일 출력 부분 -->
         <div class="d-flex file">
             <p>첨부 파일</p>
-            <p><?= $row['files']; ?></p>
+            <p>logo.png</p>
             <img src="" alt="" class="img"> 
         </div>
         <hr>

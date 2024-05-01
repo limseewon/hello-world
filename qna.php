@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+// include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
 
 
@@ -165,7 +165,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                   <td><?= $row['reply'];?></td>
                   <td><?= $row['date'];?></td>
                   <td class="edit d-flex">
-                  <a href="qna_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
+                    <a href="#">
                         <span class="material-symbols-outlined">
                             border_color
                         </span>
@@ -183,25 +183,23 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
               </tbody>
             </table>
           </div>
-          <nav aria-label="..." class="d-flex justify-content-center">
-              <ul class="pagination">
-                <li class="page-item disabled">
-                  <span class="page-link">이전</span>
-                </li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">다음</a>
-                </li>
-              </ul>
-            </nav>
-          <div class="c_button">
-            <button class="btn_complete btn btn-success"><a href="/helloworld/qna/qna_write.php">공지사항 등록</a></button>
-          </div>
+          <nav class="...">
+            <ul class="pagination d-flex">
+              <li class="page-item disabled">
+                <span class="page-link">이전</span>
+              </li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">4</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">다음</a>
+              </li>
+            </ul>
+            <div class="c_button">
+              <button class="btn_complete btn btn-success"><a href="/helloworld/qna_write.php">게시글 등록</a></button>
+            </div>
+          </nav>
           <?php
               include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
               ?>
@@ -247,7 +245,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
     document.querySelector("header").style.height = documentHeight + "px";
     document.getElementById(".btn_complete").addEventListener("click", function() {
       // 원하는 URL로 리다이렉트
-      window.location.href = "/helloworld/qna/qna_write.php";
+      window.location.href = "/helloworld/regis.php";
     });
+    document.querySelector(".btn_complete").addEventListener("click", function() {
+  // 원하는 URL로 리다이렉트
+  window.location.href = "/helloworld/qna_write.php";
+});
   </script>
 </html>

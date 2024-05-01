@@ -1,6 +1,12 @@
 <?php
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+$qna_id = $_GET['id'];
+
+// 질문 삭제
+$sql = "SELECT * FROM qna WHERE idx = $qna_id";
+$result = $mysqli->query($sql);
+$sqlarr = $result -> fetch_object();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -147,17 +153,17 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
             <h2>질문 등록</h2>
-            <form action="announce_write_ok.php" method="POST">
+            <form action="qna_write_ok.php" method="POST">
               <div class="regist">
               <div class="mb-3 d-flex title">
                 <label for="formGroupExampleInput" class="form-label">제목</label>
-                <input type="text" class="form-control title-box" name="title" id="title" placeholder="제목을 입력하시오." required>
+                <input type="text" class="form-control title-box" name="title" id="title" placeholder="제목을 입력하시오." required value="<?= $sqlarr -> title; ?>">
                 <label for="formGroupExampleInput">이름</label>
-                <input type="text" class="form-control name-box" name="name" id="name" placeholder="이름을 입력하시오." required>
+                <input type="text" class="form-control name-box" name="name" id="name" placeholder="이름을 입력하시오." required value="<?= $sqlarr -> name; ?>">
               </div>
                 <div class="notice_create_form_div d-flex con">
                   <label for="summernote" class="form-label">내용</label>
-                  <div id="summernote"></div>
+                  <div id="summernote"><?= $sqlarr -> content; ?></textarea>
                   </div>
                 </div>
                 <div>

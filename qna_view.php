@@ -1,20 +1,7 @@
 <?php
 session_start();
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+// include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
-
-// 공지사항 ID 받아오기
-$notice_id = $_GET['id'];
-
-// 조회수 증가
-$sql = "UPDATE notice SET view = view + 1 WHERE idx = $notice_id";
-$result = $mysqli->query($sql);
-
-
-// 공지사항 데이터 가져오기
-$sql = "SELECT * FROM notice WHERE idx = $notice_id";
-$result = $mysqli->query($sql);
-$row = $result->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,14 +48,16 @@ $row = $result->fetch_assoc();
       type="text/css"
     /> -->
 
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    
     <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
     <link rel="stylesheet" href="/helloworld/css/common.css" />
     <link rel="stylesheet" href="/helloworld/css/index.css" />
     <style>
-        .contents-box{
-            width: 100%;
-            height: auto;
-        }
+
         .btn {
             width: 105px;
             height: 48px;
@@ -92,7 +81,7 @@ $row = $result->fetch_assoc();
           height: 40px;
         }
         .title{
-          gap: 70px;
+          gap: 100px;
           align-items: center;
           padding-left: 60px;
           padding-top: 26px;
@@ -140,6 +129,10 @@ $row = $result->fetch_assoc();
       .reply{
         padding-right: 1270px;
       }
+      .cancle-btn{
+            width: 105px;
+            height: 48px;
+        }
         .review .btn{
           white-space: nowrap;
         }  
@@ -157,73 +150,60 @@ $row = $result->fetch_assoc();
             border: 1px solid #ced4da;
             border-radius: 0.25rem;
             transition: .15s ease-in-out .15s ease-in-out;
-        } 
-        .tt{
-            padding-right:30px;
         }
-        .pos{
-            right: 100px;
-            position: absolute;
-            align-items: center;
-            gap:45px;
-        }
-        .edit{
-            padding-right: 10px;
-        }
-
     </style>
   </head>
   <body>
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
-            <h2>공지 사항</h2>
+            <h2>질의 응답</h2>
             <div class="regist">
-        <div class="mb-3 d-flex title">
-            <p class="tt">제목</p>
-            <p class="question"><?= $row['title']; ?></p>
-            <div class="pos d-flex">
-                <p><?= $row['name']; ?>
-                <!-- <span class="material-symbols-outlined">lock</span> -->
+              <div class="mb-3 d-flex title">
+                <p>제목</p>
+                <p class="question"><?= $row['title']; ?></p>
+                <p class="lock d-flex"><?= $row['name']; ?>
+                <!-- <span class="material-symbols-outlined">
+                  lock
+                  </span> -->
                 </p>
-                <p><?= $row['regdate']; ?></p>
-                <p>
-                  <a href="qna_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
-                        <span class="material-symbols-outlined">
-                            border_color
-                        </span>
-                    </a>
-                    <a href="qna_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
-                        <span class="material-symbols-outlined">delete</span>
-                    </a>
+                <p><?= $row['date']; ?></p>
+                <p class="edit">
+                <a href="#">
+                    <span class="material-symbols-outlined">border_color</span>
+                </a>
+                <a href="qna_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                    <span class="material-symbols-outlined">delete</span>
+                </a>
                 </p>
+              </div>
+              <div class="mb-3 d-flex con">
+                <p>내용</p>
+                <p>운영자님! Q&A 게시글 등록하고 싶은데 등록하기 전에 알아야 할 사항이 있을까요? 항상 화이팅입니다!</p>
+              </div>
+                <div class="d-flex file">
+                  <p>첨부 파일</p>
+                  <p>logo.png</p>
+                  <img src="/img/logo.png" alt="" class="img"> 
+
+                </div>
+                <hr>
+                <div>
+                  <form method="post" class="wrap justify-content-start align-item-center review"></form>
+                  <input type="hidden" name="post_id" value="168">
+                  <input type="hidden" name="parent_comment_id" value="0">
+                  <input type="hidden" name="depth" value="0">
+                  <img src="" alt="">
+                  <textarea name="comment" class="form-control" placeholder="내용을 추가하시오."></textarea>
+                  <button type="submit" class="btn b_text01">댓글 쓰기</button>
+                </div>
+                <hr>
             </div>
-        </div>
-        <div class="mb-3 d-flex con">
-            <p>내용</p>
-            <?= $row['content']; ?>
-        </div>
-        <!-- 첨부 파일 출력 부분 -->
-        <div class="d-flex file">
-            <p>첨부 파일</p>
-            <p>logo.png</p>
-            <img src="" alt="" class="img"> 
-        </div>
-        </div>
-        <div class="notice-btn d-flex">
-          <div class="left-button">   
-            <button type="button" class="btn btn-primary">이전</button>
-            <button type="button" class="btn btn-primary">다음</button>
-          </div>
-          <div class="right-button">
-            <button type="submit" class="btn btn-success edit-btn">수정</button>
             <button type="button" class="btn btn-danger cancle-btn">닫기</button>
           </div>
-        </div>
-          
           <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
-?>
+            include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
+          ?>
     <!-- jquery -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
@@ -253,9 +233,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       referrerpolicy="no-referrer"
     ></script>
 
-    <script src="js/common.js"></script>
+    
   </body>
   <script>
+    $(document).ready(function(){
+      $('#summernote').summernote();
+    });
+
     let documentHeight = Math.max(
       document.body.scrollHeight,
       document.body.offsetHeight,
@@ -264,13 +248,5 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       document.documentElement.offsetHeight
     );
     document.querySelector('header').style.height = documentHeight + 'px';
-
-    $('.cancle-btn').click(function(e){
-      e.preventDefault();
-      history.back();
-      // if (confirm('닫으시겠습니까? :0')){
-      //   history.back();
-      // }
-    });
   </script>
 </html>

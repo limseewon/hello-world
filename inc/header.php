@@ -18,7 +18,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                 </a>
               </li>
               <li>
-                <a href="/helloworld/announce/announce.php">
+                <a href="/helloworld/announce.php">
                   <span class="material-symbols-outlined"> assignment </span>
                   <span>공지 사항</span>
                 </a>

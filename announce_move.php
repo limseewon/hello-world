@@ -1,20 +1,7 @@
 <?php
 session_start();
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+// include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
-
-// 공지사항 ID 받아오기
-$notice_id = $_GET['id'];
-
-// 조회수 증가
-$sql = "UPDATE notice SET view = view + 1 WHERE idx = $notice_id";
-$result = $mysqli->query($sql);
-
-
-// 공지사항 데이터 가져오기
-$sql = "SELECT * FROM notice WHERE idx = $notice_id";
-$result = $mysqli->query($sql);
-$row = $result->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,99 +64,7 @@ $row = $result->fetch_assoc();
             padding-top: 65px;
             justify-content: space-between;
         }
-        .title-box{
-          width: 883px;
-          height: 40px;
-        }
-        .con-box{
-          width: 1170px; 
-          height: 505px;
-        }
-        .input-group > .form-control{
-          position: none;
-          flex: none;
-          width: 560px;
-          height: 40px;
-        }
-        .title{
-          gap: 70px;
-          align-items: center;
-          padding-left: 60px;
-          padding-top: 26px;
-        }
-        .con{
-          gap: 100px;
-          align-items: center;
-          padding-left: 60px;
-          padding-top: 35px;
-        }
-        .file{ 
-          gap: 65px;
-          padding-left: 60px;
-          padding-top: 35px;
-        }
 
-        .regist{
-          /* width: 100%; */
-          height: auto;
-          background: #fff;
-          padding: 20px;
-          border: 1px solid #ced4da;
-        }
-        .btn{
-          width: 100px;
-          height: 35px;
-        }
-        .right-button{
-          padding-left: 250px;
-        }
-        .comments{
-          padding-left: 60px;
-          align-items: center;
-        }
-        .lock{
-        align-items: center;
-        gap: 10px;
-      }
-      .question{
-        padding-right: 550px;
-      }
-      .img{
-        padding-left: 200px;
-      }
-      .reply{
-        padding-right: 1270px;
-      }
-        .review .btn{
-          white-space: nowrap;
-        }  
-        .form-control {
-            display: block;
-            width: 100%;
-            height: 45px;
-            padding: 0.375rem 0.75rem;
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1.5;
-            color: #495057;
-            background-color: #fff;
-            background-clip: padding-box;
-            border: 1px solid #ced4da;
-            border-radius: 0.25rem;
-            transition: .15s ease-in-out .15s ease-in-out;
-        } 
-        .tt{
-            padding-right:30px;
-        }
-        .pos{
-            right: 100px;
-            position: absolute;
-            align-items: center;
-            gap:45px;
-        }
-        .edit{
-            padding-right: 10px;
-        }
 
     </style>
   </head>
@@ -178,48 +73,54 @@ $row = $result->fetch_assoc();
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
             <h2>공지 사항</h2>
-            <div class="regist">
-        <div class="mb-3 d-flex title">
-            <p class="tt">제목</p>
-            <p class="question"><?= $row['title']; ?></p>
-            <div class="pos d-flex">
-                <p><?= $row['name']; ?>
-                <!-- <span class="material-symbols-outlined">lock</span> -->
-                </p>
-                <p><?= $row['regdate']; ?></p>
-                <p>
-                  <a href="qna_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
+            <table class="table contents-box d-flex">
+                <tbody>
+                  <tr>
+                    <th scope="row d-flex"></th>
+                    <td><a href="#">제목</a></td>
+                    <td>안녕하세요! 공지드리겠습니다!</td>
+                    <td>홍길동</td>
+                    <td>1094</td>
+                    <td>2024.04.24</td>
+                    <td class="edit d-flex">
+                      <a href="#">
                         <span class="material-symbols-outlined">
-                            border_color
+                          border_color
                         </span>
-                    </a>
-                    <a href="qna_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
-                        <span class="material-symbols-outlined">delete</span>
-                    </a>
-                </p>
+                      </a>
+                      <a href="#">
+                        <span class="material-symbols-outlined">
+                          delete
+                          </span>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td><a href="#">내용</a></td>
+                    <td class="con">안녕하세요 회원 여러분! 앞으로의 모든 중요 사항들은 공지사항 페이지에 공지하도록 하겠습니다! 다들 열심히 공부하시고, 원하시는 결과 얻으시길 바랍니다!</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td><a href="#">첨부파일</a></td>
+                    <td>20240418.png</td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+          </div>
+          <div class="notice-btn d-flex">
+            <div class="left-button">   
+                <button type="button" class="btn btn-primary">이전</button>
+                <button type="button" class="btn btn-primary">다음</button>
             </div>
-        </div>
-        <div class="mb-3 d-flex con">
-            <p>내용</p>
-            <?= $row['content']; ?>
-        </div>
-        <!-- 첨부 파일 출력 부분 -->
-        <div class="d-flex file">
-            <p>첨부 파일</p>
-            <p>logo.png</p>
-            <img src="" alt="" class="img"> 
-        </div>
-        </div>
-        <div class="notice-btn d-flex">
-          <div class="left-button">   
-            <button type="button" class="btn btn-primary">이전</button>
-            <button type="button" class="btn btn-primary">다음</button>
+            <div class="right-button">
+                <button type="button" class="btn btn-success edit-btn">수정</button>
+                <button type="button" class="btn btn-danger cancle-btn">닫기</button>
+            </div>
           </div>
-          <div class="right-button">
-            <button type="submit" class="btn btn-success edit-btn">수정</button>
-            <button type="button" class="btn btn-danger cancle-btn">닫기</button>
-          </div>
-        </div>
           
           <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
