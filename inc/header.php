@@ -48,7 +48,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                 </a>
               </li>
               <li>
-                <a href="/helloworld/qna.php">
+                <a href="/helloworld/qna/qna.php">
                   <span class="material-symbols-outlined"> help </span>
                   <span>질의 응답</span>
                 </a>
