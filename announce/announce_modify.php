@@ -152,7 +152,7 @@ $sqlarr = $result -> fetch_object();
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
-            <h2>공지사항 등록</h2>
+            <h2>공지사항 수정</h2>
             <form action="announce_write_ok.php" method="POST">
               <div class="regist">
               <div class="mb-3 d-flex title">
@@ -163,8 +163,7 @@ $sqlarr = $result -> fetch_object();
               </div>
                 <div class="notice_create_form_div d-flex con">
                   <label for="summernote" class="form-label">내용</label>
-                  <div id="summernote"><?= $sqlarr -> content; ?></textarea>
-                  </div>
+                  <div id="summernote"><?= $sqlarr -> content; ?></div>
                 </div>
                 <div>
                   <div class="input-group d-flex file">

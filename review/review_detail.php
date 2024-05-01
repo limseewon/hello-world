@@ -4,14 +4,14 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 // include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
 
 // 질문 ID 받아오기
-$qna_id = $_GET['id'];
+$review_id = $_GET['id'];
 
 // 조회수 증가
-$sql = "UPDATE qna SET view = view + 1 WHERE idx = $qna_id";
+$sql = "UPDATE review SET view = view + 1 WHERE idx = $review_id";
 $result = $mysqli->query($sql);
 
 // 질문 데이터 가져오기
-$sql = "SELECT * FROM qna WHERE idx = '$qna_id'";
+$sql = "SELECT * FROM review WHERE idx = '$review_id'";
 $result = $mysqli->query($sql);
 $row = $result->fetch_assoc();
 ?>
@@ -192,7 +192,7 @@ $row = $result->fetch_assoc();
                 <!-- <span class="material-symbols-outlined">lock</span> -->
                 <p><?= $row['date']; ?></p>
                 <p>
-                    <a href="qna_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                    <a href="review_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
                         <span class="material-symbols-outlined">delete</span>
                     </a>
                 </p>
@@ -203,14 +203,8 @@ $row = $result->fetch_assoc();
             <p><?= $row['content']; ?></p>
         </div>
         <!-- 첨부 파일 출력 부분 -->
-        <div class="d-flex file">
-            <p>첨부 파일</p>
-            <p><?= $row['files']; ?></p>
-            <img src="" alt="" class="img"> 
-        </div>
-        <hr>
         <!-- 댓글 작성 폼 -->
-        <div>
+        <!-- <div>
             <form method="post" class="wrap justify-content-start align-item-center review"></form>
             <input type="hidden" name="post_id" value="168">
             <input type="hidden" name="parent_comment_id" value="0">
@@ -218,8 +212,7 @@ $row = $result->fetch_assoc();
             <img src="" alt="">
             <textarea name="comment" class="form-control" placeholder="내용을 추가하시오."></textarea>
             <button type="submit" class="btn b_text01">댓글 쓰기</button>
-        </div>
-        <hr>
+        </div> -->
     </div>
     <button type="submit" class="btn btn-danger cancle-btn">닫기</button>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php'; ?>

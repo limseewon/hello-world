@@ -11,7 +11,7 @@ $sql ="UPDATE notice SET
   title='{$title}', 
   content='{$content}', 
   name='{$name}', 
-  nt_regdate='{$nt_regdate}' 
+  regdate='{$regdate}' 
   WHERE title='{$title}'";
 
   $result = $mysqli -> query($sql);
@@ -19,7 +19,7 @@ $sql ="UPDATE notice SET
       echo "<script>
       alert('글수정 완료되었습니다.');
 
-      location.replace('notice_list.php');
+      location.replace('announce.php');
       </script>";          
   }  else {
     echo "Error:".$sql . "<br>" . $mysqli -> error;  

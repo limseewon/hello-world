@@ -15,6 +15,20 @@ $result = $mysqli->query($sql);
 $sql = "SELECT * FROM notice WHERE idx = $notice_id";
 $result = $mysqli->query($sql);
 $row = $result->fetch_assoc();
+
+// 이전 공지사항 ID 가져오기
+$sql_prev = "SELECT MAX(idx) AS prev_id FROM notice WHERE idx < $notice_id";
+$result_prev = $mysqli->query($sql_prev);
+$row_prev = $result_prev->fetch_assoc();
+$prev_id = $row_prev['prev_id'];
+
+// 다음 공지사항 ID 가져오기
+$sql_next = "SELECT MIN(idx) AS next_id FROM notice WHERE idx > $notice_id";
+$result_next = $mysqli->query($sql_next);
+$row_next = $result_next->fetch_assoc();
+$next_id = $row_next['next_id'];
+?>
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -188,12 +202,12 @@ $row = $result->fetch_assoc();
                 </p>
                 <p><?= $row['regdate']; ?></p>
                 <p>
-                  <a href="qna_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
+                  <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
                         <span class="material-symbols-outlined">
                             border_color
                         </span>
                     </a>
-                    <a href="qna_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                    <a href="announce_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
                         <span class="material-symbols-outlined">delete</span>
                     </a>
                 </p>
@@ -201,22 +215,22 @@ $row = $result->fetch_assoc();
         </div>
         <div class="mb-3 d-flex con">
             <p>내용</p>
-            <?= $row['content']; ?>
+            <p><?= $row['content']; ?></p>
         </div>
         <!-- 첨부 파일 출력 부분 -->
         <div class="d-flex file">
             <p>첨부 파일</p>
-            <p>logo.png</p>
-            <img src="" alt="" class="img"> 
+            <p><?= $row['file']; ?></p>
         </div>
         </div>
         <div class="notice-btn d-flex">
           <div class="left-button">   
-            <button type="button" class="btn btn-primary">이전</button>
-            <button type="button" class="btn btn-primary">다음</button>
+          <a href="announce_detail.php?id=<?= $prev_id; ?>" class="btn btn-primary">이전</a>
+            <a href="announce_detail.php?id=<?= $next_id; ?>" class="btn btn-primary">다음</a>
           </div>
           <div class="right-button">
-            <button type="submit" class="btn btn-success edit-btn">수정</button>
+            <!-- <button type="submit" class="btn btn-success edit-btn">수정</button> -->
+            <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');" class="btn btn-success edit-btn">수정</a>
             <button type="button" class="btn btn-danger cancle-btn">닫기</button>
           </div>
         </div>

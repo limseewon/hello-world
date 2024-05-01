@@ -153,12 +153,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                 <label for="formGroupExampleInput" class="form-label">제목</label>
                 <input type="text" class="form-control title-box" name="title" id="title" placeholder="제목을 입력하시오." required>
                 <label for="formGroupExampleInput">이름</label>
-                <input type="text" class="form-control name-box" name="name" id="name" placeholder="이름을 입력하시오." required>
+                <input type="text" class="form-control name-box" name="name" id="name" value="운영자" readonly>
               </div>
                 <div class="notice_create_form_div d-flex con">
                   <label for="summernote" class="form-label">내용</label>
                   <div id="summernote"></div>
-                  </div>
                 </div>
                 <div>
                   <div class="input-group d-flex file">
@@ -168,13 +167,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                         <tbody id="option1">
                           <tr id="optionTr1">
                             <td>
-                              <input type="file" class="form-control file-box" id="inputGroupFile04 file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="optionImage1[]">
+                              <input type="file" class="form-control file-box" id="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="optionImage1[]">
                             </td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
-                    <button type="button" class="btn btn-primary optAddBtn">파일 추가</button>
+                    <button type="button" class="btn btn-primary optAddBtn">항목 추가</button>
                     <div class="right-button">
                       <button type="submit" class="btn btn-success regist-btn">등록</button>
                       <button type="button" class="btn btn-danger cancle-btn">취소</button>
@@ -244,22 +243,22 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       lang: "ko-KR",
       disableResizeEditor: true,
     });
-    $(".notice_create_form").submit(function () {
-      let markupStr = $("#summernote").summernote("code");
-      // let content1 = stripHtml(markupStr);
-      let content1 = markupStr.replace('<p>','').replace('</p>','');
-      let content = encodeURIComponent(content1);
-      $(".content").val(content);
-      console.log(content);
+    // $(".notice_create_form").submit(function () {
+    //   let markupStr = $("#summernote").summernote("code");
+    //   // let content1 = stripHtml(markupStr);
+    //   let content1 = markupStr.replace('<p>','').replace('</p>','');
+    //   let content = encodeURIComponent(content1);
+    //   $(".content").val(content);
+    //   console.log(content);
 
-      if ($("#summernote").summernote("isEmpty")) {
-        alert("상세설명을 입력하세요");
-        return false;
-      }
-    });
+    //   if ($("#summernote").summernote("isEmpty")) {
+    //     alert("상세설명을 입력하세요");
+    //     return false;
+    //   }
+    // });
     $('.cancle-btn').click(function(e){
       e.preventDefault();
-      if (confirm('등록 취소하시겠습니까? :0')){
+      if (confirm('등록 취소하시겠습니까?')){
         history.back();
       }
     });

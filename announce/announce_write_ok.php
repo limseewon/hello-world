@@ -4,9 +4,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
 // 제목과 본문 내용, 파일 데이터를 받아옴
 $title = $_POST['title'];
-$content = $_POST['content'];
+$content = $_POST['summernote'];
 $name = $_POST['name']; // 이름 데이터 받아오기
-$files = $_FILES['optionImage1'];
+// $files = $_FILES['optionImage1'];
 
 // 작성자 정보 가져오기 (로그인한 사용자 정보 또는 기본값 설정)
 // $name = isset($_SESSION['username']) ? $_SESSION['username'] : '익명';
@@ -14,11 +14,11 @@ $files = $_FILES['optionImage1'];
 // 현재 날짜 및 시간 가져오기
 $regdate = date("Y-m-d H:i:s");
 
-// 질문 데이터 삽입
-$sql = "INSERT INTO notice (title, content, name, regdate) VALUES ('$title', '$name', '$content', '$regdate')";
+// 공지사항 데이터 삽입
+$sql = "INSERT INTO notice (title, name, content, regdate) VALUES ('$title', '$name', '$content', '$regdate')";
 $result = $mysqli->query($sql);
 
-if ($mysqli->query($sql) === true) {
+if ($result === true) {
     echo "데이터가 성공적으로 저장되었습니다.";
     // 등록 후 리다이렉트 또는 다른 작업 수행
 } else {
