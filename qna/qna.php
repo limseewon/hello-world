@@ -1,7 +1,9 @@
 <?php
 session_start();
-// include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,38 +69,41 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
       .block-top{
         gap: 20px;
       }
-      .container-fluid{
-        padding: 0;
-      }
       .form-control{
         width: 750px;
         height: 50px;
       }
-      .form-select-lg{
+      .form-select{
         width: 250px;
         height: 50px;
         margin-top: 7px;
       }
       .bar-top{
         justify-content: space-between;
-        width: 100%;
       }
       .pagination{
         margin-top: 20px;
         justify-content: center;
+      }
+      .container-fluid{
+        padding: 0;
       }
       .c_button {
         position: absolute;
         right: 150px;
         bottom: 55px;
       }
+      .lock{
+        align-items: center;
+        gap: 10px;
+      }
     </style>
   </head>
   <body>
-  <?php
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
-    ?>
-            <h2>공지 사항</h2>
+    <?php
+        include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
+        ?>
+            <h2>질의 응답</h2>
             <div class="bar-top d-flex">
               <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
@@ -109,9 +114,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                 </div>
               </nav>
               <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-                <option selected>조회수</option>
-                <option value="1">가장 많음</option>
-                <option value="2">가장 적음</option>
+                <option selected>답변</option>
+                <option value="1">완료</option>
+                <option value="2">미완료</option>
               </select>
               <select class="form-select form-select-lg mb-3" aria-label="Large select example">
                 <option selected>작성일</option>
@@ -123,18 +128,19 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
             <table class="table table-hover table-striped">
               <thead class="table-dark">
                 <tr>
-                  <th scope="col">No.</th>
+                  <th scope="col">No&#46;</th>
                   <th scope="col">제목</th>
                   <th scope="col">작성자</th>
                   <th scope="col">조회수</th>
+                  <th scope="col">답변</th>
                   <th scope="col">작성일</th>
-                  <th scope="col">수정 / 삭제</th>
+                  <th scope="col">수정 &#47; 삭제</th>
                 </tr>
               </thead>
               <tbody>
               <?php
               // board테이블에서 idx를 기준으로 내림차순해서 10개까지 표시
-              $sql = "SELECT * from notice order by idx desc limit 0,10";
+              $sql = "SELECT * from qna order by idx desc limit 0,10";
               $result = $mysqli->query($sql);
             
               // output data of each row
@@ -150,49 +156,55 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
               ?>
                 <tr>
                   <th scope="row"><?= $row['idx'];?></th>
-                  <td><a href="announce_detail.php?id=<?= $row['idx']; ?>"><?= $title; ?></a></td>
-                  <td><?= $row['name'];?></td>
+                  <td><a href="qna_detail.php?id=<?= $row['idx']; ?>"><?= $title; ?></a></td>
+                  <td class="lock d-flex"><?= $row['name'];?></td>
+                  <!-- <span class="material-symbols-outlined">
+                    lock
+                </span> -->
                   <td><?= $row['view'];?></td>
-                  <td><?= $row['regdate'];?></td>
+                  <td><?= $row['reply'];?></td>
+                  <td><?= $row['date'];?></td>
                   <td class="edit d-flex">
-                  <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
+                  <a href="qna_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
                         <span class="material-symbols-outlined">
                             border_color
                         </span>
                     </a>
-                    <a href="announce_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                    <a href="qna_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
                         <span class="material-symbols-outlined">
                             delete
                         </span>
                     </a>
-                  </td>
+                </td>
                 </tr>
-              <?php
+                <?php
                   } 
                 ?>
               </tbody>
             </table>
           </div>
-          <nav aria-label="...">
-            <ul class="pagination d-flex">
-              <li class="page-item disabled">
-                <span class="page-link">이전</span>
-              </li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">4</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#">다음</a>
-              </li>
-            </ul>
-            <div class="c_button">
-              <button class="btn_complete btn btn-success"><a href="/helloworld/announce/announce_write.php">게시글 등록</a></button>
-            </div>
-          </nav>
+          <nav aria-label="..." class="d-flex justify-content-center">
+              <ul class="pagination">
+                <li class="page-item disabled">
+                  <span class="page-link">이전</span>
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">다음</a>
+                </li>
+              </ul>
+            </nav>
+          <div class="c_button">
+            <button class="btn_complete btn btn-success"><a href="/helloworld/qna/qna_write.php">공지사항 등록</a></button>
+          </div>
           <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
-?>
+              include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
+              ?>
     <!-- jquery -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
@@ -235,7 +247,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
     document.querySelector("header").style.height = documentHeight + "px";
     document.getElementById(".btn_complete").addEventListener("click", function() {
       // 원하는 URL로 리다이렉트
-      window.location.href = "/helloworld/announce/announce_write.php";
+      window.location.href = "/helloworld/qna/qna_write.php";
     });
   </script>
 </html>
