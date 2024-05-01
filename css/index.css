@@ -1,0 +1,72 @@
+.left_top > div {
+  width: 331px;
+  height: 138px;
+  margin-bottom: 30px;
+  margin-right: 30px;
+}
+.profit {
+  position: relative;
+  /* color: red; */
+}
+.profit > div {
+  margin-bottom: 300px;
+}
+.profit > span {
+  margin: 0 auto;
+}
+.lecture_chart {
+  width: 1219px;
+  height: 474px;
+}
+.board div {
+  width: 448px;
+  height: 152px;
+}
+.sale {
+  width: 1102px;
+  height: 334px;
+}
+
+.board {
+  margin: 0 30px 30px 0;
+}
+.announce {
+  gap: 30px;
+  margin-bottom: 30px;
+}
+.qna {
+  gap: 30px;
+}
+.form-select {
+  width: 500px;
+  height: 60px;
+}
+.settlement {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.chart-container {
+  width: 350px;
+  height: 350px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+}
+.chart-wrapper {
+  gap: 100px;
+}
+
+.course_select {
+  margin-bottom: 30px;
+}
+
+.qna p {
+  white-space: nowrap;
+}
+
+.board_list {
+  white-space: nowrap;
+}
