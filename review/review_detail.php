@@ -202,7 +202,7 @@ $next_id = $row_next['next_id'];
             <div class="pos d-flex">
                 <p class="lock d-flex">작성자: <?= $row['name']; ?></p>
                 <p>조회수: <?= $row['view'];?></p>
-                <p>평점: <?= $row['hit'];?>/5</p>
+                <p>점수: <?= $row['hit'];?>/5</p>
                 <!-- <span class="material-symbols-outlined">lock</span> -->
                 <p><?= $row['date']; ?></p>
                 <p>

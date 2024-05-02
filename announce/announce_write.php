@@ -147,7 +147,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
             <h2>공지사항 등록</h2>
-            <form action="announce_write_ok.php" method="POST" id="content_save" >
+            <form action="announce_write_ok.php" method="POST" id="content_save" enctype="multipart/form-data">
             <input type="hidden" name="contents" id="contents">
               <div class="regist">
               <div class="mb-3 d-flex title">
@@ -168,13 +168,12 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                         <tbody id="option1">
                           <tr id="optionTr1">
                             <td>
-                              <input type="file" class="form-control file-box" id="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="optionImage1[]">
+                              <input type="file" class="form-control file-box" id="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="file">
                             </td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
-                    <button type="button" class="btn btn-primary optAddBtn">항목 추가</button>
                     <div class="right-button">
                       <button type="submit" class="btn btn-success regist-btn">등록</button>
                       <button type="button" class="btn btn-danger cancle-btn">취소</button>
