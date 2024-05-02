@@ -4,19 +4,19 @@
   background: var(--mc-white);
   position: fixed;
   top: 40px;
-	left: 40px;
+  left: 40px;
   padding: 20px 30px;
-  border-color: var(--primary-color);
-	border-width: 7px;
-	box-sizing: border-box;
-	margin: 0;
-	z-index: 99999;
-	font-size: 16px;
-	line-height: 25px;
+  border-color: var(--c-blue);
+  border-width: 7px;
+  box-sizing: border-box;
+  margin: 0;
+  z-index: 99999;
+  font-size: 16px;
+  line-height: 25px;
 }
 
 .popup a {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .popup h2 {
@@ -24,7 +24,7 @@
   font-weight: bold;
   line-height: 30px;
   margin-bottom: 10px;
-	color: var(--mc-black);
+  color: var(--mc-black);
 }
 
 .popup hr {
@@ -55,13 +55,13 @@
 .popup .checkbox label {
   cursor: pointer;
   color: var(--mc-gray4);
-	font-weight: lighter;
+  font-weight: lighter;
 }
 
 .popup #daycheck:checked + label {
   font-weight: bold;
   color: var(--primary-color-hover);
-	font-weight: bold;
+  font-weight: bold;
 }
 /* DIALOG POPUP */
 /* 팝업 */
