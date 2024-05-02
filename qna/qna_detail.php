@@ -26,6 +26,9 @@ $sql_next = "SELECT MIN(idx) AS next_id FROM qna WHERE idx > $qna_id";
 $result_next = $mysqli->query($sql_next);
 $row_next = $result_next->fetch_assoc();
 $next_id = $row_next['next_id'];
+
+// 댓글 목록 가져오기
+$sql = "SELECT * FROM qna_comment WHERE qna_id = '$qna_id' ORDER BY idx DESC";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -197,6 +200,48 @@ $next_id = $row_next['next_id'];
         .reply_control{
           width: 800px;
         }
+        .comment-list {
+    margin-top: 30px;
+  }
+
+  .comment-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+  }
+
+  .comment-item p {
+    margin-bottom: 10px;
+  }
+
+  .comment-item .actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .comment-item .actions a {
+    margin-left: 10px;
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .comment-item .actions a:hover {
+    text-decoration: underline;
+  }
+
+  .comment-form {
+    margin-top: 30px;
+  }
+
+  .comment-form textarea {
+    height: 120px;
+    resize: none;
+  }
+
+  .comment-form button {
+    margin-top: 10px;
+  }
     </style>
 </head>
 <body>
@@ -230,22 +275,34 @@ $next_id = $row_next['next_id'];
             <img src="" alt="" class="img"> 
         </div>
         <hr>
-        <div class="list">
-          <div>
-            <p>
-              안녕하세요! 댓글달겠습니다.
-            </p>
-            <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
-                        <span class="material-symbols-outlined">
-                            border_color
-                        </span>
-                    </a>
-                    <a href="announce_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
-                        <span class="material-symbols-outlined">
-                            delete
-                        </span>
-                    </a>
-          </div>
+        <div class="comment-list">
+          <?php if ($result->num_rows > 0) {
+            while ($comment = $result->fetch_assoc()) {
+              ?>
+              <div class="comment-item">
+                <div class="comment-header">
+                  <span class="comment-author">운영자</span>
+                  <span class="comment-date">2000.00.00</span>
+                </div>
+                <div class="comment-content">반갑습니다.</div>
+                <div class="comment-actions">
+                  <a href="announce_modify.php?id=<?= $comment['idx'] ?>" onclick="return confirm('정말 수정하시겠습니까?');">
+                    <span class="material-symbols-outlined">border_color</span>
+                  </a>
+                  <a href="announce_delete.php?id=<?= $comment['idx'] ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                    <span class="material-symbols-outlined">delete</span>
+                  </a>
+                </div>
+              </div>
+              <?php
+            }
+          } else {
+            ?>
+            <p>댓글이 없습니다.</p>
+            <?php
+          }
+          ?>
+        </div>
           <!-- <div>
             <p>
               안녕하세요! 댓글달겠습니다.
@@ -264,12 +321,14 @@ $next_id = $row_next['next_id'];
         </div>
         
         <!-- 댓글 작성 폼 -->
-        <div class="d-flex reply">
-          <form action="qna_reply_ok.php" id="commentForm" method="post" class="wrap justify-content-start align-item-center review">
-              <input type="hidden" name="name" value="<?=  $_SESSION['AUNAME'] ?>">
-              <input type="hidden" name="id" value="<?= $qna_id ?>">
-              <textarea name="comment" class="form-control reply_control" placeholder="내용을 추가하시오."></textarea>
-              <button type="submit" class="btn btn-success">댓글 쓰기</button>
+        <div class="comment-form">
+          <form action="qna_save_reply.php" id="commentForm" method="post" class="wrap justify-content-start align-item-center review">
+            <input type="hidden" name="name" value="<?= $_SESSION['AUNAME'] ?>">
+            <input type="hidden" name="id" value="<?= $qna_id ?>">
+            <div class="mb-3">
+              <textarea name="comment" class="form-control reply_control" placeholder="댓글을 입력하세요."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">댓글 쓰기</button>
           </form>
         </div>
         <!-- <div class="d-flex reply">
@@ -334,43 +393,55 @@ $next_id = $row_next['next_id'];
     
   </body>
   <script>
-    $(document).ready(function(){
-      $('#summernote').summernote();
+  $('#commentForm').submit(function(e) {
+    e.preventDefault(); // 폼의 기본 제출 동작을 막습니다.
 
-      $('#commentForm').submit(function(e) {
-        e.preventDefault(); // 폼의 기본 제출 동작을 막습니다.
-        
-        var formData = $(this).serialize(); // 폼 데이터를 시리얼라이즈합니다.
-        
-        $.ajax({
-            type: 'POST',
-            url: 'qna_save_reply.php', // 댓글 저장을 처리할 PHP 파일 경로
-            data: formData,
-            success: function(response) {
-                // 댓글 저장 성공 시 처리할 코드 작성
-                alert('댓글이 성공적으로 저장되었습니다.');
-                $('#commentForm textarea').val(''); // 댓글 입력 필드 초기화
-                // 댓글 목록을 업데이트하는 코드 작성
-            },
-            error: function(xhr, status, error) {
-                // 댓글 저장 실패 시 처리할 코드 작성
-                alert('댓글 저장에 실패했습니다. 다시 시도해주세요.');
-            }
-        });
+    var formData = $(this).serialize(); // 폼 데이터를 시리얼라이즈합니다.
+
+    $.ajax({
+      type: 'POST',
+      url: 'qna_save_reply.php', // 댓글 저장을 처리할 PHP 파일 경로
+      data: formData,
+      success: function(response) {
+        if (response.startsWith('success')) {
+          alert('댓글이 성공적으로 저장되었습니다.');
+          $('#commentForm textarea').val(''); // 댓글 입력 필드 초기화
+          // 댓글 목록을 업데이트하는 코드 작성
+          updateCommentList();
+        } else if (response.startsWith('error')) {
+          var errorMessage = response.substring(6); // "error: " 이후의 오류 메시지 추출
+          alert('댓글 저장에 실패했습니다. 오류 메시지: ' + errorMessage);
+        } else {
+          alert('댓글 저장에 실패했습니다. 다시 시도해주세요.');
+        }
+      }
     });
+  });
+
+  function updateCommentList() {
+    $.ajax({
+      type: 'GET',
+      url: 'qna_get_comments.php',
+      data: { qna_id: '<?= $qna_id ?>' },
+      success: function(response) {
+        $('.comment-list').html(response);
+      }
     });
-    $('.cancle-btn').click(function(e){
-      e.preventDefault();
-      location.href = 'qna.php';
-    });
-    let documentHeight = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.clientHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight
-    );
-    document.querySelector('header').style.height = documentHeight + 'px';
-  </script>
+  }
+
+  $('.cancle-btn').click(function(e){
+    e.preventDefault();
+    location.href = 'qna.php';
+  });
+
+  let documentHeight = Math.max(
+    document.body.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.clientHeight,
+    document.documentElement.scrollHeight,
+    document.documentElement.offsetHeight
+  );
+  document.querySelector('header').style.height = documentHeight + 'px';
+</script>
 </body>
 </html>
