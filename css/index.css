@@ -12,7 +12,7 @@
   margin-bottom: 300px;
 }
 .profit > span {
-  margin: 0 auto;
+  margin: 0;
 }
 .lecture_chart {
   width: 1219px;
@@ -25,6 +25,7 @@
 .sale {
   width: 1102px;
   height: 334px;
+  gap: 30px;
 }
 
 .board {
@@ -69,4 +70,29 @@
 
 .board_list {
   white-space: nowrap;
+}
+
+.profitChart-container {
+  width: 900px;
+  height: 300px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.red {
+  color: var(--c-cancle-button);
+}
+.blue {
+  color: var(--c-blue);
+}
+
+.main_bottom li {
+  height: 25px;
+}
+
+.main_bottom li:hover {
+  font-weight: bold;
+  color: var(--c-blue);
+  text-decoration: underline;
 }
