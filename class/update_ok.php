@@ -297,7 +297,7 @@ foreach($course_file_name_org as $course_f){
                   SET course_file_name = '{$course_file_name[$i]}',
                   course_file = '{$course_file[$i]}',
                   WHERE cid ={$cid}"
-                  AND l_idx = {$i}";
+                  
                   
         
           $result2 = $mysqli-> query($sql2);
