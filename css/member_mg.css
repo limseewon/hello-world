@@ -1,5 +1,4 @@
 form {
-  gap: 390px;
   margin-bottom: 50px;
 }
 .filter {
@@ -43,7 +42,15 @@ form {
   box-sizing: border-box;
   border: none;
 }
+tbody tr {
+  width: 1580px;
+}
 
 tbody tr:hover {
   cursor: pointer;
+}
+
+th,
+td {
+  width: 263px;
 }

@@ -11,13 +11,12 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/helloworld/css/common.css">
     <link rel="stylesheet" href="/helloworld/css/login.css">
     <title>HelloWorld</title>
 
     <style>
-      
     </style>
   </head>
   <body>
@@ -25,7 +24,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
       <div id="logo">
         <img src="/helloworld/img/logo.png" alt="logo.jpg" />
       </div>
-      <form action="login_ok.php" method="POST" class="d-flex flex-column " novalidate>
+      <form action="login_ok.php" method="POST" class="d-flex flex-column" novalidate>
         <div class="form-floating">
           <input type="text" class="form-control" id="userid" name="userid" placeholder="Id" />
           <label for="userid">Id</label>
@@ -36,13 +35,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
           <div class="invalid-tooltip">Please choose a unique and valid username.</div>
         </div>
         <div class="position-relative">
-          <button type="submit" class="btn btn-primary">Primary</button>
+          <button type="submit" class="btn btn-primary">로그인</button>
           <div class="invalid-tooltip">Please choose a unique and valid username.</div>
         </div>
       </form>
-      <div>
-        <span><a href="">아이디 찾기</a></span
-        ><span><a href="">비밀번호 찾기</a></span>
+      <div class="search_login">
+        <span><a href="">아이디 찾기</a></span>
+        <span><a href="">비밀번호 찾기</a></span>
       </div>
     </main>
 
@@ -52,12 +51,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
-
+    
     <!-- bootstrap -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </body>
 </html>
