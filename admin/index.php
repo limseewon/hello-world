@@ -64,7 +64,7 @@ $memberCountSql = "SELECT count(*) as ct FROM MEMBERS";
 $memberResult = $mysqli->query($memberCountSql);
 $memberRs = $memberResult->fetch_object();
 
-$noticeSql = "SELECT * FROM notice ORDER BY nid limit 5";
+$noticeSql = "SELECT * FROM notice ORDER BY idx limit 5";
 $noticeResult = $mysqli->query($noticeSql);
 while ($noticeRs = $noticeResult->fetch_object()) {
   $noticeArr[] = $noticeRs;
