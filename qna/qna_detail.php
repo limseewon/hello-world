@@ -230,9 +230,43 @@ $next_id = $row_next['next_id'];
             <img src="" alt="" class="img"> 
         </div>
         <hr>
+        <div class="list">
+          <div>
+            <p>
+              안녕하세요! 댓글달겠습니다.
+            </p>
+            <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
+                        <span class="material-symbols-outlined">
+                            border_color
+                        </span>
+                    </a>
+                    <a href="announce_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                        <span class="material-symbols-outlined">
+                            delete
+                        </span>
+                    </a>
+          </div>
+          <!-- <div>
+            <p>
+              안녕하세요! 댓글달겠습니다.
+            </p>
+            <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
+                        <span class="material-symbols-outlined">
+                            border_color
+                        </span>
+                    </a>
+                    <a href="announce_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                        <span class="material-symbols-outlined">
+                            delete
+                        </span>
+                    </a>
+          </div> -->
+        </div>
+        
         <!-- 댓글 작성 폼 -->
         <div class="d-flex reply">
-          <form id="commentForm" method="post" class="wrap justify-content-start align-item-center review">
+          <form action="qna_reply_ok.php" id="commentForm" method="post" class="wrap justify-content-start align-item-center review">
+              <input type="hidden" name="name" value="<?=  $_SESSION['AUNAME'] ?>">
               <input type="hidden" name="id" value="<?= $qna_id ?>">
               <textarea name="comment" class="form-control reply_control" placeholder="내용을 추가하시오."></textarea>
               <button type="submit" class="btn btn-success">댓글 쓰기</button>
