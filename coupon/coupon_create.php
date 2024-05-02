@@ -241,7 +241,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
      .just-s-b{ 
       justify-content: space-between;
     }
-    .form_hei { height: 45px;}
+    .forwidt { height: 45px; width: 576px;}
+    .coupon_opc { opacity: 0;}
 
     </style>
 </head>
@@ -272,9 +273,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
       
               <div class="info_bottom d-flex">
                 <div class="field coupon_min_price input-group d-flex align-items-center">
-                  <label for="coupon_limit" class="content_tt">할인조건</label>
+                  <label for="coupon_limit" class="content_tt">최소사용금액</label>
                   <input type="number" name="cp_limit" id="coupon_limit" class="form-control number"
-                    placeholder="1,000" min="1000" max="1000000" step="1000" required>원이상 구매
+                    placeholder="1,000" min="1000" max="1000000" step="1000" required>원
                 </div>
                 
               </div>
@@ -305,13 +306,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                   <input type="number" name="cp_price" id="cp_price" class="form-control input number"
                   placeholder="1,000" min="1000" max="1000000" step="1000">원
                 </div>
-                <div class="form-check d-flex align-items-center">
+                <div class="form-check d-flex align-items-center coupon_opc">
                   <input class="form-check-input" type="radio" name="cp_type" id="coupon_sale_0" value="정률">
                   <label class="form-check-label b_text01" for="coupon_sale_0">할인율</label>
                   <input type="number" name="cp_ratio" id="cp_ratio" class="form-control input"
                   placeholder="10" min="5" max="100" step="5">%
                 </div>
-                <div class="form-check d-flex align-items-center">
+                <div class="form-check d-flex align-items-center coupon_opc">
                   <input class="form-check-input" type="radio" name="cp_type" id="coupon_sale_2" value="비할인">
                   <label class="form-check-label b_text01" for="coupon_sale_2">비할인 </label>
                   
@@ -330,7 +331,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                   <input class="form-check-input" type="radio" name="cp_date_type" id="coupon_limit_date_0">
                   <label class="form-check-label b_text01" for="coupon_limit_date_0">제한</label>
                   <div class="col period_select2">
-                    <select class="form-select form_heid" name="cp_date" aria-label="Default select example" disabled>
+                    <select class="form-select form_heid forwidt" name="cp_date" aria-label="Default select example" disabled>
                       <option value="1" selected>1개월</option>
                       <option value="2">2개월</option>
                       <option value="3">3개월</option>
@@ -373,12 +374,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
 ></script>
 <!-- bootstrap js -->
 
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"
-  integrity="sha512-ToL6UYWePxjhDQKNioSi4AyJ5KkRxY+F1+Fi7Jgh0Hp5Kk2/s8FD7zusJDdonfe5B00Qw+B8taXxF6CFLnqNCw=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- modernizr js -->
 <script
