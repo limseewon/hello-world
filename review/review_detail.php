@@ -1,34 +1,35 @@
 <?php
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
+// include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
 
-// 공지사항 ID 받아오기
-$notice_id = $_GET['id'];
+// 질문 ID 받아오기
+$review_id = $_GET['id'];
 
 // 조회수 증가
-$sql = "UPDATE notice SET view = view + 1 WHERE idx = $notice_id";
+$sql = "UPDATE review SET view = view + 1 WHERE idx = $review_id";
 $result = $mysqli->query($sql);
 
-
-// 공지사항 데이터 가져오기
-$sql = "SELECT * FROM notice WHERE idx = $notice_id";
+// 질문 데이터 가져오기
+$sql = "SELECT * FROM review WHERE idx = '$review_id'";
 $result = $mysqli->query($sql);
 $row = $result->fetch_assoc();
 
 // 이전 공지사항 ID 가져오기
-$sql_prev = "SELECT MAX(idx) AS prev_id FROM notice WHERE idx < $notice_id";
+$sql_prev = "SELECT MAX(idx) AS prev_id FROM review WHERE idx < $review_id";
 $result_prev = $mysqli->query($sql_prev);
 $row_prev = $result_prev->fetch_assoc();
 $prev_id = $row_prev['prev_id'];
 
 // 다음 공지사항 ID 가져오기
-$sql_next = "SELECT MIN(idx) AS next_id FROM notice WHERE idx > $notice_id";
+$sql_next = "SELECT MIN(idx) AS next_id FROM review WHERE idx > $review_id";
 $result_next = $mysqli->query($sql_next);
 $row_next = $result_next->fetch_assoc();
 $next_id = $row_next['next_id'];
 ?>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -67,6 +68,11 @@ $next_id = $row_next['next_id'];
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    
+    <!-- summernote -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css"
+    integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- 스포카 -->
     <!-- <link
       href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
@@ -78,11 +84,8 @@ $next_id = $row_next['next_id'];
     <link rel="stylesheet" href="/helloworld/css/common.css" />
     <link rel="stylesheet" href="/helloworld/css/index.css" />
     <style>
-        .contents-box{
-            width: 100%;
-            height: auto;
-        }
-        .btn {
+       
+       .btn {
             width: 105px;
             height: 48px;
         }
@@ -153,6 +156,10 @@ $next_id = $row_next['next_id'];
       .reply{
         padding-right: 1270px;
       }
+      .cancle-btn{
+            width: 105px;
+            height: 48px;
+        }
         .review .btn{
           white-space: nowrap;
         }  
@@ -183,31 +190,23 @@ $next_id = $row_next['next_id'];
         .edit{
             padding-right: 10px;
         }
-
     </style>
-  </head>
-  <body>
-  <?php
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
-    ?>
-            <h2>공지 사항</h2>
-            <div class="regist">
+</head>
+<body>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php'; ?>
+    <h2>질의 응답</h2>
+    <div class="regist">
         <div class="mb-3 d-flex title">
             <p class="tt">제목</p>
             <p class="question"><?= $row['title']; ?></p>
             <div class="pos d-flex">
-                <p>작성자: <?= $row['name']; ?>
+                <p class="lock d-flex">작성자: <?= $row['name']; ?></p>
                 <p>조회수: <?= $row['view'];?></p>
+                <p>평점: <?= $row['hit'];?>/5</p>
                 <!-- <span class="material-symbols-outlined">lock</span> -->
-                </p>
-                <p><?= $row['regdate']; ?></p>
+                <p><?= $row['date']; ?></p>
                 <p>
-                  <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
-                        <span class="material-symbols-outlined">
-                            border_color
-                        </span>
-                    </a>
-                    <a href="announce_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                    <a href="review_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
                         <span class="material-symbols-outlined">delete</span>
                     </a>
                 </p>
@@ -220,32 +219,28 @@ $next_id = $row_next['next_id'];
         <!-- 첨부 파일 출력 부분 -->
         <div class="d-flex file">
             <p>첨부 파일</p>
-            <p><?= $row['file']; ?></p>
+            <!-- <p><?= $row['file']; ?></p> -->
         </div>
         <div class="notice-btn d-flex">
           <div class="left-button">
             <?php if ($prev_id !== null) : ?>
-              <a href="announce_detail.php?id=<?= $prev_id; ?>" class="btn btn-primary">이전</a>
+              <a href="review_detail.php?id=<?= $prev_id; ?>" class="btn btn-primary">이전</a>
             <?php else : ?>
               <a href="#" class="btn btn-primary disabled">이전</a>
             <?php endif; ?>
 
             <?php if ($next_id !== null) : ?>
-              <a href="announce_detail.php?id=<?= $next_id; ?>" class="btn btn-primary">다음</a>
+              <a href="review_detail.php?id=<?= $next_id; ?>" class="btn btn-primary">다음</a>
             <?php else : ?>
               <a href="#" class="btn btn-primary disabled">다음</a>
             <?php endif; ?>
           </div>
           <div class="right-button">
-            <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');" class="btn btn-success edit-btn">수정</a>
             <button type="button" class="btn btn-danger cancle-btn">닫기</button>
           </div>
         </div>
-          
-          <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
-?>
-    <!-- jquery -->
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php'; ?>
+    <!-- 기존 script 태그 내용 -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
       integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
@@ -274,9 +269,16 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       referrerpolicy="no-referrer"
     ></script>
 
-    <script src="js/common.js"></script>
+    
   </body>
   <script>
+    $(document).ready(function(){
+      $('#summernote').summernote();
+    });
+    $('.cancle-btn').click(function(e){
+      e.preventDefault();
+      location.href = 'review.php';
+    });
     let documentHeight = Math.max(
       document.body.scrollHeight,
       document.body.offsetHeight,
@@ -285,10 +287,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       document.documentElement.offsetHeight
     );
     document.querySelector('header').style.height = documentHeight + 'px';
-
-    $('.cancle-btn').click(function(e){
-      e.preventDefault();
-      location.href = 'announce.php';
-    });
   </script>
+</body>
 </html>

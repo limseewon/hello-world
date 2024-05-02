@@ -2,6 +2,51 @@
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
+              // board테이블에서 idx를 기준으로 내림차순해서 10개까지 표시
+              $sql = "SELECT * from qna order by idx desc limit 0,10";
+              $result = $mysqli->query($sql);
+            
+              // output data of each row
+             
+$paginationTarget = 'qna';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/pagination.php';
+// $keyword = $_GET['keyword'] ??'';
+// $search_where = '';
+// $status = $status ?? '';
+
+// if($keyword){
+//   $search_where = " and status = $status";
+// }
+
+// if($search_where){
+//   $search_where = "'and (name LIKE '%$keyword%' or message LIKE '%$keyword%')"
+// }
+
+$sql = "SELECT * FROM qna where 1=1"; //모든 상품 조회 쿼리
+
+
+// $sql .= $search_where;
+$sql .= '';
+$order = " order by idx desc";
+$sql .= $order;
+$limit = " LIMIT $startLimit, $endLimit";
+$sql .= $limit;
+// echo $sql;
+$result = $mysqli->query($sql);
+
+// 검색어 가져오기
+$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+
+// 검색 조건 설정
+$search_where = '';
+if ($keyword) {
+    $search_where = "WHERE title LIKE '%$keyword%'";
+}
+
+// 검색 조건을 포함한 쿼리 작성
+$sql = "SELECT * FROM qna $search_where ORDER BY idx DESC LIMIT 0, 10";
+$result = $mysqli->query($sql);
+
 
 
 ?>
@@ -97,6 +142,15 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
         align-items: center;
         gap: 10px;
       }
+      .title_td{
+        width: 800px;
+      }
+      .no_th{
+        width: 120px;
+      }
+      .delete_td{
+        width: 100px;
+      }
     </style>
   </head>
   <body>
@@ -107,8 +161,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
             <div class="bar-top d-flex">
               <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
-                  <form class="block-top d-flex">
-                    <input class="form-control me-2" type="search" placeholder="제목을 입력하시오." aria-label="Search">
+                  <form action="" class="block-top d-flex">
+                  <input class="form-control me-2" type="text" name="keyword" placeholder="제목을 입력하시오." aria-label="Search" value="<?= $keyword ?>">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                   </form>
                 </div>
@@ -134,29 +188,24 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                   <th scope="col">조회수</th>
                   <th scope="col">답변</th>
                   <th scope="col">작성일</th>
-                  <th scope="col">수정 &#47; 삭제</th>
+                  <th scope="col">삭제</th>
                 </tr>
               </thead>
               <tbody>
               <?php
-              // board테이블에서 idx를 기준으로 내림차순해서 10개까지 표시
-              $sql = "SELECT * from qna order by idx desc limit 0,10";
-              $result = $mysqli->query($sql);
-            
-              // output data of each row
               while($row = $result->fetch_assoc()) {
               
-                  //title변수에 DB에서 가져온 title을 선택
-                  $title=$row["title"];
-                  if(iconv_strlen($title)>30)
-                  {
-                    //title이 30을 넘어서면 ...표시
-                    $title=str_replace($row["title"],iconv_substr($row["title"],0,30,"utf-8")."...",$row["title"]);
-                  }
-              ?>
+                //title변수에 DB에서 가져온 title을 선택
+                $title=$row["title"];
+                if(iconv_strlen($title)>30)
+                {
+                  //title이 30을 넘어서면 ...표시
+                  $title=str_replace($row["title"],iconv_substr($row["title"],0,30,"utf-8")."...",$row["title"]);
+                }
+                ?>
                 <tr>
-                  <th scope="row"><?= $row['idx'];?></th>
-                  <td><a href="qna_detail.php?id=<?= $row['idx']; ?>"><?= $title; ?></a></td>
+                  <th scope="row" class="no_th"><?= $row['idx'];?></th>
+                  <td class="title_td"><a href="qna_detail.php?id=<?= $row['idx']; ?>"><?= $title; ?></a></td>
                   <td class="lock d-flex"><?= $row['name'];?></td>
                   <!-- <span class="material-symbols-outlined">
                     lock
@@ -164,12 +213,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                   <td><?= $row['view'];?></td>
                   <td><?= $row['reply'];?></td>
                   <td><?= $row['date'];?></td>
-                  <td class="edit d-flex">
-                  <a href="qna_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
-                        <span class="material-symbols-outlined">
-                            border_color
-                        </span>
-                    </a>
+                  <td class="delete_td">
                     <a href="qna_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
                         <span class="material-symbols-outlined">
                             delete
@@ -183,25 +227,39 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
               </tbody>
             </table>
           </div>
-          <nav aria-label="..." class="d-flex justify-content-center">
+          <div class="d-flex justify-content-center">
               <ul class="pagination">
-                <li class="page-item disabled">
-                  <span class="page-link">이전</span>
-                </li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">다음</a>
-                </li>
+                <?php
+                if($pageNumber > 1){
+                  echo "<li class=\"page-item\"><a href=\"qna.php?pageNumber=1\" class=\"page-link\" >처음</a></li>";
+                  //이전
+                  if($block_num > 1){
+                    $prev = 1 + ($block_num - 2) * $block_ct;
+                    echo "<li class=\"page-item\"><a href=\"qna.php?pageNumber=$prev\" class=\"page-link\">이전</a></li>";
+                  }
+                }
+              
+                  for($i=$block_start;$i<=$block_end;$i++){
+                    if($i == $pageNumber){
+                      echo "<li class=\"page-item active\"><a href=\"qna.php?pageNumber=$i\" class=\"page-link\">$i</a></li>";
+                    }else{
+                      echo "<li class=\"page-item\"><a href=\"qna.php?pageNumber=$i\" class=\"page-link\">$i</a></li>";
+                    }            
+                  }  
+
+                  if($pageNumber < $total_page){
+                    if($total_block > $block_num){
+                      $next = $block_num * $block_ct + 1;
+                      echo "<li class=\"page-item\"><a href=\"qna.php?pageNumber=$next\" class=\"page-link\">다음</a></li>";
+                    }
+                    echo "<li class=\"page-item\"><a href=\"qna.php?pageNumber=$total_page\" class=\"page-link\">마지막</a></li>";
+                  }        
+                ?>
               </ul>
-            </nav>
-          <div class="c_button">
-            <button class="btn_complete btn btn-success"><a href="/helloworld/qna/qna_write.php">공지사항 등록</a></button>
-          </div>
+            </div>    
+          <!-- <div class="c_button">
+            <button class="btn_complete btn btn-success"><a href="/helloworld/qna/qna_write.php"></a></button>
+          </div> -->
           <?php
               include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
               ?>
@@ -245,9 +303,5 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
       document.documentElement.offsetHeight
     );
     document.querySelector("header").style.height = documentHeight + "px";
-    document.getElementById(".btn_complete").addEventListener("click", function() {
-      // 원하는 URL로 리다이렉트
-      window.location.href = "/helloworld/qna/qna_write.php";
-    });
   </script>
 </html>
