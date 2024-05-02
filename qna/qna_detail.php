@@ -104,7 +104,7 @@ if ($qna_id > 0) {
             height: 48px;
         }
         .notice-btn{
-            padding-top: 65px;
+            padding-top: 20px;
             justify-content: space-between;
         }
         .title-box{
@@ -139,7 +139,9 @@ if ($qna_id > 0) {
           padding-top: 35px;
           padding-bottom: 35px;
         }
-
+        .regis_btn{
+          padding-left{}
+        }
         .regist{
           /* width: 100%; */
           height: auto;
@@ -170,11 +172,14 @@ if ($qna_id > 0) {
       }
       .cancle-btn{
             width: 105px;
-            height: 48px;
+            height: 35px;
         }
         .review .btn{
           white-space: nowrap;
         }  
+        .review{
+          gap:20px;
+        }
         .form-control {
             display: block;
             width: 100%;
@@ -319,6 +324,25 @@ if ($qna_id > 0) {
               <img src="" alt="" class="img">
           </div>
       </div>
+      <hr>
+      <div class="notice-btn d-flex ">
+          <div class="left-button">
+            <?php if ($prev_id !== null) : ?>
+              <a href="qna_detail.php?id=<?= $prev_id; ?>" class="btn btn-primary">이전</a>
+            <?php else : ?>
+              <a href="#" class="btn btn-primary disabled">이전</a>
+            <?php endif; ?>
+
+            <?php if ($next_id !== null) : ?>
+              <a href="qna_detail.php?id=<?= $next_id; ?>" class="btn btn-primary">다음</a>
+            <?php else : ?>
+              <a href="#" class="btn btn-primary disabled">다음</a>
+            <?php endif; ?>
+          </div>
+          <div class="right-button">
+            <button type="button" class="btn btn-danger cancle-btn">닫기</button>
+          </div>
+        </div>
         <hr>
         <div class="comment-list">
             <?php if ($result && $result->num_rows > 0) : ?>
@@ -358,16 +382,15 @@ if ($qna_id > 0) {
                     </a>
           </div> -->
         </div>
-        
         <!-- 댓글 작성 폼 -->
         <div class="comment-form">
-          <form action="qna_save_reply.php" id="commentForm" method="post" class="wrap justify-content-start align-item-center review">
+          <form action="qna_save_reply.php" id="commentForm" method="post" class="wrap d-flex justify-content-start align-item-center review">
             <input type="hidden" name="name" value="<?= $_SESSION['AUNAME'] ?>">
             <input type="hidden" name="id" value="<?= $qna_id ?>">
             <div class="mb-3">
               <textarea name="comment" class="form-control reply_control" placeholder="댓글을 입력하세요."></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">댓글 쓰기</button>
+            <button type="submit" class="regis_btn btn btn-primary">댓글 쓰기</button>
           </form>
         </div>
         <!-- <div class="d-flex reply">
@@ -379,26 +402,7 @@ if ($qna_id > 0) {
             <textarea name="comment" class="form-control reply_control" placeholder="내용을 추가하시오."></textarea>
             <button type="button" class="btn btn-success">댓글 쓰기</button>
         </div> -->
-        <hr>
     </div>
-    <div class="notice-btn d-flex">
-          <div class="left-button">
-            <?php if ($prev_id !== null) : ?>
-              <a href="qna_detail.php?id=<?= $prev_id; ?>" class="btn btn-primary">이전</a>
-            <?php else : ?>
-              <a href="#" class="btn btn-primary disabled">이전</a>
-            <?php endif; ?>
-
-            <?php if ($next_id !== null) : ?>
-              <a href="qna_detail.php?id=<?= $next_id; ?>" class="btn btn-primary">다음</a>
-            <?php else : ?>
-              <a href="#" class="btn btn-primary disabled">다음</a>
-            <?php endif; ?>
-          </div>
-          <div class="right-button">
-            <button type="button" class="btn btn-danger cancle-btn">닫기</button>
-          </div>
-        </div>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php'; ?>
     <!-- 기존 script 태그 내용 -->
     <script
@@ -432,41 +436,45 @@ if ($qna_id > 0) {
     
   </body>
   <script>
-  // $('#commentForm').submit(function(e) {
-  //   e.preventDefault(); // 폼의 기본 제출 동작을 막습니다.
+//   $('#commentForm').submit(function(e) {
+//   e.preventDefault(); // 폼의 기본 제출 동작을 막습니다.
 
-  //   var formData = $(this).serialize(); // 폼 데이터를 시리얼라이즈합니다.
+//   var formData = $(this).serialize(); // 폼 데이터를 시리얼라이즈합니다.
 
-  //   $.ajax({
-  //     type: 'POST',
-  //     url: 'qna_save_reply.php', // 댓글 저장을 처리할 PHP 파일 경로
-  //     data: formData,
-  //     success: function(response) {
-  //       if (response.startsWith('success')) {
-  //         alert('댓글이 성공적으로 저장되었습니다.');
-  //         $('#commentForm textarea').val(''); // 댓글 입력 필드 초기화
-  //         // 댓글 목록을 업데이트하는 코드 작성
-  //         updateCommentList();
-  //       } else if (response.startsWith('error')) {
-  //         var errorMessage = response.substring(6); // "error: " 이후의 오류 메시지 추출
-  //         alert('댓글 저장에 실패했습니다. 오류 메시지: ' + errorMessage);
-  //       } else {
-  //         alert('댓글 저장에 실패했습니다. 다시 시도해주세요.');
-  //       }
-  //     }
-  //   });
-  // });
+//   $.ajax({
+//     type: 'POST',
+//     url: 'qna_save_reply.php', // 댓글 저장을 처리할 PHP 파일 경로
+//     data: formData,
+//     success: function(response) {
+//       if (response.startsWith('success')) {
+//         alert('댓글이 성공적으로 저장되었습니다.');
+//         $('#commentForm textarea').val(''); // 댓글 입력 필드 초기화
+//         location.reload(); // 페이지 새로고침
+//       } else if (response.startsWith('error')) {
+//         var errorMessage = response.substring(6); // "error: " 이후의 오류 메시지 추출
+//         alert('댓글 저장에 실패했습니다. 오류 메시지: ' + errorMessage);
+//       } else {
+//         alert('댓글 저장에 실패했습니다. 다시 시도해주세요.');
+//       }
+//     }
+//   });
+// });
+  // 댓글 목록 가져오기
+if ($qna_id > 0) {
+  $sql = "SELECT * FROM qna_comment WHERE idx = '$qna_id' ORDER BY idx DESC";
+  $result = $mysqli->query($sql);
 
-  // function updateCommentList() {
-  //   $.ajax({
-  //     type: 'GET',
-  //     url: 'qna_get_comments.php',
-  //     data: { qna_id: '<?= $qna_id ?>' },
-  //     success: function(response) {
-  //       $('.comment-list').html(response);
-  //     }
-  //   });
-  // }
+  // 댓글 개수 확인
+  $commentCount = $result->num_rows;
+
+  // 댓글 개수에 따라 reply 값 업데이트
+  if ($commentCount > 0) {
+    $updateSql = "UPDATE qna SET reply = '답변' WHERE idx = '$qna_id'";
+  } else {
+    $updateSql = "UPDATE qna SET reply = '미답변' WHERE idx = '$qna_id'";
+  }
+  $updateResult = $mysqli->query($updateSql);
+}
 
   $('.cancle-btn').click(function(e){
     e.preventDefault();

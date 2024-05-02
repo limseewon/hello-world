@@ -153,7 +153,7 @@ $row = $result->fetch_assoc();
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
             <h2>공지사항 수정</h2>
-            <form action="announce_modify_ok.php" method="POST" id="content_save">
+            <form action="announce_modify_ok.php" method="POST" id="content_save" enctype="multipart/form-data">
             <input type="hidden" name="notice_id" value="<?= $notice_id ?>">
             <input type="hidden" name="contents" id="contents">
               <div class="regist">
@@ -168,14 +168,14 @@ $row = $result->fetch_assoc();
                   <div id="summernote"><?= $row['content']?></div>
                 </div>
                 <div>
-                  <div class="input-group d-flex file">
+                <div class="input-group d-flex file">
                     <div class="add d-flex">
                       <label for="formGroupExampleInput" class="form-label">첨부파일</label>
                       <table class="table_1">
                         <tbody id="option1">
                           <tr id="optionTr1">
                             <td>
-                              <input type="file" class="form-control file-box" id="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="optionImage1[]">
+                              <input type="file" class="form-control file-box" id="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="file">
                             </td>
                           </tr>
                         </tbody>
@@ -230,11 +230,10 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
     <script type="text/javascript"> 
       $(document).ready(function(){
         $('#summernote').summernote();
-        // summernote 초기화 시 기존 내용 설정
-    $("#summernote").summernote("code", '<?= $row['content']; ?>');
+
         $('#content_save').on('submit', save);
 
-        function save() {
+    function save() {
       let markupStr = $('#summernote').summernote('code');
       let contents = encodeURIComponent(markupStr);
       $('#contents').val(contents);
@@ -254,6 +253,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       // }
 
     }
+
       });
       </script>
 

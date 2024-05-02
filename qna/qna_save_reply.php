@@ -17,5 +17,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script> alert('댓글 등록에 실패하였습니다.'); 
         history.back(); </script>";
     }
+    if ($result) {
+  // 댓글 저장 성공 시 reply 값을 '답변'으로 업데이트
+  $updateSql = "UPDATE qna SET reply = '답변' WHERE idx = '$qna_id'";
+  $updateResult = $mysqli->query($updateSql);
+
+  if ($updateResult) {
+    echo 'success';
+  } else {
+    echo 'error: ' . $mysqli->error;
+  }
+} else {
+  echo 'error: ' . $mysqli->error;
+}
 }
 ?>

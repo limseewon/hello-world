@@ -112,13 +112,14 @@ $result = $mysqli->query($sql);
         width: 100%;
       }
       .pagination{
-        margin-top: 20px;
+        position: absolute;
+        top: 830px;
         justify-content: center;
       }
       .c_button {
         position: absolute;
-        right: 75px;
-        bottom: 45px;
+        right: 85px;
+        bottom: 85px;
       }
       .title_td{
         width: 800px;
