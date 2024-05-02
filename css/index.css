@@ -27,7 +27,12 @@
   height: 334px;
   gap: 30px;
 }
-
+.star {
+  color: var(--c-yellow);
+}
+ul {
+  list-style-type: disc;
+}
 .board {
   margin: 0 30px 30px 0;
 }
@@ -96,3 +101,23 @@
   color: var(--c-blue);
   text-decoration: underline;
 }
+
+/* star */
+.rating {
+  display: flex;
+  gap: 10px;
+}
+.fa-star {
+  color: var(--c-yellow);
+}
+.star-wrap {
+  width: 18px;
+}
+.star {
+  width: 0;
+  overflow: hidden;
+}
+/* .rating1 .star-wrap:nth-child(-n+3){
+	width:18px;
+} */
+/* start */

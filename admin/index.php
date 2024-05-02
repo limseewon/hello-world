@@ -104,10 +104,36 @@ $profitRs = $profitResult->fetch_object();
                   <span><?=$memberRs->ct;?>명</span>
                   <span class="material-symbols-outlined red"> keyboard_double_arrow_up </span>
                 </div>
-                <div class="evaluation contents-box d-flex align-items-center justify-content-between">
+                <div class="contents-box d-flex align-items-center justify-content-between">
                   <span class="bold">평균 수강만족도</span>
-                  <span>★★★★★</span>
-                  <span><?=round($sfRs->avg, 2);?></span>
+                  <div class="rating">
+                    <div class="star-wrap">
+                      <div class="star">				
+                        <i class="fas fa-star"></i>
+                      </div>
+                    </div>
+                    <div class="star-wrap">
+                      <div class="star">				
+                        <i class="fas fa-star"></i>
+                      </div>
+                    </div>
+                    <div class="star-wrap">
+                      <div class="star">				
+                        <i class="fas fa-star"></i>
+                      </div>
+                    </div>
+                    <div class="star-wrap">
+                      <div class="star">				
+                        <i class="fas fa-star"></i>
+                      </div>
+                    </div>
+                    <div class="star-wrap">
+                      <div class="star">				
+                        <i class="fas fa-star"></i>
+                      </div>
+                    </div>		
+                  </div>
+                  <span class="evaluation bold"><?=round($sfRs->avg, 2);?></span>
                 </div>
               </div>
               <div class="lecture_chart contents-box">
@@ -224,6 +250,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       referrerpolicy="no-referrer"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js" integrity="sha512-Udi2kMceuNKY3Fn6Pr/yfLfNZNB6uLFgT5I/AppE89fbBX3v/HxF0DSHtOCf6ctL/LDj8sHUfmBUkNAogvdD+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"></script>
     <script src="/helloworld/js/common.js"></script>
     <script src="/helloworld/js/index.js"></script>
   </body>
