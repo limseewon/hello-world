@@ -86,7 +86,7 @@ while ($rs = $result->fetch_object()) {
           </div>
           <div class="modal-body">
             <div class="profile d-flex align-items-center">
-              <span class="material-symbols-outlined">account_circle</span>
+              <span class="material-symbols-outlined profile_icon">account_circle</span>
               <div class="d-flex flex-column">
                 <span class="class">수강생</span>
                 <span id="modal_username"></span>

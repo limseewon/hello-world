@@ -132,3 +132,7 @@ td {
 .coupon_list a + a {
   margin-top: 20px;
 }
+.profile_icon {
+  font-size: 50px;
+  color: var(--c-button);
+}
