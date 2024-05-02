@@ -36,6 +36,9 @@
   --c-contentBG: #f5f6fa;
   --c-space_updown: 30px;
 }
+.nowrap {
+  white-space: nowrap;
+}
 .btn-primary {
   background: #7749f8;
 }

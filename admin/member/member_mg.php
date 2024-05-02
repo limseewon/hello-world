@@ -100,8 +100,8 @@ while ($rs = $result->fetch_object()) {
               <ul class="d-grid">
                 <li><span class="m_title">아이디</span><span id="modal_id"></span></li>
                 <li><span class="m_title">최근 접속일</span><span id="modal_recent"></span></li>
-                <li><span class="m_title">가입일</span><span id="modal_regdate"></span></li>
                 <li><span class="m_title">연락처</span><span id="modal_tel"></span></li>
+                <li><span class="m_title">가입일</span><span id="modal_regdate"></span></li>
               </ul>
             </div>
             <div>

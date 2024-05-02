@@ -107,7 +107,9 @@ td {
   gap: 10px; /* 열 사이의 간격 설정 */
   margin-bottom: 30px;
 }
-
+.d-grid span {
+  font-size: 20px;
+}
 .m_title {
   font-weight: bold;
   font-size: 20px;

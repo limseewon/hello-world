@@ -74,33 +74,33 @@ function courseChart(data) {
       }
       window.stackedBar = new Chart(ctx, barConfig);
 
-      const pidData = {
-        labels: ["Red", "Blue", "Yellow"],
-        datasets: [
-          {
-            label: "My First Dataset",
-            data: [300, 50, 100],
-            backgroundColor: [
-              "rgb(255, 99, 132)",
-              "rgb(54, 162, 235)",
-              "rgb(255, 205, 86)",
-            ],
-            hoverOffset: 4,
-          },
-        ],
-      };
-      const pidConfig = {
-        type: "doughnut",
-        data: pidData,
-        options: {
-          maintainAspectRatio: false,
-          cutout: "0%",
-        },
-      };
-      const myPieChart = new Chart(
-        document.getElementById("pie-chart"),
-        pidConfig
-      );
+      // const pidData = {
+      //   labels: ["Red", "Blue", "Yellow"],
+      //   datasets: [
+      //     {
+      //       label: "My First Dataset",
+      //       data: [300, 50, 100],
+      //       backgroundColor: [
+      //         "rgb(255, 99, 132)",
+      //         "rgb(54, 162, 235)",
+      //         "rgb(255, 205, 86)",
+      //       ],
+      //       hoverOffset: 4,
+      //     },
+      //   ],
+      // };
+      // const pidConfig = {
+      //   type: "doughnut",
+      //   data: pidData,
+      //   options: {
+      //     maintainAspectRatio: false,
+      //     cutout: "0%",
+      //   },
+      // };
+      // const myPieChart = new Chart(
+      //   document.getElementById("pie-chart"),
+      //   pidConfig
+      // );
     },
   });
 }

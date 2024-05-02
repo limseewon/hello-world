@@ -95,7 +95,7 @@ $profitRs = $profitResult->fetch_object();
             <div class="main_top d-flex">
               <div class="left_top">
                 <div class="profit contents-box d-flex align-items-center justify-content-between">
-                  <span class="bold"><?=date('m');?>월달 수익</span>
+                  <span class="bold"><?=date('m');?>월 총 수익</span>
                   <span><?=number_format($profitRs->sum);?>원</span>
                   <span class="material-symbols-outlined blue"> keyboard_double_arrow_down </span>
                 </div>
@@ -149,14 +149,12 @@ $profitRs = $profitResult->fetch_object();
                   ?>
                 </select>
                 <div class="chart-wrapper d-flex">
-                  <p class="bold">수강신청수</p>                    
+                  <p class="bold nowrap">수강신청수</p>                    
                   <div class="chart-container">
                     <canvas id="bar-chart"><img src="/img/4000원.jpg" alt=""></canvas>
                   </div>
-                  <p class="bold">수강진도율</p>
-                  <div class="chart-container">
-                    <canvas id="pie-chart"></canvas>
-                  </div>
+                  <p class="bold nowrap">이번달 강의 수익</p>
+                  
                 </div>
               </div>
             </div>
