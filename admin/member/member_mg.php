@@ -181,7 +181,7 @@ while ($rs = $result->fetch_object()) {
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
 ?>
             <h2>회원 관리</h2>
-            <form action="" class="d-flex">
+            <form action="" class="d-flex justify-content-between">
               <div class="filter d-flex">
                 <select class="form-select lecture" aria-label="Default select example">
                   <option selected disabled>강좌명</option>
@@ -229,7 +229,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
                 if(isset($memberArr)) {
                   foreach($memberArr as $ma){                
                 ?>
-                <tr data-ui="<?=$ma->mid?>" data-user="<?=$ma->userid?>">
+                <tr data-ui="<?=$ma->mid?>" data-user="<?=$ma->userid?>" >
                   <th scope="row">
                     <input class="form-check-input" type="checkbox" />
                   </th>
