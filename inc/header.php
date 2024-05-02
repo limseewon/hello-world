@@ -67,7 +67,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
         <div class="top_section d-flex justify-content-end">
           <div class="profile d-flex align-items-center">
             <span class="material-symbols-outlined">account_circle</span>
-            <div class="d-flex flex-column">
+            <div class="d-flex flex-column manager">
               <span>관리자</span>
               <span>코딩좋아</span>
             </div>

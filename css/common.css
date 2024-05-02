@@ -108,6 +108,24 @@ header .headerContainer {
     color: black;
   }
 }
+.profile > span:first-child {
+  font-size: 50px;
+  color: var(--c-button);
+  margin-right: 16px;
+}
+.profile > div {
+  gap: 5px;
+  margin-right: 16px;
+}
+.profile > div span:last-child {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.profile span:last-child {
+  font-size: 40px;
+}
+
 .main {
   /* width: 100%; */
   width: 100%;
