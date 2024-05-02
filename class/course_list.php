@@ -298,12 +298,7 @@ while ($rs2 = $result2->fetch_object()) {
                   if (isset($rsc2)) {
                     foreach ($rsc2 as $item) {
                     $cateString = $item->cate;
-                
                     $parts = explode('/', $cateString);
-
-                    $big_cate = $parts[0];
-                    $md_cate = $parts[1];
-                    $sm_cate = $parts[2];
                   ?>
                 <li class="course_list row shadow_box">
                   <input type="hidden" name="cid[]" value="<?php echo $item->cid ?>">
@@ -314,14 +309,7 @@ while ($rs2 = $result2->fetch_object()) {
                         <h3 class="course_list_title b_text01"><a href="course_view.php?cid=<?= $item->cid ?>"><?= $item->name ?></a>
                           <span class="badge rounded-pill blue_bg b-pd">
                             <?php
-                            //뱃지 키워드 
-                            if (isset($item->cate)) {
-                              $categoryText = $item->cate;
-                              $parts = explode('/', $categoryText);
-                              $lastPart = end($parts);
-
-                              echo $lastPart;
-                            }
+                            echo end($parts);
                             ?>
                           </span>
                           <span class="badge level_badge rounded-pill b-pd
@@ -340,8 +328,8 @@ while ($rs2 = $result2->fetch_object()) {
                             <?= $item->level ?>
                           </span>
                         </h3>
-                        <p class="course_content">
-                          <?= $item->content; ?>
+                        <p>
+                          <?= $item->content ?>
                         </p>
                       </div>
                       <p class="duration"><i class="ti ti-calendar-event"></i><span>수강기간</span><span>
@@ -360,16 +348,17 @@ while ($rs2 = $result2->fetch_object()) {
                       style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
                       aria-label="breadcrumb">
                       <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">
-                            <?= $big_cate ?>
-                          </a></li>
-                        <li class="breadcrumb-item active" aria-current="page">
-                          <?= $md_cate ?>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">
-                          <?= $sm_cate ?>
-                        </li>
 
+                        <?php 
+                         foreach($parts as $p){
+                          ?>
+                          <li class="breadcrumb-item"><a href="#">
+                            <?= $p ?>
+                          </a>
+                        </li>
+                          <?php
+                         }
+                        ?>
                       </ol>
                     </nav>
 
@@ -480,12 +469,7 @@ while ($rs2 = $result2->fetch_object()) {
     ></script>
     <!-- bootstrap js -->
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"
-      integrity="sha512-ToL6UYWePxjhDQKNioSi4AyJ5KkRxY+F1+Fi7Jgh0Hp5Kk2/s8FD7zusJDdonfe5B00Qw+B8taXxF6CFLnqNCw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- modernizr js -->
     <script

@@ -18,18 +18,17 @@
     $result11 = $mysqli->query($query11);
     $rs11 = $result11->fetch_object();
     $cate1 =  $rs11-> name;
-    if(isset($cate2) &&  $cate2 !== ''){
-      $query22 = "SELECT name FROM category WHERE cateid='".$cate2." '";
-      $result22 = $mysqli->query($query22); 
-      $rs22 = $result22->fetch_object();
-      $cate2 =  $rs22->name;
-    }
-    if(isset($cate3) &&  $cate3 !== ''){
-      $query33 = "SELECT name FROM category WHERE cateid='".$cate3." '";
-      $result33 = $mysqli->query($query33);
-      $rs33 = $result33->fetch_object();
-      $cate3 =  $rs33->name;
-    }
+
+    $query22 = "SELECT name FROM category WHERE cateid='".$cate2." '";
+    $result22 = $mysqli->query($query22); 
+    $rs22 = $result22->fetch_object();
+    $cate2 =  $rs22->name;
+
+    $query33 = "SELECT name FROM category WHERE cateid='".$cate3." '";
+    $result33 = $mysqli->query($query33);
+    $rs33 = $result33->fetch_object();
+    $cate3 =  $rs33->name;
+
     
 
     $cid=$_POST['cid'];
