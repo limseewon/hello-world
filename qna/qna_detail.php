@@ -4,16 +4,42 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 // include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
 
 // 질문 ID 받아오기
-$qna_id = $_GET['id'];
+$qna_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 // 조회수 증가
-$sql = "UPDATE qna SET view = view + 1 WHERE idx = $qna_id";
-$result = $mysqli->query($sql);
+if ($qna_id > 0) {
+  $sql = "UPDATE qna SET view = view + 1 WHERE idx = $qna_id";
+  $result = $mysqli->query($sql);
+}
 
 // 질문 데이터 가져오기
-$sql = "SELECT * FROM qna WHERE idx = '$qna_id'";
-$result = $mysqli->query($sql);
-$row = $result->fetch_assoc();
+if ($qna_id > 0) {
+  $sql = "SELECT * FROM qna WHERE idx = '$qna_id'";
+  $result = $mysqli->query($sql);
+  $row = $result->fetch_assoc();
+}
+
+// 이전 공지사항 ID 가져오기
+if ($qna_id > 0) {
+  $sql_prev = "SELECT MAX(idx) AS prev_id FROM qna WHERE idx < $qna_id";
+  $result_prev = $mysqli->query($sql_prev);
+  $row_prev = $result_prev->fetch_assoc();
+  $prev_id = $row_prev['prev_id'];
+}
+
+// 다음 공지사항 ID 가져오기
+if ($qna_id > 0) {
+  $sql_next = "SELECT MIN(idx) AS next_id FROM qna WHERE idx > $qna_id";
+  $result_next = $mysqli->query($sql_next);
+  $row_next = $result_next->fetch_assoc();
+  $next_id = $row_next['next_id'];
+}
+
+// 댓글 목록 가져오기
+if ($qna_id > 0) {
+  $sql = "SELECT * FROM qna_comment WHERE qna_id = '$qna_id' ORDER BY idx DESC";
+  // $result = $mysqli->query($sql);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -141,9 +167,6 @@ $row = $result->fetch_assoc();
       .img{
         padding-left: 200px;
       }
-      .reply{
-        padding-right: 1270px;
-      }
       .cancle-btn{
             width: 105px;
             height: 48px;
@@ -178,55 +201,172 @@ $row = $result->fetch_assoc();
         .edit{
             padding-right: 10px;
         }
+        .btn-success{
+          width: 100px;
+        }
+        .reply{
+          gap: 27px;
+          align-items: center;
+        }
+        .reply_control{
+          width: 800px;
+        }
+        .comment-list {
+    margin-top: 30px;
+  }
+
+  .comment-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+  }
+
+  .comment-item p {
+    margin-bottom: 10px;
+  }
+
+  .comment-item .actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .comment-item .actions a {
+    margin-left: 10px;
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .comment-item .actions a:hover {
+    text-decoration: underline;
+  }
+
+  .comment-form {
+    margin-top: 30px;
+    display: flex;
+  }
+
+  .comment-form textarea {
+    height: 120px;
+    resize: none;
+  }
+
+  .comment-form button {
+    margin-top: 10px;
+  }
     </style>
 </head>
 <body>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php'; ?>
     <h2>질의 응답</h2>
-    <div class="regist">
-        <div class="mb-3 d-flex title">
-            <p class="tt">제목</p>
-            <p class="question"><?= $row['title']; ?></p>
-            <div class="pos d-flex">
-                <p class="lock d-flex"><?= $row['name']; ?></p>
-                <!-- <span class="material-symbols-outlined">lock</span> -->
-                <p><?= $row['date']; ?></p>
-                <p>
-                <a href="qna_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
+      <div class="regist">
+          <div class="mb-3 d-flex title">
+              <p class="tt">제목</p>
+              <p class="question"><?= $row['title']; ?></p>
+              <div class="pos d-flex">
+                  <p class="lock d-flex">작성자: <?= $row['name']; ?></p>
+                  <p>조회수: <?= $row['view']; ?></p>
+                  <p>답변: <?= $row['reply']; ?></p>
+                  <!-- <span class="material-symbols-outlined">lock</span> -->
+                  <p><?= $row['date']; ?></p>
+                  <p>
+                      <a href="qna_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                          <span class="material-symbols-outlined">delete</span>
+                      </a>
+                  </p>
+              </div>
+          </div>
+          <div class="mb-3 d-flex con">
+              <p>내용</p>
+              <p><?= $row['content']; ?></p>
+          </div>
+          <!-- 첨부 파일 출력 부분 -->
+          <div class="d-flex file">
+              <p>첨부 파일</p>
+              <?= $row['files']; ?>
+              <img src="" alt="" class="img">
+          </div>
+      </div>
+        <hr>
+        <div class="comment-list">
+            <?php if ($result && $result->num_rows > 0) : ?>
+              <?php while ($comment = $result->fetch_assoc()) : ?>
+                <div class="comment-item">
+                  <div class="comment-header">
+                    <span class="comment-author"><?= $comment['name'] ?></span>
+                    <span class="comment-date"><?= $comment['regdate'] ?></span>
+                  </div>
+                  <div class="comment-content"><?= $comment['comment'] ?></div>
+                  <div class="comment-actions">
+                    <a href="announce_modify.php?id=<?= $comment['idx'] ?>" onclick="return confirm('정말 수정하시겠습니까?');">
+                      <span class="material-symbols-outlined">border_color</span>
+                    </a>
+                    <a href="announce_delete.php?id=<?= $comment['idx'] ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                      <span class="material-symbols-outlined">delete</span>
+                    </a>
+                  </div>      </div>
+              <?php endwhile; ?>
+            <?php else : ?>
+              <p>댓글이 없습니다.</p>
+            <?php endif; ?>
+          </div>
+          <!-- <div>
+            <p>
+              안녕하세요! 댓글달겠습니다.
+            </p>
+            <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
                         <span class="material-symbols-outlined">
                             border_color
                         </span>
                     </a>
-                    <a href="qna_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
-                        <span class="material-symbols-outlined">delete</span>
+                    <a href="announce_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                        <span class="material-symbols-outlined">
+                            delete
+                        </span>
                     </a>
-                </p>
-            </div>
+          </div> -->
         </div>
-        <div class="mb-3 d-flex con">
-            <p>내용</p>
-            <p><?= $row['summernote']; ?></p>
-        </div>
-        <!-- 첨부 파일 출력 부분 -->
-        <div class="d-flex file">
-            <p>첨부 파일</p>
-            <p>logo.png</p>
-            <img src="" alt="" class="img"> 
-        </div>
-        <hr>
+        
         <!-- 댓글 작성 폼 -->
-        <div>
+        <div class="comment-form">
+          <form action="qna_save_reply.php" id="commentForm" method="post" class="wrap justify-content-start align-item-center review">
+            <input type="hidden" name="name" value="<?= $_SESSION['AUNAME'] ?>">
+            <input type="hidden" name="id" value="<?= $qna_id ?>">
+            <div class="mb-3">
+              <textarea name="comment" class="form-control reply_control" placeholder="댓글을 입력하세요."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">댓글 쓰기</button>
+          </form>
+        </div>
+        <!-- <div class="d-flex reply">
             <form method="post" class="wrap justify-content-start align-item-center review"></form>
             <input type="hidden" name="post_id" value="168">
             <input type="hidden" name="parent_comment_id" value="0">
             <input type="hidden" name="depth" value="0">
             <img src="" alt="">
-            <textarea name="comment" class="form-control" placeholder="내용을 추가하시오."></textarea>
-            <button type="submit" class="btn b_text01">댓글 쓰기</button>
-        </div>
+            <textarea name="comment" class="form-control reply_control" placeholder="내용을 추가하시오."></textarea>
+            <button type="button" class="btn btn-success">댓글 쓰기</button>
+        </div> -->
         <hr>
     </div>
-    <button type="submit" class="btn btn-danger cancle-btn">닫기</button>
+    <div class="notice-btn d-flex">
+          <div class="left-button">
+            <?php if ($prev_id !== null) : ?>
+              <a href="qna_detail.php?id=<?= $prev_id; ?>" class="btn btn-primary">이전</a>
+            <?php else : ?>
+              <a href="#" class="btn btn-primary disabled">이전</a>
+            <?php endif; ?>
+
+            <?php if ($next_id !== null) : ?>
+              <a href="qna_detail.php?id=<?= $next_id; ?>" class="btn btn-primary">다음</a>
+            <?php else : ?>
+              <a href="#" class="btn btn-primary disabled">다음</a>
+            <?php endif; ?>
+          </div>
+          <div class="right-button">
+            <button type="button" class="btn btn-danger cancle-btn">닫기</button>
+          </div>
+        </div>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php'; ?>
     <!-- 기존 script 태그 내용 -->
     <script
@@ -260,21 +400,55 @@ $row = $result->fetch_assoc();
     
   </body>
   <script>
-    $(document).ready(function(){
-      $('#summernote').summernote();
-    });
-    $('.cancle-btn').click(function(e){
-      e.preventDefault();
-        history.back();
-    });
-    let documentHeight = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.clientHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight
-    );
-    document.querySelector('header').style.height = documentHeight + 'px';
-  </script>
+  // $('#commentForm').submit(function(e) {
+  //   e.preventDefault(); // 폼의 기본 제출 동작을 막습니다.
+
+  //   var formData = $(this).serialize(); // 폼 데이터를 시리얼라이즈합니다.
+
+  //   $.ajax({
+  //     type: 'POST',
+  //     url: 'qna_save_reply.php', // 댓글 저장을 처리할 PHP 파일 경로
+  //     data: formData,
+  //     success: function(response) {
+  //       if (response.startsWith('success')) {
+  //         alert('댓글이 성공적으로 저장되었습니다.');
+  //         $('#commentForm textarea').val(''); // 댓글 입력 필드 초기화
+  //         // 댓글 목록을 업데이트하는 코드 작성
+  //         updateCommentList();
+  //       } else if (response.startsWith('error')) {
+  //         var errorMessage = response.substring(6); // "error: " 이후의 오류 메시지 추출
+  //         alert('댓글 저장에 실패했습니다. 오류 메시지: ' + errorMessage);
+  //       } else {
+  //         alert('댓글 저장에 실패했습니다. 다시 시도해주세요.');
+  //       }
+  //     }
+  //   });
+  // });
+
+  // function updateCommentList() {
+  //   $.ajax({
+  //     type: 'GET',
+  //     url: 'qna_get_comments.php',
+  //     data: { qna_id: '<?= $qna_id ?>' },
+  //     success: function(response) {
+  //       $('.comment-list').html(response);
+  //     }
+  //   });
+  // }
+
+  $('.cancle-btn').click(function(e){
+    e.preventDefault();
+    location.href = 'qna.php';
+  });
+
+  let documentHeight = Math.max(
+    document.body.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.clientHeight,
+    document.documentElement.scrollHeight,
+    document.documentElement.offsetHeight
+  );
+  document.querySelector('header').style.height = documentHeight + 'px';
+</script>
 </body>
 </html>

@@ -7,6 +7,10 @@ courseSelect.change(function () {
   let data = {
     courseId: courseId,
   };
+  courseChart(data);
+});
+
+function courseChart(data) {
   $.ajax({
     url: 'index_course.php',
     type: 'POST',
@@ -92,4 +96,66 @@ courseSelect.change(function () {
       const myPieChart = new Chart(document.getElementById('pie-chart'), pidConfig);
     },
   });
+}
+courseChart({ courseId: 39 });
+
+$.ajax({
+  url: 'index_profit.php',
+  type: 'POST',
+  data: [],
+  dataType: 'json',
+  error: function () {
+    console.log('실패');
+  },
+  success: function (data) {
+    console.log('테스트', data.result);
+    let months = [];
+    let profit = [];
+    $.each(data.result, function (key, value) {
+      months.push(key);
+      profit.push(value);
+    });
+    const lineLabels = months.reverse();
+    const lineData = {
+      labels: lineLabels,
+      datasets: [
+        {
+          label: '최근 6개월 간 수익',
+          data: profit.reverse(),
+          // backgroundColor: [],
+          borderColor: ['rgb(255, 100, 100)'],
+          borderWidth: 5,
+        },
+      ],
+    };
+    const lineConfig = {
+      type: 'line',
+      data: lineData,
+      options: {
+        maintainAspectRatio: false,
+        indexAxis: 'x',
+        scales: {
+          y: {
+            // beginAtZero: true,
+          },
+        },
+        tooltips: {
+          enabled: true, // 툴팁 활성화
+          mode: 'nearest', // 가장 가까운 데이터 포인트에 대한 툴팁 표시
+          intersect: true, // 두 데이터 포인트가 교차하는 경우 툴팁 표시
+          callbacks: {
+            label: function (tooltipItem, data) {
+              // 툴팁에 표시될 텍스트 포맷 지정
+              return data.datasets[tooltipItem.datasetIndex].label + ': ' + tooltipItem.yLabel;
+            },
+          },
+        },
+      },
+    };
+    let profitChart = document.getElementById('line-chart');
+    if (window.profitLine !== undefined) {
+      window.profitLine.destroy();
+    }
+    window.profitLine = new Chart(profitChart, lineConfig);
+  },
 });

@@ -1,5 +1,10 @@
 <?php
-//페이지네이션 시작
+
+
+
+
+
+// //페이지네이션 시작
 $cntsql = "SELECT COUNT(*) AS cnt FROM $paginationTarget where 1=1"; 
 // $cntsql .= $search_where;
 $cntsql .= '';
