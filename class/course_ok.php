@@ -16,10 +16,13 @@
     $rs11 = $result11->fetch_object();
     $cate1 =  $rs11-> name;
 
-    $query22 = "SELECT name FROM category WHERE cateid='".$cate2." '";
-    $result22 = $mysqli->query($query22); //쿼리실행결과를 $result 할당
-    $rs22 = $result22->fetch_object();
-    $cate2 =  $rs22->name;
+    if(isset($cate2) &&  $cate2 !== ''){
+
+      $query22 = "SELECT name FROM category WHERE cateid='".$cate2." '";
+      $result22 = $mysqli->query($query22); //쿼리실행결과를 $result 할당
+      $rs22 = $result22->fetch_object();
+      $cate2 =  $rs22->name;
+    }
 
     if(isset($cate3) &&  $cate3 !== ''){
 
@@ -40,6 +43,8 @@
     $content = rawurldecode($_POST['content']);
     $youtube_name = $_POST['youtube_name']?? '';
     $course_file = $_FILES['course_file']?? [];
+    $file_names = '';
+    $course_file_name = '';
     
     if($_POST['course_file_name']){
 
@@ -111,7 +116,7 @@
         } else{
           echo "<script>
             alert('파일 등록 실패!');    
-           // history.back();            
+            history.back();            
           </script>";
         }
 
@@ -143,7 +148,7 @@
             if($_FILES['youtube_thumb']['size'][$i]> 10240000){
               echo "<script>
                 alert('10MB 이하만 첨부할 수 있습니다.');    
-                history.back();      
+              history.back();      
               </script>";
               exit;
             }

@@ -19,15 +19,21 @@
     $rs11 = $result11->fetch_object();
     $cate1 =  $rs11-> name;
 
-    $query22 = "SELECT name FROM category WHERE cateid='".$cate2." '";
-    $result22 = $mysqli->query($query22); 
-    $rs22 = $result22->fetch_object();
-    $cate2 =  $rs22->name;
+    if(isset($cate2) &&  $cate2 !== ''){
 
-    $query33 = "SELECT name FROM category WHERE cateid='".$cate3." '";
-    $result33 = $mysqli->query($query33);
-    $rs33 = $result33->fetch_object();
-    $cate3 =  $rs33->name;
+      $query22 = "SELECT name FROM category WHERE cateid='".$cate2." '";
+      $result22 = $mysqli->query($query22); //쿼리실행결과를 $result 할당
+      $rs22 = $result22->fetch_object();
+      $cate2 =  $rs22->name;
+    }
+
+    if(isset($cate3) &&  $cate3 !== ''){
+
+      $query33 = "SELECT name FROM category WHERE cateid='".$cate3." '";
+      $result33 = $mysqli->query($query33); //쿼리실행결과를 $result 할당
+      $rs33 = $result33->fetch_object();
+      $cate3 =  $rs33->name;
+    }
 
     
 
@@ -138,15 +144,15 @@ foreach($youtube_thumb_org as $ythumb){
             if($_FILES['youtube_thumb']['size'][$i]> 10240000){
               echo "<script>
                 alert('10MB 이하만 첨부할 수 있습니다.');    
-                //history.back();      
+                history.back();      
               </script>";
               exit;
             }
         
             if(strpos($_FILES['youtube_thumb']['type'][$i], 'image') === false){
               echo "<script>
-                //alert('이미지만 첨부할 수 있습니다.');
-                //history.back();            
+                alert('이미지만 첨부할 수 있습니다.');
+                history.back();            
               </script>";
               exit;
             }
@@ -164,8 +170,8 @@ foreach($youtube_thumb_org as $ythumb){
                 $upload_youtube_thumb[] = "/helloworld/img/class/".$youtube_thumb;
               } else{
                 echo "<script>
-                 // alert('이미지등록 실패!');    
-                  //history.back();            
+                 alert('이미지등록 실패!');    
+                  history.back();            
                 </script>";
               }
             } 

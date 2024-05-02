@@ -106,7 +106,7 @@
                 <label class="form-label content_tt c_mb">카테고리</label>
                 <div class="categorys row">
                   <div class="category col">
-                  <select class="form-select" aria-label="Default select example" id="cate1" name="cate1" required>
+                  <select class="form-select for_widths" aria-label="Default select example" id="cate1" name="cate1" required>
                     <option value="" hidden>선택하세요</option>
                     <?php
                         $cateString = $rs->cate;

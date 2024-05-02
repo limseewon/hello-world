@@ -10,6 +10,11 @@ try{
   $cp_ratio = $_POST['cp_ratio']??0;
   $cp_price = $_POST['cp_price']??0;
   $cp_date = $_POST['cp_date']??'';
+
+  if(!isset($cp_date) || $cp_date =='' ){
+    $cp_date=$_POST['cp_date_type'];
+  }
+
   
 
   $sql = "INSERT into coupons 
