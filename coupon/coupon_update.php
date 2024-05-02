@@ -75,7 +75,8 @@ $coupon = $result -> fetch_object();
       }
 
       .coupon_info .thumbnail .show_thumb {
-        padding-top: 70%;
+        width: 92%;
+        height: 293px;
         position: relative;
         overflow: hidden;
        
@@ -84,7 +85,7 @@ $coupon = $result -> fetch_object();
       .coupon_info .thumbnail .show_thumb img {
         position: absolute;
         right: 0; bottom: 0; top: 0; left: 0;
-        width: 100%; height: 100%;
+        width: 100%; 
         object-fit: cover;
       }
 
@@ -225,7 +226,7 @@ $coupon = $result -> fetch_object();
       }
       .show_picture { 
         width: 715px; 
-        height: 245px;     
+        height: 292px;     
       }
      .coupon_ju { 
       display: flex; 
@@ -238,8 +239,10 @@ $coupon = $result -> fetch_object();
      .just-s-b { 
       justify-content: space-between;
     }
-    .form_hei { height: 45px;}
-
+    .form_hei { height: 45px;
+    }
+    .coupon_opt {opacity: 0;}
+    .forwidt { height: 45px; width: 576px;}
     </style>
 </head>
 <body>
@@ -277,9 +280,9 @@ $coupon = $result -> fetch_object();
         
               <div class="info_bottom d-flex">
                 <div class="field coupon_min_price input-group d-flex align-items-center">
-                  <label for="coupon_limit" class="content_tt">할인조건</label>
+                  <label for="coupon_limit" class="content_tt">최소사용금액</label>
                   <input type="number" name="cp_limit" id="coupon_limit" class="form-control number"
-                    placeholder="1,000" min="1000" max="100000" step="1000" value="<?= $coupon->cp_limit?>" required>원이상 구매
+                    placeholder="1,000" min="1000" max="100000" step="1000" value="<?= $coupon->cp_limit?>" required>원
                 </div>
                 
               </div>
@@ -310,13 +313,13 @@ $coupon = $result -> fetch_object();
                   <input type="number" name="cp_price" id="cp_price" class="form-control input number"
                   placeholder="1,000" min="1000" max="100000" step="1000" value="<?php if($coupon->cp_type == '정액'){echo $coupon->cp_price;}?>">원
                 </div>
-                <div class="form-check d-flex align-items-center">
+                <div class="form-check d-flex align-items-center coupon_opt">
                   <input class="form-check-input" type="radio" name="cp_type" id="coupon_sale_0" value="정률" <?php if($coupon->cp_type == '정률'){echo 'checked';} ?>>
                   <label class="form-check-label b_text01" for="coupon_sale_0">할인율</label>
                   <input type="number" name="cp_ratio" id="cp_ratio" class="form-control input"
                   placeholder="10" min="5" max="100" step="5" value="<?php if($coupon->cp_type == '정률'){echo $coupon->cp_ratio;}?>">%
                 </div>
-                <div class="form-check d-flex align-items-center">
+                <div class="form-check d-flex align-items-center coupon_opt">
                   <input class="form-check-input" type="radio" name="cp_type" id="coupon_sale_0" value="비할인" <?php if($coupon->cp_type == '비할인'){echo 'checked';} ?>>
                   <label class="form-check-label b_text01" for="coupon_sale_2">비할인</label>
                   
@@ -336,7 +339,7 @@ $coupon = $result -> fetch_object();
                   <input class="form-check-input" type="radio" name="cp_date_type" id="coupon_limit_date_0" <?php if($coupon->cp_date != ''){echo 'checked';} ?>>
                   <label class="form-check-label b_text01" for="coupon_limit_date_0">제한</label>
                   <div class="col period_select2">
-                  <select class="form-select" name="cp_date" aria-label="Default select example">
+                  <select class="form-select forwidt" name="cp_date" aria-label="Default select example">
                     <option value="1" <?php if($coupon->cp_date == 1){echo 'selected';} ?>>1개월</option>
                     <option value="2" <?php if($coupon->cp_date == 2){echo 'selected';} ?>>2개월</option>
                     <option value="3" <?php if($coupon->cp_date == 3){echo 'selected';} ?>>3개월</option>
@@ -376,12 +379,7 @@ $coupon = $result -> fetch_object();
     ></script>
     <!-- bootstrap js -->
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"
-      integrity="sha512-ToL6UYWePxjhDQKNioSi4AyJ5KkRxY+F1+Fi7Jgh0Hp5Kk2/s8FD7zusJDdonfe5B00Qw+B8taXxF6CFLnqNCw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- modernizr js -->
     <script
