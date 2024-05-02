@@ -146,8 +146,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
-            <h2>질문 등록</h2>
-            <form action="announce_write_ok.php" method="POST" id="content_save">
+            <h2>공지사항 등록</h2>
+            <form action="announce_write_ok.php" method="POST" id="content_save" >
             <input type="hidden" name="contents" id="contents">
               <div class="regist">
               <div class="mb-3 d-flex title">

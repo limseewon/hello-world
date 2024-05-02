@@ -153,7 +153,7 @@ $row = $result->fetch_assoc();
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
             <h2>공지사항 수정</h2>
-            <form action="announce_write_ok.php" method="POST">
+            <form action="announce_modify_ok.php" method="POST" id="content_save">
             <input type="hidden" name="notice_id" value="<?= $notice_id ?>">
             <input type="hidden" name="contents" id="contents">
               <div class="regist">

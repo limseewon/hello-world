@@ -15,10 +15,9 @@ $regdate = date("Y-m-d H:i:s");
 
 // 공지사항 데이터 수정
 $sql = "UPDATE notice SET title='$title', name='$name', content='$content', regdate='$regdate' WHERE idx=$notice_id";
-$result = $mysqli->query($sql);
 
-if ($result === true) {
-    echo "<script>alert('공지사항이 수정되었습니다.'); location.href='announce.php'; </script>";
+if ($mysqli->query($sql) === true) {
+    echo "<script>alert('공지사항이 수정되었습니다.'); location.href='announce.php';</script>";
 } else {
     echo "Error: " . $sql . "<br>" . $mysqli->error;
     echo "<script>alert('공지사항 수정에 실패했습니다.'); history.back();</script>";

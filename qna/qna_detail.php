@@ -37,8 +37,8 @@ if ($qna_id > 0) {
 
 // 댓글 목록 가져오기
 if ($qna_id > 0) {
-  $sql = "SELECT * FROM qna_comment WHERE qna_id = '$qna_id' ORDER BY idx DESC";
-  // $result = $mysqli->query($sql);
+  $sql = "SELECT * FROM qna_comment WHERE idx = '$qna_id' ORDER BY idx DESC";
+  $result = $mysqli->query($sql);
 }
 ?>
 <!DOCTYPE html>
@@ -137,6 +137,7 @@ if ($qna_id > 0) {
           gap: 65px;
           padding-left: 60px;
           padding-top: 35px;
+          padding-bottom: 35px;
         }
 
         .regist{
@@ -220,6 +221,7 @@ if ($qna_id > 0) {
     padding: 20px;
     background-color: #f8f9fa;
     border-radius: 5px;
+    width: 800px;
   }
 
   .comment-item p {
@@ -254,6 +256,36 @@ if ($qna_id > 0) {
   .comment-form button {
     margin-top: 10px;
   }
+  .comment-item {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.comment-author {
+  font-weight: bold;
+}
+
+.comment-date {
+  color: #888;
+}
+
+.comment-actions {
+  margin-top: 10px;
+}
+
+.comment-actions a {
+  margin-right: 10px;
+  color: #333;
+  text-decoration: none;
+}
     </style>
 </head>
 <body>
@@ -301,7 +333,7 @@ if ($qna_id > 0) {
                     <a href="announce_modify.php?id=<?= $comment['idx'] ?>" onclick="return confirm('정말 수정하시겠습니까?');">
                       <span class="material-symbols-outlined">border_color</span>
                     </a>
-                    <a href="announce_delete.php?id=<?= $comment['idx'] ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                    <a href="qna_reply_delete.php?id=<?= $comment['idx'] ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
                       <span class="material-symbols-outlined">delete</span>
                     </a>
                   </div>      </div>
