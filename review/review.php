@@ -2,30 +2,63 @@
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
-
-$paginationTarget = 'notice';
+              // board테이블에서 idx를 기준으로 내림차순해서 10개까지 표시
+              $sql = "SELECT * from review order by idx desc limit 0,10";
+              $result = $mysqli->query($sql);
+            
+              // output data of each row
+             
+$paginationTarget = 'review';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/pagination.php';
+// $keyword = $_GET['keyword'] ??'';
+// $search_where = '';
+// $status = $status ?? '';
 
-$sql = "SELECT * FROM notice WHERE 1=1";
-$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
-if ($keyword) {
-   $sql .= " AND title LIKE '%$keyword%'";
-}
+// if($keyword){
+//   $search_where = " and status = $status";
+// }
 
-$view_option = isset($_GET['view']) ? $_GET['view'] : '';
-switch ($view_option) {
-   case '1':
-       $sql .= " ORDER BY view DESC";
-       break;
-   case '2':
-       $sql .= " ORDER BY view ASC";
-       break;
-   default:
-       $sql .= " ORDER BY idx DESC";
-}
+// if($search_where){
+//   $search_where = "'and (name LIKE '%$keyword%' or message LIKE '%$keyword%')"
+// }
 
-$sql .= " LIMIT $startLimit, $endLimit";
+$sql = "SELECT * FROM review where 1=1"; //모든 상품 조회 쿼리
+
+
+// $sql .= $search_where;
+$sql .= '';
+$order = " order by idx desc";
+$sql .= $order;
+$limit = " LIMIT $startLimit, $endLimit";
+$sql .= $limit;
+// echo $sql;
 $result = $mysqli->query($sql);
+
+// 검색어 가져오기
+$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+
+// 검색 조건 설정
+$search_where = '';
+if ($keyword) {
+    $search_where = "WHERE title LIKE '%$keyword%'";
+}
+
+// 검색 조건을 포함한 쿼리 작성
+$sql = "SELECT * FROM review $search_where ORDER BY idx DESC LIMIT 0, 10";
+$result = $mysqli->query($sql);
+
+// 조회수 옵션 가져오기
+$view_option = isset($_GET['view_option']) ? $_GET['view_option'] : '';
+
+// 조회수에 따른 정렬 쿼리
+$order_by = '';
+if ($view_option == '1') {
+    $order_by = 'ORDER BY view DESC'; // 조회수 많은 순
+} elseif ($view_option == '2') {
+    $order_by = 'ORDER BY view ASC'; // 조회수 적은 순
+} else {
+    $order_by = 'ORDER BY idx DESC'; // 기본 정렬
+}
 
 ?>
 <!DOCTYPE html>
@@ -92,30 +125,33 @@ $result = $mysqli->query($sql);
       .block-top{
         gap: 20px;
       }
-      .container-fluid{
-        padding: 0;
-      }
       .form-control{
         width: 750px;
         height: 50px;
       }
-      .form-select-lg{
+      .form-select{
         width: 250px;
         height: 50px;
         margin-top: 7px;
       }
       .bar-top{
         justify-content: space-between;
-        width: 100%;
       }
       .pagination{
         margin-top: 20px;
         justify-content: center;
       }
+      .container-fluid{
+        padding: 0;
+      }
       .c_button {
         position: absolute;
-        right: 75px;
-        bottom: 45px;
+        right: 150px;
+        bottom: 55px;
+      }
+      .lock{
+        align-items: center;
+        gap: 10px;
       }
       .title_td{
         width: 800px;
@@ -129,23 +165,23 @@ $result = $mysqli->query($sql);
     </style>
   </head>
   <body>
-  <?php
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
-    ?>
-            <h2>공지 사항</h2>
+    <?php
+        include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
+        ?>
+            <h2>수강평</h2>
             <div class="bar-top d-flex">
               <nav class="navbar navbar-light bg-light">
                 <div class="container-fluid">
-                  <form class="block-top d-flex">
-                    <input class="form-control me-2" type="text" name="keyword" placeholder="제목을 입력하시오." aria-label="Search" value="<?= $keyword ?>">
+                  <form action="" class="block-top d-flex">
+                  <input class="form-control me-2" type="text" name="keyword" placeholder="제목을 입력하시오." aria-label="Search" value="<?= $keyword ?>">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                   </form>
                 </div>
               </nav>
               <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-                <option selected>조회수</option>
-                <option value="1">가장 많음</option>
-                <option value="2">가장 적음</option>
+                <option selected>답변</option>
+                <option value="1">완료</option>
+                <option value="2">미완료</option>
               </select>
               <select class="form-select form-select-lg mb-3" aria-label="Large select example">
                 <option selected>작성일</option>
@@ -157,49 +193,46 @@ $result = $mysqli->query($sql);
             <table class="table table-hover table-striped">
               <thead class="table-dark">
                 <tr>
-                  <th scope="col">No.</th>
+                  <th scope="col">No&#46;</th>
                   <th scope="col">제목</th>
                   <th scope="col">작성자</th>
                   <th scope="col">조회수</th>
+                  <th scope="col">별점</th>
                   <th scope="col">작성일</th>
-                  <th scope="col">수정 / 삭제</th>
+                  <th scope="col">삭제</th>
                 </tr>
               </thead>
               <tbody>
               <?php
-              // board테이블에서 idx를 기준으로 내림차순해서 10개까지 표시
-             
-              // output data of each row
               while($row = $result->fetch_assoc()) {
               
-                  //title변수에 DB에서 가져온 title을 선택
-                  $title=$row["title"];
-                  if(iconv_strlen($title)>30)
-                  {
-                    //title이 30을 넘어서면 ...표시
-                    $title=str_replace($row["title"],iconv_substr($row["title"],0,30,"utf-8")."...",$row["title"]);
-                  }
-              ?>
+                //title변수에 DB에서 가져온 title을 선택
+                $title=$row["title"];
+                if(iconv_strlen($title)>30)
+                {
+                  //title이 30을 넘어서면 ...표시
+                  $title=str_replace($row["title"],iconv_substr($row["title"],0,30,"utf-8")."...",$row["title"]);
+                }
+                ?>
                 <tr>
                   <th scope="row" class="no_th"><?= $row['idx'];?></th>
-                  <td class="title_td"><a href="announce_detail.php?id=<?= $row['idx']; ?>"><?= $title; ?></a></td>
-                  <td><?= $row['name'];?></td>
+                  <td class="title_td"><a href="review_detail.php?id=<?= $row['idx']; ?>"><?= $title; ?></a></td>
+                  <td class="lock d-flex"><?= $row['name'];?></td>
+                  <!-- <span class="material-symbols-outlined">
+                    lock
+                </span> -->
                   <td><?= $row['view'];?></td>
-                  <td><?= $row['regdate'];?></td>
-                  <td class="edit d-flex">
-                  <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
-                        <span class="material-symbols-outlined">
-                            border_color
-                        </span>
-                    </a>
-                    <a href="announce_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                  <td><?= $row['hit'];?></td>
+                  <td><?= $row['date'];?></td>
+                  <td class="delete_td">
+                    <a href="review_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
                         <span class="material-symbols-outlined">
                             delete
                         </span>
                     </a>
-                  </td>
+                </td>
                 </tr>
-              <?php
+                <?php
                   } 
                 ?>
               </tbody>
@@ -209,39 +242,38 @@ $result = $mysqli->query($sql);
               <ul class="pagination">
                 <?php
                 if($pageNumber > 1){
-                  echo "<li class=\"page-item\"><a href=\"announce.php?pageNumber=1\" class=\"page-link\" >처음</a></li>";
+                  echo "<li class=\"page-item\"><a href=\"review.php?pageNumber=1\" class=\"page-link\" >처음</a></li>";
                   //이전
                   if($block_num > 1){
                     $prev = 1 + ($block_num - 2) * $block_ct;
-                    echo "<li class=\"page-item\"><a href=\"announce.php?pageNumber=$prev\" class=\"page-link\">이전</a></li>";
+                    echo "<li class=\"page-item\"><a href=\"review.php?pageNumber=$prev\" class=\"page-link\">이전</a></li>";
                   }
                 }
               
                   for($i=$block_start;$i<=$block_end;$i++){
                     if($i == $pageNumber){
-                      echo "<li class=\"page-item active\"><a href=\"announce.php?pageNumber=$i\" class=\"page-link\">$i</a></li>";
+                      echo "<li class=\"page-item active\"><a href=\"review.php?pageNumber=$i\" class=\"page-link\">$i</a></li>";
                     }else{
-                      echo "<li class=\"page-item\"><a href=\"announce.php?pageNumber=$i\" class=\"page-link\">$i</a></li>";
+                      echo "<li class=\"page-item\"><a href=\"review.php?pageNumber=$i\" class=\"page-link\">$i</a></li>";
                     }            
                   }  
 
                   if($pageNumber < $total_page){
                     if($total_block > $block_num){
                       $next = $block_num * $block_ct + 1;
-                      echo "<li class=\"page-item\"><a href=\"announce.php?pageNumber=$next\" class=\"page-link\">다음</a></li>";
+                      echo "<li class=\"page-item\"><a href=\"review.php?pageNumber=$next\" class=\"page-link\">다음</a></li>";
                     }
-                    echo "<li class=\"page-item\"><a href=\"announce.php?pageNumber=$total_page\" class=\"page-link\">마지막</a></li>";
+                    echo "<li class=\"page-item\"><a href=\"review.php?pageNumber=$total_page\" class=\"page-link\">마지막</a></li>";
                   }        
                 ?>
               </ul>
-
             </div>    
-            <div class="c_button">
-                <button class="btn_complete btn btn-success"><a href="/helloworld/announce/announce_write.php">게시글 등록</a></button>
-              </div>
+          <!-- <div class="c_button">
+            <button class="btn_complete btn btn-success"><a href="/helloworld/qna/qna_write.php"></a></button>
+          </div> -->
           <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
-?>
+              include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
+              ?>
     <!-- jquery -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
@@ -282,9 +314,5 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       document.documentElement.offsetHeight
     );
     document.querySelector("header").style.height = documentHeight + "px";
-    document.getElementById(".btn_complete").addEventListener("click", function() {
-      // 원하는 URL로 리다이렉트
-      window.location.href = "/helloworld/announce/announce_write.php";
-    });
   </script>
 </html>

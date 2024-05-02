@@ -340,8 +340,8 @@ while ($rs2 = $result2->fetch_object()) {
                             <?= $item->level ?>
                           </span>
                         </h3>
-                        <p>
-                          <?= $item->content ?>
+                        <p class="course_content">
+                          <?= $item->content; ?>
                         </p>
                       </div>
                       <p class="duration"><i class="ti ti-calendar-event"></i><span>수강기간</span><span>
@@ -450,7 +450,7 @@ while ($rs2 = $result2->fetch_object()) {
       include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       ?>
 
-
+<div>test</div>
       <script src="/helloworld/js/makeoption.js"></script>
       
       <script>

@@ -3,9 +3,6 @@ session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
 $courseId = $_POST['courseId'];
-// $courseId = 9;
-// $mid = 6;
-
 
 if(isset($_SESSION['UID'])){
     $userid = $_SESSION['UID'];
@@ -21,12 +18,6 @@ $pMon3 = idate('m', strtotime('-3 month')); // 숫자 형식 (01-12)
 $pMon4 = idate('m', strtotime('-4 month')); // 숫자 형식 (01-12)
 $pMon5 = idate('m', strtotime('-5 month')); // 숫자 형식 (01-12)
 
-// echo $cMon;
-// echo $pMon1;
-// echo $pMon2;
-// echo $pMon3;
-// echo $pMon4;
-// echo $pMon5;
 $sql = "SELECT
     SUM(CASE WHEN MONTH(regdate) = MONTH(CURDATE()) THEN 1 ELSE 0 END) AS '{$cMon}월',
     SUM(CASE WHEN MONTH(regdate) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)) THEN 1 ELSE 0 END) AS '{$pMon1}월',

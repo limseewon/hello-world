@@ -13,7 +13,10 @@
  $sql = "SELECT * FROM courses WHERE cid={$cid}";
  $result = $mysqli -> query($sql);
  $rs = $result -> fetch_object();
- 
+
+ $course_file = explode(",", $rs->course_file);
+ $course_file_name = explode(",", $rs->course_file_name);
+
  
  $imgsql = "SELECT * FROM lecture WHERE cid={$cid}";
  $result = $mysqli -> query($imgsql);
@@ -98,7 +101,7 @@
             <form action="update_ok.php" method="POST" id="course_form" enctype="multipart/form-data">
               <input type="hidden" name="image_table_id" id="image_table_id" value=""/>
               <input type="hidden" name="content" id="content" value=""/>
-              <input type="hidden" name="cid" id="cid" value="<?= $rs->cid?>"/>
+              <input type="hidden" name="cid" id="cid" value="<?= $rs->cid;?>"/>
               <div class="categorywrap category_margin">
                 <label class="form-label content_tt c_mb">카테고리</label>
                 <div class="categorys row">
@@ -253,7 +256,7 @@
                     </div>
                   </div>
                   <?php
-                    $i = 1;
+                    $i = 0;
                     if(isset($addImgs)){
                     foreach($addImgs as $ai){
                   ?>  
@@ -318,17 +321,17 @@
                     </div>
                   </div>
                   <?php
-                    $i = 1;
-                    if(isset($addImgs)){
-                    foreach($addImgs as $ai){
+                    $i = 0;
+                    if(isset($course_file_name)){
+                    foreach($course_file_name as $cf){
                   ?>  
                   <div class="youtube2 c_mb mt-3">
                     <div class="row justify-content-between">
                       <div class="col-2 youtube_thumb">
-                        <input type="file" class="form-control" name="course_file[]" />
+                        <input type="file" class="form-control" name="course_file[]"  />
                       </div>
                       <div class="col-3 youtube_name">
-                        <input type="text" class="form-control" name="course_file_name[]" value="<?= $ai -> course_file_name?>" />
+                        <input type="text" class="form-control" name="course_file_name[]" value="<?= $cf; ?>" />
                       </div>
                       
                       <div class="col-1 trash_icon">
@@ -338,12 +341,12 @@
                           class="delete-youtube hidden"
                           id="delete-youtube<?= $i; ?>"
                           name="delete_youtube[]"
-                          value="<?= $ai->l_idx ?>"
+                          value="<?= $cf ?>"
                         />
                       </div>
                       <div class="youtubeThumbBox">
                         <span class="hidden">기존파일</span>
-                        <img src="<?= $ai -> youtube_thumb?>" alt="" />
+                        <img src="<?= $course_file[$i]; ?>" alt="" />
                       </div>
                     </div>
                   </div>

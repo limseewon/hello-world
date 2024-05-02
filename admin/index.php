@@ -153,7 +153,7 @@ $profitRs = $profitResult->fetch_object();
                           $returnStr = $str;
                         }
                     ?>
-                    <li class="board_list"><a href="<?=$na->nid?>"><?=$na->title?></a></li>
+                    <li class="board_list"><a href="<?=$na->idx?>"><?=$na->title?></a></li>
                     <?php
                     }}
                     ?>

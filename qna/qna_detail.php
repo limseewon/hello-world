@@ -14,6 +14,18 @@ $result = $mysqli->query($sql);
 $sql = "SELECT * FROM qna WHERE idx = '$qna_id'";
 $result = $mysqli->query($sql);
 $row = $result->fetch_assoc();
+
+// 이전 공지사항 ID 가져오기
+$sql_prev = "SELECT MAX(idx) AS prev_id FROM qna WHERE idx < $qna_id";
+$result_prev = $mysqli->query($sql_prev);
+$row_prev = $result_prev->fetch_assoc();
+$prev_id = $row_prev['prev_id'];
+
+// 다음 공지사항 ID 가져오기
+$sql_next = "SELECT MIN(idx) AS next_id FROM qna WHERE idx > $qna_id";
+$result_next = $mysqli->query($sql_next);
+$row_next = $result_next->fetch_assoc();
+$next_id = $row_next['next_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -141,9 +153,6 @@ $row = $result->fetch_assoc();
       .img{
         padding-left: 200px;
       }
-      .reply{
-        padding-right: 1270px;
-      }
       .cancle-btn{
             width: 105px;
             height: 48px;
@@ -178,6 +187,16 @@ $row = $result->fetch_assoc();
         .edit{
             padding-right: 10px;
         }
+        .btn-success{
+          width: 100px;
+        }
+        .reply{
+          gap: 27px;
+          align-items: center;
+        }
+        .reply_control{
+          width: 800px;
+        }
     </style>
 </head>
 <body>
@@ -188,15 +207,12 @@ $row = $result->fetch_assoc();
             <p class="tt">제목</p>
             <p class="question"><?= $row['title']; ?></p>
             <div class="pos d-flex">
-                <p class="lock d-flex"><?= $row['name']; ?></p>
+                <p class="lock d-flex">작성자: <?= $row['name']; ?></p>
+                <p>조회수: <?= $row['view'];?></p>
+                <p>답변: <?= $row['reply'];?></p>
                 <!-- <span class="material-symbols-outlined">lock</span> -->
                 <p><?= $row['date']; ?></p>
                 <p>
-                <a href="qna_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
-                        <span class="material-symbols-outlined">
-                            border_color
-                        </span>
-                    </a>
                     <a href="qna_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
                         <span class="material-symbols-outlined">delete</span>
                     </a>
@@ -205,28 +221,86 @@ $row = $result->fetch_assoc();
         </div>
         <div class="mb-3 d-flex con">
             <p>내용</p>
-            <p><?= $row['summernote']; ?></p>
+            <p><?= $row['content']; ?></p>
         </div>
         <!-- 첨부 파일 출력 부분 -->
         <div class="d-flex file">
             <p>첨부 파일</p>
-            <p>logo.png</p>
+            <?= $row['files']; ?>
             <img src="" alt="" class="img"> 
         </div>
         <hr>
+        <div class="list">
+          <div>
+            <p>
+              안녕하세요! 댓글달겠습니다.
+            </p>
+            <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
+                        <span class="material-symbols-outlined">
+                            border_color
+                        </span>
+                    </a>
+                    <a href="announce_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                        <span class="material-symbols-outlined">
+                            delete
+                        </span>
+                    </a>
+          </div>
+          <!-- <div>
+            <p>
+              안녕하세요! 댓글달겠습니다.
+            </p>
+            <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
+                        <span class="material-symbols-outlined">
+                            border_color
+                        </span>
+                    </a>
+                    <a href="announce_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                        <span class="material-symbols-outlined">
+                            delete
+                        </span>
+                    </a>
+          </div> -->
+        </div>
+        
         <!-- 댓글 작성 폼 -->
-        <div>
+        <div class="d-flex reply">
+          <form action="qna_reply_ok.php" id="commentForm" method="post" class="wrap justify-content-start align-item-center review">
+              <input type="hidden" name="name" value="<?=  $_SESSION['AUNAME'] ?>">
+              <input type="hidden" name="id" value="<?= $qna_id ?>">
+              <textarea name="comment" class="form-control reply_control" placeholder="내용을 추가하시오."></textarea>
+              <button type="submit" class="btn btn-success">댓글 쓰기</button>
+          </form>
+        </div>
+        <!-- <div class="d-flex reply">
             <form method="post" class="wrap justify-content-start align-item-center review"></form>
             <input type="hidden" name="post_id" value="168">
             <input type="hidden" name="parent_comment_id" value="0">
             <input type="hidden" name="depth" value="0">
             <img src="" alt="">
-            <textarea name="comment" class="form-control" placeholder="내용을 추가하시오."></textarea>
-            <button type="submit" class="btn b_text01">댓글 쓰기</button>
-        </div>
+            <textarea name="comment" class="form-control reply_control" placeholder="내용을 추가하시오."></textarea>
+            <button type="button" class="btn btn-success">댓글 쓰기</button>
+        </div> -->
         <hr>
     </div>
-    <button type="submit" class="btn btn-danger cancle-btn">닫기</button>
+    <div class="notice-btn d-flex">
+          <div class="left-button">
+            <?php if ($prev_id !== null) : ?>
+              <a href="qna_detail.php?id=<?= $prev_id; ?>" class="btn btn-primary">이전</a>
+            <?php else : ?>
+              <a href="#" class="btn btn-primary disabled">이전</a>
+            <?php endif; ?>
+
+            <?php if ($next_id !== null) : ?>
+              <a href="qna_detail.php?id=<?= $next_id; ?>" class="btn btn-primary">다음</a>
+            <?php else : ?>
+              <a href="#" class="btn btn-primary disabled">다음</a>
+            <?php endif; ?>
+          </div>
+          <div class="right-button">
+            <button type="button" class="btn btn-danger cancle-btn">닫기</button>
+          </div>
+        </div>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php'; ?>
     <!-- 기존 script 태그 내용 -->
     <script
@@ -262,10 +336,32 @@ $row = $result->fetch_assoc();
   <script>
     $(document).ready(function(){
       $('#summernote').summernote();
+
+      $('#commentForm').submit(function(e) {
+        e.preventDefault(); // 폼의 기본 제출 동작을 막습니다.
+        
+        var formData = $(this).serialize(); // 폼 데이터를 시리얼라이즈합니다.
+        
+        $.ajax({
+            type: 'POST',
+            url: 'qna_save_reply.php', // 댓글 저장을 처리할 PHP 파일 경로
+            data: formData,
+            success: function(response) {
+                // 댓글 저장 성공 시 처리할 코드 작성
+                alert('댓글이 성공적으로 저장되었습니다.');
+                $('#commentForm textarea').val(''); // 댓글 입력 필드 초기화
+                // 댓글 목록을 업데이트하는 코드 작성
+            },
+            error: function(xhr, status, error) {
+                // 댓글 저장 실패 시 처리할 코드 작성
+                alert('댓글 저장에 실패했습니다. 다시 시도해주세요.');
+            }
+        });
+    });
     });
     $('.cancle-btn').click(function(e){
       e.preventDefault();
-        history.back();
+      location.href = 'qna.php';
     });
     let documentHeight = Math.max(
       document.body.scrollHeight,
