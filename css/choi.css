@@ -1968,8 +1968,7 @@ select,
   width: 100%;
 }
 .status_box .price {
-  position: absolute;
-  top: 150px;
+ 
   right: 320px;
   width: 200px;
   text-align: right;
@@ -3023,4 +3022,4 @@ justify-content: space-between;
 .coupon_opt {opacity: 0;}
 .forwidt { height: 45px; width: 576px;}
 .badge_blue { }
-.for_widths { height: 45px;}
+.for_widths { height: 45px; width: 490px;}

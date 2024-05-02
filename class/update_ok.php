@@ -51,14 +51,29 @@
     $content = rawurldecode($_POST['content']);
     $youtube_name = $_POST['youtube_name']?? [];
     $youtube_url = $_POST['youtube_url']?? [];
+    $file_names = '';
+    $course_file_name = '';
   
 
+
+    if($_POST['course_file_name']){
+
+      $course_file_name = implode(",", $_POST['course_file_name']);
+    }
 $youtube_thumb_org = $_FILES['youtube_thumb']['name'];
 $youtube_thumb_arr = [];
 
 foreach($youtube_thumb_org as $ythumb){
   if($ythumb != ''){
     $youtube_thumb_arr[]=$ythumb;
+  }
+  
+}
+$course_file_name_org = $_FILES['course_file_name']['name'];
+$course_file_name_arr = [];
+foreach($course_file_name_org as $course_f){
+  if($course_f != ''){
+    $course_file_name_arr[]=$course_f;
   }
   
 }
@@ -69,7 +84,7 @@ foreach($youtube_thumb_org as $ythumb){
         if($_FILES['thumbnail']['size']> 10240000){
           echo "<script>
             alert('10MB 이하만 첨부할 수 있습니다.');    
-            history.back();      
+           // history.back();      
           </script>";
           exit;
         }
@@ -77,7 +92,7 @@ foreach($youtube_thumb_org as $ythumb){
         if(strpos($_FILES['thumbnail']['type'], 'image') === false){
           echo "<script>
             alert('이미지만 첨부할 수 있습니다.');    
-            history.back();            
+          //  history.back();            
           </script>";
           exit;
         }
@@ -93,7 +108,7 @@ foreach($youtube_thumb_org as $ythumb){
         } else{
           echo "<script>
             alert('이미지등록 실패!');    
-            history.back();            
+          //  history.back();            
           </script>";
         }
     }
@@ -111,6 +126,8 @@ foreach($youtube_thumb_org as $ythumb){
                   act='{$act}', 
                   content='{$content}', 
                   thumbnail = '{$thumbnail}'
+                  course_file = '{$course_file}'
+                  course_file_name = '{$course_file_name}'
               WHERE cid = {$cid}";
       }else{
       $sql = "UPDATE courses
@@ -133,7 +150,7 @@ foreach($youtube_thumb_org as $ythumb){
       if(isset($youtube_url)){
 
 
-        $upload_youtube_thumb = [];
+        $upload_youtube_thumb = []; 
 
        
 
@@ -144,7 +161,7 @@ foreach($youtube_thumb_org as $ythumb){
             if($_FILES['youtube_thumb']['size'][$i]> 10240000){
               echo "<script>
                 alert('10MB 이하만 첨부할 수 있습니다.');    
-                history.back();      
+               // history.back();      
               </script>";
               exit;
             }
@@ -152,7 +169,7 @@ foreach($youtube_thumb_org as $ythumb){
             if(strpos($_FILES['youtube_thumb']['type'][$i], 'image') === false){
               echo "<script>
                 alert('이미지만 첨부할 수 있습니다.');
-                history.back();            
+              //  history.back();            
               </script>";
               exit;
             }
@@ -171,7 +188,7 @@ foreach($youtube_thumb_org as $ythumb){
               } else{
                 echo "<script>
                  alert('이미지등록 실패!');    
-                  history.back();            
+                 // history.back();            
                 </script>";
               }
             } 
@@ -213,18 +230,107 @@ foreach($youtube_thumb_org as $ythumb){
         }
       }
 
+
+
+      if(isset($course_file)){
+
+
+        $upload_youtube_thumb = []; 
+
+       
+
+        for($i = 0;$i<count($youtube_thumb_arr) ; $i++){
+
+
+
+            if($_FILES['youtube_thumb']['size'][$i]> 10240000){
+              echo "<script>
+                alert('10MB 이하만 첨부할 수 있습니다.');    
+               // history.back();      
+              </script>";
+              exit;
+            }
+        
+            if(strpos($_FILES['youtube_thumb']['type'][$i], 'image') === false){
+              echo "<script>
+                alert('파일만 첨부할 수 있습니다.');
+              //  history.back();            
+              </script>";
+              exit;
+            }
+        
+            $save_dir = $_SERVER['DOCUMENT_ROOT']."/helloworld/img/file/";
+
+            if(strlen($_FILES['course_file']['name'][$i])>0){
+
+              $filename = $_FILES['course_file']['name'][$i]; 
+              $ext = pathinfo($filename, PATHINFO_EXTENSION); 
+              $newfilename = date("YmdHis").substr(rand(), 0,6); 
+              $course_file = $newfilename.".".$ext; 
+  
+              if(move_uploaded_file($_FILES['course_file']['tmp_name'][$i], $save_dir.$youtube_thumb)){  
+                $upload_youtube_thumb[] = "/helloworld/img/file/".$course_file;
+              } else{
+                echo "<script>
+                 alert('파일등록 실패!');    
+                 // history.back();            
+                </script>";
+              }
+            } 
+
+              $sql1 = "UPDATE course
+                      SET course_file = '{$upload_course_file[$i]}',
+                      course_file_name = '{$course_file_name[$i]}',
+                          
+                      WHERE cid ={$cid}
+                      
+           
+        
+           $result2 = $mysqli-> query($sql1);           
+        
+        }
+        
+        for($i = 0;$i<count($course_file) ; $i++){
+
+
+          $sql2 = "UPDATE course
+                  SET course_file_name = '{$course_file_name[$i]}',
+                  course_file = '{$course_file[$i]}',
+                  WHERE cid ={$cid}"
+                  AND l_idx = {$i}";
+                  
+        
+          $result2 = $mysqli-> query($sql2);
+        }
+
+        
+      }
+
+
+
+      if (isset($_POST['delete_filee'])) {
+        $deletefile = $_POST['delete_file'];
+        foreach ($deletefile as $deleteI) {
+        $deletefSql = "DELETE FROM course WHERE cid = {$cid} AND cid = {$deleteI}";
+        $deleteResult = $mysqli->query($deletefSql);
+        }
+      }
+
+
+
+
       $mysqli->commit();
 
       echo "<script>
       alert('강의 수정 완료!');
-      location.href='course_list.php';</script>";
+     // location.href='course_list.php';</script>";
     }
 
     catch(Exception $e){
       $mysqli->rollback();
       echo "<script>
       alert('강의 수정 실패');
-      history.back();
+    //  history.back();
       </script>";
       exit;
     }

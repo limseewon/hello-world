@@ -335,12 +335,12 @@
                       </div>
                       
                       <div class="col-1 trash_icon">
-                        <label for="delete-youtube<?= $i; ?>"><i class="ti ti-trash bin_icon"></i></label>
+                        <label for="delete-file<?= $i; ?>"><i class="ti ti-trash bin_icon"></i></label>
                         <input
                           type="checkbox"
-                          class="delete-youtube hidden"
-                          id="delete-youtube<?= $i; ?>"
-                          name="delete_youtube[]"
+                          class="delete-file hidden"
+                          id="delete-file<?= $i; ?>"
+                          name="delete_file[]"
                           value="<?= $cf ?>"
                         />
                       </div>
