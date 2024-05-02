@@ -1,4 +1,6 @@
 <?php
+  include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/inc/dbcon.php';
+  
 $title = "강의 상세";
 $css_route = "css/choi.css";
 $js_route = "class/js/course.js";
@@ -107,7 +109,7 @@ while ($is = $result->fetch_object()) {
         <div>
           <h3 class="course_list_title main_stt d-flex align-items-center">
             <?= $rs->name; ?>
-            <span class="badge rounded-pill blue_bg b-pd">
+            <span class="badge rounded-pill blue_bg b-pd javat">
               <?php
               //뱃지 키워드 
               if (isset($rs->cate)) {
@@ -119,7 +121,7 @@ while ($is = $result->fetch_object()) {
               }
               ?>
             </span>
-            <span class="badge rounded-pill b-pd
+            <span class="badge rounded-pill b-pd javat_s
             <?php
             // 뱃지 컬러
             $levelBadge = $rs->level;
@@ -139,29 +141,29 @@ while ($is = $result->fetch_object()) {
             <?= $rs->content; ?>
           </p>
         </div>
-        <div>
+        <div class="d-flex justify-content-between">
           <p class="duration"><i class="ti ti-calendar-event"></i><span>수강기간</span><span><?php if($rs->due == ''){echo '무제한';} else{echo $rs->due;}; ?></span></p>
-          <span class="price main_stt number"><?= $rs->price; ?></span>
-          <span>원</span>
+          <span></span>
+          <span class="price main_stt number"><?= $rs->price; ?>원</span>
+          
         </div>
       </div>
     </div>
-    <div class="course_status d-flex justify-content-between">
-      <div class="d-flex flex-column align-items-end status_wrap">
-        <span class="price_btn_wrap mb-3">
-          <a href="<?=$rs->cid ?>" class="btn btn-success btn_g">수정</a>
-          <a href="<?=$rs->cid ?>" class="del_btn btn btn-danger btn_g">삭제</a>
-        </span>
-      </div>
-    </div>
+    
     <div class="you_upload mt-3">
       <div class="youtubeTitleBox">
         <div class="d-flex gap-3 justify-content-center">
-          <div class="youtubeNameBox">
+        <div class=" youtubo">
+            <P>썸네일</P>
+          </div>
+          <div class=" youtubo2">
             <P>차시명</P>
           </div>
-          <div class="youtubeUrlBox">
+          <div class=" youtubo3">
             <P>강의url</P>
+          </div>
+          <div class="filesBox youtubo4">
+            <P>강의문제</P>
           </div>
         </div>
       </div>
@@ -181,8 +183,18 @@ while ($is = $result->fetch_object()) {
                 </span>
               </div>
             </div>
-            <div class="youtubeViewurl">
+            <div class="youtubeViewurl yidss">
               <a href="<?= $ai->youtube_url ?>" target="blank" class="btn btn-outline-secondary">강의영상 바로가기</a>
+            </div>
+            <div class="file_dsa">
+              <span>
+              강의문제
+              </span>
+            </div>
+            <div class="file_dsa">
+              <span>
+              <?= $rs->course_file; ?>
+              </span>
             </div>
           </div>
           <?php
@@ -190,11 +202,32 @@ while ($is = $result->fetch_object()) {
           }
           ?>
       </div>
+      <div class="filebox_d2">
+        <div class="file_dsas">
+          <span>
+          <?= $rs->course_file_name; ?>
+          </span>
+        </div>
+        <div class="file_dsas3">
+          <span>
+          <?= $rs->course_file; ?>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="c_button">
-    <a href="course_list.php" class="btn btn-dark base_mt back_btn">돌아가기</a>
+  <div class="course_status d-flex justify-content-between">
+    <div class="d-flex flex-column align-items-end status_wrap">
+      <span class="price_btn_wrap mb-3">
+        <a href="course_update.php?cid=<?=$rs->cid ?>" class="btn btn-success btn_g">수정</a>
+        <a href="course_delete.php?cid=<?=$rs->cid ?>" class="del_btn btn btn-danger btn_g">삭제</a>
+      </span>
+    </div>
+    <div class="c_button ">
+    <a href="course_list.php" class="btn btn-dark base_mt back_btn poisont">목록</a>
+    </div>
   </div>
+  
 </section>
 <script>
 

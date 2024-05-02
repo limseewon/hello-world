@@ -307,7 +307,7 @@ while ($rs2 = $result2->fetch_object()) {
                     <div class="course_info">
                       <div>
                         <h3 class="course_list_title b_text01"><a href="course_view.php?cid=<?= $item->cid ?>"><?= $item->name ?></a>
-                          <span class="badge rounded-pill blue_bg b-pd">
+                          <span class="badge rounded-pill blue_bg b-pd partdaa">
                             <?php
                             echo end($parts);
                             ?>

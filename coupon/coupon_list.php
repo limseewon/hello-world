@@ -216,8 +216,8 @@ while($rs = $result -> fetch_object()){
                   ?>
                   <h3 class="b_text01" title="<?= $coupon->cp_name ?>"><?= $coupon->cp_name ?></h3>
                   <p>사용기한 : <?php if($coupon->cp_date == '0'){echo '무제한';}else{echo $coupon->cp_date.'개월';} ?></p>
-                  <p>최소사용금액 : <span class="number"><?= $coupon->cp_limit ?></span>원</p>
-                  <p>
+                  <p class="updownw">최소사용금액 : <span class="number"><?= $coupon->cp_limit ?></span>원</p>
+                  <p class="updownw">
                   할인액 : 
               <span class="number"><?=$coupon->cp_price;?></span><span>원</span>
                   </p>
@@ -228,9 +228,9 @@ while($rs = $result -> fetch_object()){
                   <a href="/helloworld/coupon/coupon_delete_ok.php?cpid=<?= $coupon->cpid ?>" class="del_btn"><i class="fa-solid fa-trash-can"></i></a>
                 </div>
 
-                <div class="form-check form-switch cp_status_toggle">
-                  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault<?= $coupon->cpid ?>"<?php if($coupon->cp_status == 1){echo 'checked';} else{echo '';}?>>
-                  <label class="form-check-label" for="flexSwitchCheckDefault<?= $coupon->cpid ?>"></label>
+                <div class="form-check form-switch cp_status_toggle ">
+                  <input class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckDefault<?= $coupon->cpid ?>"<?php if($coupon->cp_status == 1){echo 'checked';} else{echo '';}?>>
+                  <label class="form-check-label input_colopr" for="flexSwitchCheckDefault<?= $coupon->cpid ?>"></label>
                 </div>
               </li>
               <?php

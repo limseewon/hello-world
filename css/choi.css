@@ -2151,9 +2151,10 @@ ul {
 .course_list_wrap .all_modify_btn,
 .category_add .back_btn {
   position: absolute;
-  right: 0;
+  
 }
-
+.poisont { margin-right: 253px; width: 100px;
+  top:-16px;}
 .course_view .course_list_title {
   display: flex;
   align-items: center;
@@ -3021,5 +3022,29 @@ justify-content: space-between;
 }
 .coupon_opt {opacity: 0;}
 .forwidt { height: 45px; width: 576px;}
-.badge_blue { }
+
+.badge_blue { background: #0d6efd; width: 60px; height: 26px; display: flex; align-items: center; justify-content: center;}
+.badge_red {background: #CED4DA;width: 60px; height: 26px; display: flex; align-items: center; justify-content: center;}
+
 .for_widths { height: 45px; width: 490px;}
+.input_colopr { background: var(--c-button);}
+.updownw { margin-top: 8px;}
+.javat { background: purple;}
+.javat_s { background: green;}
+
+
+/* 강의보기 */
+.youtubo {width: 20%; display: flex; align-items: center; justify-content: center; background: #c2c4c7;font-weight: bold;border-radius: 6px;}
+.youtubo2 {width: 22%; display: flex; align-items: center;justify-content: center;background: #c2c4c7;font-weight: bold;border-radius: 6px;}
+.youtubo3 {width:26% ;height: 50px;  display: flex; align-items: center; justify-content: center; font-weight: bold;
+  border-radius: 6px;background: #c2c4c7}
+.youtubo4 {width:30% ;height: 50px;  display: flex; align-items: center; justify-content: center; font-weight: bold;
+    border-radius: 6px;background: #c2c4c7}
+
+.yidss { margin-right: 94px;}
+.filebox_d2 { margin-top: 50px;}
+.file_dsas3 { margin-top: 10px; width: 100%;border-radius: 6px;  height: 50px; display: flex; align-items: center;border: 1px solid #000;}
+.yellow_bg { background: #14DDB9;}
+.green_bg {background: #FF6347;}
+.red_bg { background: #000080;}
+.partdaa { background:purple;}
