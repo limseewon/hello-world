@@ -144,7 +144,7 @@ $profitRs = $profitResult->fetch_object();
                     <?php
                     if (isset($noticeArr)){
                       foreach($noticeArr as $na) {
-                        $str = $na->title;
+                        $str = $na->title; 
                         $returnStr = '';
                         $maxLength = 25;
                         if (mb_strlen($str) >= $maxLength) {
