@@ -40,7 +40,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
       integrity="sha512-+Z63RrG0zPf5kR9rHp9NlTMM29nxf02r1tkbfwTRGaHir2Bsh4u8A79PiUKkJq5V5QdugkL+KPfISvl67adC+Q=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    />
+    />  
     <!-- 스포카 -->
     <!-- <link
       href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"      
