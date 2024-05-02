@@ -16,3 +16,7 @@
 form {
   margin-bottom: 16px;
 }
+
+.search_login span:first-of-type {
+  margin-right: 30px;
+}
