@@ -1,15 +1,15 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- 생성 시간: 24-05-01 14:48
--- 서버 버전: 10.4.32-MariaDB
--- PHP 버전: 8.2.12
+-- -- phpMyAdmin SQL Dump
+-- -- version 5.2.1
+-- -- https://www.phpmyadmin.net/
+-- --
+-- -- Host: 127.0.0.1
+-- -- 생성 시간: 24-05-01 14:48
+-- -- 서버 버전: 10.4.32-MariaDB
+-- -- PHP 버전: 8.2.12
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+-- SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+-- START TRANSACTION;
+-- SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -255,7 +255,7 @@ CREATE TABLE `lecture` (
   `l_idx` int(11) NOT NULL,
   `youtube_thumb` varchar(100) NOT NULL,
   `youtube_name` varchar(100) NOT NULL,
-  `youtube_url` varchar(100) NOT NULL,
+  `youtube_url` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -379,7 +379,7 @@ CREATE TABLE `notice` (
   `title` varchar(30) NOT NULL,
   `name` text NOT NULL,
   `view` varchar(1000) NOT NULL,
-  `contents` varchar(100) NOT NULL,
+  `content` varchar(100) NOT NULL,
   `file` varchar(100) NOT NULL,
   `regdate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -439,21 +439,20 @@ INSERT INTO `notice` (`idx`, `title`, `name`, `view`, `content`, `file`, `regdat
 (137, '서비스 이용 안내', '운영자', '5', '서비스 이용에 관한 안내입니다. 자세한 내용은 공지를 참고해주세요.', '', '2024-05-27 08:45:29'),
 (138, '서비스 이용 안내', '운영자', '6', '서비스 이용에 관한 안내입니다. 자세한 내용은 공지를 참고해주세요.', '', '2024-05-28 13:30:12'),
 (139, '서비스 이용 안내', '운영자', '7', '서비스 이용에 관한 안내입니다. 자세한 내용은 공지를 참고해주세요.', '', '2024-05-29 09:20:55'),
-(140, '서비스 이용 안내', '운영자', '13', '서비스 이용에 관한 안내입니다. 자세한 내용은 공지를 참고해주세요.', '', '2024-05-30 16:55:42')
+(140, '서비스 이용 안내', '운영자', '13', '서비스 이용에 관한 안내입니다. 자세한 내용은 공지를 참고해주세요.', '', '2024-05-30 16:55:42');
 
 -- --------------------------------------------------------
 
 --
 -- 테이블 구조 `ordered_courses`
 --
-
 CREATE TABLE `ordered_courses` (
-  `ocid` int(11) NOT NULL,
-  `course_id` int(11) NOT NULL,
-  `member_id` int(11) NOT NULL,
-  `progress` float NOT NULL,
-  `satisfaction` int(1) DEFAULT NULL,
-  `regdate` date DEFAULT NULL
+    `ocid` int(11) NOT NULL,
+    `course_id` int(11) NOT NULL,
+    `member_id` int(11) NOT NULL,
+    `progress` float NOT NULL,
+    `satisfaction` int(1) DEFAULT NULL,
+    `regdate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -911,7 +910,13 @@ INSERT INTO `qna` (`idx`, `name`, `title`, `view`, `reply`, `date`, `pw`, `conte
 (89, '홍길동', '알고리즘 공부 방법', 0, '완료', '2024-05-01 16:10:32', '', '알고리즘을 공부하려면 어떤 방법이 효과적일까요? 공부 방법을 알려주세요.', ''),
 (90, '이순신', '프로그래밍 공부 시작', 0, '미완료', '2024-05-01 16:10:34', '', '프로그래밍을 처음 시작하려는데, 어떤 언어부터 시작하는 것이 좋을까요? 추천 부탁드립니다.', ''),
 (91, '권율', '머신러닝 학습 자료 추천', 1, '완료', '2024-05-01 16:10:36', '', '머신러닝을 공부하려는데 어떤 책이나 강의가 좋을까요? 추천 부탁드립니다.', '');
+-- 테이블 구조 `qna_comment`
+--
 
+CREATE TABLE `qna_comment` (
+  `id` int(11) NOT NULL,
+  `comment` varchar(1200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 -- --------------------------------------------------------
 CREATE TABLE `review` (
   `idx` int(11) NOT NULL,
@@ -946,7 +951,34 @@ INSERT INTO `review` (`idx`, `name`, `title`, `content`, `hit`, `view`, `date`) 
 (16, '최민지', '소프트웨어 공학', '소프트웨어 개발 과정을 이해하는 데 도움이 되었습니다. Agile과 Waterfall 등 다양한 개발 방법론을 학습하면서 프로젝트를 효율적으로 관리하는 방법을 배웠습니다.', '4.5', '0', '2024-05-01 20:46:11.000000'),
 (17, '김성호', '클라우드 컴퓨팅', '클라우드 서비스를 활용하는 방법을 배웠습니다. AWS와 Google Cloud를 사용하여 가상 서버를 생성하고 관리하는 실습이 유익했습니다.', '4.7', '0', '2024-05-01 20:46:11.000000'),
 (18, '이예지', '데이터 사이언스', '실제 데이터를 분석하여 인사이트를 도출하는 경험을 했습니다. Python과 R을 사용하여 데이터를 탐색하고 모델을 구축하는 과정이 흥미로웠습니다.', '4.9', '0', '2024-05-01 20:46:11.000000'),
-(19, '최지우', '컴퓨터 그래픽스', '컴퓨터 그래픽스의 기본 원리를 배웠습니다. OpenGL을 사용하여 그래픽 애플리케이션을 개발하면서 3D 그래픽의 구조와 렌더링 과정을 이해했습니다.', '4.4', '3', '2024-05-01 20:46:11.000000');
+(19, '최지우', '컴퓨터 그래픽스', '컴퓨터 그래픽스의 기본 원리를 배웠습니다. OpenGL을 사용하여 그래픽 애플리케이션을 개발하면서 3D 그래픽의 구조와 렌더링 과정을 이해했습니다.', '4.4', '3', '2024-05-01 20:46:11.000000'),
+(20, '김민수', '데이터베이스 설계', '데이터베이스 설계 과정에서 정규화와 ER 다이어그램의 중요성을 배웠습니다. 실제 프로젝트에 적용하여 효율적인 데이터베이스를 구축할 수 있게 되었습니다.', '4.2', '23', '2024-05-02 14:30:45.000000'),
+(21, '이영희', '웹 프로그래밍 기초', 'HTML, CSS, JavaScript를 활용하여 웹 페이지를 제작하는 방법을 배웠습니다. 간단한 프로젝트를 통해 실습해보니 웹 개발에 대한 이해도가 높아졌습니다.', '4.5', '35', '2024-05-03 09:15:22.000000'),
+(22, '박철수', '알고리즘 및 자료구조', '다양한 알고리즘과 자료구조에 대해 공부했습니다. 문제 해결 능력이 향상되었고, 효율적인 코드를 작성할 수 있게 되었습니다.', '4.7', '28', '2024-05-04 16:40:11.000000'),
+(23, '한지민', '소프트웨어 공학', '소프트웨어 개발 생명주기와 다양한 방법론에 대해 배웠습니다. 프로젝트 관리와 팀워크의 중요성을 깨달았습니다.', '4.3', '19', '2024-05-05 11:55:38.000000'),
+(24, '임성준', '인공지능 입문', '인공지능의 기본 개념과 머신러닝 알고리즘에 대해 공부했습니다. 실제 데이터를 활용하여 모델을 학습시키고 예측해보는 과정이 흥미로웠습니다.', '4.6', '42', '2024-05-06 08:20:07.000000'),
+(25, '강영식', '모바일 앱 개발', 'Android Studio를 사용하여 모바일 앱을 개발하는 방법을 배웠습니다. 사용자 인터페이스 디자인과 기능 구현 과정이 재미있었습니다.', '4.1', '14', '2024-05-07 13:05:29.000000'),
+(26, '최유진', '운영체제', '운영체제의 핵심 개념과 프로세스 관리, 메모리 관리 등에 대해 공부했습니다. 시스템 프로그래밍에 대한 이해도가 높아졌습니다.', '4.4', '31', '2024-05-08 19:50:53.000000'),
+(27, '서민준', '네트워크 프로그래밍', '소켓 프로그래밍을 통해 네트워크 통신 프로그램을 개발해보았습니다. 클라이언트-서버 모델의 동작 원리를 이해하게 되었습니다.', '4.2', '26', '2024-05-09 15:35:16.000000'),
+(28, '김지우', '컴파일러 설계', '컴파일러의 구조와 작동 원리에 대해 배웠습니다. 렉서, 파서, 코드 생성기 등의 구현 과정이 어려웠지만 보람찼습니다.', '4.5', '39', '2024-05-10 10:20:44.000000'),
+(29, '이상현', '데이터 마이닝', '대량의 데이터에서 유용한 패턴과 지식을 추출하는 기술을 배웠습니다. 실제 데이터셋을 활용하여 분석해보니 데이터의 가치를 깨달았습니다.', '4.3', '22', '2024-05-11 17:05:31.000000'),
+(30, '박민지', '웹 서비스 개발', 'Spring Framework를 사용하여 웹 서비스를 개발하는 방법을 배웠습니다. MVC 패턴과 의존성 주입 등의 개념을 적용해보았습니다.', '4.6', '45', '2024-05-12 12:50:09.000000'),
+(31, '정현우', '컴퓨터 비전', 'OpenCV 라이브러리를 활용하여 이미지 처리와 객체 인식을 구현해보았습니다. 컴퓨터 비전 기술의 다양한 응용 분야를 알게 되었습니다.', '4.4', '33', '2024-05-13 08:35:52.000000'),
+(32, '임지현', '자연어 처리', '텍스트 데이터를 전처리하고 언어 모델을 학습시키는 과정을 배웠습니다. 챗봇과 감성 분석 등의 응용 사례를 접해보니 흥미로웠습니다.', '4.1', '18', '2024-05-14 14:20:37.000000'),
+(33, '김도윤', '빅데이터 분석', 'Hadoop과 Spark를 사용하여 대용량 데이터를 처리하고 분석하는 방법을 배웠습니다. 데이터 분석 결과를 시각화하는 과정이 인상적이었습니다.', '4.5', '41', '2024-05-15 10:05:24.000000'),
+(34, '이예준', '정보보안 개론', '정보보안의 기본 개념과 암호화 알고리즘에 대해 공부했습니다. 안전한 시스템을 설계하는 방법을 배우니 유익했습니다.', '4.3', '27', '2024-05-16 15:50:11.000000'),
+(35, '박서윤', '임베디드 시스템', '라즈베리 파이를 활용하여 임베디드 시스템을 구현해보았습니다. 하드웨어와 소프트웨어의 연동 과정이 흥미로웠습니다.', '4.2', '20', '2024-05-17 11:35:48.000000'),
+(36, '최하윤', '그래프 이론', '그래프 이론의 기본 개념과 알고리즘에 대해 배웠습니다. 최단 경로 문제와 네트워크 플로우 문제 등을 해결해보니 알고리즘의 중요성을 깨달았습니다.', '4.6', '38', '2024-05-18 17:20:35.000000'),
+(37, '김민준', '소프트웨어 테스팅', '소프트웨어 테스팅의 기법과 도구에 대해 배웠습니다. 단위 테스트와 통합 테스트를 작성하고 수행해보니 소프트웨어 품질 향상의 중요성을 알게 되었습니다.', '4.4', '29', '2024-05-19 13:05:22.000000'),
+(38, '이서현', '클라우드 컴퓨팅', 'AWS를 사용하여 클라우드 인프라를 구축하고 관리하는 방법을 배웠습니다. 가상화 기술과 서비스 모델에 대한 이해도가 높아졌습니다.', '4.1', '16', '2024-05-20 08:50:09.000000'),
+(39, '박준서', '블록체인 기술', '블록체인의 기본 개념과 작동 원리에 대해 공부했습니다. 스마트 컨트랙트를 구현해보니 블록체인 기술의 응용 가능성을 알게 되었습니다.', '4.5', '36', '2024-05-21 14:35:56.000000'),
+(40, '최지원', '데이터 시각화', 'Tableau와 D3.js를 사용하여 데이터를 시각화하는 방법을 배웠습니다. 인터랙티브한 시각화 결과물을 만들어보니 데이터 스토리텔링의 힘을 느꼈습니다.', '4.3', '24', '2024-05-22 10:20:43.000000'),
+(41, '김예은', '컴퓨터 네트워크', '네트워크 계층 구조와 프로토콜에 대해 공부했습니다. 패킷 전송 과정과 라우팅 알고리즘을 이해하니 네트워크 통신의 원리를 깨달았습니다.', '4.6', '43', '2024-05-23 16:05:30.000000'),
+(42, '이지훈', '머신러닝 프로젝트', '실제 데이터셋을 사용하여 머신러닝 프로젝트를 진행했습니다. 데이터 전처리부터 모델 학습, 평가까지 전 과정을 경험해보니 많은 것을 배웠습니다.', '4.4', '35', '2024-05-24 11:50:17.000000'),
+(43, '박민영', '알고리즘 문제 해결', '다양한 알고리즘 문제를 해결하는 과정에서 논리적 사고력과 문제 해결 능력이 향상되었습니다. 코딩 테스트 대비에도 도움이 되었습니다.', '4.2', '28', '2024-05-25 17:35:04.000000'),
+(44, '최승현', '웹 디자인', 'UI/UX 디자인 원칙과 웹 디자인 트렌드에 대해 배웠습니다. 사용자 중심의 디자인을 고려하여 웹 페이지를 제작해보니 시각적으로 매력적인 결과물을 만들 수 있었습니다.', '4.5', '46', '2024-05-26 13:20:51.000000'),
+(45, '김다은', '데이터베이스 성능 튜닝', '대용량 데이터베이스의 성능을 향상시키기 위한 기법을 배웠습니다. 인덱싱, 쿼리 최적화, 파티셔닝 등의 방법을 적용해보니 시스템 성능이 크게 개선되었습니다.', '4.3', '32', '2024-05-27 09:05:38.000000'),
+(46, '이현우', '컴퓨터 그래픽스 심화', '고급 렌더링 기법과 쉐이딩 언어에 대해 공부했습니다. 실시간 그래픽스 엔진을 활용하여 실감 나는 3D 장면을 구현해보니 흥미로웠습니다.', '4.6', '49', '2024-05-28 14:50:25.000000');
 
 
 
@@ -1077,33 +1109,33 @@ ALTER TABLE `ordered_courses`
 --
 -- 테이블의 인덱스 `orders`
 --
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`oid`);
+-- ALTER TABLE `orders`
+--   ADD PRIMARY KEY (`oid`);
 
 --
 -- 테이블의 인덱스 `products`
 --
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`pid`);
+-- ALTER TABLE `products`
+--   ADD PRIMARY KEY (`pid`);
 
 --
 -- 테이블의 인덱스 `product_image_table`
 --
-ALTER TABLE `product_image_table`
-  ADD PRIMARY KEY (`imgid`);
+-- ALTER TABLE `product_image_table`
+--   ADD PRIMARY KEY (`imgid`);
 
 --
 -- 테이블의 인덱스 `product_options`
---
-ALTER TABLE `product_options`
-  ADD PRIMARY KEY (`poid`),
-  ADD KEY `newtable_pid_IDX` (`pid`) USING BTREE;
+-- --
+-- ALTER TABLE `product_options`
+--   ADD PRIMARY KEY (`poid`),
+--   ADD KEY `newtable_pid_IDX` (`pid`) USING BTREE;
 
 --
 -- 테이블의 인덱스 `user_coupons`
 --
-ALTER TABLE `user_coupons`
-  ADD PRIMARY KEY (`ucid`);
+-- ALTER TABLE `user_coupons`
+--   ADD PRIMARY KEY (`ucid`);
 
 --
 -- 덤프된 테이블의 AUTO_INCREMENT
@@ -1173,33 +1205,36 @@ ALTER TABLE `ordered_courses`
 --
 -- 테이블의 AUTO_INCREMENT `orders`
 --
-ALTER TABLE `orders`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+-- ALTER TABLE `orders`
+--   MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- 테이블의 AUTO_INCREMENT `products`
 --
-ALTER TABLE `products`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+-- ALTER TABLE `products`
+--   MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- 테이블의 AUTO_INCREMENT `product_image_table`
 --
-ALTER TABLE `product_image_table`
-  MODIFY `imgid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+-- ALTER TABLE `product_image_table`
+--   MODIFY `imgid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- 테이블의 AUTO_INCREMENT `product_options`
 --
-ALTER TABLE `product_options`
-  MODIFY `poid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+-- ALTER TABLE `product_options`
+--   MODIFY `poid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- 테이블의 AUTO_INCREMENT `user_coupons`
 --
-ALTER TABLE `user_coupons`
-  MODIFY `ucid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-COMMIT;
+-- ALTER TABLE `user_coupons`
+--   MODIFY `ucid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+-- COMMIT;
+
+ALTER TABLE `user_coupons` MODIFY COLUMN `ucid` int(11) PRIMARY KEY AUTO_INCREMENT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
