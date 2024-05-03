@@ -335,12 +335,12 @@
                       </div>
                       
                       <div class="col-1 trash_icon">
-                        <label for="delete-youtube<?= $i; ?>"><i class="ti ti-trash bin_icon"></i></label>
+                        <label for="delete-file<?= $i; ?>"><i class="ti ti-trash bin_icon"></i></label>
                         <input
                           type="checkbox"
-                          class="delete-youtube hidden"
-                          id="delete-youtube<?= $i; ?>"
-                          name="delete_youtube[]"
+                          class="delete-file hidden"
+                          id="delete-file<?= $i; ?>"
+                          name="delete_file[]"
                           value="<?= $cf ?>"
                         />
                       </div>
@@ -386,7 +386,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
       ></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote.min.js" integrity="sha512-6rE6Bx6fCBpRXG/FWpQmvguMWDLWMQjPycXMr35Zx/HRD9nwySZswkkLksgyQcvrpYMx0FELLJVBvWFtubZhDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- jquery -->
   
     <!-- jqueryui js -->
@@ -433,6 +435,6 @@
     );
     document.querySelector('header').style.height = documentHeight + 'px';
   </script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   </body>
 </html>
