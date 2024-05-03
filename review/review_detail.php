@@ -194,7 +194,7 @@ $next_id = $row_next['next_id'];
 </head>
 <body>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php'; ?>
-    <h2>질의 응답</h2>
+    <h2>수강평</h2>
     <div class="regist">
         <div class="mb-3 d-flex title">
             <p class="tt">제목</p>
