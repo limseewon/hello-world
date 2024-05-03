@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- 생성 시간: 24-05-02 11:27
+-- 생성 시간: 24-05-03 05:47
 -- 서버 버전: 10.4.32-MariaDB
 -- PHP 버전: 8.2.12
 
@@ -44,7 +44,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`idx`, `userid`, `email`, `username`, `passwd`, `regdate`, `level`, `last_login`, `end_login_date`) VALUES
-(4, 'admin', 'admin@helloworld.com', '관리자', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-08 14:59:11', 100, '2024-05-02 13:08:47', NULL);
+(4, 'admin', 'admin@helloworld.com', '관리자', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-08 14:59:11', 100, '2024-05-03 10:13:14', NULL);
 
 -- --------------------------------------------------------
 
@@ -122,7 +122,54 @@ INSERT INTO `category` (`cateid`, `code`, `pcode`, `name`, `step`) VALUES
 (63, '', '27', 'Spring', 3),
 (64, '', '27', 'Spring Boot', 3),
 (65, '', '27', 'Node.js', 3),
-(66, '', '27', 'JavaScript', 3);
+(66, '', '27', 'JavaScript', 3),
+(67, '', '28', 'JavaScript', 3),
+(68, '', '28', 'React', 3),
+(69, '', '29', 'HTML / CSS', 3),
+(70, '', '29', 'JavaScript', 3),
+(71, '', '29', 'jQuery', 3),
+(72, '', '29', '웹 디자인', 3),
+(73, '', '28', 'Spring', 3),
+(74, '', '28', 'Django', 3),
+(75, '', '28', 'TypeScript', 3),
+(79, '', '30', 'Python', 3),
+(80, '', '30', 'SQL', 3),
+(81, '', '30', '빅데이터', 3),
+(82, '', '30', 'Excel', 3),
+(83, '', '30', 'Pandas', 3),
+(84, '', '30', 'MySQL', 3),
+(85, '', '31', 'SQL', 3),
+(86, '', '31', 'Kafka', 3),
+(87, '', '31', '머신러닝', 3),
+(88, '', '31', '웹 크롤링', 3),
+(89, '', '32', 'ADsP', 3),
+(90, '', '32', 'SQL', 3),
+(91, '', '32', 'R', 3),
+(92, '', '32', 'SQLD', 3),
+(93, '', '32', 'ADP', 3),
+(94, '', '33', '빅데이터', 3),
+(95, '', '33', '딥러닝', 3),
+(96, '', '33', '인공지능(AI)', 3),
+(97, '', '34', 'Blender', 3),
+(98, '', '34', 'CAD', 3),
+(99, '', '34', 'AutoCAD', 3),
+(100, '', '34', 'MAYA', 3),
+(101, '', '34', '3D', 3),
+(102, '', '35', 'Figma', 3),
+(103, '', '35', 'UX 기획', 3),
+(104, '', '35', '모바일 디자인', 3),
+(105, '', '35', 'UX 리서치', 3),
+(106, '', '35', 'UX', 3),
+(107, '', '35', '프로토타이핑', 3),
+(108, '', '36', 'photoshop', 3),
+(109, '', '36', 'Figma', 3),
+(110, '', '36', 'illustrator', 3),
+(111, '', '36', '웹디자인', 3),
+(112, '', '36', '모바일 디자인', 3),
+(113, '', '36', '캐릭터 디자인', 3),
+(114, '', '37', '영상 제작', 3),
+(115, '', '37', 'After Effects', 3),
+(116, '', '37', 'Premiere Pro', 3);
 
 -- --------------------------------------------------------
 
@@ -147,10 +194,15 @@ CREATE TABLE `coupons` (
 --
 
 INSERT INTO `coupons` (`cpid`, `cp_name`, `cp_image`, `cp_type`, `cp_price`, `cp_ratio`, `cp_status`, `cp_date`, `cp_limit`) VALUES
-(28, '가입축하쿠폰2222', '/helloworld/img/coupon/20240502110803112571.jpg', 0, '1000', '0', 1, 0, '1000'),
-(29, '가입축하쿠폰2222', '/helloworld/img/coupon/20240502110850111129.jpg', 0, '1000', '0', 1, 3, '1000'),
-(30, '가입축하쿠폰222233', '/helloworld/img/coupon/20240502110918499972.jpg', 0, '3000', '0', 1, 0, '2000'),
-(31, '가입축하쿠폰', '/helloworld/img/coupon/20240502112351757044.jpg', 0, '3000', '0', 1, 2, '2000');
+(1, '5000원 할인 쿠폰(2개월)', '/helloworld/img/coupon/20240502192900202340.jpg', 0, '0', '0', 1, 2, '6000'),
+(2, '10000원 할인쿠폰(6개월)', '/helloworld/img/coupon/20240502193411146696.jpg', 0, '0', '0', 1, 6, '7000'),
+(3, '10000원 할인쿠폰(무제한)', '/helloworld/img/coupon/20240502194003129547.jpg', 0, '10000', '0', 1, 1, '6000'),
+(4, '10000원 할인쿠폰(6개월)', '/helloworld/img/coupon/20240502194108376143.jpg', 0, '10000', '0', 1, 6, '5000'),
+(5, '3000원할인쿠폰(무제한)', '/helloworld/img/coupon/20240502193648161485.jpg', 0, '3000', '0', 0, 0, '6000'),
+(6, '5000원 할인쿠폰(무제한)', '/helloworld/img/coupon/20240502193732197579.jpg', 0, '5000', '0', 0, 0, '5000'),
+(7, '1000원 할인쿠폰(무제한)', '/helloworld/img/coupon/20240502193847116442.jpg', 0, '1000', '0', 1, 0, '3000'),
+(8, '2000원 할인쿠폰(무제한)', '/helloworld/img/coupon/20240502193930149306.jpg', 0, '2000', '0', 0, 0, '4000'),
+(9, '1000원 할인쿠폰(1개월)', '/helloworld/img/coupon/20240502194316191002.jpg', 0, '1000', '0', 0, 1, '3000');
 
 -- --------------------------------------------------------
 
@@ -192,21 +244,15 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`cid`, `cate`, `name`, `price_status`, `price`, `level`, `due_status`, `due`, `act`, `content`, `thumbnail`, `course_file`, `course_file_name`) VALUES
-(39, '프로그래밍', '파이썬 입문', '유료', 20000, '초급', '무제한', '무제한', '활성', '파이썬 프로그래밍 언어의 기초를 배웁니다. 변수, 조건문, 반복문 등의 기본 문법을 익힙니다.', '/helloworld/img/class/20240430043206434713.png', NULL, NULL),
-(40, '디자인', '포토샵 마스터', '유료', 35000, '중급', '무제한', '무제한', '활성', '포토샵 도구 및 기능을 활용하여 이미지 편집 및 디자인 기술을 익힙니다.', '/helloworld/img/class/20240430043206434714.png', NULL, NULL),
-(41, '비즈니스', '마케팅 전략', '유료', 45000, '중급', '무제한', '무제한', '활성', '시장 분석, 타겟팅, 브랜딩 등 성공적인 마케팅 전략을 수립하는 방법을 배웁니다.', '/helloworld/img/class/20240430043206434715.png', NULL, NULL),
-(42, '언어', '영어회화 집중과정', '유료', 60000, '초급', '무제한', '무제한', '활성', '실용적인 영어 회화 능력을 기르기 위한 강의입니다. 다양한 상황에 맞는 표현을 익힙니다.', '/helloworld/img/class/20240430043206434716.png', NULL, NULL),
-(43, '프로그래밍', '자바스크립트 프로젝트', '유료', 75000, '중상급', '무제한', '무제한', '활성', '실제 웹 애플리케이션 개발 프로젝트를 통해 자바스크립트 실력을 향상시킵니다.', '/helloworld/img/class/20240430043206434717.png', NULL, NULL),
-(45, '취미', '수제 비누 만들기', '유료', 30000, '초급', '무제한', '무제한', '활성', '천연 재료로 수제 비누를 직접 만들어보는 강의입니다. 창의력과 기술을 기를 수 있습니다.', '/helloworld/img/class/20240430043206434719.png', NULL, NULL),
-(46, '프로그래밍', '리액트 프로젝트', '유료', 90000, '중상급', '무제한', '무제한', '활성', '실전 프로젝트를 통해 리액트 라이브러리를 활용한 웹 개발 기술을 익힙니다.', '/helloworld/img/class/20240430043206434720.png', NULL, NULL),
-(47, '디자인', '일러스트레이터 기초', '유료', 25000, '초급', '무제한', '무제한', '활성', '일러스트레이터 도구와 기능을 익혀 벡터 그래픽 디자인 능력을 기릅니다.', '/helloworld/img/class/20240430043206434721.png', NULL, NULL),
-(48, '비즈니스', '프로젝트 관리', '유료', 55000, '중급', '무제한', '무제한', '활성', '프로젝트 계획, 실행, 모니터링, 마무리 등 전체 프로세스를 효과적으로 관리하는 방법을 배웁니다.', '/helloworld/img/class/20240430043206434722.png', NULL, NULL),
-(49, '언어', '중국어 회화', '유료', 40000, '초급', '무제한', '무제한', '활성', '일상 생활에서 사용되는 중국어 회화 표현을 익혀 의사소통 능력을 기릅니다.', '/helloworld/img/class/20240430043206434723.png', NULL, NULL),
-(50, '프로그래밍', '자바 입문', '유료', 65000, '초급', '무제한', '무제한', '활성', '자바 프로그래밍 언어의 기초 문법과 객체 지향 프로그래밍 개념을 익힙니다.', '/helloworld/img/class/20240430043206434724.png', NULL, NULL),
-(51, '프로그래밍', '파이썬 입문', '유료', 20000, '초급', '무제한', '무제한', '활성', '파이썬 프로그래밍 언어의 기초를 배웁니다. 변수, 조건문, 반복문 등의 기본 문법을 익힙니다.', '/helloworld/img/class/20240430043206434713.png', NULL, NULL),
-(91, '개발 · 프로그래밍/웹개발/JavaScript', '테스트125555', '유료', 4000, '초급', '제한', '6개월', '활성', '<p>테스트12333</p>', '/helloworld/img/class/20240502102520114283.jpg', '/helloworld/img/classfile/20240502102520195453.jpg,/helloworld/img/classfile/20240502102520179507.jp', '파일1,파일133'),
-(92, '개발 · 프로그래밍/프론트엔드/JavaScript', '등록 테스트 1212', '유료', 8000, '중급', '제한', '6개월', '활성', '<p>등록테스트 12344</p>', '/helloworld/img/class/20240502104050966276.jpg', '/helloworld/img/classfile/20240502104050192940.jpg,/helloworld/img/classfile/20240502104050212046.jp', '파일1,강의 파일 1'),
-(93, '개발 · 프로그래밍//', '테스트12', '유료', 20000, '초급', '제한', '12개월', '활성', '', '/helloworld/img/class/20240502112209392959.jpg', '/helloworld/img/classfile/20240502111559165411.jpg,/helloworld/img/classfile/20240502111559300125.jp', '차시1파일,차시1파일');
+(99, '개발 · 프로그래밍/웹개발/JavaScript', '따라하며 배우는 자바스크립트 A-Z', '유료', 21000, '초급', '무제한', '무제한', '활성', '<p><span style=\"color: rgb(36, 41, 47); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: -0.3px; background-color: rgb(255, 255, 255);\">이 강의를 통해서는 웹 개발 및 프론트엔드 개발을 공부한다면 가장 중요시하게 여겨지는 자바스크립트를 공부하게 됩니다.</span><br style=\"color: rgb(36, 41, 47); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; letter-spacing: -0.3px; background-color: rgb(255, 255, 255);\"><span style=\"color: rgb(36, 41, 47); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: -0.3px; background-color: rgb(255, 255, 255);\">이 강의는 자바스크립트를 처음 공부하는 사람도 이 강의 하나만으로 자바스크립트를 충분히 배울 수 있도록 자바스크립트의 기초부터 중급까지 필요한 대부분의 지식들을 담아놓았습니다.</span><br style=\"color: rgb(36, 41, 47); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; letter-spacing: -0.3px; background-color: rgb(255, 255, 255);\"><span style=\"color: rgb(36, 41, 47); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: -0.3px; background-color: rgb(255, 255, 255);\">그래서 자바스크립트를 공부하실 때 어떠한 강의 하나를 이용해서 공부해야 할지 고민하시는 분들에게 이 강의 하나를 반복해서 공부하므로 자바스크립트에 자신감이 생길 수 있게 구성했습니다.</span><br style=\"color: rgb(36, 41, 47); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; letter-spacing: -0.3px; background-color: rgb(255, 255, 255);\"><span style=\"color: rgb(36, 41, 47); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: -0.3px; background-color: rgb(255, 255, 255);\">또한 자바스크립트 공부가 처음이 아닌 분들도 이 강의를 통해서 다시 한번 기초를 다지고 지금까지 생소했거나 헷갈렸던 개념들을 더 선명하게 이해할 수 있게 될 것입니다.</span><br></p>', '/helloworld/img/class/20240502205647158505.png', '/helloworld/img/classfile/20240502205647188699.jpg', '실습파일'),
+(101, '개발 · 프로그래밍/웹개발/HTML / CSS', '따라하며 배우는 HTML, CSS', '무료', 0, '초급', '무제한', '무제한', '활성', '<p><span style=\"color: rgb(73, 80, 87); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: -0.3px; background-color: rgb(255, 255, 255);\">HTML과 CSS. 개발에 관심이 있거나 현재 개발을 하는 분들이라면 누구나 들어보셨을 거예요.&nbsp;</span><span style=\"color: rgb(73, 80, 87); font-weight: 700; font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: -0.3px; background-color: rgb(255, 255, 255);\">HTML과 CSS는 웹 개발의 가장 기본</span><span style=\"color: rgb(73, 80, 87); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: -0.3px; background-color: rgb(255, 255, 255);\">이라고 하죠. 웹 개발을 시작하는 분들은 물론, 이미 실무에 있는 현직 개발자분들께도 중요한 기초지식이에요. 실무에 있는 개발자도 HTML, CSS의 구체적인 부분을 간과하고 지나가는 경우가 생각보다 많거든요. 저와 함께 웹 개발의 기초를 튼튼하게 다져봐요!&nbsp;</span><br></p>', '/helloworld/img/class/20240502223406151732.png', '/helloworld/img/classfile/20240502223406193913.zip', 'java실습파일'),
+(103, '개발 · 프로그래밍/웹개발/React', '따라하며 배우는 리액트 A-Z', '유료', 55000, '중급', '제한', '9개월', '활성', '<p style=\"margin-bottom: 8px; padding-top: 10px; line-height: 1.69; font-size: 16px; letter-spacing: -0.3px; color: rgb(73, 80, 87); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; background-color: rgb(255, 255, 255);\">이 강의를 통해서<span style=\"color: inherit; font-weight: 700;\">&nbsp;리액트 기초부터 중급까지의 기술</span>을 익히실수 있습니다.&nbsp;<br>리액트를 처음 접하는 사람들도 이 강의 하나로 리액트를 위해 필요한 대부분의 지식을 습득하실수 있습니다.&nbsp;</p><p style=\"margin-bottom: 8px; padding-top: 10px; line-height: 1.69; font-size: 16px; letter-spacing: -0.3px; color: rgb(73, 80, 87); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; background-color: rgb(255, 255, 255);\">하나의 강의로 개념도 익히고 실습도 하며, 리액트를 위해 필요한 대부분의 지식을 한번에 습득할 수 있도록 만들었습니다. 프론트엔드 개발자가 되기 위해 필수처럼 생각되는 리액트를 배워서 취업에 많은 도움이 되었으면 좋겠습니다.</p>', '/helloworld/img/class/20240503032943188402.png', '/helloworld/img/classfile/20240503032943403229.zip', '실습파일'),
+(104, '개발 · 프로그래밍/웹개발/Spring', 'Spring II', '유료', 45000, '고급', '제한', '9개월', '활성', '<p><span style=\"color: rgb(73, 80, 87); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 500; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);\">Java와 Spring Boot, JPA, MySQL, AWS를 이용해 서버를 개발하고 배포합니다. 웹 애플리케이션을 개발하며 서버 개발에 필요한 배경지식과 이론, 다양한 기술들을 모두 학습할 뿐 아니라, 다양한 옵션들의 의미, Spring Boot의 역사와 가장 최신 버전의 변경점들도 짚어봅니다.</span><br></p>', '/helloworld/img/class/20240503040826715289.png', '/helloworld/img/classfile/20240503040826166485.zip', '실습파일'),
+(106, '개발 · 프로그래밍/웹개발/Spring Boot', '코드로 배우는 React with 스프링부트 API서버', '유료', 27000, '초급', '무제한', '무제한', '활성', '<p><span style=\"color: rgb(73, 80, 87); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 500; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);\">스프링 부트(Spring Boot ver3.1(3.2 호환))로 제작되는 API 서버와 리액트의 연동 프로젝트 완성하기! 포트폴리오 작성 부트캠프 과정 전체를 강의로 제작</span><br></p>', '/helloworld/img/class/20240503041640103857.jpg', '/helloworld/img/classfile/20240503041640143850.zip', '실습파일'),
+(108, '개발 · 프로그래밍/웹개발/Python', '[2024 신규] 어서와, Fast API는 처음이지?', '무료', 0, '초급', '무제한', '무제한', '활성', '<p><span style=\"color: rgb(73, 80, 87); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 500; letter-spacing: -0.5px; background-color: rgb(255, 255, 255);\">★PYTHON★ Fast API를 활용한 Server 개발 기초 강의입니다. Fast API, SQLAlchemy, Pydantic, Starlette 등 여러 Package를 활용해 쉽고, 빠르고, 간편하게 Server 개발하는 방법을 배워가세요! PostgreSQL과의 연동은 물론 DB </span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(73, 80, 87); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 500; letter-spacing: -0.5px; text-align: var(--bs-body-text-align);\"><br></span></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(73, 80, 87); font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 500; letter-spacing: -0.5px; text-align: var(--bs-body-text-align);\">Backup파일도 준비되어 있으니 걱정마세요! Dash와 Plotly를 활용한 UI Design \"기초\"를 알려드리고 강의에 사용된 Source Code도 제공해드립니다 :)</span><br></p>', '/helloworld/img/class/20240503043911161740.png', '/helloworld/img/classfile/20240503043911177992.zip', '실습파일'),
+(109, '개발 · 프로그래밍/웹개발/Node.js', 'Node.js로 데이터베이스 다루고 웹 애플리케이션 만들기', '유료', 32000, '초급', '제한', '9개월', '활성', '<h2 class=\"cd-body__title cd-body__intro-title\" style=\"margin-bottom: 16px; font-size: 22px; font-weight: 400; letter-spacing: -0.3px; color: rgb(52, 58, 64); line-height: 1.45; font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; background-color: rgb(255, 255, 255);\"><span style=\"color: inherit; font-weight: 700;\">초급자</span>를 위해 준비한<br><span style=\"color: inherit; font-weight: 700;\">[웹 개발, 백엔드] 강의입니다.</span></h2><p class=\"cd-body__description\" style=\"margin-bottom: 8px; line-height: 1.69; font-size: 16px; letter-spacing: -0.5px; color: rgb(73, 80, 87); font-weight: 500; font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; background-color: rgb(255, 255, 255);\">서버측 자바스크립트 언어인 Nodejs 와 데이터베이스의 관계를 소개하고 NodeJs 와 데이터베이스를 통해 웹어플리케이션을 제작하는 방법을 알려줍니다.</p>', '/helloworld/img/class/20240503045931124206.jpg', '/helloworld/img/classfile/20240503045931161149.zip', '실습파일'),
+(110, '개발 · 프로그래밍/웹개발/Vue.js', 'Vue3 완벽 마스터: 기초부터 실전까지 - \"기본편\"', '무료', 0, '중급', '무제한', '무제한', '활성', '<h2 class=\"cd-body__title cd-body__intro-title\" style=\"margin-bottom: 16px; font-size: 22px; font-weight: 400; letter-spacing: -0.3px; color: rgb(52, 58, 64); line-height: 1.45; font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; background-color: rgb(255, 255, 255);\"><span style=\"color: inherit; font-weight: 700;\">초급자</span>를 위해 준비한<br><span style=\"color: inherit; font-weight: 700;\">[프론트엔드, 웹 개발] 강의입니다.</span></h2><p class=\"cd-body__description\" style=\"margin-bottom: 8px; line-height: 1.69; font-size: 16px; letter-spacing: -0.5px; color: rgb(73, 80, 87); font-weight: 500; font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, &quot;Helvetica Neue&quot;, &quot;Segoe UI&quot;, &quot;Apple SD Gothic Neo&quot;, &quot;Noto Sans KR&quot;, &quot;Malgun Gothic&quot;, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; background-color: rgb(255, 255, 255);\">Vue.js 3로 웹 개발을 할 수 있도록 공식문서를 기반으로 하여 Vue 3 스펙을 자세하고 깊이있게 다룹니다.</p>', '/helloworld/img/class/20240503050408169781.png', '/helloworld/img/classfile/20240503050408123062.zip', '실습파일'),
+(114, '개발 · 프로그래밍/웹개발/JavaScript', '테스트1211212', '유료', 50000, '초급', '제한', '3개월', '활성', '<p>113131111212</p>', '/helloworld/img/class/20240503054648388873.webp', '/helloworld/img/class/20240503054648100691.webp', '실습파일22');
 
 -- --------------------------------------------------------
 
@@ -254,34 +300,93 @@ INSERT INTO `lecture` (`cid`, `l_idx`, `youtube_thumb`, `youtube_name`, `youtube
 (39, 26, '/images/python_course25.jpg', '파이썬 디자인 패턴 강의', 'https://www.youtube.com/watch?v=abcdefghijklmnopqrstuvwxyz'),
 (39, 27, '/images/python_course26.jpg', '파이썬 GUI 프로그래밍 강의', 'https://www.youtube.com/watch?v=0123456789abcdef'),
 (39, 28, '/images/python_course27.jpg', '파이썬 소켓 프로그래밍 강의', 'https://www.youtube.com/watch?v=ghijklmnopqrstuvwxyz'),
-(70, 29, '/helloworld/img/class/20240502042539122865.jpg', '테스트', 'https://youtube.com/dfadf'),
-(71, 30, '/helloworld/img/class/20240502075418193132.png', '테스트12', 'https://youtube.com/dfadf'),
-(71, 31, '/helloworld/img/class/20240502075418853017.png', '테스트1332', 'https://www.youtube.com/watch?v=K62E6ieenwE'),
-(72, 32, '/helloworld/img/class/20240502075940586104.jpg', '테스트12233', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
-(72, 33, '/helloworld/img/class/20240502075940179411.jpg', 'dgdgdg', 'https://www.youtube.com/watch?v=K62E6ieenwE'),
-(73, 34, '/helloworld/img/class/20240502080218194966.png', 'gsdg', 'https://youtube.com/dfadf'),
-(73, 35, '/helloworld/img/class/20240502080218746113.jpg', 'gsdgs', 'https://www.youtube.com/watch?v=K62E6ieenwE'),
-(74, 36, '/helloworld/img/class/20240502081920359528.png', 'gh', 'https://youtube.com/dfadf'),
-(74, 37, '/helloworld/img/class/20240502081920809185.png', 'gdfgdg', 'https://www.youtube.com/watch?v=bp3AT52IIfM'),
-(75, 38, '/helloworld/img/class/20240502082436168881.jpg', 'gsdg', ''),
-(76, 39, '/helloworld/img/class/20240502082513140574.png', '', ''),
-(77, 40, '/helloworld/img/class/20240502082652129981.png', 'gsdgdsg', 'https://www.youtube.com/watch?v=bp3AT52IIfM'),
-(78, 41, '/helloworld/img/class/20240502082733166131.png', 'ㅁㄴㅇㄹㄴㅁㅇㄹ', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
-(79, 42, '/helloworld/img/class/20240502082828502352.png', '테스트', ''),
-(80, 43, '/helloworld/img/class/20240502082906122774.png', '테스트', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
-(81, 44, '/helloworld/img/class/20240502090208183725.jpg', '테스트123344', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
-(82, 45, '/helloworld/img/class/20240502090318153737.jpg', '테스트', 'https://youtube.com/dfadf'),
-(83, 46, '/helloworld/img/class/20240502090526651247.jpg', '테스트', 'https://youtube.com/dfadf'),
-(84, 47, '/helloworld/img/class/20240502090613249920.jpg', '테스트', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
-(85, 48, '/helloworld/img/class/20240502092225209885.jpg', '테스트', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
-(86, 49, '/helloworld/img/class/20240502092410109161.jpg', '테스트12', 'https://youtube.com/dfadf'),
-(89, 50, '/helloworld/img/class/20240502093113314890.jpg', '테스트12', 'https://youtube.com/dfadf'),
-(90, 51, '/helloworld/img/class/20240502093414106418.png', '테스트1221', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
-(91, 52, '/helloworld/img/class/20240502102520952685.jpg', '테스트12233', 'https://youtube.com/dfadf'),
-(91, 53, '/helloworld/img/class/20240502102520484784.png', '테스트12233', 'https://www.youtube.com/watch?v=bp3AT52IIfM'),
-(92, 54, '/helloworld/img/class/20240502104050210403.jpg', '테스트12', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
-(92, 55, '/helloworld/img/class/20240502104050203884.png', '테스트', 'https://youtube.com/dfadf'),
-(93, 56, '/helloworld/img/class/20240502111559264907.jpg', '테스트', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq');
+(40, 29, '/helloworld/img/class/20240502042539122865.jpg', '테스트', 'https://youtube.com/dfadf'),
+(41, 30, '/helloworld/img/class/20240502075418193132.png', '테스트12', 'https://youtube.com/dfadf'),
+(41, 31, '/helloworld/img/class/20240502075418853017.png', '테스트1332', 'https://www.youtube.com/watch?v=K62E6ieenwE'),
+(42, 32, '/helloworld/img/class/20240502075940586104.jpg', '테스트12233', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
+(42, 33, '/helloworld/img/class/20240502075940179411.jpg', 'dgdgdg', 'https://www.youtube.com/watch?v=K62E6ieenwE'),
+(45, 34, '/helloworld/img/class/20240502080218194966.png', 'gsdg', 'https://youtube.com/dfadf'),
+(46, 35, '/helloworld/img/class/20240502080218746113.jpg', 'gsdgs', 'https://www.youtube.com/watch?v=K62E6ieenwE'),
+(47, 36, '/helloworld/img/class/20240502081920359528.png', 'gh', 'https://youtube.com/dfadf'),
+(48, 37, '/helloworld/img/class/20240502081920809185.png', 'gdfgdg', 'https://www.youtube.com/watch?v=bp3AT52IIfM'),
+(49, 38, '/helloworld/img/class/20240502082436168881.jpg', 'gsdg', ''),
+(50, 39, '/helloworld/img/class/20240502082513140574.png', '', ''),
+(51, 40, '/helloworld/img/class/20240502082652129981.png', 'gsdgdsg', 'https://www.youtube.com/watch?v=bp3AT52IIfM'),
+(52, 41, '/helloworld/img/class/20240502082733166131.png', 'ㅁㄴㅇㄹㄴㅁㅇㄹ', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
+(53, 42, '/helloworld/img/class/20240502082828502352.png', '테스트', ''),
+(53, 43, '/helloworld/img/class/20240502082906122774.png', '테스트', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
+(55, 44, '/helloworld/img/class/20240502090208183725.jpg', '테스트123344', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
+(56, 45, '/helloworld/img/class/20240502090318153737.jpg', '테스트', 'https://youtube.com/dfadf'),
+(57, 46, '/helloworld/img/class/20240502090526651247.jpg', '테스트', 'https://youtube.com/dfadf'),
+(58, 47, '/helloworld/img/class/20240502090613249920.jpg', '테스트', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
+(59, 48, '/helloworld/img/class/20240502092225209885.jpg', '테스트', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
+(60, 49, '/helloworld/img/class/20240502092410109161.jpg', '테스트12', 'https://youtube.com/dfadf'),
+(61, 50, '/helloworld/img/class/20240502093113314890.jpg', '테스트12', 'https://youtube.com/dfadf'),
+(62, 51, '/helloworld/img/class/20240502093414106418.png', '테스트1221', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
+(63, 52, '/helloworld/img/class/20240502102520952685.jpg', '테스트12233', 'https://youtube.com/dfadf'),
+(64, 53, '/helloworld/img/class/20240502102520484784.png', '테스트12233', 'https://www.youtube.com/watch?v=bp3AT52IIfM'),
+(65, 54, '/helloworld/img/class/20240502104050210403.jpg', '테스트12', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
+(66, 55, '/helloworld/img/class/20240502104050203884.png', '테스트', 'https://youtube.com/dfadf'),
+(67, 56, '/helloworld/img/class/20240502111559264907.jpg', '테스트', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
+(68, 57, '/helloworld/img/class/20240502010927143409.jpg', 'sdfdsf', 'https://www.youtube.com/watch?v=Oyhe2_LyR6E'),
+(69, 58, '/helloworld/img/class/20240502011033641357.jpg', 'sfsdf', 'https://www.youtube.com/watch?v=Oyhe2_LyR6E'),
+(70, 59, '/helloworld/img/class/20240502011107796856.jpg', 'sfsdfsdf', 'https://www.youtube.com/watch?v=Oyhe2_LyR6E'),
+(9, 60, '/helloworld/img/class/20240502011107193410.jpg', 'dfsdf', 'https://www.youtube.com/watch?v=Oyhe2_LyR6E'),
+(9, 61, '/helloworld/img/class/20240502011309207005.jpg', 'dfdsfdsf223424', 'https://www.youtube.com/watch?v=Oyhe2_LyR6E'),
+(9, 62, '/helloworld/img/class/20240502011309164206.jpg', 'dfdsfdsf223424r3', 'https://www.youtube.com/watch?v=Oyhe2_LyR6E'),
+(9, 63, '/helloworld/img/class/20240502011309901937.jpg', 'dfdsfdsf223424234234243', 'https://www.youtube.com/watch?v=Oyhe2_LyR6E'),
+(6, 64, '/helloworld/img/class/20240502011526176890.png', 'fsdfdsf', 'https://www.youtube.com/watch?v=jaDaKfzD17I'),
+(6, 65, '/helloworld/img/class/20240502011526123868.avif', 'fsdfdsfaf', 'https://www.youtube.com/watch?v=jaDaKfzD17I'),
+(6, 66, '/helloworld/img/class/20240502011526246208.avif', 'fsdfdsffwetwegwgg', 'https://www.youtube.com/watch?v=jaDaKfzD17I'),
+(6, 67, '/helloworld/img/class/20240502011734119078.png', 'sfsdfsf', 'https://www.youtube.com/watch?v=r_yPWoMYFok'),
+(41, 68, '/helloworld/img/class/20240502011734809742.png', 'sdfdsfsfsfffs', 'https://www.youtube.com/watch?v=r_yPWoMYFok'),
+(41, 69, '/helloworld/img/class/20240502172955113803.avif', 'sfsdf', 'https://www.youtube.com/watch?v=K62E6ieenwE&t=1s'),
+(41, 70, '/helloworld/img/class/20240502172955113803.avif', 'sfsdf', 'https://www.youtube.com/watch?v=K62E6ieenwE&t=1s'),
+(41, 71, '/helloworld/img/class/20240502173152852974.avif', 'sgsdg', 'https://www.youtube.com/watch?v=K62E6ieenwE&t=1s'),
+(54, 72, '/helloworld/img/class/20240502173152842878.png', 'sgsdg', 'https://www.youtube.com/watch?v=K62E6ieenwE&t=1s'),
+(54, 73, '/helloworld/img/class/20240502173152160389.JPG', 'sgsdg', 'https://www.youtube.com/watch?v=K62E6ieenwE&t=1s'),
+(54, 74, '/helloworld/img/class/20240502173152190423.png', 'sgsdg', 'https://www.youtube.com/watch?v=K62E6ieenwE&t=1s'),
+(96, 75, '/helloworld/img/class/20240502174107707971.gif', 'ssdf', 'https://www.youtube.com/watch?v=K62E6ieenwE&t=1s'),
+(97, 76, '/helloworld/img/class/20240502175303206765.avif', 'sfsdf', 'https://www.youtube.com/watch?v=PfG2QC9eLLg'),
+(97, 77, '/helloworld/img/class/20240502175303206765.avif', 'sfsdf', 'https://www.youtube.com/watch?v=PfG2QC9eLLg'),
+(97, 78, '/helloworld/img/class/20240502175303206765.avif', 'sfsdf', 'https://www.youtube.com/watch?v=PfG2QC9eLLg'),
+(98, 79, '/helloworld/img/class/20240502175936161800.png', 'fsddsf', 'https://www.youtube.com/watch?v=ln1OsCUGvgU'),
+(99, 80, '/helloworld/img/class/20240502205647208415.webp', '1.코딩은 처음이라with 웹퍼플리싱1강', 'https://www.youtube.com/watch?v=UALtgO5aI8Y&list=PL-qMANrofLytcAyK7tPt9iCHrRxE9eb9z'),
+(99, 81, '/helloworld/img/class/20240502205647132872.webp', '1.코딩은 처음이라with 웹퍼플리싱2강', 'https://www.youtube.com/watch?v=zxhA_272NxE&list=PL-qMANrofLytcAyK7tPt9iCHrRxE9eb9z&index=2'),
+(99, 82, '/helloworld/img/class/20240502205647164003.webp', '1.코딩은 처음이라with 웹퍼플리싱3강', 'https://www.youtube.com/watch?v=QKoqf0VnAYg&list=PL-qMANrofLytcAyK7tPt9iCHrRxE9eb9z&index=3'),
+(99, 83, '/helloworld/img/class/20240502205647444694.webp', '1.코딩은 처음이라with 웹퍼플리싱4강', 'https://www.youtube.com/watch?v=fSHYn5OBems&list=PL-qMANrofLytcAyK7tPt9iCHrRxE9eb9z&index=4'),
+(100, 84, '/helloworld/img/class/20240502222931143419.webp', 'HTML5 - 01 [ HTML 문서 기초 1]', 'https://www.youtube.com/watch?v=bMexNKeBAZo&list=PL-qMANrofLyu-DwIipvbjXKJlbn4erp7X&index=16'),
+(100, 85, '/helloworld/img/class/20240502222931166936.webp', 'HTML5 - 01 [ HTML 문서 기초 2]', 'https://www.youtube.com/watch?v=1a7_syGPYcQ&list=PL-qMANrofLyu-DwIipvbjXKJlbn4erp7X&index=15'),
+(100, 86, '/helloworld/img/class/20240502222931104635.webp', 'HTML5 - 01 [ HTML 문서 기초 3]', 'https://www.youtube.com/watch?v=7ebLVTr2jU4&list=PL-qMANrofLyu-DwIipvbjXKJlbn4erp7X&index=14'),
+(101, 87, '/helloworld/img/class/20240502223406522707.webp', 'HTML5 - 03 [ HTML 문서 기초 1]', 'https://www.youtube.com/watch?v=bMexNKeBAZo&list=PL-qMANrofLyu-DwIipvbjXKJlbn4erp7X&index=16'),
+(101, 88, '/helloworld/img/class/20240502223406144872.webp', 'HTML5 - 03 [ HTML 문서 기초 2]', 'https://www.youtube.com/watch?v=1a7_syGPYcQ&list=PL-qMANrofLyu-DwIipvbjXKJlbn4erp7X&index=15'),
+(101, 89, '/helloworld/img/class/20240502223406718045.webp', 'HTML5 - 03 [ HTML 문서 기초 3]', 'https://www.youtube.com/watch?v=7ebLVTr2jU4&list=PL-qMANrofLyu-DwIipvbjXKJlbn4erp7X&index=14'),
+(102, 145, '/helloworld/img/class/20240503032334840050.jpg', 'sfsdf', 'https://www.youtube.com/watch?v=J_uZtmcRjvU'),
+(102, 146, '/helloworld/img/class/20240503032334655178.jpg', 'sfddsf', 'https://www.youtube.com/watch?v=J_uZtmcRjvU'),
+(103, 147, '/helloworld/img/class/20240503032943693219.webp', '리액트 프로젝트#1', 'https://www.youtube.com/watch?v=8SsgWt6HdbQ'),
+(103, 148, '/helloworld/img/class/20240503032943207141.webp', '리액트 프로젝트#2', 'https://www.youtube.com/watch?v=DB30uaIXLZ8'),
+(104, 149, '/helloworld/img/class/20240503040826199156.webp', '[스프링 부트 입문 00] 강의를 소개합니다', 'https://www.youtube.com/watch?v=_vDACE13Ubc&list=PLyebPLlVYXCiYdYaWRKgCqvnCFrLEANXt'),
+(104, 150, '/helloworld/img/class/20240503040826134174.webp', '[스프링 부트 입문 01] 스프링 부트란', 'https://www.youtube.com/watch?v=HAlcc-HMz7k&list=PLyebPLlVYXCiYdYaWRKgCqvnCFrLEANXt&index=2'),
+(104, 151, '/helloworld/img/class/20240503040826173225.webp', '[스프링 부트 입문 02] 개발환경 만들기', 'https://www.youtube.com/watch?v=EYmVJuRLHDQ&list=PLyebPLlVYXCiYdYaWRKgCqvnCFrLEANXt&index=4'),
+(105, 152, '/helloworld/img/class/20240503041216204192.webp', '[스프링 부트] 게시판 무작정 따라하기 - 소개', 'https://www.youtube.com/watch?v=frI5CoZe-vE&list=PLZzruF3-_clsWF2aULPsUPomgolJ-idGJ'),
+(105, 153, '/helloworld/img/class/20240503041216189423.webp', '[스프링 부트] 게시판 무작정 따라하기 - 인텔리제이 설치', 'https://www.youtube.com/watch?v=M2wxMRt4tx0&list=PLZzruF3-_clsWF2aULPsUPomgolJ-idGJ&index=2'),
+(106, 154, '/helloworld/img/class/20240503041640539416.webp', '[스프링 부트] 게시판 무작정 따라하기 - 소개', 'https://www.youtube.com/watch?v=frI5CoZe-vE&list=PLZzruF3-_clsWF2aULPsUPomgolJ-idGJ&index=1'),
+(106, 155, '/helloworld/img/class/20240503041640115782.webp', '[스프링 부트] 게시판 무작정 따라하기 - 소개', 'https://www.youtube.com/watch?v=frI5CoZe-vE&list=PLZzruF3-_clsWF2aULPsUPomgolJ-idGJ&index=1'),
+(107, 156, '/helloworld/img/class/20240503043203122927.webp', '테스트22', 'https://youtube.com/dfadf'),
+(108, 157, '/helloworld/img/class/20240503043911620209.webp', '파이썬 코딩 무료 강의 (기본편)', 'https://www.youtube.com/watch?v=kWiCuklohdY&t=1s'),
+(108, 158, '/helloworld/img/class/20240503043911206203.webp', '파이썬 무료 강의 100분 완성 (1분 파이썬 모음)', 'https://www.youtube.com/watch?v=T6z-0dpXPvU'),
+(109, 159, '/helloworld/img/class/20240503045931654184.webp', '[node js - CSS framework ]', 'https://www.youtube.com/watch?v=8VnOKHu5izw'),
+(109, 160, '/helloworld/img/class/20240503045931130943.webp', '[node js CSS framework #2 ]', 'https://www.youtube.com/watch?v=hMUtEcINCKI'),
+(110, 161, '/helloworld/img/class/20240503050408117512.webp', 'Vue.js toDoList #01 - 프로젝트 생성, 할일 목록 출력', 'https://www.youtube.com/watch?v=kApAzFFlzOE&list=PL-qMANrofLysvYFBjcB17MTYxEZI_ugEM&index=3'),
+(110, 162, '/helloworld/img/class/20240503050408145216.jpg', 'Vue.js toDoList #03 - 스타일변경, 할일 삭제하기', 'https://www.youtube.com/watch?v=kApAzFFlzOE&list=PL-qMANrofLysvYFBjcB17MTYxEZI_ugEM&index=3'),
+(111, 163, '/helloworld/img/class/20240503052003107778.webp', '스프링', 'https://www.youtube.com/watch?v=05uFo_-SGXU&list=PLZKTXPmaJk8J_fHAzPLH8CJ_HO_M33e7-'),
+(111, 164, '/helloworld/img/class/20240503052003957597.jpg', '스프링2', 'https://www.youtube.com/watch?v=dvQMbg7n6mY&list=PLZKTXPmaJk8J_fHAzPLH8CJ_HO_M33e7-&index=2'),
+(112, 165, '/helloworld/img/class/20240503052354210874.webp', '테스트', 'https://youtube.com/dfadf'),
+(112, 166, '/helloworld/img/class/20240503052354158852.webp', '테스트', 'https://youtube.com/dfadf'),
+(113, 167, '/helloworld/img/class/20240503052505730691.webp', '테스트', 'https://www.youtube.com/embed/z9chRlD1tec?si=lqBJvSDQ8PGB3NBq'),
+(113, 168, '/helloworld/img/class/20240503052505894210.webp', '테스트', 'https://youtube.com/dfadf'),
+(114, 169, '/helloworld/img/class/20240503054648802376.webp', '테스트', 'https://youtube.com/dfadf'),
+(114, 170, '/helloworld/img/class/20240503054648168363.webp', '테스트', 'https://youtube.com/dfadf');
 
 -- --------------------------------------------------------
 
@@ -975,13 +1080,13 @@ ALTER TABLE `admins`
 -- 테이블의 AUTO_INCREMENT `category`
 --
 ALTER TABLE `category`
-  MODIFY `cateid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `cateid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- 테이블의 AUTO_INCREMENT `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `cpid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `cpid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- 테이블의 AUTO_INCREMENT `coursefile`
@@ -993,13 +1098,13 @@ ALTER TABLE `coursefile`
 -- 테이블의 AUTO_INCREMENT `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- 테이블의 AUTO_INCREMENT `lecture`
 --
 ALTER TABLE `lecture`
-  MODIFY `l_idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `l_idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
 
 --
 -- 테이블의 AUTO_INCREMENT `members`

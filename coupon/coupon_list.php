@@ -158,7 +158,6 @@ while($rs = $result -> fetch_object()){
             <a href="coupon_create.php" class="btn btn-primary ">쿠폰등록</a>
           </div>  
           <form action="#" class="coupon_filter">
-            <div class="couponbox"></div>
             <h2 class="hidden">클릭하여 진행중 또는 종료된 쿠폰을 확인하세요.</h2>
             <div class="coupon_status_search d-flex justify-content-betweenn white_bg align-items-center">
               <div class="filter_1">
