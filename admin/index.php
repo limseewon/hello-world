@@ -151,10 +151,10 @@ $profitRs = $profitResult->fetch_object();
                 <div class="chart-wrapper d-flex">
                   <p class="bold nowrap">수강신청수</p>                    
                   <div class="chart-container">
-                    <canvas id="bar-chart"><img src="/img/4000원.jpg" alt=""></canvas>
+                    <canvas id="bar-chart"></canvas>
                   </div>
                   <p class="bold nowrap">이번달 강의 수익</p>
-                  
+                  <div class="course_profit d-flex flex-column justify-content-center"></div>
                 </div>
               </div>
             </div>

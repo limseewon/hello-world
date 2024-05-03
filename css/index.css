@@ -121,3 +121,8 @@ ul {
 	width:18px;
 } */
 /* start */
+.course_profit {
+  width: 350px;
+  height: 300px;
+  font-size: var(--f-H2);
+}
