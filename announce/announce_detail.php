@@ -274,21 +274,22 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       referrerpolicy="no-referrer"
     ></script>
 
-    <script src="js/common.js"></script>
-  </body>
-  <script>
-    let documentHeight = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.clientHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight
-    );
-    document.querySelector('header').style.height = documentHeight + 'px';
+    
+    <script src="/helloworld/js/common.js"></script>
+    <script>
+    //  let documentHeight = Math.max(
+    //   document.body.scrollHeight,
+    //   document.body.offsetHeight,
+    //   document.documentElement.clientHeight,
+    //   document.documentElement.scrollHeight,
+    //   document.documentElement.offsetHeight
+    // );
+    // document.querySelector("header").style.height = documentHeight + "px";
 
     $('.cancle-btn').click(function(e){
       e.preventDefault();
       location.href = 'announce.php';
     });
   </script>
+  </body>
 </html>
