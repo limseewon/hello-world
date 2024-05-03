@@ -139,7 +139,6 @@ if ($qna_id > 0) {
       }
       .con p {
         display: flex;
-        /* font-weight: bold; */
         color: #333;
         margin-right: 30px;
       }
@@ -153,13 +152,10 @@ if ($qna_id > 0) {
         padding-bottom: 35px;
       }
 
-      .regis_btn {
-        padding-left: 0;
-      }
 
       .regist {
         /* width: 100%; */
-        height: 100%;
+        height: auto;
         background: #fff;
         padding: 20px;
         border: 1px solid #ced4da;
@@ -181,7 +177,7 @@ if ($qna_id > 0) {
 
       .lock {
         align-items: center;
-        gap: 10px;
+        /* gap: 10px; */
       }
 
       .question {
@@ -202,7 +198,7 @@ if ($qna_id > 0) {
       }
 
       .review {
-        gap: 20px;
+        /* gap: 20px; */
         padding-top: 20px;
       }
 
@@ -259,6 +255,7 @@ if ($qna_id > 0) {
         padding: 20px;
         margin-bottom: 20px;
         border-radius: 5px;
+        width: 800px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
 
