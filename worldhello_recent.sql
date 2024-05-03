@@ -185,7 +185,7 @@ CREATE TABLE `coupons` (
   `cp_price` int(11) NOT NULL COMMENT '할인금액',
   `cp_ratio` int(11) NOT NULL COMMENT '할인비율',
   `cp_status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '상태',
-  `cp_date` date NOT NULL COMMENT '등록일',
+  `cp_date` int(11) NOT NULL COMMENT '등록일',
   `cp_limit` varchar(11) NOT NULL COMMENT '최소사용금액'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
