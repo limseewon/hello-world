@@ -98,7 +98,9 @@ if ($qna_id > 0) {
     <link rel="stylesheet" href="/helloworld/css/common.css" />
     <link rel="stylesheet" href="/helloworld/css/index.css" />
     <style>
-       
+       header {
+        height: 100vh;
+       }
        .btn {
             width: 105px;
             height: 48px;
