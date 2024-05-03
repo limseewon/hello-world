@@ -462,7 +462,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
                       // console.log(course)
                       console.log(cl.name)
                     }
-                    course === '' ? $('.course_list').html('<li>없음</li>') : $('.course_list').html(course)
+                    course === '' ? $('#course_list').html('<li>없음</li>') : $('#course_list').html(course)
                     memberModal.show()
                  }
           });
