@@ -158,8 +158,8 @@
                       name="price_status"
                       id="price_status"
                       aria-label="Default select example">
-                      <option value="유료">유료 <?php if($rs->price_status == "유료") echo 'selected' ?></option>
-                      <option value="무료">무료 <?php if($rs->price_status == "무료") echo 'selected' ?></option>
+                      <option value="유료" selected>유료 <?php if($rs->price_status == "유료")?></option>
+                      <option value="무료" selected>무료 <?php if($rs->price_status == "무료")?></option>
                     </select>
                   </div>
                   <div class="col price">
