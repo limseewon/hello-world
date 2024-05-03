@@ -98,182 +98,211 @@ if ($qna_id > 0) {
     <link rel="stylesheet" href="/helloworld/css/common.css" />
     <link rel="stylesheet" href="/helloworld/css/index.css" />
     <style>
-       
-        header{
-          height: 100vh;
-        }
-        .notice-btn{
-            padding-top: 20px;
-            justify-content: space-between;
-        }
-        .title-box{
-          width: 883px;
-          height: 40px;
-        }
-        .con-box{
-          width: 1170px; 
-          height: 505px;
-        }
-        .input-group > .form-control{
-          position: none;
-          flex: none;
-          width: 560px;
-          height: 40px;
-        }
-        .title{
-          gap: 70px;
-          align-items: center;
-          padding-left: 60px;
-          padding-top: 26px;
-        }
-        .con{
-          gap: 100px;
-          align-items: center;
-          padding-left: 60px;
-          padding-top: 35px;
-        }
-        .file{ 
-          gap: 65px;
-          padding-left: 60px;
-          padding-top: 35px;
-          padding-bottom: 35px;
-        }
-        .regis_btn{
-          padding-left{}
-        }
-        .regist{
-          /* width: 100%; */
-          height: 100%;
-          background: #fff;
-          padding: 20px;
-          border: 1px solid #ced4da;
-        }
-        .btn{
-          width: 100px;
-          height: 35px;
-        }
-        .right-button{
-          padding-left: 250px;
-        }
-        .comments{
-          padding-left: 60px;
-          align-items: center;
-        }
-        .lock{
+      header {
+        height: 100vh;
+      }
+
+      .notice-btn {
+        padding-top: 20px;
+        justify-content: space-between;
+      }
+
+      .title-box {
+        width: 883px;
+        height: 40px;
+      }
+
+      .con-box {
+        width: 1170px;
+        height: 505px;
+      }
+
+      .input-group > .form-control {
+        position: none;
+        flex: none;
+        width: 560px;
+        height: 40px;
+      }
+
+      .title {
+        gap: 70px;
+        align-items: center;
+        padding-left: 60px;
+        padding-top: 26px;
+      }
+
+      .con {
+        gap: 70px;
+        align-items: flex-start;
+        padding-left: 60px;
+        padding-top: 35px;
+      }
+      .con p {
+        display: flex;
+        /* font-weight: bold; */
+        color: #333;
+        margin-right: 30px;
+      }
+      .content-wrapper{
+        width: 1275px;
+      }
+      .file {
+        gap: 65px;
+        padding-left: 60px;
+        padding-top: 35px;
+        padding-bottom: 35px;
+      }
+
+      .regis_btn {
+        padding-left: 0;
+      }
+
+      .regist {
+        /* width: 100%; */
+        height: 100%;
+        background: #fff;
+        padding: 20px;
+        border: 1px solid #ced4da;
+      }
+
+      .btn {
+        width: 100px;
+        height: 35px;
+      }
+
+      .right-button {
+        padding-left: 250px;
+      }
+
+      .comments {
+        padding-left: 60px;
+        align-items: center;
+      }
+
+      .lock {
         align-items: center;
         gap: 10px;
       }
-      .question{
+
+      .question {
         padding-right: 550px;
       }
-      .img{
+
+      .img {
         padding-left: 200px;
       }
-      .cancle-btn{
-            width: 105px;
-            height: 35px;
-        }
-        .review .btn{
-          white-space: nowrap;
-        }  
-        .review{
-          gap:20px;
-          padding-top:20px;
-        }
-        .form-control {
-            display: block;
-            width: 100%;
-            height: 45px;
-            padding: 0.375rem 0.75rem;
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1.5;
-            color: #495057;
-            background-color: #fff;
-            background-clip: padding-box;
-            border: 1px solid #ced4da;
-            border-radius: 0.25rem;
-            transition: .15s ease-in-out .15s ease-in-out;
-        } 
-        .tt{
-            padding-right:30px;
-        }
-        .pos{
-            right: 100px;
-            position: absolute;
-            align-items: center;
-            gap:45px;
-        }
-        .edit{
-            padding-right: 10px;
-        }
-        .btn-success{
-          width: 100px;
-        }
-        .reply{
-          gap: 27px;
-          align-items: center;
-        }
-        .reply_control{
-          width: 800px;
-        }
-        .comment-list {
-    margin-top: 30px;
-  }
 
-  .comment-list {
-    margin-top: 30px;
-  }
+      .cancle-btn {
+        width: 105px;
+        height: 35px;
+      }
 
-  .comment-item {
-    background-color: #f8f9fa;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+      .review .btn {
+        white-space: nowrap;
+      }
 
-  .comment-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
+      .review {
+        gap: 20px;
+        padding-top: 20px;
+      }
 
-  .comment-author {
-    font-weight: bold;
-    color: #333;
-  }
+      .form-control {
+        display: block;
+        width: 100%;
+        height: 45px;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: 0.15s ease-in-out 0.15s ease-in-out;
+      }
 
-  .comment-date {
-    color: #888;
-    font-size: 14px;
-  }
+      .tt {
+        padding-right: 30px;
+      }
 
-  .comment-content {
-    margin-bottom: 10px;
-    color: #555;
-  }
+      .pos {
+        right: 100px;
+        position: absolute;
+        align-items: center;
+        gap: 45px;
+      }
 
-  .comment-actions {
-    display: flex;
-    justify-content: flex-end;
-  }
+      .edit {
+        padding-right: 10px;
+      }
 
-  .comment-actions a {
-    margin-left: 10px;
-    color: #007bff;
-    text-decoration: none;
-  }
+      .btn-success {
+        width: 100px;
+      }
 
-  .comment-actions a:hover {
-    text-decoration: underline;
-  }
+      .reply {
+        gap: 27px;
+        align-items: center;
+      }
 
-  .material-symbols-outlined {
-    vertical-align: middle;
-    margin-right: 5px;
-  }
+      .reply_control {
+        width: 800px;
+      }
+
+      .comment-list {
+        margin-top: 30px;
+      }
+
+      .comment-item {
+        background-color: #f8f9fa;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .comment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .comment-author {
+        font-weight: bold;
+        color: #333;
+      }
+
+      .comment-date {
+        color: #888;
+        font-size: 14px;
+      }
+
+      .comment-content {
+        margin-bottom: 10px;
+        color: #555;
+      }
+
+      .comment-actions {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .comment-actions a {
+        margin-left: 10px;
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      .comment-actions a:hover {
+        text-decoration: underline;
+      }
+
+      .material-symbols-outlined {
+        vertical-align: middle;
+        margin-right: 5px;
+      }
     </style>
 </head>
 <body>
@@ -298,7 +327,9 @@ if ($qna_id > 0) {
           </div>
           <div class="mb-3 d-flex con">
               <p>내용</p>
-              <p><?= $row['content']; ?></p>
+              <div class="content-wrapper">
+                <?= $row['content']; ?>
+              </div>
           </div>
           <!-- 첨부 파일 출력 부분 -->
           <div class="d-flex file">
