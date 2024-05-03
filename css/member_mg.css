@@ -54,3 +54,87 @@ th,
 td {
   width: 263px;
 }
+.class {
+  font-size: 14px;
+}
+
+/* modal */
+
+/* modal */
+.profile {
+  position: relative;
+}
+.profile > * {
+  margin-right: 16px;
+}
+
+#modal_username {
+  margin-top: 5px;
+  font-size: 20px;
+  font-weight: 600;
+}
+#modal_email {
+  font-size: 20px;
+}
+#modal_email:hover {
+  color: var(--c-blue);
+}
+
+.profile button {
+  position: absolute;
+  right: 0;
+}
+.profile button:hover {
+  color: var(--c-blue);
+}
+.profile button span {
+  font-size: 30px;
+}
+
+.information li {
+  /* display: grid; */
+  /* width: 240px; */
+  /* gap: 16px; */
+  flex-wrap: nowrap;
+}
+
+.information li {
+  /* white-space: nowrap; */
+}
+.d-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2개의 열로 설정 */
+  gap: 10px; /* 열 사이의 간격 설정 */
+  margin-bottom: 30px;
+}
+.d-grid span {
+  font-size: 20px;
+}
+.m_title {
+  font-weight: bold;
+  font-size: 20px;
+  color: var(--c-menu-BG);
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+.list-group,
+.coupon_list,
+.coupon {
+  margin-top: 16px;
+}
+.coupon_item {
+  /* background: var(--c-button); */
+}
+.coupon_list a {
+  gap: 16px;
+  border: 1px solid var(--c-button);
+  border-radius: 5px;
+  padding: 20px;
+}
+.coupon_list a + a {
+  margin-top: 20px;
+}
+.profile_icon {
+  font-size: 50px;
+  color: var(--c-button);
+}
