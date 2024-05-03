@@ -9,8 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // 댓글 저장 쿼리 실행
     $sql = "INSERT INTO qna_comment (idx, comment, name, regdate) VALUES ('$qna_id', '$comment', '$name', '$regdate')";
-
-    if ($mysqli->query($sql) === TRUE) {
+    $test = $mysqli->query($sql);
+    if ($test === TRUE) {
         // 댓글 저장 성공 시 reply 값을 '답변'으로 업데이트
         $updateSql = "UPDATE qna SET reply = '답변' WHERE idx = '$qna_id'";
         $mysqli->query($updateSql);
