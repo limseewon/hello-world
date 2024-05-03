@@ -99,9 +99,8 @@ if ($qna_id > 0) {
     <link rel="stylesheet" href="/helloworld/css/index.css" />
     <style>
        
-       .btn {
-            width: 105px;
-            height: 48px;
+        header{
+          height: 100vh;
         }
         .notice-btn{
             padding-top: 20px;
@@ -144,7 +143,7 @@ if ($qna_id > 0) {
         }
         .regist{
           /* width: 100%; */
-          height: auto;
+          height: 100%;
           background: #fff;
           padding: 20px;
           border: 1px solid #ced4da;
@@ -179,6 +178,7 @@ if ($qna_id > 0) {
         }  
         .review{
           gap:20px;
+          padding-top:20px;
         }
         .form-control {
             display: block;
@@ -221,76 +221,59 @@ if ($qna_id > 0) {
     margin-top: 30px;
   }
 
-  .comment-item {
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border-radius: 5px;
-    width: 800px;
+  .comment-list {
+    margin-top: 30px;
   }
 
-  .comment-item p {
+  .comment-item {
+    background-color: #f8f9fa;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 10px;
   }
 
-  .comment-item .actions {
+  .comment-author {
+    font-weight: bold;
+    color: #333;
+  }
+
+  .comment-date {
+    color: #888;
+    font-size: 14px;
+  }
+
+  .comment-content {
+    margin-bottom: 10px;
+    color: #555;
+  }
+
+  .comment-actions {
     display: flex;
     justify-content: flex-end;
   }
 
-  .comment-item .actions a {
+  .comment-actions a {
     margin-left: 10px;
     color: #007bff;
     text-decoration: none;
   }
 
-  .comment-item .actions a:hover {
+  .comment-actions a:hover {
     text-decoration: underline;
   }
 
-  .comment-form {
-    margin-top: 30px;
-    display: flex;
+  .material-symbols-outlined {
+    vertical-align: middle;
+    margin-right: 5px;
   }
-
-  .comment-form textarea {
-    height: 120px;
-    resize: none;
-  }
-
-  .comment-form button {
-    margin-top: 10px;
-  }
-  .comment-item {
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.comment-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.comment-author {
-  font-weight: bold;
-}
-
-.comment-date {
-  color: #888;
-}
-
-.comment-actions {
-  margin-top: 10px;
-}
-
-.comment-actions a {
-  margin-right: 10px;
-  color: #333;
-  text-decoration: none;
-}
     </style>
 </head>
 <body>
@@ -357,10 +340,11 @@ if ($qna_id > 0) {
                     <a href="announce_modify.php?id=<?= $comment['idx'] ?>" onclick="return confirm('정말 수정하시겠습니까?');">
                       <span class="material-symbols-outlined">border_color</span>
                     </a>
-                    <a href="qna_reply_delete.php?id=<?= $comment['idx'] ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                    <a href="qna_reply_delete.php?id=<?= $comment['id'] ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
                       <span class="material-symbols-outlined">delete</span>
                     </a>
-                  </div>      </div>
+                  </div>      
+                </div>
               <?php endwhile; ?>
             <?php else : ?>
               <p>댓글이 없습니다.</p>
@@ -459,7 +443,6 @@ if ($qna_id > 0) {
 //     }
 //   });
 // });
-
 $('.comment-actions a[href^="qna_reply_delete.php"]').click(function(e) {
   e.preventDefault();
   var deleteUrl = $(this).attr('href');
@@ -469,12 +452,38 @@ $('.comment-actions a[href^="qna_reply_delete.php"]').click(function(e) {
       // 댓글 삭제 성공 시 해당 댓글 폼 제거
       $(e.target).closest('.comment-item').remove();
       alert('댓글이 삭제되었습니다.');
+      
+      // 댓글 개수 확인 및 reply 값 업데이트
+      var commentCount = $('.comment-item').length;
+      if (commentCount > 0) {
+        $.get('update_reply.php?qna_id=<?= $qna_id ?>&reply=답변');
+      } else {
+        $.get('update_reply.php?qna_id=<?= $qna_id ?>&reply=미답변');
+      }
     }).fail(function() {
       alert('댓글 삭제에 실패했습니다.');
     });
   }
 });
 
+// $('.comment-actions a[href^="qna_reply_delete.php"]').click(function(e) {
+//   e.preventDefault();
+//   var deleteUrl = $(this).attr('href');
+
+//   if (confirm('정말 삭제하시겠습니까?')) {
+//     $.get(deleteUrl, function(response) {
+//       // 댓글 삭제 성공 시 해당 댓글 폼 제거
+//       $(e.target).closest('.comment-item').remove();
+//       alert('댓글이 삭제되었습니다.');
+//     }).fail(function() {
+//       alert('댓글 삭제에 실패했습니다.');
+//     });
+//   }
+// });
+$('.cancle-btn').click(function(e){
+    e.preventDefault();
+    location.href = 'qna.php';
+  });
   // 댓글 목록 가져오기
 if ($qna_id > 0) {
   $sql = "SELECT * FROM qna_comment WHERE idx = '$qna_id' ORDER BY idx DESC";
@@ -491,11 +500,6 @@ if ($qna_id > 0) {
   }
   $updateResult = $mysqli->query($updateSql);
 }
-
-  $('.cancle-btn').click(function(e){
-    e.preventDefault();
-    location.href = 'qna.php';
-  });
 
   let documentHeight = Math.max(
   document.body.scrollHeight,
