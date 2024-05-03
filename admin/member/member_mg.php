@@ -158,7 +158,7 @@ while ($rs = $result->fetch_object()) {
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary member_del_ok" data-bs-dismiss="modal">삭제</button>
+          <button type="button" class="btn btn-secondary member_del_ok" data-bs-dismiss="modal">삭제</button>
             <button type="button" class="btn btn-danger">취소</button>
           </div>
         </div>
@@ -331,6 +331,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       const messageModal = new bootstrap.Modal('.message_modal')
       const memberDelModal = new bootstrap.Modal('.member_del_confirm')
       $('tbody tr').click(function(e) {
+        e.stopPropagation()
         if (!$(e.target).is('input[type="checkbox"]')) {
           // 체크박스가 아닌 경우에만 원하는 이벤트 작성
           // 여기에 원하는 동작을 추가하세요.
@@ -339,10 +340,12 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
             mid : mid
           }
           // console.log(data)
-          $('.member_del').click(function() {
-            memberDelModal.show()
+          $('.member_del').click(function(e) {
+            e.stopPropagation();
+            memberDelModal.show();
           })
-          $('.member_del_ok').click(function() {
+          $('.member_del_ok').click(function(e) {
+            e.stopPropagation()
             $.ajax({
                   url:'member_del.php',
                   async:false,
@@ -354,16 +357,17 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
                       console.log(data.result);
                       if(data.result=='ok'){
                           alert('해당 회원 정보를 삭제했습니다.'); 
+                          location.reload();
                           
                       } else {
                           alert('회원 정보를 삭제하지 못했습니다. 다시 시도해주세요.'); 
                       }
-                      location.reload();
                   }
             });
             
           })
-          $('.modeal_sleep').click(function() {
+          $('.modeal_sleep').click(function(e) {
+            e.stopPropagation()
             let statusText = $(this).text()
             let data = {
               mid : mid,
