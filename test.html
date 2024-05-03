@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Move list item to the top of ul</title>
+<style>
+  /* 스타일링은 선택 사항입니다. */
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+</style>
+</head>
+<body>
+
+<ul id="myList">
+  <li onclick="moveToTop(this)">Item 1</li>
+  <li onclick="moveToTop(this)">Item 2</li>
+  <li onclick="moveToTop(this)">Item 3</li>
+  <li onclick="moveToTop(this)">Item 4</li>
+</ul>
+
+<script>
+function moveToTop(item) {
+  // 부모 ul 요소 가져오기
+  var ul = item.parentNode;
+  // 클릭된 li 요소를 맨 위로 이동
+  ul.insertBefore(item, ul.childNodes[0]);
+}
+</script>
+
+</body>
+</html>

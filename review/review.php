@@ -2,63 +2,35 @@
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php';
-              // board테이블에서 idx를 기준으로 내림차순해서 10개까지 표시
-              $sql = "SELECT * from review order by idx desc limit 0,10";
-              $result = $mysqli->query($sql);
-            
-              // output data of each row
-             
+
 $paginationTarget = 'review';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/pagination.php';
-// $keyword = $_GET['keyword'] ??'';
-// $search_where = '';
-// $status = $status ?? '';
 
-// if($keyword){
-//   $search_where = " and status = $status";
-// }
-
-// if($search_where){
-//   $search_where = "'and (name LIKE '%$keyword%' or message LIKE '%$keyword%')"
-// }
-
-$sql = "SELECT * FROM review where 1=1"; //모든 상품 조회 쿼리
-
-
-// $sql .= $search_where;
-$sql .= '';
-$order = " order by idx desc";
-$sql .= $order;
-$limit = " LIMIT $startLimit, $endLimit";
-$sql .= $limit;
-// echo $sql;
-$result = $mysqli->query($sql);
-
-// 검색어 가져오기
+$sql = "SELECT * FROM review WHERE 1=1";
 $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
-
-// 검색 조건 설정
-$search_where = '';
 if ($keyword) {
-    $search_where = "WHERE title LIKE '%$keyword%'";
+  $sql .= " AND title LIKE '%$keyword%'";
 }
 
-// 검색 조건을 포함한 쿼리 작성
-$sql = "SELECT * FROM review $search_where ORDER BY idx DESC LIMIT 0, 10";
+// $sql = "SELECT * FROM qna where 1=1"; //모든 상품 조회 쿼리
+
+$view_option = isset($_GET['view']) ? $_GET['view'] : '';
+switch ($view_option) {
+  case '1':
+      $sql .= " ORDER BY view DESC";
+      break;
+  case '2':
+      $sql .= " ORDER BY view ASC";
+      break;
+  default:
+      $sql .= " ORDER BY idx DESC";
+}
+
+$result_count = $mysqli->query($sql);
+$totalcount = $result_count->num_rows;
+
+$sql .= " LIMIT $startLimit, $endLimit";
 $result = $mysqli->query($sql);
-
-// 조회수 옵션 가져오기
-$view_option = isset($_GET['view_option']) ? $_GET['view_option'] : '';
-
-// 조회수에 따른 정렬 쿼리
-$order_by = '';
-if ($view_option == '1') {
-    $order_by = 'ORDER BY view DESC'; // 조회수 많은 순
-} elseif ($view_option == '2') {
-    $order_by = 'ORDER BY view ASC'; // 조회수 적은 순
-} else {
-    $order_by = 'ORDER BY idx DESC'; // 기본 정렬
-}
 
 ?>
 <!DOCTYPE html>
@@ -162,6 +134,11 @@ if ($view_option == '1') {
       .delete_td{
         width: 100px;
       }
+      .pagination{
+        position: absolute;
+        top: 830px;
+        justify-content: center;
+      }
     </style>
   </head>
   <body>
@@ -197,7 +174,7 @@ if ($view_option == '1') {
                   <th scope="col">제목</th>
                   <th scope="col">작성자</th>
                   <th scope="col">조회수</th>
-                  <th scope="col">별점</th>
+                  <th scope="col">점수</th>
                   <th scope="col">작성일</th>
                   <th scope="col">삭제</th>
                 </tr>
@@ -205,7 +182,6 @@ if ($view_option == '1') {
               <tbody>
               <?php
               while($row = $result->fetch_assoc()) {
-              
                 //title변수에 DB에서 가져온 title을 선택
                 $title=$row["title"];
                 if(iconv_strlen($title)>30)
@@ -241,30 +217,42 @@ if ($view_option == '1') {
           <div class="d-flex justify-content-center">
               <ul class="pagination">
                 <?php
-                if($pageNumber > 1){
-                  echo "<li class=\"page-item\"><a href=\"review.php?pageNumber=1\" class=\"page-link\" >처음</a></li>";
+                $block_ct = 5; // 페이지네이션에 표시할 페이지 번호의 개수를 5로 설정
+                $total_page = ceil($totalcount / $pageCount);
+                $total_block = ceil($total_page / $block_ct);
+                
+                $block_num = ceil($pageNumber / $block_ct);
+                $block_start = (($block_num - 1) * $block_ct) + 1;
+                $block_end = $block_start + $block_ct - 1;
+                
+                if ($block_end > $total_page) {
+                  $block_end = $total_page;
+                }
+                
+                if ($pageNumber > 1) {
+                  echo "<li class=\"page-item\"><a href=\"review.php?pageNumber=1&keyword=$keyword\" class=\"page-link\" >처음</a></li>";
                   //이전
-                  if($block_num > 1){
-                    $prev = 1 + ($block_num - 2) * $block_ct;
-                    echo "<li class=\"page-item\"><a href=\"review.php?pageNumber=$prev\" class=\"page-link\">이전</a></li>";
+                  if ($block_num > 1) {
+                    $prev = ($block_num - 2) * $block_ct + 1;
+                    echo "<li class=\"page-item\"><a href=\"review.php?pageNumber=$prev&keyword=$keyword\" class=\"page-link\">이전</a></li>";
                   }
                 }
-              
-                  for($i=$block_start;$i<=$block_end;$i++){
-                    if($i == $pageNumber){
-                      echo "<li class=\"page-item active\"><a href=\"review.php?pageNumber=$i\" class=\"page-link\">$i</a></li>";
-                    }else{
-                      echo "<li class=\"page-item\"><a href=\"review.php?pageNumber=$i\" class=\"page-link\">$i</a></li>";
-                    }            
-                  }  
+                      
+                for ($i = $block_start; $i <= $block_end; $i++) {
+                  if ($i == $pageNumber) {
+                    echo "<li class=\"page-item active\"><a href=\"review.php?pageNumber=$i&keyword=$keyword\" class=\"page-link\">$i</a></li>";
+                  } else {
+                    echo "<li class=\"page-item\"><a href=\"review.php?pageNumber=$i&keyword=$keyword\" class=\"page-link\">$i</a></li>";
+                  }            
+                }  
 
-                  if($pageNumber < $total_page){
-                    if($total_block > $block_num){
-                      $next = $block_num * $block_ct + 1;
-                      echo "<li class=\"page-item\"><a href=\"review.php?pageNumber=$next\" class=\"page-link\">다음</a></li>";
-                    }
-                    echo "<li class=\"page-item\"><a href=\"review.php?pageNumber=$total_page\" class=\"page-link\">마지막</a></li>";
-                  }        
+                if ($pageNumber < $total_page) {
+                  if ($block_end < $total_page) {
+                    $next = $block_num * $block_ct + 1;
+                    echo "<li class=\"page-item\"><a href=\"review.php?pageNumber=$next&keyword=$keyword\" class=\"page-link\">다음</a></li>";
+                  }
+                  echo "<li class=\"page-item\"><a href=\"review.php?pageNumber=$total_page&keyword=$keyword\" class=\"page-link\">마지막</a></li>";
+                }        
                 ?>
               </ul>
             </div>    
