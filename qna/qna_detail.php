@@ -459,6 +459,22 @@ if ($qna_id > 0) {
 //     }
 //   });
 // });
+
+$('.comment-actions a[href^="qna_reply_delete.php"]').click(function(e) {
+  e.preventDefault();
+  var deleteUrl = $(this).attr('href');
+
+  if (confirm('정말 삭제하시겠습니까?')) {
+    $.get(deleteUrl, function(response) {
+      // 댓글 삭제 성공 시 해당 댓글 폼 제거
+      $(e.target).closest('.comment-item').remove();
+      alert('댓글이 삭제되었습니다.');
+    }).fail(function() {
+      alert('댓글 삭제에 실패했습니다.');
+    });
+  }
+});
+
   // 댓글 목록 가져오기
 if ($qna_id > 0) {
   $sql = "SELECT * FROM qna_comment WHERE idx = '$qna_id' ORDER BY idx DESC";
@@ -482,13 +498,13 @@ if ($qna_id > 0) {
   });
 
   let documentHeight = Math.max(
-    document.body.scrollHeight,
-    document.body.offsetHeight,
-    document.documentElement.clientHeight,
-    document.documentElement.scrollHeight,
-    document.documentElement.offsetHeight
-  );
-  document.querySelector('header').style.height = documentHeight + 'px';
+  document.body.scrollHeight,
+  document.body.offsetHeight,
+  document.documentElement.clientHeight,
+  document.documentElement.scrollHeight,
+  document.documentElement.offsetHeight
+);
+document.querySelector('header').style.height = documentHeight + 'px';
 </script>
 </body>
 </html>
