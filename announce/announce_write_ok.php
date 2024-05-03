@@ -67,7 +67,7 @@ if($_FILES['file']){
 
   $sql = "INSERT INTO notice (title, name, content, regdate, file, is_img) VALUES ('$title', '$name', '$content', '$regdate', '$fiename', '$is_img')";
   echo $sql;
-//   $sql = "INSERT INTO notice (save_dir, fiename,ext,newfilename,savefile) VALUES ('$save_dir', '$fiename', '$ext', '$newfilename','$savefile')";
+  $sql = "INSERT INTO notice (save_dir, fiename,ext,newfilename,savefile) VALUES ('$save_dir', '$fiename', '$ext', '$newfilename','$savefile')";
   $result = $mysqli->query($sql);
 
   if($result){
