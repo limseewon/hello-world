@@ -198,7 +198,7 @@ if ($qna_id > 0) {
       }
 
       .review {
-        /* gap: 20px; */
+        gap: 20px;
         padding-top: 20px;
       }
 
@@ -351,7 +351,7 @@ if ($qna_id > 0) {
             <?php endif; ?>
           </div>
           <div class="right-button">
-            <button type="button" class="btn btn-danger cancle-btn">닫기</button>
+            <button type="submit" class="btn btn-danger cancle-btn">닫기</button>
           </div>
         </div>
         <hr>
@@ -375,24 +375,9 @@ if ($qna_id > 0) {
               </div>
             <?php endwhile; ?>
           <?php else : ?>
-            <p>댓글이 없습니다.</p>
+            <p>질문에 대답하십시오.</p>
           <?php endif; ?>
         </div>
-          <!-- <div>
-            <p>
-              안녕하세요! 댓글달겠습니다.
-            </p>
-            <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
-                        <span class="material-symbols-outlined">
-                            border_color
-                        </span>
-                    </a>
-                    <a href="announce_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
-                        <span class="material-symbols-outlined">
-                            delete
-                        </span>
-                    </a>
-          </div> -->
         </div>
         <!-- 댓글 작성 폼 -->
         <div class="comment-form">
@@ -405,15 +390,6 @@ if ($qna_id > 0) {
             <button type="submit" class="regis_btn btn btn-primary">댓글 쓰기</button>
           </form>
         </div>
-        <!-- <div class="d-flex reply">
-            <form method="post" class="wrap justify-content-start align-item-center review"></form>
-            <input type="hidden" name="post_id" value="168">
-            <input type="hidden" name="parent_comment_id" value="0">
-            <input type="hidden" name="depth" value="0">
-            <img src="" alt="">
-            <textarea name="comment" class="form-control reply_control" placeholder="내용을 추가하시오."></textarea>
-            <button type="button" class="btn btn-success">댓글 쓰기</button>
-        </div> -->
     </div>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php'; ?>
     <!-- 기존 script 태그 내용 -->
@@ -448,72 +424,68 @@ if ($qna_id > 0) {
     
   </body>
   <script>
-$('.comment-actions a[href^="qna_reply_delete.php"]').click(function(e) {
-  e.preventDefault();
-  var deleteUrl = $(this).attr('href');
+$(document).ready(function() {
+  // 댓글 삭제 버튼 클릭 이벤트 처리
+  $('.comment-actions a[href^="qna_reply_delete.php"]').click(function(e) {
+    e.preventDefault();
+    var deleteUrl = $(this).attr('href');
 
-  if (confirm('정말 삭제하시겠습니까?')) {
-    $.get(deleteUrl, function(response) {
-      // 댓글 삭제 성공 시 해당 댓글 폼 제거
-      $(e.target).closest('.comment-item').remove();
-      alert('댓글이 삭제되었습니다.');
-      
-      // 댓글 개수 확인 및 reply 값 업데이트
-      var commentCount = $('.comment-item').length;
-      if (commentCount > 0) {
-        $.get('update_reply.php?qna_id=<?= $qna_id ?>&reply=답변');
-      } else {
-        $.get('update_reply.php?qna_id=<?= $qna_id ?>&reply=미답변');
-      }
-    }).fail(function() {
-      alert('댓글 삭제에 실패했습니다.');
-    });
-  }
-});
+    if (confirm('정말 삭제하시겠습니까?')) {
+      $.get(deleteUrl, function(response) {
+        // 댓글 삭제 성공 시 해당 댓글 폼 제거
+        $(e.target).closest('.comment-item').remove();
+        alert('댓글이 삭제되었습니다.');
 
-$('.edit-comment').click(function(e) {
+        // 댓글 개수 확인 및 reply 값 업데이트
+        var commentCount = $('.comment-item').length;
+        var qnaId = <?= $qna_id ?>;
+        var replyStatus = commentCount > 0 ? '답변' : '미답변';
+        $.get('update_reply.php?qna_id=' + qnaId + '&reply=' + replyStatus);
+      }).fail(function() {
+        alert('댓글 삭제에 실패했습니다.');
+      });
+    }
+  });
+
+  // 댓글 수정 버튼 클릭 이벤트 처리
+  $('.edit-comment').click(function(e) {
     e.preventDefault();
     var commentId = $(this).data('comment-id');
     var commentContent = $(this).data('comment-content');
-    
+
     $('#commentForm input[name="comment_id"]').val(commentId);
     $('#commentForm textarea[name="comment"]').val(commentContent);
     $('#commentForm button[type="submit"]').text('댓글 수정');
-    
+
     $('html, body').animate({
       scrollTop: $('#commentForm').offset().top
     }, 500);
   });
 
-$('.cancle-btn').click(function(e){
+  // 닫기 버튼 클릭 이벤트 처리
+  $('.cancle-btn').click(function(e) {
     e.preventDefault();
     location.href = 'qna.php';
   });
-  // 댓글 목록 가져오기
-if ($qna_id > 0) {
-  $sql = "SELECT * FROM qna_comment WHERE idx = '$qna_id' ORDER BY idx DESC";
-  $result = $mysqli->query($sql);
 
-  // 댓글 개수 확인
-  $commentCount = $result->num_rows;
-
-  // 댓글 개수에 따라 reply 값 업데이트
-  if ($commentCount > 0) {
-    $updateSql = "UPDATE qna SET reply = '답변' WHERE idx = '$qna_id'";
-  } else {
-    $updateSql = "UPDATE qna SET reply = '미답변' WHERE idx = '$qna_id'";
+  // 페이지 로드 시 댓글 개수에 따라 reply 값 업데이트
+  var qnaId = <?= $qna_id ?>;
+  if (qnaId > 0) {
+    var commentCount = $('.comment-item').length;
+    var replyStatus = commentCount > 0 ? '답변' : '미답변';
+    $.get('update_reply.php?qna_id=' + qnaId + '&reply=' + replyStatus);
   }
-  $updateResult = $mysqli->query($updateSql);
-}
 
-  let documentHeight = Math.max(
-  document.body.scrollHeight,
-  document.body.offsetHeight,
-  document.documentElement.clientHeight,
-  document.documentElement.scrollHeight,
-  document.documentElement.offsetHeight
-);
-document.querySelector('header').style.height = documentHeight + 'px';
+//   // 헤더 높이 조정
+//   var documentHeight = Math.max(
+//     document.body.scrollHeight,
+//     document.body.offsetHeight,
+//     document.documentElement.clientHeight,
+//     document.documentElement.scrollHeight,
+//     document.documentElement.offsetHeight
+//   );
+//   document.querySelector('header').style.height = documentHeight + 'px';
+// });
 </script>
 </body>
 </html>
