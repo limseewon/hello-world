@@ -356,28 +356,28 @@ if ($qna_id > 0) {
         </div>
         <hr>
         <div class="comment-list">
-            <?php if ($result && $result->num_rows > 0) : ?>
-              <?php while ($comment = $result->fetch_assoc()) : ?>
-                <div class="comment-item">
-                  <div class="comment-header">
-                    <span class="comment-author"><?= $comment['name'] ?></span>
-                    <span class="comment-date"><?= $comment['regdate'] ?></span>
-                  </div>
-                  <div class="comment-content"><?= $comment['comment'] ?></div>
-                  <div class="comment-actions">
-                    <a href="announce_modify.php?id=<?= $comment['idx'] ?>" onclick="return confirm('정말 수정하시겠습니까?');">
-                      <span class="material-symbols-outlined">border_color</span>
-                    </a>
-                    <a href="qna_reply_delete.php?id=<?= $comment['id'] ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
-                      <span class="material-symbols-outlined">delete</span>
-                    </a>
-                  </div>      
+          <?php if ($result && $result->num_rows > 0) : ?>
+            <?php while ($comment = $result->fetch_assoc()) : ?>
+              <div class="comment-item">
+                <div class="comment-header">
+                  <span class="comment-author"><?= $comment['name'] ?></span>
+                  <span class="comment-date"><?= $comment['regdate'] ?></span>
                 </div>
-              <?php endwhile; ?>
-            <?php else : ?>
-              <p>댓글이 없습니다.</p>
-            <?php endif; ?>
-          </div>
+                <div class="comment-content"><?= $comment['comment'] ?></div>
+                <div class="comment-actions">
+                  <a href="#" class="edit-comment" data-comment-id="<?= $comment['id'] ?>" data-comment-content="<?= $comment['comment'] ?>">
+                    <span class="material-symbols-outlined">border_color</span>
+                  </a>
+                  <a href="qna_reply_delete.php?id=<?= $comment['id'] ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                    <span class="material-symbols-outlined">delete</span>
+                  </a>
+                </div>      
+              </div>
+            <?php endwhile; ?>
+          <?php else : ?>
+            <p>댓글이 없습니다.</p>
+          <?php endif; ?>
+        </div>
           <!-- <div>
             <p>
               안녕하세요! 댓글달겠습니다.
@@ -448,29 +448,6 @@ if ($qna_id > 0) {
     
   </body>
   <script>
-//   $('#commentForm').submit(function(e) {
-//   e.preventDefault(); // 폼의 기본 제출 동작을 막습니다.
-
-//   var formData = $(this).serialize(); // 폼 데이터를 시리얼라이즈합니다.
-
-//   $.ajax({
-//     type: 'POST',
-//     url: 'qna_save_reply.php', // 댓글 저장을 처리할 PHP 파일 경로
-//     data: formData,
-//     success: function(response) {
-//       if (response.startsWith('success')) {
-//         alert('댓글이 성공적으로 저장되었습니다.');
-//         $('#commentForm textarea').val(''); // 댓글 입력 필드 초기화
-//         location.reload(); // 페이지 새로고침
-//       } else if (response.startsWith('error')) {
-//         var errorMessage = response.substring(6); // "error: " 이후의 오류 메시지 추출
-//         alert('댓글 저장에 실패했습니다. 오류 메시지: ' + errorMessage);
-//       } else {
-//         alert('댓글 저장에 실패했습니다. 다시 시도해주세요.');
-//       }
-//     }
-//   });
-// });
 $('.comment-actions a[href^="qna_reply_delete.php"]').click(function(e) {
   e.preventDefault();
   var deleteUrl = $(this).attr('href');
@@ -494,20 +471,20 @@ $('.comment-actions a[href^="qna_reply_delete.php"]').click(function(e) {
   }
 });
 
-// $('.comment-actions a[href^="qna_reply_delete.php"]').click(function(e) {
-//   e.preventDefault();
-//   var deleteUrl = $(this).attr('href');
+$('.edit-comment').click(function(e) {
+    e.preventDefault();
+    var commentId = $(this).data('comment-id');
+    var commentContent = $(this).data('comment-content');
+    
+    $('#commentForm input[name="comment_id"]').val(commentId);
+    $('#commentForm textarea[name="comment"]').val(commentContent);
+    $('#commentForm button[type="submit"]').text('댓글 수정');
+    
+    $('html, body').animate({
+      scrollTop: $('#commentForm').offset().top
+    }, 500);
+  });
 
-//   if (confirm('정말 삭제하시겠습니까?')) {
-//     $.get(deleteUrl, function(response) {
-//       // 댓글 삭제 성공 시 해당 댓글 폼 제거
-//       $(e.target).closest('.comment-item').remove();
-//       alert('댓글이 삭제되었습니다.');
-//     }).fail(function() {
-//       alert('댓글 삭제에 실패했습니다.');
-//     });
-//   }
-// });
 $('.cancle-btn').click(function(e){
     e.preventDefault();
     location.href = 'qna.php';
