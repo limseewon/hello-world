@@ -101,7 +101,7 @@
       }
     }
     //강의영상 썸네일 
-    if(isset($youtube_thumb)){
+    if(isset($youtube_thumb) && strlen($_FILES['youtube_thumb']['name'][0])>0){
       for($i = 0;$i<count($_FILES['youtube_thumb']['name']) ; $i++){
 
         if($_FILES['youtube_thumb']['size'][$i]> 10240000){
@@ -122,30 +122,49 @@
     
         $save_dir = $_SERVER['DOCUMENT_ROOT']."/helloworld/img/class/";
 
-        $filename = $_FILES['youtube_thumb']['name'][$i]; 
-        $ext = pathinfo($filename, PATHINFO_EXTENSION); 
-        $newfilename = date("YmdHis").substr(rand(), 0,6); 
-        $youtube_thumb = $newfilename.".".$ext; 
 
-        if(move_uploaded_file($_FILES['youtube_thumb']['tmp_name'][$i], $save_dir.$youtube_thumb)){  
-          $upload_youtube_thumb[] = "/helloworld/img/class/".$youtube_thumb;
-        } else{
-          echo "<script>
-             alert('이미지등록 실패!');    
-            history.back();            
-          </script>";
-        }
+          $filename = $_FILES['youtube_thumb']['name'][$i]; 
+          $ext = pathinfo($filename, PATHINFO_EXTENSION); 
+          $newfilename = date("YmdHis").substr(rand(), 0,6); 
+          $youtube_thumb = $newfilename.".".$ext; 
 
-      //강의영상 썸네일- lecture 테이블 업데이트 cid의 값이 course 번호와 같은 데이터 수정
-      $lectureUpdateSql = "UPDATE lecture
-                  SET youtube_thumb = '{$upload_youtube_thumb[$i]}',
-                      youtube_name = '{$youtube_name[$i]}',
-                      youtube_url = '{$youtube_url[$i]}'
-                  WHERE cid ={$cid}
-                  AND l_idx = {$lectures[$i]}";       
+          if(move_uploaded_file($_FILES['youtube_thumb']['tmp_name'][$i], $save_dir.$youtube_thumb)){  
+            $upload_youtube_thumb[] = "/helloworld/img/class/".$youtube_thumb;
+          } else{
+            echo "<script>
+              alert('이미지등록 실패!');    
+              history.back();            
+            </script>";
+          }
+          //강의영상 썸네일- lecture 테이블 업데이트 cid의 값이 course 번호와 같은 데이터 수정
+          $lectureUpdateSql = "UPDATE lecture
+                      SET youtube_thumb = '{$upload_youtube_thumb[$i]}',
+                          youtube_name = '{$youtube_name[$i]}',
+                          youtube_url = '{$youtube_url[$i]}'
+                      WHERE cid ={$cid}
+                      AND l_idx = {$lectures[$i]}";       
+        
+           $lectureUpdateResult = $mysqli-> query($lectureUpdateSql);           
+
     
-       $lectureUpdateResult = $mysqli-> query($lectureUpdateSql);           
-    
+      }
+      // for($i = 0;$i<count($youtube_url) ; $i++){
+
+
+      //   $sql1 = "UPDATE lecture
+      //           SET youtube_name = '{$youtube_name[$i]}',
+      //               youtube_url = '{$youtube_url[$i]}'  
+      //           WHERE cid ={$cid}
+      //           AND l_idx = {$i}";
+      
+      //   $result2 = $mysqli-> query($sql1);
+      // }
+    }
+    if (isset($_POST['delete_youtube'])) {
+      $deleteYouTubeIndexes = $_POST['delete_youtube'];
+      foreach ($deleteYouTubeIndexes as $deleteIdx) {
+      $deleteSql = "DELETE FROM lecture WHERE cid = {$cid} AND l_idx = {$deleteIdx}";
+      $deleteResult = $mysqli->query($deleteSql);
       }
     }
 
@@ -171,22 +190,22 @@
         }
     
         $save_dir = $_SERVER['DOCUMENT_ROOT']."/helloworld/img/class/";
+        if(strlen($_FILES['course_file']['name'][$i])>0){
+          $filename = $_FILES['course_file']['name'][$i]; 
+          $ext = pathinfo($filename, PATHINFO_EXTENSION); 
+          $newfilename = date("YmdHis").substr(rand(), 0,6); 
+          $course_file = $newfilename.".".$ext; 
 
-        $filename = $_FILES['course_file']['name'][$i]; 
-        $ext = pathinfo($filename, PATHINFO_EXTENSION); 
-        $newfilename = date("YmdHis").substr(rand(), 0,6); 
-        $course_file = $newfilename.".".$ext; 
-
-        if(move_uploaded_file($_FILES['course_file']['tmp_name'][$i], $save_dir.$course_file)){  
-          $upload_course_file[] = "/helloworld/img/class/".$course_file;
-          $upload_course_files = implode(",",$upload_course_file);
-        } else{
-          echo "<script>
-             alert('이미지등록 실패!');    
-            history.back();            
-          </script>";
-        }    
-    
+          if(move_uploaded_file($_FILES['course_file']['tmp_name'][$i], $save_dir.$course_file)){  
+            $upload_course_file[] = "/helloworld/img/class/".$course_file;
+            $upload_course_files = implode(",",$upload_course_file);
+          } else{
+            echo "<script>
+              alert('이미지등록 실패!');    
+              history.back();            
+            </script>";
+          }    
+        }
       }
     }
     //course_file_name은 course_file_name은 컬럼에 문자열로 주소를 콤마로 구분하여 입력
@@ -194,23 +213,37 @@
       $course_file_names = implode(",",$course_file_name);
     }
 
-
-    $sql = "UPDATE courses
-    SET cate='{$cate}',
-        name='{$name}', 
-        price='{$price}', 
-        price_status='{$price_status}', 
-        level='{$level}',
-        due='{$due}',
-        due_status='{$due_status}', 
-        act='{$act}', 
-        content='{$content}', 
-        thumbnail = '{$thumbnail}',
-        course_file = '{$upload_course_files}',
-        course_file_name = '{$course_file_names}'
-    WHERE cid = {$cid}";
-
-  
+    if(($_FILES['thumbnail']['name'])){
+       $sql = "UPDATE courses
+      SET cate='{$cate}',
+          name='{$name}', 
+          price='{$price}', 
+          price_status='{$price_status}', 
+          level='{$level}',
+          due='{$due}',
+          due_status='{$due_status}', 
+          act='{$act}', 
+          content='{$content}', 
+          thumbnail = '{$thumbnail}',
+          course_file = '{$upload_course_files}',
+          course_file_name = '{$course_file_names}'
+      WHERE cid = {$cid}";
+      }else{
+      $sql = "UPDATE courses
+        SET cate='{$cate}',
+            name='{$name}', 
+            price='{$price}', 
+            price_status='{$price_status}', 
+            level='{$level}',
+            due='{$due}',
+            due_status='{$due_status}', 
+            act='{$act}', 
+            content='{$content}', 
+            
+            course_file = '{$upload_course_files}',
+            course_file_name = '{$course_file_names}'
+        WHERE cid = {$cid}";
+    };
 
     $finalResult = $mysqli-> query($sql);
 
