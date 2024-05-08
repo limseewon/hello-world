@@ -231,7 +231,7 @@ $next_id = $row_next['next_id'];
   width: 800px;
 }
 
-    </style>
+</style>
   </head>
   <body>
   <?php
@@ -249,44 +249,42 @@ $next_id = $row_next['next_id'];
                 </p>
                 <p><?= $row['regdate']; ?></p>
                 <p>
-                  <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
-                        <span class="material-symbols-outlined">
-                            border_color
-                        </span>
-                    </a>
-                    <a href="announce_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
-                        <span class="material-symbols-outlined">delete</span>
-                    </a>
+                <a href="announce_modify.php?id=<?= $row['idx']; ?>" class="edit-link">
+                    <span class="material-symbols-outlined">border_color</span>
+                </a>
+                <a href="announce_delete.php?id=<?= $row['idx']; ?>" class="delete-link">
+                    <span class="material-symbols-outlined">delete</span>
+                </a>
                 </p>
             </div>
-        </div>
-        <div class="mb-3 d-flex con">
-            <p>내용</p>
-            <?= $row['content']; ?>
-        </div>
-        <!-- 첨부 파일 출력 부분 -->
-        <div class="d-flex file">
-            <p>첨부 파일</p>
-            <p><?= $row['file']; ?></p>
-        </div>
-        <div class="notice-btn d-flex">
-          <div class="left-button">
-            <?php if ($prev_id !== null) : ?>
-              <a href="announce_detail.php?id=<?= $prev_id; ?>" class="btn btn-primary">이전</a>
-            <?php else : ?>
-              <a href="#" class="btn btn-primary disabled">이전</a>
-            <?php endif; ?>
+          </div>
+          <div class="mb-3 d-flex con">
+              <p>내용</p>
+              <?= $row['content']; ?>
+          </div>
+          <!-- 첨부 파일 출력 부분 -->
+          <div class="d-flex file">
+              <p>첨부 파일</p>
+              <p><?= $row['file']; ?></p>
+          </div>
+          <div class="notice-btn d-flex">
+            <div class="left-button">
+              <?php if ($prev_id !== null) : ?>
+                <a href="announce_detail.php?id=<?= $prev_id; ?>" class="btn btn-primary">이전</a>
+              <?php else : ?>
+                <a href="#" class="btn btn-primary disabled">이전</a>
+              <?php endif; ?>
 
-            <?php if ($next_id !== null) : ?>
-              <a href="announce_detail.php?id=<?= $next_id; ?>" class="btn btn-primary">다음</a>
-            <?php else : ?>
-              <a href="#" class="btn btn-primary disabled">다음</a>
-            <?php endif; ?>
-          </div>
-          <div class="right-button">
-            <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');" class="btn btn-success edit-btn">수정</a>
-            <button type="button" class="btn btn-danger cancle-btn">닫기</button>
-          </div>
+              <?php if ($next_id !== null) : ?>
+                <a href="announce_detail.php?id=<?= $next_id; ?>" class="btn btn-primary">다음</a>
+              <?php else : ?>
+                <a href="#" class="btn btn-primary disabled">다음</a>
+              <?php endif; ?>
+            </div>
+            <div class="right-button">
+              <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');" class="btn btn-success edit-btn">수정</a>
+              <button type="button" class="btn btn-danger cancle-btn">닫기</button>
+            </div>
         </div>
           
           <?php
@@ -324,15 +322,19 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
     
     <script src="/helloworld/js/common.js"></script>
     <script>
-    //  let documentHeight = Math.max(
-    //   document.body.scrollHeight,
-    //   document.body.offsetHeight,
-    //   document.documentElement.clientHeight,
-    //   document.documentElement.scrollHeight,
-    //   document.documentElement.offsetHeight
-    // );
-    // document.querySelector("header").style.height = documentHeight + "px";
+    $('.edit-link').click(function (e) {
+        e.preventDefault();
+        if (confirm('정말 수정하시겠습니까?')) {
+            location.href = $(this).attr('href');
+        }
+    });
 
+    $('.delete-link').click(function (e) {
+        e.preventDefault();
+        if (confirm('정말 삭제하시겠습니까?')) {
+            location.href = $(this).attr('href');
+        }
+    });
     $('.cancle-btn').click(function(e){
       e.preventDefault();
       location.href = 'announce.php';

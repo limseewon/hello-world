@@ -2,50 +2,44 @@
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $qna_id = $_POST['id'];
-    $comment = $_POST['comment'];
-    $name = $_POST['name'];
-    $regdate = date('Y-m-d H:i:s');
-
-    // 댓글 저장 쿼리 실행
-    $sql = "INSERT INTO qna_comment (idx, comment, name, regdate) VALUES ('$qna_id', '$comment', '$name', '$regdate')";
-    $test = $mysqli->query($sql);
-    if ($test === TRUE) {
-        // 댓글 저장 성공 시 reply 값을 '답변'으로 업데이트
-        $updateSql = "UPDATE qna SET reply = '답변' WHERE idx = '$qna_id'";
-        $mysqli->query($updateSql);
-
-        echo "<script>alert('댓글이 등록되었습니다.'); location.href='qna_detail.php?id=$qna_id';</script>";
+  $qna_id = $_POST['id'];
+  $comment = $_POST['comment'];
+  $name = $_POST['name'];
+  $regdate = date('Y-m-d H:i:s');
+  
+  if (isset($_POST['comment_id']) && !empty($_POST['comment_id'])) {
+    // 댓글 수정
+    $comment_id = $_POST['comment_id'];
+    
+    $sql = "UPDATE qna_comment SET comment = ?, name = ?, regdate = ? WHERE id = ?";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("sssi", $comment, $name, $regdate, $comment_id);
+    
+    if ($stmt->execute()) {
+      echo "<script>alert('댓글이 수정되었습니다.'); location.href='qna_detail.php?id=$qna_id';</script>";
+      exit;
     } else {
-        echo "<script>alert('댓글 등록에 실패하였습니다.'); history.back();</script>";
+      echo "<script>alert('댓글 수정에 실패하였습니다.'); history.back();</script>";
+      exit;
     }
+  } else {
+    // 댓글 등록
+    $sql = "INSERT INTO qna_comment (idx, comment, name, regdate) VALUES (?, ?, ?, ?)";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("isss", $qna_id, $comment, $name, $regdate);
+    
+    if ($stmt->execute()) {
+      $updateSql = "UPDATE qna SET reply = '답변' WHERE idx = ?";
+      $updateStmt = $mysqli->prepare($updateSql);
+      $updateStmt->bind_param("i", $qna_id);
+      $updateStmt->execute();
+      
+      echo "<script>alert('댓글이 등록되었습니다.'); location.href='qna_detail.php?id=$qna_id';</script>";
+      exit;
+    } else {
+      echo "<script>alert('댓글 등록에 실패하였습니다.'); history.back();</script>";
+      exit;
+    }
+  }
 }
-// include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
-
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     $qna_id = $_POST['id'];
-//     $comment = $_POST['comment'];
-//     $name = $_POST['name'];
-//     $regdate = date('Y-m-d H:i:s'); // 현재 시간을 regdate로 설정
-
-//     // 댓글 저장 쿼리 실행
-//     $sql = "INSERT INTO qna_comment (idx, comment, name, regdate) VALUES ('$qna_id', '$comment', '$name', '$regdate')";
-//     echo $sql;
-
-//     if ($mysqli->query($sql) === TRUE) {
-//         echo "<script> alert('댓글이 등록되었습니다.'); location.href = '/helloworld/qna/qna.php'; </script>";
-
-//         // 댓글 저장 성공 시 reply 값을 '답변'으로 업데이트
-//         $updateSql = "UPDATE qna SET reply = '답변' WHERE idx = '$qna_id'";
-//         $updateResult = $mysqli->query($updateSql);
-
-//         if ($updateResult) {
-//             echo 'success';
-//         } else {
-//             echo 'error: ' . $mysqli->error;
-//         }
-//     } else {
-//         echo 'error: ' . $mysqli->error;
-//     }
-// } 
 ?>

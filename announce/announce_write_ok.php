@@ -11,7 +11,8 @@ $regdate = date("Y-m-d H:i:s");
 // 파일 업로드 처리
 $file = null;
 $is_img = 0;
-if($_FILES['file']['size'] > 0) {
+
+if ($_FILES['file']['size'] > 0) {
     if ($_FILES['file']['size'] > 102400000) {
         echo "<script> alert('100MB 이하만 업로드해주세요'); history.back(); </script>";
         exit;
@@ -35,11 +36,10 @@ if($_FILES['file']['size'] > 0) {
 }
 
 // 공지사항 데이터 삽입
-$sql = "INSERT INTO notice (title, name, content, regdate, file, is_img) 
-        VALUES ('$title', '$name', '$content', '$regdate', '$file', '$is_img')";
-
+$sql = "INSERT INTO notice (title, name, content, regdate, file, is_img) VALUES ('$title', '$name', '$content', '$regdate', '$file', '$is_img')";
 $result = $mysqli->query($sql);
-if($result) {
+
+if ($result) {
     echo "<script>alert('공지사항이 등록되었습니다.'); location.href='announce.php'; </script>";
 } else {
     echo "<script>alert('공지사항 등록에 실패했습니다.'); history.back();</script>";
