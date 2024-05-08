@@ -81,7 +81,7 @@
       if(strpos($_FILES['thumbnail']['type'], 'image') === false){
         echo "<script>
           alert('이미지만 첨부할 수 있습니다. 1');    
-          //history.back();            
+          history.back();            
         </script>";
         exit;
       }
@@ -190,7 +190,7 @@
           exit;
         }
     
-        $save_dir = $_SERVER['DOCUMENT_ROOT']."/helloworld/img/class/";
+        $save_dir = $_SERVER['DOCUMENT_ROOT']."/helloworld/img/file/";
         if(strlen($_FILES['course_file']['name'][$i])>0){
           $filename = $_FILES['course_file']['name'][$i]; 
           $ext = pathinfo($filename, PATHINFO_EXTENSION); 
@@ -198,7 +198,7 @@
           $course_file = $newfilename.".".$ext; 
 
           if(move_uploaded_file($_FILES['course_file']['tmp_name'][$i], $save_dir.$course_file)){  
-            $upload_course_file[] = "/helloworld/img/class/".$course_file;
+            $upload_course_file[] = "/helloworld/img/file/".$course_file;
             $upload_course_files = implode(",",$upload_course_file);
           } else{
             echo "<script>
@@ -240,7 +240,7 @@ $sql .= ", course_file_name='{$course_file_names}'";
 
 $sql .= " WHERE cid = {$cid}";
 
-echo $sql;
+// echo $sql;
 
    $finalResult = $mysqli-> query($sql);
 

@@ -265,7 +265,7 @@
                       <div class="col-2 youtube_thumb">
                         <input type="file" class="form-control" name="youtube_thumb[]" />
                       </div>
-                      <div class="col-3 youtube_name">
+                      <div class="col-3 youtube_name ">
                         <input type="text" class="form-control" name="youtube_name[]" value="<?= $ai -> youtube_name?>"/>
                       </div>
                       <div class="col-6 youtube_url">
@@ -330,11 +330,11 @@
                       <div class="col-2 youtube_thumb">
                         <input type="file" class="form-control" name="course_file[]"  />
                       </div>
-                      <div class="col-3 youtube_name">
+                      <div class="col-3 youtube_name colew">
                         <input type="text" class="form-control" name="course_file_name[]" value="<?= $cf; ?>" />
                       </div>
                       
-                      <div class="col-1 trash_icon">
+                      <div class="col-1 trash_icon2">
                         <label for="delete-file<?= $i; ?>"><i class="ti ti-trash bin_icon"></i></label>
                         <input
                           type="checkbox"

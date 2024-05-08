@@ -2261,10 +2261,12 @@ input {
 .youtubeThumbBox {
   margin: 10px auto;
   width: 100%;
+  
 }
 
 .youtubeThumbBox img {
   width: 150px;
+  
   border-radius: 5px;
 }
 
@@ -3048,3 +3050,11 @@ justify-content: space-between;
 .green_bg {background: #FF6347;}
 .red_bg { background: #000080;}
 .partdaa { background:purple;}
+.colew { width: 75%;}
+.preview {margin-top: 20px;}
+.preview img { 
+  width: 100px;
+  
+}
+.file_dsas5 { width: 50px;}
+.file_dsas5 img { width: 100%; height: 50px;}

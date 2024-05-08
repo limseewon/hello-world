@@ -238,16 +238,15 @@
                   <div class="row justify-content-between">
                     <div class="col-2 youtube_thumb">
                       <input type="file" class="form-control" name="course_file[]" id="course_file">
-                    </div>
-                    <div class="col-3 youtube_name">
+                    </div>            
+                    <div class="col-3 youtube_name colew">
                       <input type="text" class="form-control" name="course_file_name[]" id="course_file_name" placeholder="강의파일명을 입력하세요">
-                    </div>
-                    
+                    </div>                 
                     <div class="col-1 trash osd">
                       <i class="ti ti-trash bin_icon"></i>
                     </div>
                   </div>
-                </div>
+                </div>      
               </div>
               <div class="add_listBtn2">
                 <a href="">
@@ -329,6 +328,8 @@
   <script src="/helloworld/js/course.js"></script>
   
   </body>
+  
+
   <script>
   let documentHeight = Math.max(
     document.body.scrollHeight,

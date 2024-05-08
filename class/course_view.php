@@ -192,9 +192,9 @@ while ($is = $result->fetch_object()) {
               </span>
             </div>
             <div class="file_dsa">
-              <span>
-              <?= $rs->course_file; ?>
-              </span>
+              <img src="<?= $rs->course_file; ?>" alt="file">
+              
+              
             </div>
           </div>
           <?php
@@ -208,10 +208,10 @@ while ($is = $result->fetch_object()) {
           <?= $rs->course_file_name; ?>
           </span>
         </div>
-        <div class="file_dsas3">
-          <span>
-          <?= $rs->course_file; ?>
-          </span>
+        <div class="file_dsas5">
+          <img src="<?= $rs->course_file; ?>" alt="file">
+          
+          
         </div>
       </div>
     </div>
