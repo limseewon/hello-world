@@ -297,7 +297,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       document.documentElement.offsetHeight
     );
     document.querySelector("header").style.height = documentHeight + "px";
-    document.getElementById(".btn_complete").addEventListener("click", function() {
+    document.querySelector(".btn_complete").addEventListener("click", function() {
       // 원하는 URL로 리다이렉트
       window.location.href = "/helloworld/announce/announce_write.php";
     });

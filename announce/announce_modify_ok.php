@@ -16,7 +16,8 @@ $regdate = date("Y-m-d H:i:s");
 // 파일 업로드 처리
 $file = null;
 $is_img = 0;
-if($_FILES['file']['size'] > 0) {
+
+if ($_FILES['file']['size'] > 0) {
     if ($_FILES['file']['size'] > 102400000) {
         echo "<script> alert('100MB 이하만 업로드해주세요'); history.back(); </script>";
         exit;
