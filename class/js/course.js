@@ -63,11 +63,13 @@ $(".trash_icon").change(function () {
   }
 });
 
-$("#course_form").submit(function () {
+$("#course_form").submit(function (e) {
+  e.preventDefault();
+  console.log('본문입력');
   let markupStr = $("#product_detail").summernote("code");
   let content = encodeURIComponent(markupStr);
   $("#content").val(content);
-
+  
   if ($("#product_detail").summernote("isEmpty")) {
     alert("상세설명을 입력하세요");
     return false;

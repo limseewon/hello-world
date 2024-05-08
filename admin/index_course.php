@@ -3,6 +3,7 @@ session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
 $courseId = $_POST['courseId'];
+// $courseId = 39;
 
 if(isset($_SESSION['UID'])){
     $userid = $_SESSION['UID'];
@@ -33,11 +34,30 @@ WHERE
 
 $result = $mysqli -> query($sql);
 $rs = $result->fetch_object();
+
+
+
+
+$profitCourseSql = "SELECT count(*) as ct_price
+FROM ordered_courses
+WHERE MONTH(regdate) = MONTH(CURRENT_DATE())
+AND YEAR(regdate) = YEAR(CURRENT_DATE())
+AND course_id = '{$courseId}';
+";
+$profitCourseResult = $mysqli -> query($profitCourseSql);
+$profitRs = $profitCourseResult->fetch_row();
+
+$priceCourseSql = "SELECT price FROM courses WHERE cid='{$courseId}'";
+$priceResult = $mysqli -> query($priceCourseSql);
+$priceRs = $priceResult->fetch_row();
+
+$priceResult = [$rs, $profitRs[0] * $priceRs[0]];
 if($result){      
-  $data = array('result' => $rs);
+  $data = array('result' => $priceResult);
         
 } else {
   $data = array('result' => 'fail');
 }     
 echo json_encode($data);
+
 ?>

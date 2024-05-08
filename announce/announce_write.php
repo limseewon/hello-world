@@ -45,12 +45,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css"
     integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
-    <!-- 스포카 -->
-    <!-- <link
-      href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
-      rel="stylesheet"
-      type="text/css"
-    /> -->
 
     <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
     <link rel="stylesheet" href="/helloworld/css/common.css" />
@@ -105,7 +99,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
           padding-top: 35px;
         }
         .regist{
-          /* width: 100%; */
           height: auto;
           background: #fff;
           padding: 20px;
@@ -146,8 +139,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
-            <h2>질문 등록</h2>
-            <form action="announce_write_ok.php" method="POST" id="content_save">
+            <h2>공지사항 등록</h2>
+            <form action="announce_write_ok.php" method="POST" id="content_save" enctype="multipart/form-data">
             <input type="hidden" name="contents" id="contents">
               <div class="regist">
               <div class="mb-3 d-flex title">
@@ -168,13 +161,12 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                         <tbody id="option1">
                           <tr id="optionTr1">
                             <td>
-                              <input type="file" class="form-control file-box" id="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="optionImage1[]">
+                              <input type="file" class="form-control file-box" id="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload" name="file">
                             </td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
-                    <button type="button" class="btn btn-primary optAddBtn">항목 추가</button>
                     <div class="right-button">
                       <button type="submit" class="btn btn-success regist-btn">등록</button>
                       <button type="button" class="btn btn-danger cancle-btn">취소</button>
@@ -230,28 +222,12 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       let markupStr = $('#summernote').summernote('code');
       let contents = encodeURIComponent(markupStr);
       $('#contents').val(contents);
-
-      // if(!$('#thumbnail').val()){
-      //   alert('대표 이미지를 등록하세요');       
-      //   return false;
-      // }
-      // if ($('#summernote').summernote('isEmpty')) {
-      //   alert('상품 설명을 입력하세요');
-      //   $('#summernote').summernote('focus');
-      //   return false;
-      // }
-      // if(!$('#product_image_id').val()){
-      //   alert('최소 하나의 추가 이미지를 등록하세요.');
-      //   return false;
-      // }
-
     }
-
-      });
+  });
       
-      </script>
+  </script>
 
-    <script src="js/common.js"></script>
+  <script src="js/common.js"></script>
   </body>
   <script>
     let documentHeight = Math.max(
@@ -269,19 +245,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       lang: "ko-KR",
       disableResizeEditor: true,
     });
-    // $(".notice_create_form").submit(function () {
-    //   let markupStr = $("#summernote").summernote("code");
-    //   // let content1 = stripHtml(markupStr);
-    //   let content1 = markupStr.replace('<p>','').replace('</p>','');
-    //   let content = encodeURIComponent(content1);
-    //   $(".content").val(content);
-    //   console.log(content);
-
-    //   if ($("#summernote").summernote("isEmpty")) {
-    //     alert("상세설명을 입력하세요");
-    //     return false;
-    //   }
-    // });
+   
     $('.cancle-btn').click(function(e){
       e.preventDefault();
       if (confirm('등록 취소하시겠습니까?')){

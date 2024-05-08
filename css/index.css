@@ -12,7 +12,7 @@
   margin-bottom: 300px;
 }
 .profit > span {
-  margin: 0 auto;
+  margin: 0;
 }
 .lecture_chart {
   width: 1219px;
@@ -25,8 +25,14 @@
 .sale {
   width: 1102px;
   height: 334px;
+  gap: 30px;
 }
-
+.star {
+  color: var(--c-yellow);
+}
+ul {
+  list-style-type: disc;
+}
 .board {
   margin: 0 30px 30px 0;
 }
@@ -69,4 +75,54 @@
 
 .board_list {
   white-space: nowrap;
+}
+
+.profitChart-container {
+  width: 900px;
+  height: 300px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.red {
+  color: var(--c-cancle-button);
+}
+.blue {
+  color: var(--c-blue);
+}
+
+.main_bottom li {
+  height: 25px;
+}
+
+.main_bottom li:hover {
+  font-weight: bold;
+  color: var(--c-blue);
+  text-decoration: underline;
+}
+
+/* star */
+.rating {
+  display: flex;
+  gap: 10px;
+}
+.fa-star {
+  color: var(--c-yellow);
+}
+.star-wrap {
+  width: 18px;
+}
+.star {
+  width: 0;
+  overflow: hidden;
+}
+/* .rating1 .star-wrap:nth-child(-n+3){
+	width:18px;
+} */
+/* start */
+.course_profit {
+  width: 350px;
+  height: 300px;
+  font-size: var(--f-H2);
 }

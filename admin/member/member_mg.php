@@ -85,45 +85,33 @@ while ($rs = $result->fetch_object()) {
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div class="profile">
-              <span class="material-symbols-outlined">account_circle</span>
-              <div>
-                <span>수강생</span>
+            <div class="profile d-flex align-items-center">
+              <span class="material-symbols-outlined profile_icon">account_circle</span>
+              <div class="d-flex flex-column">
+                <span class="class">수강생</span>
                 <span id="modal_username"></span>
               </div>
-              <span id="modal_email"></span>
+              <div id="modal_email"></div>
               <button type="button" class="msg_btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">                  <span class="material-symbols-outlined"> mail </span>
               </button>
             </div>
             <hr>
             <div class="information">
-              <ul>
-                <li><span>아이디</span><span id="modal_id"></span></li>
-                <li><span>최근 접속일</span><span id="modal_recent"></span></li>
-                <li><span>가입일</span><span id="modal_regdate"></span></li>
-                <li><span>연락처</span><span id="modal_tel"></span></li>
-                <li><span>최근 학습 강의</span><span>Angular, 앵귤러 100분 핵심 강의</span></li>
+              <ul class="d-grid">
+                <li><span class="m_title">아이디</span><span id="modal_id"></span></li>
+                <li><span class="m_title">최근 접속일</span><span id="modal_recent"></span></li>
+                <li><span class="m_title">연락처</span><span id="modal_tel"></span></li>
+                <li><span class="m_title">가입일</span><span id="modal_regdate"></span></li>
               </ul>
             </div>
             <div>
-              <span>수강 강의</span>
-              <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  A list item
-                  <span class="badge text-bg-primary rounded-pill">14</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  A second list item
-                  <span class="badge text-bg-primary rounded-pill">2</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                  A third list item
-                  <span class="badge text-bg-primary rounded-pill">1</span>
-                </li>
+              <span class="m_title">수강 강의</span>
+              <ul class="list-group" id="course_list">
+                
               </ul>
             </div>
-            <div>
-              <span>보유 쿠폰</span>
+            <div class="coupon">
+              <span class="m_title ">보유 쿠폰</span>
               <div class="coupon_list">
                 
               </div>
@@ -170,7 +158,7 @@ while ($rs = $result->fetch_object()) {
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary member_del_ok" data-bs-dismiss="modal">삭제</button>
+          <button type="button" class="btn btn-secondary member_del_ok" data-bs-dismiss="modal">삭제</button>
             <button type="button" class="btn btn-danger">취소</button>
           </div>
         </div>
@@ -181,7 +169,7 @@ while ($rs = $result->fetch_object()) {
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
 ?>
             <h2>회원 관리</h2>
-            <form action="" class="d-flex">
+            <form action="" class="d-flex justify-content-between">
               <div class="filter d-flex">
                 <select class="form-select lecture" aria-label="Default select example">
                   <option selected disabled>강좌명</option>
@@ -212,9 +200,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
               <thead class="table-dark">
                 <tr>
                   <th scope="col">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="member_cb" />
-                      <label class="form-check-label" for="member_cb"> 전체선택 </label>
+                    <div>
+                      <input type="checkbox" value="" id="member_cb" />
+                      <label for="member_cb"> 전체선택 </label>
                     </div>
                   </th>
                   <th scope="col">아이디</th>
@@ -229,7 +217,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
                 if(isset($memberArr)) {
                   foreach($memberArr as $ma){                
                 ?>
-                <tr data-ui="<?=$ma->mid?>" data-user="<?=$ma->userid?>">
+                <tr data-ui="<?=$ma->mid?>" data-user="<?=$ma->userid?>" >
                   <th scope="row">
                     <input class="form-check-input" type="checkbox" />
                   </th>
@@ -343,6 +331,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       const messageModal = new bootstrap.Modal('.message_modal')
       const memberDelModal = new bootstrap.Modal('.member_del_confirm')
       $('tbody tr').click(function(e) {
+        e.stopPropagation()
         if (!$(e.target).is('input[type="checkbox"]')) {
           // 체크박스가 아닌 경우에만 원하는 이벤트 작성
           // 여기에 원하는 동작을 추가하세요.
@@ -351,10 +340,12 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
             mid : mid
           }
           // console.log(data)
-          $('.member_del').click(function() {
-            memberDelModal.show()
+          $('.member_del').click(function(e) {
+            e.stopPropagation();
+            memberDelModal.show();
           })
-          $('.member_del_ok').click(function() {
+          $('.member_del_ok').click(function(e) {
+            e.stopPropagation()
             $.ajax({
                   url:'member_del.php',
                   async:false,
@@ -366,16 +357,17 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
                       console.log(data.result);
                       if(data.result=='ok'){
                           alert('해당 회원 정보를 삭제했습니다.'); 
+                          location.reload();
                           
                       } else {
                           alert('회원 정보를 삭제하지 못했습니다. 다시 시도해주세요.'); 
                       }
-                      location.reload();
                   }
             });
             
           })
-          $('.modeal_sleep').click(function() {
+          $('.modeal_sleep').click(function(e) {
+            e.stopPropagation()
             let statusText = $(this).text()
             let data = {
               mid : mid,
@@ -408,16 +400,18 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
                  dataType:'json',
                  error:function(){},
                  success:function(data){
-                    // console.log(data.result[0]);
-                    $('#modal_username').text(data.result[0].username)
-                    $('#modal_id').text(data.result[0].userid)
-                    $('#modal_recent').text(data.result[0].recent_in)
-                    $('#modal_regdate').text(data.result[0].regdate)
-                    $('#modal_tel').text(data.result[0].tel)
+                    console.log(data.result[1]);
+                    $('#modal_username').text(data.result[0][0].username)
+                    $('#modal_id').text(data.result[0][0].userid)
+                    $('#modal_recent').text($.datepicker.formatDate('yy-mm-dd', new Date(data.result[0][0].recent_in)))
                     
-                    $('#recipient-name').val(data.result[0].userid)
-                    console.log('휴면',data.result[0])
-                    if (data.result[0].status == 1) {
+                    $('#modal_regdate').text($.datepicker.formatDate('yy-mm-dd', new Date(data.result[0][0].regdate)))
+                    $('#modal_tel').text(data.result[0][0].tel)
+                    
+                    $('#modal_email').html(`<a href="mailto:${data.result[0][0].email}">${data.result[0][0].email}</a>`)
+                    $('#recipient-name').val(data.result[0][0].userid)
+                    // console.log('휴면',data.result[0])
+                    if (data.result[0][0].status == 1) {
                       $('.modeal_sleep').text('휴면 전환')
                     } else {
                       $('.modeal_sleep').text('휴면 해제')
@@ -430,22 +424,49 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
                     //     alert('담기 실패!'); 
                     // }
                     let coupon =''
-                    for (let rs of data.result) {
-                      console.log(rs)
+                    for (let rs of data.result[0]) {
+                      // console.log(rs)
                       if (rs.cp_status == 1) {
                         coupon += `
-                      <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                      <a href="#" class="coupon_item d-flex flex-column align-items-end">
                         <div class="d-flex w-100 justify-content-between">
-                          <h5 class="mb-1">${rs.cp_name}</h5>
-                          <small>${rs.use_max_date}</small>
+                          <h5 class="mb-1 bold">${rs.cp_name}</h5>
+                          <small>사용기한 : ${$.datepicker.formatDate('yy-mm-dd', new Date(rs.use_max_date))}</small>
                         </div>
-                        <p class="mb-1">${rs.cp_price}</small>
+                        <p class="mb-1">${rs.cp_price}원</p>
                       </a>
                       `  
                       }
                       
                     }
                     coupon == '' ? $('.coupon_list').html('없음') : $('.coupon_list').html(coupon)
+                    
+                    let arr = [...data.result[1]]
+                    let uniqueObj = {};
+                    // 중복되지 않은 객체들을 담을 배열
+                    uniqueArr = arr.filter((item) => {
+                        // 객체의 name 속성 값을 키로 사용하여 중복 여부 확인
+                        if (!uniqueObj[item.name]) {
+                            // 중복되지 않은 경우에만 true를 반환하고 중복된 경우에는 false를 반환
+                            uniqueObj[item.name] = true;
+                            return true;
+                        }
+                        return false;
+                    });
+
+                    // let courseList = [...new Set()];
+                    let course = ''
+                    for (let cl of uniqueArr) {
+                      course +=`
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                        ${cl.name}
+                        <!-- <span class="badge text-bg-primary rounded-pill">14</span> -->
+                        </li>`
+
+                      // console.log(course)
+                      console.log(cl.name)
+                    }
+                    course === '' ? $('#course_list').html('<li>없음</li>') : $('#course_list').html(course)
                     memberModal.show()
                  }
           });
@@ -472,7 +493,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
         })
         console.log('recipient', recipient)
         $('#recipient-name').val(recipient.join(' , '))
-
+        
         messageModal.show()
       })
 

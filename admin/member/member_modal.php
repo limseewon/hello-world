@@ -26,10 +26,17 @@ $result = $mysqli -> query($sql);
 while($row = $result -> fetch_object() ){
   $modalArr[] = $row;
 }
- 
+$courseSql = "SELECT c.name FROM ordered_courses oc JOIN courses c ON oc.course_id=c.cid WHERE member_id='{$mid}';";
+
+$courseResult = $mysqli -> query($courseSql);
+while($courseRow = $courseResult -> fetch_object() ){
+  $courseArr[] = $courseRow;
+}
+
+$modalData = [$modalArr ,$courseArr];
 
 if($result){      
-  $data = array('result' => $modalArr);
+  $data = array('result' => $modalData);
         
 } else {
   $data = array('result' => 'fail');

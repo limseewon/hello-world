@@ -78,123 +78,170 @@ $next_id = $row_next['next_id'];
     <link rel="stylesheet" href="/helloworld/css/common.css" />
     <link rel="stylesheet" href="/helloworld/css/index.css" />
     <style>
-        .contents-box{
-            width: 100%;
-            height: auto;
-        }
-        .btn {
-            width: 105px;
-            height: 48px;
-        }
-        .notice-btn{
-            padding-top: 65px;
-            justify-content: space-between;
-        }
-        .title-box{
-          width: 883px;
-          height: 40px;
-        }
-        .con-box{
-          width: 1170px; 
-          height: 505px;
-        }
-        .input-group > .form-control{
-          position: none;
-          flex: none;
-          width: 560px;
-          height: 40px;
-        }
-        .title{
-          gap: 70px;
-          align-items: center;
-          padding-left: 60px;
-          padding-top: 26px;
-        }
-        .con{
-          gap: 100px;
-          align-items: center;
-          padding-left: 60px;
-          padding-top: 35px;
-        }
-        .file{ 
-          gap: 65px;
-          padding-left: 60px;
-          padding-top: 35px;
-        }
+.contents-box {
+  width: 100%;
+  height: auto;
+}
 
-        .regist{
-          /* width: 100%; */
-          height: auto;
-          background: #fff;
-          padding: 20px;
-          border: 1px solid #ced4da;
-        }
-        .btn{
-          width: 100px;
-          height: 35px;
-        }
-        .right-button{
-          padding-left: 250px;
-        }
-        .comments{
-          padding-left: 60px;
-          align-items: center;
-        }
-        .lock{
-        align-items: center;
-        gap: 10px;
-      }
-      .question{
-        padding-right: 550px;
-      }
-      .img{
-        padding-left: 200px;
-      }
-      .reply{
-        padding-right: 1270px;
-      }
-        .review .btn{
-          white-space: nowrap;
-        }  
-        .form-control {
-            display: block;
-            width: 100%;
-            height: 45px;
-            padding: 0.375rem 0.75rem;
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1.5;
-            color: #495057;
-            background-color: #fff;
-            background-clip: padding-box;
-            border: 1px solid #ced4da;
-            border-radius: 0.25rem;
-            transition: .15s ease-in-out .15s ease-in-out;
-        } 
-        .tt{
-            padding-right:30px;
-        }
-        .pos{
-            right: 100px;
-            position: absolute;
-            align-items: center;
-            gap:45px;
-        }
-        .edit{
-            padding-right: 10px;
-        }
+.btn {
+  width: 105px;
+  height: 48px;
+}
 
-    </style>
+.notice-btn {
+  padding-top: 20px;
+  justify-content: space-between;
+}
+
+.title-box {
+  width: 883px;
+  height: 40px;
+}
+
+.con-box {
+  width: 1170px;
+  height: 505px;
+}
+
+.input-group > .form-control {
+  position: none;
+  flex: none;
+  width: 560px;
+  height: 40px;
+}
+
+.title {
+  gap: 70px;
+  align-items: center;
+  padding-left: 60px;
+  padding-top: 26px;
+}
+
+.con {
+  gap: 100px;
+  align-items: center;
+  padding-left: 60px;
+  padding-top: 35px;
+}
+
+.file {
+  gap: 65px;
+  padding-left: 60px;
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+
+.regist {
+  /* width: 100%; */
+  height: auto;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ced4da;
+}
+
+.btn {
+  width: 100px;
+  height: 35px;
+}
+
+.right-button {
+  padding-left: 250px;
+}
+
+.comments {
+  padding-left: 60px;
+  align-items: center;
+}
+
+.lock {
+  align-items: center;
+  gap: 10px;
+}
+
+.question {
+  padding-right: 550px;
+}
+
+.img {
+  padding-left: 200px;
+}
+
+.reply {
+  padding-right: 1270px;
+}
+
+.review .btn {
+  white-space: nowrap;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: 45px;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: 0.15s ease-in-out 0.15s ease-in-out;
+}
+
+.tt {
+  padding-right: 30px;
+}
+
+.pos {
+  right: 100px;
+  position: absolute;
+  align-items: center;
+  gap: 45px;
+}
+
+.edit {
+  padding-right: 10px;
+}
+
+.cancle-btn {
+  width: 105px;
+  height: 35px;
+}
+
+.review .btn {
+  white-space: nowrap;
+}
+
+.review {
+  gap: 20px;
+}
+
+.btn-success {
+  width: 100px;
+}
+
+.reply {
+  gap: 27px;
+  align-items: center;
+}
+
+.reply_control {
+  width: 800px;
+}
+
+</style>
   </head>
   <body>
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
     ?>
-            <h2>공지 사항</h2>
-            <div class="regist">
-        <div class="mb-3 d-flex title">
-            <p class="tt">제목</p>
-            <p class="question"><?= $row['title']; ?></p>
+          <h2>공지 사항</h2>
+          <div class="regist">
+            <div class="mb-3 d-flex title">
+              <p class="tt">제목</p>
+              <p class="question"><?= $row['title']; ?></p>
             <div class="pos d-flex">
                 <p>작성자: <?= $row['name']; ?>
                 <p>조회수: <?= $row['view'];?></p>
@@ -202,44 +249,42 @@ $next_id = $row_next['next_id'];
                 </p>
                 <p><?= $row['regdate']; ?></p>
                 <p>
-                  <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
-                        <span class="material-symbols-outlined">
-                            border_color
-                        </span>
-                    </a>
-                    <a href="announce_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
-                        <span class="material-symbols-outlined">delete</span>
-                    </a>
+                <a href="announce_modify.php?id=<?= $row['idx']; ?>" class="edit-link">
+                    <span class="material-symbols-outlined">border_color</span>
+                </a>
+                <a href="announce_delete.php?id=<?= $row['idx']; ?>" class="delete-link">
+                    <span class="material-symbols-outlined">delete</span>
+                </a>
                 </p>
             </div>
-        </div>
-        <div class="mb-3 d-flex con">
-            <p>내용</p>
-            <?= $row['content']; ?>
-        </div>
-        <!-- 첨부 파일 출력 부분 -->
-        <div class="d-flex file">
-            <p>첨부 파일</p>
-            <p><?= $row['file']; ?></p>
-        </div>
-        <div class="notice-btn d-flex">
-          <div class="left-button">
-            <?php if ($prev_id !== null) : ?>
-              <a href="announce_detail.php?id=<?= $prev_id; ?>" class="btn btn-primary">이전</a>
-            <?php else : ?>
-              <a href="#" class="btn btn-primary disabled">이전</a>
-            <?php endif; ?>
+          </div>
+          <div class="mb-3 d-flex con">
+              <p>내용</p>
+              <?= $row['content']; ?>
+          </div>
+          <!-- 첨부 파일 출력 부분 -->
+          <div class="d-flex file">
+              <p>첨부 파일</p>
+              <p><?= $row['file']; ?></p>
+          </div>
+          <div class="notice-btn d-flex">
+            <div class="left-button">
+              <?php if ($prev_id !== null) : ?>
+                <a href="announce_detail.php?id=<?= $prev_id; ?>" class="btn btn-primary">이전</a>
+              <?php else : ?>
+                <a href="#" class="btn btn-primary disabled">이전</a>
+              <?php endif; ?>
 
-            <?php if ($next_id !== null) : ?>
-              <a href="announce_detail.php?id=<?= $next_id; ?>" class="btn btn-primary">다음</a>
-            <?php else : ?>
-              <a href="#" class="btn btn-primary disabled">다음</a>
-            <?php endif; ?>
-          </div>
-          <div class="right-button">
-            <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');" class="btn btn-success edit-btn">수정</a>
-            <button type="button" class="btn btn-danger cancle-btn">닫기</button>
-          </div>
+              <?php if ($next_id !== null) : ?>
+                <a href="announce_detail.php?id=<?= $next_id; ?>" class="btn btn-primary">다음</a>
+              <?php else : ?>
+                <a href="#" class="btn btn-primary disabled">다음</a>
+              <?php endif; ?>
+            </div>
+            <div class="right-button">
+              <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');" class="btn btn-success edit-btn">수정</a>
+              <button type="button" class="btn btn-danger cancle-btn">닫기</button>
+            </div>
         </div>
           
           <?php
@@ -274,21 +319,26 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       referrerpolicy="no-referrer"
     ></script>
 
-    <script src="js/common.js"></script>
-  </body>
-  <script>
-    let documentHeight = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.clientHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight
-    );
-    document.querySelector('header').style.height = documentHeight + 'px';
+    
+    <script src="/helloworld/js/common.js"></script>
+    <script>
+    $('.edit-link').click(function (e) {
+        e.preventDefault();
+        if (confirm('정말 수정하시겠습니까?')) {
+            location.href = $(this).attr('href');
+        }
+    });
 
+    $('.delete-link').click(function (e) {
+        e.preventDefault();
+        if (confirm('정말 삭제하시겠습니까?')) {
+            location.href = $(this).attr('href');
+        }
+    });
     $('.cancle-btn').click(function(e){
       e.preventDefault();
       location.href = 'announce.php';
     });
   </script>
+  </body>
 </html>
