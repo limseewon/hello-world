@@ -54,8 +54,9 @@
     $youtube_name = $_POST['youtube_name']?? [];   //lecture 테이블에 업데이트 
     $youtube_url = $_POST['youtube_url']?? [];   //lecture 테이블에 업데이트 
 
-    $course_file = $_FILES['course_file']??[];
-    $course_file_name = $_POST['course_file_name']??[];
+    $thumbnail = $_FILES['thumbnail'] ?? null;
+    $course_file = $_FILES['course_file']?? null;
+    $course_file_names = $_POST['course_file_name']?? null;
 
     //echo count($youtube_thumb['name']);
     //lecture 테이블에서 cid가 일치하는 데이터의 l_idx 출력 - 업데이트시 사용
@@ -65,9 +66,9 @@
     while ($row = $lecResult->fetch_assoc()) {
         $lectures[] = $row['l_idx']; // l_idx의 값이 숫자, 배열로 출력
     }
-    
+  
     //thumbnail은 thumbnail 필드에 파일주소 입력
-    if($_FILES['thumbnail']['name']){
+    if(strlen($_FILES['thumbnail']['name']) > 0){
 
       if($_FILES['thumbnail']['size']> 10240000){
         echo "<script>
@@ -79,8 +80,8 @@
 
       if(strpos($_FILES['thumbnail']['type'], 'image') === false){
         echo "<script>
-          alert('이미지만 첨부할 수 있습니다.');    
-          history.back();            
+          alert('이미지만 첨부할 수 있습니다. 1');    
+          //history.back();            
         </script>";
         exit;
       }
@@ -106,7 +107,7 @@
 
         if($_FILES['youtube_thumb']['size'][$i]> 10240000){
           echo "<script>
-            alert('10MB 이하만 첨부할 수 있습니다.');    
+            alert('10MB 이하만 첨부할 수 있습니다. ');    
             history.back();      
           </script>";
           exit;
@@ -114,7 +115,7 @@
     
         if(strpos($_FILES['youtube_thumb']['type'][$i], 'image') === false){
           echo "<script>
-            alert('이미지만 첨부할 수 있습니다.');
+            alert('이미지만 첨부할 수 있습니다.3 ');
             history.back();            
           </script>";
           exit;
@@ -160,17 +161,17 @@
       //   $result2 = $mysqli-> query($sql1);
       // }
     }
-    if (isset($_POST['delete_youtube'])) {
-      $deleteYouTubeIndexes = $_POST['delete_youtube'];
-      foreach ($deleteYouTubeIndexes as $deleteIdx) {
-      $deleteSql = "DELETE FROM lecture WHERE cid = {$cid} AND l_idx = {$deleteIdx}";
-      $deleteResult = $mysqli->query($deleteSql);
-      }
-    }
+    // if (isset($_POST['delete_youtube'])) {
+    //   $deleteYouTubeIndexes = $_POST['delete_youtube'];
+    //   foreach ($deleteYouTubeIndexes as $deleteIdx) {
+    //   $deleteSql = "DELETE FROM lecture WHERE cid = {$cid} AND l_idx = {$deleteIdx}";
+    //   $deleteResult = $mysqli->query($deleteSql);
+    //   }
+    // }
 
     //course_file은 course_file 컬럼에 문자열로 주소를 콤마로 구분하여 입력
     
-    if(isset($_FILES['course_file'])){
+    if(strlen($_FILES['course_file']['name'][0])>0){
       for($i = 0;$i<count($_FILES['course_file']['name']) ; $i++){
 
         if($_FILES['course_file']['size'][$i]> 10240000){
@@ -207,47 +208,43 @@
           }    
         }
       }
-    }
-    //course_file_name은 course_file_name은 컬럼에 문자열로 주소를 콤마로 구분하여 입력
-    if(isset($_POST['course_file_name'])){
-      $course_file_names = implode(",",$course_file_name);
-    }
+    } 
+    // //course_file_name은 course_file_name은 컬럼에 문자열로 주소를 콤마로 구분하여 입력
+    // if(isset($_POST['course_file_name'])){
+    //   $course_file_names = implode(",",$course_file_name);
+    // }
 
-    if(($_FILES['thumbnail']['name'])){
-       $sql = "UPDATE courses
-      SET cate='{$cate}',
-          name='{$name}', 
-          price='{$price}', 
-          price_status='{$price_status}', 
-          level='{$level}',
-          due='{$due}',
-          due_status='{$due_status}', 
-          act='{$act}', 
-          content='{$content}', 
-          thumbnail = '{$thumbnail}',
-          course_file = '{$upload_course_files}',
-          course_file_name = '{$course_file_names}'
-      WHERE cid = {$cid}";
-      }else{
-      $sql = "UPDATE courses
-        SET cate='{$cate}',
-            name='{$name}', 
-            price='{$price}', 
-            price_status='{$price_status}', 
-            level='{$level}',
-            due='{$due}',
-            due_status='{$due_status}', 
-            act='{$act}', 
-            content='{$content}', 
-            
-            course_file = '{$upload_course_files}',
-            course_file_name = '{$course_file_names}'
-        WHERE cid = {$cid}";
-    };
 
-    $finalResult = $mysqli-> query($sql);
+    $sql = "UPDATE courses
+    SET cate='{$cate}',
+        name='{$name}', 
+        price='{$price}', 
+        price_status='{$price_status}', 
+        level='{$level}',
+        due='{$due}',
+        due_status='{$due_status}', 
+        act='{$act}', 
+        content='{$content}'";
 
-    $mysqli->commit();
+if (!empty($thumbnail) &&  strlen($_FILES['thumbnail']['name']) > 0) {
+$sql .= ", thumbnail='{$thumbnail}'";
+}
+
+if (!empty($upload_course_files) && $upload_course_files !== null) {
+$sql .= ", course_file='{$upload_course_files}'";
+}
+
+if (!empty($course_file_name) && $course_file_name !== null) {
+$sql .= ", course_file_name='{$course_file_names}'";
+}
+
+$sql .= " WHERE cid = {$cid}";
+
+echo $sql;
+
+   $finalResult = $mysqli-> query($sql);
+
+   $mysqli->commit();
     echo "<script>
     alert('강의 수정 완료!');
     location.href='course_list.php';</script>";

@@ -89,16 +89,15 @@ while ($rs = $result->fetch_object()) {
                   <h2 class="modal-title fs-5" id="exampleModalLabel1">대분류 등록</h2>
                 </div>
                 <div class="modal-body">
-                  <!-- <label for="name1" class="category_">카테고리명</label>
-                  <input type="text" class="form-control" name="name1" id="name1" placeholder="대분류명을 입력하세요."/> -->
+                  <label for="name1" class="category_">카테고리명</label>
+                  <!-- <input type="text" class="form-control" name="name1" id="name1" placeholder="대분류명을 입력하세요."/> -->
                   <div class="col">
-                <input type="text" class="form-control" id="code1" name="code1" placeholder="코드명 입력">
-              </div>
-              <div class="col">
-              <input type="text" class="form-control" id="name1" name="name1" placeholder="대분류명 입력">
-            </div>
+                    <input type="text" class="form-control" id="code1" name="code1" placeholder="코드명 입력">
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control mt-3" id="name1" name="name1" placeholder="대분류명 입력">
+                  </div>
                 </div>
-
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-success btn_g" data-step="1" data-bs-dismiss="modal">
                     등록
@@ -139,13 +138,21 @@ while ($rs = $result->fetch_object()) {
                     </div>
                   </div>
                   <label for="name2">카테고리명</label>
-                  <input
+                  <!-- <input
                     type="text"
                     class="form-control"
                     name="name2"
                     id="name2"
                     placeholder="중분류명을 입력하세요."
-                  />
+                  /> -->
+                  <div class="row mt-3">
+              <div class="col">
+                <input type="text" class="form-control" id="code2" name="code2" placeholder="코드명 입력">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" id="name2" name="name2" placeholder="중분류명 입력">
+              </div>
+            </div>
                 </div>
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-success btn_g" data-step="2" data-bs-dismiss="modal">
@@ -190,13 +197,21 @@ while ($rs = $result->fetch_object()) {
                     </div>
                   </div>
                   <label for="name3">카테고리명</label>
-                  <input
+                  <!-- <input
                     type="text"
                     class="form-control"
                     name="name3"
                     id="name3"
                     placeholder="소분류명을 입력하세요."
-                  />
+                  /> -->
+                  <div class="row mt-3">
+                    <div class="col">
+                      <input type="text" class="form-control" id="code3" name="code3" placeholder="코드명 입력">
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" id="name3" name="name3" placeholder="소분류명 입력">
+                    </div>
+                  </div>
                 </div>
                 <div class="modal-footer">
                   <button
@@ -386,7 +401,7 @@ while ($rs = $result->fetch_object()) {
     function save_category(step) {
       let code = $(`#code${step}`).val();
       let name = $(`#name${step}`).val();
-      let pcode = $(`#pcode${step} option:selected`).val();
+      let pcode = $(`#pcode${step}`).val();
 
       if (step > 1 && !pcode) {
         alert('대분류를 먼저 선택하세요');
