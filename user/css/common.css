@@ -47,24 +47,24 @@
   }
 
   /* typography */
-h2{
+.h2{
     font-size: var(--f-H2);
     font-weight: bold;
     margin-bottom: 30px;
 }
-h3{
+.h3{
     font-size: var(--f-H3);
 }
-h4{
+.h4{
     font-size: var(--f-H4);
 }
-h5{
+.h5{
     font-size: var(--f-H5);
 }
-h6{
+.h6{
     font-size: var(--f-H6);
 }
-p{
+.p{
     font-size: var(--f-p);
 }
 
@@ -94,6 +94,9 @@ body {
   width: 0; height: 0;
   overflow: hidden;
 }
+.jcsb{
+    justify-content: space-between;
+}
 /*  ==================== HEADER : 임시원 ====================  */
 header{
     background: rgb(255,255,255);
@@ -110,24 +113,37 @@ header{
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
 }
 .header_con {
-    display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
 }
-.header_semicon {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 1120px;
-    height: 53px;
-}
 .center_menu {
-    display: flex;
-    gap: 20px;
+    gap: 40px;
 }
 .right_menu {
-    display: flex;
-    align-items: center;
+    gap: 30px;
+}
+.icons{
+    gap: 30px;
+    
+}
+.bi{
+    font-size: 30px;
+}
+.bt{
     gap: 10px;
 }
+.login{
+    background-color: #C2C4C7;
+    border: none;
+}
+.member{
+    background-color: #1DC078;
+    border: none;
+}
+.lgo{
+    padding-right: 212px;
+}
+.logout {
+
+  }
