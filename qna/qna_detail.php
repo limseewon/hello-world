@@ -463,10 +463,10 @@ $(document).ready(function() {
   });
 
   // 닫기 버튼 클릭 이벤트 처리
-  $('.cancle-btn').click(function(e) {
-    e.preventDefault();
-    location.href = 'qna.php';
-  });
+  $('.btn-danger.cancle-btn').click(function(e) {
+  e.preventDefault();
+  location.href = 'qna.php';
+});
 
   // 페이지 로드 시 댓글 개수에 따라 reply 값 업데이트
   var qnaId = <?= $qna_id ?>;
@@ -475,17 +475,7 @@ $(document).ready(function() {
     var replyStatus = commentCount > 0 ? '답변' : '미답변';
     $.get('update_reply.php?qna_id=' + qnaId + '&reply=' + replyStatus);
   }
-
-//   // 헤더 높이 조정
-//   var documentHeight = Math.max(
-//     document.body.scrollHeight,
-//     document.body.offsetHeight,
-//     document.documentElement.clientHeight,
-//     document.documentElement.scrollHeight,
-//     document.documentElement.offsetHeight
-//   );
-//   document.querySelector('header').style.height = documentHeight + 'px';
-// });
+});
 </script>
 </body>
 </html>
