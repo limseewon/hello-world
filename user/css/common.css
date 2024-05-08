@@ -1,0 +1,47 @@
+@charset "utf-8";
+@import url(reset.css);
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+:root {
+    --f-H2: 28px;
+    --f-H1: 32px;
+    --f-H3: 24px;
+    --f-H4: 18px;
+    --f-H5: 16px;
+    --f-H6: 14px;
+    --f-p: 16px;
+  
+    --c-background: #fff;
+    --c-main: #f5f5f5;
+    --c-sub: #11359a;
+    --c-font: #364a63;
+    --c-lightgray: #8094ae;
+    --c-yellow: #f4bd0e;
+    --c-lightblue: #09c2de;
+    --c-lightgreen: #1ee0ac;
+    --c-lightred: #e85347;
+    --c-blue: #465fff;
+    --c-button: #7749f8;
+    --c-button-hover: #5227cc;
+    --c-menu-font: #6e82a5;
+    --c-menu-font-hover: #7f8dff;
+    --c-menu-BG: #101924;
+    --c-active-button: #798bff;
+    --c-Nonactive-button: #6c757d;
+    --c-complete-button: #28a745;
+    --c-complete-button-hover: #079828;
+    --c-cancle-button: #dc3545;
+    --c-active-check-button: #499eed;
+    --c-Nonactive-check-button: #8a8686;
+    --c-contentBG: #f5f6fa;
+    --c-space_updown: 30px;
+    --c-title-font: #1DC078;
+    --c-menu-font: #4a4a4a;
+    --c-menu-font-hover: #1dc078;
+    --c-footer-BG: #101924;
+    --c-content-BG: #fff;
+    --c-black: #000;
+    --c-H2: #1b1c1d;
+    --c-p: #495057;
+    --c-primary-button: #00c471;
+  }
