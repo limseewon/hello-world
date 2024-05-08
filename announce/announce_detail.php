@@ -249,14 +249,12 @@ $next_id = $row_next['next_id'];
                 </p>
                 <p><?= $row['regdate']; ?></p>
                 <p>
-                  <a href="announce_modify.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 수정하시겠습니까?');">
-                    <span class="material-symbols-outlined">
-                            border_color
-                    </span>
-                  </a>
-                  <a href="announce_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
-                      <span class="material-symbols-outlined">delete</span>
-                  </a>
+                <a href="announce_modify.php?id=<?= $row['idx']; ?>" class="edit-link">
+                    <span class="material-symbols-outlined">border_color</span>
+                </a>
+                <a href="announce_delete.php?id=<?= $row['idx']; ?>" class="delete-link">
+                    <span class="material-symbols-outlined">delete</span>
+                </a>
                 </p>
             </div>
           </div>
@@ -324,15 +322,19 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
     
     <script src="/helloworld/js/common.js"></script>
     <script>
-    //  let documentHeight = Math.max(
-    //   document.body.scrollHeight,
-    //   document.body.offsetHeight,
-    //   document.documentElement.clientHeight,
-    //   document.documentElement.scrollHeight,
-    //   document.documentElement.offsetHeight
-    // );
-    // document.querySelector("header").style.height = documentHeight + "px";
+    $('.edit-link').click(function (e) {
+        e.preventDefault();
+        if (confirm('정말 수정하시겠습니까?')) {
+            location.href = $(this).attr('href');
+        }
+    });
 
+    $('.delete-link').click(function (e) {
+        e.preventDefault();
+        if (confirm('정말 삭제하시겠습니까?')) {
+            location.href = $(this).attr('href');
+        }
+    });
     $('.cancle-btn').click(function(e){
       e.preventDefault();
       location.href = 'announce.php';
