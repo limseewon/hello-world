@@ -45,3 +45,36 @@
     --c-p: #495057;
     --c-primary-button: #00c471;
   }
+
+  /* typography */
+h2{
+    font-size: var(--f-H2);
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+h3{
+    font-size: var(--f-H3);
+}
+h4{
+    font-size: var(--f-H4);
+}
+h5{
+    font-size: var(--f-H5);
+}
+h6{
+    font-size: var(--f-H6);
+}
+p{
+    font-size: var(--f-p);
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/* breadcrumb */
+
+body {
+    font-family: "Roboto", sans-serif;
+    color: var(--c-font);
+}
