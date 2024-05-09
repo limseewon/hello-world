@@ -35,20 +35,28 @@ $(".add_listBtn a").click(function (e) {
   e.preventDefault();
 
   let youtube =
-    '<div class="youtube c_mb mt-3"><div class="row justify-content-between">' +
-    '<div class="col-2 youtube_thumb"><input type="file" class="form-control" name="youtube_thumb[]">' +
-    "</div>" +
-    '<div class="col-3 youtube_name">' +
-    '<input type="text" class="form-control" name="youtube_name[]" placeholder="강의명을 입력하세요.">' +
-    "</div>" +
-    '<div class="col-6 youtube_url">' +
-    '<input type="url" class="form-control" name="youtube_url[]" placeholder="강의URL을 넣어주세요.">' +
-    "</div>" +
-    '<div class="col-1 trash_icon" id="trash">' +
-    '<i class="ti ti-trash bin_icon"></i>' +
-    "</div>" +
-    "</div>" +
-    "</div>";
+    `<div class="youtube c_mb mt-3">
+      <div class="row justify-content-between">
+        <div class="col-2 youtube_thumb">
+          <input type="file" class="form-control" name="youtube_thumb[]">
+        </div>
+        <div class="col-3 youtube_name">
+          <input type="text" class="form-control" name="youtube_name[]" placeholder="강의명을 입력하세요.">
+        </div>
+        <div class="col-6 youtube_url">
+          <input type="url" class="form-control" name="youtube_url[]" placeholder="강의URL을 넣어주세요.">
+        </div>
+        <div class="col-1 trash_icon" id="trash">
+          <i class="ti ti-trash bin_icon"></i>
+        </div>
+      </div>
+      <div>
+        <span>문제</span>
+        <input type="text" name="question[]" placeholder="문제를 입력하세요">
+        <span>정답</span>
+        <input type="text" name="answer[]" placeholder="문제의 답을 입력하세요.">
+      </div>
+    </div>`
 
   $(".you_upload").append(youtube);
 });

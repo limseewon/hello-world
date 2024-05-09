@@ -286,6 +286,12 @@
                         <img src="<?= $ai -> youtube_thumb?>" alt="" />
                       </div>
                     </div>
+                    <div>
+                      <span>문제</span>
+                      <input type="text" name="question[]" value="<?= $ai -> youtube_name?>"placeholder="문제를 입력하세요">
+                      <span>정답</span>
+                      <input type="text" name="answer[]" value="<?= $ai -> youtube_name?>"placeholder="문제의 답을 입력하세요.">
+                    </div>
                   </div>
                   <?php
                   $i++;

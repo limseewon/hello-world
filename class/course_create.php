@@ -206,6 +206,12 @@
                       <i class="ti ti-trash bin_icon"></i>
                     </div>
                   </div>
+                  <div>
+                    <label for="question">문제</label>
+                    <input type="text" id="question" placeholder="문제를 입력하세요">
+                    <label for="answer">정답</label>
+                    <input type="text" id="answer" placeholder="문제의 답을 입력하세요.">
+                  </div>
                 </div>
               </div>
               <div class="add_listBtn">

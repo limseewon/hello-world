@@ -58,6 +58,11 @@
     $course_file = $_FILES['course_file']?? null;
     $course_file_names = $_POST['course_file_name']?? null;
 
+
+    $question = $_POST['question']?? [];   //question 테이블에 업데이트 
+    $answer = $_POST['answer']?? [];   //question 테이블에 업데이트 
+
+
     //echo count($youtube_thumb['name']);
     //lecture 테이블에서 cid가 일치하는 데이터의 l_idx 출력 - 업데이트시 사용
     $lecSql = "SELECT l_idx FROM lecture WHERE cid = {$cid}";
