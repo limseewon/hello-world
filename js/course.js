@@ -102,22 +102,22 @@ $(".trash_icon2").change(function () {
   }
 });
 
-$('.quantity span').click(function(){
+$('.youtube div').click(function(){
   calcTotal();
 });
-$('.cart_item_del').click(function(){
+$('.trash_icon').click(function(){
 
-  $(this).closest('tr').remove();
+  $(this).closest('.youtube').remove();
   calcTotal();
-  let cartid =  $(this).closest('tr').find('.qty-text').attr('data-id');
+  let youtubeid =  $(this).closest('.youtube').find('.form-control').attr('data-id');
 
 
 
   let data = {
-      cartid :cartid
+    youtubeid  :youtubeid 
   }
   $.ajax({
-      url:'cart_del.php',
+      url:'youtube_del.php',
       async:false,
       type: 'POST',
       data:data,
@@ -126,7 +126,56 @@ $('.cart_item_del').click(function(){
       success:function(data){
       console.log(data);
       if(data.result=='ok'){
-          alert('장바구니가 업데이트 되었습니다');  
+          alert('강의가 업데이트 되었습니다');  
+          location.reload();                      
+      }else{
+          alert('오류, 다시 시도하세요');                        
+          }
+      }
+  });
+});
+
+
+
+
+$("#course_form").submit(function () {
+  let markupStr = $("#product_detail").summernote("code");
+  let content = encodeURIComponent(markupStr);
+  $("#content").val(content);
+
+  if ($("#product_detail").summernote("isEmpty")) {
+    alert("상세설명을 입력하세요");
+    return false;
+  }
+});
+
+
+
+$('.youtube2 div').click(function(){
+  calcTotal();
+});
+$('.trash_icon2').click(function(){
+
+  $(this).closest('.youtube2').remove();
+  calcTotal();
+  let coursef =  $(this).closest('.youtube2').find('.form-control').attr('data-id');
+
+
+
+  let data = {
+    coursef : coursef 
+  }
+  $.ajax({
+      url:'cuorse_del.php',
+      async:false,
+      type: 'POST',
+      data:data,
+      dataType:'json',
+      error:function(){},
+      success:function(data){
+      console.log(data);
+      if(data.result=='ok'){
+          alert('강의파일이 업데이트 되었습니다');  
           location.reload();                      
       }else{
           alert('오류, 다시 시도하세요');                        

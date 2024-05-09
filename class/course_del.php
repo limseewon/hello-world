@@ -6,7 +6,7 @@ $sql = "DELETE FROM lecture WHERE cid = {$idx}"; // 19312024.jpg
 $result = $mysqli -> query($sql);
 $row = $result->filename;
 
-unlink('/helloworld/img/youclass/'.$row);
+unlink('/helloworld/img/classfile/'.$row);
 
 if($result){
     $data = array('result'=>'ok');

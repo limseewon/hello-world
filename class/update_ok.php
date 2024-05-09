@@ -196,7 +196,7 @@
           exit;
         }
     
-        $save_dir = $_SERVER['DOCUMENT_ROOT']."/helloworld/img/file/";
+        $save_dir = $_SERVER['DOCUMENT_ROOT']."/helloworld/img/classfile/";
         if(strlen($_FILES['course_file']['name'][$i])>0){
           $filename = $_FILES['course_file']['name'][$i]; 
           $ext = pathinfo($filename, PATHINFO_EXTENSION); 
@@ -204,7 +204,7 @@
           $course_file = $newfilename.".".$ext; 
 
           if(move_uploaded_file($_FILES['course_file']['tmp_name'][$i], $save_dir.$course_file)){  
-            $upload_course_file[] = "/helloworld/img/file/".$course_file;
+            $upload_course_file[] = "/helloworld/img/classfile/".$course_file;
             $upload_course_files = implode(",",$upload_course_file);
           } else{
             echo "<script>
