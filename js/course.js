@@ -73,10 +73,10 @@ $(".add_listBtn2 a").click(function (e) {
     "</div>" +
     
     '<div class="col-1 trash_icon" id="trash">' +
-    '<i class="ti ti-trash bin_icon"></i>' +
+    '<i class="ti ti-trash bin_icon">' +
     "</div>" +
     "</div>" +
-    '<div class="preview"></div>' +
+    '' +
     "</div>";
 
   $(".you_upload2").append(youtube2);
@@ -95,7 +95,7 @@ $(".trash_icon").change(function () {
 $(".trash_icon2").change(function () {
   if (confirm("정말로 삭제하시겠습니까?")) {
     if ($(this).filter(":checked")) {
-      $(this).closest(".youtube").hide();
+      $(this).closest(".youtube2").hide();
     }
   } else {
     $(this).find(".trash_icon2 input").prop("checked", false);

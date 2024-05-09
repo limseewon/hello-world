@@ -335,6 +335,11 @@ input {
   font-size: 35px;
   align-items: center;
 }
+.trash i,
+.trash_icon2 i {
+  font-size: 35px;
+  align-items: center;
+}
 
 .add_listBtn {
   text-align: center;

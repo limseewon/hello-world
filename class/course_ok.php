@@ -46,8 +46,8 @@
     $file_names = '';
     $course_file_name = '';
 
-    $question = $_POST['question']?? '';
-    $answer = $_POST['answer']?? '';
+    // $question = $_POST['question']?? '';
+    // $answer = $_POST['answer']?? '';
     
     if($_POST['course_file_name']){
 
@@ -185,12 +185,13 @@
             $mysqli-> query($sql1);
 
 
-            $sql1 = "INSERT INTO question (qid, question, answer) VALUES ({$qid}, '{$question[$i]}', '{$answer[$i]}')";
+          //   $sql1 = "INSERT INTO question (qid, question, answer) VALUES ({$qid}, '{$question[$i]}', '{$answer[$i]}')";
 
 
-            $mysqli-> query($sql1);
+          //   $mysqli-> query($sql1);
           
-          }
+          // 
+        }
 
       }
 

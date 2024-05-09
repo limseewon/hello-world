@@ -59,8 +59,15 @@
     $course_file_names = $_POST['course_file_name']?? null;
 
 
-    $question = $_POST['question']?? [];   //question 테이블에 업데이트 
-    $answer = $_POST['answer']?? [];   //question 테이블에 업데이트 
+
+    // $lecSql1 = "SELECT cid FROM course WHERE cid = {$cid}";
+    // $lecResult = $mysqli -> query($lecSql1);
+    
+    // while ($row = $lecResult->fetch_assoc()) {
+    //     $lectures[] = $row['l_idx']; // l_idx의 값이 숫자, 배열로 출력
+    // }
+    // $question = $_POST['question']?? [];   //question 테이블에 업데이트 
+    // $answer = $_POST['answer']?? [];   //question 테이블에 업데이트 
 
 
     //echo count($youtube_thumb['name']);
@@ -166,13 +173,7 @@
       //   $result2 = $mysqli-> query($sql1);
       // }
     }
-    // if (isset($_POST['delete_youtube'])) {
-    //   $deleteYouTubeIndexes = $_POST['delete_youtube'];
-    //   foreach ($deleteYouTubeIndexes as $deleteIdx) {
-    //   $deleteSql = "DELETE FROM lecture WHERE cid = {$cid} AND l_idx = {$deleteIdx}";
-    //   $deleteResult = $mysqli->query($deleteSql);
-    //   }
-    // }
+   
 
     //course_file은 course_file 컬럼에 문자열로 주소를 콤마로 구분하여 입력
     
@@ -245,14 +246,32 @@ $sql .= ", course_file_name='{$course_file_names}'";
 
 $sql .= " WHERE cid = {$cid}";
 
-// echo $sql;
+echo $sql;
+
+if (isset($_POST['delete_youtube'])) {
+  $deleteYouTubeInd = $_POST['delete_youtube'];
+  foreach ($deleteYouTubeInd as $deleteIdx) {
+  $deleteSql = "DELETE FROM lecture WHERE cid = {$cid} AND l_idx = {$deleteIdx}";
+  $deleteResult = $mysqli->query($deleteSql);
+  }
+}
+
+if (isset($_POST['delete-file'])) {
+  $deleteYouTubeInd2 = $_POST['delete-file'];
+  foreach ($deleteYouTubeInd2 as $deleteIdx2) {
+  $deleteSql2 = "DELETE FROM course WHERE cid = {$cid}  = {$deleteIdx2}";
+  $deleteResult2 = $mysqli->query($deleteSql2);
+  }
+}
+
+
 
    $finalResult = $mysqli-> query($sql);
 
    $mysqli->commit();
     echo "<script>
     alert('강의 수정 완료!');
-    location.href='course_list.php';</script>";
+   location.href='course_list.php';</script>";
   }
 
     catch(Exception $e){
