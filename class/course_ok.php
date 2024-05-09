@@ -63,7 +63,7 @@
         if($_FILES['thumbnail']['size']> 10240000){
           echo "<script>
             alert('10MB 이하만 첨부할 수 있습니다.');    
-            history.back();      
+         //   history.back();      
           </script>";
           exit;
         }
@@ -71,7 +71,7 @@
         if(strpos($_FILES['thumbnail']['type'], 'image') === false){
           echo "<script>
             alert('이미지만 첨부할 수 있습니다.');    
-            history.back();            
+          //  history.back();            
           </script>";
           exit;
         }
@@ -87,7 +87,7 @@
         } else{
           echo "<script>
             alert('이미지등록 실패!');    
-            history.back();            
+         //   history.back();            
           </script>";
         }
         
@@ -100,7 +100,7 @@
         if($_FILES['course_file']['size'][$i]> 10240000){
           echo "<script>
             alert('10MB 이하만 첨부할 수 있습니다.');    
-            history.back();      
+          //  history.back();      
           </script>";
           exit;
         } 
@@ -119,7 +119,7 @@
         } else{
           echo "<script>
             alert('파일 등록 실패!');    
-            history.back();            
+         //   history.back();            
           </script>";
         }
 
@@ -151,7 +151,7 @@
             if($_FILES['youtube_thumb']['size'][$i]> 10240000){
               echo "<script>
                 alert('10MB 이하만 첨부할 수 있습니다.');    
-              history.back();      
+           //   history.back();      
               </script>";
               exit;
             }
@@ -159,23 +159,23 @@
             if(strpos($_FILES['youtube_thumb']['type'][$i], 'image') === false){
               echo "<script>
                 alert('이미지만 첨부할 수 있습니다.');    
-                history.back();            
+             //   history.back();            
               </script>";
               exit;
             }
         
-            $save_dir = $_SERVER['DOCUMENT_ROOT']."/helloworld/img/class/";
+            $save_dir = $_SERVER['DOCUMENT_ROOT']."/helloworld/img/youclass/";
             $filename = $_FILES['youtube_thumb']['name'][$i]; //insta.jpg
             $ext = pathinfo($filename, PATHINFO_EXTENSION); //jpg
             $newfilename = date("YmdHis").substr(rand(), 0,6); //20238171184015
             $youtube_thumb = $newfilename.".".$ext; //20238171184015.jpg
         
             if(move_uploaded_file($_FILES['youtube_thumb']['tmp_name'][$i], $save_dir.$youtube_thumb)){  
-              $upload_youtube_thumb[] = "/helloworld/img/class/".$youtube_thumb;
+              $upload_youtube_thumb[] = "/helloworld/img/youclass/".$youtube_thumb;
             } else{
               echo "<script>
                 alert('이미지등록 실패!');    
-                history.back();            
+             //   history.back();            
               </script>";
             }
           }
@@ -195,18 +195,18 @@
 
       }
 
-
+echo $sql;  
       $mysqli->commit();//디비에 커밋한다.  
 
       echo "<script>
       alert('강의 등록 완료!');
-   location.href='/helloworld/class/course_list.php';</script>";
+ //  location.href='/helloworld/class/course_list.php';</script>";
     }
     } catch(Exception $e){
       $mysqli->rollback();//저장한 테이블이 있다면 롤백한다.
       echo "<script>
       alert('강의 등록 실패');
-     history.back();
+    // history.back();
       </script>";
       exit;
     }

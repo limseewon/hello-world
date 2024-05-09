@@ -133,7 +133,7 @@
           exit;
         }
     
-        $save_dir = $_SERVER['DOCUMENT_ROOT']."/helloworld/img/class/";
+        $save_dir = $_SERVER['DOCUMENT_ROOT']."/helloworld/img/youclass/";
 
 
           $filename = $_FILES['youtube_thumb']['name'][$i]; 
@@ -142,7 +142,7 @@
           $youtube_thumb = $newfilename.".".$ext; 
 
           if(move_uploaded_file($_FILES['youtube_thumb']['tmp_name'][$i], $save_dir.$youtube_thumb)){  
-            $upload_youtube_thumb[] = "/helloworld/img/class/".$youtube_thumb;
+            $upload_youtube_thumb[] = "/helloworld/img/youclass/".$youtube_thumb;
           } else{
             echo "<script>
               alert('이미지등록 실패!');    
@@ -248,21 +248,21 @@ $sql .= " WHERE cid = {$cid}";
 
 echo $sql;
 
-if (isset($_POST['delete_youtube'])) {
-  $deleteYouTubeInd = $_POST['delete_youtube'];
-  foreach ($deleteYouTubeInd as $deleteIdx) {
-  $deleteSql = "DELETE FROM lecture WHERE cid = {$cid} AND l_idx = {$deleteIdx}";
-  $deleteResult = $mysqli->query($deleteSql);
-  }
-}
+// if (isset($_POST['delete_youtube'])) {
+//   $deleteYouTubeInd = $_POST['delete_youtube'];
+//   foreach ($deleteYouTubeInd as $deleteIdx) {
+//   $deleteSql = "DELETE FROM lecture WHERE cid = {$cid} AND l_idx = {$deleteIdx}";
+//   $deleteResult = $mysqli->query($deleteSql);
+//   }
+// }
 
-if (isset($_POST['delete-file'])) {
-  $deleteYouTubeInd2 = $_POST['delete-file'];
-  foreach ($deleteYouTubeInd2 as $deleteIdx2) {
-  $deleteSql2 = "DELETE FROM course WHERE cid = {$cid}  = {$deleteIdx2}";
-  $deleteResult2 = $mysqli->query($deleteSql2);
-  }
-}
+// if (isset($_POST['delete-file'])) {
+//   $deleteYouTubeInd2 = $_POST['delete-file'];
+//   foreach ($deleteYouTubeInd2 as $deleteIdx2) {
+//   $deleteSql2 = "DELETE FROM course WHERE cid = {$cid}  = {$deleteIdx2}";
+//   $deleteResult2 = $mysqli->query($deleteSql2);
+//   }
+// }
 
 
 
