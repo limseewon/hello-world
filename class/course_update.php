@@ -38,8 +38,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>강의수정</title>
     
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" integrity="sha512-ZbehZMIlGA8CTIOtdE+M81uj3mrcgyrh6ZFeG33A4FHECakGrOsTPlPQ8ijjLkxgImrdmSVUHn1j+ApjodYZow==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
     
     <link
       rel="stylesheet"
@@ -265,7 +266,7 @@
                       <div class="col-2 youtube_thumb">
                         <input type="file" class="form-control" name="youtube_thumb[]" />
                       </div>
-                      <div class="col-3 youtube_name">
+                      <div class="col-3 youtube_name ">
                         <input type="text" class="form-control" name="youtube_name[]" value="<?= $ai -> youtube_name?>"/>
                       </div>
                       <div class="col-6 youtube_url">
@@ -285,6 +286,12 @@
                         <span class="hidden">기존파일</span>
                         <img src="<?= $ai -> youtube_thumb?>" alt="" />
                       </div>
+                    </div>
+                    <div>
+                      <span>문제</span>
+                      <input type="text" name="question[]" value="<?= $ai -> youtube_name?>"placeholder="문제를 입력하세요">
+                      <span>정답</span>
+                      <input type="text" name="answer[]" value="<?= $ai -> youtube_name?>"placeholder="문제의 답을 입력하세요.">
                     </div>
                   </div>
                   <?php
@@ -330,11 +337,11 @@
                       <div class="col-2 youtube_thumb">
                         <input type="file" class="form-control" name="course_file[]"  />
                       </div>
-                      <div class="col-3 youtube_name">
+                      <div class="col-3 youtube_name colew">
                         <input type="text" class="form-control" name="course_file_name[]" value="<?= $cf; ?>" />
                       </div>
                       
-                      <div class="col-1 trash_icon">
+                      <div class="col-1 trash_icon2">
                         <label for="delete-file<?= $i; ?>"><i class="ti ti-trash bin_icon"></i></label>
                         <input
                           type="checkbox"

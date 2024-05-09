@@ -75,3 +75,8 @@ $("#course_form").submit(function (e) {
     return false;
   }
 });
+
+
+
+
+

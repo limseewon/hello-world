@@ -12,6 +12,7 @@ $result = $mysqli->query($sql);
 while ($rs = $result->fetch_object()) {
   $rsc[] = $rs;
 }
+
 ?>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link
@@ -89,7 +90,13 @@ while ($rs = $result->fetch_object()) {
                 </div>
                 <div class="modal-body">
                   <label for="name1" class="category_">카테고리명</label>
-                  <input type="text" class="form-control" name="name1" id="name1" placeholder="대분류명을 입력하세요."/>
+                  <!-- <input type="text" class="form-control" name="name1" id="name1" placeholder="대분류명을 입력하세요."/> -->
+                  <div class="col">
+                    <input type="text" class="form-control" id="code1" name="code1" placeholder="코드명 입력">
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control mt-3" id="name1" name="name1" placeholder="대분류명 입력">
+                  </div>
                 </div>
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-success btn_g" data-step="1" data-bs-dismiss="modal">
@@ -131,13 +138,21 @@ while ($rs = $result->fetch_object()) {
                     </div>
                   </div>
                   <label for="name2">카테고리명</label>
-                  <input
+                  <!-- <input
                     type="text"
                     class="form-control"
                     name="name2"
                     id="name2"
                     placeholder="중분류명을 입력하세요."
-                  />
+                  /> -->
+                  <div class="row mt-3">
+              <div class="col">
+                <input type="text" class="form-control" id="code2" name="code2" placeholder="코드명 입력">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" id="name2" name="name2" placeholder="중분류명 입력">
+              </div>
+            </div>
                 </div>
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-success btn_g" data-step="2" data-bs-dismiss="modal">
@@ -182,13 +197,21 @@ while ($rs = $result->fetch_object()) {
                     </div>
                   </div>
                   <label for="name3">카테고리명</label>
-                  <input
+                  <!-- <input
                     type="text"
                     class="form-control"
                     name="name3"
                     id="name3"
                     placeholder="소분류명을 입력하세요."
-                  />
+                  /> -->
+                  <div class="row mt-3">
+                    <div class="col">
+                      <input type="text" class="form-control" id="code3" name="code3" placeholder="코드명 입력">
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" id="name3" name="name3" placeholder="소분류명 입력">
+                    </div>
+                  </div>
                 </div>
                 <div class="modal-footer">
                   <button
@@ -376,7 +399,7 @@ while ($rs = $result->fetch_object()) {
     });
 
     function save_category(step) {
-
+      let code = $(`#code${step}`).val();
       let name = $(`#name${step}`).val();
       let pcode = $(`#pcode${step}`).val();
 
@@ -384,12 +407,14 @@ while ($rs = $result->fetch_object()) {
         alert('대분류를 먼저 선택하세요');
         return; 
       }
+      
       if (!name) {
         alert('카테고리명을 입력하세요');
         return;
       }
       let data = {
         name: name,
+        code: code,
         pcode: pcode,
         step: step
       }
@@ -405,7 +430,7 @@ while ($rs = $result->fetch_object()) {
           console.log('Error:', error);
         },
         success: function (return_data) {
-          console.log(return_data.result);
+          console.log(return_data);
 
           if (return_data.result == 1) {
             alert('카테고리가 등록되었습니다');
@@ -495,6 +520,7 @@ while ($rs = $result->fetch_object()) {
     ></script>
 
     <script src="/helloworld/js/common.js"></script>
+    <script src="/helloworld/js/course.js"></script>
     <script>
       let documentHeight = Math.max(
         document.body.scrollHeight,
