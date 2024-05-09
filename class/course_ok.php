@@ -45,6 +45,9 @@
     $course_file = $_FILES['course_file']?? [];
     $file_names = '';
     $course_file_name = '';
+
+    $question = $_POST['question']?? '';
+    $answer = $_POST['answer']?? '';
     
     if($_POST['course_file_name']){
 
@@ -177,6 +180,12 @@
             }
           }
             $sql1 = "INSERT INTO lecture (cid, youtube_thumb, youtube_name, youtube_url) VALUES ({$cid}, '{$upload_youtube_thumb[$i]}', '{$youtube_name[$i]}', '{$youtube_url[$i]}')";
+
+
+            $mysqli-> query($sql1);
+
+
+            $sql1 = "INSERT INTO question (qid, question, answer) VALUES ({$qid}, '{$question[$i]}', '{$answer[$i]}')";
 
 
             $mysqli-> query($sql1);
