@@ -231,6 +231,25 @@ tr{
 .pagination{
   padding-top: 50px;
 }
+
+/* notice_detail.html */
+.nt{
+  padding-bottom: 36px;
+}
+.nb{
+  width: 1153px;
+  height: 416px;
+}
+.tc{
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
 /*  ==================== MAIN :  최원석 ====================  */
 
 /*  ==================== FOOTER :  우준범 ====================  */
