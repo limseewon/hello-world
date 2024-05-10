@@ -208,7 +208,7 @@
       $mysqli->rollback();//저장한 테이블이 있다면 롤백한다.
       echo "<script>
       alert('강의 등록 실패');
-     history.back();
+    // history.back();
       </script>";
       exit;
     }

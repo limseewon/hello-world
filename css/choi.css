@@ -2287,7 +2287,7 @@ input {
 .youtubeNameBox,
 .youtubeViewcon,
 .youtubeViewname {
-  width: 50%;
+  width: 70%;
 }
 
 .youtubeUrlBox,
@@ -3048,11 +3048,7 @@ justify-content: space-between;
 .youtubo4 {width:30% ;height: 50px;  display: flex; align-items: center; justify-content: center; font-weight: bold;
     border-radius: 6px;background: #c2c4c7}
 
-.yidss { position: relative; right:15%}
-.yidss2 { position: relative; right:6%}
-.yidss3 { position: relative; right:5%}
-.yidss4 { position: relative; right:5%}
-.yidss5 { position: relative; right:5%}
+.yidss { margin-right: 94px;}
 .filebox_d2 { margin-top: 50px;}
 .file_dsas3 { margin-top: 10px; width: 100%;border-radius: 6px;  height: 50px; display: flex; align-items: center;border: 1px solid #000;}
 .yellow_bg { background: #14DDB9;}
