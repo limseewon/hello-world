@@ -150,7 +150,7 @@ header {
   background: linear-gradient(180deg, rgba(255, 255, 255, 1) 80px, rgba(238, 238, 238, 1) 80px);
   width: 100%;
   height: 75px;
-  position: fixed;
+  position: relative;
   left: 0;
   right: 0;
   overflow: hidden;
@@ -193,6 +193,44 @@ header {
 .logout {
 }
 
+.notice{
+  margin-top: 48px;
+}
+.tb{
+  margin-top: 36px;
+  margin-bottom: 33px;
+}
+.form-select{
+  font-size: var(--c-p);
+}
+.sb{
+  width: 213px;
+  height: 40px;
+}
+.search_bar{
+  gap: 20px;
+}
+.search{
+  width: 434px;
+  height: 40px;
+  font-size: var(--c-p);
+}
+.btn_search{
+  height: 40px;
+}
+table td, table th{
+  text-align: center;
+  vertical-align: middle;
+}
+tr{
+  width: 1153px;
+  height: 50px;
+  border-top: 1px solid #DEE2E6;
+  border-bottom: 1px solid #DEE2E6;
+}
+.pagination{
+  padding-top: 50px;
+}
 /*  ==================== MAIN :  최원석 ====================  */
 
 /*  ==================== FOOTER :  우준범 ====================  */
