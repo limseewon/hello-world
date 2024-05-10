@@ -82,57 +82,59 @@ $(".add_listBtn2 a").click(function (e) {
   $(".you_upload2").append(youtube2);
 });
 
-$(".trash_icon").change(function () {
-  if (confirm("정말로 삭제하시겠습니까?")) {
-    if ($(this).filter(":checked")) {
-      $(this).closest(".youtube").hide();
-    }
-  } else {
-    $(this).find(".trash_icon input").prop("checked", false);
-  }
-});
+// $(".trash_icon").change(function () {
+//   if (confirm("정말로 삭제하시겠습니까?")) {
+//     if ($(this).filter(":checked")) {
+//       $(this).closest(".youtube").hide();
+//     }
+//   } else {
+//     $(this).find(".trash_icon input").prop("checked", false);
+//   }
+// });
 
-$(".trash_icon2").change(function () {
-  if (confirm("정말로 삭제하시겠습니까?")) {
-    if ($(this).filter(":checked")) {
-      $(this).closest(".youtube2").hide();
-    }
-  } else {
-    $(this).find(".trash_icon2 input").prop("checked", false);
-  }
-});
+// $(".trash_icon2").change(function () {
+//   if (confirm("정말로 삭제하시겠습니까?")) {
+//     if ($(this).filter(":checked")) {
+//       $(this).closest(".youtube2").hide();
+//     }
+//   } else {
+//     $(this).find(".trash_icon2 input").prop("checked", false);
+//   }
+// });
 
-$('.youtube div').click(function(){
-  calcTotal();
-});
-$('.trash_icon').click(function(){
 
-  $(this).closest('.youtube').remove();
-  calcTotal();
-  let youtubeid =  $(this).closest('.youtube').find('.form-control').attr('data-id');
+$('.delete-youtube').change(function(){
+
+  let target = $(this).closest('.youtube');
+
+  //$(this).closest('.youtube').remove();
+
+  let youtubeid =  $(this).val();
 
 
 
   let data = {
     youtubeid  :youtubeid 
   }
-  $.ajax({
+  console.log(data);
+
+    $.ajax({
       url:'youtube_del.php',
       async:false,
       type: 'POST',
       data:data,
       dataType:'json',
       error:function(){},
-      success:function(data){
-      console.log(data);
-      if(data.result=='ok'){
-          alert('강의가 업데이트 되었습니다');  
-          location.reload();                      
+      success:function(return_data){
+      console.log(return_data);
+      if(return_data.result=='ok'){
+          alert('업데이트 되었습니다');  
+          target.remove();           
       }else{
           alert('오류, 다시 시도하세요');                        
           }
       }
-  });
+    });  
 });
 
 

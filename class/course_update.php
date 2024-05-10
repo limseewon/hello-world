@@ -264,13 +264,13 @@
                   <div class="youtube c_mb mt-3">
                     <div class="row justify-content-between">
                       <div class="col-2 youtube_thumb">
-                        <input type="file" class="form-control" data-id="<?= $ai -> cid;?>" name="youtube_thumb[]" />
+                        <input type="file" class="form-control" name="youtube_thumb[]" />
                       </div>
                       <div class="col-3 youtube_name ">
-                        <input type="text" class="form-control" data-id="<?= $ai -> cid;?>" name="youtube_name[]" value="<?= $ai -> youtube_name?>"/>
+                        <input type="text" class="form-control" name="youtube_name[]" value="<?= $ai -> youtube_name?>"/>
                       </div>
                       <div class="col-6 youtube_url">
-                        <input type="url" class="form-control" data-id="<?= $ai -> cid;?>"name="youtube_url[]" value="<?= $ai -> youtube_url?>"/>
+                        <input type="url" class="form-control" name="youtube_url[]" value="<?= $ai -> youtube_url?>"/>
                       </div>
                       <div class="col-1 trash_icon">
                         <label for="delete-youtube<?= $i; ?>"><i class="ti ti-trash bin_icon"></i></label>
@@ -420,13 +420,6 @@
       referrerpolicy="no-referrer"
     ></script>
 
-    <script>
-     $(".you_upload, .you_upload2").on("click", "#trash", function () {
-    $(this).closest(".youtube, .youtube2").remove();
-    });
-
-
-  </script>
 
     <script src="/helloworld/js/common.js"></script>
     <script src="/helloworld/js/makeoption.js"></script>

@@ -153,7 +153,7 @@ while ($is = $result->fetch_object()) {
     <div class="you_upload mt-3">
       <div class="youtubeTitleBox">
         <div class="d-flex gap-3 justify-content-center">
-          <div class=" youtubo">
+        <div class=" youtubo">
             <P>썸네일</P>
           </div>
           <div class=" youtubo2">
@@ -172,12 +172,12 @@ while ($is = $result->fetch_object()) {
           if (isset($addImgs)) {
             foreach ($addImgs as $ai) {
               ?>
-          <div class="youtube_con d-flex gap-3 justify-content-center poer">
+          <div class="youtube_con d-flex gap-3 justify-content-center">
             <div class="d-flex gap-3 youtubeViewcon">
-              <div class="youtubeViewthumb yidss2">
+              <div class="youtubeViewthumb">
                 <img src="<?= $ai->youtube_thumb ?>" alt="썸네일">
               </div>
-              <div class="youtubeViewname yidss3">
+              <div class="youtubeViewname">
                 <span>
                   <?= $ai->youtube_name ?>
                 </span>
@@ -186,12 +186,12 @@ while ($is = $result->fetch_object()) {
             <div class="youtubeViewurl yidss">
               <a href="<?= $ai->youtube_url ?>" target="blank" class="btn btn-outline-secondary">강의영상 바로가기</a>
             </div>
-            <div class="file_dsa yidss5">
+            <div class="file_dsa">
               <span>
               강의문제
               </span>
             </div>
-            <div class="file_dsa yidss4">
+            <div class="file_dsa">
               <img src="<?= $rs->course_file; ?>" alt="file">
               
               
