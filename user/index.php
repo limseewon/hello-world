@@ -65,7 +65,7 @@
       </div>
     </section>
     <section class="sec3 container">
-      <h2 class="jua dark sec_tt"></h2>
+      <h2 class="jua dark sec_tt">최신강의</h2>
       <div class="card_wrap">
         <ul class="d-flex">
           <li>
@@ -132,7 +132,7 @@
       </div>
     </section>
     <section class="sec4 container">
-      <h2 class=""></h2>
+      <h2 class="">인기강의</h2>
       <!-- Swiper -->
       <div class="page_wrap">
         <div class="swiper recom_slide">
@@ -200,7 +200,7 @@
       </div>
     </section>
     <section class="sec5 container">
-      <h2 class="jua dark sec_tt"></h2>
+      <h2 class="jua dark sec_tt">입문자를 위한 초급강의</h2>
       <!-- Swiper -->
       <div class="page_wrap">
         <div class="swiper new_slide">
@@ -224,8 +224,7 @@
                 <img src="" class="" alt="">
                 <div class="card-body">
                   <div class="badge_wrap">
-                    <span class="badge rounded-pill blue_bg b-pd"></span>
-                    <span class="badge rounded-pill green_bg b-pd"></span>
+                    
                   </div>
                   <h5 class=""></h5>
                   <div class="">
