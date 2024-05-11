@@ -65,70 +65,71 @@
       </div>
     </section>
     <section class="sec3 container">
-      <h2 class="jua dark sec_tt">최신강의</h2>
-      <div class="card_wrap">
-        <ul class="d-flex">
-          <li>
-            <div class="card" >
-              <img src="" class="" alt="">
-              <div class="card-body">
-                <h5 class="card-title"></h5>
-                <div class="card-text">
-                  
+      <h2 class="">최신강의</h2>
+      <!-- Swiper -->
+      <div class="page_wrap">
+        <div class="swiper recom_slide">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="card">
+                <img src="" class="" alt="">
+                <div class="card-body">
+                  <div class="badge_wrap">
+                    
+                  </div>
+                  <h5 class=""></h5>
+                  <div class="">
+                   
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="view_wrap">
-              <a href="#" class="view_btn">상세보기</button>
-              <a href="#"><i class="ti ti-heart"></i></a>
-              <a href="#"><i class="ti ti-basket"></i></a>
-            </div>
-          </li>
-          <li>
-            <div class="card" >
-              <img src="" class="" alt="">
-              <div class="card-body">
-                <h5 class="card-title"></h5>
-                <div class="card-text">
-                  
+            <div class="swiper-slide">
+              <div class="card">
+                <img src="" class="" alt="">
+                <div class="card-body">
+                  <div class="badge_wrap">
+                    
+                  </div>
+                  <h5 class="card-title"></h5>
+                  <div class="card-text">
+                    
+                  </div>
                 </div>
               </div>
             </div>
-          </li>
-          <li>
-            <div class="card" >
-              <img src="" class="" alt="">
-              <div class="card-body">
-                <h5 class="card-title"></h5>
-                <div class="card-text">
-                 
+            <div class="swiper-slide">
+              <div class="card">
+                <img src="" class="" alt="">
+                <div class="card-body">
+                  <div class="badge_wrap">
+                    
+                  </div>
+                  <h5 class="card-title"></h5>
+                  <div class="card-text">
+                   
+                  </div>
                 </div>
               </div>
             </div>
-          </li>
-          <li>
-            <div class="card">
-              <img src="" class="card-img-top" alt="">
-              <div class="card-body">
-                <h5 class="card-title"></h5>
-                <div class="card-text">
-                 
+            <div class="swiper-slide">
+              <div class="card">
+                <img src="" class="" alt="">
+                <div class="card-body">
+                  <div class="badge_wrap">
+                    
+                  </div>
+                  <h5 class="card-title"></h5>
+                  <div class="card-text">
+                   
+                  </div>
                 </div>
               </div>
             </div>
-          </li>
-          <li>
-            <div class="card" >
-              <img src="" class="card-img-top" alt="">
-              <div class="card-body">
-                <h5 class="card-title"></h5>
-                <div class="card-text">
-                  
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
+          </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
       </div>
     </section>
     <section class="sec4 container">
