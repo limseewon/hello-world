@@ -1,0 +1,34 @@
+.mainWrapper {
+  margin-top: 50px;
+}
+.mainContents {
+  width: 1060px;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.leftside {
+  padding: 40px 20px;
+  width: 194px;
+  height: 854px;
+  margin-right: 25px;
+}
+
+.leftside h2 {
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.leftside ul {
+  gap: 20px;
+}
+
+.leftside ul li:hover {
+  font-weight: bold;
+  color: var(--c-title-font);
+}
+.title {
+  margin-bottom: 30px;
+}
+.Expired {
+  margin-bottom: 100px;
+}

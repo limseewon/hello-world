@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="/user/css/common.css" />
+    <link rel="stylesheet" href="/user/css/login.css" />
+    <title>HelloWorld</title>
+  </head>
+  <body>
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#login_modal"
+    >
+      Launch demo modal3
+    </button>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="login_modal"
+      tabindex="-1"
+      aria-labelledby="login_modal_label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="login_modal_label">title</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <main class="d-flex flex-column align-items-center">
+              <div id="logo">
+                <a href="#"
+                  ><img src="/user/img/logo_text_X2.jpg" alt="logo.jpg"
+                /></a>
+              </div>
+              <form
+                action=""
+                method="POST"
+                class="d-flex flex-column align-items-start"
+                novalidate
+              >
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="login_id"
+                    name="login_id"
+                    placeholder="Id"
+                  />
+                  <label for="login_id">Id</label>
+                </div>
+                <div class="form-floating">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="login_pw"
+                    name="login_pw"
+                    placeholder="Password"
+                  />
+                  <label for="login_pw">Password</label>
+                  <div class="invalid-tooltip">
+                    Please choose a unique and valid username.
+                  </div>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault"
+                  />
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Default checkbox
+                  </label>
+                </div>
+                <div class="position-relative kakao">
+                  <button type="submit" class="btn btn-warning kakao">
+                    카카오톡으로 로그인하기
+                  </button>
+                  <div class="invalid-tooltip">
+                    Please choose a unique and valid username.
+                  </div>
+                </div>
+                <div class="position-relative">
+                  <button type="submit" class="btn btn-primary login">
+                    Primary
+                  </button>
+                  <div class="invalid-tooltip">
+                    Please choose a unique and valid username.
+                  </div>
+                </div>
+              </form>
+              <div class="find">
+                <span><a href="">아이디 찾기</a></span
+                ><span><a href="">비밀번호 찾기</a></span>
+              </div>
+              <span><a href="">회원 가입</a></span>
+            </main>
+          </div>
+          <!-- <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- jquery -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

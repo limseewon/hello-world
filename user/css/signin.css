@@ -1,0 +1,12 @@
+section {
+  height: 100vh;
+}
+.sigin-container{
+  padding: 70px;
+}
+h1 {
+  position: absolute;
+  text-indent: -9999em;
+  opacity: 0;
+  visibility: hidden;
+}
