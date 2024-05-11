@@ -193,7 +193,7 @@ header {
 .logout {
 }
 
-.notice{
+.h2_t{
   margin-top: 48px;
 }
 .tb{
@@ -219,7 +219,6 @@ header {
   height: 40px;
 }
 table td, table th{
-  text-align: center;
   vertical-align: middle;
 }
 tr{
@@ -248,6 +247,34 @@ th, td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+}
+.notice-detail-box{
+  width: 910px;
+  height: 290px;
+  margin: 0 auto;
+}
+.notice-content{
+  width: 400px;
+  height: auto;
+}
+.notice-content p{
+  padding-top: 20px;
+}
+#notice_img{
+  width: 385px;
+  height: 256px;
+}
+.btn_s{
+  width: 1153px;
+  padding-top: 43px; 
+}
+.r_btn{
+  gap: 20px;
+}
+
+/* Q&A.html */
+.qna_regist_btn{
+  height: 40px;
 }
 
 /*  ==================== MAIN :  최원석 ====================  */
