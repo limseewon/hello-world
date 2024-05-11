@@ -24,10 +24,10 @@ $cates1 = $_GET['cate1']??'';
 $cate2 = $_GET['cate2']??'';
 $cate3 = $_GET['cate3']??'';
 
-$ismain = $_GET['ismain'] ?? '';
-$isnew = $_GET['isnew'] ?? '';
-$isbest = $_GET['isbest'] ?? '';
-$isrecom = $_GET['isrecom'] ?? '';
+// $ismain = $_GET['ismain'] ?? '';
+// $isnew = $_GET['isnew'] ?? '';
+// $isbest = $_GET['isbest'] ?? '';
+// $isrecom = $_GET['isrecom'] ?? '';
 
 
 $search_where = '';
@@ -70,18 +70,7 @@ if (isset($_GET['cate3'])) {
   $cate3 = '';
 }
 
-// if($ismain){
-//   $search_where .= " and ismain = 1";
-// }
-// if($isnew){
-//   $search_where .= " and isnew = 1";
-// }
-// if($isbest){
-//   $search_where .= " and isbest = 1";
-// }
-// if($isrecom){
-//   $search_where .= " and isrecom = 1";
-// }
+
 
 //난이도 조회
 if (isset($_GET['level1'])) {
@@ -268,13 +257,7 @@ while ($rs2 = $result2->fetch_object()) {
                   </select>
                 </div>
               </div>
-              <div class="d-flex gap-3 mt-3 justify-content-between align-items-center">
- 
-      <div class="group d-flex align-items-center">
-        <input class="form-control" type="text" id="search_keyword" name="search_keyword" placeholder="상품명 또는 내용 입력">
-        <button class="btn btn-primary text-nowrap">검색</button>
-      </div>
-    </div>
+              
               <div class="d-flex align-items-center level_price">
                 <div class="d-flex flex-row">
                   <h3 class="b_text01 ">난이도</h3>
@@ -356,11 +339,6 @@ while ($rs2 = $result2->fetch_object()) {
                         <p>
                           <?= $item->content ?>
                         </p>
-                        <input class="form-check-input" type="checkbox" value="1"  
-                  <?php 
-                  if($item->ismain){ echo "checked";} 
-                  ?>
-                id="ismain[<?= $item->cid ?>]" name="ismain[<?= $item->cid ?>]">
                       </div>
                       <p class="duration"><i class="ti ti-calendar-event"></i><span>수강기간</span><span>
                           <?php if ($item->due == '') {
@@ -469,7 +447,7 @@ while ($rs2 = $result2->fetch_object()) {
       include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       ?>
 
-<div>test</div>
+
       <script src="/helloworld/js/makeoption.js"></script>
       
       <script>

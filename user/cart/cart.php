@@ -3,9 +3,7 @@
         <div class="cartOpBtns d-flex justify-content-between col-8">
           <div class="form-check all_check d-flex align-items-center">
             <input class="form-check-input" type="checkbox" value="" id="all_check" checked>
-            <label class="form-check-label" for="all_check">
-              전체선택
-            </label>
+            <label class="form-check-label" for="all_check">전체선택</label>
             <span>|<span class="select_count">0</span>개 (총 <span class="all_count">0</span>개)</span>
           </div>
           <button class="btn btn-primary dark select_del">선택삭제</button>
