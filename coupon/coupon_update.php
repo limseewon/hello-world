@@ -55,7 +55,7 @@ $coupon = $result -> fetch_object();
     
     <link rel="stylesheet" href="/helloworld/css/common.css"/>
     <link rel="stylesheet" href="/helloworld/css/index.css"/>
-    <link rel="stylesheet" href="/helloworld/css/choi.css"/>
+    <link rel="stylesheet" href="/helloworld/css/course_coupon.css"/>
     
     
       

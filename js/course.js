@@ -61,26 +61,26 @@ $(".add_listBtn a").click(function (e) {
   $(".you_upload").append(youtube);
 });
 
-$(".add_listBtn2 a").click(function (e) {
-  e.preventDefault();
+// $(".add_listBtn2 a").click(function (e) {
+//   e.preventDefault();
 
-  let youtube2 =
-    '<div class="youtube c_mb mt-3"><div class="row justify-content-between">' +
-    '<div class="col-2 youtube_thumb"><input type="file" class="form-control" name="course_file[]">' +
-    "</div>" +
-    '<div class="col-3 youtube_name colew">' +
-    '<input type="text" class="form-control" name="course_file_name[]" placeholder="강의파일명을 입력하세요.">' +
-    "</div>" +
+//   let youtube2 =
+//     '<div class="youtube c_mb mt-3"><div class="row justify-content-between">' +
+//     '<div class="col-2 youtube_thumb"><input type="file" class="form-control" name="course_file[]">' +
+//     "</div>" +
+//     '<div class="col-3 youtube_name colew">' +
+//     '<input type="text" class="form-control" name="course_file_name[]" placeholder="강의파일명을 입력하세요.">' +
+//     "</div>" +
     
-    '<div class="col-1 trash_icon" id="trash">' +
-    '<i class="ti ti-trash bin_icon">' +
-    "</div>" +
-    "</div>" +
-    '' +
-    "</div>";
+//     '<div class="col-1 trash_icon" id="trash">' +
+//     '<i class="ti ti-trash bin_icon">' +
+//     "</div>" +
+//     "</div>" +
+//     '' +
+//     "</div>";
 
-  $(".you_upload2").append(youtube2);
-});
+//   $(".you_upload2").append(youtube2);
+// });
 
 // $(".trash_icon").change(function () {
 //   if (confirm("정말로 삭제하시겠습니까?")) {
