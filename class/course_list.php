@@ -70,18 +70,18 @@ if (isset($_GET['cate3'])) {
   $cate3 = '';
 }
 
-if($ismain){
-  $search_where .= " and ismain = 1";
-}
-if($isnew){
-  $search_where .= " and isnew = 1";
-}
-if($isbest){
-  $search_where .= " and isbest = 1";
-}
-if($isrecom){
-  $search_where .= " and isrecom = 1";
-}
+// if($ismain){
+//   $search_where .= " and ismain = 1";
+// }
+// if($isnew){
+//   $search_where .= " and isnew = 1";
+// }
+// if($isbest){
+//   $search_where .= " and isbest = 1";
+// }
+// if($isrecom){
+//   $search_where .= " and isrecom = 1";
+// }
 
 //난이도 조회
 if (isset($_GET['level1'])) {
@@ -269,20 +269,7 @@ while ($rs2 = $result2->fetch_object()) {
                 </div>
               </div>
               <div class="d-flex gap-3 mt-3 justify-content-between align-items-center">
-      <div class="group">
-        <input class="form-check-input" type="checkbox" value="1" id="ismain" name="ismain">
-        <label class="form-check-label" for="ismain">메인</label>
-
-        <input class="form-check-input" type="checkbox" value="1" id="isnew" name="isnew">
-        <label class="form-check-label" for="isnew">신제품</label>
-
-        <input class="form-check-input" type="checkbox" value="1" id="isbest" name="isbest">
-        <label class="form-check-label" for="isbest">베스트</label>
-
-        <input class="form-check-input" type="checkbox" value="1" id="isrecom" name="isrecom">
-        <label class="form-check-label" for="isrecom">추천</label>
-      </div>
-      
+ 
       <div class="group d-flex align-items-center">
         <input class="form-control" type="text" id="search_keyword" name="search_keyword" placeholder="상품명 또는 내용 입력">
         <button class="btn btn-primary text-nowrap">검색</button>
