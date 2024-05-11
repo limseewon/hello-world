@@ -134,7 +134,7 @@
     $sql = "INSERT INTO courses (cate, name, price_status , price, level, due_status, due, act, content, thumbnail, course_file, course_file_name) 
     VALUES ('{$cate}','{$name}','{$price_status}','{$price}','{$level}','{$due_status}','{$due}','{$act}','{$content}','{$thumbnail}','{$file_names}','{$course_file_name}')";
 
-    echo $sql;
+    // echo $sql;
 
     $result = $mysqli->query($sql);
     $cid = $mysqli -> insert_id; //입력된 값의 pk가져오는 명령어
@@ -182,7 +182,7 @@
           }
             $sql1 = "INSERT INTO lecture (cid, youtube_thumb, youtube_name, youtube_url) VALUES ({$cid}, '{$upload_youtube_thumb[$i]}', '{$youtube_name[$i]}', '{$youtube_url[$i]}')";
             
-            echo $sql1;
+            // echo $sql1;
 
             $mysqli-> query($sql1);
 

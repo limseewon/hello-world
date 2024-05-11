@@ -249,12 +249,12 @@
                       <input type="text" class="form-control" name="course_file_name[]" id="course_file_name" placeholder="강의파일명을 입력하세요">
                     </div>                 
                     <div class="col-1 trash osd">
-                      <i class="ti ti-trash bin_icon"></i>
+                      <!-- <i class="ti ti-trash bin_icon"></i> -->
                     </div>
                   </div>
                 </div>      
               </div>
-              <div class="add_listBtn2">
+              <!-- <div class="add_listBtn2">
                 <a href="">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                     <path d="M3.99951 15.9977C3.99951 17.5736 4.3099 19.134 4.91296 20.5899C5.51601 22.0458 6.39993 23.3687 7.51423 24.483C8.62853 25.5973 9.9514 26.4812 11.4073 27.0843C12.8632 27.6873 14.4236 27.9977 15.9995 27.9977C17.5754 27.9977 19.1358 27.6873 20.5917 27.0843C22.0476 26.4812 23.3705 25.5973 24.4848 24.483C25.5991 23.3687 26.483 22.0458 27.0861 20.5899C27.6891 19.134 27.9995 17.5736 27.9995 15.9977C27.9995 14.4218 27.6891 12.8614 27.0861 11.4055C26.483 9.9496 25.5991 8.62673 24.4848 7.51243C23.3705 6.39813 22.0476 5.51421 20.5917 4.91116C19.1358 4.3081 17.5754 3.99771 15.9995 3.99771C14.4236 3.99771 12.8632 4.3081 11.4073 4.91116C9.9514 5.51421 8.62853 6.39813 7.51423 7.51243C6.39993 8.62673 5.51601 9.9496 4.91296 11.4055C4.3099 12.8614 3.99951 14.4218 3.99951 15.9977Z" stroke="#6F6F6F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -263,7 +263,7 @@
                   </svg>
                   리스트 추가
                 </a>
-              </div>
+              </div> -->
             </div>
             <div class="c_button d-flex justify-content-center align-items-center">
               <button class="btn_complete btn btn-success">등록완료</button>

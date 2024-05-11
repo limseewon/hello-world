@@ -64,19 +64,7 @@ select,
 .price_check {
   margin-left: 10px;
 }
-.course_list img {
-  width: 226px;
-  height: 162px;
-  margin-right: 20px;
-}
 
-.course_list {
-  width: 100%;
-  background: #fff;
-  border-radius: 12px;
-  padding: 27px;
-  margin-bottom: 27px;
-}
 
 .course_list_title {
   margin-bottom: calc(var(--c-space_updown) * 0.5);
@@ -958,19 +946,7 @@ select,
 .price_check {
   margin-left: 10px;
 }
-.course_list img {
-  width: 226px;
-  height: 162px;
-  margin-right: 20px;
-}
 
-.course_list {
-  width: 100%;
-  background: #fff;
-  border-radius: 12px;
-  padding: 27px;
-  margin-bottom: 27px;
-}
 
 .course_list_title {
   margin-bottom: calc(var(--c-space_updown) * 0.5);
@@ -1918,10 +1894,17 @@ select,
 .price_check {
   margin-left: 10px;
 }
-.course_list img {
+.courseimg { 
   width: 392px;
   height: 162px;
   margin-right: 20px;
+}
+
+.course_list img {
+  width: 392px;
+  height: 162px;
+ 
+  
 }
 
 .course_list {

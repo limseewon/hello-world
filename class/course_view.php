@@ -149,26 +149,19 @@ while ($is = $result->fetch_object()) {
         </div>
       </div>
     </div>
-    
     <div class="you_upload mt-3">
       <div class="youtubeTitleBox">
         <div class="d-flex gap-3 justify-content-center">
-        <div class=" youtubo">
-            <P>썸네일</P>
+          <div class="youtubeNameBox">
+            <P>강의명</P>
           </div>
-          <div class=" youtubo2">
-            <P>차시명</P>
-          </div>
-          <div class=" youtubo3">
+          <div class="youtubeUrlBox">
             <P>강의url</P>
-          </div>
-          <div class="filesBox youtubo4">
-            <P>강의문제</P>
           </div>
         </div>
       </div>
       <div class="youtube_link">
-        <?php
+          <?php
           if (isset($addImgs)) {
             foreach ($addImgs as $ai) {
               ?>
@@ -183,38 +176,27 @@ while ($is = $result->fetch_object()) {
                 </span>
               </div>
             </div>
-            <div class="youtubeViewurl yidss">
+            <div class="youtubeViewurl">
               <a href="<?= $ai->youtube_url ?>" target="blank" class="btn btn-outline-secondary">강의영상 바로가기</a>
             </div>
-            <div class="file_dsa">
-              <span>
-              강의문제
-              </span>
-            </div>
-            <div class="file_dsa">
-              <img src="<?= $rs->course_file; ?>" alt="file">
-              
-              
-            </div>
           </div>
-          <?php
+          <div class="filebox_d2">
+      </div>
+              <?php
             }
           }
           ?>
       </div>
-      <div class="filebox_d2">
-        <div class="file_dsas">
-          <span>
-          <?= $rs->course_file_name; ?>
-          </span>
+    </div>
+    <div class="file_dsas">
         </div>
         <div class="file_dsas5">
           <img src="<?= $rs->course_file; ?>" alt="file">
-          
-          
         </div>
-      </div>
-    </div>
+        <span>
+          <?= $rs->course_file_name; ?>
+          </span>
+    
   </div>
   <div class="course_status d-flex justify-content-between">
     <div class="d-flex flex-column align-items-end status_wrap">

@@ -311,7 +311,10 @@ while ($rs2 = $result2->fetch_object()) {
                 <li class="course_list row shadow_box">
                   <input type="hidden" name="cid[]" value="<?php echo $item->cid ?>">
                   <div class="col-md-8 d-flex">
+                    <div class="courseimg">
                     <img src="<?= $item->thumbnail ?>" alt="강의 썸네일 이미지" class="border">
+                    </div>
+                    
                     <div class="course_info">
                       <div>
                         <h3 class="course_list_title b_text01"><a href="course_view.php?cid=<?= $item->cid ?>"><?= $item->name ?></a>
