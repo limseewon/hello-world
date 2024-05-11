@@ -1,0 +1,29 @@
+.modal-header {
+  border-bottom: none;
+}
+#logo {
+  text-align: center;
+}
+
+#logo img {
+  width: 210px;
+}
+#logo,
+.form-floating,
+.kakao,
+.login {
+  width: 360px;
+  height: 58px;
+}
+
+main {
+  gap :16px;
+}
+
+form > div+div{
+  margin-top: 16px;
+}
+.find {
+  display: flex;
+  gap: 16px;
+}
