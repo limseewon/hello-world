@@ -3,20 +3,20 @@ h1 {
   text-indent: -9999em;
   opacity: 0;
   visibility: hidden;
-  top:-9999em
+  top: -9999em;
 }
 
 .modal-header {
   border-bottom: none;
 }
-#logo {
+#login_logo {
   text-align: center;
 }
 
-#logo img {
+#login_logo img {
   width: 210px;
 }
-#logo,
+#login_logo,
 .form-floating,
 .kakao,
 .login {
@@ -26,12 +26,13 @@ h1 {
 .login {
   background: var(--c-title-font);
   font-weight: bold;
+  border-color: var(--c-title-font);
 }
 main {
-  gap :16px;
+  gap: 16px;
 }
 
-form > div+div{
+form > div + div {
   margin-top: 16px;
 }
 .find {
@@ -39,6 +40,6 @@ form > div+div{
   gap: 16px;
 }
 .kakao {
-  color: #240D0D;
-  background: #FDD70C;
+  color: #240d0d;
+  background: #fdd70c;
 }

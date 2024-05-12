@@ -179,6 +179,12 @@ header {
   align-items: center;
   height: 100%;
 }
+
+#header_logo {
+  text-indent: -9999em;
+  opacity: 0;
+  visibility: hidden;
+}
 .center_menu {
   gap: 40px;
 }
@@ -194,7 +200,7 @@ header {
 .bt {
   gap: 10px;
 }
-.login {
+.login-btn {
   background-color: #c2c4c7;
   border: none;
 }

@@ -39,12 +39,11 @@ h1 {
   margin-bottom: 10px;
 }
 
-
-#signup_btn{
+#signup_btn {
   background: var(--c-title-font);
   height: 58px;
   border-color: var(--c-title-font);
 }
-#signup_btn:hover{
+#signup_btn:hover {
   background: green;
 }
