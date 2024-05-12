@@ -298,7 +298,7 @@ td {
 
 /*  ==================== FOOTER :  우준범 ====================  */
 footer {
-  background: var(--c-menu-BG);
+  background: #203247;
   color: var(--c-background);
   padding: 40px;
 }
