@@ -31,8 +31,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"
     />
-    <link rel="stylesheet" href="/user/css/common.css" />
-    <link rel="stylesheet" href="/user/css/signin.css" />
+    <link rel="stylesheet" href="/helloworld/user/css/common.css" />
+    <link rel="stylesheet" href="/helloworld/user/css/signin.css" />
     <title>HelloWorld</title>
   </head>
   <body>
@@ -42,7 +42,7 @@
       >
         <a href="index.html" id="logo">
           <h1>logo</h1>
-          <img src="/user/img/logo_text.jpg" alt="" />
+          <img src="/helloworld/user/img/logo_text.jpg" alt="" />
         </a>
         <form
           action="signup_ok.php"

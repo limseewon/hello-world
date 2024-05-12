@@ -1,31 +1,27 @@
+<?php
+session_start();
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"
-    />
-    <link rel="stylesheet" href="/helloworld/user/css/common.css" />
-    <link rel="stylesheet" href="/helloworld/user/css/login.css" />
-    <title>HelloWorld</title>
-  </head>
-  <body>
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#login_modal"
-    >
-      Launch demo modal3
-    </button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--bootstrap  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/helloworld/user/css/common.css">
+    <link rel="stylesheet" href="/helloworld/user/css/login.css">
+    
+    <?=$cssRoute1?>
+    <?=$cssRoute2?>
+    <title><?=$title?> | Hello World</title>
+    
+</head>
+<body>
+
     <!-- Modal -->
     <div
       class="modal fade"
@@ -47,7 +43,7 @@
           </div>
           <div class="modal-body">
             <main class="d-flex flex-column align-items-center">
-              <div id="logo">
+              <div id="login_logo">
                 <a href="#"
                   ><img
                     src="/helloworld/user/img/logo_text_X2.jpg"
@@ -135,19 +131,36 @@
         </div>
       </div>
     </div>
-
-    <!-- jquery -->
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-      crossorigin="anonymous"
-    ></script>
-
-    <!-- bootstrap -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+<header>
+    <div class="header_con d-flex container jcsb aic">
+        <a href="/helloworld/user/index.php" class="left_menu">
+            <h1 id=header_logo>logo</h1>
+            <img src="/helloworld/user/img/logo_text.jpg" alt="Hello World 로고">
+        </a>
+          <div class="center_menu d-flex aic bold h4 mb-0">
+            <a href="#">강의</a>
+            <a href="#">공지사항</a>
+            <a href="#">Q&amp;A</a>
+          </div>
+          <div class="right_menu d-flex aic h4 mb-0">
+            <div class="icons d-flex">
+                <a href="#" class="bi bi-cart"></a>
+                <a href="#" class="bi bi-person-circle"></a>
+            </div>
+            <div class="d-flex bt">
+                      <!-- <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#login_modal"
+              >
+                Launch demo modal3
+              </button> -->
+                <button type="button" class="btn btn-primary btn-sm login-btn" href="#" role="button" data-bs-toggle="modal"
+      data-bs-target="#login_modal">로그인</button>
+                <a type="button" class="btn btn-primary btn-sm member" href="/helloworld/user/signin.php" role="button">회원가입</a>
+            </div>
+          </div>
+        </div>
+    </div>
+</header>
