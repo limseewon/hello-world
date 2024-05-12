@@ -42,6 +42,7 @@
   --c-black: #000;
   --c-H2: #1b1c1d;
   --c-p: #495057;
+  --c-lightgray: #999999;
   --c-primary-button: #00c471;
 }
 
@@ -146,6 +147,9 @@ body {
 .custom-tooltip {
   --bs-tooltip-bg: var(--bd-violet-bg);
   --bs-tooltip-color: var(--bs-white);
+}
+.lightgray {
+  color:var(--c-lightgray)
 }
 
 /*  */
