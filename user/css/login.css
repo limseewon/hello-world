@@ -1,3 +1,11 @@
+h1 {
+  position: absolute;
+  text-indent: -9999em;
+  opacity: 0;
+  visibility: hidden;
+  top:-9999em
+}
+
 .modal-header {
   border-bottom: none;
 }
@@ -15,7 +23,10 @@
   width: 360px;
   height: 58px;
 }
-
+.login {
+  background: var(--c-title-font);
+  font-weight: bold;
+}
 main {
   gap :16px;
 }
@@ -26,4 +37,8 @@ form > div+div{
 .find {
   display: flex;
   gap: 16px;
+}
+.kakao {
+  color: #240D0D;
+  background: #FDD70C;
 }
