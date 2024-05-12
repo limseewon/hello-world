@@ -149,7 +149,7 @@ body {
   --bs-tooltip-color: var(--bs-white);
 }
 .lightgray {
-  color:var(--c-lightgray)
+  color: var(--c-lightgray);
 }
 
 /*  */
@@ -297,3 +297,36 @@ td {
 /*  ==================== MAIN :  최원석 ====================  */
 
 /*  ==================== FOOTER :  우준범 ====================  */
+footer {
+  background: var(--c-menu-BG);
+  color: var(--c-background);
+  padding: 40px;
+}
+.container ul {
+  margin-bottom: 50px;
+}
+.container h2 {
+  margin-right: 60px;
+}
+.container h2 img {
+  width: 100px;
+}
+.f_tt {
+  gap: 24px;
+}
+.tel_mail {
+  gap: 16px;
+}
+.f_tt span {
+  font-weight: bold;
+  color: var(--c-yellow);
+  margin-right: 5px;
+}
+
+.f_list {
+  gap: 10px;
+}
+.sns ul {
+  gap: 10px;
+}
+
