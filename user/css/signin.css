@@ -20,7 +20,9 @@ h1 {
   flex-direction: column;
   gap: 16px;
 }
-#userid,
+#userid {
+  width: 375px;
+}
 #useremail {
   width: 336px;
 }
@@ -42,4 +44,7 @@ h1 {
   background: var(--c-title-font);
   height: 58px;
   border-color: var(--c-title-font);
+}
+#signup_btn:hover{
+  background: green;
 }
