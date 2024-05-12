@@ -1,3 +1,11 @@
+<?php
+$title = 'Home';
+$cssRoute1 ='';
+$cssRoute2 ='';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
+
+?>
+
 <main>
     <section class="sec1">
       <!-- Swiper -->
@@ -270,8 +278,7 @@
         <div class="swiper-button-prev"></div>
       </div>
     </section>
-    
-    
-    
-    
-  </main
+</main>
+<?php
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_footer.php';
+?>
