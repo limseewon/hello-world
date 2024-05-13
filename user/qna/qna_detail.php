@@ -1,7 +1,7 @@
 <?php
 $title = 'Q&A';
-$cssRoute1 = '<link rel="stylesheet" href="/helloworld/user/css/notice_detail.css">';
-$cssRoute2 = '<link rel="stylesheet" href="/helloworld/user/css/notice.css">';
+$cssRoute1 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A_detail.css">';
+$cssRoute2 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A.css">';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 // 질문 ID 받아오기
@@ -53,14 +53,17 @@ if ($qna_id > 0) {
                     </tr>
                 </tbody>
             </table>
-            <div class="notice-detail-box jcsb d-flex">
-                <div class="notice-content h5">
+            <div class="qna-detail-box jcsb d-flex">
+                <div class="qna-content h5">
                     <p><?= $row['content']; ?></p>
                 </div>
             </div>
             <hr>
             <div class="reply_content d-flex aic jcsb">
-                <h5>답변</h5>
+                <div class="d-flex align-items-center">
+                    <h5 class="bold me-2">답변</h5>
+                    <h5>[<?php echo $comment_result->num_rows; ?>]</h5>
+                </div>
                 <button type="button" class="btn btn-success p" id="commentToggle">댓글쓰기</button>
             </div>
             <hr>
@@ -68,29 +71,35 @@ if ($qna_id > 0) {
                 <div class="comment-form" style="display: none;">
                     <form action="qna_save_insert.php" method="POST">
                         <input type="hidden" name="idx" value="<?= $qna_id ?>">
-                        <div class="d-flex align-items-center mb-3">
-                            <i class="bi bi-person-circle me-2 h5"></i>
-                            <div class="flex-grow-1">
-                                <textarea class="form-control" name="comment" rows="3" placeholder="댓글을 입력하세요"></textarea>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-person-circle me-2 h4"></i>
+                                <h5 class="mb-0">댓글 작성</h5>
                             </div>
+                            <textarea class="form-control mt-2" name="comment" rows="3" placeholder="댓글을 입력하세요" required></textarea>
                         </div>
                         <div class="text-end">
                             <button type="submit" class="btn btn-primary">등록</button>
                         </div>
                     </form>
                 </div>
-                <div class="comment-list">
+                <div class="comment-list mt-4">
                     <?php while ($comment = $comment_result->fetch_assoc()) : ?>
                         <div class="comment-item">
-                            <div class="d-flex align-items-start mb-3">
-                                <i class="bi bi-person-circle me-2 h5"></i>
-                                <div class="flex-grow-1">
-                                    <div class="comment-header">
-                                        <span class="comment-author"><?= $comment['name']; ?></span>
-                                        <span class="comment-date"><?= $comment['regdate']; ?></span>
+                            <div class="d-flex">
+                                <div class="comment-avatar me-3">
+                                    <i class="bi bi-person-circle h4"></i>
+                                </div>
+                                <div class="comment-body flex-grow-1">
+                                    <div class="comment-header mb-1">
+                                        <span class="comment-author p fw-bold"><?= $comment['name']; ?></span>
+                                        <span class="comment-date text-muted ms-2"><?= $comment['regdate']; ?></span>
+                                        <a href="qna_reply_delete.php?id=<?= $qna_id; ?>&comment_id=<?= $comment['id']; ?>" class="delete-link ms-3">
+                                            <span class="material-symbols-outlined">delete</span>
+                                        </a>
                                     </div>
-                                    <div class="comment-body">
-                                        <p><?= $comment['comment']; ?></p>
+                                    <div class="comment-content">
+                                        <p class="mb-0"><?= $comment['comment']; ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -100,8 +109,8 @@ if ($qna_id > 0) {
             </div>
         </div>
     </section>
-    <div>
-        <button type="button" class="btn btn-success bd"><a href="/helloworld/user/qna/qna.php">목록</a></button>
+    <div class="d-flex justify-content-end mb-5">
+        <button type="button" class="btn btn-success bd me-5"><a href="/helloworld/user/qna/qna.php">목록</a></button>
     </div>
 </div>
 
@@ -118,14 +127,6 @@ if ($qna_id > 0) {
             }
         });
     });
-
-    // 페이지 로드 시 댓글 개수에 따라 reply 값 업데이트
-    var qnaId = <?= $qna_id ?>;
-    if (qnaId > 0) {
-        var commentCount = $('.comment-item').length;
-        var replyStatus = commentCount > 0 ? '답변' : '미답변';
-        $.get('update_reply.php?idx=' + qnaId + '&reply=' + replyStatus);
-    }
 </script>
 
 <?php
