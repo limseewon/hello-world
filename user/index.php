@@ -1,7 +1,7 @@
 <?php
 $title = 'Home';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/index.css"/>';
-$cssRoute2 ='';
+$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/common.css"/>';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 
@@ -35,7 +35,6 @@ while ($rc_rs = $rc_result->fetch_object()) {
 ?>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -44,42 +43,58 @@ while ($rc_rs = $rc_result->fetch_object()) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw==" crossorigin="anonymous" referrerpolicy="no-referrer"> <!--jquery ui-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="/helloworld/user/css/index.css"/>
+    <link rel="stylesheet" href="/helloworld/user/css/common.css"/>
     <script src="js/index.js"></script>
 <main>
     <section class="sec1">
       <!-- Swiper -->
       <div class="swiper sec1_slide">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
+          <div class="swiper-slide image">
             <div class="imagebox">
               <img src="img/index_section1.webp" alt="슬라이드 이미지_01">
             </div>  
             <div class="slidetext">
-              <h2></h2>
+              <h2>문법 이상의 본질을 탐구하다</h2>
+              <h2>자바 중급 2편 출시</h2>
+               <p>재네릭과 컬렉션 프레임워크를 깊이 있게 배우며</p>
+               <p>본질적인 "WHY"에 대한 답을 찾아갑니다.</p>
             </div>        
           </div>
-          <div class="swiper-slide">
-            <div class="imagebox">
-              <img src="img/index_section2.png" alt="슬라이드 이미지_02"></div>
+          <div class="swiper-slide image2">
+            <div class="imagebox image2">
+              <img src="img/index_section2.webp" alt="슬라이드 이미지_02">
             </div>
             <div class="slidetext">
-              <h2></h2>
-            </div>      
-          <div class="swiper-slide">
-            <div class="imagebox">
+              <h2>문법 이상의 본질을 탐구하다</h2>
+              <h2>자바 중급 2편 출시</h2>
+               <p>재네릭과 컬렉션 프레임워크를 깊이 있게 배우며</p>
+               <p>본질적인 "WHY"에 대한 답을 찾아갑니다.</p>
+            </div> 
+          </div>     
+          <div class="swiper-slide image3">
+            <div class="imagebox image3">
               <img src="img/index_section3.png" alt="슬라이드 이미지_03">
             </div>   
             <div class="slidetext">
-              <h2></h2>
+              <h2>문법 이상의 본질을 탐구하다</h2>
+              <h2>자바 중급 2편 출시</h2>
+               <p>재네릭과 컬렉션 프레임워크를 깊이 있게 배우며</p>
+               <p>본질적인 "WHY"에 대한 답을 찾아갑니다.</p>
             </div>   
           </div>
-          <div class="swiper-slide">
-            <div class="imagebox">
+          <div class="swiper-slide image4">
+            <div class="imagebox image4">
              <img src="img/index_section4.gif" alt="슬라이드 이미지_04">
             </div> 
             <div class="slidetext">
-              <h2></h2>
+            <h2>문법 이상의 본질을 탐구하다</h2>
+              <h2>자바 중급 2편 출시</h2>
+               <p>재네릭과 컬렉션 프레임워크를 깊이 있게 배우며</p>
+               <p>본질적인 "WHY"에 대한 답을 찾아갑니다.</p>
             </div>     
           </div>
         </div>
@@ -145,12 +160,14 @@ while ($rc_rs = $rc_result->fetch_object()) {
       </div>
     </section>
     <section class="sec3 container">
-      <div class="plusbox d-flex">
-        <h2 class="jua dark sec_tt">최신 강의</h2>
-        <div class="moreplus d-flex">
+      <div class="plusbox d-flex secc3">
+        <h2 class="jua dark sec_tt courset">최신 강의</h2>
+        <a href=""><div class="moreplus d-flex">
+          
           <h3 class="moreview">더보기</h3>
           <span class="material-symbols-outlined">add</span>
-        </div>  
+        </div>
+        </a>  
       </div>
       <!-- Swiper -->
       <div class="page_wrap">
@@ -173,17 +190,17 @@ while ($rc_rs = $rc_result->fetch_object()) {
                       // 뱃지컬러
                       $levelBadge = $item->level;
                       if ($levelBadge === '초급') {
-                        echo 'yellow_bg';
-                      } else if ($levelBadge === '중급') {
                         echo 'green_bg';
+                      } else if ($levelBadge === '중급') {
+                        echo 'orange_bg';
                       } else {
-                        echo 'red_bg';
+                        echo 'blue_bg';
                       }
                       ?>">
                         <?= $item->level ?>
                           
                         </span>
-                        <span class="badge rounded-pill green_bg b-pd">
+                        <span class="badge rounded-pill pulele_bg b-pd">
                         <?php
                         //뱃지 키워드 
                         if (isset($item->cate)) {
@@ -203,7 +220,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
                       ?>
                       </h5>
                       <div class="card-text">
-                        <p class=""><i class="ti ti-calendar-event"></i>수강기간
+                        <p class="textbootn"><i class="ti ti-calendar-event"></i>수강기간 :
                           <span class="duration">
                           <?php if ($item->due == '') {
                             echo '무제한';
@@ -258,12 +275,13 @@ while ($rc_rs = $rc_result->fetch_object()) {
       </div>
     </section>
   <section class="sec4 container">
-  <div class="plusbox d-flex">
-        <h2 class="jua dark sec_tt">추천강의</h2>
-        <div class="moreplus d-flex">
+  <div class="plusbox d-flex secc4">
+        <h2 class="jua dark sec_tt courset">추천강의</h2>
+        <a href=""><div class="moreplus d-flex">
           <h3 class="moreview">더보기</h3>
           <span class="material-symbols-outlined">add</span>
-        </div>  
+        </div>
+        </a>  
       </div>
     <!-- Swiper -->
     <div class="page_wrap">
@@ -318,10 +336,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
                     </span>
                   </div>
                 </div>
-            <?php
-              }
-            }
-            ?> 
+            
           </div>
         </div>
         <div class="swiper-button-next recom_next"></div>
@@ -330,13 +345,14 @@ while ($rc_rs = $rc_result->fetch_object()) {
       </div>
   </section>
   <section class="sec5 container">
-  <div class="plusbox d-flex">
-        <h2 class="jua dark sec_tt">입문자를 위한 초급강의</h2>
-        <div class="moreplus d-flex">
-          <h3 class="moreview">더보기</h3>
-          <span class="material-symbols-outlined">add</span>
-        </div>  
+    <div class="plusbox d-flex secc5">
+      <h2 class="jua dark sec_tt courset">입문자를 위한 초급강의</h2>
+      <a href=""><div class="moreplus d-flex">
+        <h3 class="moreview">더보기</h3>
+        <span class="material-symbols-outlined">add</span>
       </div>
+      </a>  
+    </div>
     <!-- Swiper -->
     <div class="page_wrap">
       <div class="swiper beginner_slide">
