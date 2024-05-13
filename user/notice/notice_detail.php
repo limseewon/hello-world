@@ -90,3 +90,6 @@ $next_id = $row_next['next_id'];
         </div>
     </div>
 </div>
+<?php
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_footer.php';
+?>
