@@ -58,4 +58,19 @@ $(function(){
       nextEl: ".new_next",
     },
   });
+
+  var swiper = new Swiper(".beginner_slide", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    speed: 2000,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction : false, 
+    },
+    navigation: {
+      prevEl: ".beg_prev",
+      nextEl: ".beg_next",
+    },
+  });
 });
