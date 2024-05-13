@@ -18,10 +18,19 @@ switch ($view_option) {
       $sql .= " ORDER BY view DESC";
       break;
   case '2':
-      $sql .= " ORDER BY view ASC"     ;
+      $sql .= " ORDER BY view ASC";
+      break;
   default:
       $sql .= " ORDER BY idx DESC";
 }
+
+$date_option = isset($_GET['date']) ? $_GET['date'] : '';
+if ($date_option === 'latest') {
+    $sql .= " AND regdate >= DATE_SUB(NOW(), INTERVAL 7 DAY)";
+} elseif ($date_option === 'oldest') {
+    $sql .= " AND regdate < DATE_SUB(NOW(), INTERVAL 7 DAY)";
+}
+
 $result_count = $mysqli->query($sql);
 $totalcount = $result_count->num_rows;
 
@@ -36,13 +45,14 @@ $result = $mysqli->query($sql);
 <div class="container">
   <h2 class="h2_t">공지사항</h2>
   <div class="d-flex jcsb tb">
-    <select class="form-select form-select-lg mb-3 sb p" aria-label="Large select example" id="dateFilter">
-      <option value="all" selected>전체</option>
-      <option value="latest">최신순</option>
-      <option value="oldest">과거순</option>
+    <select class="form-select form-select-lg mb-3 sb p" aria-label="Large select example" id="dateFilter" onchange="location.href='notice.php?date='+this.value+'&keyword=<?= $keyword ?>'">
+      <option value="all" <?= $date_option === 'all' ? 'selected' : '' ?>>전체</option>
+      <option value="latest" <?= $date_option === 'latest' ? 'selected' : '' ?>>최신순</option>
+      <option value="oldest" <?= $date_option === 'oldest' ? 'selected' : '' ?>>과거순</option>
     </select>
-    <form class="block-top d-flex search_bar">
-      <input class="form-control me-2 search" type="search" placeholder="제목을 입력하시오." aria-label="Search" id="searchInput">
+    <form class="block-top d-flex search_bar" action="notice.php" method="GET">
+      <input type="hidden" name="date" value="<?= $date_option ?>">
+      <input class="form-control me-2 search" type="search" placeholder="제목을 입력하시오." aria-label="Search" id="searchInput" name="keyword" value="<?= $keyword ?>">
       <button class="btn btn-outline-success btn_search" type="submit" id="searchButton">검색</button>
     </form>
   </div>
@@ -102,87 +112,33 @@ $result = $mysqli->query($sql);
             }
             
             if ($pageNumber > 1) {
-            echo "<li class=\"page-item\"><a href=\"notice.php?pageNumber=1&keyword=$keyword\" class=\"page-link\" >처음</a></li>";
+            echo "<li class=\"page-item\"><a href=\"notice.php?pageNumber=1&keyword=$keyword&date=$date_option\" class=\"page-link\" >처음</a></li>";
             //이전
             if ($block_num > 1) {
                 $prev = ($block_num - 2) * $block_ct + 1;
-                echo "<li class=\"page-item\"><a href=\"notice.php?pageNumber=$prev&keyword=$keyword\" class=\"page-link\">이전</a></li>";
+                echo "<li class=\"page-item\"><a href=\"notice.php?pageNumber=$prev&keyword=$keyword&date=$date_option\" class=\"page-link\">이전</a></li>";
             }
             }
                 
             for ($i = $block_start; $i <= $block_end; $i++) {
             if ($i == $pageNumber) {
-                echo "<li class=\"page-item active\"><a href=\"notice.php?pageNumber=$i&keyword=$keyword\" class=\"page-link\">$i</a></li>";
+                echo "<li class=\"page-item active\"><a href=\"notice.php?pageNumber=$i&keyword=$keyword&date=$date_option\" class=\"page-link\">$i</a></li>";
             } else {
-                echo "<li class=\"page-item\"><a href=\"notice.php?pageNumber=$i&keyword=$keyword\" class=\"page-link\">$i</a></li>";
+                echo "<li class=\"page-item\"><a href=\"notice.php?pageNumber=$i&keyword=$keyword&date=$date_option\" class=\"page-link\">$i</a></li>";
             }            
             }  
 
             if ($pageNumber < $total_page) {
             if ($block_end < $total_page) {
                 $next = $block_num * $block_ct + 1;
-                echo "<li class=\"page-item\"><a href=\"notice.php?pageNumber=$next&keyword=$keyword\" class=\"page-link\">다음</a></li>";
+                echo "<li class=\"page-item\"><a href=\"notice.php?pageNumber=$next&keyword=$keyword&date=$date_option\" class=\"page-link\">다음</a></li>";
             }
-            echo "<li class=\"page-item\"><a href=\"notice.php?pageNumber=$total_page&keyword=$keyword\" class=\"page-link\">마지막</a></li>";
+            echo "<li class=\"page-item\"><a href=\"notice.php?pageNumber=$total_page&keyword=$keyword&date=$date_option\" class=\"page-link\">마지막</a></li>";
             }        
             ?>
         </ul>
         </div>    
 </div>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-      var dateFilter = document.getElementById('dateFilter');
-      var searchInput = document.getElementById('searchInput');
-      var searchButton = document.getElementById('searchButton');
-      var tableRows = document.querySelectorAll('.notice_tb tbody tr');
-
-      // 작성일 필터링 기능
-      dateFilter.addEventListener('change', filterRows);
-
-      // 제목 검색 기능
-      searchButton.addEventListener('click', function(event) {
-          event.preventDefault();
-          filterRows();
-      });
-
-      // 행 필터링 함수
-      function filterRows() {
-          var selectedOption = dateFilter.value;
-          var searchTerm = searchInput.value.toLowerCase();
-
-          tableRows.forEach(function(row) {
-              var date = new Date(row.querySelector('td:last-child').textContent);
-              var title = row.querySelector('td:nth-child(2) a').textContent.toLowerCase();
-
-              if (
-                  (selectedOption === 'all' ||
-                      (selectedOption === 'latest' && isLatestDate(date)) ||
-                      (selectedOption === 'oldest' && isOldestDate(date))
-                  ) &&
-                  title.includes(searchTerm)
-              ) {
-                  row.style.display = '';
-              } else {
-                  row.style.display = 'none';
-              }
-          });
-      }
-
-      // 최신순 날짜 확인 함수
-      function isLatestDate(date) {
-          var today = new Date();
-          var diffDays = Math.floor((today - date) / (1000 * 60 * 60 * 24));
-          return diffDays <= 7; // 최근 7일 이내의 날짜인 경우 최신순으로 간주
-      }
-
-      // 과거순 날짜 확인 함수
-      function isOldestDate(date) {
-          var today = new Date();
-          var diffDays = Math.floor((today - date) / (1000 * 60 * 60 * 24));
-          return diffDays > 7; // 7일 이전의 날짜인 경우 과거순으로 간주
-      }
-  });
-</script>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_footer.php';
 ?>
