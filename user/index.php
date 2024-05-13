@@ -388,8 +388,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
                   <img src="" class="card-img-top" alt="강의 썸네일">
                   <div class="card-body">
                     <div class="badge_wrap">
-                      <span class="badge rounded-pill b-pd
-                      ">
+                      <span class="badge rounded-pill b-pd">
                         
                       </span>
                       <span class="badge rounded-pill green_bg b-pd">
