@@ -18,7 +18,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
 
 // 추천강의
 
-// echo $sql;
+
 // $new_sql = "SELECT c.course_id, COUNT(oc.course_id) AS `count`, c.cate, c.name, c.price_status, c.price, c.level, c.due_status, c.due, c.act, c.content, c.thumbnail
 // FROM `course` c
 // LEFT JOIN `ordered_courses` oc ON c.course_id = oc.course_id
@@ -33,7 +33,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
 // print_r($new_rsc);
 
 ?>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -269,86 +269,45 @@ while ($rc_rs = $rc_result->fetch_object()) {
     <div class="page_wrap">
         <div class="swiper recom_slide">
           <div class="swiper-wrapper">
-          <?php
-          if (isset($new_rsc)) {
-            foreach ($new_rsc as $item) {
-          ?>
+         
                 <div class="swiper-slide">
                   <div class="card">
                     <div class="cardimg">
-                    <img src="<?= $item->thumbnail ?>" class="card-img-top" alt="강의 썸네일">
+                    <img src="img/" class="card-img-top" alt="강의 썸네일">
                     </div>
                     
                     <div class="card-body">
                       <div class="badge_wrap">
                         <span class="badge rounded-pill b-pd
-                        <?php
-                      // 뱃지컬러
-                      $levelBadge = $item->level;
-                      if ($levelBadge === '초급') {
-                        echo 'yellow_bg';
-                      } else if ($levelBadge === '중급') {
-                        echo 'green_bg';
-                      } else {
-                        echo 'red_bg';
-                      }
-                      ?>">
-                        <?= $item->level ?>
+                        ">
+                        
                           
                         </span>
                         <span class="badge rounded-pill green_bg b-pd">
-                        <?php
-                        //뱃지 키워드 
-                        if (isset($item->cate)) {
-                          $categoryText = $item->cate;
-                          $parts = explode('/', $categoryText);
-                          $lastPart = end($parts);
-                          echo $lastPart;
-                        }
-                        ?>
+                        
                         </span>
                       </div>
                       <h5 class="card-title">
-                      <?php
-                      $strTitle = $item->name;
-                      $strTitle = mb_strimwidth($strTitle, 0, 32, "...", "utf-8");
-                      echo $strTitle;
-                      ?>
+                      
                       </h5>
                       <div class="card-text">
                         <p class=""><i class="ti ti-calendar-event"></i>수강기간
                           <span class="duration">
-                          <?php if ($item->due == '') {
-                            echo '무제한';
-                          } else {
-                            echo $item->due;
-                          }
-                          ?>
+                          
                           </span>
                         </p>
-                        <?php
-                        if ($item->price_status != "무료") {
-                        ?>
+                        
                           <div>
                           <span class="content_tt number red">
-                            <?= $item->price ?>
+                           
                           </span><span>원</span>
                         </div>
-                      <?php
-                      } else {
-                      ?>
-                        <div>
-                            <span class="content_tt red">무료</span>
-                            
-                          </div>
-                          <?php
-                      }
-                      ?>
+                     
                       </div>
                     </div>
                   </div>
                   <div class="view_wrap d-flex align-items-center justify-content-center flex-column">
-                    <a href="/helloworld/user/class/course_view.php?cid=<?= $item->cid ?>" class="view_btn"></a>
+                    <a href="/helloworld/user/class/course_view.php?cid=" class="view_btn"></a>
                     <span>
                       <a href="" class="card_like">
                         
