@@ -153,6 +153,12 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                   <label for="summernote" class="form-label">내용</label>
                   <div id="summernote"></div>
                 </div>
+                <div class="input-group d-flex file">
+                  <div class="add d-flex">
+                    <label for="formGroupExampleInput" class="form-label">이미지</label>
+                    <input type="file" class="form-control img-box" id="image" name="image" accept="image/*">
+                  </div>
+                </div>
                 <div>
                   <div class="input-group d-flex file">
                     <div class="add d-flex">

@@ -261,6 +261,7 @@ $next_id = $row_next['next_id'];
           <div class="mb-3 d-flex con">
               <p>내용</p>
               <?= $row['content']; ?>
+              <?= $row['is_img']; ?>
           </div>
           <!-- 첨부 파일 출력 부분 -->
           <div class="d-flex file">

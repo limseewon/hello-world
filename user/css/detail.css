@@ -91,6 +91,13 @@ td {
 .comment-body p {
   margin: 0;
 }
-.btn .bd{
-  padding-top: 30px;
+.bd{
+  margin-right: 0;
+  margin-top: 30px;
+}
+#commentToggle{
+  height: 30px;
+}
+.tw{
+  width: 504px;
 }

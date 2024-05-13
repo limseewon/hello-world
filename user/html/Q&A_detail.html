@@ -70,32 +70,38 @@
             <hr>
             <div class="reply_content d-flex aic jcsb">
                 <h5>답변</h5>
-                <button type="button" class="btn btn-success" id="commentToggle">댓글쓰기</button>
+                <button type="button" class="btn btn-success p" id="commentToggle">댓글쓰기</button>
             </div>
             <hr>
             <div class="reply_comments">
-                <div class="comment-form" style="display: none;">
-                    <form>
-                      <div class="form-group">
-                        <label for="commentText">댓글 작성</label>
-                        <textarea class="form-control" id="commentText" rows="3" placeholder="댓글을 입력하세요"></textarea>
+              <div class="comment-form" style="display: none;">
+                  <div class="d-flex align-items-center mb-3">
+                      <i class="bi bi-person-circle me-2 h5"></i>
+                      <div class="flex-grow-1">
+                          <textarea class="form-control" id="commentText" rows="3" placeholder="댓글을 입력하세요"></textarea>
                       </div>
+                  </div>
+                  <div class="text-end">
                       <button type="submit" class="btn btn-primary">등록</button>
-                    </form>
                   </div>
-                <hr>
-                <div class="comment-list">
-                  <div class="comment">
-                    <div class="comment-header">
-                      <span class="comment-author">선생님</span>
-                      <span class="comment-date">2024.05.23</span>
-                    </div>
-                    <div class="comment-body">
-                      <p>안녕하세요 채원님! 강의 커리큘럼대로 천천히 따라오시면 가능하실거에요!</p>
-                    </div>
-                  </div>
-                </div>
               </div>
+              <div class="comment-list">
+                  <div class="comment">
+                      <div class="d-flex align-items-start mb-3">
+                          <i class="bi bi-person-circle me-2 h5"></i>
+                          <div class="flex-grow-1">
+                              <div class="comment-header">
+                                  <span class="comment-author">선생님</span>
+                                  <span class="comment-date">2024.05.23</span>
+                              </div>
+                              <div class="comment-body">
+                                  <p>안녕하세요 채원님! 강의 커리큘럼대로 천천히 따라오시면 가능하실거에요!</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
         </div>
     </section>
     <div>
