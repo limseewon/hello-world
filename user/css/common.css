@@ -1,6 +1,6 @@
 @charset "utf-8";
 @import url(/helloworld/user/css/reset.css);
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 :root {
   --f-H2: 28px;
@@ -28,7 +28,7 @@
   --c-menu-BG: #101924;
   --c-active-button: #798bff;
   --c-Nonactive-button: #6c757d;
-  --c-nonactive-button-hover:#8A8686;
+  --c-nonactive-button-hover: #8a8686;
   --c-complete-button: #28a745;
   --c-complete-button-hover: #079828;
   --c-cancle-button: #dc3545;
@@ -45,7 +45,7 @@
   --c-p: #495057;
   --c-lightgray: #999999;
   --c-primary-button: #00c471;
-  --c-border-grey: #C2C4C7;
+  --c-border-grey: #c2c4c7;
 }
 
 /* typography */
@@ -87,7 +87,7 @@ p,
 /* breadcrumb */
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: var(--c-font);
   box-sizing: border-box;
 }
@@ -160,11 +160,7 @@ body {
 /*  ==================== HEADER : 임시원 ====================  */
 header {
   background: rgb(255, 255, 255);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 1) 80px,
-    rgba(238, 238, 238, 1) 80px
-  );
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 80px, rgba(238, 238, 238, 1) 80px);
   width: 100%;
   height: 75px;
   position: relative;
@@ -215,9 +211,26 @@ header {
 }
 .logout {
 }
-.bi-person-circle{
+.bi p {
+  position: absolute;
+  text-indent: -9999em;
+  opacity: 0;
+  visibility: hidden;
+}
+.bi-person-circle {
+  /* position: relative; */
   color: var(--c-title-font);
 }
+.icons {
+  position: relative;
+}
+.profile_box {
+  position: absolute;
+  color: #00c471 !important;
+  /* top: ; */
+  /* left: 0; */
+}
+
 .h2_t {
   margin-top: 48px;
 }
@@ -256,7 +269,7 @@ tr {
 .pagination {
   padding-top: 50px;
 }
-.tw{
+.tw {
   width: 504px;
 }
 /* notice_detail.html */
