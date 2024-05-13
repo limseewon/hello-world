@@ -12,24 +12,29 @@ if ($keyword) {
   $sql .= " AND title LIKE '%$keyword%'";
 }
 
+$date_option = isset($_GET['date']) ? $_GET['date'] : '';
 $view_option = isset($_GET['view']) ? $_GET['view'] : '';
+
+$order_by = "";
+
 switch ($view_option) {
-  case '1':
-      $sql .= " ORDER BY view DESC";
-      break;
-  case '2':
-      $sql .= " ORDER BY view ASC";
-      break;
-  default:
-      $sql .= " ORDER BY idx DESC";
+    case '1':
+        $order_by = " ORDER BY view DESC";
+        break;
+    case '2':
+        $order_by = " ORDER BY view ASC";
+        break;
+    default:
+        $order_by = " ORDER BY idx DESC";
 }
 
-$date_option = isset($_GET['date']) ? $_GET['date'] : '';
 if ($date_option === 'latest') {
-    $sql .= " AND regdate >= DATE_SUB(NOW(), INTERVAL 7 DAY)";
+  $order_by = " ORDER BY regdate DESC";
 } elseif ($date_option === 'oldest') {
-    $sql .= " AND regdate < DATE_SUB(NOW(), INTERVAL 7 DAY)";
+  $order_by = " ORDER BY regdate ASC";
 }
+
+$sql .= $order_by;
 
 $result_count = $mysqli->query($sql);
 $totalcount = $result_count->num_rows;
