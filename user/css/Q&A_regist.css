@@ -1,0 +1,49 @@
+.regist_content{
+    width: 966px;
+    height: 563px;
+    padding-top: 37px;
+    margin: 0 auto;
+}
+.regist_create_form{
+    width: 883px;
+    height: 420px;
+}
+#title{
+  width: 883px;
+  height: 40px;
+}
+.qt{
+  padding-right: 50px;
+}
+.con{
+  padding-top: 32px;
+}
+#summernote{
+  width: 883px;
+  height: 420px;
+}
+.file{
+  padding-top: 32px;
+}
+.file-box{
+  width: 883px;
+  height: 38px;
+}
+.ft{
+  padding-right: 0px;
+}
+.form-label.ft {
+  display: inline-block;
+  width: 70px; /* 원하는 너비로 조정 */
+}
+.cont{
+  padding-right: 50px;
+}
+tr, td{
+  border: none;
+}
+.right-button{
+  position: absolute;
+  right: 0;
+  bottom: -61px;
+}

@@ -1,0 +1,96 @@
+
+/* notice_detail.html */
+
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.notice-detail-box {
+  width: 910px;
+  height: auto;
+  margin: 0 auto;
+}
+.notice-content {
+  width: auto;
+  height: auto;
+}
+.notice-content p {
+  padding-top: 20px;
+}
+#notice_img {
+  width: 385px;
+  height: 256px;
+}
+.btn_s {
+  width: 1153px;
+  padding-top: 43px;
+}
+.r_btn {
+  gap: 20px;
+}
+
+/* Q&A detail*/
+.reply_content{
+  width: 910px;
+  height: auto;
+  margin: 0 auto;
+}
+.reply_comments {
+  margin-top: 30px;
+}
+
+.comment-form {
+  margin-bottom: 20px;
+}
+
+.comment-form label {
+  font-weight: bold;
+}
+
+.comment-form textarea {
+  resize: vertical;
+}
+
+.comment-form button {
+  margin-top: 10px;
+}
+
+.comment-list {
+  margin-top: 20px;
+}
+
+.comment {
+  margin-bottom: 20px;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comment-author {
+  font-weight: bold;
+}
+
+.comment-date {
+  color: #888;
+  font-size: 14px;
+}
+
+.comment-body {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.comment-body p {
+  margin: 0;
+}
+.btn .bd{
+  padding-top: 30px;
+}

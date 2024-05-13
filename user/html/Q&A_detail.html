@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello || World</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/user/css/common.css">
+    <link rel="stylesheet" href="/user/css/detail.css">
+</head>
+<body>
+<header>
+    <div class="header_con d-flex container jcsb aic">
+        <div class="left_menu">
+            <img src="/user/img/logo_text.jpg" alt="Hello World 로고">
+          </div>
+          <div class="center_menu d-flex aic bold h4 mb-0">
+            <a href="#">강의</a>
+            <a href="/user/html/notice.html">공지사항</a>
+            <a href="/user/html/Q&A.html">Q&amp;A</a>
+          </div>
+          <div class="right_menu d-flex aic h4 mb-0">
+            <div class="icons d-flex">
+                <a href="#" class="bi bi-cart"></a>
+                <a href="#" class="bi bi-person-circle"></a>
+            </div>
+            <div class="d-flex bt">
+                <button type="button" class="btn btn-primary btn-sm login" href="#" role="button">로그인</button>
+                <button type="button" class="btn btn-primary btn-sm member" href="#" role="button">회원가입</button>
+            </div>  
+          </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <h2 class="h2_t nt">Q&A</h2>
+    <section>
+        <div class="content-box nb">
+            <table class="table tc"> 
+                <thead>
+                    <tr>
+                        <th scope="col">강의명</th>
+                        <th scope="col">제목</th>
+                        <th scope="col">작성자</th>
+                        <th scope="col">조회수</th>
+                        <th scope="col">답변 여부</th>
+                        <th scope="col">작성일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">React 입문</th>
+                        <td>자바 기초를 잡고 싶습니다..!</td>
+                        <td>김채원</td>
+                        <td>1004</td>
+                        <td><button type="button" class="btn btn-success">답변</button></td>
+                        <td>2024.05.22</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="notice-detail-box jcsb d-flex">
+                <div class="notice-content h5">
+                  <p>안녕하세요 선생님!</p>
+                  <p>자바가 너무 어려워서 어떻게 시작해야 하는지 감이 안잡힙니다..!</p>
+                  <p>어떻게 하면 좋을까요?</p>
+                </div>
+            </div>
+            <hr>
+            <div class="reply_content d-flex aic jcsb">
+                <h5>답변</h5>
+                <button type="button" class="btn btn-success" id="commentToggle">댓글쓰기</button>
+            </div>
+            <hr>
+            <div class="reply_comments">
+                <div class="comment-form" style="display: none;">
+                    <form>
+                      <div class="form-group">
+                        <label for="commentText">댓글 작성</label>
+                        <textarea class="form-control" id="commentText" rows="3" placeholder="댓글을 입력하세요"></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary">등록</button>
+                    </form>
+                  </div>
+                <hr>
+                <div class="comment-list">
+                  <div class="comment">
+                    <div class="comment-header">
+                      <span class="comment-author">선생님</span>
+                      <span class="comment-date">2024.05.23</span>
+                    </div>
+                    <div class="comment-body">
+                      <p>안녕하세요 채원님! 강의 커리큘럼대로 천천히 따라오시면 가능하실거에요!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </section>
+    <div>
+        <button type="button" class="btn btn-danger bd"><a href="/user/html/Q&A.html">닫기</a></button>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var commentToggle = document.getElementById('commentToggle');
+      var commentForm = document.querySelector('.comment-form');
+  
+      commentToggle.addEventListener('click', function() {
+        if (commentForm.style.display === 'none') {
+          commentForm.style.display = 'block';
+        } else {
+          commentForm.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
