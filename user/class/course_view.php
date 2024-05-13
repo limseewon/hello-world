@@ -7,77 +7,35 @@ $cssRoute2 ='';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 
-
-
-
 $cid = $_GET['cid'];
-echo $cid;
 
-$sql = "SELECT * FROM courses where cid={$cid}";
-$result = $mysqli->query($sql);
-$rs = $result->fetch_object();
-echo $rs;
+  $sql = "SELECT * FROM courses where cid={$cid}";
+  $result = $mysqli->query($sql);
+  $rs = $result->fetch_object();
 
-$paysql = "SELECT * FROM payments where cid={$cid}";
-$presult = $mysqli->query($paysql);
-$payrs = $presult->fetch_object();
+  // $paysql = "SELECT * FROM payments where cid={$cid}";
+  // $presult = $mysqli->query($paysql);
+  // $payrs = $presult->fetch_object();
 
-$imgsql = "SELECT * FROM lecture WHERE cid={$cid}";
-$result = $mysqli->query($imgsql);
+  $imgsql = "SELECT * FROM lecture WHERE cid={$cid}";
+  $result = $mysqli->query($imgsql);
 
-while ($is = $result->fetch_object()) {
-  $addImgs[] = $is;
-}
+  while ($is = $result->fetch_object()) {
+    $addImgs[] = $is;
+  }
 
+  
 
-
-$re_cnt = $mysqli->query($c_sql);
-$cnt = $re_cnt->fetch_object();
-
-$sql1 = "SELECT r.*, u.username, u.userimg, c.name, w.* FROM review r
-        JOIN users u ON r.userid = u.userid
-        JOIN courses c ON c.cid = r.cid
-        LEFT JOIN review_reply w ON r.rid = w.rid
-        WHERE r.cid = '{$cid}' limit 0,2";
-
-$result1 = $mysqli->query($sql1);
-
-while ($card = $result1->fetch_object()) {
-  $re[] = $card;
-}
-
-$cateString = $rs->cate;
-$parts = explode('/', $cateString);
-
-
- // 최근 본 강의를 저장할 배열 초기화
- $rvarr = [];
  
- if (isset($_COOKIE['recent_view_course'])) {
-     $rvc = json_decode($_COOKIE['recent_view_course'], true);
 
-     // 현재 강의가 이미 배열에 있는지 확인
-     $found = false;
-     foreach ($rvc as $course) {
-         if ($course['cid'] == $rs->cid) {
-             $found = true;
-             break;
-         }
-     }
-     if (!$found) {
-         // 이미 3개의 강의가 있는 경우, 가장 오래된 것을 제거
-         if (count($rvc) >= 3) {
-             array_shift($rvc);
-         }
-         // 현재 강의를 배열에 추가
-         $rvc[] = ['cid' => $rs->cid, 'name' => $rs->name, 'thumbnail' => $rs->thumbnail]; // 강의 데이터에 맞게 수정하세요.
-         setcookie('recent_view_course', json_encode($rvc), time() + 86400, '/'); // 24시간 유지되는 쿠키
-     }
- } else {
-     // 쿠키가 없는 경우, 현재 강의를 포함한 새로운 쿠키 생성
-     $rvarr[] = ['cid' => $rs->cid, 'name' => $rs->name, 'thumbnail' => $rs->thumbnail]; // 강의 데이터에 맞게 수정하세요.
-     setcookie('recent_view_course', json_encode($rvarr), time() + 86400, '/');
- }
+  
+  
+
+ 
+ 
+ 
+ 
+
 
 ?>
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
@@ -98,26 +56,12 @@ $parts = explode('/', $cateString);
 
 
 <main>
-  <!-- <div class="viewTitleWrap d-flex flex-column">
+  <div class="viewTitleWrap d-flex flex-column">
     <div>
-      <div class="d-flex justify-content-between">
-        <div>
-          <span class="badge rounded-pill blue_bg b-pd">           
-          </span>
-          <span class="badge rounded-pill b-pd">     
-          </span>
-        </div>
-        <div class="viewCate d-flex gap-2">
-          <p></p>
-          <span>></span>
-          <p></p>
-          <span>></span>
-          <p></p>
-        </div>      
-      </div>
+    <p class="content_tt"><?= $rs->name?></p>
       <div class="cartboxtwo d-flex">
       <div class="viewBtn">
-        <a href="" class="viewCart btn btn-primary dark cartboxb">
+        <a href="/helloworld/cart/add_cart.php?cid=<?= $rs->cid ?>" class="viewCart btn btn-primary dark cartboxb">
         장바구니 담기
         </a>
       </div>
@@ -134,34 +78,32 @@ $parts = explode('/', $cateString);
       <div>
         <div>
           <i class="ti ti-calendar-event"></i>
-          <span>수강기간 </span>
+          <span>수강기간 <?php if($rs->due == ''){echo '무제한';} else{echo $rs->due;}; ?></span>
         </div>
-        <div>
-          <span class="main_stt number"></span><span>원</span>
+        <?php
+          if($rs->price != 0){
+        ?>
+        <div> 
+          <span class="main_stt number"><?= $rs->price?></span><span>원</span>
         </div>
+        <?php
+          }else{
+        ?>
         <div>
           <span class="main_stt">무료</span>
         </div>
+        <?php 
+          } 
+        ?>
       </div>
       <div>
       </div>
     </div>
-  </div> -->
+  </div>
     <input type="hidden" id="cid" value="<?= $cid; ?>">
     <input type="hidden" id="cnt" value="<?= $cnt->cnt??0 ?>">
     <div class="container">
-      <div class="modalBackground">
-        <div class="modalBox d-flex flex-column justify-content-between">
-          <i class="fa-regular fa-circle-xmark"></i>
-          <!-- modalVideo-->
-          <div id=player >
-            <object type="text/html" data="<?= $addImgs[0]->youtube_url?>"></object>
-          </div>
-          <div class="modalTitle">
-            <h4></h4>  
-          </div>
-        </div>
-      </div>
+      
       <div class="viewSetion_1 shadow_box">
         <div class="d-flex gap-5">
           <div class="section2box">
@@ -174,32 +116,30 @@ $parts = explode('/', $cateString);
                 <div>
                   <span class="badge rounded-pill blue_bg b-pd">  
                   <?php
-                        //뱃지 키워드 
-                        if (isset($rs->cate)) {
-                          $categoryText = $rs->cate;
-                          $parts = explode('/', $categoryText);
-                          $lastPart = $parts[1];
+                    //뱃지 키워드 
+                    if (isset($rs->cate)) {
+                      $categoryText = $rs->cate;
+                      $parts = explode('/', $categoryText);
+                      $lastPart = $parts[1];
 
-                          echo $lastPart;
-                        }
-                      ?>
+                      echo $lastPart;
+                    }
+                  ?>
                   </span>
                   <span class="badge rounded-pill b-pd
                   <?php
-                        // 뱃지 컬러
-                        $levelBadge = $rs->level;
-                        if ($levelBadge === '초급') {
-                          echo 'yellow_bg';
-                        } else if ($levelBadge === '중급') {
-                          echo 'green_bg';
-                        } else {
-                          echo 'red_bg';
-                        }
-                      ?>
-                      ">
-                      <?= $rs->level; ?>
-                    
-                       
+                    // 뱃지 컬러
+                    $levelBadge = $rs->level;
+                    if ($levelBadge === '초급') {
+                      echo 'yellow_bg';
+                    } else if ($levelBadge === '중급') {
+                      echo 'green_bg';
+                    } else {
+                      echo 'red_bg';
+                    }
+                  ?>
+                  ">
+                  <?= $rs->level; ?>    
                   </span>
                 </div>
                 <div class="viewCate d-flex gap-2">
@@ -210,9 +150,10 @@ $parts = explode('/', $cateString);
                   <p><?= $parts[2] ?></p>
                 </div>   
               </div>
+              <p class="content_tt"><?= $rs->name?></p>
               <div class="cartboxtwo d-flex">
               <div class="viewBtn">
-                <a href="" class="viewCart btn btn-primary dark cartboxb">
+                <a href="/helloworld/cart/add_cart.php?cid=<?= $rs->cid ?>" class="viewCart btn btn-primary dark cartboxb">
                 장바구니 담기
                 </a>
               </div>
@@ -222,7 +163,7 @@ $parts = explode('/', $cateString);
                 </a>
               </div>
               </div>  
-              <p class="content_tt"><?= $rs->name?></p>
+              <p class="content_tt"></p>
             </div>
             <div
               class="viewPriceWrap">
@@ -231,22 +172,21 @@ $parts = explode('/', $cateString);
                   <i class="ti ti-calendar-event"></i>
                   <span>수강기간<?php if($rs->due == ''){echo '무제한';} else{echo $rs->due;}; ?></span>
                 </div>
-                <?php
+                  <?php
                     if($rs->price != 0){
                   ?>
                     <div>
                       <span class="main_stt number"><?= $rs->price?></span><span>원</span>
                     </div>
                   <?php
-                    }else{
+                  }else{
                   ?>
                     <div>
                       <span class="main_stt">무료</span>
                     </div>
-                    <?php 
-                    } 
+                  <?php 
+                  } 
                   ?>
-                  
               </div>
               <div>
               </div>
@@ -265,9 +205,9 @@ $parts = explode('/', $cateString);
           <h2 class="jua">강의목록</h2>
         </div>
         <div class="viewSection2 shadow_box">
-        <?php
-              foreach($addImgs as $ai){
-            ?>
+          <?php
+            foreach($addImgs as $ai){
+          ?>
           <div class="viewList d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
               <div class="viewImg">
@@ -283,7 +223,7 @@ $parts = explode('/', $cateString);
           </div>
           <?php           
               }
-            ?> 
+            ?>
         </div>
       </div>
       <div class="viewWrap_2 pd_6">
