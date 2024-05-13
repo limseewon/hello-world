@@ -12,6 +12,18 @@ $regdate = date("Y-m-d H:i:s");
 $file = null;
 $is_img = 0;
 
+// 이미지 파일 처리
+if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+    $image = $_FILES['image']['name'];
+    $targetDir = $_SERVER['DOCUMENT_ROOT'] . '/helloworld/upload/'; // 이미지 저장 경로
+    $targetFile = $targetDir . basename($image);
+
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+        $is_img = 1; // 이미지가 성공적으로 업로드되면 is_img 값을 1로 설정
+    }
+}
+
+
 if ($_FILES['file']['size'] > 0) {
     if ($_FILES['file']['size'] > 102400000) {
         echo "<script> alert('100MB 이하만 업로드해주세요'); history.back(); </script>";
