@@ -115,7 +115,9 @@ while($rs = $result -> fetch_object()){
 
 
 ?>
-
+  
+    
+    <script src="/helloworld/js/index.js"></script>
     
 
 <main>
