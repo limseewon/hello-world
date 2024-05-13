@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/dbcon.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
 $userid = $_POST['userid'];
 $userpw = $_POST['userpasswd'];
@@ -43,7 +43,7 @@ if ($_FILES['userimg']['name']) {
 }
 
 $sql = "INSERT INTO members
-  (userid,email,username,passwd,tel)
+  (userid,email,username,passwd,tel,userimg)
   VALUES('{$userid}','{$useremail}','{$username}','{$userpw}','{$tel}','{$userimg}')";
 $result = $mysqli->query($sql) or die($mysql->error);
 
