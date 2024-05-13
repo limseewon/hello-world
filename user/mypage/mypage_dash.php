@@ -1,6 +1,12 @@
 <?php
   $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_dash.css"/>';
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/mypage_left.php';    
+
+$noticeSql = "SELECT title from notice ORDER BY idx DESC LIMIT 4";
+$noticeResult = $mysqli->query($noticeSql);
+while( $noticeRs = $noticeResult->fetch_object()){
+  $noticeArr [] = $noticeRs;
+};
 ?>
         <section class="mainContainer">
           <h2 class="title">대시 보드</h2>
@@ -62,10 +68,17 @@
             <div class="content-box recent_notice board">
               <h3 class="p bold">최근 공지사항</h3>
               <ul>
-                <li><a href="#">질문입니다.</a></li>
-                <li><a href="#">질문입니다.</a></li>
-                <li><a href="#">질문입니다.</a></li>
-                <li><a href="#">질문입니다.</a></li>
+                <?php
+                if (isset($noticeArr)) {
+                  foreach($noticeArr as $na) {
+
+                  
+                ?>
+                <li><a href="#"><?= $na->title;?></a></li>
+                <?php
+                }
+              }
+                ?>
               </ul>
             </div>
           </div>
