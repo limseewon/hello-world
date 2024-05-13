@@ -260,7 +260,7 @@ tr {
 }
 .nb {
   width: 1153px;
-  height: 416px;
+  height: auto;
 }
 .tc {
   width: 100%;
