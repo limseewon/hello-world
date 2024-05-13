@@ -24,6 +24,13 @@ switch ($view_option) {
        $sql .= " ORDER BY idx DESC";
 }
 
+$answer_option = isset($_GET['answer']) ? $_GET['answer'] : '';
+if ($answer_option === 'answered') {
+   $sql .= " AND reply = '답변'";
+} elseif ($answer_option === 'unanswered') {
+   $sql .= " AND reply = '미답변'";
+}
+
 $result_count = $mysqli->query($sql);
 $totalcount = $result_count->num_rows;
 
@@ -33,15 +40,16 @@ $result = $mysqli->query($sql);
 <div class="container">
     <h2 class="h2_t">Q&amp;A</h2>
     <div class="d-flex jcsb tb">
-        <select class="form-select form-select-lg mb-3 sb p" aria-label="Large select example" id="answerFilter">
-            <option value="all" selected>전체</option>
-            <option value="answered">답변</option>
-            <option value="unanswered">미답변</option>
+        <select class="form-select form-select-lg mb-3 sb p" aria-label="Large select example" id="answerFilter" onchange="location.href='qna.php?answer='+this.value+'&keyword=<?= $keyword ?>'">
+            <option value="all" <?= $answer_option === 'all' ? 'selected' : '' ?>>전체</option>
+            <option value="answered" <?= $answer_option === 'answered' ? 'selected' : '' ?>>답변</option>
+            <option value="unanswered" <?= $answer_option === 'unanswered' ? 'selected' : '' ?>>미답변</option>
         </select>
-        <form class="block-top d-flex search_bar">
-            <input class="form-control me-2 search" type="search" placeholder="제목을 입력하시오." aria-label="Search" id="searchInput">
+        <form class="block-top d-flex search_bar" id="searchForm" action="Q&A.php" method="GET">
+            <input type="hidden" name="answer" value="<?= $answer_option ?>">
+            <input class="form-control me-2 search" type="search" placeholder="제목을 입력하시오." aria-label="Search" id="searchInput" name="keyword" value="<?= $keyword ?>">
             <button class="btn btn-outline-success btn_search" type="submit" id="searchButton">검색</button>
-            <button class="btn btn-secondary qna_regist_btn" type="submit"><a href="/helloworld/user/html/Q&A_regist.html">질문 등록</a></button>
+            <button class="btn btn-secondary qna_regist_btn" type="button"><a href="/helloworld/user/html/qna_regist.php">질문 등록</a></button>
         </form>
     </div>
     <div class="table-container">
@@ -70,16 +78,19 @@ $result = $mysqli->query($sql);
             //content변수에 DB에서 가져온 content를 선택
             $content = $row["content"];
             if (iconv_strlen($content) > 35) {
-                //content가 10을 넘어서면 ...표시
+                //content가 35을 넘어서면 ...표시
                 $content = str_replace($row["content"], iconv_substr($row["content"], 0, 35, "utf-8") . "...", $row["content"]);
             }
+
+            // 답변 여부에 따라 버튼 클래스 설정
+            $buttonClass = ($row['reply'] === '답변') ? 'btn btn-success bs' : 'btn btn-secondary bn';
             ?>    
                 <tr>
                     <th scope="row"><?= $title; ?></th>
-                    <td><a href="Q&A_detail.php"><?= $content; ?></a></td>
+                    <td><a href="Q&A_detail.php?id=<?= $row['idx']; ?>"><?= $content; ?></a></td>
                     <td><?= $row['name']; ?></td>
                     <td><?= $row['view']; ?></td>
-                    <td><button type="button" class="btn btn-success bs"><?= $row['reply']; ?></button></td>
+                    <td><button type="button" class="<?= $buttonClass ?>"><?= $row['reply']; ?></button></td>
                     <td><?= $row['date']; ?></td>
                 </tr>
                 <?php
@@ -104,73 +115,33 @@ $result = $mysqli->query($sql);
             }
             
             if ($pageNumber > 1) {
-            echo "<li class=\"page-item\"><a href=\"Q&A.php?pageNumber=1&keyword=$keyword\" class=\"page-link\" >처음</a></li>";
+            echo "<li class=\"page-item\"><a href=\"qna.php?pageNumber=1&keyword=$keyword&answer=$answer_option\" class=\"page-link\" >처음</a></li>";
             //이전
             if ($block_num > 1) {
                 $prev = ($block_num - 2) * $block_ct + 1;
-                echo "<li class=\"page-item\"><a href=\"Q&A.php?pageNumber=$prev&keyword=$keyword\" class=\"page-link\">이전</a></li>";
+                echo "<li class=\"page-item\"><a href=\"qna.php?pageNumber=$prev&keyword=$keyword&answer=$answer_option\" class=\"page-link\">이전</a></li>";
             }
             }
                 
             for ($i = $block_start; $i <= $block_end; $i++) {
             if ($i == $pageNumber) {
-                echo "<li class=\"page-item active\"><a href=\"Q&A.php?pageNumber=$i&keyword=$keyword\" class=\"page-link\">$i</a></li>";
+                echo "<li class=\"page-item active\"><a href=\"qna.php?pageNumber=$i&keyword=$keyword&answer=$answer_option\" class=\"page-link\">$i</a></li>";
             } else {
-                echo "<li class=\"page-item\"><a href=\"Q&A.php?pageNumber=$i&keyword=$keyword\" class=\"page-link\">$i</a></li>";
+                echo "<li class=\"page-item\"><a href=\"qna.php?pageNumber=$i&keyword=$keyword&answer=$answer_option\" class=\"page-link\">$i</a></li>";
             }            
             }  
 
             if ($pageNumber < $total_page) {
             if ($block_end < $total_page) {
                 $next = $block_num * $block_ct + 1;
-                echo "<li class=\"page-item\"><a href=\"Q&A.php?pageNumber=$next&keyword=$keyword\" class=\"page-link\">다음</a></li>";
+                echo "<li class=\"page-item\"><a href=\"qna.php?pageNumber=$next&keyword=$keyword&answer=$answer_option\" class=\"page-link\">다음</a></li>";
             }
-            echo "<li class=\"page-item\"><a href=\"Q&A.php?pageNumber=$total_page&keyword=$keyword\" class=\"page-link\">마지막</a></li>";
+            echo "<li class=\"page-item\"><a href=\"qna.php?pageNumber=$total_page&keyword=$keyword&answer=$answer_option\" class=\"page-link\">마지막</a></li>";
             }        
             ?>
         </ul>
     </div> 
 </div>
-<script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var answerFilter = document.getElementById('answerFilter');
-        var searchInput = document.getElementById('searchInput');
-        var searchButton = document.getElementById('searchButton');
-        var tableRows = document.querySelectorAll('.Q&A_tb tbody tr');
-
-        // 답변 여부 필터링 기능
-        answerFilter.addEventListener('change', filterRows);
-
-        // 제목 검색 기능
-        searchButton.addEventListener('click', function(event) {
-            event.preventDefault();
-            filterRows();
-        });
-
-        // 행 필터링 함수
-        function filterRows() {
-            var selectedOption = answerFilter.value;
-            var searchTerm = searchInput.value.toLowerCase();
-
-            tableRows.forEach(function(row) {
-                var answerStatus = row.querySelector('td:nth-child(5) button').textContent;
-                var title = row.querySelector('td:nth-child(2) a').textContent.toLowerCase();
-
-                if (
-                    (selectedOption === 'all' || 
-                        (selectedOption === 'answered' && answerStatus === '답변') ||
-                        (selectedOption === 'unanswered' && answerStatus === '미답변')
-                    ) &&
-                    title.includes(searchTerm)
-                ) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        }
-    });
-</script>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_footer.php';
 ?>
