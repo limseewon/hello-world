@@ -1,5 +1,5 @@
 <?php
-$title = '공지사항';
+$title = 'Q&A';
 $cssRoute1 ='';
 $cssRoute2 ='';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
@@ -62,14 +62,21 @@ $result = $mysqli->query($sql);
 
             //title변수에 DB에서 가져온 title을 선택
             $title = $row["title"];
-            if (iconv_strlen($title) > 30) {
-                //title이 30을 넘어서면 ...표시
-                $title = str_replace($row["title"], iconv_substr($row["title"], 0, 30, "utf-8") . "...", $row["title"]);
+            if (iconv_strlen($title) > 20) {
+                //title이 20을 넘어서면 ...표시
+                $title = str_replace($row["title"], iconv_substr($row["title"], 0, 20, "utf-8") . "...", $row["title"]);
+            }
+            
+            //content변수에 DB에서 가져온 content를 선택
+            $content = $row["content"];
+            if (iconv_strlen($content) > 35) {
+                //content가 10을 넘어서면 ...표시
+                $content = str_replace($row["content"], iconv_substr($row["content"], 0, 35, "utf-8") . "...", $row["content"]);
             }
             ?>    
                 <tr>
-                    <th scope="row"><?= $row['title']; ?></th>
-                    <td><a href="/helloworld/user/html/Q&A_detail.html"><?= $row['content']; ?></a></td>
+                    <th scope="row"><?= $title; ?></th>
+                    <td><a href="Q&A_detail.php"><?= $content; ?></a></td>
                     <td><?= $row['name']; ?></td>
                     <td><?= $row['view']; ?></td>
                     <td><button type="button" class="btn btn-success bs"><?= $row['reply']; ?></button></td>
