@@ -1,7 +1,7 @@
 <?php
 $title = 'Q&A';
-$cssRoute1 ='';
-$cssRoute2 ='';
+$cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/Q&A.css">';
+$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/Q&A_detail.css">';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 $paginationTarget = 'qna';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/pagination.php';
@@ -12,24 +12,14 @@ if ($keyword) {
    $sql .= " AND title LIKE '%$keyword%'";
 }
 
-$view_option = isset($_GET['view']) ? $_GET['view'] : '';
-switch ($view_option) {
-   case '1':
-       $sql .= " ORDER BY view DESC";
-       break;
-   case '2':
-       $sql .= " ORDER BY view ASC";
-       break;
-   default:
-       $sql .= " ORDER BY idx DESC";
-}
-
 $answer_option = isset($_GET['answer']) ? $_GET['answer'] : '';
 if ($answer_option === 'answered') {
    $sql .= " AND reply = '답변'";
 } elseif ($answer_option === 'unanswered') {
    $sql .= " AND reply = '미답변'";
 }
+
+$sql .= " ORDER BY idx DESC";
 
 $result_count = $mysqli->query($sql);
 $totalcount = $result_count->num_rows;
@@ -40,16 +30,17 @@ $result = $mysqli->query($sql);
 <div class="container">
     <h2 class="h2_t">Q&amp;A</h2>
     <div class="d-flex jcsb tb">
-        <select class="form-select form-select-lg mb-3 sb p" aria-label="Large select example" id="answerFilter" onchange="location.href='qna.php?answer='+this.value+'&keyword=<?= $keyword ?>'">
-            <option value="all" <?= $answer_option === 'all' ? 'selected' : '' ?>>전체</option>
+        <select class="form-select form-select-lg mb-3 sb p" aria-label="Large select example" id="answerFilter" onchange="location.href='qna.php?answer='+this.value+'&keyword=<?= $keyword ?>&pageNumber=<?= $pageNumber ?>'">
+            <option value="all" <?= $answer_option === '' ? 'selected' : '' ?>>전체</option>
             <option value="answered" <?= $answer_option === 'answered' ? 'selected' : '' ?>>답변</option>
             <option value="unanswered" <?= $answer_option === 'unanswered' ? 'selected' : '' ?>>미답변</option>
         </select>
-        <form class="block-top d-flex search_bar" id="searchForm" action="Q&A.php" method="GET">
+        <form class="block-top d-flex search_bar" id="searchForm" action="qna.php" method="GET">
             <input type="hidden" name="answer" value="<?= $answer_option ?>">
+            <input type="hidden" name="pageNumber" value="1">
             <input class="form-control me-2 search" type="search" placeholder="제목을 입력하시오." aria-label="Search" id="searchInput" name="keyword" value="<?= $keyword ?>">
             <button class="btn btn-outline-success btn_search" type="submit" id="searchButton">검색</button>
-            <button class="btn btn-secondary qna_regist_btn" type="button"><a href="/helloworld/user/html/qna_regist.php">질문 등록</a></button>
+            <button class="btn btn-secondary qna_regist_btn" type="button"><a href="/helloworld/user/qna/qna_regist.php">질문 등록</a></button>
         </form>
     </div>
     <div class="table-container">
@@ -88,9 +79,9 @@ $result = $mysqli->query($sql);
                 <tr>
                     <th scope="row"><?= $title; ?></th>
                     <td><a href="qna_detail.php?id=<?= $row['idx']; ?>"><?= $content; ?></a></td>
-                    <td><?= $row['name']; ?></td>
-                    <td><?= $row['view']; ?></td>
-                    <td><button type="button" class="<?= $buttonClass ?>"><?= $row['reply']; ?></button></td>
+                    <td class="text_center"><?= $row['name']; ?></td>
+                    <td class="text_center"><?= $row['view']; ?></td>
+                    <td class="text_center"><button type="button" class="<?= $buttonClass ?>"><?= $row['reply']; ?></button></td>
                     <td><?= $row['date']; ?></td>
                 </tr>
                 <?php

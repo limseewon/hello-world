@@ -1,3 +1,6 @@
+.table-container{
+  width: 100%;
+}
 .regist_content{
     width: 966px;
     height: 563px;
@@ -14,6 +17,10 @@
 }
 .qt{
   padding-right: 50px;
+}
+.ql{
+  width: 88px;
+  padding-right: 31px;
 }
 .con{
   padding-top: 32px;

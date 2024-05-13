@@ -1,19 +1,20 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
+// 댓글 저장
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $idx = $_POST['idx'];
     $comment = $_POST['comment'];
-    $name = '작성자'; // 작성자 이름을 적절히 설정해주세요.
+    $name = '관리자'; // 임시로 관리자 이름 사용
 
-    $sql = "INSERT INTO qna_comment (comment, name, idx) VALUES ('$comment', '$name', '$idx')";
+    $sql = "INSERT INTO qna_comment (idx, name, comment, regdate) VALUES ('$idx', '$name', '$comment', NOW())";
     $result = $mysqli->query($sql);
 
-    if ($result) {
-        header("Location: qna_detail.php?id=$idx");
-        exit;
-    } else {
-        echo "댓글 등록에 실패했습니다.";
-    }
+    // 답변 상태 업데이트
+    $sql = "UPDATE qna SET reply = '답변' WHERE idx = '$idx'";
+    $result = $mysqli->query($sql);
+
+    header("Location: qna_detail.php?id=$idx");
+    exit;
 }
 ?>
