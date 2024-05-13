@@ -149,8 +149,10 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
           <div class="icons d-flex">
               <a href="#" class="bi bi-cart"><p>장바구니</p></a>
               <a href="/helloworld/user/mypage/mypage_dash.php" class="bi bi-person-circle">
-                <p>회원프로필</p>
-                
+                <p>ㄴㄴㅇㄴㅇ</p>
+                <ul class=profile_box>
+                  <li><a href="#"></a></li>
+                </ul>
               </a>
           </div>
           <div class="d-flex bt">
