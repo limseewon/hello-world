@@ -57,7 +57,7 @@ $result = $mysqli->query($sql);
             <thead>
                 <tr>
                     <th scope="col">강의명</th>
-                    <th scope="col">내용</th>
+                    <th scope="col">제목</th>
                     <th scope="col">작성자</th>
                     <th scope="col">조회수</th>
                     <th scope="col">답변 여부</th>
