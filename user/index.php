@@ -19,18 +19,18 @@ while ($rc_rs = $rc_result->fetch_object()) {
 // 추천강의
 
 // echo $sql;
-$new_sql = "SELECT c.course_id, COUNT(oc.course_id) AS `count`, c.cate, c.name, c.price_status, c.price, c.level, c.due_status, c.due, c.act, c.content, c.thumbnail
-FROM `course` c
-LEFT JOIN `ordered_courses` oc ON c.course_id = oc.course_id
-GROUP BY c.course_id, c.cate, c.name, c.price_status, c.price, c.level, c.due_status, c.due, c.act, c.content, c.thumbnail
-ORDER BY `count` DESC
-LIMIT 8;";
-echo $new_sql;
-$new_result = $mysqli->query($new_sql);
-while ($new_rs = $new_result->fetch_object()) {
-  $new_rsc[] = $new_rs;
-}
-print_r($new_rsc);
+// $new_sql = "SELECT c.course_id, COUNT(oc.course_id) AS `count`, c.cate, c.name, c.price_status, c.price, c.level, c.due_status, c.due, c.act, c.content, c.thumbnail
+// FROM `course` c
+// LEFT JOIN `ordered_courses` oc ON c.course_id = oc.course_id
+// GROUP BY c.course_id, c.cate, c.name, c.price_status, c.price, c.level, c.due_status, c.due, c.act, c.content, c.thumbnail
+// ORDER BY `count` DESC
+// LIMIT 8;";
+// echo $new_sql;
+// $new_result = $mysqli->query($new_sql);
+// while ($new_rs = $new_result->fetch_object()) {
+//   $new_rsc[] = $new_rs;
+// }
+// print_r($new_rsc);
 
 ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
