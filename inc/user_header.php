@@ -132,45 +132,48 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
       </div>
     </div>
 <header>
-    <div class="header_con d-flex container jcsb aic">
-        <a href="/helloworld/user/index.php" class="left_menu">
-            <h1 id=header_logo>logo</h1>
-            <img src="/helloworld/user/img/logo_text.jpg" alt="Hello World 로고">
-        </a>
-          <div class="center_menu d-flex aic bold h4 mb-0">
-            <a href="/helloworld/user/class/course_list.php">강의</a>
-            <a href="/helloworld/user/notice/notice.php">공지사항</a>
-            <a href="/helloworld/user/qna/qna.php">Q&amp;A</a>
-          </div>
-          <div class="right_menu d-flex aic h4 mb-0">
-            <?php
-              if (isset($_SESSION['UID'])) {
-            ?>
-            <div class="icons d-flex">
-                <a href="#" class="bi bi-cart"></a>
-                <a href="#" class="bi bi-person-circle"></a>
-            </div>
-            <div class="d-flex bt">
-                      <!-- <button
-                type="button"
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#login_modal"
-              >
-                Launch demo modal3
-              </button> -->
-              <a href="/helloworld/user/login/logout.php" class="btn btn-primary btn-sm logout">로그아웃</a>              
+  <div class="header_con d-flex container jcsb aic">
+      <a href="/helloworld/user/index.php" class="left_menu">
+          <h1 id=header_logo>logo</h1>
+          <img src="/helloworld/user/img/logo_text.jpg" alt="Hello World 로고">
+      </a>
+        <div class="center_menu d-flex aic bold h4 mb-0">
+          <a href="/helloworld/user/class/course_list.php">강의</a>
+          <a href="/helloworld/user/notice/notice.php">공지사항</a>
+          <a href="/helloworld/user/qna/qna.php">Q&amp;A</a>
+        </div>
+        <div class="right_menu d-flex aic h4 mb-0">
+          <?php
+            if (isset($_SESSION['UID'])) {
+          ?>
+          <div class="icons d-flex">
+              <a href="#" class="bi bi-cart"><p>장바구니</p></a>
+              <a href="/helloworld/user/mypage/mypage_dash.php" class="bi bi-person-circle">
+                <p>회원프로필</p>
                 
-              <?php
-                } else {  
-              ?>
-                <button type="button" class="btn btn-primary btn-sm login-btn" href="#" role="button" data-bs-toggle="modal" data-bs-target="#login_modal">로그인</button>
-                <a type="button" class="btn btn-primary btn-sm member" href="/helloworld/user/signup/signup.php" role="button">회원가입</a>
-              <?php
-              }?>
+              </a>
+          </div>
+          <div class="d-flex bt">
+                    <!-- <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#login_modal"
+            >
+              Launch demo modal3
+            </button> -->
+            <a href="/helloworld/user/login/logout.php" class="btn btn-primary btn-sm logout">로그아웃</a>              
+              
+            <?php
+              } else {  
+            ?>
+              <button type="button" class="btn btn-primary btn-sm login-btn" href="#" role="button" data-bs-toggle="modal" data-bs-target="#login_modal">로그인</button>
+              <a type="button" class="btn btn-primary btn-sm member" href="/helloworld/user/signup/signup.php" role="button">회원가입</a>
+            <?php
+            }?>
 
-            </div>
           </div>
         </div>
-    </div>
+      
+  </div>
 </header>
