@@ -1,58 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
-    />
-    <!-- font awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"
-    />
-    <link rel="stylesheet" href="/user/css/common.css" />
-    <link rel="stylesheet" href="/user/css/mypage/mypage_left.css" />
-    <link rel="stylesheet" href="/user/css/mypage/mypage_dash.css" />
-    <title>HelloWorld</title>
-  </head>
-  <body>
-    <section class="main">
-      <section class="mainWrapper d-flex justify-content-center">
-        <section
-          class="leftside content-box d-flex flex-column align-items-center"
-        >
-          <h2>마이 페이지</h2>
-          <ul class="d-flex flex-column align-items-center">
-            <li class="h4"><a href="#">대시 보드</a></li>
-            <li class="h4"><a href="#">수강 강의</a></li>
-            <li class="h4"><a href="#">쿠폰함</a></li>
-            <li class="h4"><a href="#">Q&A</a></li>
-            <li class="h4"><a href="#">메시지</a></li>
-          </ul>
-        </section>
+<?php
+  $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_dash.css"/>';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/mypage_left.php';    
+?>
         <section class="mainContainer">
-          <h2 class="title">title</h2>
+          <h2 class="title">대시 보드</h2>
           <div class="mainContents">
             <div class="d-flex flex-column justify-content-center align-items-center content-box profile_box">
               <div class="d-flex justify-content-start align-items-center profile_info">
@@ -119,20 +70,6 @@
             </div>
           </div>
         </section>
-      </section>
-    </section>
-    <!-- jquery -->
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.min.js"
-      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-      crossorigin="anonymous"
-    ></script>
-
-    <!-- bootstrap -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+  <?php
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/mypage_right.php';    
+  ?>

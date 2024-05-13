@@ -1,16 +1,15 @@
-.mainContents{
+.mainContents {
   display: flex;
 }
 
 .profile_box {
-  gap:30px;
+  gap: 30px;
 }
-.profile_info{
+.profile_info {
   width: 100%;
-  gap:30px;
+  gap: 30px;
 }
-.profile_img_con{
-  
+.profile_img_con {
   gap: 5px;
 }
 
@@ -19,17 +18,16 @@
   width: 504px;
   height: 341px;
 }
-.profile_list li+ li {
+.profile_list li + li {
   margin-top: 16px;
 }
 
-.profile_list li span:last-child{
+.profile_list li span:last-child {
   margin-left: 16px;
   font-size: var(--f-H6);
 }
 
-.board h3{
-  
+.board h3 {
   width: 100px;
 }
 
@@ -40,19 +38,18 @@
   gap: 25px;
 }
 
-img {
+.profile_img_con img {
   width: 100px;
-  
 }
-.board ul{
+.board ul {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.course_progress{
+.course_progress {
   height: 332px;
 }
-.btn_info{
-  gap :16px;
+.btn_info {
+  gap: 16px;
 }
