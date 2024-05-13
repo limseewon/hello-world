@@ -1,10 +1,16 @@
 /* 강의상세보기 최원석 */
+
+.coursemain { width: 1200px; margin: 0 auto;}
+
+
+
 .view-list {
   width: 100%;
 }
 .view-list a {
   padding-top: 10px;
 }
+.section1box { background: green; width:448px; height: 240px;}
 
 .viewSetion_1 {
   width: 100%;
@@ -77,6 +83,7 @@
 }
 
 /* 강의상세보기 리스트 */
+.viewImg{width: 180px; height: 90px; background: #1e2226;} 
 .viewSection2,
 .viewSection3 {
   width: 100%;
@@ -101,13 +108,13 @@
 }
 
 .viewList img {
-  width: 150px;
+  width: 180px;
+  height: 90PX;
   border-radius: 6px;
+  
 }
 
-.viewImg {
-  padding-right: 100px;
-}
+
 
 .viewList i {
   font-size: 40px;

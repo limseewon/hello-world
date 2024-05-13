@@ -18,11 +18,13 @@
 }
 .secrbp { 
   background: var(--c-button);
+  
 }
+.searchtop { margin-top: 0;}
 .secrbp:hover { 
   background: var(--c-button-hover);
 }
-.courseform { width: 212px; height: 40px;}
+.courseform { width: 212px; height: 40px; margin-bottom: var(--c-space_updown);}
 .courseCheckBox {
   width: 20%;
 }

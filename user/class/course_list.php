@@ -1,13 +1,22 @@
 <?php
 $title = '강의리스트';
-$cssRoute1 ='';
-$cssRoute2 ='';
+$cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/common.css"/>';
+$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class_list.css"/>';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
-?>
-    <link rel="stylesheet" href="/helloworld/user/css/common.css"/>
-    <link rel="stylesheet" href="/helloworld/user/css/class_list.css"/>
 
+
+
+
+// $sql2 = "SELECT COUNT(*) as count from courses where 1=1 ".$c_where;
+
+// $result4 = $mysqli->query($sql2);
+
+// $rs = $result4->fetch_object();
+// $sales_page = $rs->count;
+
+?>
+    
 
 <main>
       <div class="container">
@@ -25,7 +34,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
                 name="search"
               >
             </div>
-            <div class="searchBtn">
+            <div class="searchBtn searchtop">
               <button class="btn btn-primary dark secrbp">검색</button>
             </div>
           </form>
