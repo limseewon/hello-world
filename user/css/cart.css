@@ -2,9 +2,12 @@
 .cart_completef { 
   margin-top: calc(var(--c-space_updown)*7);
   text-align: center;
+  margin-bottom: calc(var(--c-space_updown)*7);
 
 }
-.home2_box { text-align: center; display: flex;justify-content: center;}
+.cartbox { border: 1px solid var(--c-border-grey);}
+.home2_box { text-align: center; display: flex;justify-content: center;
+}
 .home2_a {
   width: 151px;
   height: 40px;
