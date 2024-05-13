@@ -1,11 +1,23 @@
+<?php
+$title = '강의리스트';
+$cssRoute1 ='';
+$cssRoute2 ='';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
+
+?>
+    <link rel="stylesheet" href="/helloworld/user/css/common.css"/>
+    <link rel="stylesheet" href="/helloworld/user/css/class_list.css"/>
+
+
 <main>
       <div class="container">
         <div class="section1 d-flex justify-content-between pd_2 pd_5">
           <div class="courseBigTitle jua">
             <h1>강의리스트</h1>
           </div>
-          <form action="#" class="d-flex gap-3">
-            <div class="input-group">
+        </div>
+        <form action="#" class="d-flex gap-3">
+            <div class="input-group courseform">
               <input
                 type="text"
                 class="form-control"
@@ -14,16 +26,18 @@
               >
             </div>
             <div class="searchBtn">
-              <button class="btn btn-primary dark">검색</button>
+              <button class="btn btn-primary dark secrbp">검색</button>
             </div>
           </form>
-        </div>
         <div class="mainSection d-flex gap-5">
           <form action="#" id="filter-form" class="" method="GET">
             <!-- <input type="hidden" name="cate-array" id="cate-array" value=""> -->
+            <div class="categorybox">
             <div class="checkBox_1 mb-3">
-              <h6>카테고리</h6>
-              <hr class="mt-4">
+              <div class="filterbox d-flex chcekbox_h6">
+                <h6 class="chekbox">카테고리</h6>
+                <button id="filter-submit-btn" class="btn btn-primary dark category_su">필터</button>
+              </div>
               <div class="form-check mt-5">
                 <label class="form-check-label" for="total"> 전체선택 </label>
                 <input
@@ -67,9 +81,8 @@
                 >
               </div>
             </div>
-            <div class="checkBox_2 mb-3">
+            <div class="checkBox_2 mb-3 chcekbox_h6">
               <h6>난이도</h6>
-              <hr class="mt-4">
               <div class="form-check mt-5">
                 <label class="form-check-label" for="level1"> 초급 </label>
                 <input
@@ -101,9 +114,9 @@
                 >
               </div>
             </div>
-            <div class="checkBox_3">
+            <div class="checkBox_3 chcekbox_h6">
               <h6>가격</h6>
-              <hr class="mt-4">
+              
               <div class="form-check mt-5">
                 <label class="form-check-label" for="free"> 무료 </label>
                 <input
@@ -125,7 +138,9 @@
                 >
               </div>
             </div>
-            <button id="filter-submit-btn" class="btn btn-primary dark">필터실행</button>
+            </div>
+           
+            
           </form>
           <div class="courseList">
             <div class="row mb-5">
