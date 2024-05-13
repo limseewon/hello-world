@@ -115,7 +115,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                 <span><a href="">아이디 찾기</a></span
                 ><span><a href="">비밀번호 찾기</a></span>
               </div>
-              <span class="lightgray h6"><a href="">회원 가입</a></span>
+              <span class="lightgray h6"><a href="/helloworld/user/signup/signup.php">회원 가입</a></span>
             </main>
           </div>
           <!-- <div class="modal-footer">
@@ -144,7 +144,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
           </div>
           <div class="right_menu d-flex aic h4 mb-0">
             <?php
-              if (!isset($_SESSION['UID'])) {
+              if (isset($_SESSION['UID'])) {
             ?>
             <div class="icons d-flex">
                 <a href="#" class="bi bi-cart"></a>
@@ -159,13 +159,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
               >
                 Launch demo modal3
               </button> -->
-              
-                <button type="button" class="btn btn-primary btn-sm login-btn" href="#" role="button" data-bs-toggle="modal" data-bs-target="#login_modal">로그인</button>
-                <a type="button" class="btn btn-primary btn-sm member" href="/helloworld/user/signin.php" role="button">회원가입</a>
+              <a href="/helloworld/user/login/logout.php" class="btn btn-primary btn-sm logout">로그아웃</a>              
+                
               <?php
                 } else {  
               ?>
-<a href="/helloworld/user/login/logout.php" class="btn btn-primary btn-sm logout">로그아웃</a>
+                <button type="button" class="btn btn-primary btn-sm login-btn" href="#" role="button" data-bs-toggle="modal" data-bs-target="#login_modal">로그인</button>
+                <a type="button" class="btn btn-primary btn-sm member" href="/helloworld/user/signup/signup.php" role="button">회원가입</a>
               <?php
               }?>
 
