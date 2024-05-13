@@ -1,6 +1,6 @@
 <?php
 $title = 'Home';
-$cssRoute1 ='';
+$cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/index.css"/>';
 $cssRoute2 ='';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
@@ -14,7 +14,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw==" crossorigin="anonymous" referrerpolicy="no-referrer"> <!--jquery ui-->
-    <link rel="stylesheet" href="/helloworld/user/css/common.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
     <link rel="stylesheet" href="/helloworld/user/css/index.css"/>
     <script src="js/index.js"></script>
 <main>
@@ -35,7 +36,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
       
     </section>
     <section class="sec2">
-      <h2 class="jua dark sec_tt">어떤 강의를 찾고 있나요?</h2>
+      <h2 class="jua dark sec_tt"></h2>
       <form action="" class="search">
         <label for="course_search" type="hidden"></label>
         <input type="text" id="course_search" placeholder="배우고 싶은 강의를 입력하세요.">
@@ -45,43 +46,43 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
         <ul>
           <li>
             <a href="">
-              <img src="" alt="HTML">
+              <img src="img/index_html.jpg" alt="HTML">
               <p>HTML</p>
             </a>
           </li>
           <li>
             <a href="">
-              <img src="" alt="CSS">
+              <img src="img/index_css.jpg" alt="CSS">
               <p>CSS</p>
             </a>
           </li>
           <li>
             <a href="">
-              <img src="" alt="Javascript">
+              <img src="img/index_js.jpg" alt="Javascript">
               <p>Javascript</p>
             </a>
           </li>
           <li>
             <a href="">
-              <img src="" alt="PHP">
+              <img src="img/index_php.jpg" alt="PHP">
               <p>PHP</p>
             </a>
           </li>
           <li>
             <a href="">
-              <img src="" alt="React">
+              <img src="img/index_react.jpg" alt="React">
               <p>React</p>
             </a>
           </li>
           <li>
             <a href="">
-              <img src="" alt="SQL">
+              <img src="img/index_mysql.jpg" alt="SQL">
               <p>SQL</p>
             </a>
           </li>
           <li>
             <a href="">
-              <img src="" alt="Figma">
+              <img src="img/index_figma.jpg" alt="Figma">
               <p>Figma</p>
             </a>
           </li>
@@ -89,7 +90,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
       </div>
     </section>
     <section class="sec3 container">
-      <h2 class="jua dark sec_tt">최신 강의</h2>
+      <div class="plusbox d-flex">
+        <h2 class="jua dark sec_tt">최신 강의</h2>
+        <div class="moreplus d-flex">
+          <h3 class="moreview">더보기</h3>
+          <span class="material-symbols-outlined">add</span>
+        </div>  
+      </div>
       <!-- Swiper -->
       <div class="page_wrap">
         <div class="swiper recom_slide">
@@ -145,7 +152,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
       </div>
     </section>
   <section class="sec4 container">
-    <h2 class="jua dark sec_tt">추천강의</h2>
+  <div class="plusbox d-flex">
+        <h2 class="jua dark sec_tt">추천강의</h2>
+        <div class="moreplus d-flex">
+          <h3 class="moreview">더보기</h3>
+          <span class="material-symbols-outlined">add</span>
+        </div>  
+      </div>
     <!-- Swiper -->
     <div class="page_wrap">
       <div class="swiper new_slide">
@@ -202,7 +215,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
     </div>
   </section>
   <section class="sec5 container">
-    <h2 class="jua dark sec_tt">입문자를 위한 추천강의</h2>
+  <div class="plusbox d-flex">
+        <h2 class="jua dark sec_tt">입문자를 위한 추천강의</h2>
+        <div class="moreplus d-flex">
+          <h3 class="moreview">더보기</h3>
+          <span class="material-symbols-outlined">add</span>
+        </div>  
+      </div>
     <!-- Swiper -->
     <div class="page_wrap">
       <div class="swiper beginner_slide">
