@@ -3,7 +3,8 @@ $(function(){
     slidesPerView: 1,
     speed: 2000,
     centeredSlides: true,
-    loop: true,
+    loop:true,
+		
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
@@ -11,6 +12,7 @@ $(function(){
     autoplay : {  
       delay : 2500,  
       disableOnInteraction : false, 
+      pauseOnMouseEnter:true
     },
     navigation: {
       prevEl: ".se1_prev",
@@ -37,6 +39,7 @@ $(function(){
     autoplay: {
       delay: 3000,
       disableOnInteraction : false, 
+      pauseOnMouseEnter:true
     },
     navigation: {
       prevEl: ".recom_prev",
@@ -52,6 +55,7 @@ $(function(){
     autoplay: {
       delay: 3000,
       disableOnInteraction : false, 
+      pauseOnMouseEnter:true
     },
     navigation: {
       prevEl: ".new_prev",
@@ -67,6 +71,7 @@ $(function(){
     autoplay: {
       delay: 3000,
       disableOnInteraction : false, 
+      pauseOnMouseEnter:true
     },
     navigation: {
       prevEl: ".beg_prev",
