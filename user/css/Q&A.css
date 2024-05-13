@@ -1,3 +1,58 @@
 .table-container{
     width: 100%;
 }
+.qna-detail-box{
+    width: 910px;
+    height: auto;
+    margin: 0 auto;
+}
+.qna-content{
+    line-height: 50px;
+    width: 400px;
+    height: auto;
+}
+.comment-list {
+    margin-top: 24px;
+}
+
+.comment-item {
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.comment-avatar {
+    /* flex-shrink: 0; */
+}
+
+.comment-body {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    padding: 16px;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.comment-author {
+    color: #333;
+}
+
+.comment-date {
+    font-size: 14px;
+}
+
+.comment-content p {
+    line-height: 1.5;
+    color: #555;
+}
+.bd{
+    margin-top: 30px;
+}
+ td .text-center{
+    vertical-align: middle;
+}
