@@ -35,6 +35,7 @@ if ($qna_id > 0) {
                 <thead>
                     <tr>
                         <th scope="col">강의명</th>
+                        <th scope="col">제목</th>
                         <th scope="col">작성자</th>
                         <th scope="col">조회수</th>
                         <th scope="col">답변 여부</th>
@@ -43,7 +44,8 @@ if ($qna_id > 0) {
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row"><?= $row['title']; ?></th>
+                        <th scope="row"><?= $row['lecture_name']; ?></th>
+                        <td><?= $row['title']; ?></td>
                         <td><?= $row['name']; ?></td>
                         <td><?= $row['view']; ?></td>
                         <td><button type="button" class="btn btn-success"><?= $row['reply']; ?></button></td>
@@ -64,7 +66,7 @@ if ($qna_id > 0) {
             <hr>
             <div class="reply_comments">
                 <div class="comment-form" style="display: none;">
-                    <form action="Q&A_save_insert.php" method="POST">
+                    <form action="qna_save_insert.php" method="POST">
                         <input type="hidden" name="idx" value="<?= $qna_id ?>">
                         <div class="d-flex align-items-center mb-3">
                             <i class="bi bi-person-circle me-2 h5"></i>

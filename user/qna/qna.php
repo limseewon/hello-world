@@ -57,7 +57,7 @@ $result = $mysqli->query($sql);
             <thead>
                 <tr>
                     <th scope="col">강의명</th>
-                    <th scope="col">내용</th>
+                    <th scope="col">제목</th>
                     <th scope="col">작성자</th>
                     <th scope="col">조회수</th>
                     <th scope="col">답변 여부</th>
@@ -69,17 +69,17 @@ $result = $mysqli->query($sql);
             while ($row = $result->fetch_assoc()) {
 
             //title변수에 DB에서 가져온 title을 선택
-            $title = $row["title"];
+            $title = $row["lecture_name"];
             if (iconv_strlen($title) > 20) {
                 //title이 20을 넘어서면 ...표시
-                $title = str_replace($row["title"], iconv_substr($row["title"], 0, 20, "utf-8") . "...", $row["title"]);
+                $title = str_replace($row["lecture_name"], iconv_substr($row["lecture_name"], 0, 20, "utf-8") . "...", $row["lecture_name"]);
             }
             
             //content변수에 DB에서 가져온 content를 선택
-            $content = $row["content"];
+            $content = $row["title"];
             if (iconv_strlen($content) > 35) {
                 //content가 35을 넘어서면 ...표시
-                $content = str_replace($row["content"], iconv_substr($row["content"], 0, 35, "utf-8") . "...", $row["content"]);
+                $content = str_replace($row["title"], iconv_substr($row["title"], 0, 35, "utf-8") . "...", $row["title"]);
             }
 
             // 답변 여부에 따라 버튼 클래스 설정
@@ -87,7 +87,7 @@ $result = $mysqli->query($sql);
             ?>    
                 <tr>
                     <th scope="row"><?= $title; ?></th>
-                    <td><a href="Q&A_detail.php?id=<?= $row['idx']; ?>"><?= $content; ?></a></td>
+                    <td><a href="qna_detail.php?id=<?= $row['idx']; ?>"><?= $content; ?></a></td>
                     <td><?= $row['name']; ?></td>
                     <td><?= $row['view']; ?></td>
                     <td><button type="button" class="<?= $buttonClass ?>"><?= $row['reply']; ?></button></td>
