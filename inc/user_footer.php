@@ -19,7 +19,7 @@
               <a href=""
                 ><img
                   src="/helloworld/user/img/logo_icon.png"
-                  alt="Hello World로고이미지"
+                  alt="Hello World 로고이미지"
               /></a>
             </h2>
             <div class="f_tt d-flex flex-column">

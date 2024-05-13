@@ -51,7 +51,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                 /></a>
               </div>
               <form
-                action=""
+                action="/helloworld/user/login/login_ok.php"
                 method="POST"
                 class="d-flex flex-column align-items-start"
                 novalidate
@@ -143,6 +143,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
             <a href="#">Q&amp;A</a>
           </div>
           <div class="right_menu d-flex aic h4 mb-0">
+            <?php
+              if (!isset($_SESSION['UID'])) {
+            ?>
             <div class="icons d-flex">
                 <a href="#" class="bi bi-cart"></a>
                 <a href="#" class="bi bi-person-circle"></a>
@@ -156,9 +159,16 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
               >
                 Launch demo modal3
               </button> -->
-                <button type="button" class="btn btn-primary btn-sm login-btn" href="#" role="button" data-bs-toggle="modal"
-      data-bs-target="#login_modal">로그인</button>
+              
+                <button type="button" class="btn btn-primary btn-sm login-btn" href="#" role="button" data-bs-toggle="modal" data-bs-target="#login_modal">로그인</button>
                 <a type="button" class="btn btn-primary btn-sm member" href="/helloworld/user/signin.php" role="button">회원가입</a>
+              <?php
+                } else {  
+              ?>
+<a href="/helloworld/user/login/logout.php" class="btn btn-primary btn-sm logout">로그아웃</a>
+              <?php
+              }?>
+
             </div>
           </div>
         </div>

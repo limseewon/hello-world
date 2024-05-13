@@ -1,5 +1,5 @@
 <?php
-$title = 'Home';
+$title = 'HOME';
 $cssRoute1 ='';
 $cssRoute2 ='';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
