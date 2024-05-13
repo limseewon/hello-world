@@ -86,7 +86,7 @@ $sfResult = $mysqli->query($sfSql);
 $sfRs = $sfResult->fetch_object();
 
 
-$profitSql= "SELECT SUM(c.price) as sum FROM courses c JOIN ordered_courses oc ON oc.course_id = c.cid WHERE YEAR(regdate) = YEAR(CURRENT_DATE()) AND MONTH(regdate) = MONTH(CURRENT_DATE());";
+$profitSql= "SELECT SUM(c.price) as sum FROM courses c JOIN ordered_courses oc ON oc.course_id = c.cid WHERE YEAR(c.regdate) = YEAR(CURRENT_DATE()) AND MONTH(c.regdate) = MONTH(CURRENT_DATE());";
 $profitResult = $mysqli->query($profitSql);
 $profitRs = $profitResult->fetch_object();
 ?>
