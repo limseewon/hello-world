@@ -33,7 +33,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="login_modal_label">title</h1>
+            <h1 class="modal-title fs-5" id="login_modal_label">modal title</h1>
             <button
               type="button"
               class="btn-close"
@@ -138,9 +138,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
             <img src="/helloworld/user/img/logo_text.jpg" alt="Hello World 로고">
         </a>
           <div class="center_menu d-flex aic bold h4 mb-0">
-            <a href="#">강의</a>
-            <a href="#">공지사항</a>
-            <a href="#">Q&amp;A</a>
+            <a href="/helloworld/user/class/course_list.php">강의</a>
+            <a href="/helloworld/user/notice/notice.php">공지사항</a>
+            <a href="/helloworld/user/qna/qna.php">Q&amp;A</a>
           </div>
           <div class="right_menu d-flex aic h4 mb-0">
             <?php
