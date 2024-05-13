@@ -66,7 +66,7 @@ if ($qna_id > 0) {
             <hr>
             <div class="reply_comments">
                 <div class="comment-form" style="display: none;">
-                    <form action="Q&A_save_insert.php" method="POST">
+                    <form action="qna_save_insert.php" method="POST">
                         <input type="hidden" name="idx" value="<?= $qna_id ?>">
                         <div class="d-flex align-items-center mb-3">
                             <i class="bi bi-person-circle me-2 h5"></i>
