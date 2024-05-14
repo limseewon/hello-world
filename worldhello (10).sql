@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- 생성 시간: 24-05-14 08:34
--- 서버 버전: 10.4.32-MariaDB
--- PHP 버전: 8.2.12
+-- Host: localhost
+-- 생성 시간: 24-05-14 16:18
+-- 서버 버전: 8.0.36
+-- PHP 버전: 8.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,13 +28,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admins` (
-  `idx` int(11) NOT NULL,
-  `userid` varchar(145) DEFAULT NULL,
-  `email` varchar(245) DEFAULT NULL,
-  `username` varchar(145) DEFAULT NULL,
-  `passwd` varchar(200) DEFAULT NULL,
-  `regdate` datetime DEFAULT current_timestamp(),
-  `level` tinyint(4) DEFAULT NULL,
+  `idx` int NOT NULL,
+  `userid` varchar(145) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(245) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `username` varchar(145) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `passwd` varchar(200) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `regdate` datetime DEFAULT CURRENT_TIMESTAMP,
+  `level` tinyint DEFAULT NULL,
   `last_login` datetime DEFAULT NULL,
   `end_login_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -53,15 +53,19 @@ INSERT INTO `admins` (`idx`, `userid`, `email`, `username`, `passwd`, `regdate`,
 --
 
 CREATE TABLE `cart` (
-  `cartid` int(11) NOT NULL,
-  `pid` int(11) DEFAULT NULL,
-  `userid` varchar(100) DEFAULT NULL,
-  `ssid` varchar(100) DEFAULT NULL,
-  `options` varchar(100) DEFAULT NULL,
-  `cnt` varchar(100) DEFAULT NULL,
-  `regdate` datetime DEFAULT NULL,
-  `total` int(11) NOT NULL
+  `cartid` int NOT NULL,
+  `cid` int NOT NULL,
+  `userid` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `options` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `regdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 테이블의 덤프 데이터 `cart`
+--
+
+INSERT INTO `cart` (`cartid`, `cid`, `userid`, `options`, `regdate`) VALUES
+(1, 1, 'asdf', 'zxcxcv', '2024-05-14 15:14:49');
 
 -- --------------------------------------------------------
 
@@ -70,11 +74,11 @@ CREATE TABLE `cart` (
 --
 
 CREATE TABLE `category` (
-  `cateid` int(11) NOT NULL,
-  `code` varchar(10) NOT NULL,
-  `pcode` varchar(10) DEFAULT NULL,
-  `name` varchar(100) NOT NULL,
-  `step` tinyint(4) NOT NULL
+  `cateid` int NOT NULL,
+  `code` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
+  `pcode` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `step` tinyint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -266,15 +270,15 @@ INSERT INTO `category` (`cateid`, `code`, `pcode`, `name`, `step`) VALUES
 --
 
 CREATE TABLE `coupons` (
-  `cpid` int(11) NOT NULL,
-  `cp_name` varchar(100) NOT NULL COMMENT '쿠폰명',
-  `cp_image` varchar(100) NOT NULL COMMENT '쿠폰이미지',
-  `cp_type` varchar(11) NOT NULL COMMENT '쿠폰타입',
-  `cp_price` int(11) NOT NULL COMMENT '할인금액',
-  `cp_ratio` int(11) NOT NULL COMMENT '할인비율',
-  `cp_status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '상태',
-  `cp_date` int(11) NOT NULL COMMENT '등록일',
-  `cp_limit` varchar(11) NOT NULL COMMENT '최소사용금액'
+  `cpid` int NOT NULL,
+  `cp_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL COMMENT '쿠폰명',
+  `cp_image` varchar(100) COLLATE utf8mb4_general_ci NOT NULL COMMENT '쿠폰이미지',
+  `cp_type` varchar(11) COLLATE utf8mb4_general_ci NOT NULL COMMENT '쿠폰타입',
+  `cp_price` int NOT NULL COMMENT '할인금액',
+  `cp_ratio` int NOT NULL COMMENT '할인비율',
+  `cp_status` tinyint NOT NULL DEFAULT '0' COMMENT '상태',
+  `cp_date` int NOT NULL COMMENT '등록일',
+  `cp_limit` varchar(11) COLLATE utf8mb4_general_ci NOT NULL COMMENT '최소사용금액'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -304,10 +308,10 @@ INSERT INTO `coupons` (`cpid`, `cp_name`, `cp_image`, `cp_type`, `cp_price`, `cp
 --
 
 CREATE TABLE `coursefile` (
-  `cid` int(11) NOT NULL,
-  `l_idx2` int(11) NOT NULL,
-  `course_file` varchar(100) NOT NULL,
-  `course_file_name` varchar(100) NOT NULL
+  `cid` int NOT NULL,
+  `l_idx2` int NOT NULL,
+  `course_file` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `course_file_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -317,20 +321,20 @@ CREATE TABLE `coursefile` (
 --
 
 CREATE TABLE `courses` (
-  `cid` int(11) NOT NULL,
-  `cate` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `price_status` varchar(11) NOT NULL,
-  `price` int(11) NOT NULL,
-  `level` varchar(11) NOT NULL,
-  `due_status` varchar(4) DEFAULT NULL,
-  `due` varchar(11) DEFAULT NULL,
-  `act` varchar(11) NOT NULL,
-  `content` text NOT NULL,
-  `thumbnail` varchar(100) NOT NULL,
-  `course_file` text DEFAULT NULL,
-  `course_file_name` varchar(100) DEFAULT NULL,
-  `regdate` datetime NOT NULL DEFAULT current_timestamp()
+  `cid` int NOT NULL,
+  `cate` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `price_status` varchar(11) COLLATE utf8mb4_general_ci NOT NULL,
+  `price` int NOT NULL,
+  `level` varchar(11) COLLATE utf8mb4_general_ci NOT NULL,
+  `due_status` varchar(4) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `due` varchar(11) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `act` varchar(11) COLLATE utf8mb4_general_ci NOT NULL,
+  `content` text COLLATE utf8mb4_general_ci NOT NULL,
+  `thumbnail` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `course_file` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `course_file_name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `regdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -364,11 +368,11 @@ INSERT INTO `courses` (`cid`, `cate`, `name`, `price_status`, `price`, `level`, 
 --
 
 CREATE TABLE `lecture` (
-  `cid` int(11) NOT NULL,
-  `l_idx` int(11) NOT NULL,
-  `youtube_thumb` varchar(100) NOT NULL,
-  `youtube_name` varchar(100) NOT NULL,
-  `youtube_url` text NOT NULL
+  `cid` int NOT NULL,
+  `l_idx` int NOT NULL,
+  `youtube_thumb` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `youtube_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `youtube_url` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -475,72 +479,95 @@ INSERT INTO `lecture` (`cid`, `l_idx`, `youtube_thumb`, `youtube_name`, `youtube
 --
 
 CREATE TABLE `members` (
-  `mid` int(11) NOT NULL,
-  `userid` varchar(145) NOT NULL,
-  `email` varchar(245) DEFAULT NULL,
-  `username` varchar(145) DEFAULT NULL,
-  `passwd` varchar(200) DEFAULT NULL,
-  `recent_in` datetime DEFAULT NULL,
-  `tel` varchar(20) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1,
-  `regdate` datetime DEFAULT current_timestamp()
+  `mid` int NOT NULL,
+  `userid` varchar(145) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(245) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(145) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `passwd` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `recent_in` date DEFAULT NULL,
+  `tel` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `status` tinyint NOT NULL DEFAULT '1',
+  `userimg` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `regdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 테이블의 덤프 데이터 `members`
 --
 
-INSERT INTO `members` (`mid`, `userid`, `email`, `username`, `passwd`, `recent_in`, `tel`, `status`, `regdate`) VALUES
-(5, 'green', 'd', '홍길동', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-10 15:11:34', '010-2222-2222', 0, '2024-04-24 14:45:37'),
-(6, 'john_doe', 'john@example.com', 'JohnDoe', NULL, '2024-04-29 10:15:32', '555-1234', 1, '2024-03-15 08:22:10'),
-(7, 'jane_smith', 'janesmith@gmail.com', 'JaneSmith92', NULL, '2024-04-28 18:40:21', '555-5678', 0, '2024-02-03 14:17:54'),
-(8, 'alex_wilson', 'alex.wilson@company.com', 'AlexWilson', NULL, '2024-04-27 22:11:05', '555-9012', 1, '2024-01-10 11:32:28'),
-(9, 'sarah_lee', 'sarahlee@hotmail.com', 'SarahLee88', NULL, '2024-04-30 09:37:49', '555-3456', 0, '2023-12-22 16:08:41'),
-(10, 'michael_brown', 'mbrown@gmail.com', 'MichaelB', NULL, '2024-04-25 15:22:17', '555-7890', 1, '2023-11-05 10:45:32'),
-(11, 'emily_davis', 'emily.davis@example.net', 'EmilyD', NULL, '2024-04-28 20:49:38', '555-2345', 0, '2023-10-18 07:19:08'),
-(12, 'david_miller', 'david@company.com', 'DavidMiller', NULL, '2024-04-27 13:16:24', '555-6789', 1, '2023-09-27 13:42:51'),
-(15, 'amanda_taylor', 'amandataylor@example.com', 'AmandaT', NULL, '2024-04-28 11:19:52', '555-8901', 0, '2023-06-05 11:58:23'),
-(16, 'kevin_martin', 'kevin@company.net', 'KevinMartin', NULL, '2024-04-30 06:32:17', '555-2345', 1, '2023-05-17 20:12:38'),
-(17, 'sophia_chen', 'sophiachen@gmail.com', 'SophiaChen', NULL, '2024-04-27 14:48:29', '555-6789', 1, '2023-04-28 14:27:51'),
-(18, 'william_garcia', 'william.garcia@hotmail.com', 'WillGarcia', NULL, '2024-04-29 21:06:41', '555-0123', 1, '2023-03-09 09:39:16'),
-(19, 'olivia_rodriguez', 'olivia@example.com', 'OliviaRod', NULL, '2024-04-26 17:24:53', '555-4567', 0, '2023-02-18 16:51:27'),
-(20, 'daniel_martinez', 'daniel.martinez@company.com', 'DanielM', NULL, '2024-04-28 09:38:15', '555-8901', 1, '2023-01-30 11:14:42'),
-(21, 'isabella_hernandez', 'isabella@gmail.com', 'IsabellaH', NULL, '2024-04-30 03:51:27', '555-2345', 0, '2022-12-11 07:29:57'),
-(22, 'matthew_gonzalez', 'matthewg@hotmail.com', 'MatthewG', NULL, '2024-04-27 19:14:39', '555-6789', 1, '2022-11-22 14:46:12'),
-(23, 'ava_perez', 'ava.perez@example.net', 'AvaPez', NULL, '2024-04-29 12:27:51', '555-0123', 0, '2022-10-03 09:03:29'),
-(24, 'jacob_sanchez', 'jacob@company.com', 'JacobSanchez', NULL, '2024-04-26 05:39:14', '555-4567', 1, '2022-09-15 15:17:44'),
-(25, 'junb', 'junb@gmail.com', '바오밥', NULL, '2024-04-28 14:33:20', '010-1234-5678', 1, '2024-04-02 14:33:20'),
-(26, 'sarahj', 'sarah.jones@example.com', 'SarahJones', NULL, '2024-04-30 09:17:43', '555-0192', 0, '2023-11-21 16:28:15'),
-(27, 'alexr', 'alex@mycompany.org', 'AlexRyan', NULL, '2024-04-29 18:34:57', '555-2468', 1, '2023-08-05 10:42:39'),
-(29, 'mariab', 'maria.brown@hotmail.com', 'MariaB', NULL, '2024-04-26 14:49:34', '555-5512', 1, '2023-03-27 13:35:07'),
-(30, 'tomh', 'tom@example.net', 'TomHanks', NULL, '2024-04-28 07:23:48', '555-7824', 0, '2022-12-08 09:51:42'),
-(31, 'kchang', 'kevin.chang@company.com', 'KevinChang', NULL, '2024-04-25 15:38:12', '555-1936', 1, '2022-09-19 17:14:27'),
-(32, 'lrodriguez', 'laura@gmail.com', 'LauRod', NULL, '2024-04-30 11:52:26', '555-4072', 0, '2022-07-03 21:29:39'),
-(33, 'stevew', 'steve.wilson@mycompany.org', 'SteveWilson', NULL, '2024-04-27 19:13:40', '555-6184', 1, '2022-04-16 13:46:52'),
-(34, 'agarcia', 'amy.garcia@hotmail.com', 'AmyGarcia', NULL, '2024-04-29 06:27:53', '555-8296', 0, '2022-02-25 08:03:17'),
-(35, 'bobsmith', 'bob@example.com', 'BobbySmith', NULL, '2024-04-26 13:39:07', '555-0408', 1, '2021-12-09 15:19:34'),
-(36, 'jlee', 'jessica.lee@company.net', 'JessLee', NULL, '2024-04-28 21:54:21', '555-2520', 0, '2021-09-22 11:41:49'),
-(37, 'davidp', 'david@gmail.com', 'DavidPark', NULL, '2024-04-25 09:08:35', '555-4632', 1, '2021-07-05 17:56:13'),
-(38, 'michelleb', 'michelle.brown@example.org', 'MichelleBrown', NULL, '2024-04-30 16:21:48', '555-6744', 0, '2021-04-17 21:12:26'),
-(39, 'markj', 'mark.johnson@hotmail.com', 'MarkJohnson', NULL, '2024-04-27 03:35:02', '555-8856', 1, '2021-02-28 14:29:39'),
-(40, 'annak', 'anna@company.com', 'AnnaKim', NULL, '2024-04-28 10:47:16', '555-0968', 0, '2020-12-11 09:46:52'),
-(41, 'josephp', 'joseph.park@gmail.net', 'JosephPark', NULL, '2024-04-29 18:01:29', '555-3080', 1, '2020-10-23 16:03:08'),
-(42, 'karenm', 'karen@example.org', 'KarenMiller', NULL, '2024-04-26 06:14:43', '555-5192', 0, '2020-09-06 10:19:21'),
-(43, 'ryanj', 'ryan.jones@mycompany.com', 'RyanJones', NULL, '2024-04-30 13:28:57', '555-7304', 1, '2020-07-18 14:35:37'),
-(44, 'amyl', 'amy.lewis@hotmail.com', 'AmyLewis', NULL, '2024-04-27 21:41:11', '555-9416', 0, '2020-05-29 08:51:44'),
-(45, 'junb', 'junb@gmail.com', '바오밥', '2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2024-04-28 14:33:20', '010-1234-5678', 1, '2024-04-02 14:33:20'),
-(46, 'sarahj', 'sarah.jones@example.com', 'SarahJones', '$2a$12$WzUFbjmTfqp7W9uEUOHxcuwhp5FNReIrz9eDdsltYhTZgMgTrYfAa', '2024-04-30 09:17:43', '555-0192', 0, '2023-11-21 16:28:15'),
-(47, 'alexr', 'alex@mycompany.org', 'AlexRyan', '$2y$10$EXAMPLEORsVdbmNHtEnSgeYb4B8kTIOzGKpviys.sJDB6Yh56EHQG', '2024-04-29 18:34:57', '555-2468', 1, '2023-08-05 10:42:39'),
-(48, 'jdavis', 'john.davis@gmail.com', 'JohnnyD', '$2a$12$wzEl2xmfcgMsYsVvHxznCu8b7OSm0srhTyLtvklchTDTaV8AHHCXK', '2024-04-27 22:11:19', '555-8024', 0, '2023-06-14 06:17:28'),
-(49, 'mariab', 'maria.brown@hotmail.com', 'MariaB', '$2y$10$EXAMPLEkZcYvZILiMy5ye0LEVhZD5BplnfQR0Rz8e5BHwsnobx7Z6', '2024-04-26 14:49:34', '555-5512', 1, '2023-03-27 13:35:07'),
-(50, 'tomh', 'tom@example.net', 'TomHanks', '$2a$12$EXAMPLEJFlTdp9B/G9a4FOtStGGwuoG4ZXKumcsAVuy0YFEpyMKQe', '2024-04-28 07:23:48', '555-7824', 0, '2022-12-08 09:51:42'),
-(51, 'kchang', 'kevin.chang@company.com', 'KevinChang', '$2y$10$EXAMPLEKvG4X4PH51OdSBOF7FsKckYGOiLsxz.rRbXIKtWlcGzKSe', '2024-04-25 15:38:12', '555-1936', 1, '2022-09-19 17:14:27'),
-(52, 'lrodriguez', 'laura@gmail.com', 'LauRod', '$2a$12$EXAMPLEcxfklsWYUFn/UM.6hk0SkTLnDBXuQHF0bfLOP0HaSBdyHC', '2024-04-30 11:52:26', '555-4072', 0, '2022-07-03 21:29:39'),
-(53, 'stevew', 'steve.wilson@mycompany.org', 'SteveWilson', '$2y$10$EXAMPLEDIEYr7l.V7lIq3.EQqksrJkkhfsG0RnJYxzCdOSd2BKHf2', '2024-04-27 19:13:40', '555-6184', 1, '2022-04-16 13:46:52'),
-(54, 'agarcia', 'amy.garcia@hotmail.com', 'AmyGarcia', '$2a$12$EXAMPLEwDVcFAk9RwW8hV.XTg6EhP8Qmn4vQz2qUtO2D6IqvXzYqu', '2024-04-29 06:27:53', '555-8296', 0, '2022-02-25 08:03:17'),
-(55, 'bobsmith', 'bob@example.com', 'BobbySmith', '$2y$10$EXAMPLEsAOlTdNDvKJqMbusGfLjnxM6q1UwHTDwcAPFMjsJi46GDu', '2024-04-26 13:39:07', '555-0408', 1, '2021-12-09 15:19:34'),
-(56, 'jlee', 'jessica.lee@company.net', 'JessLee', '$2a$12$EXAMPLEtMwxFTybjcKNMxudcudBbOsXsIqzpg/9OgFyLdJuCWwaDO', '2024-04-28 21:54:21', '555-2520', 0, '2021-09-22 11:41:49'),
-(57, 'davidp', 'david@gmail.com', 'DavidPark', '$2y$10$EXAMPLEeLNPjPcf9/R/F1.2Z2E/uDOWzMN6xOlxb4BCjpq8EJWcaG', '2024-04-25 09:08:35', '555-4632', 1, '2021-07-05 17:56:13');
+INSERT INTO `members` (`mid`, `userid`, `email`, `username`, `passwd`, `recent_in`, `tel`, `status`, `userimg`, `regdate`) VALUES
+(5, 'green', 'd', '홍길동', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-10', '010-2222-2222', 0, NULL, '2024-04-24'),
+(6, 'john_doe', 'john@example.com', 'JohnDoe', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-29', '555-1234', 1, NULL, '2024-03-15'),
+(7, 'jane_smith', 'janesmith@gmail.com', 'JaneSmith92', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-28', '555-5678', 0, NULL, '2024-02-03'),
+(8, 'alex_wilson', 'alex.wilson@company.com', 'AlexWilson', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-27', '555-9012', 1, NULL, '2024-01-10'),
+(9, 'sarah_lee', 'sarahlee@hotmail.com', 'SarahLee88', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-30', '555-3456', 0, NULL, '2023-12-22'),
+(10, 'michael_brown', 'mbrown@gmail.com', 'MichaelB', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-25', '555-7890', 1, NULL, '2023-11-05'),
+(11, 'emily_davis', 'emily.davis@example.net', 'EmilyD', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-28', '555-2345', 0, NULL, '2023-10-18'),
+(12, 'david_miller', 'david@company.com', 'DavidMiller', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-27', '555-6789', 1, NULL, '2023-09-27'),
+(15, 'amanda_taylor', 'amandataylor@example.com', 'AmandaT', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-28', '555-8901', 0, NULL, '2023-06-05'),
+(16, 'kevin_martin', 'kevin@company.net', 'KevinMartin', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-30', '555-2345', 1, NULL, '2023-05-17'),
+(17, 'sophia_chen', 'sophiachen@gmail.com', 'SophiaChen', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-27', '555-6789', 1, NULL, '2023-04-28'),
+(18, 'william_garcia', 'william.garcia@hotmail.com', 'WillGarcia', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-29', '555-0123', 1, NULL, '2023-03-09'),
+(19, 'olivia_rodriguez', 'olivia@example.com', 'OliviaRod', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-26', '555-4567', 0, NULL, '2023-02-18'),
+(20, 'daniel_martinez', 'daniel.martinez@company.com', 'DanielM', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-28', '555-8901', 1, NULL, '2023-01-30'),
+(21, 'isabella_hernandez', 'isabella@gmail.com', 'IsabellaH', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-30', '555-2345', 0, NULL, '2022-12-11'),
+(22, 'matthew_gonzalez', 'matthewg@hotmail.com', 'MatthewG', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-27', '555-6789', 1, NULL, '2022-11-22'),
+(23, 'ava_perez', 'ava.perez@example.net', 'AvaPez', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-29', '555-0123', 0, NULL, '2022-10-03'),
+(24, 'jacob_sanchez', 'jacob@company.com', 'JacobSanchez', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-26', '555-4567', 1, NULL, '2022-09-15'),
+(25, 'junb', 'junb@gmail.com', '바오밥', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-28', '010-1234-5678', 1, NULL, '2024-04-02'),
+(26, 'sarahj', 'sarah.jones@example.com', 'SarahJones', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-30', '555-0192', 0, NULL, '2023-11-21'),
+(27, 'alexr', 'alex@mycompany.org', 'AlexRyan', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-29', '555-2468', 1, NULL, '2023-08-05'),
+(29, 'mariab', 'maria.brown@hotmail.com', 'MariaB', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-26', '555-5512', 1, NULL, '2023-03-27'),
+(30, 'tomh', 'tom@example.net', 'TomHanks', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-28', '555-7824', 0, NULL, '2022-12-08'),
+(31, 'kchang', 'kevin.chang@company.com', 'KevinChang', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-25', '555-1936', 1, NULL, '2022-09-19'),
+(32, 'lrodriguez', 'laura@gmail.com', 'LauRod', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-30', '555-4072', 0, NULL, '2022-07-03'),
+(33, 'stevew', 'steve.wilson@mycompany.org', 'SteveWilson', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-27', '555-6184', 1, NULL, '2022-04-16'),
+(34, 'agarcia', 'amy.garcia@hotmail.com', 'AmyGarcia', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-29', '555-8296', 0, NULL, '2022-02-25'),
+(35, 'bobsmith', 'bob@example.com', 'BobbySmith', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-26', '555-0408', 1, NULL, '2021-12-09'),
+(36, 'jlee', 'jessica.lee@company.net', 'JessLee', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-28', '555-2520', 0, NULL, '2021-09-22'),
+(37, 'davidp', 'david@gmail.com', 'DavidPark', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-25', '555-4632', 1, NULL, '2021-07-05'),
+(38, 'michelleb', 'michelle.brown@example.org', 'MichelleBrown', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-30', '555-6744', 0, NULL, '2021-04-17'),
+(39, 'markj', 'mark.johnson@hotmail.com', 'MarkJohnson', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-27', '555-8856', 1, NULL, '2021-02-28'),
+(40, 'annak', 'anna@company.com', 'AnnaKim', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-28', '555-0968', 0, NULL, '2020-12-11'),
+(41, 'josephp', 'joseph.park@gmail.net', 'JosephPark', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-29', '555-3080', 1, NULL, '2020-10-23'),
+(42, 'karenm', 'karen@example.org', 'KarenMiller', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-26', '555-5192', 0, NULL, '2020-09-06'),
+(43, 'ryanj', 'ryan.jones@mycompany.com', 'RyanJones', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-30', '555-7304', 1, NULL, '2020-07-18'),
+(44, 'amyl', 'amy.lewis@hotmail.com', 'AmyLewis', '33275a8aa48ea918bd53a9181aa975f15ab0d0645398f5918a006d08675c1cb27d5c645dbd084eee56e675e25ba4019f2ecea37ca9e2995b49fcb12c096a032e', '2024-04-27', '555-9416', 0, NULL, '2020-05-29'),
+(45, 'junb', 'junb@gmail.com', '바오밥', '2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '2024-04-28', '010-1234-5678', 1, NULL, '2024-04-02'),
+(46, 'sarahj', 'sarah.jones@example.com', 'SarahJones', '$2a$12$WzUFbjmTfqp7W9uEUOHxcuwhp5FNReIrz9eDdsltYhTZgMgTrYfAa', '2024-04-30', '555-0192', 0, NULL, '2023-11-21'),
+(47, 'alexr', 'alex@mycompany.org', 'AlexRyan', '$2y$10$EXAMPLEORsVdbmNHtEnSgeYb4B8kTIOzGKpviys.sJDB6Yh56EHQG', '2024-04-29', '555-2468', 1, NULL, '2023-08-05'),
+(48, 'jdavis', 'john.davis@gmail.com', 'JohnnyD', '$2a$12$wzEl2xmfcgMsYsVvHxznCu8b7OSm0srhTyLtvklchTDTaV8AHHCXK', '2024-04-27', '555-8024', 0, NULL, '2023-06-14'),
+(49, 'mariab', 'maria.brown@hotmail.com', 'MariaB', '$2y$10$EXAMPLEkZcYvZILiMy5ye0LEVhZD5BplnfQR0Rz8e5BHwsnobx7Z6', '2024-04-26', '555-5512', 1, NULL, '2023-03-27'),
+(50, 'tomh', 'tom@example.net', 'TomHanks', '$2a$12$EXAMPLEJFlTdp9B/G9a4FOtStGGwuoG4ZXKumcsAVuy0YFEpyMKQe', '2024-04-28', '555-7824', 0, NULL, '2022-12-08'),
+(51, 'kchang', 'kevin.chang@company.com', 'KevinChang', '$2y$10$EXAMPLEKvG4X4PH51OdSBOF7FsKckYGOiLsxz.rRbXIKtWlcGzKSe', '2024-04-25', '555-1936', 1, NULL, '2022-09-19'),
+(52, 'lrodriguez', 'laura@gmail.com', 'LauRod', '$2a$12$EXAMPLEcxfklsWYUFn/UM.6hk0SkTLnDBXuQHF0bfLOP0HaSBdyHC', '2024-04-30', '555-4072', 0, NULL, '2022-07-03'),
+(53, 'stevew', 'steve.wilson@mycompany.org', 'SteveWilson', '$2y$10$EXAMPLEDIEYr7l.V7lIq3.EQqksrJkkhfsG0RnJYxzCdOSd2BKHf2', '2024-04-27', '555-6184', 1, NULL, '2022-04-16'),
+(54, 'agarcia', 'amy.garcia@hotmail.com', 'AmyGarcia', '$2a$12$EXAMPLEwDVcFAk9RwW8hV.XTg6EhP8Qmn4vQz2qUtO2D6IqvXzYqu', '2024-04-29', '555-8296', 0, NULL, '2022-02-25'),
+(55, 'bobsmith', 'bob@example.com', 'BobbySmith', '$2y$10$EXAMPLEsAOlTdNDvKJqMbusGfLjnxM6q1UwHTDwcAPFMjsJi46GDu', '2024-04-26', '555-0408', 1, NULL, '2021-12-09'),
+(56, 'jlee', 'jessica.lee@company.net', 'JessLee', '$2a$12$EXAMPLEtMwxFTybjcKNMxudcudBbOsXsIqzpg/9OgFyLdJuCWwaDO', '2024-04-28', '555-2520', 0, NULL, '2021-09-22'),
+(57, 'davidp', 'david@gmail.com', 'DavidPark', '$2y$10$EXAMPLEeLNPjPcf9/R/F1.2Z2E/uDOWzMN6xOlxb4BCjpq8EJWcaG', '2024-04-25', '555-4632', 1, NULL, '2021-07-05'),
+(58, 'seewon', 'fasfasf@gmail.com', '임시원', '3736411d6fe920ba24403775d607def2d76448e769523663103d8d7697513c5b161ce6c0d77bd48848c54525321334e2a7d1ec2eec889b6aafa406925780b49e', NULL, '01054846846', 1, '', '2024-05-13');
+
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `msg`
+--
+
+CREATE TABLE `msg` (
+  `senderIdx` int NOT NULL,
+  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `mid` int NOT NULL,
+  `regdate` date NOT NULL,
+  `msgidx` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- 테이블의 덤프 데이터 `msg`
+--
+
+INSERT INTO `msg` (`senderIdx`, `content`, `mid`, `regdate`, `msgidx`) VALUES
+(4, 'msg test', 5, '2024-05-14', 1);
 
 -- --------------------------------------------------------
 
@@ -549,13 +576,13 @@ INSERT INTO `members` (`mid`, `userid`, `email`, `username`, `passwd`, `recent_i
 --
 
 CREATE TABLE `notice` (
-  `idx` int(11) NOT NULL,
-  `title` varchar(30) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `view` varchar(1000) DEFAULT NULL,
-  `content` varchar(100) NOT NULL,
-  `file` varchar(100) NOT NULL,
-  `is_img` int(11) NOT NULL,
+  `idx` int NOT NULL,
+  `title` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `view` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `content` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `file` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `is_img` int NOT NULL,
   `regdate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -564,10 +591,10 @@ CREATE TABLE `notice` (
 --
 
 INSERT INTO `notice` (`idx`, `title`, `name`, `view`, `content`, `file`, `is_img`, `regdate`) VALUES
-(167, '새로운 강좌 오픈 안내', '운영자', '4', '새로운 프로그래밍 언어 강좌가 오픈되었습니다. 수강 신청 기간을 확인해주세요.', 'new_course.jpg', 1, '2024-05-03 09:30:00'),
-(168, '이용 약관 변경 공지', '운영자', '3', '이용 약관이 일부 변경되었습니다. 변경 내용을 확인하시고 동의 부탁드립니다.', 'terms_update.pdf', 0, '2024-05-04 14:45:00'),
-(169, '시스템 점검 안내', '운영자', '1', '시스템 안정화를 위한 점검이 진행될 예정입니다. 점검 시간 동안 서비스 이용이 제한됩니다.', 'maintenance.jpg', 1, '2024-05-05 11:00:00'),
-(170, '수강생 대상 이벤트 진행', '운영자', '1', '수강생 여러분을 위한 특별 이벤트를 준비했습니다. 자세한 내용은 첨부 이미지를 참고해주세요.', 'event_poster.png', 1, '2024-05-06 16:20:00'),
+(167, '새로운 강좌 오픈 안내', '운영자', '6', '새로운 프로그래밍 언어 강좌가 오픈되었습니다. 수강 신청 기간을 확인해주세요.', 'new_course.jpg', 1, '2024-05-03 09:30:00'),
+(168, '이용 약관 변경 공지', '운영자', '5', '이용 약관이 일부 변경되었습니다. 변경 내용을 확인하시고 동의 부탁드립니다.', 'terms_update.pdf', 0, '2024-05-04 14:45:00'),
+(169, '시스템 점검 안내', '운영자', '2', '시스템 안정화를 위한 점검이 진행될 예정입니다. 점검 시간 동안 서비스 이용이 제한됩니다.', 'maintenance.jpg', 1, '2024-05-05 11:00:00'),
+(170, '수강생 대상 이벤트 진행', '운영자', '2', '수강생 여러분을 위한 특별 이벤트를 준비했습니다. 자세한 내용은 첨부 이미지를 참고해주세요.', 'event_poster.png', 1, '2024-05-06 16:20:00'),
 (171, '온라인 강의 플랫폼 업데이트', '운영자', '2', '온라인 강의 플랫폼이 업데이트되었습니다. 새로운 기능과 개선 사항을 확인해보세요.', 'platform_update.pdf', 0, '2024-05-07 13:10:00'),
 (172, '수강료 할인 이벤트', '운영자', '1', '한정된 기간 동안 수강료 할인 이벤트를 진행합니다. 수강 신청 시 할인 혜택을 받으실 수 있습니다.', 'discount_event.jpg', 1, '2024-05-08 10:00:00'),
 (173, '교육 과정 설문조사 안내', '운영자', '1', '교육 과정 개선을 위한 설문조사를 진행하고 있습니다. 적극적인 참여 부탁드립니다.', 'survey.pdf', 0, '2024-05-09 15:30:00'),
@@ -640,7 +667,7 @@ INSERT INTO `notice` (`idx`, `title`, `name`, `view`, `content`, `file`, `is_img
 (251, 'Vue.js 강좌 오픈 예정', '관리자', '0', 'Vue.js 강좌가 곧 오픈될 예정입니다. 프론트엔드 개발에 필요한 Vue.js 프레임워크를 학습해 보세요.', '0', 0, '2024-06-07 13:15:00'),
 (252, '수강생 대상 이벤트 당첨자 발표', '운영진', '0', '수강생 대상 이벤트에 참여해 주신 분들께 감사드립니다. 당첨자 명단을 공지사항에서 확인하실 수 있습니다.', '0', 0, '2024-06-08 16:00:00'),
 (253, 'Spring Framework 강좌 오픈', '관리자', '0', 'Spring Framework 강좌가 오픈되었습니다. 자바 기반의 웹 애플리케이션 개발에 필수적인 프레임워크를 배워보세요.', '0', 0, '2024-06-09 09:00:00'),
-(254, '학원 시설 점검 안내', '운영진', '0', '학원 시설 점검이 예정되어 있습니다. 점검 기간 동안 학원 이용에 불편함이 있을 수 있으니 양해 부탁드립니다.', '0', 0, '2024-06-10 11:30:00'),
+(254, '학원 시설 점검 안내', '운영진', '1', '학원 시설 점검이 예정되어 있습니다. 점검 기간 동안 학원 이용에 불편함이 있을 수 있으니 양해 부탁드립니다.', '0', 0, '2024-06-10 11:30:00'),
 (255, '알고리즘 문제 해결 강좌 커리큘럼 공개', '강사', '0', '알고리즘 문제 해결 강좌의 커리큘럼을 공개합니다. 다양한 알고리즘 문제를 해결하는 방법을 학습할 수 있습니다.', '0', 0, '2024-06-11 14:20:00'),
 (256, 'Node.js 강좌 오픈 예정', '관리자', '0', 'Node.js 강좌가 곧 오픈될 예정입니다. 서버 사이드 JavaScript 개발에 필요한 Node.js를 배워보세요.', '0', 0, '2024-06-12 10:00:00'),
 (257, '수강생 프로젝트 전시회 안내', '운영진', '0', '수강생들의 프로젝트 전시회가 개최됩니다. 다양한 프로젝트 결과물을 직접 확인하실 수 있습니다.', '0', 0, '2024-06-13 13:45:00'),
@@ -654,13 +681,13 @@ INSERT INTO `notice` (`idx`, `title`, `name`, `view`, `content`, `file`, `is_img
 (265, '학원 시설 보수 공사 안내', '운영진', '0', '학원 시설 보수 공사가 진행될 예정입니다. 공사 기간 동안 학습에 불편함이 없도록 최선을 다하겠습니다.', '0', 0, '2024-06-21 09:00:00'),
 (266, 'Angular 강좌 커리큘럼 공개', '강사', '0', 'Angular 강좌의 커리큘럼을 공개합니다. 타입스크립트를 활용한 웹 애플리케이션 개발을 배워보세요.', '0', 0, '2024-06-22 11:30:00'),
 (267, '학원 개인정보 처리방침 변경 안내', '관리자', '0', '학원 개인정보 처리방침이 일부 변경되었습니다. 변경 내용을 확인하시고 동의 부탁드립니다.', '0', 0, '2024-06-23 14:20:00'),
-(268, 'Flask 웹 개발 강좌 오픈 예정', '관리자', '0', 'Flask를 활용한 웹 개발 강좌가 곧 오픈될 예정입니다. 파이썬 기반의 마이크로 웹 프레임워크를 학습해 보세요.', '0', 0, '2024-06-24 10:00:00'),
-(269, '수강생 대상 설문조사 결과 공유', '운영진', '0', '수강생 대상 설문조사 결과를 공유드립니다. 학원 운영 개선에 반영하도록 하겠습니다.', '0', 0, '2024-06-25 13:45:00'),
-(270, 'OpenCV 컴퓨터 비전 강좌 오픈', '관리자', '0', 'OpenCV를 활용한 컴퓨터 비전 강좌가 오픈되었습니다. 이미지 처리와 컴퓨터 비전 기술을 배워보세요.', '0', 0, '2024-06-26 15:30:00'),
-(271, '학원 야간 운영 시간 변경 안내', '운영진', '0', '학원 야간 운영 시간이 변경되었습니다. 자세한 운영 시간은 공지사항을 참고해 주시기 바랍니다.', '0', 0, '2024-06-27 09:30:00'),
-(272, 'Express.js 웹 개발 강좌 커리큘럼 업데이트', '강사', '0', 'Express.js 웹 개발 강좌의 커리큘럼이 업데이트되었습니다. 최신 버전의 Express.js와 미들웨어 활용법을 학습할 수 있습니다.', '0', 0, '2024-06-28 12:00:00'),
-(273, '학원 이용 수칙 변경 안내', '관리자', '0', '학원 이용 수칙이 일부 변경되었습니다. 변경된 수칙을 확인하시고 준수 부탁드립니다.', '0', 0, '2024-06-29 14:45:00'),
-(274, 'Ruby on Rails 웹 개발 강좌 오픈 예정', '관리자', '1', 'Ruby on Rails를 활용한 웹 개발 강좌가 곧 오픈될 예정입니다. 루비 언어와 Rails 프레임워크를 학습해 보세요.', '0', 0, '2024-06-30 10:30:00');
+(268, 'Flask 웹 개발 강좌 오픈 예정', '관리자', '1', 'Flask를 활용한 웹 개발 강좌가 곧 오픈될 예정입니다. 파이썬 기반의 마이크로 웹 프레임워크를 학습해 보세요.', '0', 0, '2024-06-24 10:00:00'),
+(269, '수강생 대상 설문조사 결과 공유', '운영진', '2', '수강생 대상 설문조사 결과를 공유드립니다. 학원 운영 개선에 반영하도록 하겠습니다.', '0', 0, '2024-06-25 13:45:00'),
+(270, 'OpenCV 컴퓨터 비전 강좌 오픈', '관리자', '2', 'OpenCV를 활용한 컴퓨터 비전 강좌가 오픈되었습니다. 이미지 처리와 컴퓨터 비전 기술을 배워보세요.', '0', 0, '2024-06-26 15:30:00'),
+(271, '학원 야간 운영 시간 변경 안내', '운영진', '2', '학원 야간 운영 시간이 변경되었습니다. 자세한 운영 시간은 공지사항을 참고해 주시기 바랍니다.', '0', 0, '2024-06-27 09:30:00'),
+(272, 'Express.js 웹 개발 강좌 커리큘럼 업데이트', '강사', '2', 'Express.js 웹 개발 강좌의 커리큘럼이 업데이트되었습니다. 최신 버전의 Express.js와 미들웨어 활용법을 학습할 수 있습니다.', '0', 0, '2024-06-28 12:00:00'),
+(273, '학원 이용 수칙 변경 안내', '관리자', '4', '학원 이용 수칙이 일부 변경되었습니다. 변경된 수칙을 확인하시고 준수 부탁드립니다.', '0', 0, '2024-06-29 14:45:00'),
+(274, 'Ruby on Rails 웹 개발 강좌 오픈 예정', '관리자', '4', 'Ruby on Rails를 활용한 웹 개발 강좌가 곧 오픈될 예정입니다. 루비 언어와 Rails 프레임워크를 학습해 보세요.', '0', 0, '2024-06-30 10:30:00');
 
 -- --------------------------------------------------------
 
@@ -669,11 +696,11 @@ INSERT INTO `notice` (`idx`, `title`, `name`, `view`, `content`, `file`, `is_img
 --
 
 CREATE TABLE `ordered_courses` (
-  `ocid` int(11) NOT NULL,
-  `course_id` int(11) NOT NULL,
-  `member_id` int(11) NOT NULL,
+  `ocid` int NOT NULL,
+  `course_id` int NOT NULL,
+  `member_id` int NOT NULL,
   `progress` float NOT NULL,
-  `satisfaction` int(11) DEFAULT NULL,
+  `satisfaction` int DEFAULT NULL,
   `regdate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -921,135 +948,87 @@ INSERT INTO `ordered_courses` (`ocid`, `course_id`, `member_id`, `progress`, `sa
 -- --------------------------------------------------------
 
 --
--- 테이블 구조 `payments`
---
-
-CREATE TABLE `payments` (
-  `cid` int(11) NOT NULL,
-  `catename` int(11) NOT NULL,
-  `userid` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `total_price` int(11) NOT NULL,
-  `discount_price` varchar(100) NOT NULL,
-  `discount_status` varchar(100) NOT NULL,
-  `regdate` datetime NOT NULL,
-  `total` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- 테이블 구조 `qna`
 --
 
 CREATE TABLE `qna` (
-  `idx` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `title` text NOT NULL,
-  `view` int(11) NOT NULL,
-  `reply` varchar(10) NOT NULL,
+  `idx` int NOT NULL,
+  `name` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `title` text COLLATE utf8mb4_general_ci NOT NULL,
+  `lecture_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `view` int NOT NULL,
+  `reply` varchar(10) COLLATE utf8mb4_general_ci NOT NULL,
   `date` datetime NOT NULL,
-  `pw` varchar(12) NOT NULL,
-  `content` varchar(1200) NOT NULL,
-  `files` varchar(1200) NOT NULL
+  `content` varchar(1200) COLLATE utf8mb4_general_ci NOT NULL,
+  `files` varchar(1200) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- 테이블의 덤프 데이터 `qna`
 --
 
-INSERT INTO `qna` (`idx`, `name`, `title`, `view`, `reply`, `date`, `pw`, `content`, `files`) VALUES
-(1, '강민수', 'Python 웹 스크래핑', 70, '미답변', '2024-03-05 11:15:23', '', 'Python을 사용하여 웹 스크래핑을 하려고 합니다. 효율적으로 데이터를 수집하기 위한 라이브러리나 프레임워크를 추천해주세요.', ''),
-(2, '박지영', 'Java 예외 처리', 1, '미답변', '2024-03-12 14:38:51', '', 'Java에서 예외 처리를 할 때 try-catch와 throws 중 어떤 것을 사용하는 것이 좋을까요? 예외 처리 시 주의할 점이 있다면 알려주세요.', ''),
-(3, '이승현', 'React 컴포넌트 최적화', 1, '미답변', '2024-03-18 09:42:17', '', 'React 애플리케이션의 성능 개선을 위해 컴포넌트 최적화 방법에 대해 알고 싶습니다. 렌더링 최적화 기법이나 불필요한 리렌더링을 방지하는 방법 등 알려주세요.', ''),
-(4, '김영철', '데이터베이스 인덱싱', 0, '미답변', '2024-03-22 13:56:39', '', '대용량 데이터베이스에서 검색 속도를 높이기 위해 인덱싱을 적용하려 합니다. 인덱싱 시 고려해야 할 점과 효과적인 인덱싱 전략에 대해 조언 부탁드립니다.', ''),
-(5, '한승연', 'Spring Boot 보안 설정', 6, '미답변', '2024-03-29 16:20:08', '', 'Spring Boot 애플리케이션에서 보안을 강화하기 위해 어떤 설정을 해야 할까요? 인증 및 인가 처리, CSRF 방어 등 고려해야 할 사항이 있다면 알려주세요.', ''),
-(6, '장민준', 'CSS Flexbox 레이아웃', 0, '미답변', '2024-04-03 10:45:32', '', 'CSS Flexbox를 사용하여 반응형 레이아웃을 구현하려고 합니다. Flexbox의 주요 속성과 사용 방법에 대해 설명해주세요.', ''),
-(7, '오은주', 'Node.js 비동기 프로그래밍', 0, '미답변', '2024-04-08 14:09:17', '', 'Node.js에서 비동기 프로그래밍을 구현할 때 콜백 함수, Promise, async/await 중 어떤 것을 사용하는 것이 좋을까요? 각각의 장단점과 사용 시 주의할 점을 알려주세요.', ''),
-(8, '신동엽', 'Android Jetpack 컴포넌트', 0, '미답변', '2024-04-13 09:37:41', '', 'Android 앱 개발 시 Jetpack 컴포넌트를 활용하려 합니다. Jetpack의 주요 컴포넌트와 그 사용 목적에 대해 설명해주세요.', ''),
-(9, '유지원', 'iOS SwiftUI와 UIKit 비교', 0, '미답변', '2024-04-18 13:52:06', '', 'iOS 앱 개발 시 SwiftUI와 UIKit 중 어떤 것을 선택하는 것이 좋을까요? 각각의 특징과 장단점에 대해 알려주세요.', ''),
-(10, '임채은', 'Git 브랜치 전략', 0, '미답변', '2024-04-23 16:28:39', '', '협업 프로젝트에서 Git 브랜치를 효과적으로 관리하기 위한 전략이 있을까요? 브랜치 생성, 병합, 릴리즈 등 워크플로우에 대해 조언 부탁드립니다.', ''),
-(11, '최민호', 'Vue.js 상태 관리', 0, '미답변', '2024-04-27 11:06:14', '', 'Vue.js 애플리케이션에서 상태 관리를 위해 Vuex를 사용하려 합니다. Vuex의 주요 개념과 모듈 구조 설계 방법에 대해 설명해주세요.', ''),
-(12, '강서연', 'Django ORM 성능 최적화', 0, '미답변', '2024-05-02 09:43:51', '', 'Django ORM을 사용할 때 쿼리 성능을 최적화하는 방법에 대해 알고 싶습니다. N+1 문제 해결, 쿼리셋 캐싱 등 고려해야 할 사항이 있나요?', ''),
-(13, '이준희', 'Java 스트림 API', 0, '미답변', '2024-05-06 14:27:33', '', 'Java 8 이후 도입된 스트림 API에 대해 궁금합니다. 스트림 API의 특징과 사용 방법, 그리고 실무에서 활용할 때의 이점에 대해 설명해주세요.', ''),
-(14, '박승훈', 'React Native 퍼포먼스 최적화', 0, '미답변', '2024-05-11 10:52:07', '', 'React Native 앱의 성능을 개선하기 위한 방법에 대해 알려주세요. 렌더링 최적화, 이미지 최적화, 메모리 누수 방지 등 고려해야 할 점이 있나요?', ''),
-(15, '김민영', 'Node.js 클러스터링', 0, '미답변', '2024-05-15 13:38:41', '', 'Node.js 애플리케이션의 확장성을 위해 클러스터링을 적용하려 합니다. 클러스터링의 동작 원리와 구현 방법, 그리고 주의해야 할 점에 대해 설명해주세요.', ''),
-(16, '한지수', 'CSS Grid 레이아웃', 0, '미답변', '2024-05-20 16:14:23', '', 'CSS Grid를 사용하여 복잡한 레이아웃을 구현하려고 합니다. Grid의 주요 개념과 속성, 그리고 반응형 디자인에 적용하는 방법에 대해 알려주세요.', ''),
-(17, '오민준', 'Spring Data JPA', 0, '미답변', '2024-05-24 11:49:56', '', 'Spring Data JPA를 사용하여 데이터베이스 연동을 간편하게 하려 합니다. Spring Data JPA의 주요 기능과 사용 방법, 그리고 쿼리 최적화 방안에 대해 알려주세요.', ''),
-(18, '장은지', 'Python 데코레이터', 0, '미답변', '2024-05-29 14:35:12', '', 'Python의 데코레이터에 대해 궁금합니다. 데코레이터의 개념과 사용 방법, 그리고 실제 활용 사례에 대해 설명해주세요.', ''),
-(19, '신유진', 'iOS CoreData 사용', 0, '미답변', '2024-06-02 09:21:47', '', 'iOS 앱 개발 시 CoreData를 사용하여 데이터를 관리하려 합니다. CoreData의 동작 원리와 사용 방법, 그리고 주의해야 할 점에 대해 알려주세요.', ''),
-(20, '임성민', 'Vue.js 컴포넌트 통신', 0, '미답변', '2024-06-07 13:08:29', '', 'Vue.js에서 컴포넌트 간 데이터 전달 및 통신 방법에 대해 알고 싶습니다. props, event emit, Vuex 등 다양한 방법의 장단점과 사용 시기에 대해 설명해주세요.', ''),
-(21, '최지혜', 'Angular 라우팅', 0, '미답변', '2024-03-08 10:12:34', '', 'Angular 애플리케이션에서 라우팅을 구현하려고 합니다. 라우팅 모듈 설정 방법과 라우트 가드 사용법에 대해 알려주세요.', ''),
-(22, '김민준', 'React 서버사이드 렌더링', 0, '미답변', '2024-03-13 15:45:17', '', 'React 애플리케이션의 초기 로딩 속도를 개선하기 위해 서버사이드 렌더링을 적용하려 합니다. 서버사이드 렌더링의 동작 원리와 구현 방법에 대해 설명해주세요.', ''),
-(23, '이은지', 'Java 제네릭', 0, '미답변', '2024-03-18 11:23:56', '', 'Java의 제네릭에 대해 궁금합니다. 제네릭의 사용 목적과 타입 매개변수, 와일드카드 등의 개념을 설명해주세요.', ''),
-(24, '박성진', 'CSS 미디어 쿼리', 0, '미답변', '2024-03-23 14:09:41', '', 'CSS 미디어 쿼리를 사용하여 반응형 웹 디자인을 구현하려고 합니다. 미디어 쿼리의 작성 방법과 브레이크포인트 설정 시 고려할 점에 대해 알려주세요.', ''),
-(25, '한지은', 'Spring Security 인증 및 인가', 0, '미답변', '2024-03-28 09:37:24', '', 'Spring Security를 사용하여 애플리케이션의 인증 및 인가를 구현하려 합니다. 사용자 인증 절차와 권한 설정 방법에 대해 설명해주세요.', ''),
-(26, '오민수', 'Python 가상환경', 0, '미답변', '2024-04-02 13:52:08', '', 'Python 프로젝트에서 가상환경을 사용하는 이유와 설정 방법에 대해 알려주세요. venv와 conda의 차이점도 함께 설명해주시면 감사하겠습니다.', ''),
-(27, '장영미', 'Node.js 모듈 시스템', 0, '미답변', '2024-04-07 10:28:43', '', 'Node.js의 모듈 시스템에 대해 궁금합니다. 모듈 시스템의 동작 원리와 모듈 생성 및 사용 방법에 대해 설명해주세요.', ''),
-(28, '신진우', 'Android Room 데이터베이스', 0, '미답변', '2024-04-11 15:05:29', '', 'Android 앱 개발 시 Room 데이터베이스를 사용하려 합니다. Room의 구성요소와 사용 방법, 그리고 쿼리 최적화 방안에 대해 알려주세요.', ''),
-(29, '유서연', 'iOS AutoLayout', 0, '미답변', '2024-04-16 11:42:13', '', 'iOS 앱의 UI를 구성할 때 AutoLayout을 사용하려고 합니다. AutoLayout의 제약조건 설정 방법과 주의사항에 대해 설명해주세요.', ''),
-(30, '임재현', 'Git 충돌 해결', 0, '미답변', '2024-04-21 14:19:57', '', 'Git으로 협업하던 중 병합 충돌이 발생했습니다. 충돌 해결 절차와 방법에 대해 자세히 알려주시기 바랍니다.', ''),
-(31, '최현주', 'Vue.js 라이프사이클', 0, '미답변', '2024-04-26 09:56:41', '', 'Vue.js 컴포넌트의 라이프사이클에 대해 궁금합니다. 각 라이프사이클 훅의 호출 시점과 사용 방법에 대해 설명해주세요.', ''),
-(32, '강준호', 'Django 폼 처리', 0, '미답변', '2024-05-01 13:33:25', '', 'Django에서 폼을 처리하는 방법에 대해 알려주세요. 폼 클래스 정의, 유효성 검사, 데이터 저장 등의 과정을 설명해주시면 감사하겠습니다.', ''),
-(33, '이민지', 'Java 람다 표현식', 0, '미답변', '2024-05-06 10:18:09', '', 'Java 8에 도입된 람다 표현식에 대해 궁금합니다. 람다 표현식의 문법과 사용 방법, 그리고 함수형 인터페이스와의 관계에 대해 설명해주세요.', ''),
-(34, '박준영', 'React 컨텍스트 API', 0, '미답변', '2024-05-11 14:54:52', '', 'React 컨텍스트 API에 대해 알고 싶습니다. 컨텍스트 API의 사용 목적과 프로바이더, 컨슈머 컴포넌트의 역할에 대해 설명해주세요.', ''),
-(35, '김서윤', 'Node.js 이벤트 루프', 0, '미답변', '2024-05-16 09:41:36', '', 'Node.js의 이벤트 루프에 대해 궁금합니다. 이벤트 루프의 동작 원리와 콜백 큐, 태스크 큐의 개념에 대해 설명해주세요.', ''),
-(36, '한승엽', 'CSS 애니메이션', 0, '미답변', '2024-05-21 13:28:19', '', 'CSS 애니메이션을 사용하여 웹 페이지에 동적인 효과를 주려고 합니다. 애니메이션 속성과 키프레임 정의 방법, 그리고 자바스크립트와의 연동에 대해 알려주세요.', ''),
-(37, '오은진', 'Spring MVC 구조', 0, '미답변', '2024-05-26 10:15:03', '', 'Spring MVC의 구조와 동작 원리에 대해 알고 싶습니다. 디스패처 서블릿, 컨트롤러, 뷰 리졸버 등 주요 구성요소의 역할을 설명해주세요.', ''),
-(38, '장우진', 'Python 제너레이터', 0, '미답변', '2024-05-31 14:51:47', '', 'Python의 제너레이터에 대해 궁금합니다. 제너레이터 함수와 yield 키워드의 동작 방식, 그리고 메모리 효율성의 이점에 대해 설명해주세요.', ''),
-(39, '신소희', 'iOS 코어 애니메이션', 0, '미답변', '2024-06-05 09:38:31', '', 'iOS 앱에서 코어 애니메이션을 사용하여 부드러운 애니메이션 효과를 구현하려 합니다. 코어 애니메이션의 주요 개념과 사용 방법에 대해 알려주세요.', ''),
-(40, '임찬우', 'Vue.js 슬롯', 0, '미답변', '2024-06-10 13:25:14', '', 'Vue.js의 슬롯 기능에 대해 궁금합니다. 슬롯을 사용하는 목적과 default 슬롯, named 슬롯의 차이점에 대해 설명해주세요.', ''),
-(41, '최민재', 'Angular 의존성 주입', 0, '미답변', '2024-03-10 11:34:56', '', 'Angular의 의존성 주입에 대해 알고 싶습니다. 의존성 주입의 개념과 Angular에서의 구현 방법, 그리고 장점에 대해 설명해주세요.', ''),
-(42, '김지원', 'React 리덕스 미들웨어', 0, '미답변', '2024-03-15 14:21:39', '', 'React 애플리케이션에서 리덕스 미들웨어를 사용하려 합니다. 미들웨어의 역할과 대표적인 미들웨어인 redux-thunk, redux-saga에 대해 설명해주세요.', ''),
-(43, '이승준', 'Java 스레드 동기화', 0, '미답변', '2024-03-20 09:58:22', '', 'Java에서 스레드 동기화를 위한 방법에 대해 궁금합니다. synchronized 키워드와 락의 개념, 그리고 데드락 발생 시 해결 방안에 대해 알려주세요.', ''),
-(44, '박현진', 'CSS 그리드 레이아웃 병합', 0, '미답변', '2024-03-25 13:45:06', '', 'CSS 그리드 레이아웃에서 셀 병합을 하는 방법이 궁금합니다. 행과 열 병합 시 사용하는 속성과 주의사항에 대해 설명해주세요.', ''),
-(45, '한지훈', 'Spring AOP', 0, '미답변', '2024-03-30 10:31:49', '', 'Spring AOP에 대해 알고 싶습니다. AOP의 개념과 AspectJ 문법, 그리고 Spring에서의 구현 방법에 대해 설명해주세요.', ''),
-(46, '오서연', 'Python 멀티프로세싱', 0, '미답변', '2024-04-04 14:18:32', '', 'Python에서 멀티프로세싱을 사용하여 병렬 처리를 하려고 합니다. 멀티프로세싱 모듈의 사용 방법과 주의사항에 대해 알려주세요.', ''),
-(47, '장민우', 'Node.js 에러 처리', 0, '미답변', '2024-04-09 11:05:16', '', 'Node.js에서 에러를 효과적으로 처리하는 방법에 대해 궁금합니다. try-catch문과 에러 이벤트 핸들링, 그리고 비동기 함수에서의 에러 처리 방법을 설명해주세요.', ''),
-(48, '신예진', 'Android 서비스 컴포넌트', 0, '미답변', '2024-04-14 13:52:49', '', 'Android 앱 개발에서 서비스 컴포넌트를 사용하는 방법에 대해 알려주세요. 서비스의 생명주기와 백그라운드 작업 수행 방법, 그리고 액티비티와의 통신 방법에 대해 설명해주세요.', ''),
-(49, '유민호', 'iOS Core Data', 0, '미답변', '2024-04-19 10:39:32', '', 'iOS 앱에서 Core Data를 사용하여 데이터를 관리하려고 합니다. Core Data의 동작 원리와 사용 방법, 그리고 데이터 모델 설계 시 고려사항에 대해 알려주세요.', ''),
-(50, '임수빈', 'Git 브랜치 전략', 0, '미답변', '2024-04-24 14:26:15', '', '팀 프로젝트에서 Git 브랜치를 효과적으로 관리하기 위한 전략을 세우려 합니다. Git-flow와 GitHub-flow의 차이점과 장단점에 대해 설명해주세요.', ''),
-(51, '최서현', 'Vue.js Vuex', 0, '미답변', '2024-04-29 11:13:58', '', 'Vue.js 애플리케이션에서 Vuex를 사용하여 상태 관리를 하려고 합니다. Vuex의 핵심 개념과 모듈 구조 설계 방법, 그리고 데이터 플로우에 대해 설명해주세요.', ''),
-(52, '강현수', 'Django 모델 관계', 0, '미답변', '2024-05-04 14:50:41', '', 'Django 모델에서 일대다, 다대다 관계를 설정하는 방법에 대해 알려주세요. ForeignKey와 ManyToManyField의 사용 방법과 차이점에 대해 설명해주시면 감사하겠습니다.', ''),
-(53, '이준서', 'Java 제네릭 와일드카드', 0, '미답변', '2024-05-09 11:37:24', '', 'Java 제네릭에서 와일드카드의 사용 목적과 상한 경계, 하한 경계의 차이점에 대해 궁금합니다. 예제 코드와 함께 설명해주시면 더욱 이해하기 쉬울 것 같습니다.', ''),
-(54, '박지우', 'React 렌더링 최적화', 0, '미답변', '2024-05-14 13:24:07', '', 'React 컴포넌트의 렌더링 성능을 최적화하는 방법에 대해 알고 싶습니다. shouldComponentUpdate와 PureComponent, React.memo 등의 사용 방법과 차이점을 설명해주세요.', ''),
-(55, '김민준', 'Node.js 스트림', 0, '미답변', '2024-05-19 10:10:50', '', 'Node.js의 스트림에 대해 궁금합니다. 스트림의 종류와 사용 목적, 그리고 파이프라인 구성 방법에 대해 예제 코드와 함께 설명해주시면 감사하겠습니다.', ''),
-(56, '한승우', 'CSS 그리드 반응형 레이아웃', 0, '미답변', '2024-05-24 14:57:33', '', 'CSS 그리드를 사용하여 반응형 레이아웃을 구현하려고 합니다. 미디어 쿼리와 그리드 템플릿 변경을 통한 반응형 레이아웃 구현 방법에 대해 알려주세요.', ''),
-(57, '오하은', 'Spring 트랜잭션 관리', 0, '미답변', '2024-05-29 11:44:16', '', 'Spring에서 트랜잭션을 관리하는 방법에 대해 궁금합니다. 선언적 트랜잭션과 프로그래밍적 트랜잭션의 차이점, 그리고 트랜잭션 전파 옵션에 대해 설명해주세요.', ''),
-(58, '장도윤', 'Python 데코레이터 활용', 0, '미답변', '2024-06-03 13:30:59', '', 'Python의 데코레이터를 실제 개발에 어떻게 활용할 수 있을까요? 데코레이터를 사용하여 코드의 가독성과 재사용성을 높이는 방법에 대한 예시를 들어 설명해주세요.', ''),
-(59, '신예은', 'iOS URLSession', 0, '미답변', '2024-06-08 10:17:42', '', 'iOS 앱에서 URLSession을 사용하여 네트워크 통신을 하려고 합니다. URLSession의 구성 요소와 사용 방법, 그리고 데이터 테스크와 다운로드 테스크의 차이점에 대해 알려주세요.', ''),
-(60, '임유진', 'Vue.js 사용자 정의 디렉티브', 0, '미답변', '2024-06-13 14:04:25', '', 'Vue.js에서 사용자 정의 디렉티브를 만드는 방법과 활용 예시에 대해 궁금합니다. 디렉티브의 훅 함수와 바인딩 값 전달 방법에 대해 설명해주세요.', ''),
-(61, '최민서', 'Angular 라이프사이클 훅', 0, '미답변', '2024-03-13 11:51:08', '', 'Angular 컴포넌트의 라이프사이클 훅에 대해 알고 싶습니다. 각 라이프사이클 훅의 호출 시점과 사용 목적에 대해 설명해주시면 감사하겠습니다.', ''),
-(62, '김서준', 'React 컴포넌트 간 통신', 2, '미답변', '2024-03-18 14:37:51', '', 'React 컴포넌트 간에 데이터를 주고받는 방법에 대해 궁금합니다. Props와 콜백 함수를 사용한 통신 방법과 Context API 활용 방법에 대해 설명해주세요.', ''),
-(63, '이지윤', 'Java 스레드 풀', 3, '미답변', '2024-03-23 10:24:34', '', 'Java에서 스레드 풀을 사용하는 이유와 구현 방법에 대해 알려주세요. Executors 클래스와 ThreadPoolExecutor 클래스의 사용 방법에 대해서도 설명해주시면 좋겠습니다.', ''),
-(64, '박현우', 'CSS Flexbox와 Grid 비교', 2, '미답변', '2024-03-28 13:11:17', '', 'CSS Flexbox와 Grid의 차이점과 사용 용도에 대해 궁금합니다. 각각의 장단점과 적합한 레이아웃 구성 방식에 대해 설명해주세요.', ''),
-(65, '한수아', 'Spring Bean 스코프', 1, '미답변', '2024-04-02 09:58:00', '', 'Spring Bean의 스코프 종류와 차이점에 대해 알고 싶습니다. 싱글톤 스코프와 프로토타입 스코프의 특징과 사용 시기에 대해 예를 들어 설명해주세요.', ''),
-(66, '오은우', 'Python 클로저', 0, '미답변', '2024-04-07 14:44:43', '', 'Python의 클로저에 대해 궁금합니다. 클로저의 개념과 사용 목적, 그리고 예제 코드를 통해 동작 원리를 설명해주시면 감사하겠습니다.', ''),
-(67, '장하준', 'Node.js 프로세스 관리', 3, '미답변', '2024-04-12 11:31:26', '', 'Node.js 애플리케이션의 프로세스를 관리하는 방법에 대해 알려주세요. PM2와 같은 프로세스 관리자의 사용 방법과 장점에 대해 설명해주시면 좋겠습니다.', ''),
-(68, '신다은', 'Android 데이터 바인딩', 7, '미답변', '2024-04-17 13:18:09', '', 'Android의 데이터 바인딩 라이브러리에 대해 궁금합니다. 데이터 바인딩을 사용하는 목적과 설정 방법, 그리고 ObservableField와 같은 관련 클래스의 사용 방법에 대해 알려주세요.', ''),
-(69, '유승재', 'iOS Core ML', 1, '미답변', '2024-04-22 10:04:52', '', 'iOS 앱에서 머신러닝 모델을 사용하기 위해 Core ML을 알아보고 있습니다. Core ML의 동작 원리와 사용 방법, 그리고 커스텀 모델 변환 과정에 대해 설명해주세요.', ''),
-(70, '임지호', 'Git 서브모듈', 9, '미답변', '2024-04-27 14:51:35', '', 'Git 서브모듈의 개념과 사용 목적에 대해 알고 싶습니다. 서브모듈 추가, 업데이트, 삭제 등의 기본 명령어 사용 방법과 주의사항에 대해 설명해주세요.', ''),
-(77, '박지훈', 'Python에서 리스트 컴프리헨션 사용법', 102, '미답변', '2024-04-28 09:15:42', '', 'Python에서 리스트 컴프리헨션을 사용하여 리스트를 생성하는 방법과 이때 조건문과 중첩 반복문을 활용하는 방법에 대해 자세히 설명해주세요. 또한 리스트 컴프리헨션을 사용할 때의 장단점에 대해서도 알려주세요.', ''),
-(78, '김민준', 'C++에서 스마트 포인터 사용법', 87, '미답변', '2024-04-28 13:27:19', '', 'C++에서 스마트 포인터(unique_ptr, shared_ptr, weak_ptr)의 개념과 사용 목적에 대해 설명해주세요. 각 스마트 포인터의 특징과 사용 방법, 그리고 스마트 포인터를 사용할 때 주의해야 할 점에 대해서도 자세히 알려주세요.', ''),
-(79, '이서연', 'Java에서 Stream API 활용하기', 124, '미답변', '2024-04-29 11:08:53', '', 'Java 8에 도입된 Stream API의 개념과 사용 목적에 대해 설명해주세요. Stream의 생성 방법과 중간 연산, 최종 연산에 대한 예시를 들어 주시고, Stream API를 활용할 때의 장단점과 주의사항에 대해서도 자세히 설명해주세요.', ''),
-(80, '최민서', 'JavaScript에서 비동기 처리 방법', 155, '미답변', '2024-04-29 16:34:27', '', 'JavaScript에서 비동기 처리를 하는 방법에 대해 설명해주세요. 콜백 함수, Promise, async/await의 개념과 사용법에 대해 자세히 알려주시고, 각각의 장단점과 실제 활용 예시도 제시해주세요.', ''),
-(81, '강예준', 'CSS Flexbox 레이아웃 사용법', 93, '미답변', '2024-04-30 14:41:06', '', 'CSS Flexbox 레이아웃의 개념과 사용 목적에 대해 설명해주세요. Flex 컨테이너와 Flex 아이템의 속성들에 대해 자세히 알려주시고, 실제 레이아웃 구성 예시와 함께 Flexbox를 활용할 때의 장단점에 대해서도 설명해주세요.', ''),
-(82, '한서윤', 'React에서 상태 관리 라이브러리 사용하기', 137, '미답변', '2024-05-01 10:22:49', '', 'React 애플리케이션에서 상태 관리를 위해 사용되는 라이브러리(Redux, MobX, Recoil 등)에 대해 설명해주세요. 각 라이브러리의 특징과 사용 방법, 그리고 상태 관리 라이브러리를 사용할 때의 장단점과 선택 기준에 대해서도 자세히 알려주세요.', ''),
-(83, '오하윤', 'Node.js에서 Express 프레임워크 사용하기', 112, '미답변', '2024-05-01 15:39:12', '', 'Node.js 환경에서 Express 프레임워크를 사용하여 웹 서버를 구축하는 방법에 대해 설명해주세요. Express의 기본 개념과 미들웨어의 사용법, 라우팅 설정 방법 등에 대해 자세히 알려주시고, Express를 활용한 실제 프로젝트 구성 예시도 제시해주세요.', ''),
-(84, '송민재', 'Spring Boot에서 JPA 사용하기', 98, '미답변', '2024-05-02 11:54:36', '', 'Spring Boot 프레임워크에서 JPA(Java Persistence API)를 사용하여 데이터베이스를 다루는 방법에 대해 설명해주세요. JPA의 개념과 사용 목적, 엔티티 매핑 방법, 쿼리 작성 방법 등에 대해 자세히 알려주시고, JPA를 활용할 때의 장단점과 주의사항에 대해서도 설명해주세요.', ''),
-(85, '정지원', 'Python에서 데이터 시각화 라이브러리 사용하기', 143, '미답변', '2024-05-02 17:28:51', '', 'Python에서 데이터 시각화를 위해 사용되는 라이브러리(Matplotlib, Seaborn, Plotly 등)에 대해 설명해주세요. 각 라이브러리의 특징과 사용 방법, 그리고 데이터 시각화 시 고려해야 할 사항과 실제 활용 예시에 대해서도 자세히 알려주세요.', ''),
-(86, '안서현', 'C++에서 템플릿 사용법', 81, '미답변', '2024-05-03 14:02:15', '', 'C++에서 템플릿(함수 템플릿, 클래스 템플릿)의 개념과 사용 목적에 대해 설명해주세요. 템플릿 파라미터, 템플릿 특수화, 템플릿 메타프로그래밍 등의 개념과 사용 방법에 대해 자세히 알려주시고, 템플릿을 활용할 때의 장단점과 주의사항에 대해서도 설명해주세요.', ''),
-(87, '장서준', 'Java에서 람다식과 함수형 인터페이스 사용하기', 118, '미답변', '2024-05-03 19:37:29', '', 'Java 8에 도입된 람다식과 함수형 인터페이스에 대해 설명해주세요. 람다식의 문법과 사용 방법, 함수형 인터페이스의 종류와 활용 방법에 대해 자세히 알려주시고, 람다식과 함수형 인터페이스를 사용할 때의 장단점과 실제 활용 예시도 제시해주세요.', ''),
-(88, '김하은', 'JavaScript에서 ES6+ 문법 사용하기', 132, '미답변', '2024-05-04 10:56:43', '', 'JavaScript ES6 이후에 도입된 새로운 문법과 기능에 대해 설명해주세요. let/const, 화살표 함수, 템플릿 리터럴, 구조 분해 할당, 모듈 시스템 등의 개념과 사용 방법에 대해 자세히 알려주시고, 이를 활용할 때의 장단점과 주의사항에 대해서도 설명해주세요.', ''),
-(89, '이도윤', 'CSS Grid 레이아웃 사용법', 106, '미답변', '2024-05-04 16:23:57', '', 'CSS Grid 레이아웃의 개념과 사용 목적에 대해 설명해주세요. Grid 컨테이너와 Grid 아이템의 속성들에 대해 자세히 알려주시고, 실제 레이아웃 구성 예시와 함께 Grid를 활용할 때의 장단점에 대해서도 설명해주세요.', ''),
-(90, '박지아', 'React에서 Hooks 사용하기', 149, '미답변', '2024-05-05 11:39:12', '', 'React 16.8에 도입된 Hooks에 대해 설명해주세요. Hooks의 개념과 사용 목적, 대표적인 Hooks(useState, useEffect, useContext 등)의 사용 방법에 대해 자세히 알려주시고, Hooks를 사용할 때의 장단점과 주의사항에 대해서도 설명해주세요.', ''),
-(91, '최민우', 'Node.js에서 비동기 프로그래밍 방법', 127, '미답변', '2024-05-05 17:54:26', '', 'Node.js에서 비동기 프로그래밍을 하는 방법에 대해 설명해주세요. 콜백 함수, Promise, async/await의 개념과 사용법에 대해 자세히 알려주시고, 비동기 프로그래밍 시 발생할 수 있는 문제점과 해결 방안, 그리고 실제 활용 예시도 제시해주세요.', ''),
-(92, '강예은', 'Spring에서 AOP 사용하기', 93, '미답변', '2024-05-06 14:13:41', '', 'Spring 프레임워크에서 AOP(Aspect Oriented Programming)를 사용하는 방법에 대해 설명해주세요. AOP의 개념과 사용 목적, 용어(Aspect, Advice, Pointcut, JoinPoint 등)의 의미, 그리고 실제 구현 방법에 대해 자세히 알려주시고, AOP를 활용할 때의 장단점과 주의사항에 대해서도 설명해주세요.', ''),
-(93, '한지호', 'Python에서 데이터 분석을 위한 라이브러리 사용하기', 162, '미답변', '2024-05-06 19:28:55', '', 'Python에서 데이터 분석을 위해 사용되는 라이브러리(NumPy, Pandas, Matplotlib 등)에 대해 설명해주세요. 각 라이브러리의 특징과 사용 방법, 그리고 데이터 분석 과정에서 자주 사용되는 함수와 기능에 대해 자세히 알려주시고, 실제 데이터 분석 예시도 제시해주세요.', ''),
-(94, '오서연', 'C++에서 모던 C++ 기능 사용하기', 118, '미답변', '2024-05-07 10:44:09', '', 'C++11 이후에 도입된 모던 C++ 기능에 대해 설명해주세요. auto, range-based for loop, 스마트 포인터, 람다 표현식, 이동 의미론 등의 개념과 사용 방법에 대해 자세히 알려주시고, 모던 C++ 기능을 활용할 때의 장단점과 주의사항에 대해서도 설명해주세요.', ''),
-(95, '송하준', 'Java에서 제네릭 사용법', 104, '미답변', '2024-05-07 16:59:23', '', 'Java에서 제네릭(Generics)의 개념과 사용 목적에 대해 설명해주세요. 제네릭 클래스와 메소드 정의 방법, 와일드카드 타입, 타입 매개변수 제한 등의 개념과 사용 방법에 대해 자세히 알려주시고, 제네릭을 활용할 때의 장단점과 주의사항에 대해서도 설명해주세요.', ''),
-(96, '정우진', 'JavaScript에서 클로저 사용하기', 140, '미답변', '2024-05-08 11:14:37', '', 'JavaScript에서 클로저(Closure)의 개념과 사용 목적에 대해 설명해주세요. 클로저 생성 방법과 활용 방안에 대해 자세히 알려주시고, 클로저를 사용할 때의 장단점과 주의사항에 대해서도 설명해주세요. 또한 실제 클로저 활용 예시도 제시해주세요.', ''),
-(97, '안서윤', 'CSS 애니메이션 사용법', 152, '미답변', '2024-05-08 17:29:51', '', 'CSS에서 애니메이션을 구현하는 방법에 대해 설명해주세요. @keyframes 규칙, animation 속성, transition 속성 등의 개념과 사용 방법에 대해 자세히 알려주시고, CSS 애니메이션을 활용할 때의 장단점과 주의사항에 대해서도 설명해주세요. 또한 실제 애니메이션 구현 예시도 제시해주세요.', '');
+INSERT INTO `qna` (`idx`, `name`, `title`, `lecture_name`, `view`, `reply`, `date`, `content`, `files`) VALUES
+(1, '김민수', 'for 문 사용법 질문입니다!', '파이썬 기초', 0, '미답변', '2024-02-12 00:00:00', '파이썬 기초 수업 중 for 문 사용법이 잘 이해가 되지 않습니다. 예시를 통해 설명해 주시면 감사하겠습니다.', '0'),
+(2, '박지현', 'props와 state 차이가 잘 안 됩니다!', 'React 입문', 0, '미답변', '2024-03-27 00:00:00', 'React 컴포넌트를 만들 때 props와 state의 차이점이 무엇인가요? 각각의 역할에 대해 설명해 주세요.', '0'),
+(3, '이주환', 'SQL 내부 조인과 외부 조인 질문입니다!', '데이터베이스 기초', 0, '미답변', '2024-04-18 00:00:00', 'SQL에서 내부 조인과 외부 조인의 차이점이 무엇인가요? 각각의 사용 예시도 부탁드립니다.', '0'),
+(4, '최유리', '화살표 함수와 일반 함수 차이점이 궁금합니다!', '자바스크립트 기초', 0, '미답변', '2024-02-05 00:00:00', '자바스크립트에서 화살표 함수와 일반 함수의 차이점은 무엇인가요? 각각의 장단점도 설명해 주세요.', '0'),
+(5, '강동현', 'float와 flexbox 사용법 질문있습니다!', '웹 프론트엔드 입문', 0, '미답변', '2024-05-09 00:00:00', 'HTML/CSS를 사용하여 레이아웃을 구성할 때, float와 flexbox의 차이점이 무엇인가요? 각각의 장단점도 설명해 주세요.', '0'),
+(6, '김혜린', 'Express 라우팅과 미들웨어 개념 질문입니다!', 'Node.js 기초', 0, '미답변', '2024-03-14 00:00:00', 'Node.js에서 Express 프레임워크를 사용하여 서버를 구축할 때, 라우팅과 미들웨어의 개념이 무엇인지 설명해 주세요.', '0'),
+(7, '박민철', 'Django 모델 관계 질문입니다!', 'Django 웹 프레임워크', 0, '미답변', '2024-04-02 00:00:00', 'Django에서 모델(Model)의 역할과 중요성에 대해 설명해 주세요. 모델 관계(1:1, 1:N, M:N)에 대해서도 설명해 주세요.', '0'),
+(8, '이수민', 'Git 브랜치 병합 방법이 궁금합니다!', '버전 관리 시스템', 0, '미답변', '2024-02-25 00:00:00', 'Git에서 브랜치(Branch)의 개념과 사용 방법에 대해 설명해 주세요. 브랜치를 병합(Merge)하는 방법도 설명해 주세요.', '0'),
+(9, '최승철', 'AWS EC2와 S3 차이점이 무엇인가요?', '클라우드 컴퓨팅', 0, '미답변', '2024-03-10 00:00:00', 'AWS(Amazon Web Services)에서 EC2 인스턴스와 S3 버킷의 역할과 차이점에 대해 설명해 주세요.', '0'),
+(10, '강민지', 'Pandas 데이터프레임과 시리즈 차이점이 궁금합니다!', '데이터 분석 입문', 0, '미답변', '2024-05-01 00:00:00', 'Python에서 Pandas 라이브러리를 사용하여 데이터 분석을 할 때, 데이터프레임과 시리즈의 차이점은 무엇인가요?', '0'),
+(11, '김지훈', '의존성 주입과 제어의 역전 개념이 어렵습니다!', 'Spring Boot 프레임워크', 0, '미답변', '2024-02-19 00:00:00', 'Spring Boot에서 의존성 주입(Dependency Injection)과 제어의 역전(Inversion of Control)의 개념이 무엇인지 설명해 주세요.', '0'),
+(12, '박소영', 'React Native 상태 관리 방법이 궁금합니다!', 'React Native 앱 개발', 0, '미답변', '2024-04-11 00:00:00', 'React Native에서 앱 개발 시 상태 관리(State Management)를 위해 어떤 라이브러리나 패턴을 사용하는지 설명해 주세요.', '0'),
+(13, '이동현', 'Linux 터미널 명령어 질문입니다!', 'Linux 운영체제', 0, '미답변', '2024-03-08 00:00:00', 'Linux 터미널에서 자주 사용되는 명령어들과 그 용도에 대해 설명해 주세요.', '0'),
+(14, '최은혜', 'Promise와 async/await 차이가 궁금합니다!', '자바스크립트 고급', 0, '미답변', '2024-02-22 00:00:00', '자바스크립트에서 비동기 처리를 위한 Promise와 async/await의 개념과 사용법에 대해 설명해 주세요.', '0'),
+(15, '강재민', 'Django REST API 직렬화 개념이 어렵습니다!', 'Django REST API', 0, '미답변', '2024-05-05 00:00:00', 'Django REST Framework를 사용하여 API를 개발할 때, 직렬화(Serialization)와 역직렬화(Deserialization)의 개념이 무엇인지 설명해 주세요.', '0'),
+(16, '김민정', 'Docker 컨테이너 빌드 방법이 궁금합니다!', '컨테이너 가상화', 0, '미답변', '2024-03-28 00:00:00', 'Docker 컨테이너의 개념과 장점에 대해 설명해 주세요. 또한 컨테이너를 빌드하고 실행하는 과정도 설명해 주세요.', '0'),
+(17, '박성진', 'TypeScript 타입 별칭과 인터페이스 차이가 무엇인가요?', 'TypeScript 프로그래밍', 0, '미답변', '2024-04-15 00:00:00', 'TypeScript에서 타입 별칭(Type Alias)과 인터페이스(Interface)의 차이점에 대해 설명해 주세요.', '0'),
+(18, '이지영', 'Git rebase 사용법이 궁금합니다!', '버전 관리 시스템', 0, '미답변', '2024-02-10 00:00:00', 'Git에서 rebase 명령어의 용도와 사용법에 대해 설명해 주세요. 또한 merge와의 차이점도 설명해 주세요.', '0'),
+(19, '최동환', 'Webpack 번들링 과정이 어렵습니다!', '웹 번들링 도구', 0, '미답변', '2024-03-20 00:00:00', 'Webpack을 사용하여 웹 애플리케이션을 번들링할 때, 전체 과정과 주요 개념에 대해 설명해 주세요.', '0'),
+(20, '강지원', 'Vue.js 컴포넌트 통신 방법이 궁금합니다!', 'Vue.js 프론트엔드 프레임워크', 0, '미답변', '2024-04-28 00:00:00', 'Vue.js에서 부모-자식 컴포넌트 간 데이터 전달 방식과 이벤트 전달 방식에 대해 설명해 주세요.', '0'),
+(21, '박철수', 'React Hook 사용법이 궁금합니다!', 'React 고급', 0, '미답변', '2024-03-05 00:00:00', 'React Hook의 개념과 사용법에 대해 설명해 주세요. 또한 Class 컴포넌트와의 차이점도 설명해 주세요.', '0'),
+(22, '김영희', 'MongoDB 쿼리 작성 방법이 어렵습니다!', 'NoSQL 데이터베이스', 0, '미답변', '2024-04-22 00:00:00', 'MongoDB에서 문서를 조회, 삽입, 업데이트, 삭제하는 쿼리 작성 방법에 대해 설명해 주세요.', '0'),
+(23, '이철민', 'Kubernetes 클러스터 구축 방법이 궁금합니다!', '컨테이너 오케스트레이션', 0, '미답변', '2024-02-03 00:00:00', 'Kubernetes 클러스터를 구축하는 방법과 주요 개념(Pod, Deployment, Service 등)에 대해 설명해 주세요.', '0'),
+(24, '최지혜', 'Nginx 리버스 프록시 설정 방법이 어렵습니다!', '웹 서버 구축', 0, '미답변', '2024-05-15 00:00:00', 'Nginx를 사용하여 리버스 프록시를 설정하는 방법에 대해 설명해 주세요. 또한 로드 밸런싱과의 차이점도 설명해 주세요.', '0'),
+(25, '박상현', 'ElasticSearch 검색 엔진 사용법이 궁금합니다!', '검색 엔진', 0, '미답변', '2024-03-12 00:00:00', 'ElasticSearch를 사용하여 효율적인 검색 시스템을 구축하는 방법에 대해 설명해 주세요.', '0'),
+(26, '김유진', 'GraphQL API 개발 방법이 어렵습니다!', 'API 개발', 0, '미답변', '2024-04-29 00:00:00', 'GraphQL을 사용하여 API를 개발하는 방법과 RESTful API와의 차이점에 대해 설명해 주세요.', '0'),
+(27, '이재혁', 'Jenkins CI/CD 파이프라인 구축 방법이 궁금합니다!', '지속적 통합/지속적 배포', 0, '미답변', '2024-02-18 00:00:00', 'Jenkins를 사용하여 CI/CD 파이프라인을 구축하는 방법에 대해 설명해 주세요.', '0'),
+(28, '최서연', 'Kafka 메시징 시스템 사용법이 어렵습니다!', '메시징 시스템', 0, '미답변', '2024-05-27 00:00:00', 'Kafka 메시징 시스템의 개념과 사용법에 대해 설명해 주세요. 또한 다른 메시징 시스템과의 차이점도 설명해 주세요.', '0'),
+(29, '박지훈', 'RabbitMQ 메시징 큐 시스템 사용법이 궁금합니다!', '메시징 큐', 0, '미답변', '2024-03-31 00:00:00', 'RabbitMQ 메시징 큐 시스템의 개념과 사용법에 대해 설명해 주세요. 또한 다른 메시징 큐 시스템과의 차이점도 설명해 주세요.', '0'),
+(30, '김소현', 'Redis 인메모리 데이터베이스 사용법이 어렵습니다!', '인메모리 데이터베이스', 0, '미답변', '2024-04-07 00:00:00', 'Redis 인메모리 데이터베이스의 개념과 사용법에 대해 설명해 주세요. 또한 기존 디스크 기반 데이터베이스와의 차이점도 설명해 주세요.', '0'),
+(31, '이민석', 'Terraform 클라우드 인프라 관리 방법이 궁금합니다!', '인프라 as 코드', 0, '미답변', '2024-02-28 00:00:00', 'Terraform을 사용하여 클라우드 인프라를 코드 형식으로 관리하는 방법에 대해 설명해 주세요.', '0'),
+(32, '최지원', 'Ansible 구성 관리 도구 사용법이 어렵습니다!', '구성 관리', 0, '미답변', '2024-05-12 00:00:00', 'Ansible을 사용하여 서버 구성을 자동화하고 관리하는 방법에 대해 설명해 주세요.', '0'),
+(33, '박지수', 'Jest 단위 테스트 작성 방법이 궁금합니다!', '단위 테스트', 0, '미답변', '2024-03-19 00:00:00', 'Jest를 사용하여 JavaScript 코드에 대한 단위 테스트를 작성하는 방법에 대해 설명해 주세요.', '0'),
+(34, '김태영', 'Cypress 엔드투엔드 테스트 작성 방법이 어렵습니다!', '엔드투엔드 테스트', 0, '미답변', '2024-04-25 00:00:00', 'Cypress를 사용하여 웹 애플리케이션에 대한 엔드투엔드 테스트를 작성하는 방법에 대해 설명해 주세요.', '0'),
+(35, '이예린', 'Postman API 테스트 작성 방법이 궁금합니다!', 'API 테스트', 0, '미답변', '2024-02-11 00:00:00', 'Postman을 사용하여 API에 대한 테스트를 작성하는 방법에 대해 설명해 주세요.', '0'),
+(36, '최민수', 'Selenium 웹 자동화 테스트 작성 방법이 어렵습니다!', '웹 자동화 테스트', 0, '미답변', '2024-05-20 00:00:00', 'Selenium을 사용하여 웹 애플리케이션에 대한 자동화 테스트를 작성하는 방법에 대해 설명해 주세요.', '0'),
+(37, '박소영', 'TensorFlow 딥러닝 모델 구축 방법이 궁금합니다!', '딥러닝', 0, '미답변', '2024-03-25 00:00:00', 'TensorFlow를 사용하여 딥러닝 모델을 구축하는 방법에 대해 설명해 주세요.', '0'),
+(38, '김재현', 'PyTorch 딥러닝 모델 구축 방법이 어렵습니다!', '딥러닝', 0, '미답변', '2024-04-30 00:00:00', 'PyTorch를 사용하여 딥러닝 모델을 구축하는 방법에 대해 설명해 주세요.', '0'),
+(39, '이지원', 'Kubernetes Operator 개발 방법이 궁금합니다!', '쿠버네티스 운영', 0, '미답변', '2024-02-06 00:00:00', 'Kubernetes Operator를 개발하는 방법과 주요 개념에 대해 설명해 주세요.', '0'),
+(40, '최현석', 'Istio 서비스 메시 구축 방법이 어렵습니다!', '서비스 메시', 9, '미답변', '2024-05-18 00:00:00', 'Istio를 사용하여 서비스 메시를 구축하는 방법과 주요 개념에 대해 설명해 주세요.', '0'),
+(98, '김철수', '리액트 라우터 사용법이 어렵습니다', 'React 고급', 0, '미답변', '2024-04-03 00:00:00', '리액트 라우터를 사용하여 여러 페이지를 만들려고 하는데 어려움을 겪고 있습니다. 라우터 설정 방법과 페이지 간 데이터 전달 방법에 대해 설명해 주시기 바랍니다.', '0'),
+(99, '박영희', 'useEffect 훅 사용법이 어렵습니다', 'React 기초', 0, '미답변', '2024-04-10 00:00:00', 'useEffect 훅을 사용하여 컴포넌트 생명주기 메서드를 대신하려고 하는데 잘 모르겠습니다. useEffect의 사용 방법과 클린업 함수에 대해 설명해 주시기 바랍니다.', '0'),
+(100, '이동혁', 'React Context API 사용법이 어렵습니다', 'React 중급', 0, '미답변', '2024-04-15 00:00:00', 'React에서 전역 상태 관리를 위해 Context API를 사용하려고 하는데 어려움을 겪고 있습니다. Context API의 사용 방법과 실제 예제에 대해 설명해 주시기 바랍니다.', '0'),
+(101, '최지혜', 'Redux 사용법이 어렵습니다', 'React 고급', 0, '미답변', '2024-04-20 00:00:00', 'React 프로젝트에서 Redux를 사용하여 상태 관리를 하려고 하는데 어려움을 겪고 있습니다. Redux의 동작 원리와 실제 사용 예제에 대해 설명해 주시기 바랍니다.', '0'),
+(102, '강동주', 'React Hooks 사용법이 어렵습니다', 'React 기초', 0, '미답변', '2024-04-25 00:00:00', 'React에서 Hooks를 사용하려고 하는데 어려움을 겪고 있습니다. Hooks의 사용 방법과 주의사항, 실제 예제에 대해 설명해 주시기 바랍니다.', '0'),
+(103, '허서현', 'React 성능 최적화가 어렵습니다', 'React 고급', 0, '미답변', '2024-05-02 00:00:00', 'React 애플리케이션의 성능을 개선하기 위해 어떤 기법들이 있는지 설명해 주시기 바랍니다. 코드 스플리팅, 멀모 라이징, 가상화 등의 기법에 대해 자세히 설명해 주시기 바랍니다.', '0'),
+(104, '유재석', 'React Native 시작하기가 어렵습니다', 'React Native 기초', 0, '미답변', '2024-05-07 00:00:00', 'React Native를 사용하여 모바일 앱 개발을 시작하려고 하는데 어려움을 겪고 있습니다. React Native의 설치 방법과 기본 구조, 실행 방법에 대해 설명해 주시기 바랍니다.', '0'),
+(105, '박명수', 'React Native 네비게이션 사용법이 어렵습니다', 'React Native 중급', 0, '미답변', '2024-05-12 00:00:00', 'React Native에서 네비게이션을 구현하려고 하는데 어려움을 겪고 있습니다. 네비게이션 라이브러리 사용법과 실제 예제에 대해 설명해 주시기 바랍니다.', '0'),
+(106, '이광수', 'React Native 애니메이션 구현이 어렵습니다', 'React Native 고급', 0, '미답변', '2024-05-17 00:00:00', 'React Native에서 애니메이션을 구현하려고 하는데 어려움을 겪고 있습니다. 애니메이션 라이브러리 사용법과 실제 예제에 대해 설명해 주시기 바랍니다.', '0'),
+(107, '김태리', 'React Native 성능 최적화가 어렵습니다', 'React Native 고급', 0, '미답변', '2024-05-22 00:00:00', 'React Native 애플리케이션의 성능을 개선하기 위해 어떤 기법들이 있는지 설명해 주시기 바랍니다. 코드 스플리팅, 이미지 최적화, 네이티브 모듈 사용 등의 기법에 대해 자세히 설명해 주시기 바랍니다.', '0'),
+(108, '전지현', 'React Native와 Flutter의 차이점이 무엇인가요?', 'React Native vs Flutter', 0, '미답변', '2024-05-27 00:00:00', 'React Native와 Flutter는 모두 크로스 플랫폼 모바일 앱 개발 프레임워크입니다. 두 프레임워크의 차이점과 장단점에 대해 설명해 주시기 바랍니다.', '0'),
+(109, '김철수', '자료구조와 알고리즘 개념이 어렵습니다', '자료구조와 알고리즘', 0, '미답변', '2024-03-01 00:00:00', '자료구조와 알고리즘 수업을 듣고 있는데 개념이 어렵게 느껴집니다. LinkedList, 트리, 그래프 등의 자료구조와 정렬, 탐색 알고리즘에 대해 좀 더 자세히 설명해 주시기 바랍니다.', '0'),
+(110, '박영희', '운영체제 스케줄링 방식이 이해가 안됩니다', '운영체제', 0, '미답변', '2024-03-15 00:00:00', '운영체제 수업에서 프로세스 스케줄링 방식에 대해 배웠는데 이해가 잘 안됩니다. 선점 스케줄링, 비선점 스케줄링, 라운드 로빈 등의 방식에 대해 좀 더 자세히 설명해 주시기 바랍니다.', '0'),
+(111, '이동혁', '데이터베이스 정규화가 어렵습니다', '데이터베이스', 0, '미답변', '2024-04-01 00:00:00', '데이터베이스 수업에서 정규화 과정에 대해 배웠는데 이해가 잘 안됩니다. 1차, 2차, 3차 정규화의 개념과 과정에 대해 좀 더 자세히 설명해 주시기 바랍니다.', '0'),
+(112, '최지혜', '네트워크 계층 구조가 어렵습니다', '컴퓨터 네트워크', 0, '미답변', '2024-04-10 00:00:00', '컴퓨터 네트워크 수업에서 OSI 7계층과 TCP/IP 4계층 구조에 대해 배웠는데 이해가 잘 안됩니다. 각 계층의 역할과 프로토콜에 대해 좀 더 자세히 설명해 주시기 바랍니다.', '0'),
+(113, '강동주', '객체지향 프로그래밍 개념이 어렵습니다', '자바 프로그래밍', 0, '미답변', '2024-04-20 00:00:00', '자바 프로그래밍 수업에서 객체지향 개념을 배웠는데 이해가 잘 안됩니다. 클래스, 객체, 상속, 다형성, 캡슐화 등의 개념에 대해 좀 더 자세히 설명해 주시기 바랍니다.', '0'),
+(114, '허서현', '웹 보안 위협이 무엇인지 궁금합니다', '웹 보안', 0, '미답변', '2024-05-01 00:00:00', '웹 보안 수업에서 웹 애플리케이션에 대한 다양한 보안 위협에 대해 배웠는데 궁금한 점이 있습니다. SQL 인젝션, XSS, CSRF 등의 보안 위협에 대해 좀 더 자세히 설명해 주시기 바랍니다.', '0'),
+(115, '유재석', '인공지능 알고리즘이 어렵습니다', '인공지능', 0, '미답변', '2024-05-10 00:00:00', '인공지능 수업에서 다양한 알고리즘에 대해 배웠는데 이해가 잘 안됩니다. 회귀 알고리즘, 의사결정 트리, 신경망 등의 알고리즘에 대해 좀 더 자세히 설명해 주시기 바랍니다.', '0'),
+(116, '박명수', '소프트웨어 공학 프로세스가 어렵습니다', '소프트웨어 공학', 0, '미답변', '2024-05-20 00:00:00', '소프트웨어 공학 수업에서 소프트웨어 개발 프로세스에 대해 배웠는데 이해가 잘 안됩니다. 폭포수 모델, 나선형 모델, 애자일 방법론 등의 프로세스에 대해 좀 더 자세히 설명해 주시기 바랍니다.', '0'),
+(117, '이광수', '컴파일러 구조가 어렵습니다', '컴파일러', 0, '미답변', '2024-05-30 00:00:00', '컴파일러 수업에서 컴파일러의 구조와 동작 원리에 대해 배웠는데 이해가 잘 안됩니다. lexical analysis, syntax analysis, semantic analysis, code generation 등의 과정에 대해 좀 더 자세히 설명해 주시기 바랍니다.', '0'),
+(118, '김태리', '파일 시스템 개념이 어렵습니다', '운영체제', 0, '미답변', '2024-06-05 00:00:00', '운영체제 수업에서 파일 시스템 개념에 대해 배웠는데 이해가 잘 안됩니다. 파일 할당 방식, 디렉토리 구조, 파일 시스템 유형 등에 대해 좀 더 자세히 설명해 주시기 바랍니다.', '0');
 
 -- --------------------------------------------------------
 
@@ -1058,11 +1037,11 @@ INSERT INTO `qna` (`idx`, `name`, `title`, `view`, `reply`, `date`, `pw`, `conte
 --
 
 CREATE TABLE `qna_comment` (
-  `id` int(11) NOT NULL,
-  `comment` varchar(1200) NOT NULL,
-  `name` varchar(20) NOT NULL,
+  `id` int NOT NULL,
+  `comment` varchar(1200) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
   `regdate` datetime(6) NOT NULL,
-  `idx` int(11) NOT NULL
+  `idx` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -1072,12 +1051,12 @@ CREATE TABLE `qna_comment` (
 --
 
 CREATE TABLE `review` (
-  `idx` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `content` varchar(1200) NOT NULL,
-  `hit` varchar(1000) NOT NULL,
-  `view` varchar(1000) NOT NULL,
+  `idx` int NOT NULL,
+  `name` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `title` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `content` varchar(1200) COLLATE utf8mb4_general_ci NOT NULL,
+  `hit` varchar(1000) COLLATE utf8mb4_general_ci NOT NULL,
+  `view` varchar(1000) COLLATE utf8mb4_general_ci NOT NULL,
   `date` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1167,13 +1146,13 @@ INSERT INTO `review` (`idx`, `name`, `title`, `content`, `hit`, `view`, `date`) 
 --
 
 CREATE TABLE `user_coupons` (
-  `ucid` int(11) NOT NULL,
-  `couponid` int(11) DEFAULT NULL COMMENT '쿠폰아이디',
-  `userid` varchar(100) DEFAULT NULL COMMENT '유저아이디',
-  `status` int(11) DEFAULT 1 COMMENT '상태',
+  `ucid` int NOT NULL,
+  `couponid` int DEFAULT NULL COMMENT '쿠폰아이디',
+  `userid` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '유저아이디',
+  `status` int DEFAULT '1' COMMENT '상태',
   `use_max_date` datetime DEFAULT NULL COMMENT '사용기한',
   `regdate` datetime DEFAULT NULL COMMENT '등록일',
-  `reason` varchar(100) DEFAULT NULL COMMENT '쿠폰취득사유'
+  `reason` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '쿠폰취득사유'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1194,12 +1173,12 @@ INSERT INTO `user_coupons` (`ucid`, `couponid`, `userid`, `status`, `use_max_dat
 --
 
 CREATE TABLE `user_lecture_progress` (
-  `member_id` int(11) DEFAULT NULL,
-  `username` varchar(100) NOT NULL,
-  `course_id` int(11) DEFAULT NULL,
-  `course_name` varchar(100) NOT NULL,
-  `completed_lectures` int(11) DEFAULT NULL,
-  `total_lectures` int(11) DEFAULT NULL
+  `member_id` int DEFAULT NULL,
+  `username` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `course_id` int DEFAULT NULL,
+  `course_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `completed_lectures` int DEFAULT NULL,
+  `total_lectures` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1207,18 +1186,6 @@ CREATE TABLE `user_lecture_progress` (
 --
 
 INSERT INTO `user_lecture_progress` (`member_id`, `username`, `course_id`, `course_name`, `completed_lectures`, `total_lectures`) VALUES
-(5, '', 39, '', 28, 54),
-(8, '', 39, '', 28, 54),
-(18, '', 39, '', 14, 27),
-(23, '', 39, '', 14, 27),
-(27, '', 39, '', 14, 27),
-(40, '', 39, '', 14, 27),
-(5, '', 39, '', 28, 54),
-(8, '', 39, '', 28, 54),
-(18, '', 39, '', 14, 27),
-(23, '', 39, '', 14, 27),
-(27, '', 39, '', 14, 27),
-(40, '', 39, '', 14, 27),
 (5, '', 39, '', 28, 54),
 (8, '', 39, '', 28, 54),
 (18, '', 39, '', 14, 27),
@@ -1279,6 +1246,12 @@ ALTER TABLE `members`
   ADD PRIMARY KEY (`mid`);
 
 --
+-- 테이블의 인덱스 `msg`
+--
+ALTER TABLE `msg`
+  ADD PRIMARY KEY (`msgidx`);
+
+--
 -- 테이블의 인덱스 `notice`
 --
 ALTER TABLE `notice`
@@ -1289,12 +1262,6 @@ ALTER TABLE `notice`
 --
 ALTER TABLE `ordered_courses`
   ADD PRIMARY KEY (`ocid`);
-
---
--- 테이블의 인덱스 `payments`
---
-ALTER TABLE `payments`
-  ADD PRIMARY KEY (`cid`);
 
 --
 -- 테이블의 인덱스 `qna`
@@ -1328,91 +1295,91 @@ ALTER TABLE `user_coupons`
 -- 테이블의 AUTO_INCREMENT `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idx` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 테이블의 AUTO_INCREMENT `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cartid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 테이블의 AUTO_INCREMENT `category`
 --
 ALTER TABLE `category`
-  MODIFY `cateid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=320;
+  MODIFY `cateid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=320;
 
 --
 -- 테이블의 AUTO_INCREMENT `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `cpid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `cpid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- 테이블의 AUTO_INCREMENT `coursefile`
 --
 ALTER TABLE `coursefile`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cid` int NOT NULL AUTO_INCREMENT;
 
 --
 -- 테이블의 AUTO_INCREMENT `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
+  MODIFY `cid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
 
 --
 -- 테이블의 AUTO_INCREMENT `lecture`
 --
 ALTER TABLE `lecture`
-  MODIFY `l_idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=309;
+  MODIFY `l_idx` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=309;
 
 --
 -- 테이블의 AUTO_INCREMENT `members`
 --
 ALTER TABLE `members`
-  MODIFY `mid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `mid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+
+--
+-- 테이블의 AUTO_INCREMENT `msg`
+--
+ALTER TABLE `msg`
+  MODIFY `msgidx` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 테이블의 AUTO_INCREMENT `notice`
 --
 ALTER TABLE `notice`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=276;
+  MODIFY `idx` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=276;
 
 --
 -- 테이블의 AUTO_INCREMENT `ordered_courses`
 --
 ALTER TABLE `ordered_courses`
-  MODIFY `ocid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=276;
-
---
--- 테이블의 AUTO_INCREMENT `payments`
---
-ALTER TABLE `payments`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ocid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=276;
 
 --
 -- 테이블의 AUTO_INCREMENT `qna`
 --
 ALTER TABLE `qna`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `idx` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- 테이블의 AUTO_INCREMENT `qna_comment`
 --
 ALTER TABLE `qna_comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 테이블의 AUTO_INCREMENT `review`
 --
 ALTER TABLE `review`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `idx` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- 테이블의 AUTO_INCREMENT `user_coupons`
 --
 ALTER TABLE `user_coupons`
-  MODIFY `ucid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ucid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
