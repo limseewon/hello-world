@@ -3,7 +3,7 @@
 ob_start(); //최근 본 강의
 $title = '강의상세페이지';
 $cssRoute1 ='';
-$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/class.common.css"/>';
+$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_common.css"/>';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 
@@ -221,11 +221,14 @@ $cid = $_GET['cid'];
       </div>
       <div class="viewWrap_2 pd_6">
         <div class="pd_2">
-          <h2 class="jua">수강평</h2>
+          <h2 class="h2_r">수강평</h2>
         </div>
-          <div>
-            <p>전체 리뷰 건</p>
-          </div>
+        <div class="review_num">
+          <p>전체 리뷰 []건</p>
+        </div>
+        <div class="content-box">
+
+        </div>
       </div>
     </div>
   </form>
