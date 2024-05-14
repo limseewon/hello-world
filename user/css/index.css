@@ -50,7 +50,7 @@
 .image4 { background: #fdfdf5;}
 .slidetext { 
   position: absolute; 
-  top:100px;
+  top:130px;
   left: calc(50% - 550px);
 }
 .slidetext h2 { 
@@ -59,6 +59,7 @@
 .slidetext p{ 
  margin-bottom: 15px;
 }
+.blacksl_text { color: var(--c-main)}
 .imagebox { 
   position: absolute;
   height: 100%;
@@ -358,7 +359,7 @@ p {
 
 .swiper-button-prev,
 .swiper-button-next {
-  background: #ffffff;
+  background: #fff;
   width: 60px;
   height: 60px;
   border-radius: 50%;
