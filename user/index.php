@@ -63,22 +63,22 @@ while ($rc_rs = $rc_result->fetch_object()) {
             <div class="imagebox">
               <img src="img/index_section1.webp" alt="슬라이드 이미지_01">
             </div>  
-            <div class="slidetext">
-              <h2>문법 이상의 본질을 탐구하다</h2>
-              <h2>자바 중급 2편 출시</h2>
-               <p>재네릭과 컬렉션 프레임워크를 깊이 있게 배우며</p>
-               <p>본질적인 "WHY"에 대한 답을 찾아갑니다.</p>
+            <div class="slidetext blacksl_text">
+              <h2>누구나 쉬운 입문 강의</h2>
+              <h2>여기 다 모였다.!</h2>
+               <p>어디서부터 시작해야 할지 모르는</p>
+               <p>당신을 위한 입문 강의</p>
             </div>        
           </div>
           <div class="swiper-slide image2">
             <div class="imagebox image2">
               <img src="img/index_section2.webp" alt="슬라이드 이미지_02">
             </div>
-            <div class="slidetext">
-              <h2>문법 이상의 본질을 탐구하다</h2>
-              <h2>자바 중급 2편 출시</h2>
-               <p>재네릭과 컬렉션 프레임워크를 깊이 있게 배우며</p>
-               <p>본질적인 "WHY"에 대한 답을 찾아갑니다.</p>
+            <div class="slidetext blacksl_text">
+              <h2>무슨 강의를 들을지 고민이라면?</h2>
+              <h2>현직자 탑 30 강의보기</h2>
+               <p>입문부터 실전까지,</p>
+               <p>믿고 보는 실무자 PICK</p>
             </div> 
           </div>     
           <div class="swiper-slide image3">
@@ -97,10 +97,10 @@ while ($rc_rs = $rc_result->fetch_object()) {
              <img src="img/index_section4.gif" alt="슬라이드 이미지_04">
             </div> 
             <div class="slidetext">
-            <h2>문법 이상의 본질을 탐구하다</h2>
-              <h2>자바 중급 2편 출시</h2>
-               <p>재네릭과 컬렉션 프레임워크를 깊이 있게 배우며</p>
-               <p>본질적인 "WHY"에 대한 답을 찾아갑니다.</p>
+            <h2>지금 할인중인 강의</h2>
+              <h2>매일 업데이트</h2>
+               <p>신규 강의부터 베스트셀러까지</p>
+               <p>지금 바로 부담없이 시작해보세요!</p>
             </div>     
           </div>
         </div>
