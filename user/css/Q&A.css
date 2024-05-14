@@ -84,3 +84,9 @@ tr {
   .btn_search {
     height: 40px;
   }
+ .btn_class{
+  width: 74px;
+ }
+ .btn-success{
+  background-color: var(--c-primary-button);
+ }

@@ -82,7 +82,7 @@ $result = $mysqli->query($sql);
                     <td><a href="qna_detail.php?id=<?= $row['idx']; ?>"><?= $content; ?></a></td>
                     <td class="text_center"><?= $row['name']; ?></td>
                     <td class="text_center"><?= $row['view']; ?></td>
-                    <td class="text_center"><button type="button" class="<?= $buttonClass ?>"><?= $row['reply']; ?></button></td>
+                    <td class="text_center"><button type="button" class="btn_class <?= $buttonClass ?>"><?= $row['reply']; ?></button></td>
                     <td><?= $row['date']; ?></td>
                 </tr>
                 <?php
