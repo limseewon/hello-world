@@ -1,9 +1,12 @@
 <?php
+
+
+
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
 
-$sql = "INSERT INTO cart (cartid, pid) VALUES ('{$cid}', '{$uid}')";
+$sql = "INSERT INTO cart (cartid, pid) VALUES ('{$cartid}', '{$pid}')";
 $result = $mysqli->query($sql);
 
 //세션에 UID가 있어야 오더코스에 담기 가능
