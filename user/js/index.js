@@ -42,8 +42,8 @@ $(function(){
       pauseOnMouseEnter:true
     },
     navigation: {
-      prevEl: ".recom_prev",
-      nextEl: ".recom_next",
+      prevEl: ".new_prev",
+      nextEl: ".new_next",
     },
   });
 
@@ -58,8 +58,8 @@ $(function(){
       pauseOnMouseEnter:true
     },
     navigation: {
-      prevEl: ".new_prev",
-      nextEl: ".new_next",
+      prevEl: ".suggestio_prev",
+      nextEl: ".suggestio_next",
     },
   });
 
@@ -74,8 +74,8 @@ $(function(){
       pauseOnMouseEnter:true
     },
     navigation: {
-      prevEl: ".beg_prev",
-      nextEl: ".beg_next",
+      prevEl: ".beginner_prev",
+      nextEl: ".beginner_next",
     },
   });
 
