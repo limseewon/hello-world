@@ -80,17 +80,17 @@ $c_where .= $search_where;
 
 
 // $sqlrc = $sql.$c_where.$order; 
-if(!isset($pagerwhere)){
+if(!isset($pagerwhere)){   // 변수가 설정되지 않았으면, 기본적으로 "1=1" 조건을 가진 $pagerwhere 변수를 설정
   $pagerwhere = " 1=1";
 }
 
-$sql2 = "SELECT COUNT(*) as count from courses where 1=1 ".$c_where;
+$sql2 = "SELECT COUNT(*) as count from courses where 1=1 ".$c_where;  // "courses" 테이블에서 조건을 충족하는 레코드의 수를 세는 쿼리를 생성
 
-$result4 = $mysqli->query($sql2);
+$result4 = $mysqli->query($sql2);  // 데이터베이스에 쿼리를 실행하고 결과를 반환
 
-$rs = $result4->fetch_object();
-$sales_page = $rs->count;
-
+$rs = $result4->fetch_object(); // 쿼리 결과에서 첫 번째 레코드를 객체 형태로 가져옴
+$sales_page = $rs->count; // count" 별칭으로 반환된 레코드 수를 $sales_page 변수에 할당
+ 
 
 //필터 없으면 여기서부터 복사! *******
 $pagenationTarget = 'courses'; //pagenation 테이블 명
@@ -107,11 +107,13 @@ $sqlrc = $sql.$c_where.$order.$limit;
 
 
 // var_dump($sqlrc);
-$result = $mysqli -> query($sqlrc);
+$result = $mysqli -> query($sqlrc);  // 데이터베이스에서 쿼리 $sqlrc를 실행하고, 그 결과를 변수 $result에 저장
 while($rs = $result -> fetch_object()){
-  $rsc[] = $rs;
+  $rsc[] = $rs;     //
 }
-
+ 
+//$result에서 각 레코드를 반복적으로 가져와서 객체로 변환. fetch_object() 메서드는 쿼리 결과의 다음 레코드를 객체로 반환. while 루프는 레코드를 하나씩 처리할 때까지 계속 실행
+// 각 레코드 객체 $rs를 배열 $rsc에 추가합니다. 이렇게 하면 $rsc 배열에는 쿼리 결과의 모든 레코드가 객체 형태로 저장
 
 
 ?>
