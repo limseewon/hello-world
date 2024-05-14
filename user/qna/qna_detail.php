@@ -84,28 +84,37 @@ if ($qna_id > 0) {
                         </div>
                     </form>
                 </div>
-                <div class="comment-list mt-4">
-                    <?php while ($comment = $comment_result->fetch_assoc()) : ?>
-                        <div class="comment-item">
+                <div class="viewWrap_2 pd_6">
+                    <div class="pd_2">
+                        <h2 class="h2_t">수강평</h2>
+                    </div>
+                    <div class="review_num">
+                        <p>전체 리뷰 [<?php echo $review_result->num_rows; ?>]건</p>
+                    </div>
+                    <div class="content-box">
+                        <div class="comment-list mt-4">
+                        <?php while ($review = $review_result->fetch_assoc()) : ?>
+                            <div class="comment-item">
                             <div class="d-flex">
                                 <div class="comment-avatar me-3">
-                                    <i class="bi bi-person-circle h4"></i>
+                                <i class="bi bi-person-circle h4"></i>
                                 </div>
                                 <div class="comment-body flex-grow-1">
-                                    <div class="comment-header mb-1">
-                                        <span class="comment-author p fw-bold"><?= $comment['name']; ?></span>
-                                        <span class="comment-date text-muted ms-2"><?= $comment['regdate']; ?></span>
-                                        <a href="qna_reply_delete.php?id=<?= $qna_id; ?>&comment_id=<?= $comment['id']; ?>" class="delete-link ms-3" onclick="confirmDelete(event)">
-                                            <span class="material-symbols-outlined">delete</span>
-                                        </a>
-                                    </div>
-                                    <div class="comment-content">
-                                        <p class="mb-0"><?= $comment['comment']; ?></p>
-                                    </div>
+                                <div class="comment-header mb-1">
+                                    <span class="comment-author p fw-bold"><?= $review['name']; ?></span>
+                                    <span class="comment-date text-muted ms-2"><?= $review['regdate']; ?></span>
+                                    <a href="review_delete.php?cid=<?= $cid; ?>&review_id=<?= $review['id']; ?>" class="delete-link ms-3" onclick="confirmDelete(event)">
+                                    <span class="material-symbols-outlined">delete</span>
+                                    </a>
+                                </div>
+                                <div class="comment-content">
+                                    <p class="mb-0"><?= $review['content']; ?></p>              </div>
                                 </div>
                             </div>
+                            </div>
+                        <?php endwhile; ?>
                         </div>
-                    <?php endwhile; ?>
+                    </div>
                 </div>
             </div>
         </div>
