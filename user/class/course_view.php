@@ -195,11 +195,11 @@ $cid = $_GET['cid'];
         <div class="pd_2 d-flex justify-content-start">
           <h2 class="jua">강의목록</h2>
         </div>
-        <div class="viewSection2 shadow_box">
+        <ul class="viewSection2 shadow_box">
           <?php
             foreach($addImgs as $ai){
           ?>
-          <div class="viewList d-flex justify-content-between align-items-center">
+          <li class="viewList d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
               <div class="viewImg">
                 <img src="<?= $ai->youtube_thumb?>" alt="" />
@@ -211,11 +211,11 @@ $cid = $_GET['cid'];
             <div>
               <a href="<?= $ai->youtube_url?>" onclick="return false" target="_blank"><i class="fa-regular fa-circle-play"></i></a>
             </div>
-          </div>
+          </li>
           <?php           
               }
             ?>
-        </div>
+        </ul>
       </div>
       <div class="viewWrap_2 pd_6">
         <div class="pd_2">
