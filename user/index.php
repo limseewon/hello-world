@@ -183,92 +183,92 @@ while ($rc_rs = $rc_result->fetch_object()) {
           if (isset($rc_rsc)) {
             foreach ($rc_rsc as $item) {
           ?>
-                <div class="swiper-slide">
-                  <div class="card">
-                    <div class="cardimg">
-                    <img src="<?= $item->thumbnail ?>" class="card-img-top" alt="강의 썸네일">
-                    </div>
-                    
-                    <div class="card-body">
-                      <div class="badge_wrap">
-                        <span class="badge rounded-pill b-pd
-                        <?php
-                      // 뱃지컬러
-                      $levelBadge = $item->level;
-                      if ($levelBadge === '초급') {
-                        echo 'green_bg';
-                      } else if ($levelBadge === '중급') {
-                        echo 'orange_bg';
-                      } else {
-                        echo 'blue_bg';
-                      }
-                      ?>">
-                        <?= $item->level ?>
-                          
-                        </span>
-                        <span class="badge rounded-pill pulele_bg b-pd">
-                        <?php
-                        //뱃지 키워드 
-                        if (isset($item->cate)) {
-                          $categoryText = $item->cate;
-                          $parts = explode('/', $categoryText);
-                          $lastPart = end($parts);
-                          echo $lastPart;
-                        }
-                        ?>
-                        </span>
-                      </div>
-                      <h5 class="card-title">
-                      <?php
-                      $strTitle = $item->name;
-                      $strTitle = mb_strimwidth($strTitle, 0, 32, "...", "utf-8");
-                      echo $strTitle;
-                      ?>
-                      </h5>
-                      <div class="card-text">
-                        <p class="textbootn"><i class="ti ti-calendar-event"></i>수강기간 :
-                          <span class="duration">
-                          <?php if ($item->due == '') {
-                            echo '무제한';
-                          } else {
-                            echo $item->due;
-                          }
-                          ?>
-                          </span>
-                        </p>
-                        <?php
-                        if ($item->price_status != "무료") {
-                        ?>
-                          <div>
-                          <span class="content_tt number red">
-                            <?= $item->price ?>
-                          </span><span>원</span>
-                        </div>
-                      <?php
-                      } else {
-                      ?>
-                        <div>
-                            <span class="content_tt red">무료</span>
-                            
-                          </div>
-                          <?php
-                      }
-                      ?>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="view_wrap d-flex align-items-center justify-content-center flex-column">
-                    <a href="/helloworld/user/class/course_view.php?cid=<?= $item->cid ?>" class="view_btn"></a>
-                    <span>
-                      <a href="" class="card_like">
-                        
-                      </a>
-                      <a href="" class="card_cart">
-                        
-                      </a>
+            <div class="swiper-slide">
+              <div class="card">
+                <div class="cardimg">
+                <img src="<?= $item->thumbnail ?>" class="card-img-top" alt="강의 썸네일">
+                </div>
+                
+                <div class="card-body">
+                  <div class="badge_wrap">
+                    <span class="badge rounded-pill b-pd
+                    <?php
+                  // 뱃지컬러
+                  $levelBadge = $item->level;
+                  if ($levelBadge === '초급') {
+                    echo 'green_bg';
+                  } else if ($levelBadge === '중급') {
+                    echo 'orange_bg';
+                  } else {
+                    echo 'blue_bg';
+                  }
+                  ?>">
+                    <?= $item->level ?>
+                      
+                    </span>
+                    <span class="badge rounded-pill pulele_bg b-pd">
+                    <?php
+                    //뱃지 키워드 
+                    if (isset($item->cate)) {
+                      $categoryText = $item->cate;
+                      $parts = explode('/', $categoryText);
+                      $lastPart = end($parts);
+                      echo $lastPart;
+                    }
+                    ?>
                     </span>
                   </div>
+                  <h5 class="card-title">
+                  <?php
+                  $strTitle = $item->name;
+                  $strTitle = mb_strimwidth($strTitle, 0, 32, "...", "utf-8");
+                  echo $strTitle;
+                  ?>
+                  </h5>
+                  <div class="card-text">
+                    <p class="textbootn"><i class="ti ti-calendar-event"></i>수강기간 :
+                      <span class="duration">
+                      <?php if ($item->due == '') {
+                        echo '무제한';
+                      } else {
+                        echo $item->due;
+                      }
+                      ?>
+                      </span>
+                    </p>
+                    <?php
+                    if ($item->price_status != "무료") {
+                    ?>
+                      <div>
+                      <span class="content_tt number red">
+                        <?= $item->price ?>
+                      </span><span>원</span>
+                    </div>
+                  <?php
+                  } else {
+                  ?>
+                    <div>
+                        <span class="content_tt red">무료</span>
+                        
+                      </div>
+                      <?php
+                  }
+                  ?>
+                  </div>
                 </div>
+              </div>
+              <div class="view_wrap d-flex align-items-center justify-content-center flex-column">
+                <a href="/helloworld/user/class/course_view.php?cid=<?= $item->cid ?>" class="view_btn"></a>
+                <span>
+                  <a href="" class="card_like">
+                    
+                  </a>
+                  <a href="" class="card_cart">
+                    
+                  </a>
+                </span>
+              </div>
+            </div>
             <?php
               }
             }

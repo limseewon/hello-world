@@ -219,7 +219,7 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  padding-top: 20px;
+  
   z-index: 10;
   display: inline-block;
   transition: 0.3s;
@@ -232,6 +232,9 @@ p {
 }
 
 .view_btn {
+  width: 100%;
+  height: 100%;
+
   white-space: nowrap;
   border: 1.5px solid #fff;
   z-index: 10;
