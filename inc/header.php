@@ -54,7 +54,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                 </a>
               </li>
               <li>
-                <a href="/helloworld/admin/login.php">
+                <a href="/helloworld/admin/logout.php">
                   <span class="material-symbols-outlined"> logout </span>
                   <span>Logout</span>
                 </a>

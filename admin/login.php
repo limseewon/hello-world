@@ -1,9 +1,6 @@
 <?php
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +12,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
     <link rel="stylesheet" href="/helloworld/css/common.css">
     <link rel="stylesheet" href="/helloworld/css/login.css">
     <title>HelloWorld</title>
-
   </head>
   <body>
   <dialog class="popup">

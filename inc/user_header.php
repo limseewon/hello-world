@@ -9,9 +9,22 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--  jquery-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw==" crossorigin="anonymous" referrerpolicy="no-referrer"> <!--jquery ui-->
+
+    <!-- font google -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!--bootstrap  -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+     <!-- swiper -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
     <link rel="stylesheet" href="/helloworld/user/css/common.css">
     <link rel="stylesheet" href="/helloworld/user/css/login.css">
 
@@ -147,14 +160,19 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
           <?php
             if (isset($_SESSION['UID'])) {
           ?>
-          <div class="icons d-flex">
-              <a href="#" class="bi bi-cart"><p>장바구니</p></a>
-              <a href="/helloworld/user/mypage/index.php" class="bi bi-person-circle">
-                <p>ㄴㄴㅇㄴㅇ</p>
-                <!-- <ul class=profile_box>
-                  <li><a href="#"></a></li>
-                </ul> -->
-              </a>
+          <div class="icons d-flex align-items-center">
+              <a href="#" class="bi bi-cart"><span>장바구니</span></a>
+              <div class="profile_hoverBox">
+                <a href="/helloworld/user/mypage/index.php" class="bi bi-person-circle">
+                  <span>프로필</span>
+                </a>
+                <ul class="profile_hoverList">
+                  <li><a href="#">대시 보드</a></li>
+                  <li><a href="#">수강 강의</a></li>
+                  <li><a href="#">test</a></li>
+                  <li><a href="#">메시지</a></li>
+                </ul>
+              </div>
           </div>
           <div class="d-flex bt">
                     <!-- <button
