@@ -32,12 +32,15 @@
 .categorybox { 
   
   width: 287px;
-  border:1px solid var(--c-border-grey) ;}
+ }
 .courseList {
   width: 80%;
 }
 .category_su { 
   background: var(--c-complete-button);
+  position: relative; 
+  left: 40px;
+  top:0;
 }
 .category_su:hover { 
   background: var(--c-complete-button-hover);
@@ -63,18 +66,20 @@
   transform: translate(-30px, -8px);
 }
 .chcekbox_h6 h6 {text-align: center;}
-.chekbox { margin-left: calc(var(--c-space_updown)*2.7);}
+.chekbox {margin-left: calc(var(--c-space_updown)*1); }
+.chekbox2 {margin-left: calc(var(--c-space_updown)*2); }
+.chekbox3 {margin-left: calc(var(--c-space_updown)*2); }
 
 .courseBox {
   width: 31%;
   height: 400px;
-  border-radius: 10px;
+  
   cursor: pointer;
   background-color: #fff;
   margin: 0 30px 30px 0;
   padding: 0;
   overflow: hidden;
-  border: 1px solid var(--c-border-grey);
+  
 }
 
 .courseBox:nth-child(3n + 0) {
