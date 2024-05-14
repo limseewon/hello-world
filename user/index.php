@@ -9,12 +9,18 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 // $sql = "SELECT * FROM `courses` WHERE YEAR(regdate) = YEAR(current_year) AND MONTH(regdate) = MONTH(current_month) ORDERBY cid DESC limit 8 ";
 $sql = "SELECT * FROM `courses` WHERE YEAR(regdate) = YEAR(CURRENT_DATE()) AND MONTH(regdate) = MONTH(CURRENT_DATE()) ORDER BY cid DESC LIMIT 8";
 // echo $sql;
-$rc_result = $mysqli->query($sql);
+$rc_result = $mysqli->query($sql);   // 데이터베이스에서 쿼리를 실행하고, 그 결과를 $rc_result 변수에 저장
 while ($rc_rs = $rc_result->fetch_object()) {
   $rc_rsc[] = $rc_rs;
 }
-
 // print_r($rsc);
+//$rc_result에서 각 레코드를 반복적으로 가져와서 객체로 변환하고, 이를 $rc_rsc 배열에 추가. 
+// fetch_object() 메서드는 쿼리 결과의 다음 레코드를 객체로 반환합니다. while 루프는 레코드를 하나씩 처리할 때까지 계속 실행
+
+// courses" 테이블에서 현재 연도와 현재 월에 등록된 레코드를 선택하는 쿼리를 생성
+// 쿼리는 "regdate" 열의 연도와 월을 현재 연도와 현재 월과 비교하여 선택
+// "cid" 열을 기준으로 내림차순으로 정렬하고, 결과를 최대 8개까지로 제한
+
 
 // 추천강의
 
