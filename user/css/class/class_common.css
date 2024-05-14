@@ -22,3 +22,13 @@
   background-color: var(--c-title-font);
     border-color: var(--c-title-font);
 }
+
+/* review */
+.review_num{
+  padding-bottom: 35px;
+}
+.content-box{
+  width: 1026px;
+  height: auto;
+  margin: 0 auto;
+}
