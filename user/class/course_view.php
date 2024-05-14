@@ -92,7 +92,7 @@ $cid = $_GET['cid'];
     </div>
   </div>
   </form>
-  <form action="courses_ok.php" method="POST" id="course_form2" class="product_save">
+  <form action="courses_ok.php" method="POST" id="course_form" class="product_save">
     <input type="hidden" id="cid" value="<?= $cid; ?>">
     <input type="hidden" id="cnt" value="<?= $cnt->cnt??0 ?>">
     <div class="container">
