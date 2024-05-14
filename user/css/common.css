@@ -45,12 +45,11 @@
   --c-p: #495057;
   --c-lightgray: #999999;
   --c-primary-button: #00c471;
-  --c-border-grey: #C2C4C7;
-  --c-ribon-blue:#000080;
-  --c-ribon-pulple:#A020F0;
-  --c-ribon-orange:#FF6347;
-  --c-ribon-geeen:#1EE0AC;
-  
+  --c-border-grey: #c2c4c7;
+  --c-ribon-blue: #000080;
+  --c-ribon-pulple: #a020f0;
+  --c-ribon-orange: #ff6347;
+  --c-ribon-geeen: #1ee0ac;
 }
 
 /* typography */
@@ -158,7 +157,7 @@ body {
 .lightgray {
   color: var(--c-lightgray);
 }
-.table-container{
+.table-container {
   min-height: 287px;
 }
 /*  */
@@ -173,7 +172,6 @@ header {
   position: relative;
   left: 0;
   right: 0;
-  overflow: hidden;
   padding: 20px 0;
   box-sizing: border-box;
   z-index: 9999;
@@ -199,6 +197,19 @@ header {
 .icons {
   gap: 30px;
 }
+.profile_hoverBox {
+  position: relative;
+  height: 75px;
+}
+.profile_hoverList {
+  position: absolute;
+  top: 100%;
+  display: none;
+}
+
+.profile_hoverBox:hover .profile_hoverList {
+  display: block;
+}
 .bi {
   font-size: 30px;
 }
@@ -218,24 +229,20 @@ header {
 }
 .logout {
 }
-.bi p {
+.bi span {
   position: absolute;
   text-indent: -9999em;
   opacity: 0;
   visibility: hidden;
 }
 .bi-person-circle {
-  /* position: relative; */
+  display: inline-block;
   color: var(--c-title-font);
+  line-height: 75px;
+  height: 75px;
 }
 .icons {
-  position: relative;
-}
-.profile_box {
-  position: absolute;
-  color: #00c471 !important;
-  /* top: ; */
-  /* left: 0; */
+  /* position: relative; */
 }
 
 .h2_t {
@@ -263,6 +270,7 @@ header {
 .btn_search {
   height: 40px;
 }
+
 table td,
 table th {
   vertical-align: middle;
