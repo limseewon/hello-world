@@ -1,28 +1,28 @@
 <?php
 $title = '강의리스트';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/common.css"/>';
-$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class.css"/>';
+$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_list.css"/>';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 
 //main페이지 검색 
-$c_where = '';
-if (isset($_GET['course_search'])) {
-  $key = $_GET['course_search'];
-  $c_where = " and name LIKE '%$key%' OR cate LIKE '%$key%' OR level LIKE '%$key%'";
+$c_where = '';   // 검색 조건을 나타내는 변수인 $c_where를 초기화
+if (isset($_GET['course_search'])) {   // 만약 HTTP GET 요청으로 'course_search' 매개변수가 전달되었다면, 다음을 실행
+  $key = $_GET['course_search']; // course_search' 매개변수의 값을 가져와서 $key 변수에 할당
+  $c_where = " and name LIKE '%$key%' OR cate LIKE '%$key%' OR level LIKE '%$key%'"; //  $key 값을 포함하는 "name", "cate", "level" 열 중 하나라도 일치하는 레코드를 선택하기 위한 조건을 $c_where에 할당 SQL의 LIKE 연산자를 사용하여 부분 문자열 검색을 수행
 };
-if (isset($_GET['catename'])) {
-  $keycate = $_GET['catename'];
-  $c_where = " and cate LIKE '%$keycate'";
+if (isset($_GET['catename'])) {  // 만약 HTTP GET 요청으로 'catename' 매개변수가 전달되었다면, 다음을 실행
+  $keycate = $_GET['catename']; // catename' 매개변수의 값을 가져와서 $keycate 변수에 할당
+  $c_where = " and cate LIKE '%$keycate'"; // $keycate 값을 포함하는 "cate" 열과 일치하는 레코드를 선택하기 위한 조건을 $c_where에 할당
 };
 
 
-$sql = "SELECT * from courses where 1=1 " ;  //"courses" 테이블에서 모든 열을 선택하는 쿼리를 생성합니다. 이 쿼리는 WHERE 절에 항상 참인 조건을 포함하고 있습니다. 이렇게 하는 이유는 후속적으로 추가되는 조건들을 쉽게 추가하기 위함입니다.
+$sql = "SELECT * from courses where 1=1 " ;  //"courses" 테이블에서 모든 열을 선택하는 쿼리를 생성. 이 쿼리는 WHERE 절에 항상 참인 조건을 포함하고 있음. 이렇게 하는 이유는 후속적으로 추가되는 조건들을 쉽게 추가.
 $order = ' order by cid desc';   //결과를 "cid" 열을 기준으로 내림차순으로 정렬
 
-$cate = $_GET['cate']??'';
+$cate = $_GET['cate']??''; // PHP에서 $_GET은 HTTP GET 요청을 통해 전달된 매개변수를 가져옵 'cate'라는 이름의 매개변수가 존재하면 해당 값을 가져오고, 그렇지 않으면 빈 문자열('')을 반환
 $level = $_GET['level']??'';
-$pay = $_GET['pay']??'';   //HTTP GET 요청에서 "cate", "level", "pay" 매개변수를 가져옵니다. 만약 해당 매개변수가 없다면 빈 문자열을 할당
+$pay = $_GET['pay']??'';   //HTTP GET 요청에서 "cate", "level", "pay" 매개변수를 가져옴. 만약 해당 매개변수가 없다면 빈 문자열을 할당
 $param = '';  //매개변수를 조합하여 WHERE 절에 추가할 조건을 담을 변수를 초기화
 
 $cate_where = '';
@@ -31,14 +31,14 @@ $fil_where = '';    //$filter_where = '';, $fil_where = '';: WHERE 절에 추가
 
                     //URL을 통해 전달된 매개변수를 기반으로 데이터베이스에서 쿼리를 실행하기 위한 동적 WHERE 절을 구축
 //카테고리 조회
-if($cate != ''){
-  if($cate == '프론트엔드'){
+if($cate != ''){  // cate' 변수가 비어 있지 않은 경우에만 다음을 실행
+  if($cate == '프론트엔드'){ // cate' 변수가 '프론트엔드'와 일치하는 경우, 다음을 실행
+    $c_where .= " and cate LIKE '%{$cate}%'"; // $c_where 변수에 "프론트엔드"를 포함하는 "cate" 열과 일치하는 레코드를 선택하기 위한 추가 조건을 추가
+  }else if($cate == '백엔드'){  // cate' 변수가 '백엔드'와 일치하는 경우, 다음을 실행 위와 동일한 방식으로, $c_where 변수에 "백엔드"를 포함하는 "cate" 열과 일치하는 레코드를 선택하기 위한 추가 조건을 추가
     $c_where .= " and cate LIKE '%{$cate}%'";
-  }else if($cate == '백엔드'){
-    $c_where .= " and cate LIKE '%{$cate}%'";
-  }else if($cate == '디자인'){
-    $c_where .= " and cate LIKE '%{$cate}%'";
-  }else{
+  }else if($cate == '디자인'){ // cate' 변수가 '디자인'과 일치하는 경우, 다음을 실행
+    $c_where .= " and cate LIKE '%{$cate}%'"; // $c_where 변수에 "디자인"을 포함하는 "cate" 열과 일치하는 레코드를 선택하기 위한 추가 조건을 추가
+  }else{   // 위의 모든 조건이 일치하지 않는 경우, 즉 'cate' 변수가 빈 문자열이거나 다른 값을 가지고 있는 경우, 아무 동작도 수행하지 않음
     $c_where .= "";
   }
 }else{
@@ -59,24 +59,24 @@ if($level != ''){
 }
 
 //가격 조회
-if($pay != ''){
-  $c_where .= " and price_status='{$pay}'";
-  // $param .="&price_status='{$pay}'";
-}else{
+if($pay != ''){  // 'pay' 변수가 비어 있지 않은 경우에만 다음을 실행
+  $c_where .= " and price_status='{$pay}'";  // pay' 변수 값을 사용하여 "price_status" 열과 일치하는 레코드를 선택하기 위한 추가 조건을 $c_where 변수에 추가
+  // $param .="&price_status='{$pay}'";      //  선택된 레코드는 결제 상태가 'pay' 변수 값과 동일한 것만 포함
+}else{  // pay' 변수가 비어 있는 경우, 즉 값이 설정되어 있지 않은 경우, 아무 동작도 수행하지 않음
   $c_where .= "";
 }
 
 
 //검색
-$search_where = '';
-$search = $_GET['search']??'';
+$search_where = '';  // 검색 조건을 나타내는 변수인 $search_where를 초기화
+$search = $_GET['search']??'';  // search' 매개변수를 가져옴. 이 변수에는 사용자가 검색한 내용이 포함. 만약 'search' 매개변수가 존재하지 않으면, 빈 문자열('')을 사용
 
-if($search){
+if($search){  // search' 변수가 비어 있지 않은 경우와 비어 있는 경우를 구분하여 다음을 실행
   $search_where .= "and name like '%{$search}%'";
 } else{
-  $search_where = '';
+  $search_where = '';  // and name like '%{$search}%'";: 'name' 열에서 검색어를 포함하는 레코드를 선택하기 위한 추가 조건을 $search_where 변수에 추가 택된 레코드는 사용자가 입력한 검색어를 이름에 포함하는 것만 포함
 }
-$c_where .= $search_where;
+$c_where .= $search_where;  // 생성된 검색 조건을 $c_where 변수에 추가
 
 
 // $sqlrc = $sql.$c_where.$order; 
@@ -120,6 +120,8 @@ while($rs = $result -> fetch_object()){
   
     
     <script src="/helloworld/js/index.js"></script>
+    <link rel="stylesheet" href="/helloworld/user/css/class.list.css"/>
+    
     
 
 <main>
