@@ -22,7 +22,7 @@ $row = $result->fetch_object();
 
 // 객체에서 'mid' 값을 가져와 변수에 할당
 $member_id = $row->mid;
-$cid = cid
+$cid = $cid;
 //세션에 UID가 있어야 오더코스에 담기 가능
 if (isset($_SESSION['UID'])) {
   $uid = $_SESSION['UID'];
