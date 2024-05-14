@@ -168,7 +168,6 @@ header {
   position: relative;
   left: 0;
   right: 0;
-  overflow: hidden;
   padding: 20px 0;
   box-sizing: border-box;
   z-index: 9999;
@@ -211,8 +210,6 @@ header {
 .lgo {
   padding-right: 68px;
 }
-.logout {
-}
 .bi p {
   position: absolute;
   text-indent: -9999em;
@@ -243,34 +240,8 @@ header {
 .form-select {
   font-size: var(--c-p);
 }
-.sb {
-  width: 213px;
-  height: 40px;
-}
-.search_bar {
-  gap: 20px;
-}
-.search {
-  width: 434px;
-  height: 40px;
-  font-size: var(--c-p);
-}
-.btn_search {
-  height: 40px;
-}
-table td,
-table th {
-  vertical-align: middle;
-}
-tr {
-  width: 1153px;
-  height: 50px;
-  border-top: 1px solid #dee2e6;
-  border-bottom: 1px solid #dee2e6;
-}
-.pagination {
-  padding-top: 50px;
-}
+
+
 .tw {
   width: 504px;
 }

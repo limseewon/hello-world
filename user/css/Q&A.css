@@ -1,6 +1,19 @@
 .table-container{
     width: 100%;
 }
+table td,
+table th {
+  vertical-align: middle;
+}
+tr {
+  width: 1153px;
+  height: 55px;
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+}
+.pagination {
+  padding-top: 50px;
+}
 .qna-detail-box{
     width: 910px;
     height: auto;
@@ -56,3 +69,18 @@
  td .text-center{
     vertical-align: middle;
 }
+.sb {
+    width: 213px;
+    height: 40px;
+  }
+  .search_bar {
+    gap: 20px;
+  }
+  .search {
+    width: 434px;
+    height: 40px;
+    font-size: var(--c-p);
+  }
+  .btn_search {
+    height: 40px;
+  }
