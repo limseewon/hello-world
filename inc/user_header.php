@@ -166,7 +166,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                 <a href="/helloworld/user/mypage/index.php" class="bi bi-person-circle">
                   <span>프로필</span>
                 </a>
-                <ul class="profile_hoverList">
+                <ul class="profile_hoverList content-box">
                   <li><a href="/helloworld/user/mypage/index.php">대시 보드</a></li>
                   <li><a href="/helloworld/user/mypage/courses.php">수강 강의</a></li>
                   <li><a href="/helloworld/user/mypage/coupons.php">쿠폰함</a></li>

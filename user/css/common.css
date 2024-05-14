@@ -204,18 +204,33 @@ header {
 .profile_hoverList {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 50%;
   display: none;
   white-space: nowrap;
-  border: 1px solid #000;
-  padding: 20px;
-}
-.profile_hoverList li + li {
-  margin-top: 16px;
+  border-width: 1px;
+  border-style: solid;
+  padding: 0px;
+  transform: translateX(-50%);
 }
 
 .profile_hoverBox:hover .profile_hoverList {
   display: block;
+}
+.profile_hoverList li {
+  /* color: var(--c-background); */
+  /* width: 100%; */
+  /* color: #000; */
+}
+.profile_hoverList li:hover {
+  background: var(--c-title-font);
+  color: var(--c-background);
+}
+
+.profile_hoverList li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
 }
 .bi {
   font-size: 30px;
