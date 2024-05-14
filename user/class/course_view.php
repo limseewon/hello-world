@@ -46,6 +46,7 @@ $cid = $_GET['cid'];
 
 
 <main>
+  <form action="">
   <div class="viewTitleWrap d-flex flex-column">
     <div>
     <p class="content_tt"><?= $rs->name?></p>
@@ -90,6 +91,8 @@ $cid = $_GET['cid'];
       </div>
     </div>
   </div>
+  </form>
+  <form action="courses_ok.php">
     <input type="hidden" id="cid" value="<?= $cid; ?>">
     <input type="hidden" id="cnt" value="<?= $cnt->cnt??0 ?>">
     <div class="container">
@@ -225,6 +228,7 @@ $cid = $_GET['cid'];
           </div>
       </div>
     </div>
+  </form>
   </main>
   <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_footer.php';
