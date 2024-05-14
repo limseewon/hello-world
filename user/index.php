@@ -1,7 +1,7 @@
 <?php
 $title = 'Home';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_common.css"/>';
-$cssRoute2 ='';
+$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/index.css"/>';
 $script1 = '<script defer src="/helloworld/js/index.js"></script>';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
@@ -41,7 +41,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
 ?>
    
 
-
+   
 
     
     
