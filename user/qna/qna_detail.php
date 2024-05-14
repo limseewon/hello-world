@@ -95,7 +95,7 @@ if ($qna_id > 0) {
                                     <div class="comment-header mb-1">
                                         <span class="comment-author p fw-bold"><?= $comment['name']; ?></span>
                                         <span class="comment-date text-muted ms-2"><?= $comment['regdate']; ?></span>
-                                        <a href="qna_reply_delete.php?id=<?= $qna_id; ?>&comment_id=<?= $comment['id']; ?>" class="delete-link ms-3">
+                                        <a href="qna_reply_delete.php?id=<?= $qna_id; ?>&comment_id=<?= $comment['id']; ?>" class="delete-link ms-3" onclick="confirmDelete(event)">
                                             <span class="material-symbols-outlined">delete</span>
                                         </a>
                                     </div>
@@ -128,6 +128,18 @@ if ($qna_id > 0) {
             }
         });
     });
+
+    // 댓글 삭제 알림창
+    function confirmDelete(event) {
+        event.preventDefault(); // 기본 동작 취소
+
+        var confirmation = confirm("정말 삭제하시겠습니까?");
+        if (confirmation) {
+            // 확인 버튼을 클릭한 경우
+            var deleteLink = event.target.closest('.delete-link');
+            window.location.href = deleteLink.href;
+        }
+    }
 </script>
 
 <?php
