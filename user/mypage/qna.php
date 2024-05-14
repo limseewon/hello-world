@@ -1,9 +1,9 @@
 <?php
-  $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_msg.css"/>';
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/mypage_left.php';    
+  $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_qna.css"/>';
+  include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/leftSide.php';     
 ?>
         <section class="mainContainer">
-          <h2 class="title">메시지</h2>
+          <h2 class="title">Q&A</h2>
           <div class="mainContents">
             <table class="table table-hover table-striped">
               <thead class="table-light">
@@ -56,5 +56,5 @@
           </div>
         </section>
   <?php
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/mypage_right.php';    
-  ?>
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/rightSide.php';    
+    ?>

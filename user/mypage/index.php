@@ -1,11 +1,13 @@
 <?php
   $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_dash.css"/>';
-  include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/mypage_left.php';     
+  $script1 = '<script defer src="/helloworld/user/js/mypage_index.js"></script>';
+  include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/leftSide.php';     
     
 $userid = $_SESSION['UID'];
 $midSql = "SELECT * FROM members WHERE userid = '{$userid}'";
 $mid_result = $mysqli->query($midSql);
 $member = $mid_result->fetch_object();
+
 
 
 $notice_sql = "SELECT title from notice ORDER BY idx DESC LIMIT 4";
@@ -19,7 +21,7 @@ $qnaResult = $mysqli->query($qnaSql);
 while( $qnaRs = $qnaResult->fetch_object()){
   $qnaArr [] = $qnaRs;
 };
-$msgSql = "SELECT * from msg WHERE mid='{$member->mid}' ORDER BY idx DESC LIMIT 4";
+$msgSql = "SELECT * from msg WHERE mid='{$member->mid}' ORDER BY msgidx DESC LIMIT 4";
 $msgResult = $mysqli->query($msgSql);
 while( $msgRs = $msgResult->fetch_object()){
   $msgArr [] = $msgRs;
@@ -38,8 +40,18 @@ while( $courseRs = $courseResult->fetch_object()){
             <div class="d-flex flex-column justify-content-center align-items-center content-box profile_box">
               <div class="d-flex justify-content-start align-items-center profile_info">
                 <div class="d-flex flex-column align-items-center profile_img_con">
-                  <img src="/user/img/person-square.svg" alt="profile_image" />
-                  <button class="btn btn-secondary">프로필 변경</button>
+                  <?php 
+                  if ($member->userimg){
+                  ?>
+                  <img src="<?=$member->userimg?>" alt="profile_image" />
+                  <?php
+                  } else {
+                  ?>
+                  <img src="/helloworld/user/img/person-square.svg" alt="profile_image" />
+                  <?php
+                  }
+                  ?>
+                  <button class="btn btn-secondary modify_img">프로필 변경</button>
                 </div>
                 <ul class="profile_list">
                   <li><span class="p bold">아이디 : </span><span><?=$member->userid?></span></li>
@@ -50,8 +62,8 @@ while( $courseRs = $courseResult->fetch_object()){
                 </ul>    
               </div>
               <div class="btn_info d-flex justify-content-center">
-                <button class="btn btn-secondary">닉네임 변경</button>
-                <button class="btn btn-secondary">비밀번호 변경</button>
+                <button class="btn btn-secondary modify_name">닉네임 변경</button>
+                <button class="btn btn-secondary modify_pw">비밀번호 변경</button>
               </div>
             </div>
             <div class="content-box attendance_box">
@@ -95,10 +107,17 @@ while( $courseRs = $courseResult->fetch_object()){
             <div class="content-box recent_msg board">
               <h3 class="p bold">최근 메시지</h3>
               <ul>
-                <li><a href="#">질문입니다.</a></li>
-                <li><a href="#">질문입니다.</a></li>
-                <li><a href="#">질문입니다.</a></li>
-                <li><a href="#">질문입니다.</a></li>
+              <?php
+                if(isset($msgArr)) {
+                  foreach($msgArr as $ma) {
+                ?>
+                <li><a href="#"><?=$ma->content?></a></li>
+                <?php
+                  }} else {
+                ?>
+                <li><a href="#">없음</a></li>
+                <?php
+                }?>
               </ul>
             </div>
             <div class="content-box course_progress board">
@@ -111,18 +130,19 @@ while( $courseRs = $courseResult->fetch_object()){
                 <?php
                 if (isset($noticeArr)) {
                   foreach($noticeArr as $na) {
-
-                  
                 ?>
                 <li><a href="#"><?= $na->title;?></a></li>
                 <?php
                 }
-              }
+                }else {
                 ?>
+                <li><a href="#">없음</a></li>
+                <?php
+                }?>
               </ul>
             </div>
           </div>
         </section>
   <?php
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/mypage_right.php';    
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/rightSide.php';    
   ?>

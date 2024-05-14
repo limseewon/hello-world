@@ -1,7 +1,8 @@
 <?php
 $title = 'Home';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/index.css"/>';
-$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/common.css"/>';
+$cssRoute2 ='';
+$script1 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 

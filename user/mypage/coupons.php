@@ -1,6 +1,6 @@
 <?php
   $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_coupons.css"/>';
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/mypage_left.php';    
+  include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/leftSide.php';     
 ?>
         <section class="mainContainer">
           <h2 class="title">쿠폰함</h2>
@@ -10,5 +10,5 @@
           </div>
         </section>
   <?php
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/mypage_right.php';    
-  ?>
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/rightSide.php';    
+    ?>

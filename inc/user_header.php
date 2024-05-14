@@ -14,9 +14,10 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="/helloworld/user/css/common.css">
     <link rel="stylesheet" href="/helloworld/user/css/login.css">
-    
+
     <?=$cssRoute1?>
     <?=$cssRoute2?>
+    <?=$script1?>
     <title><?=$title?> | Hello World</title>
     
 </head>
@@ -148,11 +149,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
           ?>
           <div class="icons d-flex">
               <a href="#" class="bi bi-cart"><p>장바구니</p></a>
-              <a href="/helloworld/user/mypage/mypage_dash.php" class="bi bi-person-circle">
+              <a href="/helloworld/user/mypage/index.php" class="bi bi-person-circle">
                 <p>ㄴㄴㅇㄴㅇ</p>
-                <ul class=profile_box>
+                <!-- <ul class=profile_box>
                   <li><a href="#"></a></li>
-                </ul>
+                </ul> -->
               </a>
           </div>
           <div class="d-flex bt">
