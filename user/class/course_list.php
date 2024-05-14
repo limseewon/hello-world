@@ -145,10 +145,10 @@ while($rs = $result -> fetch_object()){
     <div class="mainSection d-flex gap-5">
       <form action="#" id="filter-form" class="" method="GET">
         <!-- <input type="hidden" name="cate-array" id="cate-array" value=""> -->
-        <div class="categorybox">
+        <div class="content-box categorybox">
         <div class="checkBox_1 mb-3">
           <div class="filterbox d-flex chcekbox_h6">
-            <h6 class="chekbox">카테고리</h6>
+            <h3 class="chekbox">카테고리</h3>
             <button id="filter-submit-btn" class="btn btn-primary dark category_su">필터</button>
           </div>
           <div class="form-check mt-5">
@@ -195,7 +195,7 @@ while($rs = $result -> fetch_object()){
           </div>
         </div>
         <div class="checkBox_2 mb-3 chcekbox_h6">
-          <h6>난이도</h6>
+          <h3 class="chekbox2">난이도</h3>
           <div class="form-check mt-5">
             <label class="form-check-label" for="level1"> 초급 </label>
             <input
@@ -228,7 +228,7 @@ while($rs = $result -> fetch_object()){
           </div>
         </div>
         <div class="checkBox_3 chcekbox_h6">
-          <h6>가격</h6>
+          <h3 class="chekbox3">가격</h3>
           
           <div class="form-check mt-5">
             <label class="form-check-label" for="free"> 무료 </label>
@@ -261,7 +261,7 @@ while($rs = $result -> fetch_object()){
             if(isset($rsc)){
               foreach($rsc as $item){
           ?>  
-          <li class="col-12 col-sm-6 col-md-4 courseBox shadow_box" onclick="location.href='course_view.php?cid=<?= $item->cid ?>'">
+          <li class="col-12 col-sm-6 col-md-4 content-box courseBox " onclick="location.href='course_view.php?cid=<?= $item->cid ?>'">
             <div class="imgBox">
               <img
                 src="<?= $item -> thumbnail?>"
