@@ -21,11 +21,11 @@ $qnaResult = $mysqli->query($qnaSql);
 while( $qnaRs = $qnaResult->fetch_object()){
   $qnaArr [] = $qnaRs;
 };
-$msgSql = "SELECT * from msg WHERE mid='{$member->mid}' ORDER BY msgidx DESC LIMIT 4";
-$msgResult = $mysqli->query($msgSql);
-while( $msgRs = $msgResult->fetch_object()){
-  $msgArr [] = $msgRs;
-};
+// $msgSql = "SELECT * from msg WHERE mid='{$member->mid}' ORDER BY msgidx DESC LIMIT 4";
+// $msgResult = $mysqli->query($msgSql);
+// while( $msgRs = $msgResult->fetch_object()){
+//   $msgArr [] = $msgRs;
+// };
 
 $courseSql = "SELECT c.name from courses c JOIN ordered_courses oc ON c.cid = oc.course_id WHERE oc.member_id = '{$member->mid}' LIMIT 4";
 $courseResult = $mysqli->query($courseSql);
