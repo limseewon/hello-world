@@ -17,19 +17,19 @@ if (isset($_GET['catename'])) {
 };
 
 
-$sql = "SELECT * from courses where 1=1 " ;
-$order = ' order by cid desc';
+$sql = "SELECT * from courses where 1=1 " ;  //"courses" 테이블에서 모든 열을 선택하는 쿼리를 생성합니다. 이 쿼리는 WHERE 절에 항상 참인 조건을 포함하고 있습니다. 이렇게 하는 이유는 후속적으로 추가되는 조건들을 쉽게 추가하기 위함입니다.
+$order = ' order by cid desc';   //결과를 "cid" 열을 기준으로 내림차순으로 정렬
 
 $cate = $_GET['cate']??'';
 $level = $_GET['level']??'';
-$pay = $_GET['pay']??'';
-$param = '';
+$pay = $_GET['pay']??'';   //HTTP GET 요청에서 "cate", "level", "pay" 매개변수를 가져옵니다. 만약 해당 매개변수가 없다면 빈 문자열을 할당
+$param = '';  //매개변수를 조합하여 WHERE 절에 추가할 조건을 담을 변수를 초기화
 
 $cate_where = '';
 $filter_where = '';
-$fil_where = '';
+$fil_where = '';    //$filter_where = '';, $fil_where = '';: WHERE 절에 추가할 각각의 카테고리, 필터, 필 변수를 초기화
 
-
+                    //URL을 통해 전달된 매개변수를 기반으로 데이터베이스에서 쿼리를 실행하기 위한 동적 WHERE 절을 구축
 //카테고리 조회
 if($cate != ''){
   if($cate == '프론트엔드'){
@@ -80,17 +80,17 @@ $c_where .= $search_where;
 
 
 // $sqlrc = $sql.$c_where.$order; 
-if(!isset($pagerwhere)){
+if(!isset($pagerwhere)){   // 변수가 설정되지 않았으면, 기본적으로 "1=1" 조건을 가진 $pagerwhere 변수를 설정
   $pagerwhere = " 1=1";
 }
 
-$sql2 = "SELECT COUNT(*) as count from courses where 1=1 ".$c_where;
+$sql2 = "SELECT COUNT(*) as count from courses where 1=1 ".$c_where;  // "courses" 테이블에서 조건을 충족하는 레코드의 수를 세는 쿼리를 생성
 
-$result4 = $mysqli->query($sql2);
+$result4 = $mysqli->query($sql2);  // 데이터베이스에 쿼리를 실행하고 결과를 반환
 
-$rs = $result4->fetch_object();
-$sales_page = $rs->count;
-
+$rs = $result4->fetch_object(); // 쿼리 결과에서 첫 번째 레코드를 객체 형태로 가져옴
+$sales_page = $rs->count; // count" 별칭으로 반환된 레코드 수를 $sales_page 변수에 할당
+ 
 
 //필터 없으면 여기서부터 복사! *******
 $pagenationTarget = 'courses'; //pagenation 테이블 명
@@ -107,11 +107,13 @@ $sqlrc = $sql.$c_where.$order.$limit;
 
 
 // var_dump($sqlrc);
-$result = $mysqli -> query($sqlrc);
+$result = $mysqli -> query($sqlrc);  // 데이터베이스에서 쿼리 $sqlrc를 실행하고, 그 결과를 변수 $result에 저장
 while($rs = $result -> fetch_object()){
-  $rsc[] = $rs;
+  $rsc[] = $rs;     //
 }
-
+ 
+//$result에서 각 레코드를 반복적으로 가져와서 객체로 변환. fetch_object() 메서드는 쿼리 결과의 다음 레코드를 객체로 반환. while 루프는 레코드를 하나씩 처리할 때까지 계속 실행
+// 각 레코드 객체 $rs를 배열 $rsc에 추가합니다. 이렇게 하면 $rsc 배열에는 쿼리 결과의 모든 레코드가 객체 형태로 저장
 
 
 ?>
@@ -143,10 +145,10 @@ while($rs = $result -> fetch_object()){
     <div class="mainSection d-flex gap-5">
       <form action="#" id="filter-form" class="" method="GET">
         <!-- <input type="hidden" name="cate-array" id="cate-array" value=""> -->
-        <div class="categorybox">
+        <div class="content-box categorybox">
         <div class="checkBox_1 mb-3">
           <div class="filterbox d-flex chcekbox_h6">
-            <h6 class="chekbox">카테고리</h6>
+            <h3 class="chekbox">카테고리</h3>
             <button id="filter-submit-btn" class="btn btn-primary dark category_su">필터</button>
           </div>
           <div class="form-check mt-5">
@@ -193,7 +195,7 @@ while($rs = $result -> fetch_object()){
           </div>
         </div>
         <div class="checkBox_2 mb-3 chcekbox_h6">
-          <h6>난이도</h6>
+          <h3 class="chekbox2">난이도</h3>
           <div class="form-check mt-5">
             <label class="form-check-label" for="level1"> 초급 </label>
             <input
@@ -226,7 +228,7 @@ while($rs = $result -> fetch_object()){
           </div>
         </div>
         <div class="checkBox_3 chcekbox_h6">
-          <h6>가격</h6>
+          <h3 class="chekbox3">가격</h3>
           
           <div class="form-check mt-5">
             <label class="form-check-label" for="free"> 무료 </label>
@@ -254,12 +256,12 @@ while($rs = $result -> fetch_object()){
         
       </form>
       <div class="courseList">
-        <div class="row mb-5">
+        <ul class="row mb-5">
         <?php
             if(isset($rsc)){
               foreach($rsc as $item){
           ?>  
-          <div class="col-12 col-sm-6 col-md-4 courseBox shadow_box" onclick="location.href='course_view.php?cid=<?= $item->cid ?>'">
+          <li class="col-12 col-sm-6 col-md-4 content-box courseBox " onclick="location.href='course_view.php?cid=<?= $item->cid ?>'">
             <div class="imgBox">
               <img
                 src="<?= $item -> thumbnail?>"
@@ -328,7 +330,7 @@ while($rs = $result -> fetch_object()){
                 <!-- 무료표시 끝 -->
               </div>
             </div>
-          </div>
+          </li>
           <?php
             }
           }else{
@@ -337,7 +339,7 @@ while($rs = $result -> fetch_object()){
           <?php
           }
           ?>
-        </div>
+        </ul>
         <script>
           let currentUrl = window.location.href;
           let url = currentUrl.replace('#', '');
