@@ -6,10 +6,10 @@
   include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php'; 
 
   $coursesSql = "SELECT * FROM courses";
-$coursesResult = $mysqli->query($coursesSql);
-while ($coursesRs = $coursesResult->fetch_object()) {
-  $coursesArr[] = $coursesRs;
-}
+  $coursesResult = $mysqli->query($coursesSql);
+  while ($coursesRs = $coursesResult->fetch_object()) {
+    $coursesArr[] = $coursesRs;
+  }
 ?> 
 <div class="container">
     <h2 class="h2_t">Q&amp;A 등록</h2>
@@ -24,15 +24,15 @@ while ($coursesRs = $coursesResult->fetch_object()) {
           <div class="mb-3 d-flex title aic">
           <select class="form-select course_select" aria-label="Default select example">
                   <!-- <option selected disabled>강의 선택</option> -->
-                  <?php
+                <?php
                   if(isset($coursesArr)){
                     foreach($coursesArr as $ca){
-                  ?>  
+                ?>  
                     <option value="<?=$ca->cid?>"><?=$ca->name?></option>
-                  <?php
+                <?php
                   }}
-                  ?>
-                </select>
+                ?>
+              </select>
           </div>
           <div class="notice_create_form_div d-flex con">
               <label for="summernote" class="form-label d-flex cont">내용</label>
