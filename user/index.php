@@ -15,7 +15,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
 }
 // print_r($rsc);
 //$rc_result에서 각 레코드를 반복적으로 가져와서 객체로 변환하고, 이를 $rc_rsc 배열에 추가. 
-// fetch_object() 메서드는 쿼리 결과의 다음 레코드를 객체로 반환합니다. while 루프는 레코드를 하나씩 처리할 때까지 계속 실행
+// fetch_object() 메서드는 쿼리 결과의 다음 레코드를 객체로 반환. while 루프는 레코드를 하나씩 처리할 때까지 계속 실행
 
 // courses" 테이블에서 현재 연도와 현재 월에 등록된 레코드를 선택하는 쿼리를 생성
 // 쿼리는 "regdate" 열의 연도와 월을 현재 연도와 현재 월과 비교하여 선택
@@ -257,12 +257,49 @@ while ($rc_rs = $rc_result->fetch_object()) {
                   </div>
                 </div>
               </div>
-              <div class="view_wrap d-flex align-items-center justify-content-center flex-column">
+              <div class="view_wrap d-flex align-items-center  flex-column">
+              <span class="badge rounded-pill b-pd badgeblack
+                    <?php
+                  // 뱃지컬러
+                  $levelBadge = $item->level;
+                  if ($levelBadge === '초급') {
+                    echo 'green_bg';
+                  } else if ($levelBadge === '중급') {
+                    echo 'orange_bg';
+                  } else {
+                    echo 'blue_bg';
+                  }
+                  ?>">
+                    <?= $item->level ?>
+                      
+                    </span>
+                    <span class="badge rounded-pill pulele_bg b-pd badgeblack2">
+                    <?php
+                    //뱃지 키워드 
+                    if (isset($item->cate)) {
+                      $categoryText = $item->cate;
+                      $parts = explode('/', $categoryText);
+                      $lastPart = end($parts);
+                      echo $lastPart;
+                    }
+                    ?>
+                    </span>
+                  
+                  <h5 class="card-title">
+                  <?php
+                  $strTitle = $item->name;
+                  $strTitle = mb_strimwidth($strTitle, 0, 32, "...", "utf-8");
+                  echo $strTitle;
+                  ?>
+                  </h5>
+                
                 <a href="/helloworld/user/class/course_view.php?cid=<?= $item->cid ?>" class="view_btn"></a>
                 <span>
+
                   <a href="" class="card_like">
                     
                   </a>
+
                   <a href="" class="card_cart">
                     
                   </a>
@@ -275,8 +312,8 @@ while ($rc_rs = $rc_result->fetch_object()) {
             ?> 
           </div>
         </div>
-        <div class="swiper-button-next recom_next"></div>
-        <div class="swiper-button-prev recom_prev"></div>
+        <div class="swiper-button-next new_next"></div>
+        <div class="swiper-button-prev new_prev"></div>
         
       </div>
     </section>
@@ -345,8 +382,8 @@ while ($rc_rs = $rc_result->fetch_object()) {
             
           </div>
         </div>
-        <div class="swiper-button-next recom_next"></div>
-        <div class="swiper-button-prev recom_prev"></div>
+        <div class="swiper-button-next suggestio_next"></div>
+        <div class="swiper-button-prev suggestio_prev"></div>
         
       </div>
   </section>
@@ -409,8 +446,8 @@ while ($rc_rs = $rc_result->fetch_object()) {
           
         </div>
       </div>
-      <div class="swiper-button-next new_next"></div>
-      <div class="swiper-button-prev new_prev"></div>
+      <div class="swiper-button-next beginner_next"></div>
+      <div class="swiper-button-prev beginner_prev"></div>
     </div>
   </section>
   
