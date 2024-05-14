@@ -17,19 +17,19 @@ if (isset($_GET['catename'])) {
 };
 
 
-$sql = "SELECT * from courses where 1=1 " ;
-$order = ' order by cid desc';
+$sql = "SELECT * from courses where 1=1 " ;  //"courses" 테이블에서 모든 열을 선택하는 쿼리를 생성합니다. 이 쿼리는 WHERE 절에 항상 참인 조건을 포함하고 있습니다. 이렇게 하는 이유는 후속적으로 추가되는 조건들을 쉽게 추가하기 위함입니다.
+$order = ' order by cid desc';   //결과를 "cid" 열을 기준으로 내림차순으로 정렬
 
 $cate = $_GET['cate']??'';
 $level = $_GET['level']??'';
-$pay = $_GET['pay']??'';
-$param = '';
+$pay = $_GET['pay']??'';   //HTTP GET 요청에서 "cate", "level", "pay" 매개변수를 가져옵니다. 만약 해당 매개변수가 없다면 빈 문자열을 할당
+$param = '';  //매개변수를 조합하여 WHERE 절에 추가할 조건을 담을 변수를 초기화
 
 $cate_where = '';
 $filter_where = '';
-$fil_where = '';
+$fil_where = '';    //$filter_where = '';, $fil_where = '';: WHERE 절에 추가할 각각의 카테고리, 필터, 필 변수를 초기화
 
-
+                    //URL을 통해 전달된 매개변수를 기반으로 데이터베이스에서 쿼리를 실행하기 위한 동적 WHERE 절을 구축
 //카테고리 조회
 if($cate != ''){
   if($cate == '프론트엔드'){
@@ -254,12 +254,12 @@ while($rs = $result -> fetch_object()){
         
       </form>
       <div class="courseList">
-        <div class="row mb-5">
+        <ul class="row mb-5">
         <?php
             if(isset($rsc)){
               foreach($rsc as $item){
           ?>  
-          <div class="col-12 col-sm-6 col-md-4 courseBox shadow_box" onclick="location.href='course_view.php?cid=<?= $item->cid ?>'">
+          <li class="col-12 col-sm-6 col-md-4 courseBox shadow_box" onclick="location.href='course_view.php?cid=<?= $item->cid ?>'">
             <div class="imgBox">
               <img
                 src="<?= $item -> thumbnail?>"
@@ -328,7 +328,7 @@ while($rs = $result -> fetch_object()){
                 <!-- 무료표시 끝 -->
               </div>
             </div>
-          </div>
+          </li>
           <?php
             }
           }else{
@@ -337,7 +337,7 @@ while($rs = $result -> fetch_object()){
           <?php
           }
           ?>
-        </div>
+        </ul>
         <script>
           let currentUrl = window.location.href;
           let url = currentUrl.replace('#', '');
