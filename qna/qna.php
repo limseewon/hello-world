@@ -57,7 +57,6 @@ $result = $mysqli->query($sql);
          integrity="sha512-+Z63RrG0zPf5kR9rHp9NlTMM29nxf02r1tkbfwTRGaHir2Bsh4u8A79PiUKkJq5V5QdugkL+KPfISvl67adC+Q=="
          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
-   <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css"/>
    <link rel="stylesheet" href="/helloworld/css/common.css"/>
    <link rel="stylesheet" href="/helloworld/css/index.css"/>
 
@@ -259,7 +258,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
        referrerpolicy="no-referrer"></script>
 
-<script src="js/common.js"></script>
+<script src="/helloworld/js/common.js"></script>
 </body>
 <script>
    let documentHeight = Math.max(

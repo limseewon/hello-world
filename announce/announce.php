@@ -79,7 +79,6 @@ $result = $mysqli->query($sql);
       type="text/css"
     /> -->
 
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.theme.min.css" />
     <link rel="stylesheet" href="/helloworld/css/common.css" />
     <link rel="stylesheet" href="/helloworld/css/index.css" />
 
@@ -286,17 +285,10 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       referrerpolicy="no-referrer"
     ></script>
 
-    <script src="js/common.js"></script>
+    <script src="/helloworld/js/common.js"></script>
   </body>
   <script>
-    let documentHeight = Math.max(
-      document.body.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.clientHeight,
-      document.documentElement.scrollHeight,
-      document.documentElement.offsetHeight
-    );
-    document.querySelector("header").style.height = documentHeight + "px";
+
     document.querySelector(".btn_complete").addEventListener("click", function() {
       // 원하는 URL로 리다이렉트
       window.location.href = "/helloworld/announce/announce_write.php";
