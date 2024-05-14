@@ -3,46 +3,46 @@
 
 $title = 'CART';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/common.css"/>';
-$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/cart.css"/>';
+$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/cart.css"/>';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 
 
-if(isset($_SESSION['UID'])){
-  $userid = $_SESSION['UID'];//유저아이디
+// if(isset($_SESSION['UID'])){
+//   $userid = $_SESSION['UID'];//유저아이디
 
-  //cart item 조회
-  $sqlct = "SELECT c.*,ct.cartid FROM cart ct
-          JOIN users u ON ct.userid = u.userid
-          JOIN courses c ON c.cid = ct.cid
-          WHERE u.userid = '{$userid}'
+//   //cart item 조회
+//   $sqlct = "SELECT c.*,ct.cartid FROM cart ct
+//           JOIN users u ON ct.userid = u.userid
+//           JOIN courses c ON c.cid = ct.cid
+//           WHERE u.userid = '{$userid}'
   
-          ORDER BY ct.cartid DESC";
+//           ORDER BY ct.cartid DESC";
   
   
-  $result = $mysqli-> query($sqlct);
-  while($rs = $result->fetch_object()){
-    $rscct[]=$rs;
-  }
+//   $result = $mysqli-> query($sqlct);
+//   while($rs = $result->fetch_object()){
+//     $rscct[]=$rs;
+//   }
   
-  //coupon 조회
-  $sqlcp = "SELECT c.* FROM user_coupon uc
-          JOIN users u ON uc.userid = u.userid
-          JOIN coupons c ON c.cpid = uc.cpid
-          WHERE u.userid = '{$userid}' AND (uc.use_max_date > NOW() OR uc.use_max_date IS NULL) AND uc.uc_status = 1
-          ORDER BY uc.ucid DESC";
+//   //coupon 조회
+//   $sqlcp = "SELECT c.* FROM user_coupon uc
+//           JOIN users u ON uc.userid = u.userid
+//           JOIN coupons c ON c.cpid = uc.cpid
+//           WHERE u.userid = '{$userid}' AND (uc.use_max_date > NOW() OR uc.use_max_date IS NULL) AND uc.uc_status = 1
+//           ORDER BY uc.ucid DESC";
   
-  $result = $mysqli-> query($sqlcp);
-  while($rs = $result->fetch_object()){
-    $rsccp[]=$rs;
-  }
-}
-else{
-    echo"<script>
-  alert('로그인이 필요합니다.');
-  //location.href = '/helloworld/login.php';
-  </script>";
-}
+//   $result = $mysqli-> query($sqlcp);
+//   while($rs = $result->fetch_object()){
+//     $rsccp[]=$rs;
+//   }
+// }
+// else{
+//     echo"<script>
+//   alert('로그인이 필요합니다.');
+//   //location.href = '/helloworld/login.php';
+//   </script>";
+// }
 ?>
 
 
