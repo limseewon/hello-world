@@ -2,6 +2,7 @@
 $title = 'Q&A';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/Q&A.css">';
 $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/Q&A_detail.css">';
+$script1 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 $paginationTarget = 'qna';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/pagination.php';

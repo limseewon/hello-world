@@ -2,6 +2,7 @@
   $title = 'Q&A'; 
   $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/Q&A_regist.css">'; 
   $cssRoute2 ='<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">'; 
+  $script1 = '';
   include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php'; 
 ?> 
 <div class="container">

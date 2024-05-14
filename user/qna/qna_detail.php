@@ -2,6 +2,7 @@
 $title = 'Q&A';
 $cssRoute1 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A_detail.css">';
 $cssRoute2 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A.css">';
+$script1 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 // 질문 ID 받아오기

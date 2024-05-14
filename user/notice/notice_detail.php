@@ -2,6 +2,7 @@
 $title = '공지사항';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/notice_detail.css">';
 $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/notice.css">';
+$script1 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 // 공지사항 ID 받아오기
 $notice_id = $_GET['id'];
