@@ -3,6 +3,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
+    $cid = $_POST['cid'];
     $lecture_name = $_POST['lecture_name'];
     $content = urldecode($_POST['content']);
     $name = $_POST['name']; // 임시로 관리자 이름 사용
@@ -14,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $upload_file = $upload_dir . basename($file);
     move_uploaded_file($_FILES['file']['tmp_name'], $upload_file);
 
-    $sql = "INSERT INTO qna (name, title, lecture_name, content, reply, files, regdate) VALUES ('$name', '$title', '$lecture_name', '$content', '$reply', '$file', NOW())";
+    $sql = "INSERT INTO qna (name, title, cid ,lecture_name, content, reply, files, regdate) VALUES ('$name', '$title', '$cid','$lecture_name', '$content', '$reply', '$file', NOW())";
     $result = $mysqli->query($sql);
 
     if ($result) {
