@@ -1,0 +1,109 @@
+/* 강의리스트 */
+
+
+.section1 {
+  width: 100%;
+  margin-top: calc(var(--c-space_updown)*5);
+  
+}
+
+.section1 input {
+  height: 45px;
+}
+.filterbox {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.searchBtn {
+  width: 100px;
+  white-space: nowrap;
+}
+.secrbp { 
+  background: var(--c-button);
+  
+}
+.searchtop { margin-top: 0;}
+.secrbp:hover { 
+  background: var(--c-button-hover);
+}
+.courseform { width: 212px; height: 40px; margin-bottom: var(--c-space_updown);}
+.courseCheckBox {
+  width: 20%;
+}
+.categorybox { 
+  
+  width: 287px;
+ }
+.courseList {
+  width: 80%;
+}
+.category_su { 
+  background: var(--c-complete-button);
+  position: relative; 
+  left: 40px;
+  top:0;
+}
+.category_su:hover { 
+  background: var(--c-complete-button-hover);
+}
+
+.checkBox_1,
+.checkBox_2,
+.checkBox_3 {
+  width: 100%;
+  padding: 30px;
+  position: relative;
+  background-color: #fff;
+}
+
+.form-check {
+  margin-top: calc(var(--c-space_updown));
+  margin-left: calc(var(--c-space_updown)*2.5);
+}
+
+.courseCheckBox hr {
+  position: absolute;
+  width: 100%;
+  transform: translate(-30px, -8px);
+}
+.chcekbox_h6 h6 {text-align: center;}
+.chekbox {margin-left: calc(var(--c-space_updown)*1); }
+.chekbox2 {margin-left: calc(var(--c-space_updown)*2); }
+.chekbox3 {margin-left: calc(var(--c-space_updown)*2); }
+
+.courseBox {
+  width: 31%;
+  height: 400px;
+  
+  cursor: pointer;
+  background-color: #fff;
+  margin: 0 30px 30px 0;
+  padding: 0;
+  overflow: hidden;
+  
+}
+
+.courseBox:nth-child(3n + 0) {
+  margin-right: 0;
+}
+
+.imgBox img {
+  width: 100%;
+  height: 200px;
+}
+
+.courseName {
+  padding-top: 10px;
+}
+
+.contentBox {
+  padding: 18px;
+  width: 100%;
+  height: 200px;
+}
+
+.contentBox .content_tt {
+  color: #000;
+  font-weight: bold;
+}
+
+.eventbox { margin-bottom: 15px;}

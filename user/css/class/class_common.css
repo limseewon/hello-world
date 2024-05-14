@@ -1,0 +1,24 @@
+/* margin */
+.pd_1 {
+  margin: 90px 0;
+}
+.pd_2 {
+  margin-bottom: 45px;
+}
+.pd_3 {
+  margin: 30px 0;
+}
+.pd_4 {
+  margin-bottom: calc(var(--c-space_updown));
+}
+.pd_5 {
+  margin-top: 130px;
+}
+.pd_6 {
+  margin-bottom: 130px;
+}
+
+.activegreen {
+  background-color: var(--c-title-font);
+    border-color: var(--c-title-font);
+}

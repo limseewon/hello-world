@@ -1,7 +1,7 @@
 <?php
 $title = '강의리스트';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/common.css"/>';
-$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class.css"/>';
+$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_list.css"/>';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 
@@ -120,6 +120,8 @@ while($rs = $result -> fetch_object()){
   
     
     <script src="/helloworld/js/index.js"></script>
+    <link rel="stylesheet" href="/helloworld/user/css/class.list.css"/>
+    
     
 
 <main>
