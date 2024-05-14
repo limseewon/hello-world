@@ -81,52 +81,35 @@ $(function(){
 
 
 // 강의리스트 필터
-  $(".viewWrap_2").hide();
-  $(".viewB_1").click(function () {
-    $(".viewWrap_2").hide();
-    $(".viewWrap_1").show();
-    $(".viewB_1").addClass("active");
-    $(".viewB_2").removeClass("active");
+  $(".viewWrap_2").hide();  // 클래스가 "viewWrap_2"인 HTML 요소를 숨깁니다. 즉, 페이지가 로드될 때 "viewWrap_2" 클래스를 가진 요소는 숨겨짐
+  $(".viewB_1").click(function () { //  클래스가 "viewB_1"인 HTML 요소가 클릭되었을 때 실행할 함수를 정의
+    $(".viewWrap_2").hide(); // "viewWrap_2" 클래스를 가진 요소를 숨김
+    $(".viewWrap_1").show(); // viewWrap_1" 클래스를 가진 요소를 표시
+    $(".viewB_1").addClass("active"); // viewB_1" 클래스를 가진 요소에 "active" 클래스를 추가
+    $(".viewB_2").removeClass("active"); // viewB_2" 클래스를 가진 요소에서 "active" 클래스를 제거
   });
-  $(".viewB_2").click(function () {
+  $(".viewB_2").click(function () {  // "viewWrap_1"을 숨기고 "viewWrap_2"를 보여주는 차이점
     $(".viewWrap_1").hide();
     $(".viewWrap_2").show();
     $(".viewB_2").addClass("active");
     $(".viewB_1").removeClass("active");
   });
   
-  function setRatingStar() {
-    let rating = $(".rating");
-  
-    rating.each(function () {
-      let score = $(this).attr("data-rate");
-      $(this).find(`.fa-star:lt(${score})`).css({ color: "#ffca2c" });
-    });
-  }
-  setRatingStar();
-  
-  $(".preview").click(function (e) {
-    e.preventDefault();
-    $(".modalBackground").addClass("active");
-  });
-  $(".modalBox i").click(function (e) {
-    e.preventDefault();
-    $(".modalBackground").removeClass("active");
-  });
+ 
   
   //장바구니
-  $(".viewCart").on("click", function () {
-    let data = {
-      cid: cid,
+  $(".viewCart").on("click", function () { // 클래스가 "viewCart"인 HTML 요소가 클릭되었을 때 실행할 함수를 정의
+    let data = { //  AJAX 요청으로 전송할 데이터를 객체 형태로 정의
+      cid: cid, // cid'는 어떤 상품인지를 식별하는 값
     };
-    $.ajax({
-      type: "GET",
-      data: data,
-      url: "add_cart.php",
-      dataType: "json",
-      success: function (return_data) {
-        if (return_data.result === "success") {
-          console.log("retun_data", return_data);
+    $.ajax({ // jQuery의 AJAX 함수를 사용하여 서버로 요청 함수는 AJAX 요청을 생성하고 전송하는 데 사용
+      type: "GET", // HTTP 요청 방식을 지정합니다. 여기서는 GET 방식을 사용
+      data: data, // 서버로 전송할 데이터를 설정. 위에서 정의한 data 객체를 전달
+      url: "add_cart.php", // 요청을 보낼 URL을 지정 여기서는 "add_cart.php"라는 파일에 요청을 보낼 것으로 예상
+      dataType: "json", // 서버로부터 받은 데이터의 형식을 지정 . 여기서는 JSON 형식으로 응답을 받을 것으로 설정
+      success: function (return_data) { // 요청이 성공했을 때 실행할 함수를 정의
+        if (return_data.result === "success") {  //  "success"일 경우, 성공적으로 장바구니에 상품이 추가되었음을 알리고 페이지를 새로고침합니다. 그렇지 않은 경우, 장바구니에 상품을 추가하는 데 실패했음을 알림
+          console.log("retun_data", return_data); // 서버로부터 받은 데이터가 return_data 매개변수로 전달
           trElement.remove();
           alert("장바구니 담기 성공");
           location.reload();
@@ -134,7 +117,7 @@ $(function(){
           alert("장바구니 담기 실패");
         }
       },
-      error: function (error) {
+      error: function (error) { // 요청이 실패했을 때 실행할 함수를 정의
         console.log("Error:", error);
         alert("장바구니 담기 중에 오류가 발생했습니다.");
       },
