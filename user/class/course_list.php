@@ -1,7 +1,7 @@
 <?php
 $title = '강의리스트';
-$cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/common.css"/>';
-$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class.css"/>';
+$cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_common.css"/>';
+$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_list.css"/>';
 $script1='';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 

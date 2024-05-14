@@ -167,10 +167,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                   <span>프로필</span>
                 </a>
                 <ul class="profile_hoverList">
-                  <li><a href="#">대시 보드</a></li>
-                  <li><a href="#">수강 강의</a></li>
-                  <li><a href="#">test</a></li>
-                  <li><a href="#">메시지</a></li>
+                  <li><a href="/helloworld/user/mypage/index.php">대시 보드</a></li>
+                  <li><a href="/helloworld/user/mypage/courses.php">수강 강의</a></li>
+                  <li><a href="/helloworld/user/mypage/coupons.php">쿠폰함</a></li>
+                  <li><a href="/helloworld/user/mypage/qna.php">Q&A</a></li>
+                  <li><a href="/helloworld/user/mypage/msg.php">메시지</a></li>
                 </ul>
               </div>
           </div>
