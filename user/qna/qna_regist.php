@@ -4,6 +4,12 @@
   $cssRoute2 ='<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">'; 
   $script1 = '';
   include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php'; 
+
+  $coursesSql = "SELECT * FROM courses";
+$coursesResult = $mysqli->query($coursesSql);
+while ($coursesRs = $coursesResult->fetch_object()) {
+  $coursesArr[] = $coursesRs;
+}
 ?> 
 <div class="container">
     <h2 class="h2_t">Q&amp;A 등록</h2>
@@ -16,8 +22,17 @@
               <input type="text" class="form-control title-box" name="title" id="title" placeholder="제목을 입력하시오." required>
           </div>
           <div class="mb-3 d-flex title aic">
-              <label for="formGroupExampleInput" class="form-label ql d-inline-block">강의명</label>
-              <input type="text" class="form-control title-box" name="lecture_name" id="lecture_name" placeholder="강의명을 입력하시오." required>
+          <select class="form-select course_select" aria-label="Default select example">
+                  <!-- <option selected disabled>강의 선택</option> -->
+                  <?php
+                  if(isset($coursesArr)){
+                    foreach($coursesArr as $ca){
+                  ?>  
+                    <option value="<?=$ca->cid?>"><?=$ca->name?></option>
+                  <?php
+                  }}
+                  ?>
+                </select>
           </div>
           <div class="notice_create_form_div d-flex con">
               <label for="summernote" class="form-label d-flex cont">내용</label>
