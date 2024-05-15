@@ -14,6 +14,14 @@ if ($qna_id > 0) {
     $result = $mysqli->query($sql);
 }
 
+// 현재 로그인한 회원의 정보 가져오기
+if (isset($_SESSION['UID'])) {
+    $userid = $_SESSION['UID'];
+    $sql = "SELECT username FROM members WHERE userid = '$userid'";
+    $result = $mysqli->query($sql);
+    $member = $result->fetch_assoc();
+}
+
 // 질문 데이터 가져오기
 if ($qna_id > 0) {
     $sql = "SELECT * FROM qna WHERE idx = '$qna_id'";
@@ -49,7 +57,11 @@ if ($qna_id > 0) {
                         <td><?= $row['title']; ?></td>
                         <td><?= $row['name']; ?></td>
                         <td><?= $row['view']; ?></td>
-                        <td><button type="button" class="btn btn-success"><?= $row['reply']; ?></button></td>
+                        <td>
+                            <button type="button" class="btn <?= ($row['reply'] == '답변') ? 'btn-success' : 'btn-secondary'; ?>">
+                                <?= $row['reply']; ?>
+                            </button>
+                        </td>
                         <td><?= $row['date']; ?></td>
                     </tr>
                 </tbody>
@@ -75,7 +87,7 @@ if ($qna_id > 0) {
                         <div class="mb-3">
                             <div class="d-flex align-items-center">
                                 <i class="bi bi-person-circle me-2 h4"></i>
-                                <h5 class="mb-0">댓글 작성</h5>
+                                <h5 class="mb-0"><?= isset($member['username']) ? $member['username'] : ''; ?></h5>
                             </div>
                             <textarea class="form-control mt-2" name="comment" rows="3" placeholder="댓글을 입력하세요" required></textarea>
                         </div>
