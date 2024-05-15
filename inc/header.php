@@ -69,7 +69,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
             <span class="material-symbols-outlined">account_circle</span>
             <div class="d-flex flex-column manager">
               <span>관리자</span>
-              <span>코딩좋아</span>
+              <span><?=$_SESSION['AUNAME']?></span>
             </div>
             <span class="material-symbols-outlined">notifications</span>
             <!-- <span>jsdafjo@naver.com</span> -->
