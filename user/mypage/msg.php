@@ -1,6 +1,18 @@
 <?php
   $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_msg.css"/>';
   include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/leftSide.php';     
+
+  $memberSql = "SELECT mid FROM members WHERE userid='{$_SESSION['UID']}'";
+  $memberResult = $mysqli->query($memberSql);
+  $memberRs = $memberResult->fetch_row();
+  echo $memberRs[0] ;
+
+  $msgSql = "SELECT * FROM msg WHERE mid='{$memberRs[0]}'";
+  $msgResult = $mysqli->query($msgSql);
+  while($msgRs= $msgResult->fetch_object()) {
+    $msgArr []= $msgRs;
+  }
+  
 ?>
         <section class="mainContainer">
           <h2 class="title">메시지</h2>
@@ -14,27 +26,19 @@
                 </tr>
               </thead>
               <tbody>
+                <?php
+                if (count($msgArr) > 0 ){
+                  foreach($msgArr as $ma) {                  
+                ?>
                 <tr>
-                  <td>Hello World</td>
-                  <td>메시지 내용입니다.</td>
-                  <td>2024-04-07</td>
+                  <td><?=$ma ->sendername?></td>
+                  <td><?=$ma ->content?></td>
+                  <td><?=$ma ->regdate?></td>
                 </tr>
-                <tr>
-                  <td>Hello World</td>
-                  <td>메시지 내용입니다.</td>
-                  <td>2024-04-07</td>
-                </tr>
-                <tr>
-                  <td>Hello World</td>
-                  <td>메시지 내용입니다.</td>
-                  <td>2024-04-07</td>
-                </tr>
-                <tr>
-                  <td>Hello World</td>
-                  <td>메시지 내용입니다.</td>
-                  <td>2024-04-07</td>
-                </tr>
-                
+                <?php
+                  }
+                }
+                ?>
               </tbody>
             </table>
             <nav aria-label="..." class="d-flex justify-content-center">
