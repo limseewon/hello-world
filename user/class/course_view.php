@@ -13,9 +13,7 @@ $cid = $_GET['cid'];
   $result = $mysqli->query($sql);
   $rs = $result->fetch_object();
 
-  // $paysql = "SELECT * FROM payments where cid={$cid}";
-  // $presult = $mysqli->query($paysql);
-  // $payrs = $presult->fetch_object();
+ 
 
   $imgsql = "SELECT * FROM lecture WHERE cid={$cid}";
   $result = $mysqli->query($imgsql);
@@ -46,53 +44,51 @@ $cid = $_GET['cid'];
 
 
 <main>
-  <form action="">
-  <div class="viewTitleWrap d-flex flex-column">
-    <div>
-    <p class="content_tt"><?= $rs->name?></p>
-      <div class="cartboxtwo d-flex">
-      <div class="viewBtn">
-        <a href="/helloworld/cart/add_cart.php?cid=<?= $rs->cid ?>" class="viewCart btn btn-primary dark cartboxb">
-        장바구니 담기
-        </a>
-      </div>
-      <div class="viewBtn">
-        <a href="" class="viewCart btn btn-primary cartboxbb">
-        구매
-        </a>
-      </div>
-      </div> 
-      <p class="content_tt"></p>
-    </div>
-    <div
-      class="viewPriceWrap">
-      <div>
-        <div>
-          <i class="ti ti-calendar-event"></i>
-          <span>수강기간 <?php if($rs->due == ''){echo '무제한';} else{echo $rs->due;}; ?></span>
-        </div>
-        <?php
-          if($rs->price != 0){
-        ?>
-        <div> 
-          <span class="main_stt number"><?= $rs->price?></span><span>원</span>
-        </div>
-        <?php
-          }else{
-        ?>
-        <div>
-          <span class="main_stt">무료</span>
-        </div>
-        <?php 
-          } 
-        ?>
-      </div>
-      <div>
-      </div>
-    </div>
-  </div>
-  </form>
   <form action="courses_ok.php" method="POST" id="course_form" class="product_save">
+    <div class="viewTitleWrap d-flex flex-column">
+      <div>
+      <p class="content_tt"><?= $rs->name?></p>
+        <div class="cartboxtwo d-flex">
+        <div class="viewBtn">
+          <a href="/helloworld/cart/add_cart.php?cid=<?= $rs->cid ?>" class="viewCart btn btn-primary dark cartboxb">
+          장바구니 담기
+          </a>
+        </div>
+        <div class="viewBtn">
+        <a href="/helloworld/user/class/courses_ok.php?cid=<?= $rs->cid ?>" class="viewCart btn btn-primary cartboxbb">
+                  구매
+                  </a>
+        </div>
+        </div> 
+        <p class="content_tt"></p>
+      </div>
+      <div
+        class="viewPriceWrap">
+        <div>
+          <div>
+            <i class="ti ti-calendar-event"></i>
+            <span>수강기간 <?php if($rs->due == ''){echo '무제한';} else{echo $rs->due;}; ?></span>
+          </div>
+          <?php
+            if($rs->price != 0){
+          ?>
+          <div> 
+            <span class="main_stt number"><?= $rs->price?></span><span>원</span>
+          </div>
+          <?php
+            }else{
+          ?>
+          <div>
+            <span class="main_stt">무료</span>
+          </div>
+          <?php 
+            } 
+          ?>
+        </div>
+        <div>
+        </div>
+      </div>
+    </div>
     <input type="hidden" id="cid" value="<?= $cid; ?>">
     <input type="hidden" id="cnt" value="<?= $cnt->cnt??0 ?>">
     <div class="container">
@@ -151,7 +147,7 @@ $cid = $_GET['cid'];
                 </a>
               </div>
               <div class="viewBtn">
-                <a href="" class="viewCart btn btn-primary cartboxbb">
+                <a href="/helloworld/user/class/courses_ok.php?cid=<?= $rs->cid ?>" class="viewCart btn btn-primary cartboxbb">
                 구매
                 </a>
               </div>
