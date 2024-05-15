@@ -38,7 +38,7 @@ $cid = $_GET['cid'];
       <p class="content_tt"><?= $rs->name ?></p>
       <div class="cartboxtwo d-flex">
         <div class="viewBtn mt-2">
-          <a href="/helloworld/cart/add_cart.php?cid=<?= $rs->cid ?>" class="viewCart btn btn-primary dark cartboxb">
+          <a href="/helloworld/user/cart/add_cart.php?cid=<?= $rs->cid ?>" class="viewCart btn btn-primary dark cartboxb">
             장바구니 담기
           </a>
         </div>
@@ -119,7 +119,7 @@ $cid = $_GET['cid'];
               <p class="content_tt mt-4"><?= $rs->name?></p>
               <div class="cartboxtwo d-flex">
               <div class="viewBtn mt-5">
-                <a href="/helloworld/cart/add_cart.php?cid=<?= $rs->cid ?>" class="viewCart btn btn-primary dark cartboxb">
+                <a href="/helloworld/user/cart/add_cart.php?cid=<?= $rs->cid ?>" class="viewCart btn btn-primary dark cartboxb">
                 장바구니 담기
                 </a>
               </div>

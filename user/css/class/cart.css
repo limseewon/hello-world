@@ -5,6 +5,8 @@
   margin-bottom: calc(var(--c-space_updown)*7);
 
 }
+.cart_boxful { width: 1200px;}
+.cart_boxfull2 { width: 100%; height: 100%;}
 .cartbox { border: 1px solid var(--c-border-grey);}
 .home2_box { text-align: center; display: flex;justify-content: center;
 }
@@ -68,7 +70,7 @@
 .cart_item {
   position: relative;
   display: flex;
-  height: calc(var(--c-space_updown)*7);
+  height: calc(var(--c-space_updown)*8);
   background-color: #fff;
   border-radius: 12px;
   padding: 20px;
@@ -84,7 +86,9 @@
   left: 0; right: 0; top: 0; bottom: 0;
   cursor: pointer;
 }
-
+.del_x { 
+  
+}
 .cart_item img {
   width: 230px;
   height: 100%;
