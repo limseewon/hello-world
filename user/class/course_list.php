@@ -123,7 +123,7 @@ while($rs = $result -> fetch_object()){
     
 
 <main>
-  <div class="container">
+  <div class="container containermab">
     <div class="section1 d-flex justify-content-between pd_2 pd_5">
       <div class="courseBigTitle jua coursetitle">
         <h2 class="court">강의리스트</h2>
@@ -149,7 +149,7 @@ while($rs = $result -> fetch_object()){
         <div class="checkBox_1 mb-3">
           <div class="filterbox d-flex chcekbox_h6">
             <h3 class="chekbox">카테고리</h3>
-            <button id="filter-submit-btn" class="btn btn-primary dark category_su">필터</button>
+            
           </div>
           <div class="form-check mt-5">
             <label class="form-check-label" for="total"> 전체선택 </label>
@@ -252,7 +252,7 @@ while($rs = $result -> fetch_object()){
           </div>
         </div>
         </div>
-        
+        <button id="filter-submit-btn" class="btn btn-primary dark category_su">필터</button>
         
       </form>
       <div class="courseList">
@@ -384,3 +384,4 @@ while($rs = $result -> fetch_object()){
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_footer.php';
 ?>
+<script src="js/index.js"></script>
