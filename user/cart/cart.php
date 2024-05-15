@@ -6,7 +6,8 @@ $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/common.css"/>';
 $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/cart.css"/>';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
-
+$sql = "INSERT INTO cart (cid, userid) VALUES ('{$cid}', '{$uid}')";
+$result = $mysqli->query($sql);
 
 // if(isset($_SESSION['UID'])){
 //   $userid = $_SESSION['UID'];//유저아이디
@@ -47,7 +48,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 
     
-    <script src="js/index.js"></script>
+    
 
 <div class="cart_container container">
   <h2 class="jua main_tt">장바구니</h2>
@@ -143,3 +144,5 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_footer.php';
 ?>
+
+<script src="js/index.js"></script>
