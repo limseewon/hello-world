@@ -17,11 +17,15 @@ if ($rs) {
   $sql = "UPDATE admins set last_login=now() where idx = {$rs->idx}";
   $result = $mysqli->query($sql);
   $_SESSION['AUID'] = $rs->userid;
+  // $_SESSION['AIDX'] = $rs->idx;
   $_SESSION['AUNAME'] = $rs->username;
-  echo "<script>
-    alert('관리자님 반갑습니다');
+
+  $name = $_SESSION['AUNAME'];
+echo "<script>
+    let name = '" . addslashes($name) . "';
+    alert(name + '님 반갑습니다');
     location.href = '/helloworld/admin/index.php';
-  </script>";
+</script>";
   exit();
 } else {
   echo "<script>
