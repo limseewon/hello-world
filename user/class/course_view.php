@@ -227,9 +227,50 @@ $cid = $_GET['cid'];
           <p>전체 리뷰 []건</p>
         </div>
         <div class="content-box">
-
+          <div class="comment-form">
+            <form action="review_save.php" method="POST">
+              <input type="hidden" name="cid" value="<?= $cid; ?>">
+              <div class="mb-3">
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-person-circle me-2 h4"></i>
+                  <h5 class="mb-0">수강평 작성</h5>
+                </div>
+                <textarea class="form-control mt-2" name="content" rows="3" placeholder="리뷰는 로그인한 회원만 작성할 수 있습니다. 강사와 수강생 모두에게 도움이 되는 좋은 리뷰를 남겨주세요 :)" required></textarea>
+              </div>
+              <div class="text-end">
+                <button type="submit" class="btn btn-primary">등록</button>
+              </div>
+            </form>
+          </div>
+          <div class="comment-list">
+              <div class="comment-item">
+                <div class="comment-header">
+                  <div class="comment-avatar">
+                    <i class="bi bi-person-circle"></i>
+                  </div>
+                  <div class="comment-meta">
+                    <span class="comment-author">작성자</span>
+                    <div class="star-rating">
+                      <span class="star">&#9733;</span>
+                      <span class="star">&#9733;</span>
+                      <span class="star">&#9733;</span>
+                      <span class="star">&#9733;</span>
+                      <span class="star">&#9733;</span>
+                    </div>
+                  </div>
+                  <div class="comment-actions">
+                    <a href="review_delete.php?cid=<?= $cid; ?>&review_id=<?= $review['id']; ?>" class="delete-link" onclick="confirmDelete(event)">
+                      <span class="material-symbols-outlined">delete</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="comment-content">
+                  <p><?= $review['content']; ?></p>
+                </div>
+              </div>
+          </div>
         </div>
-      </div>
+        </div>
     </div>
   </form>
   </main>
