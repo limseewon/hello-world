@@ -7,7 +7,7 @@ $userpw = hash('sha512', $userpw);
 $username = $_POST['username'];
 $useremail = $_POST['useremail'];
 $tel = $_POST['tel'];
-$userimg = 
+// $userimg = 
 
 //유저 프로필 이미지 업로드
 if ($_FILES['userimg']['name']) {
