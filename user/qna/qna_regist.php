@@ -22,17 +22,19 @@
               <input type="text" class="form-control title-box" name="title" id="title" placeholder="제목을 입력하시오." required>
           </div>
           <div class="mb-3 d-flex title aic">
-          <select class="form-select course_select" aria-label="Default select example">
-                  <!-- <option selected disabled>강의 선택</option> -->
-                <?php
-                  if(isset($coursesArr)){
-                    foreach($coursesArr as $ca){
-                ?>  
-                    <option value="<?=$ca->cid?>"><?=$ca->name?></option>
-                <?php
-                  }}
-                ?>
-              </select>
+            <label for="formGroupExampleInput" class="form-label lt">강의명</label>
+            <select class="form-select course_select" aria-label="Default select example" name="lecture_name">
+              <option selected disabled>강의 선택</option>
+              <?php
+              if(isset($coursesArr)){
+                  foreach($coursesArr as $ca){
+              ?>  
+                  <option value="<?=$ca->cid?>"><?=$ca->name?></option>
+              <?php
+                  }
+              }
+              ?>
+            </select>
           </div>
           <div class="notice_create_form_div d-flex con">
               <label for="summernote" class="form-label d-flex cont">내용</label>
