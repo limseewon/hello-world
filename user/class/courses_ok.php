@@ -27,11 +27,11 @@ $cid = $_GET['cid'];
 
 
 //세션에 UID가 있어야 오더코스에 담기 가능
-if(isset($_SESSION['UID'])) {
-  $uid = $_SESSION['UID'];
-  $cid = $_GET['cid'];
+if(isset($_SESSION['UID'])) {   // 사용자가 세션에 UID라는 키를 가진 값을 가지고 있는지 확인  UID는 사용자의 고유 식별자
+  $uid = $_SESSION['UID']; // 세션이 존재하면, UID를 $uid 변수에 할당
+  $cid = $_GET['cid']; // URL 매개변수에서 강의 ID를 가져와 $cid 변수에 할당
 
-  $sqluc = "SELECT * FROM ordered_courses where course_id=$cid and member_id='$member_id'";
+  $sqluc = "SELECT * FROM ordered_courses where course_id=$cid and member_id='$member_id'"; // 이미 주문된 강의가 있는지 확인. 주문된 강의가 있으면 $rscuc 배열에 결과를 저장
   $result3 = $mysqli -> query($sqluc);
   while($rs = $result3->fetch_object()){
     $rscuc[]=$rs;
@@ -59,8 +59,8 @@ if(isset($_SESSION['UID'])) {
 } else {
   //UID 없다면, 로그인 페이지로 이동
   echo "<script>alert('로그인이 필요합니다.');
-        location.href = 'helloworld/user/index.php';
-        </script>";
+  location.href = '/helloworld/user/index.php'; // 절대 경로 사용
+  </script>";
 }
 
 ?>
