@@ -3,9 +3,6 @@ session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
 
-$sql = "INSERT INTO cart (cid, userid) VALUES ('{$cid}', '{$uid}')";
-$result = $mysqli->query($sql);
-
 //세션에 UID가 있어야 장바구니 담기 가능
 if (isset($_SESSION['UID'])) {
   $uid = $_SESSION['UID'];
@@ -35,7 +32,7 @@ if (isset($_SESSION['UID'])) {
 } else {
   //UID 없다면, 로그인 페이지로 이동
   echo "<script>alert('로그인이 필요합니다.');
-       // location.href = '';
+        location.href = '/helloworld/user/index.php';
         </script>";
 }
 
