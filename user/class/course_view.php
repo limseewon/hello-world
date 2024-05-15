@@ -223,21 +223,32 @@ $cid = $_GET['cid'];
           <p>전체 리뷰 []건</p>
         </div>
         <div class="content-box">
-          <div class="comment-form">
-            <form action="review_save.php" method="POST">
-              <input type="hidden" name="cid" value="<?= $cid; ?>">
-              <div class="mb-3">
-                <div class="d-flex align-items-center">
-                  <i class="bi bi-person-circle me-2 h4"></i>
-                  <h5 class="mb-0">수강평 작성</h5>
+        <div class="comment-form">
+          <form action="review_save.php" method="POST">
+            <input type="hidden" name="cid" value="<?= $cid; ?>">
+            <div class="mb-3">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-person-circle me-2 h4"></i>
+                <h5 class="mb-0">작성자</h5>
+                <span class="comment-date text-muted ms-2"><?= date('Y-m-d'); ?></span>
+                <div class="star-rating ms-2">
+                  <select name="rating" class="form-select">
+                    <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+                    <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734;</option>
+                    <option value="3">&#9733;&#9733;&#9733;&#9734;&#9734;</option>
+                    <option value="2">&#9733;&#9733;&#9734;&#9734;&#9734;</option>
+                    <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734;</option>
+                  </select>
                 </div>
-                <textarea class="form-control mt-2" name="content" rows="3" placeholder="리뷰는 로그인한 회원만 작성할 수 있습니다. 강사와 수강생 모두에게 도움이 되는 좋은 리뷰를 남겨주세요 :)" required></textarea>
               </div>
-              <div class="text-end">
-                <button type="submit" class="btn btn-primary">등록</button>
-              </div>
-            </form>
+              <textarea class="form-control mt-2" name="content" rows="3" placeholder="리뷰는 로그인한 회원만 작성할 수 있습니다. 강사와 수강생 모두에게 도움이 되는 좋은 리뷰를 남겨주세요 :)" required></textarea>
+            </div>
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary">등록</button>
+            </div>
+          </form>
           </div>
+          <hr>
           <div class="comment-list">
               <div class="comment-item">
                 <div class="comment-header">
@@ -261,7 +272,7 @@ $cid = $_GET['cid'];
                   </div>
                 </div>
                 <div class="comment-content">
-                  <p><?= $review['content']; ?></p>
+                  <p>내용</p>
                 </div>
               </div>
           </div>
