@@ -21,7 +21,7 @@ if (isset($_GET['catename'])) {  // 만약 HTTP GET 요청으로 'catename' 매�
 $sql = "SELECT * from courses where 1=1 " ;  //"courses" 테이블에서 모든 열을 선택하는 쿼리를 생성. 이 쿼리는 WHERE 절에 항상 참인 조건을 포함하고 있음. 이렇게 하는 이유는 후속적으로 추가되는 조건들을 쉽게 추가.
 $order = ' order by cid desc';   //결과를 "cid" 열을 기준으로 내림차순으로 정렬
 
-$cate = $_GET['cate']??''; // PHP에서 $_GET은 HTTP GET 요청을 통해 전달된 매개변수를 가져옵 'cate'라는 이름의 매개변수가 존재하면 해당 값을 가져오고, 그렇지 않으면 빈 문자열('')을 반환
+$cate = $_GET['cate']??''; // PHP에서 $_GET은 HTTP GET 요청을 통해 전달된 매개변수를 가져옴 'cate'라는 이름의 매개변수가 존재하면 해당 값을 가져오고, 그렇지 않으면 빈 문자열('')을 반환
 $level = $_GET['level']??'';
 $pay = $_GET['pay']??'';   //HTTP GET 요청에서 "cate", "level", "pay" 매개변수를 가져옴. 만약 해당 매개변수가 없다면 빈 문자열을 할당
 $param = '';  //매개변수를 조합하여 WHERE 절에 추가할 조건을 담을 변수를 초기화
@@ -47,15 +47,15 @@ if($cate != ''){  // cate' 변수가 비어 있지 않은 경우에만 다음을
 }
 
 //난이도 조회
-if($level != ''){
-  if($level == '초급'){
+if($level != ''){   // 비어 있지 않은지 확인
+  if($level == '초급'){ // '초급' 레벨에 해당하는 강의를 선택
     $c_where .= " and level LIKE '%{$level}%'";
-  }else if($level == '중급'){
+  }else if($level == '중급'){     // '중급' 레벨에 해당하는 강의를 선택
     $c_where .= " and level LIKE '%{$level}%'";
-  }else if($level == '고급'){
+  }else if($level == '고급'){  // '고급' 레벨에 해당하는 강의를 선택
     $c_where .= " and level LIKE '%{$level}%'";
   }
-}else{
+}else{  // $level이 비어 있으면 아무런 추가 조건을 추가하지 않음
   $c_where .= "";
 }
 
