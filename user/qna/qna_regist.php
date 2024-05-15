@@ -5,6 +5,14 @@
   $script1 = '';
   include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php'; 
 
+    // 현재 로그인한 회원의 정보 가져오기
+  if (isset($_SESSION['UID'])) {
+    $userid = $_SESSION['UID'];
+    $sql = "SELECT username FROM members WHERE userid = '$userid'";
+    $result = $mysqli->query($sql);
+    $member = $result->fetch_assoc();
+  }
+
   $coursesSql = "SELECT * FROM courses";
   $coursesResult = $mysqli->query($coursesSql);
   while ($coursesRs = $coursesResult->fetch_object()) {
@@ -20,6 +28,10 @@
           <div class="mb-3 d-flex title aic">
               <label for="formGroupExampleInput" class="form-label qt">제목</label>
               <input type="text" class="form-control title-box" name="title" id="title" placeholder="제목을 입력하시오." required>
+          </div>
+          <div class="mb-3 d-flex title aic">
+              <label for="formGroupExampleInput" class="form-label lt">작성자</label>
+              <input type="text" class="form-control title-box" name="name" id="name" value="<?= isset($member['username']) ? $member['username'] : ''; ?>" readonly>
           </div>
           <div class="mb-3 d-flex title aic">
             <label for="formGroupExampleInput" class="form-label lt">강의명</label>
