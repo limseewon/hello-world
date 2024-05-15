@@ -6,7 +6,7 @@
   margin-top: calc(var(--c-space_updown)*5);
   
 }
-
+.containermab { margin-bottom: calc(var(--c-space_updown)*5);}
 .section1 input {
   height: 45px;
 }
@@ -35,12 +35,14 @@
  }
 .courseList {
   width: 80%;
+  
 }
 .category_su { 
   background: var(--c-complete-button);
   position: relative; 
-  left: 40px;
-  top:0;
+  left: 200px;
+  top:-830px;
+ 
 }
 .category_su:hover { 
   background: var(--c-complete-button-hover);
