@@ -1,14 +1,14 @@
 <?php
 $title = 'CART';
-$cssRoute1 ='';
+$cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/cart.css"/>';
 $cssRoute2 ='';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 
 ?>
 
-<link rel="stylesheet" href="/helloworld/user/css/common.css"/>
-<link rel="stylesheet" href="/helloworld/user/css/cart.css"/>
+
+
 
 <div class="cart_completef">
   <h2 class="main_tt">결제가 완료되었습니다.</h2>

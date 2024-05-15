@@ -80,20 +80,7 @@ $(function(){
   });
 
 
-// 강의리스트 필터
-  $(".viewWrap_2").hide();  // 클래스가 "viewWrap_2"인 HTML 요소를 숨깁니다. 즉, 페이지가 로드될 때 "viewWrap_2" 클래스를 가진 요소는 숨겨짐
-  $(".viewB_1").click(function () { //  클래스가 "viewB_1"인 HTML 요소가 클릭되었을 때 실행할 함수를 정의
-    $(".viewWrap_2").hide(); // "viewWrap_2" 클래스를 가진 요소를 숨김
-    $(".viewWrap_1").show(); // viewWrap_1" 클래스를 가진 요소를 표시
-    $(".viewB_1").addClass("active"); // viewB_1" 클래스를 가진 요소에 "active" 클래스를 추가
-    $(".viewB_2").removeClass("active"); // viewB_2" 클래스를 가진 요소에서 "active" 클래스를 제거
-  });
-  $(".viewB_2").click(function () {  // "viewWrap_1"을 숨기고 "viewWrap_2"를 보여주는 차이점
-    $(".viewWrap_1").hide();
-    $(".viewWrap_2").show();
-    $(".viewB_2").addClass("active");
-    $(".viewB_1").removeClass("active");
-  });
+
   
  
   

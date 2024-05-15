@@ -39,16 +39,6 @@ while ($rc_rs = $rc_result->fetch_object()) {
 // print_r($new_rsc);
 
 ?>
-   
-
-   
-
-    
-    
-    
-    
-  
-   
     
 <main>
     <section class="sec1">
@@ -117,43 +107,43 @@ while ($rc_rs = $rc_result->fetch_object()) {
       <div class="category_box radius_12">
         <ul>
           <li>
-            <a href="/hello/class/course_list.php?catename=<?= 'HTML'; ?>">
+            <a href="/helloworld/user/class/course_list.php?catename=<?= 'HTML'; ?>">
               <img src="img/index_html.jpg" alt="HTML">
               <p>HTML</p>
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="/helloworld/user/class/course_list.php?catename=<?= 'CSS'; ?>">
               <img src="img/index_css.jpg" alt="CSS">
               <p>CSS</p>
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="/helloworld/user/class/course_list.php?catename=<?= 'Javascript'; ?>">
               <img src="img/index_js.jpg" alt="Javascript">
               <p>Javascript</p>
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="/helloworld/user/class/course_list.php?catename=<?= 'PHP'; ?>">
               <img src="img/index_php.jpg" alt="PHP">
               <p>PHP</p>
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="/helloworld/user/class/course_list.php?catename=<?= 'React'; ?>">
               <img src="img/index_react.jpg" alt="React">
               <p>React</p>
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="/helloworld/user/class/course_list.php?catename=<?= 'SQL'; ?>">
               <img src="img/index_mysql.jpg" alt="SQL">
               <p>SQL</p>
             </a>
           </li>
           <li>
-            <a href="">
+            <a href="/helloworld/user/class/course_list.php?catename=<?= 'Figma'; ?>">
               <img src="img/index_figma.jpg" alt="Figma">
               <p>Figma</p>
             </a>
@@ -253,55 +243,50 @@ while ($rc_rs = $rc_result->fetch_object()) {
                   </div>
                 </div>
               </div>
-              <div class="view_wrap d-flex align-items-center  flex-column">
-              <span class="badge rounded-pill b-pd badgeblack slide_hover
+              <div class="view_wrap">
+                <a href="/helloworld/user/class/course_view.php?cid=<?= $item->cid ?>" class="view_btn">
+                  <h5 class="card-title badeg_bt">
                     <?php
-                  // 뱃지컬러
-                  $levelBadge = $item->level;
-                  if ($levelBadge === '초급') {
-                    echo 'green_bg';
-                  } else if ($levelBadge === '중급') {
-                    echo 'orange_bg';
-                  } else {
-                    echo 'blue_bg';
-                  }
-                  ?>">
-                    <?= $item->level ?>
-                      
+                    $strTitle = $item->name;
+                    $strTitle = mb_strimwidth($strTitle, 0, 32, "...", "utf-8");
+                    echo $strTitle;
+                    ?>
+                  </h5>
+                  <div class="badegtwo d-flex">
+                    
+                    <span class="badge rounded-pill b-pd badgeblack slide_hover 
+                        <?php
+                      // 뱃지컬러
+                      $levelBadge = $item->level;
+                      if ($levelBadge === '초급') {
+                        echo 'green_bg';
+                      } else if ($levelBadge === '중급') {
+                        echo 'orange_bg';
+                      } else {
+                        echo 'blue_bg';
+                      }
+                      ?>">
+                        <?= $item->level ?>
+                          
                     </span>
                     <span class="badge rounded-pill pulele_bg b-pd badgeblack2">
-                    <?php
-                    //뱃지 키워드 
-                    if (isset($item->cate)) {
-                      $categoryText = $item->cate;
-                      $parts = explode('/', $categoryText);
-                      $lastPart = end($parts);
-                      echo $lastPart;
-                    }
-                    ?>
+                      <?php
+                      //뱃지 키워드 
+                      if (isset($item->cate)) {
+                        $categoryText = $item->cate;
+                        $parts = explode('/', $categoryText);
+                        $lastPart = end($parts);
+                        echo $lastPart;
+                      }
+                      ?>
                     </span>
-                  
-                  <h5 class="card-title">
-                  <?php
-                  $strTitle = $item->name;
-                  $strTitle = mb_strimwidth($strTitle, 0, 32, "...", "utf-8");
-                  echo $strTitle;
-                  ?>
-                  </h5>
-                
-                <a href="/helloworld/user/class/course_view.php?cid=<?= $item->cid ?>" class="view_btn"></a>
-                <span>
-
-                  <a href="" class="card_like">
-                    
-                  </a>
-
-                  
-                </span>
-                <a href="" class="card_cart">
-                  <span class="material-symbols-outlined shoppingcart">add_shopping_cart</span>
-                    
-                  </a>
+                  </div>
+                  <div class="cartshopp">
+                    <a href="" class="card_cart">
+                      <span class="material-symbols-outlined shoppingcart">add_shopping_cart</span>    
+                    </a>
+                  </div> 
+                </a>
               </div>
             </div>
             <?php
