@@ -90,3 +90,10 @@ tr {
  .btn-success{
   background-color: var(--c-primary-button);
  }
+ .bs{
+  width: 74px;
+ }
+ .qna-thumbnail img {
+  max-width: 200px;
+  max-height: 200px;
+}
