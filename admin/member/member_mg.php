@@ -92,7 +92,7 @@ while ($rs = $result->fetch_object()) {
                 <span id="modal_username"></span>
               </div>
               <div id="modal_email"></div>
-              <button type="button" class="msg_btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">                  <span class="material-symbols-outlined"> mail </span>
+              <button type="button" class="msg_btn" data-bs-toggle="modal" data-bs-target="#msgModal" data-bs-whatever="@mdo">                  <span class="material-symbols-outlined"> mail </span>
               </button>
             </div>
             <hr>
@@ -124,29 +124,30 @@ while ($rs = $result->fetch_object()) {
         </div>
       </div>
     </div> 
-    <div class="message_modal modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="message_modal modal fade" id="msgModal" tabindex="-1" aria-labelledby="msgModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">메시지 전송</h1>
+            <h1 class="modal-title fs-5" id="msgModalLabel">메시지 입력</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-            <form>
+          <form action="member_msg.php" method="POST">
+            <div class="modal-body">
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">받는 사람:</label>
-                <input type="text" class="form-control" id="recipient-name">
+                <input type="text" class="form-control" id="recipient-name" name="recipient-name">
+                <input type="hidden" class="form-control" id="recipient-id" name="recipient-id">
               </div>
               <div class="mb-3">
                 <label for="message-text" class="col-form-label">Message:</label>
-                <textarea class="form-control" id="message-text"></textarea>
+                <textarea class="form-control" id="message-text" name="message-text"></textarea>
               </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-            <button type="button" class="btn btn-primary">메시지 전송</button>
-          </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+              <button type="submit" class="btn btn-primary">메시지 전송</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -405,6 +406,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
                  error:function(){console.log('error');},
                  success:function(data){
                     console.log(data.result[1]);
+                    $('#recipient-id').val(mid)
                     $('#modal_username').text(data.result[0][0].username)
                     $('#modal_id').text(data.result[0][0].userid)
                     $('#modal_recent').text($.datepicker.formatDate('yy-mm-dd', new Date(data.result[0][0].recent_in)))

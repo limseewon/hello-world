@@ -6,7 +6,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 $mid = 5;
 
 
-$userid = $_SESSION['UID'];
+$userid = $_SESSION['AUID'];
 // if(isset($_SESSION['UID'])){
 //     $userid = $_SESSION['UID'];
 //     $ssid = '';
