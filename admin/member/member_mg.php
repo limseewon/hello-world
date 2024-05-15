@@ -330,12 +330,16 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
       const memberModal = new bootstrap.Modal('.member_modal')
       const messageModal = new bootstrap.Modal('.message_modal')
       const memberDelModal = new bootstrap.Modal('.member_del_confirm')
+      // console.log('test1')
       $('tbody tr').click(function(e) {
+        // console.log('test')
         e.stopPropagation()
         if (!$(e.target).is('input[type="checkbox"]')) {
+          // console.log('test3')
           // 체크박스가 아닌 경우에만 원하는 이벤트 작성
           // 여기에 원하는 동작을 추가하세요.
           let mid =$(this).attr('data-ui')
+          console.log('mid',mid)
           let data = {
             mid : mid
           }
@@ -398,7 +402,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
                  type: 'POST',
                  data:data,
                  dataType:'json',
-                 error:function(){},
+                 error:function(){console.log('error');},
                  success:function(data){
                     console.log(data.result[1]);
                     $('#modal_username').text(data.result[0][0].username)
@@ -416,13 +420,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
                     } else {
                       $('.modeal_sleep').text('휴면 해제')
                     }
-                    // if(data.result == '중복'){
-                    //     alert('이미 장바구니에 담았습니다.');                        
-                    // } else if(data.result=='ok'){
-                      
-                    // } else {
-                    //     alert('담기 실패!'); 
-                    // }
+                    
                     let coupon =''
                     for (let rs of data.result[0]) {
                       // console.log(rs)

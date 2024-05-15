@@ -62,8 +62,8 @@ while( $courseRs = $courseResult->fetch_object()){
                 </ul>    
               </div>
               <div class="btn_info d-flex justify-content-center">
-                <button class="btn btn-secondary modify_name">닉네임 변경</button>
-                <button class="btn btn-secondary modify_pw">비밀번호 변경</button>
+                <button class="btn btn-secondary modify_name" data-bs-toggle="modal" data-bs-target="#modal_name_modify" data-bs-whatever="@mdo">닉네임 변경</button>
+                <button class="btn btn-secondary modify_pw" data-bs-toggle="modal" data-bs-target="#modal_pw_modify" data-bs-whatever="@mdo">비밀번호 변경</button>
               </div>
             </div>
             <div class="content-box attendance_box">
@@ -143,6 +143,56 @@ while( $courseRs = $courseResult->fetch_object()){
             </div>
           </div>
         </section>
+        <div class="message_modal modal fade" id="modal_name_modify" tabindex="-1" aria-labelledby="modal_name_modify_Label" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modal_name_modify_Label">메시지 전송</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="index_modify_name.php" method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                      <label for="input_name_modify" class="col-form-label">현재 닉네임:</label>
+                      <input type="text" class="form-control" id="input_name_modify" name="input_name_modify" value="<?=$member->username?>">
+                    </div>
+                  
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                  <button type="submit" class="btn btn-primary">닉네임 변경</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="message_modal modal fade" id="modal_pw_modify" tabindex="-1" aria-labelledby="modal_pw_modify_Label" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modal_pw_modify_Label">메시지 전송</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="index_modify_pw.php" method="POST">
+              <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="input_pw_modify" class="col-form-label">변경할 비밀번호 입력:</label>
+                    <input type="password" class="form-control" id="input_pw_modify" name="input_pw_modify">
+                  </div>
+                  <!-- <div class="mb-3">
+                    <label for="input_pw_modify_confirm" class="col-form-label">비밀번호 확인</label>
+                    <input type="password" class="form-control" id="input_pw_modify_confirm">
+                  </div> -->
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <button type="submit" class="btn btn-primary">비밀번호 변경</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/rightSide.php';    
   ?>
