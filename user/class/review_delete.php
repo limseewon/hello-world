@@ -11,7 +11,7 @@ if (isset($_GET['cid']) && isset($_GET['idx'])) {
 
     if ($stmt->execute()) {
         echo "리뷰가 삭제되었습니다.";
-        header("Location: class_view.php?cid=$cid");
+        header("Location: course_view.php?cid=$cid");
         exit;
     } else {
         echo "리뷰 삭제에 실패했습니다.";
