@@ -281,53 +281,7 @@ header {
 .tw {
   width: 504px;
 }
-/* notice_detail.html */
-.nt {
-  padding-bottom: 36px;
-}
-.nb {
-  width: 1153px;
-  height: auto;
-}
-.tc {
-  width: 100%;
-  border-collapse: collapse;
-}
-th,
-td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-.notice-detail-box {
-  width: 910px;
-  height: 290px;
-  margin: 0 auto;
-}
-.notice-content {
-  width: 400px;
-  height: auto;
-}
-.notice-content p {
-  padding-top: 20px;
-}
-#notice_img {
-  width: 385px;
-  height: 256px;
-}
-.btn_s {
-  width: 1153px;
-  padding-top: 43px;
-  padding-bottom: 43px;
-}
-.r_btn {
-  gap: 20px;
-}
 
-/* Q&A.html */
-.qna_regist_btn {
-  height: 40px;
-}
 
 /*  ==================== MAIN :  최원석 ====================  */
 /* margin */
@@ -355,15 +309,6 @@ td {
     border-color: var(--c-title-font);
 }
 
-/* review */
-.review_num{
-  padding-bottom: 35px;
-}
-.content-box{
-  width: 1026px;
-  height: auto;
-  margin: 0 auto;
-}
 /*  ==================== FOOTER :  우준범 ====================  */
 footer {
   background: #203247;
