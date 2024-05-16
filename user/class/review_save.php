@@ -1,32 +1,25 @@
 <?php
-// 데이터베이스 연결 정보
-$servername = "localhost";
-$username = "사용자명";
-$password = "비밀번호";
-$dbname = "데이터베이스명";
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
-// 데이터베이스 연결
-$conn = new mysqli($servername, $username, $password, $dbname);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $cid = $mysqli->real_escape_string($_POST['cid']);
+    $name = $mysqli->real_escape_string($_POST['name']);
+    $title = $mysqli->real_escape_string($_POST['title']);
+    $content = $mysqli->real_escape_string($_POST['content']);
+    $rating = $mysqli->real_escape_string($_POST['rating']);
 
-// 연결 확인
-if ($conn->connect_error) {
-    die("데이터베이스 연결 실패: " . $conn->connect_error);
+    $sql = "INSERT INTO review (cid, name, title, content, rating, date) VALUES (?, ?, ?, ?, ?, NOW())";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("isssi", $cid, $name, $title, $content, $rating);
+
+    if ($stmt->execute()) {
+        echo "리뷰가 등록되었습니다.";
+        header("Location: class_view.php?cid=$cid");
+        exit;
+    } else {
+        echo "리뷰 등록에 실패했습니다.";
+    }
+
+    $stmt->close();
 }
-
-// 폼 데이터 수신
-$cid = $_POST['cid'];
-$name = "작성자"; 
-$title = ""; 
-$content = $_POST['content'];
-
-// 수강평 데이터 삽입 쿼리
-$sql = "INSERT INTO review (cid, name, title, content, hit, view, date) VALUES ('$cid', '$name', '$title', '$content', '$hit', '$view', NOW())";
-
-if ($conn->query($sql) === TRUE) {
-    echo "수강평이 성공적으로 등록되었습니다.";
-} else {
-    echo "수강평 등록 실패: " . $conn->error;
-}
-
-$conn->close();
 ?>
