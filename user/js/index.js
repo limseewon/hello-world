@@ -24,23 +24,23 @@ $(function(){
   // autoplayStart autoplayStop
   let slide = $(".swiper-slide");
 
-  slide.on("mouseenter", function (e) {
-    swiper.autoplay.stop();
-  });
-  slide.on("mouseleave", function (e) {
-    swiper.autoplay.start();
-  });
+  // slide.on("mouseenter", function (e) {
+  //   swiper.autoplay.stop();
+  // });
+  // slide.on("mouseleave", function (e) {
+  //   swiper.autoplay.start();
+  // });
 
   var swiper = new Swiper(".recom_slide", {
     slidesPerView: 3,
     spaceBetween: 30,
     speed: 1000,
     loop: true,
-    autoplay: {
-      delay: 1500,
-      disableOnInteraction : false, 
-      pauseOnMouseEnter:true
-    },
+    // autoplay: {
+    //   delay: 1500,
+    //   disableOnInteraction : false, 
+    //   pauseOnMouseEnter:true
+    // },
     navigation: {
       prevEl: ".new_prev",
       nextEl: ".new_next",

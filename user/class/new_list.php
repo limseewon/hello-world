@@ -84,13 +84,16 @@ $c_where .= $search_where;  // 생성된 검색 조건을 $c_where 변수에 추
 if(!isset($pagerwhere)){   // 변수가 설정되지 않았으면, 기본적으로 "1=1" 조건을 가진 $pagerwhere 변수를 설정
   $pagerwhere = " 1=1";
 }
+$sql = "SELECT * from courses where 1=1 " ;  //"courses" 테이블에서 모든 열을 선택하는 쿼리를 생성. 이 쿼리는 WHERE 절에 항상 참인 조건을 포함하고 있음. 이렇게 하는 이유는 후속적으로 추가되는 조건들을 쉽게 추가.
+$order = ' order by cid desc';   //결과를 "cid" 열을 기준으로 내림차순으로 정렬
+$sql = "SELECT * FROM `courses` WHERE YEAR(regdate) = YEAR(CURRENT_DATE()) AND MONTH(regdate) = MONTH(CURRENT_DATE()) ORDER BY cid DESC LIMIT 8";
+// echo $sql;
+$rc_result = $mysqli->query($sql);   // 데이터베이스에서 쿼리를 실행하고, 그 결과를 $rc_result 변수에 저장
+while ($rc_rs = $rc_result->fetch_object()) {
+  $rc_rsc[] = $rc_rs;
+}
 
-$sql2 = "SELECT COUNT(*) as count from courses where 1=1 ".$c_where;  // "courses" 테이블에서 조건을 충족하는 레코드의 수를 세는 쿼리를 생성
 
-$result4 = $mysqli->query($sql2);  // 데이터베이스에 쿼리를 실행하고 결과를 반환
-
-$rs = $result4->fetch_object(); // 쿼리 결과에서 첫 번째 레코드를 객체 형태로 가져옴
-$sales_page = $rs->count; // count" 별칭으로 반환된 레코드 수를 $sales_page 변수에 할당
  
 
 //필터 없으면 여기서부터 복사! *******
@@ -108,10 +111,10 @@ $sqlrc = $sql.$c_where.$order.$limit;
 
 
 // var_dump($sqlrc);
-$result = $mysqli -> query($sqlrc);  // 데이터베이스에서 쿼리 $sqlrc를 실행하고, 그 결과를 변수 $result에 저장
-while($rs = $result -> fetch_object()){
-  $rsc[] = $rs;     //
-}
+// $result = $mysqli -> query($sqlrc);  // 데이터베이스에서 쿼리 $sqlrc를 실행하고, 그 결과를 변수 $result에 저장
+// while($rs = $result -> fetch_object()){
+//   $rsc[] = $rs;     //
+// }
  
 //$result에서 각 레코드를 반복적으로 가져와서 객체로 변환. fetch_object() 메서드는 쿼리 결과의 다음 레코드를 객체로 반환. while 루프는 레코드를 하나씩 처리할 때까지 계속 실행
 // 각 레코드 객체 $rs를 배열 $rsc에 추가합니다. 이렇게 하면 $rsc 배열에는 쿼리 결과의 모든 레코드가 객체 형태로 저장
@@ -258,8 +261,8 @@ while($rs = $result -> fetch_object()){
       <div class="courseList">
         <ul class="row mb-5">
         <?php
-            if(isset($rsc)){
-              foreach($rsc as $item){
+            if(isset($rc_rsc)){
+              foreach($rc_rsc as $item){
           ?>  
           <li class="col-12 col-sm-6 col-md-4 content-box courseBox " onclick="location.href='course_view.php?cid=<?= $item->cid ?>'">
             <div class="imgBox">
