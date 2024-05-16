@@ -2,7 +2,7 @@
 $title = 'Home';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_common.css"/>';
 $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/index.css"/>';
-$script1 = '<script defer src="/helloworld/js/index.js"></script>';
+$script1 = '<script defer src="/helloworld/user/js/index.js"></script>';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 // 최신 강의
@@ -47,7 +47,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
         <div class="swiper-wrapper">
           <div class="swiper-slide image">
             <div class="imagebox">
-              <img src="img/index_section1.webp" alt="슬라이드 이미지_01">
+              <img src="user/img/index_section1.webp" alt="슬라이드 이미지_01">
             </div>  
             <div class="slidetext blacksl_text">
               <h2>누구나 쉬운 입문 강의</h2>
@@ -58,7 +58,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
           </div>
           <div class="swiper-slide image2">
             <div class="imagebox image2">
-              <img src="img/index_section2.webp" alt="슬라이드 이미지_02">
+              <img src="user/img/index_section2.webp" alt="슬라이드 이미지_02">
             </div>
             <div class="slidetext blacksl_text">
               <h2>무슨 강의를 들을지 고민이라면?</h2>
@@ -69,7 +69,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
           </div>     
           <div class="swiper-slide image3">
             <div class="imagebox image3">
-              <img src="img/index_section3.png" alt="슬라이드 이미지_03">
+              <img src="user/img/index_section3.png" alt="슬라이드 이미지_03">
             </div>   
             <div class="slidetext">
               <h2>문법 이상의 본질을 탐구하다</h2>
@@ -80,7 +80,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
           </div>
           <div class="swiper-slide image4">
             <div class="imagebox image4">
-             <img src="img/index_section4.gif" alt="슬라이드 이미지_04">
+             <img src="user/img/index_section4.gif" alt="슬라이드 이미지_04">
             </div> 
             <div class="slidetext">
             <h2>지금 할인중인 강의</h2>
@@ -107,50 +107,51 @@ while ($rc_rs = $rc_result->fetch_object()) {
       <div class="category_box radius_12">
         <ul>
           <li>
-            <a href="/helloworld/user/class/course_list.php?catename=<?= 'HTML'; ?>">
-              <img src="img/index_html.jpg" alt="HTML">
+            <a href="/helloworld/class/course_list.php?catename=<?= 'HTML'; ?>">
+              <img src="user/img/index_html.jpg" alt="HTML">
               <p>HTML</p>
             </a>
           </li>
           <li>
-            <a href="/helloworld/user/class/course_list.php?catename=<?= 'CSS'; ?>">
-              <img src="img/index_css.jpg" alt="CSS">
+            <a href="/helloworld/class/course_list.php?catename=<?= 'CSS'; ?>">
+              <img src="user/img/index_css.jpg" alt="CSS">
               <p>CSS</p>
             </a>
           </li>
           <li>
-            <a href="/helloworld/user/class/course_list.php?catename=<?= 'Javascript'; ?>">
-              <img src="img/index_js.jpg" alt="Javascript">
+            <a href="/helloworld/class/course_list.php?catename=<?= 'Javascript'; ?>">
+              <img src="user/img/index_js.jpg" alt="Javascript">
               <p>Javascript</p>
             </a>
           </li>
           <li>
-            <a href="/helloworld/user/class/course_list.php?catename=<?= 'PHP'; ?>">
-              <img src="img/index_php.jpg" alt="PHP">
+            <a href="/helloworld/class/course_list.php?catename=<?= 'PHP'; ?>">
+              <img src="user/img/index_php.jpg" alt="PHP">
               <p>PHP</p>
             </a>
           </li>
           <li>
-            <a href="/helloworld/user/class/course_list.php?catename=<?= 'React'; ?>">
-              <img src="img/index_react.jpg" alt="React">
+            <a href="/helloworld/class/course_list.php?catename=<?= 'React'; ?>">
+              <img src="user/img/index_react.jpg" alt="React">
               <p>React</p>
             </a>
           </li>
           <li>
-            <a href="/helloworld/user/class/course_list.php?catename=<?= 'SQL'; ?>">
-              <img src="img/index_mysql.jpg" alt="SQL">
+            <a href="/helloworld/class/course_list.php?catename=<?= 'SQL'; ?>">
+              <img src="user/img/index_mysql.jpg" alt="SQL">
               <p>SQL</p>
             </a>
           </li>
           <li>
-            <a href="/helloworld/user/class/course_list.php?catename=<?= 'Figma'; ?>">
-              <img src="img/index_figma.jpg" alt="Figma">
+            <a href="/helloworld/class/course_list.php?catename=<?= 'Figma'; ?>">
+              <img src="user/img/index_figma.jpg" alt="Figma">
               <p>Figma</p>
             </a>
           </li>
         </ul>
       </div>
     </section>
+    <form action="index_ok.php" method="POST" id="course_form" class="product_save">
     <section class="sec3 container">
       <div class="plusbox d-flex secc3">
         <h2 class="jua dark sec_tt courset">최신 강의</h2>
@@ -244,7 +245,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
                 </div>
               </div>
               <div class="view_wrap">
-                <a href="/helloworld/user/class/course_view.php?cid=<?= $item->cid ?>" class="view_btn">
+                <a href="" class="view_btn">
                   <h5 class="card-title badeg_bt">
                     <?php
                     $strTitle = $item->name;
@@ -282,7 +283,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
                     </span>
                   </div>
                   <div class="cartshopp">
-                    <a href="" class="card_cart">
+                    <a href="/helloworld/user/index_ok.php?cid=<?= $rs->cid ?>" class="card_cart">
                       <span class="material-symbols-outlined shoppingcart">add_shopping_cart</span>    
                     </a>
                   </div> 
@@ -433,9 +434,8 @@ while ($rc_rs = $rc_result->fetch_object()) {
       <div class="swiper-button-prev beginner_prev"></div>
     </div>
   </section>
-  
+  </form>
 </main>
   <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_footer.php';
 ?>
-<script src="js/index.js"></script>

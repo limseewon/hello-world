@@ -1,7 +1,7 @@
 $(function(){ 
   var swiper = new Swiper(".sec1_slide", {
     slidesPerView: 1,
-    speed: 2000,
+    speed: 1000,
     centeredSlides: true,
     loop:true,
 		
@@ -10,7 +10,7 @@ $(function(){
       clickable: true,
     },
     autoplay : {  
-      delay : 2500,  
+      delay : 1500,  
       disableOnInteraction : false, 
       pauseOnMouseEnter:true
     },
@@ -34,10 +34,10 @@ $(function(){
   var swiper = new Swiper(".recom_slide", {
     slidesPerView: 3,
     spaceBetween: 30,
-    speed: 2000,
+    speed: 1000,
     loop: true,
     autoplay: {
-      delay: 3000,
+      delay: 1500,
       disableOnInteraction : false, 
       pauseOnMouseEnter:true
     },
@@ -50,10 +50,10 @@ $(function(){
   var swiper = new Swiper(".new_slide", {
     slidesPerView: 3,
     spaceBetween: 30,
-    speed: 2000,
+    speed: 1000,
     loop: true,
     autoplay: {
-      delay: 3000,
+      delay: 1500,
       disableOnInteraction : false, 
       pauseOnMouseEnter:true
     },
@@ -66,10 +66,10 @@ $(function(){
   var swiper = new Swiper(".beginner_slide", {
     slidesPerView: 3,
     spaceBetween: 30,
-    speed: 2000,
+    speed: 1000,
     loop: true,
     autoplay: {
-      delay: 3000,
+      delay: 1500,
       disableOnInteraction : false, 
       pauseOnMouseEnter:true
     },
