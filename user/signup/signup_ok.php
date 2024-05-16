@@ -7,7 +7,7 @@ $userpw = hash('sha512', $userpw) ?? null;
 $username = $_POST['username'] ?? null;
 $useremail = $_POST['useremail'] ?? null;
 $tel = $_POST['tel'] ?? null;
-// $userimg = 
+$userimg = '';
 
 //유저 프로필 이미지 업로드
 if ($_FILES['userimg']['name']) {
@@ -45,7 +45,8 @@ if ($_FILES['userimg']['name']) {
 $sql = "INSERT INTO members
   (userid,email,username,passwd,tel,userimg)
   VALUES('{$userid}','{$useremail}','{$username}','{$userpw}','{$tel}','{$userimg}')";
-$result = $mysqli->query($sql) or die($mysql->error);
+$result = $mysqli->query($sql);
+//  or die($mysql->error);
 
 //회원가입 성공 시. 쿠폰 발행 
 if ($result) {
