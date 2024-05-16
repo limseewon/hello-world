@@ -39,6 +39,6 @@ if(isset($_SESSION['UID'])) {
   }
 } else {
   // 세션에 UID가 없으면 로그인 페이지로 이동
-  echo "<script>alert('로그인이 필요합니다.'); location.href = '/helloworld/user/index.php';</script>";
+  echo "<script>alert('로그인이 필요합니다.'); location.href = '/helloworld/index.php';</script>";
 }
 ?>
