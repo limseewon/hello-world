@@ -44,7 +44,7 @@ if(isset($_SESSION['UID'])){ // 사용자가 로그인한 경우를 확인  만�
             JOIN courses c ON c.cid = ct.cid
             WHERE u.userid = '{$userid}'
             ORDER BY ct.cartid DESC";
-            echo $sqlct;
+            // echo $sqlct;
   // courses 테이블의 모든 열과 cart 테이블의 cartid 열을 선택
   // c.*는 courses 테이블의 모든 열을 선택 ct.cartid는 cart 테이블의 cartid 열을 선택
   // cart 테이블과 courses 테이블을 조인하여 해당 사용자의 장바구니에 담긴 강의들의 정보를 가져옴
@@ -57,7 +57,7 @@ if(isset($_SESSION['UID'])){ // 사용자가 로그인한 경우를 확인  만�
   while($rs = $result->fetch_object()){
     $rscct[]=$rs;
   }
-  print_r($rscct);
+  // print_r($rscct);
   
   // 배열에는 장바구니에 담긴 강의들의 정보가 저장
   //coupon 사용자가 보유한 쿠폰 정보를 조회
@@ -66,7 +66,7 @@ if(isset($_SESSION['UID'])){ // 사용자가 로그인한 경우를 확인  만�
             JOIN coupons c ON c.cpid = uc.cpid
             WHERE u.userid = '{$userid}' AND (uc.use_max_date > NOW() OR uc.use_max_date IS NULL) AND uc.uc_status = 1
             ORDER BY uc.ucid DESC";
-            echo $sqlcp;
+            // echo $sqlcp;
   //  쿠폰 테이블(coupons)의 모든 열을 선택
   // 사용자 쿠폰 테이블(user_coupon)을 가리키는 별칭 uc를 사용
   // user_coupon 테이블과 coupons 테이블을 조인하여 해당 사용자가 보유한 쿠폰들의 정보를 가져옴

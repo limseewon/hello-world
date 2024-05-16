@@ -5,26 +5,28 @@ $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_list.
 $script1='';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
-
-//main페이지 검색 
-$c_where = '';   // 검색 조건을 나타내는 변수인 $c_where를 초기화
-if (isset($_GET['course_search'])) {   // 만약 HTTP GET 요청으로 'course_search' 매개변수가 전달되었다면, 다음을 실행
-  $key = $_GET['course_search']; // course_search' 매개변수의 값을 가져와서 $key 변수에 할당
-  $c_where = " and name LIKE '%$key%' OR cate LIKE '%$key%' OR level LIKE '%$key%'"; //  $key 값을 포함하는 "name", "cate", "level" 열 중 하나라도 일치하는 레코드를 선택하기 위한 조건을 $c_where에 할당 SQL의 LIKE 연산자를 사용하여 부분 문자열 검색을 수행
-};
-if (isset($_GET['catename'])) {  // 만약 HTTP GET 요청으로 'catename' 매개변수가 전달되었다면, 다음을 실행
-  $keycate = $_GET['catename']; // catename' 매개변수의 값을 가져와서 $keycate 변수에 할당
-  $c_where = " and cate LIKE '%$keycate'"; // $keycate 값을 포함하는 "cate" 열과 일치하는 레코드를 선택하기 위한 조건을 $c_where에 할당
-};
-
-
-$sql = "SELECT * from courses where 1=1 " ;  //"courses" 테이블에서 모든 열을 선택하는 쿼리를 생성. 이 쿼리는 WHERE 절에 항상 참인 조건을 포함하고 있음. 이렇게 하는 이유는 후속적으로 추가되는 조건들을 쉽게 추가.
-$order = ' order by cid desc';   //결과를 "cid" 열을 기준으로 내림차순으로 정렬
-
 $cate = $_GET['cate']??''; // PHP에서 $_GET은 HTTP GET 요청을 통해 전달된 매개변수를 가져옴 'cate'라는 이름의 매개변수가 존재하면 해당 값을 가져오고, 그렇지 않으면 빈 문자열('')을 반환
 $level = $_GET['level']??'';
 $pay = $_GET['pay']??'';   //HTTP GET 요청에서 "cate", "level", "pay" 매개변수를 가져옴. 만약 해당 매개변수가 없다면 빈 문자열을 할당
 $param = '';  //매개변수를 조합하여 WHERE 절에 추가할 조건을 담을 변수를 초기화
+//main페이지 검색 
+$c_where = '';   // 검색 조건을 나타내는 변수인 $c_where를 초기화
+if (isset($_GET['search'])) {   // 만약 HTTP GET 요청으로 'course_search' 매개변수가 전달되었다면, 다음을 실행
+  $key = $_GET['search']; // course_search' 매개변수의 값을 가져와서 $key 변수에 할당
+  $c_where = " and name LIKE '%$key%'"; //  $key 값을 포함하는 "name", "cate", "level" 열 중 하나라도 일치하는 레코드를 선택하기 위한 조건을 $c_where에 할당 SQL의 LIKE 연산자를 사용하여 부분 문자열 검색을 수행
+};
+if (isset($_GET['cate'])) {   // 만약 HTTP GET 요청으로 'course_search' 매개변수가 전달되었다면, 다음을 실행
+  $cate = $_GET['cate']; // course_search' 매개변수의 값을 가져와서 $key 변수에 할당
+  $c_where = " and name = '$cate'"; //  $key 값을 포함하는 "name", "cate", "level" 열 중 하나라도 일치하는 레코드를 선택하기 위한 조건을 $c_where에 할당 SQL의 LIKE 연산자를 사용하여 부분 문자열 검색을 수행
+};
+
+
+
+$sql = "SELECT * from courses where 1=1 " ;  //"courses" 테이블에서 모든 열을 선택하는 쿼리를 생성. 이 쿼리는 WHERE 절에 항상 참인 조건을 포함하고 있음. 이렇게 하는 이유는 후속적으로 추가되는 조건들을 쉽게 추가.
+$sql .= $c_where; 
+$order = ' order by cid desc';   //결과를 "cid" 열을 기준으로 내림차순으로 정렬
+echo $sql;
+
 
 $cate_where = '';
 $filter_where = '';
