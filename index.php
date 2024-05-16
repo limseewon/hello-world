@@ -5,6 +5,8 @@ $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/index.css"/>';
 $script1 = '<script defer src="/helloworld/user/js/index.js"></script>';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
+
+
 // 최신 강의
 // $sql = "SELECT * FROM `courses` WHERE YEAR(regdate) = YEAR(current_year) AND MONTH(regdate) = MONTH(current_month) ORDERBY cid DESC limit 8 ";
 $sql = "SELECT * FROM `courses` WHERE YEAR(regdate) = YEAR(CURRENT_DATE()) AND MONTH(regdate) = MONTH(CURRENT_DATE()) ORDER BY cid DESC LIMIT 8";
@@ -13,6 +15,8 @@ $rc_result = $mysqli->query($sql);   // 데이터베이스에서 쿼리를 실�
 while ($rc_rs = $rc_result->fetch_object()) {
   $rc_rsc[] = $rc_rs;
 }
+
+
 // print_r($rsc);
 //$rc_result에서 각 레코드를 반복적으로 가져와서 객체로 변환하고, 이를 $rc_rsc 배열에 추가. 
 // fetch_object() 메서드는 쿼리 결과의 다음 레코드를 객체로 반환. while 루프는 레코드를 하나씩 처리할 때까지 계속 실행
@@ -155,7 +159,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
     <section class="sec3 container">
       <div class="plusbox d-flex secc3">
         <h2 class="jua dark sec_tt courset">최신 강의</h2>
-        <a href=""><div class="moreplus d-flex">
+        <a href="/helloworld/user/class/new_list.php"><div class="moreplus d-flex">
           
           <h3 class="moreview">더보기</h3>
           <span class="material-symbols-outlined">add</span>
@@ -283,7 +287,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
                     </span>
                   </div>
                   <div class="cartshopp">
-                    <a href="/helloworld/user/cart/add_cart.php?cid=<?= $rs->cid ?>" class="card_cart">
+                    <a href="/helloworld/user/cart/add_cart.php?cid=<?= $item->cid; ?>" class="card_cart">
                       <span class="material-symbols-outlined shoppingcart">add_shopping_cart</span>    
                     </a>
                   </div> 
