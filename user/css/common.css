@@ -197,9 +197,13 @@ header {
 .icons {
   gap: 30px;
 }
+.hello {
+  font-size: var(--f-H6);
+}
 .profile_hoverBox {
   position: relative;
   height: 75px;
+  gap: 10px;
 }
 .profile_hoverList {
   position: absolute;
@@ -282,7 +286,6 @@ header {
   width: 504px;
 }
 
-
 /*  ==================== MAIN :  최원석 ====================  */
 /* margin */
 .pd_1 {
@@ -306,7 +309,7 @@ header {
 
 .activegreen {
   background-color: var(--c-title-font);
-    border-color: var(--c-title-font);
+  border-color: var(--c-title-font);
 }
 
 /*  ==================== FOOTER :  우준범 ====================  */

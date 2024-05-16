@@ -163,10 +163,16 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
           ?>
           <div class="icons d-flex align-items-center">
               <a href="#" class="bi bi-cart"><span>장바구니</span></a>
-              <div class="profile_hoverBox">
+              <div class="profile_hoverBox d-flex align-items-center">
                 <a href="/helloworld/user/mypage/index.php" class="bi bi-person-circle">
-                  <span>프로필</span>
-                </a>
+                  </a>
+                  <div class="d-flex flex-column">
+                    <span class="hello">반갑습니다.</span>
+                  <p>
+                    <span><?=$_SESSION['UID']?></span>
+                    <span>님</span>
+                  </p>
+                  </div>
                 <ul class="profile_hoverList content-box">
                   <li><a href="/helloworld/user/mypage/index.php">대시 보드</a></li>
                   <li><a href="/helloworld/user/mypage/courses.php">수강 강의</a></li>

@@ -14,18 +14,23 @@ $rs = $result->fetch_object();
 // $rs -> idx
 
 if ($rs) {
-  $_SESSION['UID'] = $rs->userid;
-  $_SESSION['UNAME'] = $rs->username;
-  $ssid= session_id();
+  $recentSql = "UPDATE members SET recent_in=CURDATE() where userid='{$userid}'";
+  $recentResult = $mysqli->query($recentSql);
+  if (isset($recentResult)) {
+    $_SESSION['UID'] = $rs->userid;
+    $_SESSION['UNAME'] = $rs->username;
+    $ssid= session_id();
+  
+    // $cartSql = "UPDATE cart SET userid='{$_SESSION['UID']}', ssid=null WHERE ssid='{$ssid}'";
+    // $result = $mysqli->query($cartSql);
+  
+    echo "<script>
+      alert('".$_SESSION['UID']."님 반갑습니다');
+      location.href = '/helloworld/index.php';
+    </script>";
+    exit();
+  }
 
-  // $cartSql = "UPDATE cart SET userid='{$_SESSION['UID']}', ssid=null WHERE ssid='{$ssid}'";
-  // $result = $mysqli->query($cartSql);
-
-  echo "<script>
-    alert('".$_SESSION['UID']."님 반갑습니다');
-    location.href = '/helloworld/index.php';
-  </script>";
-  exit();
 } else {
   echo "<script>
     alert('아이디 또는 비번을 다시 확인해주세요');

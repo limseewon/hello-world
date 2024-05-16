@@ -5,8 +5,7 @@
   $memberSql = "SELECT mid FROM members WHERE userid='{$_SESSION['UID']}'";
   $memberResult = $mysqli->query($memberSql);
   $memberRs = $memberResult->fetch_row();
-  echo $memberRs[0] ;
-
+  
   $msgSql = "SELECT * FROM msg WHERE mid='{$memberRs[0]}'";
   $msgResult = $mysqli->query($msgSql);
   while($msgRs= $msgResult->fetch_object()) {
@@ -27,7 +26,7 @@
               </thead>
               <tbody>
                 <?php
-                if (count($msgArr) > 0 ){
+                if (isset($msgArr) && count($msgArr) > 0 ){
                   foreach($msgArr as $ma) {                  
                 ?>
                 <tr>
@@ -37,6 +36,12 @@
                 </tr>
                 <?php
                   }
+                } else {
+                ?>
+                  <tr>
+                    메시지함이 비어있습니다.
+                  </tr>
+                <?php
                 }
                 ?>
               </tbody>
