@@ -24,9 +24,47 @@ if (isset($_SESSION['UID'])) {
 
 // 질문 데이터 가져오기
 if ($qna_id > 0) {
+    // qna 테이블에서 질문 데이터 가져오기
     $sql = "SELECT * FROM qna WHERE idx = '$qna_id'";
     $result = $mysqli->query($sql);
-    $row = $result->fetch_assoc();
+
+    if ($result && $result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        // members 테이블에서 사용자 아이디 가져오기
+        $sql = "SELECT userid FROM members WHERE username = '{$row['name']}'";
+        $result = $mysqli->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            $member = $result->fetch_assoc();
+            $row['userid'] = $member['userid'];
+        } else {
+            // members 테이블에서 사용자 아이디를 찾을 수 없는 경우 처리
+            $row['userid'] = null;
+        }
+    } else {
+        // qna 테이블에서 질문 데이터를 찾을 수 없는 경우 처리
+        $row = null;
+    }
+}
+
+// 수정 요청 처리
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+    $lecture_name = $_POST['lecture_name'];
+
+    // 업데이트 쿼리 실행
+    $sql = "UPDATE qna SET title = '$title', content = '$content', lecture_name = '$lecture_name' WHERE idx = $qna_id";
+    $result = $mysqli->query($sql);
+
+    if ($result) {
+        echo "<script>alert('게시물이 수정되었습니다.'); location.href='/helloworld/user/qna/qna_detail.php?id=$qna_id';</script>";
+        exit;
+    } else {
+        echo "<script>alert('수정에 실패했습니다. 다시 시도해주세요.'); history.back();</script>";
+        exit;
+    }
 }
 
 // 댓글 목록 가져오기
@@ -66,13 +104,40 @@ if ($qna_id > 0) {
                     </tr>
                 </tbody>
             </table>
-            <div class="qna-detail-box jcsb d-flex">
-                <div class="qna-content h5">
-                    <p><?= $row['content']; ?></p>
+            <?php if (isset($_SESSION['UID']) && $_SESSION['UID'] == $row['userid']) : ?>
+                <div class="qna_btn d-flex">
+                    <a href="#" class="btn btn-link btn_modify" onclick="showEditForm(); return false;">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <a href="#" class="btn btn-link btn_delete" onclick="confirmDelete(<?= $qna_id; ?>, event)">
+                        <i class="bi bi-trash"></i>
+                    </a>
                 </div>
-                <!-- <div class="thumbnail">
-                    <img src="<?= $rs->thumbnail; ?>" alt="">
-                </div> -->
+            <?php endif; ?>
+            <div id="qnaDetail">
+                <div class="qna-detail-box jcsb d-flex">
+                    <div class="qna-content h5">
+                        <p><?= $row['content']; ?></p>
+                    </div>
+                </div>
+            </div>
+            <div id="qnaEditForm" style="display: none;">
+                <form method="post" action="">
+                    <div class="mb-3">
+                        <label for="lecture_name" class="form-label">강의명</label>
+                        <input type="text" name="lecture_name" id="lecture_name" class="form-control" value="<?= $row['lecture_name'] ?>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">제목</label>
+                        <input type="text" name="title" id="title" class="form-control" value="<?= $row['title'] ?>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">내용</label>
+                        <textarea name="content" id="content" class="form-control" rows="5" required><?= $row['content'] ?></textarea>
+                    </div>
+                    <button type="submit" name="update" class="btn btn-primary">수정</button>
+                    <button type="button" class="btn btn-secondary" onclick="hideEditForm()">취소</button>
+                </form>
             </div>
             <hr>
             <div class="reply_content d-flex aic jcsb">
@@ -85,19 +150,19 @@ if ($qna_id > 0) {
             <hr>
             <div class="reply_comments">
                 <div class="comment-form" style="display: none;">
-                    <form action="qna_save_insert.php" method="POST">
-                        <input type="hidden" name="idx" value="<?= $qna_id ?>">
-                        <div class="mb-3">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-person-circle me-2 h4"></i>
-                                <h5 class="mb-0"><?= isset($member['username']) ? $member['username'] : ''; ?></h5>
-                            </div>
-                            <textarea class="form-control mt-2" name="comment" rows="3" placeholder="댓글을 입력하세요" required></textarea>
+                <form action="qna_save_insert.php" method="POST">
+                    <input type="hidden" name="idx" value="<?= $qna_id ?>">
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-person-circle me-2 h4"></i>
+                            <h5 class="mb-0 p">작성자</h5>
                         </div>
-                        <div class="text-end">
-                            <button type="submit" class="btn btn-primary">등록</button>
-                        </div>
-                    </form>
+                        <textarea class="form-control mt-2" name="comment" rows="3" placeholder="댓글을 입력하세요" required></textarea>
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary">등록</button>
+                    </div>
+                </form>
                 </div>
                 <div class="comment-list mt-4">
                     <?php while ($comment = $comment_result->fetch_assoc()) : ?>
@@ -154,7 +219,24 @@ if ($qna_id > 0) {
             var deleteLink = event.target.closest('.delete-link');
             window.location.href = deleteLink.href;
         }
+    };
+     // 삭제 확인 알림창을 위한 JavaScript 함수 추가
+     function confirmDelete(qnaId, event) {
+        event.preventDefault();
+        var confirmation = confirm("정말 삭제하시겠습니까?");
+        if (confirmation) {
+            window.location.href = "qna_delete.php?id=" + qnaId;
+        }
     }
+    function showEditForm() {
+        document.getElementById('qnaDetail').style.display = 'none';
+        document.getElementById('qnaEditForm').style.display = 'block';
+    };
+
+    function hideEditForm() {
+        document.getElementById('qnaDetail').style.display = 'block';
+        document.getElementById('qnaEditForm').style.display = 'none';
+    };
 </script>
 
 <?php

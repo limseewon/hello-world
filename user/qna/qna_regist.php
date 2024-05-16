@@ -94,9 +94,27 @@
       height: 420,
       placeholder: '내용을 작성하시오. (1200자 내로 작성하시오)'
     });
-    
-    $('#content_save').on('submit', save);
-    
+
+    $('.regist-btn').on('click', function(event) {
+      event.preventDefault(); // 폼 제출 방지
+
+      let title = $('#title').val().trim();
+      let contents = $('#summernote').summernote('code').trim();
+
+      if (!title) {
+        alert('제목을 입력해주세요.');
+        return;
+      }
+
+      if (!contents) {
+        alert('내용을 입력해주세요.');
+        return;
+      }
+
+      save();
+      $('#content_save').submit(); // 검증 통과 시 폼 제출
+    });
+
     function save() {
       let markupStr = $('#summernote').summernote('code');
       let contents = encodeURIComponent(markupStr);
