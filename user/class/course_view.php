@@ -224,32 +224,46 @@ while ($is = $result->fetch_object()) {
           </div>
           <hr>
           <div class="comment-list">
-            <div class="comment-item">
-              <div class="comment-header">
-                <div class="comment-avatar">
-                  <i class="bi bi-person-circle"></i>
+            <?php
+            $reviewSql = "SELECT * FROM review WHERE cid = ? ORDER BY date DESC";
+            $stmt = $mysqli->prepare($reviewSql);
+            $stmt->bind_param("i", $cid);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            while ($review = $result->fetch_assoc()) {
+                ?>
+                <div class="comment-item">
+                    <div class="comment-header">
+                        <div class="comment-avatar">
+                            <i class="bi bi-person-circle"></i>
+                        </div>
+                        <div class="comment-meta">
+                            <span class="comment-author"><?= $review['name'] ?></span>
+                            <div class="comment-title">
+                                <h5><?= $review['title'] ?></h5>
+                            </div>
+                        </div>
+                        <div class="comment-actions">
+                            <a href="review_delete.php?cid=<?= $cid; ?>&idx=<?= $review['idx']; ?>" class="delete-link" onclick="confirmDelete(event)">
+                                <span class="material-symbols-outlined">delete</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="comment-content">
+                        <p><?= $review['content'] ?></p>
+                    </div>
+                    <div class="comment-footer">
+                        <span class="comment-date"><?= $review['date'] ?></span>
+                        <span class="comment-hit">조회수: <?= $review['hit'] ?></span>
+                        <span class="comment-view">추천수: <?= $review['view'] ?></span>
+                    </div>
                 </div>
-                <div class="comment-meta">
-                  <span class="comment-author">작성자</span>
-                  <div class="star-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
-                </div>
-                <div class="comment-actions">
-                  <a href="review_delete.php?cid=<?= $cid; ?>&review_id=<?= $review['id']; ?>" class="delete-link" onclick="confirmDelete(event)">
-                    <span class="material-symbols-outlined">delete</span>
-                  </a>
-                </div>
-              </div>
-              <div class="comment-content">
-                <p>내용</p>
-              </div>
-            </div>
-          </div>
+                <?php
+            }
+            $stmt->close();
+            ?>
+        </div>
         </div>
       </div>
     </div>
