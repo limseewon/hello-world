@@ -23,7 +23,7 @@ if ($rs) {
 
   echo "<script>
     alert('".$_SESSION['UID']."님 반갑습니다');
-    location.href = '/helloworld/user/index.php';
+    location.href = '/helloworld/index.php';
   </script>";
   exit();
 } else {

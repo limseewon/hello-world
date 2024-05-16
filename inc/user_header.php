@@ -147,7 +147,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
     </div>
 <header>
   <div class="header_con d-flex container jcsb aic">
-      <a href="/helloworld/user/index.php" class="left_menu">
+      <a href="/helloworld/index.php" class="left_menu">
           <h1 id=header_logo>logo</h1>
           <img src="/helloworld/user/img/logo_text.jpg" alt="Hello World 로고">
       </a>
