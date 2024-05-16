@@ -11,16 +11,16 @@ echo $sql;
 $result = $mysqli->query($sql);
 $row = $result->fetch_object();
 $member_id = $row->mid;
-$totalprice = $_POST['total']??null;
+$totalprice = $_POST['total']??null; // POST 요청에서 총 가격(totalprice)을 가져옴
 
 // URL에서 강의 ID를 가져옴
 $cid = $_REQUEST['cid'];
-$sql = "SELECT price FROM courses WHERE cid = $cid";
+$sql = "SELECT price FROM courses WHERE cid = $cid"; // SQL 쿼리를 사용하여 해당 강의 ID에 해당하는 강의의 가격을 가져옴
 // echo $sql;
 $result = $mysqli->query($sql);
 $row = $result->fetch_object();
 $price = $row->price;
-$total = isset($totalprice) ? $totalprice : $price;
+$total = isset($totalprice) ? $totalprice : $price; // 총 가격(totalprice)이 설정되어 있는지 확인  설정되어 있으면 해당 값을 사용 그렇지 않으면 강의의 가격을 사용하여 총 가격을 설정
 
 
 // 세션에 UID가 있는지 확인
