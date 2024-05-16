@@ -189,7 +189,7 @@ while ($is = $result->fetch_object()) {
           <p>전체 리뷰 []건</p>
         </div>
         <div class="content-box content_review">
-          <div class="comment-form">
+        <div class="comment-form">
             <form action="review_save.php" method="POST">
               <input type="hidden" name="cid" value="<?= $cid; ?>">
               <div class="mb-3">
@@ -232,11 +232,11 @@ while ($is = $result->fetch_object()) {
                 <div class="comment-meta">
                   <span class="comment-author">작성자</span>
                   <div class="star-rating">
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
-                    <span class="star">&#9733;</span>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
                   </div>
                 </div>
                 <div class="comment-actions">
@@ -256,18 +256,20 @@ while ($is = $result->fetch_object()) {
   </form>
 </main>
 <script>
- $(document).ready(function() {
-    $('.star-rating select').on('change', function() {
-      var selectedValue = $(this).val();
-      var starIcons = $(this).siblings('.star-icons').find('i');
-      
-      starIcons.each(function(index) {
-        if (index < selectedValue) {
-          $(this).removeClass('far').addClass('fas');
-        } else {
-          $(this).removeClass('fas').addClass('far');
-        }
-      });
+ const starRating = document.querySelector('.star-rating');
+  const stars = starRating.querySelectorAll('.fa-star');
+  const ratingSelect = document.querySelector('select[name="rating"]');
+
+  ratingSelect.addEventListener('change', () => {
+    const rating = parseInt(ratingSelect.value);
+    stars.forEach((star, index) => {
+      if (index < rating) {
+        star.classList.remove('far');
+        star.classList.add('fas', 'text-warning');
+      } else {
+        star.classList.remove('fas', 'text-warning');
+        star.classList.add('far');
+      }
     });
   });
 </script>
