@@ -70,6 +70,9 @@ if ($qna_id > 0) {
                 <div class="qna-content h5">
                     <p><?= $row['content']; ?></p>
                 </div>
+                <!-- <div class="thumbnail">
+                    <img src="<?= $rs->thumbnail; ?>" alt="">
+                </div> -->
             </div>
             <hr>
             <div class="reply_content d-flex aic jcsb">
