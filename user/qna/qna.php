@@ -62,16 +62,16 @@ $result = $mysqli->query($sql);
 
                 //title변수에 DB에서 가져온 title을 선택
                 $title = $row["title"];
-                if (iconv_strlen($title) > 35) {
+                if (iconv_strlen($title) > 25) {
                     //title이 35를 넘어서면 ...표시
-                    $title = str_replace($row["title"], iconv_substr($row["title"], 0, 35, "utf-8") . "...", $row["title"]);
+                    $title = str_replace($row["title"], iconv_substr($row["title"], 0, 25, "utf-8") . "...", $row["title"]);
                 }
 
                 //lecture_name변수에 DB에서 가져온 lecture_name을 선택
                 $lecture_name = $row["lecture_name"];
-                if (iconv_strlen($lecture_name) > 20) {
+                if (iconv_strlen($lecture_name) > 13) {
                     //lecture_name이 20을 넘어서면 ...표시
-                    $lecture_name = str_replace($row["lecture_name"], iconv_substr($row["lecture_name"], 0, 20, "utf-8") . "...", $row["lecture_name"]);
+                    $lecture_name = str_replace($row["lecture_name"], iconv_substr($row["lecture_name"], 0, 13, "utf-8") . "...", $row["lecture_name"]);
                 }
 
                 // 답변 여부에 따라 버튼 클래스 설정
