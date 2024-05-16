@@ -57,16 +57,25 @@ if(isset($_SESSION['UID'])){ // 사용자가 로그인한 경우를 확인  만�
   while($rs = $result->fetch_object()){
     $rscct[]=$rs;
   }
+
+
+
+  $cSql = "SELECT uc.ucid, c.coupon_name, c.coupon_price FROM user_coupons uc JOIN coupons c  ON c.cid = uc.couponid WHERE uc.status = 1 AND uc.userid = '{$userid}' AND uc.use_max_date >= now()";
+                            
+  // $cResult = $mysqli -> query($cSql);
+  // while($cRow = $cResult->fetch_object()){
+  //     $cpArr[] = $cRow;
+  // }
   // print_r($rscct);
   
   // 배열에는 장바구니에 담긴 강의들의 정보가 저장
   //coupon 사용자가 보유한 쿠폰 정보를 조회
-  $sqlcp = "SELECT c.* FROM user_coupon uc
-            JOIN members u ON uc.userid = u.userid
-            JOIN coupons c ON c.cpid = uc.cpid
-            WHERE u.userid = '{$userid}' AND (uc.use_max_date > NOW() OR uc.use_max_date IS NULL) AND uc.uc_status = 1
-            ORDER BY uc.ucid DESC";
-            // echo $sqlcp;
+  // $sqlcp = "SELECT c.* FROM user_coupon uc
+  //           JOIN members u ON uc.userid = u.userid
+  //           JOIN coupons c ON c.cpid = uc.cpid
+  //           WHERE u.userid = '{$userid}' AND (uc.use_max_date > NOW() OR uc.use_max_date IS NULL) AND uc.uc_status = 1
+  //           ORDER BY uc.ucid DESC";
+  //           echo $sqlcp;
   //  쿠폰 테이블(coupons)의 모든 열을 선택
   // 사용자 쿠폰 테이블(user_coupon)을 가리키는 별칭 uc를 사용
   // user_coupon 테이블과 coupons 테이블을 조인하여 해당 사용자가 보유한 쿠폰들의 정보를 가져옴
@@ -181,7 +190,7 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
   <div class="form_container ">
     <form action="#" method="POST" class="payment_form radius_12 shadow_box">
       <div class="contpatbpx">
-      <div class="contentbox">
+        <div class="contentbox">
           
           <input type="hidden" value="" class="userid">
 
@@ -189,7 +198,15 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
           <h4 class="demoHeaders style_pd b_text02">쿠폰선택</h4>
           <select class="selectmenu coupon_select">
             <option value="" selected class="default" data-discount="0" data-type="정액" data-limit="-1">보유하고 있는 쿠폰</option>
-            
+            <?php
+              if(isset($cpArr)){
+                  foreach($cpArr as $ca){
+              ?>
+                  <option data-price="<?= $ca -> coupon_price ?>" value="<?= $ca -> ucid ?>"><?= $ca -> coupon_name ?></option>
+              <?php
+                  }
+              }
+              ?>       
           </select>
         </div>
         
@@ -200,30 +217,146 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
             <p>상품 수 :</p><p><span class="cart_count number">0</span>개</p>
           </div>
           <div class="payment_info d-flex justify-content-between">
-            <p>상품금액 :</p><p><span class="cart_total_price number">0</span>원</p>
+            <p>상품금액 :</p><p><span id="coupon-name"></span><span id="coupon-price" class="cart_total_price number">0</span>원</p>
           </div>
           <div class="payment_info d-flex justify-content-between">
             <p>할인가 :</p><p>- <span class="cart_discount number">0</span><span class="discount_unit">원</span></p>
           </div>
           <hr>
           <div class="payment_total d-flex justify-content-between align-items-center">
-            <p class="b_text01">총 결제금액</p><p class="content_tt"><span class="cart_pay_price number">0</span>원</p>
+            <p class="b_text01">총 결제금액</p><p class="content_tt"><span><strong id="grandtotal">$59.90</strong>원</p>
           </div>
           <div class="butb">
-          <button class="btn btn-primary dark submit_btn greenbtn">구매하기</button>
-          </div>
-          
+            <button class="btn btn-primary dark submit_btn greenbtn">구매하기</button>
+          </div>  
         </div>
       </div>
-      
     </form>
   </div>
 </div>
+<script src="js/cart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', ()=>{
+    $('.quantity span').click(function(){
+        calcTotal();
+    });
+    $('.cart_item_del').click(function(){
+
+        $(this).closest('tr').remove();
+        calcTotal();
+        let cartid =  $(this).closest('tr').find('.qty-text').attr('data-id');
+
+
+
+        let data = {
+            cartid :cartid
+        }
+        $.ajax({
+            url:'cart_del.php',
+            async:false,
+            type: 'POST',
+            data:data,
+            dataType:'json',
+            error:function(){},
+            success:function(data){
+            console.log(data);
+            if(data.result=='ok'){
+                alert('장바구니가 업데이트 되었습니다');  
+                location.reload();                      
+            }else{
+                alert('오류, 다시 시도하세요');                        
+                }
+            }
+        });
+    });
+    //쿠폰적용 계산
+    $('#coupon').change(function(){
+        let cname = $(this).find('option:selected').text();
+        let cprice = $(this).find('option:selected').attr('data-price');
+        $('#coupon-name').text(cname);
+        $('#coupon-price').text('-'+cprice);
+        calcTotal();
+    });
+    function calcTotal(){
+        let cartItem = $('.cart-table tbody tr');
+        let subtotal = 0;
+        cartItem.each(function(){
+            let price = Number($(this).find('.price span').text());
+            let qty =  Number($(this).find('.qty-text').val());
+            let total_price = $(this).find('.total_price span');
+            total_price.text(price*qty);            
+            subtotal = subtotal+(price * qty);
+        });        
+        let discount = Number($('#coupon-price').text());
+        let grand_total = subtotal+discount;
+        $('#subtotal').text(subtotal);
+        $('#grandtotal').text(grand_total);
+        $('#grand_total_final').val(grand_total);
+    }
+    calcTotal();
+
+    //카트 일괄 업데이트
+    $('#updateCart').click(function(e){
+        e.preventDefault();
+        let cartItem = $('.cart-table tbody tr');
+        let cartIdArr = [];
+        let qtyArr = [];
+
+        cartItem.each(function(){
+            let cartid = Number($(this).find('.qty-text').attr('data-id'));
+            cartIdArr.push(cartid);
+
+            let qty = Number($(this).find('.qty-text').val());
+            qtyArr.push(qty);
+        })
+        console.log(cartIdArr, qtyArr);
+        data = {
+            cartid:cartIdArr,
+            qty:qtyArr
+        }
+        $.ajax({
+            url:'cart_update.php',
+            async:false,
+            type: 'POST',
+            data:data,
+            dataType:'json',
+            error:function(){},
+            success:function(data){
+            console.log(data);
+            if(data.result=='ok'){
+                alert('장바구니가 업데이트 되었습니다');                        
+            }else{
+                alert('오류, 다시 시도하세요');                        
+                }
+            }
+        });
+
+    });
+
+    /*
+    //카트 삭제 업데이트
+    $('#clearCart').click(function(e){
+        e.preventDefault();
+
+        $.ajax({
+            url:'cart_clear.php',
+            async:false,
+            dataType:'json',
+            error:function(){},
+            success:function(data){
+            console.log(data);
+            if(data.result=='ok'){
+                alert('장바구니가 비웠습니다.');     
+                location.reload();                   
+            }else{
+                alert('오류, 다시 시도하세요');                        
+                }
+            }
+        });
+    })
+    */
+});    
+</script>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_footer.php';
 ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="js/cart.js"></script>
