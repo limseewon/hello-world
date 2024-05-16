@@ -106,7 +106,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
       <form action="" class="search">
         <label for="course_search" type="hidden"></label>
         <input type="text" id="course_search" placeholder="배우고 싶은 강의를 입력하세요.">
-        <button><i class="ti ti-search"></i></button>
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
       </form>
       <div class="category_box radius_12">
         <ul>
