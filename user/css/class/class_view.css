@@ -140,10 +140,11 @@
 .viebox-t {
   position: sticky;
   display: flex;
+  right:0;
   top: 40%;
-  width: 350px;
+  width: 300px;
   
-  margin-right: 25px;
+  margin-left: 1587px;
   
   border-radius: 10px;
   z-index: 50;

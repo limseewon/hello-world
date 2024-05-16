@@ -136,7 +136,7 @@ while ($is = $result->fetch_object()) {
                   <?php
                   }else{
                 ?>
-                <div>
+                <div class="mt-4">
                   <span class="main_stt">무료</span>
                 </div>
                 <?php

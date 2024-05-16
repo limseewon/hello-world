@@ -107,43 +107,43 @@ while ($rc_rs = $rc_result->fetch_object()) {
       <div class="category_box radius_12">
         <ul>
           <li>
-            <a href="/helloworld/class/course_list.php?catename=<?= 'HTML'; ?>">
+            <a href="/helloworld/user/class/course_list.php?catename=<?= 'HTML'; ?>">
               <img src="user/img/index_html.jpg" alt="HTML">
               <p>HTML</p>
             </a>
           </li>
           <li>
-            <a href="/helloworld/class/course_list.php?catename=<?= 'CSS'; ?>">
+            <a href="/helloworld/user/class/course_list.php?catename=<?= 'CSS'; ?>">
               <img src="user/img/index_css.jpg" alt="CSS">
               <p>CSS</p>
             </a>
           </li>
           <li>
-            <a href="/helloworld/class/course_list.php?catename=<?= 'Javascript'; ?>">
+            <a href="/helloworld/user/class/course_list.php?catename=<?= 'Javascript'; ?>">
               <img src="user/img/index_js.jpg" alt="Javascript">
               <p>Javascript</p>
             </a>
           </li>
           <li>
-            <a href="/helloworld/class/course_list.php?catename=<?= 'PHP'; ?>">
+            <a href="/helloworld/user/class/course_list.php?catename=<?= 'PHP'; ?>">
               <img src="user/img/index_php.jpg" alt="PHP">
               <p>PHP</p>
             </a>
           </li>
           <li>
-            <a href="/helloworld/class/course_list.php?catename=<?= 'React'; ?>">
+            <a href="/helloworld/user/class/course_list.php?catename=<?= 'React'; ?>">
               <img src="user/img/index_react.jpg" alt="React">
               <p>React</p>
             </a>
           </li>
           <li>
-            <a href="/helloworld/class/course_list.php?catename=<?= 'SQL'; ?>">
+            <a href="/helloworld/user/class/course_list.php?catename=<?= 'SQL'; ?>">
               <img src="user/img/index_mysql.jpg" alt="SQL">
               <p>SQL</p>
             </a>
           </li>
           <li>
-            <a href="/helloworld/class/course_list.php?catename=<?= 'Figma'; ?>">
+            <a href="/helloworld/user/class/course_list.php?catename=<?= 'Figma'; ?>">
               <img src="user/img/index_figma.jpg" alt="Figma">
               <p>Figma</p>
             </a>
@@ -245,7 +245,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
                 </div>
               </div>
               <div class="view_wrap">
-                <a href="" class="view_btn">
+                <a href="/helloworld/user/class/course_view.php?cid=<?= $item->cid ?>" class="view_btn">
                   <h5 class="card-title badeg_bt">
                     <?php
                     $strTitle = $item->name;
@@ -283,7 +283,7 @@ while ($rc_rs = $rc_result->fetch_object()) {
                     </span>
                   </div>
                   <div class="cartshopp">
-                    <a href="/helloworld/user/index_ok.php?cid=<?= $rs->cid ?>" class="card_cart">
+                    <a href="/helloworld/user/cart/add_cart.php?cid=<?= $rs->cid ?>" class="card_cart">
                       <span class="material-symbols-outlined shoppingcart">add_shopping_cart</span>    
                     </a>
                   </div> 
