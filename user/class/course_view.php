@@ -24,7 +24,7 @@ while ($is = $result->fetch_object()) {
 
 
 <main class="heigs">
-  <form action="courses_ok.php" method="POST" id="course_form" class="product_save">
+  <!-- <form action="courses_ok.php" method="POST" id="course_form" class="product_save"> -->
   <div class="viewTitleWrap viebox-t content-box">
     <div class="">
       <p class="content_tt"><?= $rs->name ?></p>
@@ -267,7 +267,7 @@ while ($is = $result->fetch_object()) {
         </div>
       </div>
     </div>
-  </form>
+  <!-- </form> -->
 </main>
 <script>
  const starRating = document.querySelector('.star-rating');
