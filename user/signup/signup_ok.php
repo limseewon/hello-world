@@ -1,12 +1,12 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
-$userid = $_POST['userid'];
+$userid = $_POST['userid'] ?? null;
 $userpw = $_POST['userpasswd'];
-$userpw = hash('sha512', $userpw);
-$username = $_POST['username'];
-$useremail = $_POST['useremail'];
-$tel = $_POST['tel'];
+$userpw = hash('sha512', $userpw) ?? null;
+$username = $_POST['username'] ?? null;
+$useremail = $_POST['useremail'] ?? null;
+$tel = $_POST['tel'] ?? null;
 // $userimg = 
 
 //유저 프로필 이미지 업로드
@@ -52,7 +52,7 @@ if ($result) {
   echo "<script>
   alert('회원가입이 완료 되었습니다.');
   //location.href='signup_coupon.php?userid=$userid';
-  location.href='/helloworld/user/index.php';
+  location.href='/helloworld/index.php';
   </script>";
 } else {
   echo "<script>

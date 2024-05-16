@@ -91,6 +91,7 @@
             </div>
             <div class="valid-feedback">사용가능한 비밀번호입니다.</div>
           </div>
+          
 
           <div class="form-floating">
             <input
@@ -993,7 +994,13 @@ Hello World은 원칙적으로 이용자의 동의 없이 개인정보를 외부
     ></script>
     <script>
       //아이디 중복확인
-      $userid = $(".userid");
+      let $userid = $(".userid");
+      let $duplicatedId= true;
+      $userid.on('input',function() {
+        $duplicatedId = true;
+        $(this).removeClass("is-valid");
+        $(this).removeClass("is-invalid")
+      })
       $(".signup_form .duplication_btn").click(function (e) {
         e.preventDefault();
         let userid = $userid.val();
@@ -1014,10 +1021,12 @@ Hello World은 원칙적으로 이용자의 동의 없이 개인정보를 외부
             if (return_data.cnt > 0) {
               $userid.removeClass("is-valid");
               $userid.addClass("is-invalid");
+              $duplicatedId = true;
               return false;
             } else {
               $userid.removeClass("is-invalid");
               $userid.addClass("is-valid");
+              $duplicatedId = false;
             }
           },
         }); //ajax end
@@ -1101,7 +1110,27 @@ Hello World은 원칙적으로 이용자의 동의 없이 개인정보를 외부
       });
 
       //모든 체크박스 체크여부 확인 및 인풋 빈값 확인
+      
       $(".signup_form").submit(function (e) {
+        var hasInvalidInput = false;
+
+        $(this).find('input').each(function() {
+          if ($(this).hasClass('is-invalid')) {
+            hasInvalidInput = true;
+            return false; // each 루프 중단
+          }
+        })
+        if (hasInvalidInput) {
+          alert('입력 양식에 맞춰 작성해주세요.')
+          e.preventDefault();
+        }
+
+        if($duplicatedId) {
+          alert('아이디 중복여부를 확인해주세요.');
+          e.preventDefault();
+          // return;
+        }
+
         let checkboxes = $("input[type='checkbox']");
         let checkedCheckboxes = checkboxes.filter(":checked");
 
@@ -1110,18 +1139,27 @@ Hello World은 원칙적으로 이용자의 동의 없이 개인정보를 외부
           e.preventDefault(); // 회원가입 전송 불가
         }
 
-        let emptyFields = [];
-        $(this)
-          .find("input")
-          .each(function () {
-            if ($(this).val() === "") {
-              emptyFields.push($(this).attr("placeholder"));
-            }
-            //   if (emptyFields.length > 0) {
-            //   e.preventDefault();
-            //   alert("모든 정보를 입력하셔야합니다.");
-            // }
-          });
+        let emptyFields = false;
+        $(this).find("input").each(function () {
+          if ($(this).attr("id") !== 'userimg'){
+            return false;
+          }
+          if ($(this).val() === "" ) {
+            emptyFields = true;
+          }
+        });
+        if (emptyFields) {
+          alert("모든 정보를 입력하셔야합니다.");
+          emptyFields = false;
+          $(this).find("input").each(function () {
+          if ($(this).attr("id") !== 'userimg' && $(this).val() === "") {
+            
+            $(this).focus();
+            return false;
+          }
+        });
+          e.preventDefault();
+        }
       });
     </script>
   </body>
