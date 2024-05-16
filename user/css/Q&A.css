@@ -98,8 +98,10 @@ tr {
  .btn-success{
   background-color: var(--c-primary-button);
  }
- .bs{
+ 
+ .bn, .bs{
   width: 74px;
+  border: none;
  }
  .qna-thumbnail img {
   max-width: 200px;
