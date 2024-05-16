@@ -97,3 +97,9 @@ tr {
   max-width: 200px;
   max-height: 200px;
 }
+
+
+/* Q&A.html */
+.qna_regist_btn {
+  height: 40px;
+}
