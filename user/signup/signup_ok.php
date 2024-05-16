@@ -43,8 +43,8 @@ if ($_FILES['userimg']['name']) {
 }
 
 $sql = "INSERT INTO members
-  (userid,email,username,passwd,tel,userimg)
-  VALUES('{$userid}','{$useremail}','{$username}','{$userpw}','{$tel}','{$userimg}')";
+  (userid,email,username,passwd,tel,userimg,regdate)
+  VALUES('{$userid}','{$useremail}','{$username}','{$userpw}','{$tel}','{$userimg}',CURDATE() )";
 $result = $mysqli->query($sql);
 //  or die($mysql->error);
 
