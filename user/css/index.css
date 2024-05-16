@@ -81,6 +81,8 @@
   background: var();
   border: none;
 }
+.se1_next { right: calc(50% - 747px);}
+.se1_prev { left: calc(50% - 705px);}
 
 /* section2 */
 
@@ -109,7 +111,7 @@
 
 .search i {
   font-size: 36px;
-  color: var();
+  color: var(--c-menu-BG);
 }
 
 .sec2 {
