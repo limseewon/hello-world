@@ -188,7 +188,7 @@ while ($is = $result->fetch_object()) {
         <div class="review_num">
           <p>전체 리뷰 []건</p>
         </div>
-        <div class="content-box">
+        <div class="content-box content_review">
           <div class="comment-form">
             <form action="review_save.php" method="POST">
               <input type="hidden" name="cid" value="<?= $cid; ?>">
