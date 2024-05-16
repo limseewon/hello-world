@@ -87,7 +87,7 @@
   <!-- summernote modernizr js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js" integrity="sha512-6F1RVfnxCprKJmfulcxxym1Dar5FsT/V2jiEUvABiaEiFWoQ8yHvqRM/Slf0qJKiwin6IDQucjXuolCfCKnaJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script type="text/javascript"> 
+<script>
   $(document).ready(function() {
     $('#summernote').summernote({
       width: 883,
