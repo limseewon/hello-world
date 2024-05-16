@@ -33,7 +33,7 @@ if (isset($_SESSION['UID'])) { // 코드 블록에서 $_SESSION['UID']가 설정
 } else {
   //UID 없다면, 로그인 페이지로 이동
   echo "<script>alert('로그인이 필요합니다.');
-        location.href = '/helloworld/user/index.php';
+        location.href = '/helloworld/index.php';
         </script>";
 }
 
