@@ -1,44 +1,40 @@
 <?php
 session_start();
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php'; // 데이터베이스 연결 정보와 같은 중요한 설정이 담긴 파일
 
-// 세션에서 UID를 가져옴
-$uid = $_SESSION['UID'];
 
-// SQL 쿼리를 변수에 할당하여 회원의 member_id를 가져옴
-$sql = "SELECT mid FROM members WHERE userid = '$uid'";
-$result = $mysqli->query($sql);
-$row = $result->fetch_object();
-$member_id = $row->mid;
+//세션에 UID가 있어야 장바구니 담기 가능
+if (isset($_SESSION['UID'])) { // 코드 블록에서 $_SESSION['UID']가 설정되어 있는지 확인. 만약 세션에 사용자 ID가 설정되어 있다면, 즉 사용자가 로그인한 상태라면 아래의 코드 블록을 실행
+  $uid = $_SESSION['UID'];
+  $cid = $_GET['cid']; // 세션에 저장된 사용자 ID($uid)와 GET 요청으로 받은 강의 ID($cid)를 사용하여 데이터베이스에서 해당 강의를 장바구니에 담았는지 확인
 
-// URL에서 강의 ID를 가져옴
-$cid = $_GET['cid'];
+  $sqluc = "SELECT * FROM cart where cid=$cid and userid='$uid'"; 
+  $result3 = $mysqli -> query($sqluc);
+  while($rs = $result3->fetch_object()){
+    $rscuc[]=$rs;
+  }
+  // $sqluc 쿼리를 사용하여 해당 사용자가 이미 해당 강의를 장바구니에 담았는지 확인
 
-// 세션에 UID가 있는지 확인
-if(isset($_SESSION['UID'])) {
-  // 이미 주문된 강의를 확인하는 쿼리 실행
-  $sqluc = "SELECT * FROM ordered_courses WHERE course_id = $cid AND member_id = '$member_id'";
-  $result3 = $mysqli->query($sqluc);
-  $rscuc = $result3->fetch_object();
-
-  // 이미 주문된 강의가 없으면, 새로운 주문을 추가
-  if(!$rscuc) {
-    $sql = "INSERT INTO ordered_courses (course_id, member_id) VALUES ('{$cid}', '{$member_id}')";
+  if(!isset($rscuc)){ // 결과가 없다면(!isset($rscuc)), 장바구니에 해당 강의를 추가하는 쿼리를 실행
+    // 쿼리의 결과에 따라 성공 또는 실패 메시지를 출력
+    $sql = "INSERT INTO cart (cid, userid) VALUES ('{$cid}', '{$uid}')";
     $result = $mysqli->query($sql);
   
-    // 주문이 성공적으로 추가되면 알림을 띄우고 이전 페이지로 이동
-    if ($result) {
-      echo '<script>alert("강의가 구매되었습니다."); history.back();</script>';
+    if (isset($result)) {
+      echo '<script>alert("강의가 장바구니에 담겼습니다.");
+            history.back();
+            </script>';
     } else {
-      // 주문이 실패하면 이전 페이지로 이동
       echo "<script>history.back();</script>";
     }
-  } else {
-    // 이미 주문된 강의가 있으면 알림을 띄우고 이전 페이지로 이동
-    echo "<script>alert('이미 구매한 강좌입니다.'); history.back();</script>";
+  } else{
+    echo "<script>alert('이미 장바구니에 담겨있습니다.');history.back();</script>";
   }
 } else {
-  // 세션에 UID가 없으면 로그인 페이지로 이동
-  echo "<script>alert('로그인이 필요합니다.'); location.href = '/helloworld/user/index.php';</script>";
+  //UID 없다면, 로그인 페이지로 이동
+  echo "<script>alert('로그인이 필요합니다.');
+        location.href = '/helloworld/user/index.php';
+        </script>";
 }
+
 ?>
