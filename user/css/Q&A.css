@@ -63,6 +63,14 @@ tr {
     line-height: 1.5;
     color: #555;
 }
+.nt {
+  padding-bottom: 36px;
+}
+.nb {
+  width: 1153px;
+  height: auto;
+  min-height: 368px;
+}
 .bd{
     margin-top: 30px;
 }
