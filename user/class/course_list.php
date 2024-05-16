@@ -124,9 +124,9 @@ while($rs = $result -> fetch_object()){
 
 <main>
   <div class="container containermab">
-    <div class="section1 d-flex justify-content-between pd_2 pd_5">
+    <div class="section1 d-flex justify-content-between pd_2">
       <div class="courseBigTitle jua coursetitle">
-        <h2 class="court">강의리스트</h2>
+        <h2 class="court h2_t">강의리스트</h2>
       </div>
     </div>
     <form action="#" class="d-flex gap-3">
