@@ -162,7 +162,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
             if (isset($_SESSION['UID'])) {
           ?>
           <div class="icons d-flex align-items-center">
-              <a href="#" class="bi bi-cart"><span>장바구니</span></a>
+              <a href="/helloworld/user/cart/cart.php" class="bi bi-cart"><span>장바구니</span></a>
               <div class="profile_hoverBox">
                 <a href="/helloworld/user/mypage/index.php" class="bi bi-person-circle">
                   <span>프로필</span>

@@ -11,9 +11,17 @@ echo $sql;
 $result = $mysqli->query($sql);
 $row = $result->fetch_object();
 $member_id = $row->mid;
+$totalprice = $_POST['total']??null;
 
 // URL에서 강의 ID를 가져옴
-$cid = $_GET['cid'];
+$cid = $_REQUEST['cid'];
+$sql = "SELECT price FROM courses WHERE cid = $cid";
+// echo $sql;
+$result = $mysqli->query($sql);
+$row = $result->fetch_object();
+$price = $row->price;
+$total = isset($totalprice) ? $totalprice : $price;
+
 
 // 세션에 UID가 있는지 확인
 if(isset($_SESSION['UID'])) {
@@ -24,7 +32,8 @@ if(isset($_SESSION['UID'])) {
 
   // 이미 주문된 강의가 없으면, 새로운 주문을 추가
   if(!$rscuc2) {
-    $sql = "INSERT INTO ordered_courses (course_id, member_id) VALUES ('{$cid}', '{$member_id}')";
+    $sql = "INSERT INTO ordered_courses (course_id, member_id ,total_price) VALUES ({$cid}, '{$member_id}',{$total})";
+    // echo $sql;
     $result = $mysqli->query($sql);
   
     // 주문이 성공적으로 추가되면 알림을 띄우고 이전 페이지로 이동
