@@ -241,7 +241,9 @@ p {
 .view_btn {
   display: block;
   width: 100%;
-  height: 100%;
+  object-fit: cover;
+  
+  
 }
 .badgeblack {
   display: block;
@@ -364,9 +366,8 @@ p {
   position: relative;
   white-space: nowrap;
 }
-.cardimg {
-  width: 375px;
-  height: 100%;
+.cardimg { width: 375px;
+  
 }
 .sec4 .recom_slide .card img,
 .sec5 .new_slide .card img {

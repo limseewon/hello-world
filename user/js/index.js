@@ -55,8 +55,8 @@ $(function () {
     loop: true,
     autoplay: {
       delay: 1500,
-      disableOnInteraction: false,
-      pauseOnMouseEnter: true,
+      disableOnInteraction : false, 
+      pauseOnMouseEnter:true
     },
     navigation: {
       prevEl: '.suggestio_prev',
