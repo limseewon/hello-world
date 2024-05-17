@@ -71,7 +71,7 @@ while ($is = $result->fetch_object()) {
             <div>
               <div class="d-flex justify-content-between">
                 <div>
-                  <span class="badge rounded-pill blue_bg b-pd">
+                  <span class="badge rounded-pill pulele_bg b-pd">
                     <?php
                       //뱃지 키워드
                       if (isset($rs->cate)) {
@@ -87,11 +87,11 @@ while ($is = $result->fetch_object()) {
                       // 뱃지 컬러
                       $levelBadge = $rs->level;
                       if ($levelBadge === '초급') {
-                        echo 'yellow_bg';
-                      } else if ($levelBadge === '중급') {
                         echo 'green_bg';
+                      } else if ($levelBadge === '중급') {
+                        echo 'orange_bg';
                       } else {
-                        echo 'red_bg';
+                        echo 'blue_bg';
                       }
                     ?>
                   ">

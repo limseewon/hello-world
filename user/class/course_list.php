@@ -16,19 +16,6 @@ while($step1rs = $stepresult-> fetch_object()){
   $step1arr[]=$step1rs;
 }
 
-// $step1Sq2 = "SELECT * from courses where level='level'";
-// $stepresult2 =  $mysqli->query($step1Sq2);
-// while($step1rs2 = $stepresult2-> fetch_object()){
-//   $step1arr2[]=$step1rs2;
-// }
-// print_r(step1arr2);
-
-// $step1Sq3 = "SELECT * from courses where price ='price'";
-// $stepresult3 =  $mysqli->query($step1Sq3);
-// while($step1rs3 = $stepresult3-> fetch_object()){
-//   $step1ar3r[]=$step1rs3;
-// }
-// print_r(step1arr3);
 
 
 
@@ -114,7 +101,7 @@ $limit = " limit $startLimit, $pageCount"; //select sql문에 .limit 해서 이�
 
 //최종 query문, 실행
 $sqlrc = $sql.$c_where.$order.$limit; 
-echo $sqlrc;
+// echo $sqlrc;
 
 
 // var_dump($sqlrc);
@@ -153,7 +140,7 @@ while($rs = $result -> fetch_object()){
       </div>
     </form>
     <div class="mainSection d-flex gap-5">
-      <form action="#" id="filter-form" class="" method="GET">
+      <form action="/helloworld/user/class/course_list.php" id="filter-form" class="" method="GET">
         <!-- <input type="hidden" name="cate-array" id="cate-array" value=""> -->
         <div class="content-box categorybox">
         <div class="checkBox_1 mb-3">
