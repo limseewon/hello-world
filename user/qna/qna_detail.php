@@ -116,9 +116,10 @@ if ($qna_id > 0) {
             <?php endif; ?>
             <div id="qnaDetail">
                 <div class="qna-detail-box jcsb d-flex">
-                    <div class="qna-content h5">
+                    <!-- <div class="qna-content d-flex h5 jcsb"> -->
                         <p><?= $row['content']; ?></p>
-                    </div>
+                        <img src="/helloworld/user/uploads/<?= $row['files']; ?>" alt="#" class="img_qna">
+                    <!-- </div> -->
                 </div>
             </div>
             <div id="qnaEditForm" style="display: none;">
@@ -133,7 +134,7 @@ if ($qna_id > 0) {
                     </div>
                     <div class="mb-3">
                         <label for="content" class="form-label">내용</label>
-                        <textarea name="content" id="content" class="form-control" rows="5" required><?= $row['content'] ?></textarea>
+                        <textarea name="content" id="content" class="form-control" rows="5" required><?= strip_tags($row['content']); ?></textarea>
                     </div>
                     <button type="submit" name="update" class="btn btn-primary">수정</button>
                     <button type="button" class="btn btn-secondary" onclick="hideEditForm()">취소</button>

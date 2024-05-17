@@ -114,6 +114,14 @@ tr {
   color: var(--c-primary-button);
 }
 
+.img_qna{
+  width: 400px;
+}
+
+#qnaDetail{
+  padding: 20px;
+}
+
 /* Q&A.html */
 .qna_regist_btn {
   height: 40px;

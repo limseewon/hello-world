@@ -186,7 +186,17 @@ while ($is = $result->fetch_object()) {
           <h2 class="h2_r">수강평</h2>
         </div>
         <div class="review_num">
-          <p>전체 리뷰 [<?= $result->num_rows; ?>]건</p>
+          <?php
+            // 리뷰 개수 가져오기
+            $reviewCountSql = "SELECT COUNT(*) AS review_count FROM review WHERE cid = ?";
+            $stmt = $mysqli->prepare($reviewCountSql);
+            $stmt->bind_param("i", $cid);
+            $stmt->execute();
+            $countResult = $stmt->get_result();
+            $reviewCount = $countResult->fetch_assoc()['review_count'];
+            $stmt->close();
+          ?>
+          <p>전체 리뷰 [<?= $reviewCount; ?>]건</p>
         </div>
         <div class="content-box content_review">
           <div class="comment-form">
