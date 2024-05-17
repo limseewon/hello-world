@@ -163,7 +163,7 @@ while($rs = $result -> fetch_object()){
               <div class="filter_1">
                 <h3 class="b_text01">총 쿠폰 개수</h3>
                 <label for="all" class="b_text02"><em class="main_tt"><?php if(isset($allrsc)){echo count($allrsc);} else{echo '0';} ?></em>개</label>
-                <input type="radio" value="-1" class="hidden" id="all" name="coupon_filter" />
+                <input type="radio" value="-1" class="  hidden" id="all" name="coupon_filter" />
               </div>
               <div class="filter_2">
                 <h3 class="b_text01">활성화 쿠폰 개수</h3>

@@ -24,6 +24,8 @@ if ($rs) {
   
     // $cartSql = "UPDATE cart SET userid='{$_SESSION['UID']}', ssid=null WHERE ssid='{$ssid}'";
     // $result = $mysqli->query($cartSql);
+    
+    // 출석 업데이트
     $attendSql = "INSERT INTO attendance (userid, login_date) VALUES ('{$_SESSION['UID']}', CURDATE() )";
     $attendRs = $mysqli->query($attendSql);
 

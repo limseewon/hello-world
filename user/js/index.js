@@ -136,6 +136,8 @@ $(function () {
           location.reload();
         } else if ((data.result = 'duplicate')) {
           alert('이미 발급된 쿠폰입니다.');
+        } else if ((data.result = 'pleaseLogin')) {
+          alert('로그인 후 다시 시도해주세요.');
         } else {
           alert('쿠폰 발급에 실패했습니다. 다시 시도해주세요.');
         }
