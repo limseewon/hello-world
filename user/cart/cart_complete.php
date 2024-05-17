@@ -2,10 +2,10 @@
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
-$course_id = $_POST['cid'];
+$course_id = 'cid';
 $member_id = $_POST['mid'] ?? '';
 
-$total =  $_POST['total'];
+$total = 'total';
 
 if(isset($_SESSION['UID'])){
     $userid = $_SESSION['UID'];

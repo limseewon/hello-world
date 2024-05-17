@@ -52,11 +52,11 @@ $(function(){
     spaceBetween: 30,
     speed: 1000,
     loop: true,
-    autoplay: {
-      delay: 1500,
-      disableOnInteraction : false, 
-      pauseOnMouseEnter:true
-    },
+    // autoplay: {
+    //   delay: 1500,
+    //   disableOnInteraction : false, 
+    //   pauseOnMouseEnter:true
+    // },
     navigation: {
       prevEl: ".suggestio_prev",
       nextEl: ".suggestio_next",
