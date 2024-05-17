@@ -8,6 +8,8 @@
     $sql = "DELETE from cart where cartid=$ctid";
     $result = $mysqli->query($sql);
 
+    echo $sql;
+
 
 
 

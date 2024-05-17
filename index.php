@@ -112,7 +112,9 @@ while ($basicRs = $basicResult->fetch_object()) {
             </div>     
           </div>
         </div>
-        <div class="swiper-pagination"></div>
+        <div class="swiper-pagination">
+          
+        </div>
         <div class="swiper-button-next se1_next"></div>
         <div class="swiper-button-prev se1_prev"></div>  
       </div>

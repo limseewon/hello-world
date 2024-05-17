@@ -2,9 +2,9 @@
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
-$pid = $_POST['pid'];
-$optname = $_POST['optname'] ?? '';
-$qty =  $_POST['qty'];
+$course_id = $_POST['pid'];
+$member_id = $_POST['optname'] ?? '';
+
 $total =  $_POST['total'];
 
 if(isset($_SESSION['UID'])){

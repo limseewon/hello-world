@@ -1,67 +1,61 @@
 <?php
 $title = '강의리스트';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_common.css"/>';
-$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_list.css"/>';
+$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/new.list.css"/>';
 $script1='';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
-$cate = $_GET['cate']??''; // PHP에서 $_GET은 HTTP GET 요청을 통해 전달된 매개변수를 가져옴 'cate'라는 이름의 매개변수가 존재하면 해당 값을 가져오고, 그렇지 않으면 빈 문자열('')을 반환
-$level = $_GET['level']??'';
-$pay = $_GET['pay']??'';   //HTTP GET 요청에서 "cate", "level", "pay" 매개변수를 가져옴. 만약 해당 매개변수가 없다면 빈 문자열을 할당
-$param = '';  //매개변수를 조합하여 WHERE 절에 추가할 조건을 담을 변수를 초기화
+// 대분류명 조회
+
+$step1Sql = "SELECT * from category where step =1";
+$stepresult =  $mysqli->query($step1Sql);
+while($step1rs = $stepresult-> fetch_object()){
+  $step1arr[]=$step1rs;
+}
+
+$sql = "SELECT * from courses where 1=1 " ;  //"courses" 테이블에서 모든 열을 선택하는 쿼리를 생성. 이 쿼리는 WHERE 절에 항상 참인 조건을 포함하고 있음. 이렇게 하는 이유는 후속적으로 추가되는 조건들을 쉽게 추가.
+$order = ' order by cid desc';   //결과를 "cid" 열을 기준으로 내림차순으로 정렬
+$sql = "SELECT * FROM `courses` WHERE YEAR(regdate) = YEAR(CURRENT_DATE()) AND MONTH(regdate) = MONTH(CURRENT_DATE()) ORDER BY cid DESC LIMIT 8";
+// echo $sql;
+$rc_result = $mysqli->query($sql);   // 데이터베이스에서 쿼리를 실행하고, 그 결과를 $rc_result 변수에 저장
+while ($rc_rs = $rc_result->fetch_object()) {
+  $rc_rsc[] = $rc_rs;
+}
+
 //main페이지 검색 
 $c_where = '';   // 검색 조건을 나타내는 변수인 $c_where를 초기화
-if (isset($_GET['search'])) {   // 만약 HTTP GET 요청으로 'search' 매개변수가 전달되었다면, 다음을 실행
-  $key = $_GET['search']; // search' 매개변수의 값을 가져와서 $key 변수에 할당
-  $c_where = " and name LIKE '%$key%'"; //  $key 값을 포함하는 "name", "cate", "level" 열 중 하나라도 일치하는 레코드를 선택하기 위한 조건을 $c_where에 할당 SQL의 LIKE 연산자를 사용하여 부분 문자열 검색을 수행
-};
-if (isset($_GET['cate'])) {   // 만약 HTTP GET 요청으로 '' 매개변수가 전달되었다면, 다음을 실행
-  $cate = $_GET['cate']; // ' 매개변수의 값을 가져와서 $key 변수에 할당
-  $c_where = " and name = '$cate'"; //  $key 값을 포함하는 "name", "cate", "level" 열 중 하나라도 일치하는 레코드를 선택하기 위한 조건을 $c_where에 할당 SQL의 LIKE 연산자를 사용하여 부분 문자열 검색을 수행
-};
 
+$cate = $_GET['cate']??''; // PHP에서 $_GET은 HTTP GET 요청을 통해 전달된 매개변수를 가져옴 'cate'라는 이름의 매개변수가 존재하면 해당 값을 가져오고, 그렇지 않으면 빈 문자열('')을 반환
+if (isset($cate)) {  // 만약 HTTP GET 요청으로 'catename' 매개변수가 전달되었다면, 다음을 실행
+
+  $modifiedString = str_replace('#', '', $cate);
+  $c_where .= " and cate LIKE '%$modifiedString%'"; // $keycate 값을 포함하는 "cate" 열과 일치하는 레코드를 선택하기 위한 조건을 $c_where에 할당
+};
 
 
 $sql = "SELECT * from courses where 1=1 " ;  //"courses" 테이블에서 모든 열을 선택하는 쿼리를 생성. 이 쿼리는 WHERE 절에 항상 참인 조건을 포함하고 있음. 이렇게 하는 이유는 후속적으로 추가되는 조건들을 쉽게 추가.
-$sql .= $c_where; 
 $order = ' order by cid desc';   //결과를 "cid" 열을 기준으로 내림차순으로 정렬
-echo $sql;
 
 
-$cate_where = '';
+$level = $_GET['level']??'';
+if (isset($level)) {  // 만약 HTTP GET 요청으로 'catename' 매개변수가 전달되었다면, 다음을 실행
+
+  $modifiedString2 = str_replace('#', '', $level);
+  $c_where .= " and level LIKE '%$modifiedString2%'"; // $keycate 값을 포함하는 "cate" 열과 일치하는 레코드를 선택하기 위한 조건을 $c_where에 할당
+};
+$pay = $_GET['pay']??'';   //HTTP GET 요청에서 "cate", "level", "pay" 매개변수를 가져옴. 만약 해당 매개변수가 없다면 빈 문자열을 할당
+if (isset($pay)) {  // 만약 HTTP GET 요청으로 'catename' 매개변수가 전달되었다면, 다음을 실행
+
+  $modifiedString3 = str_replace('#', '', $pay);
+  $c_where .= " and price_status LIKE '%$modifiedString3%'"; // $keycate 값을 포함하는 "cate" 열과 일치하는 레코드를 선택하기 위한 조건을 $c_where에 할당
+};
+$param = '';  //매개변수를 조합하여 WHERE 절에 추가할 조건을 담을 변수를 초기화
+
+
 $filter_where = '';
 $fil_where = '';    //$filter_where = '';, $fil_where = '';: WHERE 절에 추가할 각각의 카테고리, 필터, 필 변수를 초기화
 
-                    //URL을 통해 전달된 매개변수를 기반으로 데이터베이스에서 쿼리를 실행하기 위한 동적 WHERE 절을 구축
-//카테고리 조회
-if($cate != ''){  // cate' 변수가 비어 있지 않은 경우에만 다음을 실행
-  if($cate == '프론트엔드'){ // cate' 변수가 '프론트엔드'와 일치하는 경우, 다음을 실행
-    $c_where .= " and cate LIKE '%{$cate}%'"; // $c_where 변수에 "프론트엔드"를 포함하는 "cate" 열과 일치하는 레코드를 선택하기 위한 추가 조건을 추가
-  }else if($cate == '백엔드'){  // cate' 변수가 '백엔드'와 일치하는 경우, 다음을 실행 위와 동일한 방식으로, $c_where 변수에 "백엔드"를 포함하는 "cate" 열과 일치하는 레코드를 선택하기 위한 추가 조건을 추가
-    $c_where .= " and cate LIKE '%{$cate}%'";
-  }else if($cate == '디자인'){ // cate' 변수가 '디자인'과 일치하는 경우, 다음을 실행
-    $c_where .= " and cate LIKE '%{$cate}%'"; // $c_where 변수에 "디자인"을 포함하는 "cate" 열과 일치하는 레코드를 선택하기 위한 추가 조건을 추가
-  }else{   // 위의 모든 조건이 일치하지 않는 경우, 즉 'cate' 변수가 빈 문자열이거나 다른 값을 가지고 있는 경우, 아무 동작도 수행하지 않음
-    $c_where .= "";
-  }
-}else{
-  $c_where .= "";
-}
-
-//난이도 조회
-if($level != ''){   // 비어 있지 않은지 확인
-  if($level == '초급'){ // '초급' 레벨에 해당하는 강의를 선택
-    $c_where .= " and level LIKE '%{$level}%'";
-  }else if($level == '중급'){     // '중급' 레벨에 해당하는 강의를 선택
-    $c_where .= " and level LIKE '%{$level}%'";
-  }else if($level == '고급'){  // '고급' 레벨에 해당하는 강의를 선택
-    $c_where .= " and level LIKE '%{$level}%'";
-  }
-}else{  // $level이 비어 있으면 아무런 추가 조건을 추가하지 않음
-  $c_where .= "";
-}
-
-//가격 조회
+ //가격 조회
 if($pay != ''){  // 'pay' 변수가 비어 있지 않은 경우에만 다음을 실행
   $c_where .= " and price_status='{$pay}'";  // pay' 변수 값을 사용하여 "price_status" 열과 일치하는 레코드를 선택하기 위한 추가 조건을 $c_where 변수에 추가
   // $param .="&price_status='{$pay}'";      //  선택된 레코드는 결제 상태가 'pay' 변수 값과 동일한 것만 포함
@@ -86,17 +80,13 @@ $c_where .= $search_where;  // 생성된 검색 조건을 $c_where 변수에 추
 if(!isset($pagerwhere)){   // 변수가 설정되지 않았으면, 기본적으로 "1=1" 조건을 가진 $pagerwhere 변수를 설정
   $pagerwhere = " 1=1";
 }
-$sql = "SELECT * from courses where 1=1 " ;  //"courses" 테이블에서 모든 열을 선택하는 쿼리를 생성. 이 쿼리는 WHERE 절에 항상 참인 조건을 포함하고 있음. 이렇게 하는 이유는 후속적으로 추가되는 조건들을 쉽게 추가.
-$order = ' order by cid desc';   //결과를 "cid" 열을 기준으로 내림차순으로 정렬
-$sql = "SELECT * FROM `courses` WHERE YEAR(regdate) = YEAR(CURRENT_DATE()) AND MONTH(regdate) = MONTH(CURRENT_DATE()) ORDER BY cid DESC LIMIT 8";
-// echo $sql;
-$rc_result = $mysqli->query($sql);   // 데이터베이스에서 쿼리를 실행하고, 그 결과를 $rc_result 변수에 저장
-while ($rc_rs = $rc_result->fetch_object()) {
-  $rc_rsc[] = $rc_rs;
-}
 
+$sql2 = "SELECT COUNT(*) as count from courses where 1=1 ".$c_where;  // "courses" 테이블에서 조건을 충족하는 레코드의 수를 세는 쿼리를 생성
 
- 
+$result4 = $mysqli->query($sql2);  // 데이터베이스에 쿼리를 실행하고 결과를 반환
+
+$rs = $result4->fetch_object(); // 쿼리 결과에서 첫 번째 레코드를 객체 형태로 가져옴
+$sales_page = $rs->count; // count" 별칭으로 반환된 레코드 수를 $sales_page 변수에 할당
 
 //필터 없으면 여기서부터 복사! *******
 $pagenationTarget = 'courses'; //pagenation 테이블 명
@@ -148,7 +138,7 @@ $sqlrc = $sql.$c_where.$order.$limit;
       </div>
     </form>
     <div class="mainSection d-flex gap-5">
-      <form action="#" id="filter-form" class="" method="GET">
+    <form action="/helloworld/user/class/course_list.php" id="filter-form" class="" method="GET">
         <!-- <input type="hidden" name="cate-array" id="cate-array" value=""> -->
         <div class="content-box categorybox">
         <div class="checkBox_1 mb-3">
@@ -166,42 +156,32 @@ $sqlrc = $sql.$c_where.$order.$limit;
               id="total"
             >
           </div> -->
-          <div class="form-check">
-            <label class="form-check-label" for="frontend">
-              프론트엔드
+          <?php
+            if(isset($step1arr)){
+              foreach($step1arr as $item){
+          ?>  
+          <div class="form-check ">
+            <label class="form-check-label" for="<?= $item->code; ?>">
+            <?= $item->name; ?>
             </label>
             <input
               class="form-check-input"
               type="radio"
-              value="프론트엔드"
+              value="<?= $item->name;?>"
               name="cate"
-              id="frontend"
+              id="<?= $item->code; ?>"
             >
           </div>
-          <div class="form-check">
-            <label class="form-check-label" for="backend"> 백엔드 </label>
-            <input
-              class="form-check-input"
-              type="radio"
-              value="백엔드"
-              name="cate"
-              id="backend"
-            >
-          </div>
-          <div class="form-check">
-            <label class="form-check-label" for="design"> 디자인 </label>
-            <input
-              class="form-check-input"
-              type="radio"
-              value="디자인"
-              name="cate"
-              id="design"
-            >
-          </div>
+          
+          <?php
+              }
+            }
+            ?> 
         </div>
+        
         <div class="checkBox_2 mb-3 chcekbox_h6">
           <h3 class="chekbox2">난이도</h3>
-          <div class="form-check mt-5">
+          <div class="form-check mt-5 magin-fo">
             <label class="form-check-label" for="level1"> 초급 </label>
             <input
               class="form-check-input"
@@ -211,7 +191,7 @@ $sqlrc = $sql.$c_where.$order.$limit;
               id="level1"
             >
           </div>
-          <div class="form-check">
+          <div class="form-check magin-fo">
             <label class="form-check-label" for="level2"> 중급 </label>
             <input
               class="form-check-input"
@@ -221,7 +201,7 @@ $sqlrc = $sql.$c_where.$order.$limit;
               id="level2"
             >
           </div>
-          <div class="form-check">
+          <div class="form-check magin-fo">
             <label class="form-check-label" for="level3"> 고급 </label>
             <input
               class="form-check-input"

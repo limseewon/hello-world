@@ -39,10 +39,10 @@ if(isset($_SESSION['UID'])){ // 사용자가 로그인한 경우를 확인  만�
   $userid = $_SESSION['UID'];//유저아이디 저장
 
   //cart item 조회 사용자의 장바구니에 담긴 강의 정보를 조회
-  $sqlct = "SELECT c.*,ct.cartid FROM cart ct    
-            JOIN members u ON ct.userid = u.userid
+  $sqlct = "SELECT c.*,ct.cartid,ct.cid FROM cart ct    
+
             JOIN courses c ON c.cid = ct.cid
-            WHERE u.userid = '{$userid}'
+            WHERE ct.userid = '{$userid}'
             ORDER BY ct.cartid DESC";
             // echo $sqlct;
   // courses 테이블의 모든 열과 cart 테이블의 cartid 열을 선택
@@ -97,7 +97,7 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
           if(isset($rscct)){
             foreach($rscct as $cart){
           ?>
-      <li class="cart_item shadow_box content-box cart_boxfull2" data-cartid="<?= $cart->cartid ?>">
+      <li class="cart_item shadow_box content-box cart_boxfull2" data-cartid="<?= $cart->cartid; ?>" data-pid="<?= $cart->cid; ?>">
         <input class="form-check-input" type="checkbox" value="" id="cart_item" checked>
         <label class="form-check-label" for="cart_item"></label>
         <img src="<?= $cart->thumbnail ?>" alt="<?= $cart->name ?>" class="radius_5">
@@ -135,6 +135,7 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
             수강기간 <span><?= $cart->due ?></span>
           </div>
         </div>
+        
         <i class="fa-solid fa-x cart_item_del"></i>
         <?php
           if($cart->price_status != "무료"){
@@ -165,7 +166,11 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
     
   </div>
   <div class="form_container ">
-    <form action="#" method="POST" class="payment_form radius_12 shadow_box">
+    <form action="/helloworld/user/cart/cart_complete.php" method="POST" class="payment_form radius_12 shadow_box">
+      <input type="hidden" name="userid" value="<?=$userid;?>">
+      <input type="hidden" id="pid" name="pid[]" value="">
+      <input type="hidden" id="cartid" name="cartid[]" value="">
+      <input type="hidden" id="totalprice" name="totalprice" value="">
       <div class="contpatbpx">
         <div class="contentbox">
           
@@ -186,15 +191,23 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
               ?>       
           </select>
         </div>
-        
+       
+                             
+          <div class="update-checkout w-50 text-right">
+              <a href="cart_clear_ok.php" id="clearCart">clear cart</a>
+              <a href="#" id="updateCart">Update cart</a>
+          </div>
+                         
         <hr>
         <div class="paymentbox">
           <h2>CART TOTAl</h2>
+
+          
           <div class="payment_info d-flex justify-content-between">
             <p>상품 수 :</p><p><span class="cart_count number">0</span>개</p>
           </div>
           <div class="payment_info d-flex justify-content-between">
-            <p>할인가 :</p><p><span id="coupon-name"></span><span id="coupon-price" class="cart_total_price number">0</span>원</p>
+            <p>소계 :</p><p><span id="coupon-name"></span><span id="subtotal" class=" number">0</span>원</p>
           </div>
           <div class="payment_info d-flex justify-content-between">
             <p>할인가 :</p><p>- <span class="cart_discount number">0</span><span class="discount_unit">원</span></p>
@@ -204,6 +217,7 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
             <p class="b_text01">총 결제금액</p><p class="content_tt"><span><strong id="grandtotal">$59.90</strong>원</p>
           </div>
           <div class="butb">
+            
             <button class="btn btn-primary dark submit_btn greenbtn">구매하기</button>
           </div>  
         </div>
@@ -225,9 +239,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
     $('.cart_item_del').click(function(){
 
-        $(this).closest('').remove();
+        $(this).closest('cart_item').remove();
         calcTotal();
-        let cartid =  $(this).closest('').find('.').attr('');
+        let cartid =  $(this).closest('cart_item').find('.qty-text').attr('data-id');
 
 
 
@@ -254,34 +268,46 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
     //쿠폰적용 계산
     $('#coupon').change(function(){
-        let cname = $(this).find('option:selected').text();
-        let cprice = $(this).find('option:selected').attr('data-price');
-        $('#coupon-name').text(cname);
-        $('#coupon-price').text('-'+cprice);
+        
+        let couponprice = $(this).find('option:selected').attr('data-price');
+        console.log(couponprice);
+
+        $('.cart_discount').text(couponprice);
         calcTotal();
     });
     function calcTotal(){
-        let cartItem = $('.cart-table tbody tr');
+        let cartItem = $('.cart_item');
+        let cartcount = cartItem.length;
         let subtotal = 0;
+        let cartids = [];
+        let pids = [];
         cartItem.each(function(){
             let price = Number($(this).find('.price span').text());
-            let qty =  Number($(this).find('.qty-text').val());
-            let total_price = $(this).find('.total_price span');
-            total_price.text(price*qty);            
-            subtotal = subtotal+(price * qty);
-        });        
-        let discount = Number($('#coupon-price').text());
-        let grand_total = subtotal+discount;
+            let pid = Number($(this).attr('data-pid'));
+            pids.push(pid);
+            let cartid = Number($(this).attr('data-cartid'));
+            console.log(cartid);
+            cartids.push(cartid);
+            subtotal += price;
+        });   
+        console.log(subtotal);
+         
+        $('#pid').val(pids);  
+        $('#cartid').val(cartids);  
+        let discount = Number($('.cart_discount').text());
+        let grand_total = subtotal-discount;
+        $('#totalprice').val(grand_total);  
+        
         $('#subtotal').text(subtotal);
+        $('.cart_count').text(cartcount);
         $('#grandtotal').text(grand_total);
-        $('#grand_total_final').val(grand_total);
     }
     calcTotal();
 
     //카트 일괄 업데이트
     $('#updateCart').click(function(e){
         e.preventDefault();
-        let cartItem = $('.cart-table tbody tr');
+        let cartItem = $('.cart_item');
         let cartIdArr = [];
         let qtyArr = [];
 
