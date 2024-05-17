@@ -39,10 +39,10 @@ if(isset($_SESSION['UID'])){ // 사용자가 로그인한 경우를 확인  만�
   $userid = $_SESSION['UID'];//유저아이디 저장
 
   //cart item 조회 사용자의 장바구니에 담긴 강의 정보를 조회
-  $sqlct = "SELECT c.*,ct.cartid FROM cart ct    
-            JOIN members u ON ct.userid = u.userid
+  $sqlct = "SELECT c.*,ct.cartid,ct.cid FROM cart ct    
+
             JOIN courses c ON c.cid = ct.cid
-            WHERE u.userid = '{$userid}'
+            WHERE ct.userid = '{$userid}'
             ORDER BY ct.cartid DESC";
             // echo $sqlct;
   // courses 테이블의 모든 열과 cart 테이블의 cartid 열을 선택
@@ -60,38 +60,15 @@ if(isset($_SESSION['UID'])){ // 사용자가 로그인한 경우를 확인  만�
 
 
 
-  $cSql = "SELECT uc.ucid, c.coupon_name, c.coupon_price FROM user_coupons uc JOIN coupons c  ON c.cid = uc.couponid WHERE uc.status = 1 AND uc.userid = '{$userid}' AND uc.use_max_date >= now()";
-                            
-  // $cResult = $mysqli -> query($cSql);
-  // while($cRow = $cResult->fetch_object()){
-  //     $cpArr[] = $cRow;
-  // }
-  // print_r($rscct);
+  $cSql = "SELECT uc.ucid, c.cp_name, c.cp_price FROM user_coupons uc JOIN coupons c  ON c.cpid = uc.couponid WHERE uc.status = 1 AND uc.userid = '{$userid}' AND uc.use_max_date >= now()";
+                        
+  $cResult = $mysqli -> query($cSql);
+  while($cRow = $cResult->fetch_object()){
+      $cpArr[] = $cRow;
+  }
+  print_r($cpArr);
   
-  // 배열에는 장바구니에 담긴 강의들의 정보가 저장
-  //coupon 사용자가 보유한 쿠폰 정보를 조회
-  // $sqlcp = "SELECT c.* FROM user_coupon uc
-  //           JOIN members u ON uc.userid = u.userid
-  //           JOIN coupons c ON c.cpid = uc.cpid
-  //           WHERE u.userid = '{$userid}' AND (uc.use_max_date > NOW() OR uc.use_max_date IS NULL) AND uc.uc_status = 1
-  //           ORDER BY uc.ucid DESC";
-  //           echo $sqlcp;
-  //  쿠폰 테이블(coupons)의 모든 열을 선택
-  // 사용자 쿠폰 테이블(user_coupon)을 가리키는 별칭 uc를 사용
-  // user_coupon 테이블과 coupons 테이블을 조인하여 해당 사용자가 보유한 쿠폰들의 정보를 가져옴
-  // 사용자 쿠폰 테이블 uc와 사용자 테이블 members를 조인 조인은 uc 테이블의 userid 열과 members 테이블의 userid 열을 기준\
-  // 쿠폰 테이블 c와 사용자 쿠폰 테이블 uc를 조인
-  // 이 조인은 c 테이블의 cpid 열과 uc 테이블의 cpid 열을 기준
-  // 조건절로 사용자의 아이디가 $userid와 일치하는 경우에 해당
-  // 쿠폰의 사용 만료일(use_max_date)이 현재 날짜 및 시간(NOW())보다 나중인 경우 또는 사용 만료일이 NULL인 경우를 선택
-  // 사용자 쿠폰 상태(uc_status)가 1인 경우를 선택 여기서 1은 활성화된 상태
-  // 사용자 쿠폰 테이블의 기본 키인 ucid를 내림차순으로 정렬하여 결과를 반환
-  
-    // $result = $mysqli-> query($sqlcp);
-    // while($rs = $result->fetch_object()){
-    //   $rsccp[]=$rs;
-    // }
-    // print_r($rsccp);
+ 
 }
 else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScript 경고창을 띄워 로그인이 필요하다는 메시지를 출력
   echo "<script>
@@ -120,7 +97,7 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
           if(isset($rscct)){
             foreach($rscct as $cart){
           ?>
-      <li class="cart_item shadow_box content-box cart_boxfull2" data-cartid="<?= $cart->cartid ?>">
+      <li class="cart_item shadow_box content-box cart_boxfull2" data-cartid="<?= $cart->cartid; ?>" data-pid="<?= $cart->cid; ?>">
         <input class="form-check-input" type="checkbox" value="" id="cart_item" checked>
         <label class="form-check-label" for="cart_item"></label>
         <img src="<?= $cart->thumbnail ?>" alt="<?= $cart->name ?>" class="radius_5">
@@ -158,7 +135,8 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
             수강기간 <span><?= $cart->due ?></span>
           </div>
         </div>
-        <i class="ti ti-x del_btn del_x"></i>
+        
+        <i class="fa-solid fa-x cart_item_del"></i>
         <?php
           if($cart->price_status != "무료"){
           ?>
@@ -188,7 +166,11 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
     
   </div>
   <div class="form_container ">
-    <form action="#" method="POST" class="payment_form radius_12 shadow_box">
+    <form action="/helloworld/user/cart/cart_complete.php" method="POST" class="payment_form radius_12 shadow_box">
+      <input type="hidden" name="userid" value="<?=$userid;?>">
+      <input type="hidden" id="pid" name="pid[]" value="">
+      <input type="hidden" id="cartid" name="cartid[]" value="">
+      <input type="hidden" id="totalprice" name="totalprice" value="">
       <div class="contpatbpx">
         <div class="contentbox">
           
@@ -196,28 +178,36 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
 
           <h3 class="content_stt">결제정보</h3>
           <h4 class="demoHeaders style_pd b_text02">쿠폰선택</h4>
-          <select class="selectmenu coupon_select">
-            <option value="" selected class="default" data-discount="0" data-type="정액" data-limit="-1">보유하고 있는 쿠폰</option>
+          <select class="form-select" aria-label="쿠폰선택" name="coupon" id="coupon">
+              <option selected disabled>쿠폰선택</option>
             <?php
               if(isset($cpArr)){
                   foreach($cpArr as $ca){
               ?>
-                  <option data-price="<?= $ca -> coupon_price ?>" value="<?= $ca -> ucid ?>"><?= $ca -> coupon_name ?></option>
+                  <option data-price="<?= $ca -> cp_price ?>" value="<?= $ca -> ucid ?>"><?= $ca -> cp_name ?></option>
               <?php
                   }
               }
               ?>       
           </select>
         </div>
-        
+       
+                             
+          <div class="update-checkout w-50 text-right">
+              <a href="cart_clear_ok.php" id="clearCart">clear cart</a>
+              <a href="#" id="updateCart">Update cart</a>
+          </div>
+                         
         <hr>
         <div class="paymentbox">
           <h2>CART TOTAl</h2>
+
+          
           <div class="payment_info d-flex justify-content-between">
             <p>상품 수 :</p><p><span class="cart_count number">0</span>개</p>
           </div>
           <div class="payment_info d-flex justify-content-between">
-            <p>상품금액 :</p><p><span id="coupon-name"></span><span id="coupon-price" class="cart_total_price number">0</span>원</p>
+            <p>소계 :</p><p><span id="coupon-name"></span><span id="subtotal" class=" number">0</span>원</p>
           </div>
           <div class="payment_info d-flex justify-content-between">
             <p>할인가 :</p><p>- <span class="cart_discount number">0</span><span class="discount_unit">원</span></p>
@@ -227,6 +217,7 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
             <p class="b_text01">총 결제금액</p><p class="content_tt"><span><strong id="grandtotal">$59.90</strong>원</p>
           </div>
           <div class="butb">
+            
             <button class="btn btn-primary dark submit_btn greenbtn">구매하기</button>
           </div>  
         </div>
@@ -237,14 +228,20 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
 <script src="js/cart.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', ()=>{
+
+
+
+
+
+
     $('.quantity span').click(function(){
         calcTotal();
     });
     $('.cart_item_del').click(function(){
 
-        $(this).closest('tr').remove();
+        $(this).closest('cart_item').remove();
         calcTotal();
-        let cartid =  $(this).closest('tr').find('.qty-text').attr('data-id');
+        let cartid =  $(this).closest('cart_item').find('.qty-text').attr('data-id');
 
 
 
@@ -271,34 +268,46 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
     //쿠폰적용 계산
     $('#coupon').change(function(){
-        let cname = $(this).find('option:selected').text();
-        let cprice = $(this).find('option:selected').attr('data-price');
-        $('#coupon-name').text(cname);
-        $('#coupon-price').text('-'+cprice);
+        
+        let couponprice = $(this).find('option:selected').attr('data-price');
+        console.log(couponprice);
+
+        $('.cart_discount').text(couponprice);
         calcTotal();
     });
     function calcTotal(){
-        let cartItem = $('.cart-table tbody tr');
+        let cartItem = $('.cart_item');
+        let cartcount = cartItem.length;
         let subtotal = 0;
+        let cartids = [];
+        let pids = [];
         cartItem.each(function(){
             let price = Number($(this).find('.price span').text());
-            let qty =  Number($(this).find('.qty-text').val());
-            let total_price = $(this).find('.total_price span');
-            total_price.text(price*qty);            
-            subtotal = subtotal+(price * qty);
-        });        
-        let discount = Number($('#coupon-price').text());
-        let grand_total = subtotal+discount;
+            let pid = Number($(this).attr('data-pid'));
+            pids.push(pid);
+            let cartid = Number($(this).attr('data-cartid'));
+            console.log(cartid);
+            cartids.push(cartid);
+            subtotal += price;
+        });   
+        console.log(subtotal);
+         
+        $('#pid').val(pids);  
+        $('#cartid').val(cartids);  
+        let discount = Number($('.cart_discount').text());
+        let grand_total = subtotal-discount;
+        $('#totalprice').val(grand_total);  
+        
         $('#subtotal').text(subtotal);
+        $('.cart_count').text(cartcount);
         $('#grandtotal').text(grand_total);
-        $('#grand_total_final').val(grand_total);
     }
     calcTotal();
 
     //카트 일괄 업데이트
     $('#updateCart').click(function(e){
         e.preventDefault();
-        let cartItem = $('.cart-table tbody tr');
+        let cartItem = $('.cart_item');
         let cartIdArr = [];
         let qtyArr = [];
 

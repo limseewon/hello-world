@@ -71,7 +71,7 @@ while ($is = $result->fetch_object()) {
             <div>
               <div class="d-flex justify-content-between">
                 <div>
-                  <span class="badge rounded-pill blue_bg b-pd">
+                  <span class="badge rounded-pill pulele_bg b-pd">
                     <?php
                       //뱃지 키워드
                       if (isset($rs->cate)) {
@@ -87,11 +87,11 @@ while ($is = $result->fetch_object()) {
                       // 뱃지 컬러
                       $levelBadge = $rs->level;
                       if ($levelBadge === '초급') {
-                        echo 'yellow_bg';
-                      } else if ($levelBadge === '중급') {
                         echo 'green_bg';
+                      } else if ($levelBadge === '중급') {
+                        echo 'orange_bg';
                       } else {
-                        echo 'red_bg';
+                        echo 'blue_bg';
                       }
                     ?>
                   ">
@@ -183,95 +183,116 @@ while ($is = $result->fetch_object()) {
       </div>
       <div class="viewWrap_2 pd_6">
         <div class="pd_2">
-          <h2 class="h2_r">수강평</h2>
+            <h2 class="h2_r">수강평</h2>
         </div>
         <div class="review_num">
-          <p>전체 리뷰 [<?= $result->num_rows; ?>]건</p>
-        </div>
-        <div class="content-box content_review">
-          <div class="comment-form">
-              <form action="review_save.php" method="POST">
-                  <input type="hidden" name="cid" value="<?= $cid; ?>">
-                  <div class="mb-3">
-                      <div class="d-flex align-items-center">
-                          <i class="bi bi-person-circle me-2 h4"></i>
-                          <h5 class="mb-0">작성자</h5>
-                          <span class="comment-date text-muted ms-2"><?= date('Y-m-d'); ?></span>
-                          <div class="star-rating ms-2">
-                              <select name="rating" class="form-select">
-                                  <option value="5">★★★★★</option>
-                                  <option value="4">★★★★</option>
-                                  <option value="3">★★★</option>
-                                  <option value="2">★★</option>
-                                  <option value="1">★</option>
-                                  <option value="0">없음</option>
-                              </select>
-                              <div class="star-icons">
-                                  <i class="far fa-star"></i>
-                                  <i class="far fa-star"></i>
-                                  <i class="far fa-star"></i>
-                                  <i class="far fa-star"></i>
-                                  <i class="far fa-star"></i>
-                              </div>
-                          </div>
-                      </div>
-                      <textarea class="form-control mt-2" name="content" rows="3" placeholder="리뷰는 로그인한 회원만 작성할 수 있습니다. 강사와 수강생 모두에게 도움이 되는 좋은 리뷰를 남겨주세요 :)" required></textarea>
-                  </div>
-                  <div class="text-end">
-                      <button type="submit" class="btn btn-primary">등록</button>
-                  </div>
-              </form>
-          </div>
-          <hr>
-          <div class="comment-list">
             <?php
-            $reviewSql = "SELECT * FROM review WHERE cid = ? ORDER BY date DESC";
-            $stmt = $mysqli->prepare($reviewSql);
+            // 리뷰 개수 가져오기
+            $reviewCountSql = "SELECT COUNT(*) AS review_count FROM review WHERE cid = ?";
+            $stmt = $mysqli->prepare($reviewCountSql);
             $stmt->bind_param("i", $cid);
             $stmt->execute();
-            $result = $stmt->get_result();
-
-            if ($result->num_rows > 0) {
-                while ($review = $result->fetch_assoc()) {
-                    ?>
-                    <div class="comment-item mb-4">
-                        <div class="comment-header d-flex align-items-center justify-content-between">
-                            <div class="comment-meta d-flex align-items-center">
-                                <div class="comment-avatar me-2">
-                                    <i class="bi bi-person-circle"></i>
-                                </div>
-                                <span class="comment-author fw-bold me-2"><?= $review['name'] ?></span>
-                                <div class="star-rating">
-                                  <?php
-                                  $rating = $review['rating'];
-                                  for ($i = 1; $i <= 5; $i++) {
-                                      $starClass = ($i <= $rating) ? 'fas fa-star text-warning' : 'far fa-star';
-                                      echo "<i class='$starClass'></i>";
-                                  }
-                                  ?>
-                              </div>
-                            </div>
-                            <div class="comment-actions">
-                                <a href="review_delete.php?cid=<?= $cid; ?>&idx=<?= $review['idx']; ?>" class="delete-link text-danger" onclick="confirmDelete(event)">
-                                    <span class="material-symbols-outlined">delete</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comment-content mt-2">
-                            <p><?= $review['content'] ?></p>
-                        </div>
-                    </div>
-                    <?php
-                }
-            } else {
-                echo "<p class='text-center'>등록된 수강평이 없습니다.</p>";
-            }
-
+            $countResult = $stmt->get_result();
+            $reviewCount = $countResult->fetch_assoc()['review_count'];
             $stmt->close();
             ?>
+            <p>전체 리뷰 [<?= $reviewCount; ?>]건</p>
         </div>
+        <div class="content-box content_review">
+            <?php if (isset($_SESSION['UID'])) : ?>
+                <div class="comment-form">
+                    <form action="review_save.php" method="POST">
+                        <input type="hidden" name="cid" value="<?= $cid; ?>">
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-person-circle me-2 h4"></i>
+                                <h5 class="mb-0">작성자</h5>
+                                <span class="comment-date text-muted ms-2"><?= date('Y-m-d'); ?></span>
+                                <div class="star-rating ms-2">
+                                    <select name="rating" class="form-select">
+                                        <option value="5">★★★★★</option>
+                                        <option value="4">★★★★</option>
+                                        <option value="3">★★★</option>
+                                        <option value="2">★★</option>
+                                        <option value="1">★</option>
+                                        <option value="0">없음</option>
+                                    </select>
+                                    <div class="star-icons">
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <textarea class="form-control mt-2" name="content" rows="3" placeholder="강사와 수강생 모두에게 도움이 되는 좋은 리뷰를 남겨주세요 :)" required></textarea>
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">등록</button>
+                        </div>
+                    </form>
+                </div>
+            <?php else : ?>
+                <div class="comment-form">
+                    <p class="text-center">리뷰는 로그인한 회원만 작성할 수 있습니다.</p>
+                    <div class="text-center">
+                      <button type="button" class="btn btn-primary btn-sm login-btn" href="#" role="button" data-bs-toggle="modal" data-bs-target="#login_modal">로그인</button>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <hr>
+            <div class="comment-list">
+              <?php
+              $reviewSql = "SELECT * FROM review WHERE cid = ? ORDER BY date DESC";
+              $stmt = $mysqli->prepare($reviewSql);
+              $stmt->bind_param("i", $cid);
+              $stmt->execute();
+              $result = $stmt->get_result();
+
+              if ($result->num_rows > 0) {
+                  while ($review = $result->fetch_assoc()) {
+                      ?>
+                      <div class="comment-item mb-4">
+                          <div class="comment-header d-flex align-items-center justify-content-between">
+                              <div class="comment-meta d-flex align-items-center">
+                                  <div class="comment-avatar me-2">
+                                      <i class="bi bi-person-circle"></i>
+                                  </div>
+                                  <span class="comment-author fw-bold me-2"><?= $review['name'] ?></span>
+                                  <div class="star-rating">
+                                      <?php
+                                      $rating = $review['rating'];
+                                      for ($i = 1; $i <= 5; $i++) {
+                                          $starClass = ($i <= $rating) ? 'fas fa-star text-warning' : 'far fa-star';
+                                          echo "<i class='$starClass'></i>";
+                                      }
+                                      ?>
+                                  </div>
+                              </div>
+                              <?php if (isset($_SESSION['UID']) && $_SESSION['UID'] == $review['user_id']) : ?>
+                                  <div class="comment-actions">
+                                      <a href="review_delete.php?cid=<?= $cid; ?>&idx=<?= $review['idx']; ?>" class="delete-link text-danger" onclick="confirmDelete(event)">
+                                          <span class="material-symbols-outlined">delete</span>
+                                      </a>
+                                  </div>
+                              <?php endif; ?>
+                          </div>
+                          <div class="comment-content mt-2">
+                              <p><?= $review['content'] ?></p>
+                          </div>
+                      </div>
+                      <?php
+                  }
+              } else {
+                  echo "<p class='text-center'>등록된 수강평이 없습니다.</p>";
+              }
+
+              $stmt->close();
+              ?>
+          </div>
         </div>
-      </div>
+    </div>
     </div>
   <!-- </form> -->
 </main>

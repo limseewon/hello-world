@@ -455,6 +455,12 @@ p {
   background-color: var(--c-ribon-orange);
 }
 
+
+.swiper-pagination-bullet-active { width:70px; height: 22px; background: #504747; border-radius:  20px;}
+.swiper-pagination-bullet {width: 22px; height: 22px; background: var(--c-title-font);}
+
+
+
 .issue_coupons {
   /* height: 600px; */
   background: beige;

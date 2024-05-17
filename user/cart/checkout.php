@@ -6,8 +6,9 @@ $pid = $_POST['pid'];
 $grand_total = $_POST['grand_total'];
 $ucid = $_POST['coupon']??'';
 
-$sql = "INSERT INTO orders (userid,pid,total_price,regdate) VALUES ('{$userid}','{$pid}',{$grand_total},now())";
+$sql = "INSERT INTO ordered_courses (course_id,member_id,total_price,regdate) VALUES ('{$course_id}','{$member_id}',{$grand_total},now())";
 $result = $mysqli -> query($sql);
+echo $sql;
 
 
 if(isset($ucid) && $ucid !==''){
