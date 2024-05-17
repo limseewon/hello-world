@@ -109,7 +109,8 @@ tr {
   max-height: 200px;
 }
 
-.bi{
+.bi-pencil-square,
+.bi-trash{
   font-size: 20px;
   color: var(--c-primary-button);
 }
