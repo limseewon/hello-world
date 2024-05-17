@@ -15,8 +15,6 @@ try{
     $cp_date=$_POST['cp_date_type'];
   }
 
-  
-
   $sql = "INSERT into coupons 
   (cp_name, cp_image, cp_type, cp_price, cp_limit, cp_ratio, cp_status, cp_date) values 
   ('{$cp_name}','{$cp_image}','{$cp_type}',{$cp_price},'{$cp_limit}',{$cp_ratio},'{$cp_status}','{$cp_date}')";

@@ -91,7 +91,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                 <div class="field coupon_min_price input-group d-flex align-items-center">
                   <label for="coupon_limit" class="content_tt">최소사용금액</label>
                   <input type="number" name="cp_limit" id="coupon_limit" class="form-control number"
-                    placeholder="1,000" min="1000" max="1000000" step="1000" required>원
+                    placeholder="1,000" min="1000" max="1000000" step="1000" value="1000" required >원
                 </div>
                 
               </div>
@@ -119,8 +119,15 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                 <div class="form-check d-flex align-items-center">
                   <input class="form-check-input number" type="radio" name="cp_type" id="coupon_sale_1" checked value="정액">
                   <label class="form-check-label b_text01" for="coupon_sale_1">할인가</label>
-                  <input type="number" name="cp_price" id="cp_price" class="form-control input number"
-                  placeholder="1,000" min="1000" max="1000000" step="1000">원
+                  <!-- <input type="number" name="cp_price" id="cp_price" class="form-control input number" -->
+                  <!-- placeholder="1,000" min="1000" max="1000000" step="1000" value="1000">원 -->                
+                  <select class="form-select form_heid forwidt" name="cp_price" id="cp_price" aria-label="Default select example" >
+                    <option value="1000" selected>1,000</option>
+                      <option value="2000" >2,000</option>
+                      <option value="3000">3,000</option>
+                      <option value="5000">5,000</option>
+                      <option value="10000">10,000</option>
+                    </select>원
                 </div>
                 <div class="form-check d-flex align-items-center coupon_opc">
                   <input class="form-check-input" type="radio" name="cp_type" id="coupon_sale_0" value="정률">
@@ -153,7 +160,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
                 </div>
               </div>
             </div>
-    
           </fieldset>
           
       
