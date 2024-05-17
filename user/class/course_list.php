@@ -162,7 +162,7 @@ while($rs = $result -> fetch_object()){
             if(isset($step1arr)){
               foreach($step1arr as $item){
           ?>  
-          <div class="form-check">
+          <div class="form-check ">
             <label class="form-check-label" for="<?= $item->code; ?>">
             <?= $item->name; ?>
             </label>
@@ -183,7 +183,7 @@ while($rs = $result -> fetch_object()){
         
         <div class="checkBox_2 mb-3 chcekbox_h6">
           <h3 class="chekbox2">난이도</h3>
-          <div class="form-check mt-5">
+          <div class="form-check mt-5 magin-fo">
             <label class="form-check-label" for="level1"> 초급 </label>
             <input
               class="form-check-input"
@@ -193,7 +193,7 @@ while($rs = $result -> fetch_object()){
               id="level1"
             >
           </div>
-          <div class="form-check">
+          <div class="form-check magin-fo">
             <label class="form-check-label" for="level2"> 중급 </label>
             <input
               class="form-check-input"
@@ -203,7 +203,7 @@ while($rs = $result -> fetch_object()){
               id="level2"
             >
           </div>
-          <div class="form-check">
+          <div class="form-check magin-fo">
             <label class="form-check-label" for="level3"> 고급 </label>
             <input
               class="form-check-input"

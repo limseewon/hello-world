@@ -10,8 +10,10 @@ if(isset($_SESSION['UID'])){
 }
 //pid	userid	ssid	options	cnt	regdate	
 
-$sql = "DELETE FROM cart WHERE (ssid = '{$ssid}' or userid = '{$userid}')";
+$sql = "DELETE FROM cart WHERE (cid = '{$ssid}' or userid = '{$userid}')";
 $result = $mysqli -> query($sql);
+
+echo $sql;
 if($result){
     echo "<script>
     alert('카트를 비웠습니다.');
