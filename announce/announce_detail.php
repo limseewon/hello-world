@@ -261,7 +261,9 @@ $next_id = $row_next['next_id'];
           <div class="mb-3 d-flex con">
               <p>내용</p>
               <?= $row['content']; ?>
-              <?= $row['is_img']; ?>
+              <?php if (!empty($row['files'])) : ?>
+                <img src="/helloworld/user/uploads/<?= $row['files']; ?>" alt="#" class="img_qna">
+              <?php endif; ?>
           </div>
           <!-- 첨부 파일 출력 부분 -->
           <div class="d-flex file">
