@@ -25,9 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // 리뷰 데이터 저장
     $user_id = $_SESSION['UID']; // 로그인한 사용자의 ID
-$sql = "INSERT INTO review (cid, name, content, rating, date, hit, view, user_id) VALUES (?, ?, ?, ?, NOW(), 0, 0, ?)";
-$stmt = $mysqli->prepare($sql);
-$stmt->bind_param("issii", $cid, $name, $content, $rating, $user_id);
+    $sql = "INSERT INTO review (cid, name, content, rating, date, hit, view, user_id) VALUES (?, ?, ?, ?, NOW(), 0, 0, ?)";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param("issii", $cid, $name, $content, $rating, $user_id);
 
     if ($stmt->execute()) {
         echo "<script>alert('리뷰가 등록되었습니다.');</script>";
