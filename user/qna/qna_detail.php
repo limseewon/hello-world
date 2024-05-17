@@ -115,11 +115,11 @@ if ($qna_id > 0) {
                 </div>
             <?php endif; ?>
             <div id="qnaDetail">
-                <div class="qna-detail-box jcsb d-flex">
-                    <!-- <div class="qna-content d-flex h5 jcsb"> -->
-                        <p><?= $row['content']; ?></p>
+                <div class="qna-detail-box jcsb d-flex h5">
+                    <p><?= $row['content']; ?></p>
+                    <?php if (!empty($row['files'])) : ?>
                         <img src="/helloworld/user/uploads/<?= $row['files']; ?>" alt="#" class="img_qna">
-                    <!-- </div> -->
+                    <?php endif; ?>
                 </div>
             </div>
             <div id="qnaEditForm" style="display: none;">
@@ -151,19 +151,22 @@ if ($qna_id > 0) {
             <hr>
             <div class="reply_comments">
                 <div class="comment-form" style="display: none;">
-                <form action="qna_save_insert.php" method="POST">
-                    <input type="hidden" name="idx" value="<?= $qna_id ?>">
-                    <div class="mb-3">
+                    <form action="qna_save_insert.php" method="POST">
+                        <input type="hidden" name="idx" value="<?= $qna_id ?>">
+                        <div class="mb-3">
                         <div class="d-flex align-items-center">
                             <i class="bi bi-person-circle me-2 h4"></i>
                             <h5 class="mb-0 p">작성자</h5>
                         </div>
                         <textarea class="form-control mt-2" name="comment" rows="3" placeholder="댓글을 입력하세요" required></textarea>
-                    </div>
-                    <div class="text-end">
+                        </div>
+                        <div class="text-end">
                         <button type="submit" class="btn btn-primary">등록</button>
+                        </div>
+                    </form>
+                    <div class="mt-3">
+                        <button type="button" class="btn btn-success" onclick="selectAnswer(<?= $qna_id ?>, this)">채택하기</button>
                     </div>
-                </form>
                 </div>
                 <div class="comment-list mt-4">
                     <?php while ($comment = $comment_result->fetch_assoc()) : ?>
@@ -182,6 +185,9 @@ if ($qna_id > 0) {
                                     </div>
                                     <div class="comment-content">
                                         <p class="mb-0"><?= $comment['comment']; ?></p>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button type="button" class="btn btn-success btn-sm" onclick="selectAnswer(<?= $qna_id ?>, <?= $comment['id'] ?>)">채택하기</button>
                                     </div>
                                 </div>
                             </div>
