@@ -15,8 +15,8 @@ if(isset($_SESSION['UID'])){
     $userid = '';
 }
 
-//pid 장바구니 중복체크
-$sql = "SELECT COUNT(*) AS cnt FROM cart WHERE pid = '{$pid}' AND (userid = '{$userid}' or ssid='{$ssid}')";
+//cid 장바구니 중복체크
+$sql = "SELECT COUNT(*) AS cnt FROM cart WHERE cid = '{$cid}' AND (userid = '{$userid}' or ssid='{$ssid}')";
 $result = $mysqli -> query($sql);
 $row = $result -> fetch_object(); // $row->cnt
 
@@ -25,13 +25,13 @@ if($result){
         $data = array('result' => '중복');
         echo json_encode($data);
     }else {
-        $cartsql = "INSERT INTO cart (pid,userid,ssid,options,cnt,total,regdate) VALUES (
-            {$pid},
+        $cartsql = "INSERT INTO cart (cartid,cid,userid,regdate,) VALUES (
+            {$cartid},
+            '{$cid}',
             '{$userid}',
-            '{$ssid}',
-            '{$optname}',
-            '{$qty}',
-            '{$total}',
+            '{$regdate}'
+            
+           
             now()
         )";
         

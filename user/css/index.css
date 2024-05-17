@@ -252,8 +252,17 @@ p {
   display: flex; justify-content: center;
 }
  
-.badegtwo { width: 100%;margin-top: var(--c-space_updown); margin-left: var(--c-space_updown);} 
-.badeg_bt { font-size: 20px; color: #fff; margin-top: var(--c-space_updown); margin-left: var(--c-space_updown); } 
+.badegtwo { 
+  width: 100%;
+  margin-top: var(--c-space_updown); 
+  margin-left: var(--c-space_updown);
+} 
+.badeg_bt {
+   font-size: 20px; 
+   color: #fff;
+    margin-top: var(--c-space_updown);
+     margin-left: var(--c-space_updown); 
+    } 
 
 .view_btn::after:hover {
   background-color: #000;

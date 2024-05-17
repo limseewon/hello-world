@@ -60,38 +60,15 @@ if(isset($_SESSION['UID'])){ // 사용자가 로그인한 경우를 확인  만�
 
 
 
-  $cSql = "SELECT uc.ucid, c.coupon_name, c.coupon_price FROM user_coupons uc JOIN coupons c  ON c.cid = uc.couponid WHERE uc.status = 1 AND uc.userid = '{$userid}' AND uc.use_max_date >= now()";
-                            
-  // $cResult = $mysqli -> query($cSql);
-  // while($cRow = $cResult->fetch_object()){
-  //     $cpArr[] = $cRow;
-  // }
-  // print_r($rscct);
+  $cSql = "SELECT uc.ucid, c.cp_name, c.cp_price FROM user_coupons uc JOIN coupons c  ON c.cpid = uc.couponid WHERE uc.status = 1 AND uc.userid = '{$userid}' AND uc.use_max_date >= now()";
+                        
+  $cResult = $mysqli -> query($cSql);
+  while($cRow = $cResult->fetch_object()){
+      $cpArr[] = $cRow;
+  }
+  print_r($cpArr);
   
-  // 배열에는 장바구니에 담긴 강의들의 정보가 저장
-  //coupon 사용자가 보유한 쿠폰 정보를 조회
-  // $sqlcp = "SELECT c.* FROM user_coupon uc
-  //           JOIN members u ON uc.userid = u.userid
-  //           JOIN coupons c ON c.cpid = uc.cpid
-  //           WHERE u.userid = '{$userid}' AND (uc.use_max_date > NOW() OR uc.use_max_date IS NULL) AND uc.uc_status = 1
-  //           ORDER BY uc.ucid DESC";
-  //           echo $sqlcp;
-  //  쿠폰 테이블(coupons)의 모든 열을 선택
-  // 사용자 쿠폰 테이블(user_coupon)을 가리키는 별칭 uc를 사용
-  // user_coupon 테이블과 coupons 테이블을 조인하여 해당 사용자가 보유한 쿠폰들의 정보를 가져옴
-  // 사용자 쿠폰 테이블 uc와 사용자 테이블 members를 조인 조인은 uc 테이블의 userid 열과 members 테이블의 userid 열을 기준\
-  // 쿠폰 테이블 c와 사용자 쿠폰 테이블 uc를 조인
-  // 이 조인은 c 테이블의 cpid 열과 uc 테이블의 cpid 열을 기준
-  // 조건절로 사용자의 아이디가 $userid와 일치하는 경우에 해당
-  // 쿠폰의 사용 만료일(use_max_date)이 현재 날짜 및 시간(NOW())보다 나중인 경우 또는 사용 만료일이 NULL인 경우를 선택
-  // 사용자 쿠폰 상태(uc_status)가 1인 경우를 선택 여기서 1은 활성화된 상태
-  // 사용자 쿠폰 테이블의 기본 키인 ucid를 내림차순으로 정렬하여 결과를 반환
-  
-    // $result = $mysqli-> query($sqlcp);
-    // while($rs = $result->fetch_object()){
-    //   $rsccp[]=$rs;
-    // }
-    // print_r($rsccp);
+ 
 }
 else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScript 경고창을 띄워 로그인이 필요하다는 메시지를 출력
   echo "<script>
@@ -158,7 +135,7 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
             수강기간 <span><?= $cart->due ?></span>
           </div>
         </div>
-        <i class="ti ti-x del_btn del_x"></i>
+        <i class="fa-solid fa-x cart_item_del"></i>
         <?php
           if($cart->price_status != "무료"){
           ?>
@@ -196,13 +173,13 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
 
           <h3 class="content_stt">결제정보</h3>
           <h4 class="demoHeaders style_pd b_text02">쿠폰선택</h4>
-          <select class="selectmenu coupon_select">
-            <option value="" selected class="default" data-discount="0" data-type="정액" data-limit="-1">보유하고 있는 쿠폰</option>
+          <select class="form-select" aria-label="쿠폰선택" name="coupon" id="coupon">
+              <option selected disabled>쿠폰선택</option>
             <?php
               if(isset($cpArr)){
                   foreach($cpArr as $ca){
               ?>
-                  <option data-price="<?= $ca -> coupon_price ?>" value="<?= $ca -> ucid ?>"><?= $ca -> coupon_name ?></option>
+                  <option data-price="<?= $ca -> cp_price ?>" value="<?= $ca -> ucid ?>"><?= $ca -> cp_name ?></option>
               <?php
                   }
               }
@@ -217,7 +194,7 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
             <p>상품 수 :</p><p><span class="cart_count number">0</span>개</p>
           </div>
           <div class="payment_info d-flex justify-content-between">
-            <p>상품금액 :</p><p><span id="coupon-name"></span><span id="coupon-price" class="cart_total_price number">0</span>원</p>
+            <p>할인가 :</p><p><span id="coupon-name"></span><span id="coupon-price" class="cart_total_price number">0</span>원</p>
           </div>
           <div class="payment_info d-flex justify-content-between">
             <p>할인가 :</p><p>- <span class="cart_discount number">0</span><span class="discount_unit">원</span></p>
@@ -237,6 +214,12 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
 <script src="js/cart.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', ()=>{
+
+
+
+
+
+
     $('.quantity span').click(function(){
         calcTotal();
     });
