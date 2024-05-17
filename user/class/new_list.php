@@ -11,12 +11,12 @@ $pay = $_GET['pay']??'';   //HTTP GET 요청에서 "cate", "level", "pay" 매개
 $param = '';  //매개변수를 조합하여 WHERE 절에 추가할 조건을 담을 변수를 초기화
 //main페이지 검색 
 $c_where = '';   // 검색 조건을 나타내는 변수인 $c_where를 초기화
-if (isset($_GET['search'])) {   // 만약 HTTP GET 요청으로 'course_search' 매개변수가 전달되었다면, 다음을 실행
-  $key = $_GET['search']; // course_search' 매개변수의 값을 가져와서 $key 변수에 할당
+if (isset($_GET['search'])) {   // 만약 HTTP GET 요청으로 'search' 매개변수가 전달되었다면, 다음을 실행
+  $key = $_GET['search']; // search' 매개변수의 값을 가져와서 $key 변수에 할당
   $c_where = " and name LIKE '%$key%'"; //  $key 값을 포함하는 "name", "cate", "level" 열 중 하나라도 일치하는 레코드를 선택하기 위한 조건을 $c_where에 할당 SQL의 LIKE 연산자를 사용하여 부분 문자열 검색을 수행
 };
-if (isset($_GET['cate'])) {   // 만약 HTTP GET 요청으로 'course_search' 매개변수가 전달되었다면, 다음을 실행
-  $cate = $_GET['cate']; // course_search' 매개변수의 값을 가져와서 $key 변수에 할당
+if (isset($_GET['cate'])) {   // 만약 HTTP GET 요청으로 '' 매개변수가 전달되었다면, 다음을 실행
+  $cate = $_GET['cate']; // ' 매개변수의 값을 가져와서 $key 변수에 할당
   $c_where = " and name = '$cate'"; //  $key 값을 포함하는 "name", "cate", "level" 열 중 하나라도 일치하는 레코드를 선택하기 위한 조건을 $c_where에 할당 SQL의 LIKE 연산자를 사용하여 부분 문자열 검색을 수행
 };
 

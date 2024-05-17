@@ -242,9 +242,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
     $('.cart_item_del').click(function(){
 
-        $(this).closest('tr').remove();
+        $(this).closest('').remove();
         calcTotal();
-        let cartid =  $(this).closest('tr').find('.qty-text').attr('data-id');
+        let cartid =  $(this).closest('').find('.').attr('');
 
 
 
