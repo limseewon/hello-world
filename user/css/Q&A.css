@@ -117,9 +117,8 @@ tr {
 .img_qna{
   width: 400px;
 }
-
-#qnaDetail{
-  padding: 20px;
+.qna_btn{
+  flex: end;
 }
 
 /* Q&A.html */
