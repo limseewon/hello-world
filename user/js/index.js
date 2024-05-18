@@ -35,7 +35,7 @@ $(function () {
   var swiper = new Swiper('.recom_slide', {
     slidesPerView: 3,
     spaceBetween: 30,
-    speed: 1000,
+    speed: 1200,
     loop: true,
     autoplay: {
       delay: 1500,
@@ -51,7 +51,7 @@ $(function () {
   var swiper = new Swiper('.new_slide', {
     slidesPerView: 3,
     spaceBetween: 30,
-    speed: 1000,
+    speed: 1400,
     loop: true,
     autoplay: {
       delay: 1500,
