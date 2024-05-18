@@ -144,6 +144,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
        </div>
    </nav>
    <select class="form-select form-select-lg mb-3" aria-label="Large select example">
+       <option selected>답변</option>
+       <option value="1">완료</option>
+       <option value="2">미완료</option>
+   </select>
+   <select class="form-select form-select-lg mb-3" aria-label="Large select example">
        <option selected>작성일</option>
        <option value="1">최신순</option>
        <option value="2">한달 이내</option>
