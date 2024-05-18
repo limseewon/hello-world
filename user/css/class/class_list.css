@@ -140,6 +140,19 @@
   height: 100%;
   
 }
+.view_btn::after:hover {
+  background-color: #000;
+  opacity: 0.7;
+  color: #ffffff;
+}
+.view_btn:hover {
+}
+.slide_hover {
+  width: 40px;
+  display: block;
+  top: 80px;
+  left: 80px;
+}
 .badgeblack { 
   
  

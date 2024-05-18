@@ -12,14 +12,19 @@ $stepresult =  $mysqli->query($step1Sql);
 while($step1rs = $stepresult-> fetch_object()){
   $step1arr[]=$step1rs;
 }
-
+$orderSql = "SELECT course_id, COUNT(*) AS course_count FROM ordered_courses GROUP BY course_id ORDER BY course_count DESC LIMIT 8";
+$orderResult = $mysqli->query($orderSql);   
+while ($orderRs = $orderResult->fetch_row()) {
+  $orderArr[] = $orderRs[0];
+}
+// print_r($orderArr);
 $orderArr = implode(",", $orderArr);
 $recomSql = "SELECT * FROM courses WHERE cid IN ($orderArr)";
 $recomResult = $mysqli->query($recomSql);   
 while ($recomRs = $recomResult->fetch_object()) {
   $recomArr[] = $recomRs;
 }
-print_r($recomArr);
+// print_r($recomArr);
 
 //main페이지 검색 
 $c_where = '';   // 검색 조건을 나타내는 변수인 $c_where를 초기화

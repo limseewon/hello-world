@@ -18,7 +18,7 @@ $basicResult = $mysqli->query($basicSql);
 while ($basicRs = $basicResult->fetch_object()) {
   $basicArr[] = $basicRs;
 }
-print_r($basicArr);
+// print_r($basicArr);
 
 //main페이지 검색 
 $c_where = '';   // 검색 조건을 나타내는 변수인 $c_where를 초기화

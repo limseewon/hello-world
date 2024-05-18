@@ -348,7 +348,7 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
   <section class="sec4 container">
   <div class="plusbox d-flex secc4">
         <h2 class="jua dark sec_tt courset">추천강의</h2>
-        <a href=""><div class="moreplus d-flex">
+        <a href="/helloworld/user/class/population_list.php"><div class="moreplus d-flex">
           <h3 class="moreview">더보기</h3>
           <span class="material-symbols-outlined">add</span>
         </div>
@@ -496,7 +496,7 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
   <section class="sec5 container">
     <div class="plusbox d-flex secc5">
       <h2 class="jua dark sec_tt courset">입문자를 위한 초급강의</h2>
-      <a href=""><div class="moreplus d-flex">
+      <a href="/helloworld/user/class/suggestion_list.php"><div class="moreplus d-flex">
         <h3 class="moreview">더보기</h3>
         <span class="material-symbols-outlined">add</span>
       </div>

@@ -21,6 +21,7 @@ $rc_result = $mysqli->query($sql);   // 데이터베이스에서 쿼리를 실�
 while ($rc_rs = $rc_result->fetch_object()) {
   $rc_rsc[] = $rc_rs;
 }
+// print_r($rc_rsc);
 
 //main페이지 검색 
 $c_where = '';   // 검색 조건을 나타내는 변수인 $c_where를 초기화
