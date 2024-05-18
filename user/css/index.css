@@ -402,7 +402,7 @@ p {
 
 .sec4 .swiper,
 .sec5 .swiper {
-  width: 1130px;
+  width: 1109px;
   height: 425px;
 }
 
@@ -458,8 +458,17 @@ p {
 }
 
 
-.swiper-pagination-bullet-active { width:70px; height: 22px; background: #504747; border-radius:  20px;}
-.swiper-pagination-bullet {width: 22px; height: 22px; background: var(--c-title-font);}
+.swiper-pagination-bullet-active {
+  width:70px;
+  height: 22px;
+  background: #504747;
+  border-radius:  20px;
+}
+.swiper-pagination-bullet {
+  width: 22px; 
+  height: 22px; 
+  background: var(--c-title-font);
+}
 
 
 
