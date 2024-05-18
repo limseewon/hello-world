@@ -9,27 +9,30 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/pagination.php';
 $sql = "SELECT * FROM notice WHERE 1=1";
 $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
 if ($keyword) {
-  $sql .= " AND title LIKE '%$keyword%'";
+    $sql .= " AND title LIKE '%$keyword%'";
 }
 
-$view_option = isset($_GET['view']) ? $_GET['view'] : '';
-switch ($view_option) {
-  case '1':
-      $sql .= " ORDER BY view DESC";
-      break;
-  case '2':
-      $sql .= " ORDER BY view ASC";
-      break;
-  default:
-      $sql .= " ORDER BY idx DESC";
+$date_option = isset($_GET['date']) ? $_GET['date'] : '';
+
+$order_by = " ORDER BY idx DESC"; // 기본 정렬 순서 설정
+
+
+switch ($date_option) {
+    case 'latest':
+        $order_by = " ORDER BY regdate DESC";
+        break;
+    case 'oldest':
+        $order_by = " ORDER BY regdate ASC";
+        break;
 }
+
+$sql .= $order_by;
 
 $result_count = $mysqli->query($sql);
 $totalcount = $result_count->num_rows;
 
 $sql .= " LIMIT $startLimit, $endLimit";
 $result = $mysqli->query($sql);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -145,17 +148,11 @@ $result = $mysqli->query($sql);
                 </form>
                 </div>
               </nav>
-              <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-                <option selected>조회수</option>
-                <option value="1">가장 많음</option>
-                <option value="2">가장 적음</option>
-              </select>
-              <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-                <option selected>작성일</option>
-                <option value="1">최신순</option>
-                <option value="2">한달 이내</option>
-                <option value="3">일년 이내</option>
-              </select>
+              <select class="form-select form-select-lg mb-3" aria-label="Large select example" onchange="applyFilter('date', this.value)">
+                <option value="">작성일</option>
+                <option value="latest" <?= $date_option === 'latest' ? 'selected' : '' ?>>최신순</option>
+                <option value="oldest" <?= $date_option === 'oldest' ? 'selected' : '' ?>>과거순</option>
+            </select>
             </div>
             <table class="table table-hover table-striped">
               <thead class="table-dark">
@@ -288,7 +285,17 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
     <script src="/helloworld/js/common.js"></script>
   </body>
   <script>
+function applyFilter(filterType, filterValue) {
+    var url = new URL(window.location.href);
+    var params = new URLSearchParams(url.search);
 
+    if (filterType === 'date') {
+        params.set('date', filterValue);
+    }
+
+    url.search = params.toString();
+    window.location.href = url.toString();
+}
     document.querySelector(".btn_complete").addEventListener("click", function() {
       // 원하는 URL로 리다이렉트
       window.location.href = "/helloworld/announce/announce_write.php";
