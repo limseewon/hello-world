@@ -378,7 +378,7 @@ p {
 
 ˝ .sec4 .swiper .swiper-slide,
 .sec5 .swiper .swiper-slide {
-  width: 350px !important;
+  width: 370px !important;
 }
 
 .badge_wrap {
@@ -400,9 +400,13 @@ p {
   padding-top: 10px;
 }
 
-.sec4 .swiper,
+.sec4 .swiper
+ {
+  width: 1161px;
+  height: 425px;
+}
 .sec5 .swiper {
-  width: 1109px;
+  width: 1170px;
   height: 425px;
 }
 
