@@ -37,11 +37,11 @@ $(function () {
     spaceBetween: 30,
     speed: 1000,
     loop: true,
-    // autoplay: {
-    //   delay: 1500,
-    //   disableOnInteraction : false,
-    //   pauseOnMouseEnter:true
-    // },
+    autoplay: {
+      delay: 1500,
+      disableOnInteraction : false,
+      pauseOnMouseEnter:true
+    },
     navigation: {
       prevEl: '.new_prev',
       nextEl: '.new_next',
