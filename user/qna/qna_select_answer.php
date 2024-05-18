@@ -1,24 +1,22 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
-// GET 파라미터 받기
-$comment_id = $_GET['comment_id'];
-$qna_id = $_GET['id'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $qna_id = $_POST['qna_id'];
+    $comment_id = $_POST['comment_id'];
 
-// qna 테이블의 selected_comment_id 컬럼 업데이트
-$sql = "UPDATE qna SET selected_comment_id = '$comment_id' WHERE idx = '$qna_id'";
-$result = $mysqli->query($sql);
+    // 답변 상태 업데이트 쿼리 실행
+    $sql = "UPDATE qna SET reply = '답변' WHERE idx = '$qna_id'";
+    $result = $mysqli->query($sql);
 
-if ($result) {
-    // 업데이트 성공 시 처리할 로직 작성
-    // 예: 상세 페이지로 리디렉션
-    header("Location: qna_detail.php?id=$qna_id");
-    exit;
-} else {
-    // 업데이트 실패 시 처리할 로직 작성
-    echo "답변 선택에 실패했습니다. 다시 시도해주세요.";
+    if ($result) {
+        // 채택된 답변 표시 쿼리 실행
+        $sql = "UPDATE qna_comment SET selected = 1 WHERE id = '$comment_id'";
+        $mysqli->query($sql);
+
+        echo "success";
+    } else {
+        echo "error";
+    }
 }
-
-// 데이터베이스 연결 종료
-$mysqli->close();
 ?>

@@ -22,11 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("iss", $idx, $name, $comment);
         $comment_result = $stmt->execute();
 
-        // 댓글 등록 성공 시 qna 테이블의 reply 컬럼 업데이트
+        // 댓글 등록 성공 시 qna 테이블의 reply 컬럼은 업데이트하지 않음
         if ($comment_result) {
-            $sql = "UPDATE qna SET reply = '답변' WHERE idx = '$idx'";
-            $update_result = $mysqli->query($sql);
-
             echo "<script> alert('댓글이 등록되었습니다.'); location.href = 'qna_detail.php?id=$idx'; </script>";
         } else {
             echo "<script> alert('댓글 등록에 실패했습니다.'); history.back(); </script>";
