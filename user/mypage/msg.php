@@ -14,7 +14,7 @@
   // $memberRs = $memberResult->fetch_row();
   $useridx = $_SESSION['UIDX'];
   
-  $msgSql = "SELECT * FROM msg WHERE mid='{$useridx}'";
+  $msgSql = "SELECT * FROM msg WHERE mid='{$useridx}' ORDER BY regdate DESC";
   
   // $msgResult = $mysqli->query($msgSql);
   // while($msgRs= $msgResult->fetch_object()) {
