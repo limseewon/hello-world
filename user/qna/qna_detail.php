@@ -1,8 +1,36 @@
 <?php
 $title = 'Q&A';
-$cssRoute1 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A_detail.css">';
-$cssRoute2 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A.css">';
-$script1 = '';
+$cssRoute1 ='';
+$cssRoute2 ='';
+$cssRoute3 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A_detail.css">';
+$cssRoute4 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A.css">';
+
+$script1 = '
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function selectAnswer(qnaId, commentId) {
+        // AJAX 요청을 통해 서버로 채택된 답변 정보 전송
+        $.ajax({
+            url: "qna_select_answer.php",
+            type: "POST",
+            data: {
+                qna_id: qnaId,
+                comment_id: commentId
+            },
+            success: function(response) {
+                // 답변 상태 업데이트 성공 시 페이지 새로고침
+                location.reload();
+            },
+            error: function() {
+                // 답변 상태 업데이트 실패 시 에러 처리
+                alert("답변 상태 업데이트에 실패했습니다.");
+            }
+        });
+    }
+</script>';
+
+$script2 = '';
+$script3 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 // 질문 ID 받아오기
@@ -74,17 +102,6 @@ if ($qna_id > 0) {
 }
 ?>
 
-<?php
-$title = 'Q&A';
-$cssRoute1 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A_detail.css">';
-$cssRoute2 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A.css">';
-$script1 = '';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
-
-// ... (중간 생략) ...
-
-?>
-
 <div class="container">
     <h2 class="h2_t nt">Q&amp;A</h2>
     <section>
@@ -108,9 +125,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
                             <td><?= $row['name']; ?></td>
                             <td><?= $row['view']; ?></td>
                             <td>
-                                <button type="button" class="btn <?= ($row['reply'] == '답변') ? 'btn-success' : 'btn-secondary'; ?>">
-                                    <?= $row['reply']; ?>
-                                </button>
+                                <?php if ($row['reply'] == '답변') : ?>
+                                    <button type="button" class="btn btn-success">답변</button>
+                                <?php else : ?>
+                                    <button type="button" class="btn btn-secondary">미답변</button>
+                                <?php endif; ?>
                             </td>
                             <td><?= $row['date']; ?></td>
                         </tr>
@@ -129,9 +148,15 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
             <?php endif; ?>
             <div id="qnaDetail">
                 <div class="qna-detail-box jcsb d-flex h5">
-                    <p><?= $row['content']; ?></p>
                     <?php if (!empty($row['files'])) : ?>
+                        <div class="qna-content">
+                            <p><?= $row['content']; ?></p>
+                        </div>
                         <img src="/helloworld/user/uploads/<?= $row['files']; ?>" alt="#" class="img_qna">
+                    <?php else : ?>
+                        <div class="qna-content full-width">
+                            <p><?= $row['content']; ?></p>
+                        </div>
                     <?php endif; ?>
                 </div>
             </div>
@@ -167,19 +192,21 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
                     <form action="qna_save_insert.php" method="POST">
                         <input type="hidden" name="idx" value="<?= $qna_id ?>">
                         <div class="mb-3">
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-person-circle me-2 h4"></i>
-                            <h5 class="mb-0 p">작성자</h5>
-                        </div>
-                        <textarea class="form-control mt-2" name="comment" rows="3" placeholder="댓글을 입력하세요" required></textarea>
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-person-circle me-2 h4"></i>
+                                <h5 class="mb-0 p">작성자</h5>
+                            </div>
+                            <textarea class="form-control mt-2" name="comment" rows="3" placeholder="댓글을 입력하세요" required></textarea>
                         </div>
                         <div class="text-end">
-                        <button type="submit" class="btn btn-primary">등록</button>
+                            <button type="submit" class="btn btn-primary">등록</button>
                         </div>
                     </form>
-                    <div class="mt-3">
-                        <button type="button" class="btn btn-success" onclick="selectAnswer(<?= $qna_id ?>, this)">채택하기</button>
-                    </div>
+                    <?php if (isset($_SESSION['UID']) && $_SESSION['UID'] == $row['userid']) : ?>
+                        <div class="mt-3">
+                            <button type="button" class="btn btn-success" onclick="selectAnswer(<?= $qna_id ?>, this)">채택하기</button>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <div class="comment-list mt-4">
                     <?php while ($comment = $comment_result->fetch_assoc()) : ?>
@@ -199,9 +226,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
                                     <div class="comment-content">
                                         <p class="mb-0"><?= $comment['comment']; ?></p>
                                     </div>
-                                    <div class="mt-2">
-                                        <button type="button" class="btn btn-success btn-sm" onclick="selectAnswer(<?= $qna_id ?>, <?= $comment['id'] ?>)">채택하기</button>
-                                    </div>
+                                    <?php if (isset($_SESSION['UID']) && $_SESSION['UID'] == $row['userid']) : ?>
+                                        <div class="mt-2">
+                                            <button type="button" class="btn btn-success btn-sm" onclick="selectAnswer(<?= $qna_id ?>, <?= $comment['id'] ?>)">채택하기</button>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -240,14 +269,16 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
             window.location.href = deleteLink.href;
         }
     };
-     // 삭제 확인 알림창을 위한 JavaScript 함수 추가
-     function confirmDelete(qnaId, event) {
+    
+    // 삭제 확인 알림창을 위한 JavaScript 함수 추가
+    function confirmDelete(qnaId, event) {
         event.preventDefault();
         var confirmation = confirm("정말 삭제하시겠습니까?");
         if (confirmation) {
             window.location.href = "qna_delete.php?id=" + qnaId;
         }
     }
+    
     function showEditForm() {
         document.getElementById('qnaTable').style.display = 'none';
         document.getElementById('qnaDetail').style.display = 'none';

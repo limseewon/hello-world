@@ -18,6 +18,7 @@ tr {
   width: 910px;
   height: auto;
   margin: 0 auto;
+  min-height: 100px;
 }
 .qna-content {
   line-height: 50px;
@@ -121,6 +122,10 @@ td .text-center {
 }
 .qna_btn {
   flex: end;
+}
+
+.comment-item.selected {
+  background-color: #e0f3e0;
 }
 
 /* Q&A.html */
