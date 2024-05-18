@@ -2,7 +2,13 @@
 $title = 'Q&A';
 $cssRoute1 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A_regist.css">';
 $cssRoute2 = '<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">';
+$cssRoute3 ='';
+$cssRoute4 ='';
+
+
 $script1 = '';
+$script2 = '';
+$script3 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 // 현재 로그인한 회원의 정보 가져오기
