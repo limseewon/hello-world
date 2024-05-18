@@ -1,5 +1,10 @@
 <?php
+  $title = 'mycoupons';
   $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_coupons.css"/>';
+  $cssRoute3 ='';
+  $cssRoute4 ='';
+  $script2 = '';
+  $script3 = '';
   include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/leftSide.php';     
 ?>
         <section class="mainContainer">

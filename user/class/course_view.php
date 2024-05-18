@@ -3,7 +3,12 @@ ob_start(); //최근 본 강의
 $title = '강의상세페이지';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/common.css"/>';
 $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_common.css"/>';
+$cssRoute3 ='';
+$cssRoute4 ='';
+
 $script1='';
+$script2 = '';
+$script3 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 $cid = $_GET['cid'];

@@ -3,7 +3,12 @@
 $title = 'Home';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_common.css"/>';
 $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/index.css"/>';
+$cssRoute3 ='';
+$cssRoute4 ='';
+
 $script1 = '<script defer src="/helloworld/user/js/index.js"></script>';
+$script2 = '';
+$script3 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 

@@ -1,6 +1,11 @@
 <?php
+  $title = 'Dashboard';
   $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_dash.css"/>';
-  $script1 = '<script defer src="/helloworld/user/js/mypage_index.js"></script>';
+  $cssRoute3 = '';
+  $cssRoute4 = '';
+  $script2 = '<script defer src="/helloworld/user/js/mypage_index.js"></script>';
+  $script3 ='';
+  $script4 ='';
   include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/leftSide.php';     
     
 $userid = $_SESSION['UID'];

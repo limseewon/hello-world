@@ -1,5 +1,5 @@
 <?php
-$title = 'mypage';
+$title = $title . ' | mypage';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_left.css"/>';
 $script1= '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
