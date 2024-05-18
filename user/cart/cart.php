@@ -72,7 +72,7 @@ if(isset($_SESSION['UID'])){ // 사용자가 로그인한 경우를 확인  만�
   while($cRow = $cResult->fetch_object()){
       $cpArr[] = $cRow;
   }
-  print_r($cpArr);
+  // print_r($cpArr);
   
  
 }
@@ -82,6 +82,10 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
     //location.href = '/helloworld/user/index.php';
   </script>";
 }
+
+
+
+
 ?>
 
 
@@ -89,14 +93,73 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
     
 
 <div class="cart_container container ">
-  <h2 class="jua main_tt">장바구니</h2>
-    <div class="cartOpBtns d-flex justify-content-between col-8">
-      <div class="form-check all_check d-flex align-items-center">
-        <input class="form-check-input" type="checkbox" value="" id="all_check" checked>
-        <label class="form-check-label" for="all_check">전체선택</label>
-        <span>|<span class="select_count">0</span>개 (총 <span class="all_count">0</span>개)</span>
-      </div>  
-    </div>
+  
+  <h2 class="jua main_tt h2_t">장바구니</h2>
+  <div class="cartOpBtns d-flex justify-content-between col-8">
+    <div class="form-check all_check d-flex align-items-center">
+      <input class="form-check-input" type="checkbox" value="" id="all_check" checked>
+      <label class="form-check-label" for="all_check">전체선택</label>
+      <span>|<span class="select_count">0</span>개 (총 <span class="all_count">0</span>개)</span>
+    </div>  
+  </div>
+  <div class="form_container">
+    <form action="/helloworld/user/cart/cart_complete.php" method="POST" class="payment_form radius_12 shadow_box pobox content-box">
+      <input type="hidden" name="userid" value="<?=$userid;?>">
+      <input type="hidden" id="pid" name="pid[]" value="">
+      <input type="hidden" id="cartid" name="cartid[]" value="">
+      <input type="hidden" id="totalprice" name="totalprice" value="">
+    
+      <div class="contentbox">
+        
+        <input type="hidden" value="" class="userid">
+
+        <h3 class="content_stt">결제정보</h3>
+        <h4 class="demoHeaders style_pd b_text02 mb-2">쿠폰선택</h4>
+        <select class="form-select " aria-label="쿠폰선택" name="coupon" id="coupon">
+            <option selected disabled>쿠폰선택</option>
+          <?php
+            if(isset($cpArr)){
+                foreach($cpArr as $ca){
+            ?>
+                <option data-price="<?= $ca -> cp_price ?>" value="<?= $ca -> ucid ?>"><?= $ca -> cp_name ?></option>
+            <?php
+                }
+            }
+            ?>       
+        </select>
+      </div>
+        
+                              
+          <!-- <div class="update-checkout w-50 text-right">
+              <a href="cart_clear_ok.php" id="clearCart">clear cart</a>
+              <a href="#" id="updateCart">Update cart</a>
+          </div> -->
+                          
+        
+      <div class="paymentbox">
+        <h2 class="mb-2">CART TOTAl</h2>
+
+        
+        <div class="payment_info d-flex justify-content-between">
+          <p>상품 수 :</p><p><span class="cart_count number">0</span>개</p>
+        </div>
+        <div class="payment_info d-flex justify-content-between">
+          <p>소계 :</p><p><span id="coupon-name"></span><span id="subtotal" class=" number">0</span>원</p>
+        </div>
+        <div class="payment_info d-flex justify-content-between">
+          <p>할인가 :</p><p>- <span class="cart_discount number">0</span><span class="discount_unit">원</span></p>
+        </div>
+        
+        <div class="payment_total d-flex justify-content-between align-items-center">
+          <p class="b_text01 mt-2">총 결제금액</p><p class="content_tt"><span><strong id="grandtotal">$59.90</strong>원</p>
+        </div>
+        <div class="butb">
+          
+          <button class="btn btn-primary dark submit_btn greenbtn mt-2">구매하기</button>
+        </div>  
+      </div>
+    </form>
+  </div>
   <div class="cart_boxfull">
     <ul class="cart_item_container d-flex flex-column ">
     <?php
@@ -106,7 +169,10 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
       <li class="cart_item shadow_box content-box cart_boxfull2" data-cartid="<?= $cart->cartid; ?>" data-pid="<?= $cart->cid; ?>">
         <input class="form-check-input" type="checkbox" value="" id="cart_item" checked>
         <label class="form-check-label" for="cart_item"></label>
-        <img src="<?= $cart->thumbnail ?>" alt="<?= $cart->name ?>" class="radius_5">
+        <div class="cartimgbox">
+          <img src="<?= $cart->thumbnail ?>" alt="<?= $cart->name ?>" class="radius_5">
+        </div>
+        
         <div class="text_box">
           <div class="title">
             <h3 class="b_text01"><?= $cart->name ?></h3>
@@ -162,7 +228,7 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
       <li class="no_cart_container">
         <img src="../img/logo_icon.png" alt="" class="no_cart_img">
         <p class="content_stt">장바구니에 담긴 강의가 없습니다.</p>
-        <a href="/helloworld/user/class/courer_list.php" class="btn btn-primary dark">강의목록</a>
+        <a href="/helloworld/user/class/course_list.php" class="btn btn-primary dark mt-3">강의목록</a>
       </li>
       <?php
       }
@@ -171,66 +237,9 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
     <button class="btn btn-primary dark select_del text-bg-danger">선택삭제</button>
     
   </div>
-  <div class="form_container ">
-    <form action="/helloworld/user/cart/cart_complete.php" method="POST" class="payment_form radius_12 shadow_box">
-      <input type="hidden" name="userid" value="<?=$userid;?>">
-      <input type="hidden" id="pid" name="pid[]" value="">
-      <input type="hidden" id="cartid" name="cartid[]" value="">
-      <input type="hidden" id="totalprice" name="totalprice" value="">
-      <div class="contpatbpx">
-        <div class="contentbox">
-          
-          <input type="hidden" value="" class="userid">
-
-          <h3 class="content_stt">결제정보</h3>
-          <h4 class="demoHeaders style_pd b_text02">쿠폰선택</h4>
-          <select class="form-select" aria-label="쿠폰선택" name="coupon" id="coupon">
-              <option selected disabled>쿠폰선택</option>
-            <?php
-              if(isset($cpArr)){
-                  foreach($cpArr as $ca){
-              ?>
-                  <option data-price="<?= $ca -> cp_price ?>" value="<?= $ca -> ucid ?>"><?= $ca -> cp_name ?></option>
-              <?php
-                  }
-              }
-              ?>       
-          </select>
-        </div>
-       
-                             
-          <div class="update-checkout w-50 text-right">
-              <a href="cart_clear_ok.php" id="clearCart">clear cart</a>
-              <a href="#" id="updateCart">Update cart</a>
-          </div>
-                         
-        <hr>
-        <div class="paymentbox">
-          <h2>CART TOTAl</h2>
-
-          
-          <div class="payment_info d-flex justify-content-between">
-            <p>상품 수 :</p><p><span class="cart_count number">0</span>개</p>
-          </div>
-          <div class="payment_info d-flex justify-content-between">
-            <p>소계 :</p><p><span id="coupon-name"></span><span id="subtotal" class=" number">0</span>원</p>
-          </div>
-          <div class="payment_info d-flex justify-content-between">
-            <p>할인가 :</p><p>- <span class="cart_discount number">0</span><span class="discount_unit">원</span></p>
-          </div>
-          <hr>
-          <div class="payment_total d-flex justify-content-between align-items-center">
-            <p class="b_text01">총 결제금액</p><p class="content_tt"><span><strong id="grandtotal">$59.90</strong>원</p>
-          </div>
-          <div class="butb">
-            
-            <button class="btn btn-primary dark submit_btn greenbtn">구매하기</button>
-          </div>  
-        </div>
-      </div>
-    </form>
-  </div>
+  
 </div>
+
 <script src="js/cart.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', ()=>{
