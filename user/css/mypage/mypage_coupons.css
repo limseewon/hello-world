@@ -1,3 +1,23 @@
 h3 {
   font-weight: normal;
+  margin-bottom: 30px;
+}
+h4 {
+  margin-bottom: 16px;
+}
+
+.coupons ul {
+  gap: 30px;
+}
+
+.coupon_container {
+  width: 48%;
+  gap: 16px;
+}
+.coupon_container img {
+  width: 50%;
+  object-fit: cover;
+}
+.text_box > p + p {
+  margin-top: 10px;
 }
