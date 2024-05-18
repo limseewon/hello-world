@@ -1,8 +1,13 @@
 <?php
-$title = '강의리스트';
+$title = '입문자를 위한 초급강의';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_common.css"/>';
 $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_list.css"/>';
+$cssRoute3 ='';
+$cssRoute4 ='';
+
 $script1='';
+$script2 = '';
+$script3 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 /// 대분류명 조회
@@ -119,7 +124,7 @@ $sqlrc = $sql.$c_where.$order.$limit;
   <div class="container containermab">
     <div class="section1 d-flex justify-content-between pd_2">
       <div class="courseBigTitle jua coursetitle">
-        <h2 class="court h2_t">강의리스트</h2>
+        <h2 class="court h2_t">입문자를 위한 초급강의</h2>
       </div>
     </div>
     <form action="#" class="d-flex gap-3">
