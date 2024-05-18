@@ -74,36 +74,49 @@ if ($qna_id > 0) {
 }
 ?>
 
+<?php
+$title = 'Q&A';
+$cssRoute1 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A_detail.css">';
+$cssRoute2 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A.css">';
+$script1 = '';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
+
+// ... (중간 생략) ...
+
+?>
+
 <div class="container">
     <h2 class="h2_t nt">Q&amp;A</h2>
     <section>
         <div class="content-box nb">
-            <table class="table tc">
-                <thead>
-                    <tr>
-                        <th scope="col">강의명</th>
-                        <th scope="col">제목</th>
-                        <th scope="col">작성자</th>
-                        <th scope="col">조회수</th>
-                        <th scope="col">답변 여부</th>
-                        <th scope="col">작성일</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row"><?= $row['lecture_name']; ?></th>
-                        <td><?= $row['title']; ?></td>
-                        <td><?= $row['name']; ?></td>
-                        <td><?= $row['view']; ?></td>
-                        <td>
-                            <button type="button" class="btn <?= ($row['reply'] == '답변') ? 'btn-success' : 'btn-secondary'; ?>">
-                                <?= $row['reply']; ?>
-                            </button>
-                        </td>
-                        <td><?= $row['date']; ?></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div id="qnaTable">
+                <table class="table tc">
+                    <thead>
+                        <tr>
+                            <th scope="col">강의명</th>
+                            <th scope="col">제목</th>
+                            <th scope="col">작성자</th>
+                            <th scope="col">조회수</th>
+                            <th scope="col">답변 여부</th>
+                            <th scope="col">작성일</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row"><?= $row['lecture_name']; ?></th>
+                            <td><?= $row['title']; ?></td>
+                            <td><?= $row['name']; ?></td>
+                            <td><?= $row['view']; ?></td>
+                            <td>
+                                <button type="button" class="btn <?= ($row['reply'] == '답변') ? 'btn-success' : 'btn-secondary'; ?>">
+                                    <?= $row['reply']; ?>
+                                </button>
+                            </td>
+                            <td><?= $row['date']; ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <?php if (isset($_SESSION['UID']) && $_SESSION['UID'] == $row['userid']) : ?>
                 <div class="qna_btn d-flex">
                     <a href="#" class="btn btn-link btn_modify" onclick="showEditForm(); return false;">
@@ -236,14 +249,16 @@ if ($qna_id > 0) {
         }
     }
     function showEditForm() {
+        document.getElementById('qnaTable').style.display = 'none';
         document.getElementById('qnaDetail').style.display = 'none';
         document.getElementById('qnaEditForm').style.display = 'block';
-    };
+    }
 
     function hideEditForm() {
+        document.getElementById('qnaTable').style.display = 'table';
         document.getElementById('qnaDetail').style.display = 'block';
         document.getElementById('qnaEditForm').style.display = 'none';
-    };
+    }
 </script>
 
 <?php
