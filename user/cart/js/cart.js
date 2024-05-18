@@ -1,48 +1,48 @@
-
-// let all_check = $('.all_check'); // HTML 요소에서 선택한 클래스를 변수에 할당
-// let select_del = $('.select_del');
-// let discount = 0; //쿠폰 금액을 저장하는 변수
-
-
-
-// cartInfo(); // 장바구니 정보를 업데이트하고 화면에 표시하는 함수
-
-// //결제정보
-// function cartInfo(){
-//   let cart_item = $('.cart_item_container .cart_item');
-//   let cart_item_checked = cart_item.find('input:checked');
+$(function () {
+let all_check = $('.all_check'); // HTML 요소에서 선택한 클래스를 변수에 할당
+let select_del = $('.select_del');
+let discount = 0; //쿠폰 금액을 저장하는 변수
 
 
 
-//   //모든 아이템이 체크가 되면 전체선택에 checked
-//   if(cart_item.length === cart_item_checked.length){
-//     all_check.find('input').prop('checked',true);
-//   } else{
-//     all_check.find('input').prop('checked',false);
-//   }
+cartInfo(); // 장바구니 정보를 업데이트하고 화면에 표시하는 함수
 
-//   //상품 전체 개수
-//   $('.all_count').text(cart_item.length);
+//결제정보
+function cartInfo(){
+  let cart_item = $('.cart_item_container .cart_item');
+  let cart_item_checked = cart_item.find('input:checked');
 
 
-//   //선택 상품개수
-//   $('.cart_count,.select_count').text(cart_item_checked.length);
+
+  //모든 아이템이 체크가 되면 전체선택에 checked
+  if(cart_item.length === cart_item_checked.length){
+    all_check.find('input').prop('checked',true);
+  } else{
+    all_check.find('input').prop('checked',false);
+  }
+
+  //상품 전체 개수
+  $('.all_count').text(cart_item.length);
+
+
+  //선택 상품개수
+  $('.cart_count,.select_count').text(cart_item_checked.length);
   
-//   //상품금액
-//   let total_price = 0;
-//   cart_item_checked.each(function(){
-//     let target_pr = $(this).parent().find('.price span').text().replace(',','');
-//     total_price+=Number(target_pr);
-//   });
-//   $('.cart_total_price').text(total_price);
-//   $('.cart_total_price').number(true);
+  //상품금액
+  // let total_price = 0;
+  // cart_item_checked.each(function(){
+  //   let target_pr = $(this).parent().find('.price span').text().replace(',','');
+  //   total_price+=Number(target_pr);
+  // });
+  // $('.cart_total_price').text(total_price);
+  // $('.cart_total_price').number(true);
 
-//   //전체금액 계산
-//   $('.cart_pay_price').text(total_price);
-//   $('.cart_pay_price').number(true);
-//   return total_price;
+  // //전체금액 계산
+  // $('.cart_pay_price').text(total_price);
+  // $('.cart_pay_price').number(true);
+  // return total_price;
 
-// } //cartInfo function
+} //cartInfo function
 
 
 // function couponPrice(total_price){ // 선택한 쿠폰에 따라 적용할 수 있는 할인 금액을 계산하고 표시하는 함수
@@ -88,97 +88,97 @@
 //     }
 // } //couponPrice function
 
-// function canUdel(target){
-//   if(target.length > 0){
-//     if(confirm('정말로 삭제하시겠습니까?')){
-//       // target.remove();
-//       let cartid = [];
-//       //target 여러개일 경우, carid를 배열에 담기
-//       target.each(function(){
-//         cartid.push($(this).attr('data-cartid'));
-//       });
-//       let data = {
-//         cartid : cartid
-//       }
-//       $.ajax({
-//         async : false, 
-//         type: 'post',     
-//         data: data, 
-//         url: "cart_del.php", 
-//         dataType: 'json', //결과 json 객체형식
-//         error: function(error){
-//           console.log('Error:', error);
-//         },
-//         success: function(return_data){
-//           // location.reload();
-//           target.remove();
-//           alert('삭제되었습니다.');
-//           let cnt = $('.cart_item_container .cart_item').length;
-//           if(cnt == 0){
-//             $('.cart_item_container').html(
-//               `<li class="no_cart_container">
-//                 <img src="../img/logo_icon.png" alt="" class="no_cart_img">
-//                 <p class="content_stt">장바구니에 담긴 강의가 없습니다.</p>
-//                 <a href="/helloworld/user/index.php" class="btn btn-primary dark">홈으로이동</a>
-//               </li>`
-//             );
-//             $('.cart_btn span').text(cnt);
-//           } else{
-//             $('.cart_btn span').text(cnt);
-//           }
-//         }
-//       });//ajax
-//     } else{
-//       alert('삭제를 취소하였습니다.');
-//     }
-//   } else{
-//     alert('삭제할 상품을 선택해주세요');
-//   }
-// } //canUdel function
+function canUdel(target){
+  if(target.length > 0){
+    if(confirm('정말로 삭제하시겠습니까?')){
+      // target.remove();
+      let cartid = [];
+      //target 여러개일 경우, carid를 배열에 담기
+      target.each(function(){
+        cartid.push($(this).attr('data-cartid'));
+      });
+      let data = {
+        cartid : cartid
+      }
+      $.ajax({
+        async : false, 
+        type: 'post',     
+        data: data, 
+        url: "cart_del.php", 
+        dataType: 'json', //결과 json 객체형식
+        error: function(error){
+          console.log('Error:', error);
+        },
+        success: function(return_data){
+          // location.reload();
+          target.remove();
+          alert('삭제되었습니다.');
+          let cnt = $('.cart_item_container .cart_item').length;
+          if(cnt == 0){
+            $('.cart_item_container').html(
+              `<li class="no_cart_container">
+                <img src="../img/logo_icon.png" alt="" class="no_cart_img">
+                <p class="content_stt">장바구니에 담긴 강의가 없습니다.</p>
+                <a href="/helloworld/user/index.php" class="btn btn-primary dark">홈으로이동</a>
+              </li>`
+            );
+            $('.cart_btn span').text(cnt);
+          } else{
+            $('.cart_btn span').text(cnt);
+          }
+        }
+      });//ajax
+    } else{
+      alert('삭제를 취소하였습니다.');
+    }
+  } else{
+    alert('삭제할 상품을 선택해주세요');
+  }
+} //canUdel function
 
 
-// //쿠폰선택 시
-// $('.coupon_select').change(function(){
-//   couponPrice(cartInfo());
-// });
+//쿠폰선택 시
+$('.coupon_select').change(function(){
+  couponPrice(cartInfo());
+});
 
-// //아이템 체크박스 change
-// $('.cart_item_container').change(function(){
-//   cartInfo();
-//   couponPrice(cartInfo());
-// });
-
-
-// //전체선택 체크(전체선택) / 해제(전체해제)
-// all_check.change(function(){
-//   let cart_item = $('.cart_item_container .cart_item');
-//   //전체선택
-//   if($(this).find('input').prop('checked')){
-//     cart_item.find('input').prop('checked',true);
-//   } else{
-//     cart_item.find('input').prop('checked',false);
-//   }
-//   cartInfo();
-// });
+//아이템 체크박스 change
+$('.cart_item_container').change(function(){
+  cartInfo();
+  couponPrice(cartInfo());
+});
 
 
-// //선택삭제 클릭 시 선택된 아이템 삭제
-// select_del.click(function(){
-//   let cart_item = $('.cart_item_container .cart_item');
-//   canUdel(cart_item.find('input:checked').parent());
-//   cartInfo();
-// });
+//전체선택 체크(전체선택) / 해제(전체해제)
+all_check.change(function(){
+  let cart_item = $('.cart_item_container .cart_item');
+  //전체선택
+  if($(this).find('input').prop('checked')){
+    cart_item.find('input').prop('checked',true);
+  } else{
+    cart_item.find('input').prop('checked',false);
+  }
+  cartInfo();
+});
 
 
-// //각 item 속 del_btn 클릭 시 해당 아이템 삭제
-// $('.del_btn').click(function(){
-//   canUdel($(this).parent());
-//   cartInfo();
-// });
+//선택삭제 클릭 시 선택된 아이템 삭제
+select_del.click(function(){
+  let cart_item = $('.cart_item_container .cart_item');
+  canUdel(cart_item.find('input:checked').parent());
+  cartInfo();
+});
+
+
+//각 item 속 del_btn 클릭 시 해당 아이템 삭제
+$('.del_btn').click(function(){
+  canUdel($(this).parent());
+  cartInfo();
+});
 
 
 
-// //결제하기 클릭
+//결제하기 클릭
 // $('.payment_form').submit(function(e){
 //   e.preventDefault();
 
@@ -230,3 +230,4 @@
 //   }
 
 // });
+});

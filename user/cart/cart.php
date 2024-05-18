@@ -89,9 +89,6 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
 ?>
 
 
-    
-    
-
 <div class="cart_container container ">
   
   <h2 class="jua main_tt h2_t">장바구니</h2>
@@ -240,7 +237,7 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
   
 </div>
 
-<script src="js/cart.js"></script>
+
 <script>
 document.addEventListener('DOMContentLoaded', ()=>{
 
@@ -381,6 +378,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     */
 });    
 </script>
+<script src="js/cart.js"></script>
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_footer.php';
 ?>
