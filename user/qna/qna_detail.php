@@ -8,7 +8,7 @@ $cssRoute4 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A.css">';
 $script1 = '
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-function selectAnswer(qnaId, commentId) {
+    function selectAnswer(qnaId, commentId) {
         // AJAX 요청을 통해 서버로 채택된 답변 정보 전송
         $.ajax({
             url: "qna_select_answer.php",
@@ -210,7 +210,7 @@ if ($qna_id > 0) {
                 </div>
                 <div class="comment-list mt-4">
                     <?php while ($comment = $comment_result->fetch_assoc()) : ?>
-                        <div class="comment-item">
+                        <div class="comment-item <?= isset($comment['selected']) && $comment['selected'] == 1 ? 'selected' : ''; ?>">
                             <div class="d-flex">
                                 <div class="comment-avatar me-3">
                                     <i class="bi bi-person-circle h4"></i>
@@ -219,16 +219,22 @@ if ($qna_id > 0) {
                                     <div class="comment-header mb-1">
                                         <span class="comment-author p fw-bold"><?= $comment['name']; ?></span>
                                         <span class="comment-date text-muted ms-2"><?= $comment['regdate']; ?></span>
-                                        <a href="qna_reply_delete.php?id=<?= $qna_id; ?>&comment_id=<?= $comment['id']; ?>" class="delete-link ms-3" onclick="confirmDelete(event)">
-                                            <span class="material-symbols-outlined">delete</span>
-                                        </a>
+                                        <?php if (isset($_SESSION['UID']) && $comment['user_id'] == $_SESSION['UID']) : ?>
+                                            <a href="qna_reply_delete.php?id=<?= $qna_id; ?>&comment_id=<?= $comment['id']; ?>" class="delete-link ms-3" onclick="confirmDelete(event)">
+                                                <span class="material-symbols-outlined">delete</span>
+                                            </a>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="comment-content">
                                         <p class="mb-0"><?= $comment['comment']; ?></p>
                                     </div>
                                     <?php if (isset($_SESSION['UID']) && $_SESSION['UID'] == $row['userid']) : ?>
                                         <div class="mt-2">
-                                            <button type="button" class="btn btn-success btn-sm" onclick="selectAnswer(<?= $qna_id ?>, <?= $comment['id'] ?>)">채택하기</button>
+                                            <?php if ($comment['selected'] == 1) : ?>
+                                                <button type="button" class="btn btn-success btn-sm" >채택됨</button>
+                                            <?php else : ?>
+                                                <button type="button" class="btn btn-success btn-sm" onclick="selectAnswer(<?= $qna_id ?>, <?= $comment['id'] ?>)">채택하기</button>
+                                            <?php endif; ?>
                                         </div>
                                     <?php endif; ?>
                                 </div>

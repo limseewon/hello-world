@@ -17,14 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $name = $member['username'];
 
         // 댓글 저장
-        $sql = "INSERT INTO qna_comment (idx, name, comment, regdate) VALUES (?, ?, ?, NOW())";
+        $sql = "INSERT INTO qna_comment (idx, name, comment, user_id, regdate) VALUES (?, ?, ?, ?, NOW())";
         $stmt = $mysqli->prepare($sql);
-        $stmt->bind_param("iss", $idx, $name, $comment);
+        $stmt->bind_param("isss", $idx, $name, $comment, $userid);
         $comment_result = $stmt->execute();
 
         // 댓글 등록 성공 시 qna 테이블의 reply 컬럼 업데이트
         if ($comment_result) {
-            $sql = "UPDATE qna SET reply = '답변' WHERE idx = '$idx'";
+            $sql = "UPDATE qna SET reply = '미답변' WHERE idx = '$idx'";
             $update_result = $mysqli->query($sql);
 
             echo "<script> alert('댓글이 등록되었습니다.'); location.href = 'qna_detail.php?id=$idx'; </script>";
