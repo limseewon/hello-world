@@ -23,9 +23,13 @@ if (isset($_SESSION['UID'])) {
     $getCouponResult= $mysqli->query($getCouponSql);
     $getCouponRs = $getCouponResult->fetch_object();
 
+    $limitDate = $getCouponRs->cp_date;
+    if ($limitDate == 0) {
+      $limitDate = 9999;
+    }
 
     $date = new DateTime();
-    $date->modify('+'.$getCouponRs->cp_date.' month'); //현재 날짜의 n달 후 기한 구하기
+    $date->modify('+'.$limitDate.' month'); //현재 날짜의 n달 후 기한 구하기
     $limit = $date->format('Y-m-d');
     
     // 해당 유저에게 쿠폰 발급하기

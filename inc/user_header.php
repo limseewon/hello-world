@@ -31,7 +31,11 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
     <?=$cssRoute1?>
     <?=$cssRoute2?>
+    <?=$cssRoute3?>
+    <?=$cssRoute4?>
     <?=$script1?>
+    <?=$script2?>
+    <?=$script3?>
     <title><?=$title?> | Hello World</title>
     
 </head>

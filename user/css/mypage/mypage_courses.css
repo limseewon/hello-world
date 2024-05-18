@@ -1,4 +1,31 @@
-h3{
+h3 {
   font-weight: normal;
 }
 
+ul {
+  width: 100%;
+  gap: 16px;
+}
+
+.course_list {
+  /* width: 100%; */
+  /* g16 */
+}
+
+.course_list img {
+  width: 30%;
+  margin-right: 16px;
+  object-fit: cover;
+}
+.last {
+  flex: 2;
+}
+
+.course_list_title {
+  color: var(--c-title-font);
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+.nowrap {
+  white-space: nowrap;
+}
