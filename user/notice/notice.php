@@ -2,7 +2,12 @@
 $title = '공지사항';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/notice.css">';
 $cssRoute2 ='';
+$cssRoute3 ='';
+$cssRoute4 ='';
+
 $script1 = '';
+$script2 = '';
+$script3 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 $paginationTarget = 'notice';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/pagination.php';
