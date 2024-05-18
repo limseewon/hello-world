@@ -368,6 +368,7 @@ while($rs = $result -> fetch_object()){
               </a>
             </div>
           </li>
+         
           <?php
             }
           }else{
