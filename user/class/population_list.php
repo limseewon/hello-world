@@ -1,7 +1,7 @@
 <?php
 $title = '강의리스트';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_common.css"/>';
-$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/new.list.css"/>';
+$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_list.css"/>';
 $script1='';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
@@ -250,7 +250,7 @@ $sqlrc = $sql.$c_where.$order.$limit;
             if(isset($recomArr)){
               foreach($recomArr as $item){
           ?>  
-          <li class="col-12 col-sm-6 col-md-4 content-box courseBox " onclick="location.href='course_view.php?cid=<?= $item->cid ?>'">
+          <li class="col-12 col-sm-6 col-md-4 content-box courseBox positionb" onclick="location.href='course_view.php?cid=<?= $item->cid ?>'">
             <div class="imgBox">
               <img
                 src="<?= $item -> thumbnail?>"
@@ -318,6 +318,51 @@ $sqlrc = $sql.$c_where.$order.$limit;
                   ?>
                 <!-- 무료표시 끝 -->
               </div>
+            </div>
+            <div class="view_wrap">
+              <a href="/helloworld/user/class/course_view.php?cid=<?= $item->cid ?>" class="view_btn">
+                <h5 class="card-title badeg_bt">
+                  <?php
+                  $strTitle = $item->name;
+                  $strTitle = mb_strimwidth($strTitle, 0, 32, "...", "utf-8");
+                  echo $strTitle;
+                  ?>
+                </h5>
+                <div class="badegtwo d-flex">
+                  
+                  <span class="badge rounded-pill b-pd badgeblack slide_hover 
+                      <?php
+                    // 뱃지컬러
+                    $levelBadge = $item->level;
+                    if ($levelBadge === '초급') {
+                      echo 'green_bg';
+                    } else if ($levelBadge === '중급') {
+                      echo 'orange_bg';
+                    } else {
+                      echo 'blue_bg';
+                    }
+                    ?>">
+                      <?= $item->level ?>
+                        
+                  </span>
+                  <span class="badge rounded-pill pulele_bg b-pd badgeblack2">
+                    <?php
+                    //뱃지 키워드 
+                    if (isset($item->cate)) {
+                      $categoryText = $item->cate;
+                      $parts = explode('/', $categoryText);
+                      $lastPart = end($parts);
+                      echo $lastPart;
+                    }
+                    ?>
+                  </span>
+                </div>
+                <div class="cartshopp">
+                  <a href="/helloworld/user/cart/add_cart.php?cid=<?= $item->cid; ?>" class="card_cart">
+                    <span class="material-symbols-outlined shoppingcart">add_shopping_cart</span>    
+                  </a>
+                </div> 
+              </a>
             </div>
           </li>
           <?php
