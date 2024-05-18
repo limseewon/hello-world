@@ -43,6 +43,7 @@ if(isset($_SESSION['UID'])) {
 
   // 이미 주문된 강의가 없으면, 새로운 주문을 추가
   if(!$rscuc2) {
+    // 구매시 ordered_courses가 업데이트되는 구문을 수정했습니다. cart페이지에서 구매 시에도 동일하게 업데이트되도록 수정해주세요.
     $sql = "INSERT INTO ordered_courses (course_id, member_id ,progress, satisfaction, regdate, total_price ,use_max_date) VALUES ({$cid}, '{$member_id}', 0, '4.3',CURDATE() ,{$total},'{$limit}')";
     // echo $sql;
     $result = $mysqli->query($sql);
