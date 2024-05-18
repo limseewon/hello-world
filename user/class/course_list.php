@@ -11,7 +11,7 @@ $script3 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 
- 
+
 
 // 대분류명 조회
 
@@ -37,7 +37,14 @@ if (isset($cate)) {  // 만약 HTTP GET 요청으로 'catename' 매개변수가 
 
 $sql = "SELECT * from courses where 1=1 " ;  //"courses" 테이블에서 모든 열을 선택하는 쿼리를 생성. 이 쿼리는 WHERE 절에 항상 참인 조건을 포함하고 있음. 이렇게 하는 이유는 후속적으로 추가되는 조건들을 쉽게 추가.
 $order = ' order by cid desc';   //결과를 "cid" 열을 기준으로 내림차순으로 정렬
-
+if (isset($_GET['course_search'])) {
+  $key = $_GET['course_search'];
+  $c_where = " and name LIKE '%$key%' OR cate LIKE '%$key%' OR level LIKE '%$key%'";
+};
+if (isset($_GET['catename'])) {
+  $keycate = $_GET['catename'];
+  $c_where = " and cate LIKE '%$keycate'";
+};
 
 $level = $_GET['level']??'';
 if (isset($level)) {  // 만약 HTTP GET 요청으로 'catename' 매개변수가 전달되었다면, 다음을 실행
