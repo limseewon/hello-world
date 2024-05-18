@@ -28,6 +28,7 @@ $totalcount = $result_count->num_rows;
 $sql .= " LIMIT $startLimit, $pageCount";
 $result = $mysqli->query($sql);
 ?>
+
 <div class="container">
     <h2 class="h2_t">Q&amp;A</h2>
     <div class="d-flex jcsb tb">
@@ -134,6 +135,7 @@ $result = $mysqli->query($sql);
         </ul>
     </div>
 </div>
+
 <script>
     //로그인 한 회원만 댓글 작성 할 수 있도록
     function checkLogin() {
@@ -150,8 +152,8 @@ $result = $mysqli->query($sql);
     }
     ?>
 }
-
 </script>
+
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_footer.php';
 ?>
