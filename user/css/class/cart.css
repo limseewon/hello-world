@@ -1,12 +1,12 @@
 
 .cart_completef { 
-  margin-top: calc(var(--c-space_updown)*7);
+  
   text-align: center;
   margin-bottom: calc(var(--c-space_updown)*7);
 
 }
-.cart_boxful { width: 1200px;}
-.cart_boxfull2 { width: 100%; height: 100%;}
+.cart_boxful { width: 1200px; }
+.cart_boxfull2 { width: 100%; height: 100%; }
 .cartbox { border: 1px solid var(--c-border-grey);}
 .home2_box { text-align: center; display: flex;justify-content: center;
 }
@@ -30,9 +30,9 @@
   
   background: var(--c-complete-button-hover);
 }
-.cart_container > h2 {
-  margin-top: calc(var(--c-space_updown)*5);
-}
+
+ 
+
 
 
 .all_check {
@@ -53,7 +53,7 @@
   height: 40px;
   background: var(--c-cancle-button);
   font-weight: 500;
-  height: auto;
+  
 }
 .select_del:hover {
   
@@ -61,7 +61,7 @@
   background: var(--c-lightred);
  
 }
-
+.cart_container { margin-bottom: 150px;}
 .cart_item_container {
   gap: var(--c-space_updown) 0;
   padding: 0;
@@ -89,9 +89,10 @@
 .del_x { 
   
 }
+.cartimgbox { width: 230px;}
 .cart_item img {
-  width: 230px;
-  height: 100%;
+  width: 100%;
+  
   object-fit: cover;
   overflow: hidden;
   margin-left: 10px;
@@ -135,6 +136,7 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  line-height: 1.5;
 }
 
 .cart_item .price {
@@ -154,17 +156,17 @@
 }
 
 .form_container {
-  padding-left: var(--c-space_updown);
-}
-
-.payment_form {
-  background-color: #fff;
-  padding: 25px 20px;
-  height: calc(var(--c-space_updown)*15);
   position: sticky;
-  top: calc(var(--c-space_updown)*2);
+  top: calc(var(--c-space_updown) * 3); /* 원하는 위치로 조정 */
+  display: flex;
+  margin-left: calc(50% + 621px);
+  z-index: 51;
+  width: 26%;
+ 
+  
 }
 
+.pobox{position: absolute;border-radius: 10px;}
 .coupon_select .current {
   width: 100%;
   white-space: nowrap;
@@ -229,17 +231,17 @@
   width: 15%;
 }
 
-.contpatbpx {
+/* .contpatbpx {
   display: flex; 
   justify-content: space-between; 
   width: 100%;
-}
+} */
 .paymentbox { 
-  width: 405px;
+  width: 260px;
   
 }
 .contentbox { 
-  width: 402px;
+  width: 260px;
 }
 .butb { display: flex; justify-content: center;}
 .greenbtn { 
