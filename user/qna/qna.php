@@ -1,8 +1,13 @@
 <?php
 $title = 'Q&A';
-$cssRoute1 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A.css">';
-$cssRoute2 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A_detail.css">';
+$cssRoute1 ='';
+$cssRoute2 ='';
+$cssRoute3 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A_detail.css">';
+$cssRoute4 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A.css">';
+
 $script1 = '';
+$script2 = '';
+$script3 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 $paginationTarget = 'qna';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/pagination.php';
