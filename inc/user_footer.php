@@ -165,6 +165,19 @@
       crossorigin="anonymous"
     ></script>
 
+    <script>
+      Kakao.init('');
+      $('.kakao').click(function() {
+        console.log('test')
+        loginWithKakao();
+      }) 
+      function loginWithKakao() {
+        Kakao.Auth.authorize({
+          redirectUri: '/helloworld/user/login/kakao_oauth.php',
+        });
+      }
+
+    </script>
     <!-- swiper -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     

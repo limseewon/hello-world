@@ -26,6 +26,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
      <!-- swiper -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
+     <!-- kakao -->
+     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
     <link rel="stylesheet" href="/helloworld/user/css/common.css">
     <link rel="stylesheet" href="/helloworld/user/css/login.css">
 
@@ -113,7 +116,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                   </label>
                 </div>
                 <div class="position-relative kakao">
-                  <button type="submit" class="btn btn-warning kakao bold">
+                  <button type="button" class="btn btn-warning kakao bold">
                     <img src="/helloworld/user/img/kakao.svg" alt="" />
                     카카오로 시작하기
                   </button>
