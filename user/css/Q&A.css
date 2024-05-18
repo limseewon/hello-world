@@ -1,5 +1,5 @@
-.table-container{
-    width: 100%;
+.table-container {
+  width: 100%;
 }
 table td,
 table th {
@@ -14,55 +14,55 @@ tr {
 .pagination {
   padding-top: 50px;
 }
-.qna-detail-box{
-    width: 910px;
-    height: auto;
-    margin: 0 auto;
+.qna-detail-box {
+  width: 910px;
+  height: auto;
+  margin: 0 auto;
 }
-.qna-content{
-    line-height: 50px;
-    width: 540px;
-    height: auto;
-    min-height: 100px;
+.qna-content {
+  line-height: 50px;
+  width: 540px;
+  height: auto;
+  min-height: 100px;
 }
 .comment-list {
-    margin-top: 24px;
+  margin-top: 24px;
 }
 
 .comment-item {
-    padding: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 16px;
 }
 
 .comment-avatar {
-    /* flex-shrink: 0; */
+  /* flex-shrink: 0; */
 }
 
 .comment-body {
-    background-color: #f8f9fa;
-    border-radius: 4px;
-    padding: 16px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  padding: 16px;
 }
 
 .comment-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .comment-author {
-    color: #333;
+  color: #333;
 }
 
 .comment-date {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .comment-content p {
-    line-height: 1.5;
-    color: #555;
+  line-height: 1.5;
+  color: #555;
 }
 .nt {
   padding-bottom: 36px;
@@ -72,53 +72,54 @@ tr {
   height: auto;
   min-height: 368px;
 }
-.bd{
-    margin-top: 30px;
+.bd {
+  margin-top: 30px;
 }
- td .text-center{
-    vertical-align: middle;
+td .text-center {
+  vertical-align: middle;
 }
 .sb {
-    width: 213px;
-    height: 40px;
-  }
-  .search_bar {
-    gap: 20px;
-  }
-  .search {
-    width: 434px;
-    height: 40px;
-    font-size: var(--c-p);
-  }
-  .btn_search {
-    height: 40px;
-  }
- .btn_class{
+  width: 213px;
+  height: 40px;
+}
+.search_bar {
+  gap: 20px;
+}
+.search {
+  width: 434px;
+  height: 40px;
+  font-size: var(--c-p);
+}
+.btn_search {
+  height: 40px;
+}
+.btn_class {
   width: 74px;
- }
- .btn-success{
+}
+.btn-success {
   background-color: var(--c-primary-button);
- }
- 
- .bn, .bs{
+}
+
+.bn,
+.bs {
   width: 74px;
   border: none;
- }
- .qna-thumbnail img {
+}
+.qna-thumbnail img {
   max-width: 200px;
   max-height: 200px;
 }
 
 .bi-pencil-square,
-.bi-trash{
+.bi-trash {
   font-size: 20px;
   color: var(--c-primary-button);
 }
 
-.img_qna{
+.img_qna {
   width: 400px;
 }
-.qna_btn{
+.qna_btn {
   flex: end;
 }
 

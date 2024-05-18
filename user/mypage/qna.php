@@ -103,7 +103,6 @@
                         <input type="hidden" name="pageNumber" value="1">
                         <input class="form-control me-2 search" type="search" placeholder="제목을 입력하시오." aria-label="Search" id="searchInput" name="keyword" value="<?= $keyword ?>">
                         <button class="btn btn-outline-success btn_search" type="submit" id="searchButton">검색</button>
-                        <button class="btn btn-secondary qna_regist_btn" type="button" onclick="checkLogin()"><a href="/helloworld/user/qna/qna_regist.php">질문 등록</a></button>
                     </form>
                 </div>
                 <div class="table-container">
