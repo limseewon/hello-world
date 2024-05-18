@@ -2,7 +2,7 @@
 $title = 'Q&A';
 $cssRoute1 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A_detail.css">';
 $cssRoute2 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A.css">';
-$script1 = '<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>';
+$script1 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 // 질문 ID 받아오기
@@ -72,6 +72,17 @@ if ($qna_id > 0) {
     $sql = "SELECT * FROM qna_comment WHERE idx = '$qna_id' ORDER BY id DESC";
     $comment_result = $mysqli->query($sql);
 }
+?>
+
+<?php
+$title = 'Q&A';
+$cssRoute1 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A_detail.css">';
+$cssRoute2 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A.css">';
+$script1 = '';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
+
+// ... (중간 생략) ...
+
 ?>
 
 <div class="container">
@@ -166,10 +177,13 @@ if ($qna_id > 0) {
                         <button type="submit" class="btn btn-primary">등록</button>
                         </div>
                     </form>
+                    <div class="mt-3">
+                        <button type="button" class="btn btn-success" onclick="selectAnswer(<?= $qna_id ?>, this)">채택하기</button>
+                    </div>
                 </div>
                 <div class="comment-list mt-4">
                     <?php while ($comment = $comment_result->fetch_assoc()) : ?>
-                        <div class="comment-item <?= ($comment['selected'] == 1) ? 'selected-answer' : ''; ?>">
+                        <div class="comment-item">
                             <div class="d-flex">
                                 <div class="comment-avatar me-3">
                                     <i class="bi bi-person-circle h4"></i>
@@ -226,16 +240,14 @@ if ($qna_id > 0) {
             window.location.href = deleteLink.href;
         }
     };
-    
-    // 삭제 확인 알림창을 위한 JavaScript 함수 추가
-    function confirmDelete(qnaId, event) {
+     // 삭제 확인 알림창을 위한 JavaScript 함수 추가
+     function confirmDelete(qnaId, event) {
         event.preventDefault();
         var confirmation = confirm("정말 삭제하시겠습니까?");
         if (confirmation) {
             window.location.href = "qna_delete.php?id=" + qnaId;
         }
     }
-    
     function showEditForm() {
         document.getElementById('qnaTable').style.display = 'none';
         document.getElementById('qnaDetail').style.display = 'none';
@@ -247,33 +259,7 @@ if ($qna_id > 0) {
         document.getElementById('qnaDetail').style.display = 'block';
         document.getElementById('qnaEditForm').style.display = 'none';
     }
-    
-    function selectAnswer(qnaId, commentId) {
-        // AJAX 요청을 통해 서버로 채택된 답변 정보 전송
-        $.ajax({
-            url: 'qna_select_answer.php',
-            type: 'POST',
-            data: {
-                qna_id: qnaId,
-                comment_id: commentId
-            },
-            success: function(response) {
-                // 답변 상태 업데이트 성공 시 페이지 새로고침
-                location.reload();
-            },
-            error: function() {
-                // 답변 상태 업데이트 실패 시 에러 처리
-                alert('답변 상태 업데이트에 실패했습니다.');
-            }
-        });
-    }
 </script>
-
-<style>
-    .selected-answer {
-        border: 2px solid #28a745;
-    }
-</style>
 
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_footer.php';
