@@ -85,8 +85,10 @@
   $user_id = $_SESSION['UID'];
   $couponsSql = "SELECT * FROM user_coupons uc JOIN coupons c ON uc.couponid = c.cpid WHERE uc.userid = '{$user_id}' AND uc.status=1";
   
-  $expireSql = $couponsSql." AND uc.use_max_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 MONTH)";
+  $expireSql = $couponsSql." AND uc.use_max_date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 MONTH) AND YEAR(uc.use_max_date)=YEAR(CURDATE())";
   $mycouponSql = $couponsSql." AND uc.use_max_date > DATE_ADD(CURDATE(), INTERVAL 1 MONTH)";
+
+
   // $my_couponsSql = "SELECT uc.* FROM user_coupons uc JOIN coupons c ON uc.couponid = c.cpid  WHERE uc.userid = '{$user_id}' AND uc.status=1";
   // $my_couponsSql = "SELECT uc.* FROM user_coupons uc WHERE uc.userid = '{$user_id}' AND uc.status=1";
   // echo $my_couponsSql;
