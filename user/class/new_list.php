@@ -1,8 +1,13 @@
 <?php
-$title = '강의리스트';
+$title = '최신강의리스트';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_common.css"/>';
 $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/class_list.css"/>';
+$cssRoute3 ='';
+$cssRoute4 ='';
+
 $script1='';
+$script2 = '';
+$script3 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 // 대분류명 조회
@@ -13,8 +18,6 @@ while($step1rs = $stepresult-> fetch_object()){
   $step1arr[]=$step1rs;
 }
 
-$sql = "SELECT * from courses where 1=1 " ;  //"courses" 테이블에서 모든 열을 선택하는 쿼리를 생성. 이 쿼리는 WHERE 절에 항상 참인 조건을 포함하고 있음. 이렇게 하는 이유는 후속적으로 추가되는 조건들을 쉽게 추가.
-$order = ' order by cid desc';   //결과를 "cid" 열을 기준으로 내림차순으로 정렬
 $sql = "SELECT * FROM `courses` WHERE YEAR(regdate) = YEAR(CURRENT_DATE()) AND MONTH(regdate) = MONTH(CURRENT_DATE()) ORDER BY cid DESC LIMIT 8";
 // echo $sql;
 $rc_result = $mysqli->query($sql);   // 데이터베이스에서 쿼리를 실행하고, 그 결과를 $rc_result 변수에 저장
@@ -34,8 +37,7 @@ if (isset($cate)) {  // 만약 HTTP GET 요청으로 'catename' 매개변수가 
 };
 
 
-$sql = "SELECT * from courses where 1=1 " ;  //"courses" 테이블에서 모든 열을 선택하는 쿼리를 생성. 이 쿼리는 WHERE 절에 항상 참인 조건을 포함하고 있음. 이렇게 하는 이유는 후속적으로 추가되는 조건들을 쉽게 추가.
-$order = ' order by cid desc';   //결과를 "cid" 열을 기준으로 내림차순으로 정렬
+
 
 
 $level = $_GET['level']??'';
@@ -98,8 +100,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/helloworld/class/pager.php';
 $limit = " limit $startLimit, $pageCount"; //select sql문에 .limit 해서 이어 붙이고 결과값 도출하기!
 
 
-//최종 query문, 실행
-$sqlrc = $sql.$c_where.$order.$limit; 
+
 
 
 
@@ -122,7 +123,7 @@ $sqlrc = $sql.$c_where.$order.$limit;
   <div class="container containermab">
     <div class="section1 d-flex justify-content-between pd_2">
       <div class="courseBigTitle jua coursetitle">
-        <h2 class="court h2_t">강의리스트</h2>
+        <h2 class="court h2_t">최신강의 리스트</h2>
       </div>
     </div>
     <form action="#" class="d-flex gap-3">
