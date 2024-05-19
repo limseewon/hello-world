@@ -26,6 +26,13 @@ tr {
   height: auto;
   min-height: 100px;
 }
+
+.comment-list,
+.comment-form {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
 .comment-list {
   margin-top: 24px;
 }
