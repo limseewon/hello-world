@@ -254,4 +254,4 @@
   
   background: var(--c-complete-button-hover);
 }
-
+.cart_completef { margin-top: calc(var(--c-space_updown)*5);}
