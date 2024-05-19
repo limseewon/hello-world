@@ -5,30 +5,7 @@ $cssRoute2 ='';
 $cssRoute3 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A_detail.css">';
 $cssRoute4 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A.css">';
 
-$script1 = '
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    function selectAnswer(qnaId, commentId) {
-        // AJAX 요청을 통해 서버로 채택된 답변 정보 전송
-        $.ajax({
-            url: "qna_select_answer.php",
-            type: "POST",
-            data: {
-                qna_id: qnaId,
-                comment_id: commentId
-            },
-            success: function(response) {
-                // 답변 상태 업데이트 성공 시 페이지 새로고침
-                location.reload();
-            },
-            error: function() {
-                // 답변 상태 업데이트 실패 시 에러 처리
-                alert("답변 상태 업데이트에 실패했습니다.");
-            }
-        });
-    }
-</script>';
-
+$script1 = '<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>';
 $script2 = '';
 $script3 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
@@ -175,7 +152,7 @@ if ($qna_id > 0) {
                         <textarea name="content" id="content" class="form-control" rows="5" required><?= strip_tags($row['content']); ?></textarea>
                     </div>
                     <button type="submit" name="update" class="btn btn-primary">수정</button>
-                    <button type="button" class="btn btn-secondary" onclick="hideEditForm()">취소</button>
+                    <button type="button" class="btn btn-secondary" onclick="location.reload()">취소</button>
                 </form>
             </div>
             <hr>
@@ -202,11 +179,6 @@ if ($qna_id > 0) {
                             <button type="submit" class="btn btn-primary">등록</button>
                         </div>
                     </form>
-                    <?php if (isset($_SESSION['UID']) && $_SESSION['UID'] == $row['userid']) : ?>
-                        <div class="mt-3">
-                            <button type="button" class="btn btn-success" onclick="selectAnswer(<?= $qna_id ?>, this)">채택하기</button>
-                        </div>
-                    <?php endif; ?>
                 </div>
                 <div class="comment-list mt-4">
                     <?php while ($comment = $comment_result->fetch_assoc()) : ?>
@@ -220,7 +192,7 @@ if ($qna_id > 0) {
                                         <span class="comment-author p fw-bold"><?= $comment['name']; ?></span>
                                         <span class="comment-date text-muted ms-2"><?= $comment['regdate']; ?></span>
                                         <?php if (isset($_SESSION['UID']) && $comment['user_id'] == $_SESSION['UID']) : ?>
-                                            <a href="qna_reply_delete.php?id=<?= $qna_id; ?>&comment_id=<?= $comment['id']; ?>" class="delete-link ms-3" onclick="confirmDelete(event)">
+                                            <a href="qna_reply_delete.php?id=<?= $qna_id; ?>&comment_id=<?= $comment['id']; ?>" class="delete-link ms-3" onclick="confirmReplyDelete(event)">
                                                 <span class="material-symbols-outlined">delete</span>
                                             </a>
                                         <?php endif; ?>
@@ -231,7 +203,7 @@ if ($qna_id > 0) {
                                     <?php if (isset($_SESSION['UID']) && $_SESSION['UID'] == $row['userid']) : ?>
                                         <div class="mt-2">
                                             <?php if ($comment['selected'] == 1) : ?>
-                                                <button type="button" class="btn btn-success btn-sm" >채택됨</button>
+                                                <button type="button" class="btn btn-success btn-sm">채택됨</button>
                                             <?php else : ?>
                                                 <button type="button" class="btn btn-success btn-sm" onclick="selectAnswer(<?= $qna_id ?>, <?= $comment['id'] ?>)">채택하기</button>
                                             <?php endif; ?>
@@ -274,7 +246,18 @@ if ($qna_id > 0) {
             var deleteLink = event.target.closest('.delete-link');
             window.location.href = deleteLink.href;
         }
-    };
+    };  
+    // 답변 삭제 확인 알림창
+function confirmReplyDelete(event) {
+    event.preventDefault(); // 기본 동작 취소
+
+    var confirmation = confirm("정말 삭제하시겠습니까?");
+    if (confirmation) {
+        // 확인 버튼을 클릭한 경우
+        var deleteLink = event.target.closest('.delete-link');
+        window.location.href = deleteLink.href;
+    }
+}
     
     // 삭제 확인 알림창을 위한 JavaScript 함수 추가
     function confirmDelete(qnaId, event) {
@@ -295,6 +278,25 @@ if ($qna_id > 0) {
         document.getElementById('qnaTable').style.display = 'table';
         document.getElementById('qnaDetail').style.display = 'block';
         document.getElementById('qnaEditForm').style.display = 'none';
+    }
+    function selectAnswer(qnaId, commentId) {
+        // AJAX 요청을 통해 서버로 채택된 답변 정보 전송
+        $.ajax({
+            url: "qna_select_answer.php",
+            type: "POST",
+            data: {
+                qna_id: qnaId,
+                comment_id: commentId
+            },
+            success: function(response) {
+                // 답변 상태 업데이트 성공 시 페이지 새로고침
+                location.reload();
+            },
+            error: function() {
+                // 답변 상태 업데이트 실패 시 에러 처리
+                alert("답변 상태 업데이트에 실패했습니다.");
+            }
+        });
     }
 </script>
 
