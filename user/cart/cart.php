@@ -4,7 +4,7 @@
 $title = 'CART';
 $cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/common.css"/>';
 $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/cart.css"/>';
-$cssRoute3 ='';
+$cssRoute3 ='<script defer src="/helloworld/user/cart/js/cart.js"></script>';
 $cssRoute4 ='';
 
 $script1='';
@@ -97,7 +97,8 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
       <input class="form-check-input" type="checkbox" value="" id="all_check" checked>
       <label class="form-check-label" for="all_check">전체선택</label>
       <span>|<span class="select_count">0</span>개 (총 <span class="all_count">0</span>개)</span>
-    </div>  
+    </div>
+    
   </div>
   <div class="form_container">
     <form action="/helloworld/user/cart/cart_complete.php" method="POST" class="payment_form radius_12 shadow_box pobox content-box">
@@ -127,10 +128,7 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
       </div>
         
                               
-          <!-- <div class="update-checkout w-50 text-right">
-              <a href="cart_clear_ok.php" id="clearCart">clear cart</a>
-              <a href="#" id="updateCart">Update cart</a>
-          </div> -->
+          
                           
         
       <div class="paymentbox">
@@ -165,7 +163,7 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
       ?>
       <li class="cart_item shadow_box content-box cart_boxfull2" data-cartid="<?= $cart->cartid; ?>" data-pid="<?= $cart->cid; ?>">
         <input class="form-check-input" type="checkbox" value="" id="cart_item" checked>
-        <label class="form-check-label" for="cart_item"></label>
+        <label class="form-check-label" for="cart_item <?= $cart->cartid ?>"></label>
         <div class="cartimgbox">
           <img src="<?= $cart->thumbnail ?>" alt="<?= $cart->name ?>" class="radius_5">
         </div>
@@ -173,7 +171,7 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
         <div class="text_box">
           <div class="title">
             <h3 class="b_text01"><?= $cart->name ?></h3>
-            <span class="badge rounded-pill blue_bg b-pd">
+            <span class="badge rounded-pill pulele_bg b-pd">
             <?php
               if (isset($cart->cate)) {
                 $categoryText = $cart->cate;
@@ -187,11 +185,11 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
             <?php
               $levelBadge = $cart->level;
               if ($levelBadge === '초급') {
-                echo 'yellow_bg';
-              } else if ($levelBadge === '중급') {
                 echo 'green_bg';
+              } else if ($levelBadge === '중급') {
+                echo 'orange_bg';
               } else {
-                echo 'red_bg';
+                echo 'blue_bg';
               }
               ?>
             "><?= $cart->level ?></span>
@@ -205,7 +203,7 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
           </div>
         </div>
         
-        <i class="ti ti-x del_btn"></i>
+        <i class="ti ti-x del_btn">X</i>
         <?php
           if($cart->price_status != "무료"){
           ?>
@@ -231,12 +229,11 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
       }
       ?>
     </ul>
-    <button class="btn btn-primary dark select_del text-bg-danger">선택삭제</button>
-    
+
   </div>
+  <button class="btn btn-primary dark select_del text-bg-danger">선택삭제</button>  
   
 </div>
-
 
 <script>
 document.addEventListener('DOMContentLoaded', ()=>{
@@ -378,7 +375,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     */
 });    
 </script>
-<script src="js/cart.js"></script>
+
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_footer.php';
 ?>
