@@ -3,7 +3,8 @@
   $title = 'Q&A';
   $cssRoute2 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A.css">';
   $cssRoute3 = '<link rel="stylesheet" href="/helloworld/user/css/Q&A_detail.css">';
-  $cssRoute4 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_qna.css"/>';
+  // $cssRoute4 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_qna.css"/>';
+  $cssRoute4 ='';
 
   
   $script1 = '';
