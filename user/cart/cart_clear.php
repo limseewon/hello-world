@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once $_SERVER['DOCUMENT_ROOT'] . '/pinkping/inc/dbcon.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
 if(isset($_SESSION['UID'])){  // 세션 변수 UID가 설정되어 있는지 확인 if 문 안에서는 세션 변수 UID가 존재하면 이를 $userid 변수에 할당
     $userid = $_SESSION['UID'];

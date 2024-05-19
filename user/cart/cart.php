@@ -159,10 +159,10 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
   </div>
   <div class="cart_boxfull">
     <ul class="cart_item_container d-flex flex-column ">
-    <?php
-          if(isset($rscct)){
-            foreach($rscct as $cart){
-          ?>
+      <?php
+      if(isset($rscct)){
+        foreach($rscct as $cart){
+      ?>
       <li class="cart_item shadow_box content-box cart_boxfull2" data-cartid="<?= $cart->cartid; ?>" data-pid="<?= $cart->cid; ?>">
         <input class="form-check-input" type="checkbox" value="" id="cart_item" checked>
         <label class="form-check-label" for="cart_item"></label>
@@ -205,7 +205,7 @@ else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScri
           </div>
         </div>
         
-        <i class="fa-solid fa-x cart_item_del"></i>
+        <i class="ti ti-x del_btn"></i>
         <?php
           if($cart->price_status != "무료"){
           ?>

@@ -1,7 +1,7 @@
 $(function () {
 let all_check = $('.all_check'); // HTML 요소에서 선택한 클래스를 변수에 할당
 let select_del = $('.select_del');
-let discount = 0; //쿠폰 금액을 저장하는 변수
+// let discount = 0; //쿠폰 금액을 저장하는 변수
 
 
 
