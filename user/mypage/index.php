@@ -1,11 +1,11 @@
 <?php
   $title = 'Dashboard';
   $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_dash.css"/>';
-  $cssRoute3 = '';
+  $cssRoute3 = "<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />";
   $cssRoute4 = '';
-  $script2 = '<script defer src="/helloworld/user/js/mypage_index.js"></script>';
-  $script3 ='';
-  $script4 ='';
+  
+  $script2 ="<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>";
+  $script3 ='<script defer src="/helloworld/user/js/mypage_index.js"></script>';
   include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/leftSide.php';     
     
 $userid = $_SESSION['UID'];
@@ -38,10 +38,14 @@ while( $courseRs = $courseResult->fetch_object()){
   $courseArr [] = $courseRs;
 };
 
+$attendSql = "SELECT count(*) cnt FROM attendance WHERE userid = '{$userid}' AND YEAR(login_date) = YEAR(CURDATE()) AND MONTH(login_date) = MONTH(CURDATE())";
+$attendResult = $mysqli->query($attendSql);
+$attendRs = $attendResult->fetch_object();
 ?>
         <section class="mainContainer">
           <h2 class="title">대시 보드</h2>
           <div class="mainContents">
+            
             <div class="d-flex flex-column justify-content-center align-items-center content-box profile_box">
               <div class="d-flex justify-content-start align-items-center profile_info">
                 <div class="d-flex flex-column align-items-center profile_img_con">
@@ -72,8 +76,12 @@ while( $courseRs = $courseResult->fetch_object()){
               </div>
             </div>
             <div class="content-box attendance_box">
-              <h3 class="p bold">5월 출석 현황</h3>
-              <div class="calandar">달력</div>
+              <h4 class="bold mb-4">출석 현황</h4>
+              <p class="p mb-3">이번 달 출석일 : <?=$attendRs->cnt?>일</p>
+              
+              <div id="calendar" class="content-box">
+                
+              </div>
             </div>
             <div class="content-box recent_qna board">
               <h3 class="p bold">최근 질문</h3>
@@ -92,6 +100,10 @@ while( $courseRs = $courseResult->fetch_object()){
                   }
                 ?>
               </ul>
+            </div>
+            <div class="content-box course_progress board">
+              <h3 class="p bold">강의별 진도율</h3>
+              <div class="chart">차트</div>
             </div>
             <div class="content-box mycourses board">
               <h3 class="p bold">수강 강의</h3>
@@ -125,10 +137,7 @@ while( $courseRs = $courseResult->fetch_object()){
                 }?>
               </ul>
             </div>
-            <div class="content-box course_progress board">
-              <h3 class="p bold">강의별 진도율</h3>
-              <div class="chart">차트</div>
-            </div>
+            
             <div class="content-box recent_notice board">
               <h3 class="p bold">최근 공지사항</h3>
               <ul>
