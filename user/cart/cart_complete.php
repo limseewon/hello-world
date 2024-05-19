@@ -1,32 +1,45 @@
 <?php
-session_start();
-include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+$title = '결제완료';
+$cssRoute1 ='<link rel="stylesheet" href="/helloworld/user/css/common.css"/>';
+$cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/class/cart.css"/>';
+$cssRoute3 ='';
+$cssRoute4 ='';
 
-$course_id = 'cid';
-$member_id = $_POST['mid'] ?? '';
+$script1='';
+$script2 = '';
+$script3 = '';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
-$total = 'total';
 
-if(isset($_SESSION['UID'])){
-    $userid = $_SESSION['UID'];
-    $ssid = '';
-} else {
-    $ssid = session_id();
-    $userid = '';
-}
-// 사용자가 로그인되어 있다면 세션에서 사용자 ID (UID)를 가져오고 세션 ID (ssid)를 빈 문자열로 설정
-// 로그인되어 있지 않다면 세션 ID를 생성하고 사용자 ID는 빈 문자열로 설정
 
-$sql = "INSERT INTO ordered_courses (course_id,member_id,total_price,regdate) VALUES ('{$course_id}','{$member_id}',{$total_price},now())";
+  // Post방식으로 넘어온 값들 변수에 할당
+  $pid = $_POST['pid'];
+  $pidstr = implode(',', $pid);
 
+  $cartid = $_POST['cartid'];
+  $cartidstr = implode(',', $cartid);
+
+  $userid = $_POST['userid'];
+  $total = $_POST['totalprice'];  
+
+  //ordered_coused에는 userid가 아니라 member_id가 들어가게 설계되어 있네 왜!흠. 일단 members테이블에서 userid로 memberid 조회
+  $msql =  "SELECT mid FROM members WHERE userid='{$userid}'";
+  $mresult = $mysqli->query($msql);
+  $mresultRow = $mresult->fetch_object();
+  $mid = $mresultRow ->mid;
+
+
+  $sql = "INSERT into ordered_courses
+  (course_id,member_id,total_price,regdate) values
+  ('{$pidstr}','{$mid}',{$total}, now())
+    ";
 $result = $mysqli -> query($sql);
-$qs = $result -> fetch_object();
 
-$total_price = explode(",", $qs->course_file);
-echo $total_price;
+if($result === true){ // INSERT가 성공한 경우
 
-
-
+//구매한 상품 삭제
+$sql2 = "DELETE from cart where cartid IN({$cartidstr})";
+$result2 = $mysqli->query($sql2);
 ?>
 
 <div class="cart_completef">
@@ -34,10 +47,26 @@ echo $total_price;
   
   <img src="../img/logo_icon.png" alt="로고">
    <div class="home2_box d-flex home2bottom">
-    <a href="" class="btn btn-primary dark mt-3 home2_a">홈으로</a>
-    <a href="" class="btn btn-primary dark mt-3 home2_b">수강목록</a>
+    <a href="/helloworld/index.php" class="btn btn-primary dark mt-3 home2_a">홈으로</a>
+    <a href="/helloworld/user/mypage/courses.php" class="btn btn-primary dark mt-3 home2_b">수강목록</a>
    </div>
 </div>
+
+<?php
+} else { // INSERT가 실패한 경우
+?>
+<div class="cart_completef">
+  <h2 class="main_tt">결제가 실패했습니다.</h2>
+  
+  <img src="../img/logo_icon.png" alt="로고">
+   <div class="home2_box d-flex home2bottom">
+    <a href="" class="btn btn-primary dark mt-3 home2_a">홈으로</a>
+   </div>
+</div>
+<?php
+}
+?>
+
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_footer.php';
 ?>
