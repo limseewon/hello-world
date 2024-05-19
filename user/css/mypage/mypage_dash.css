@@ -81,7 +81,7 @@
   font-size: var(--f-H3);
 }
 
-ul {
+.board ul {
   list-style-type: disc;
 }
 .chart-container {
