@@ -48,7 +48,7 @@ if(isset($_SESSION['UID'])) {
     // echo $sql;
     $result = $mysqli->query($sql);
   
-    // 주문이 성공적으로 추가되면 알림을 띄우고 이전 페이지로 이동
+    // 주문이 성공적으로 추가되면 알림을 띄우고 구매 페이지로 이동
     if ($result) {
       echo "<script>alert('강의가 구매되었습니다.'); location.href = '/helloworld/user/mypage/courses.php';</script>";
     } else {
