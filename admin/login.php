@@ -15,54 +15,54 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
   </head>
   <body>
   <dialog class="popup">
-  <h2><span class="blue">HelloWorld</span> LMS 학습사이트(3차 프로젝트 포트폴리오)</h2>
-  <p>
-    <span>본 사이트는 구직용 포트폴리오 사이트입니다.</span>
-  </p>
+    <h2><span class="blue">HelloWorld</span> LMS 학습사이트(3차 프로젝트 포트폴리오)</h2>
+    <p>
+      <span>본 사이트는 구직용 포트폴리오 사이트입니다.</span>
+    </p>
 
-  <hr>
+    <hr>
 
-  <div class="info">
-    <p><span>제작기간</span> : 2024. 04. 01 - 05. 22</p>
-    <p><span>특징</span> : html, css, jQuery (Bootstrap, jQuery Library)</p>
-    <p>local: Windows, XAMPP(PHP, APACHE, MYSQL), vscode | remote : PHP, MYSQL</p>
-    <p><span>기획</span> : <a href="#" target="_blank" class="figma"><span class="font_green">발표 자료</span></a>  |  <span>코드</span> : <a href="https://github.com/junb119/Team-sudo" target="_blank" class="git"><span>깃허브</span><i class="fa-brands fa-github"></i></a></p>
-    <p><span>구현 완료 페이지</span> : <a href="http://worldhello.dothome.co.kr/helloworld/admin/login.php" target="_blank" class="dothome"><span>관리자 로그인 페이지</span></a></p>
-  </div>
-
-  <hr>
-
-  <div class="admin">
-    <p><span>관리자 아이디</span> : admin</p>
-    <p><span>관리자 비밀번호</span> : 1111</p>
-  </div>
-
-  <hr>
-
-  <div class="work">
-    <p><span>팀원</span> : 우*범, 임*원, 최*석</p>
-    <p><span>기획</span> : 전원</p>
-    <br>
-    <dl>
-      <dd><span>우*범</span> : 로그인/대시보드/회원관리/</dd>
-      <dd><span>임*원</span> : 공지사항/Q&amp;A게시판/수강평게시판</dd>
-      <dd><span>최*석</span> : 강좌관리/쿠폰관리/</dd>
-    </dl>
-  </div>
-
-  <hr>
-
-  <div class="close_wrap d-flex justify-content-between">
-    <div class="checkbox">
-      <input type="checkbox" id="daycheck" class="hidden">
-      <label for="daycheck">
-        <i class="fa-solid fa-check"></i>
-        오늘 하루 안보기
-      </label>
+    <div class="info">
+      <p><span>제작기간</span> : 2024. 04. 01 - 05. 22</p>
+      <p><span>특징</span> : html, css, jQuery (Bootstrap, jQuery Library)</p>
+      <p>local: Windows, XAMPP(PHP, APACHE, MYSQL), vscode | remote : PHP, MYSQL</p>
+      <p><span>기획</span> : <a href="#" target="_blank" class="figma"><span class="font_green">발표 자료</span></a>  |  <span>코드</span> : <a href="https://github.com/junb119/Team-sudo" target="_blank" class="git"><span>깃허브</span><i class="fa-brands fa-github"></i></a></p>
+      <p><span>구현 완료 페이지</span> : <a href="http://worldhello.dothome.co.kr/helloworld/admin/login.php" target="_blank" class="dothome"><span>관리자 로그인 페이지</span></a></p>
     </div>
-    <button type="button" id="close">닫기</button>
-  </div>
-</dialog>
+
+    <hr>
+
+    <div class="admin">
+      <p><span>관리자 아이디</span> : admin</p>
+      <p><span>관리자 비밀번호</span> : 1111</p>
+    </div>
+
+    <hr>
+
+    <div class="work">
+      <p><span>팀원</span> : 우*범, 임*원, 최*석</p>
+      <p><span>기획</span> : 전원</p>
+      <br>
+      <dl>
+        <dd><span>우*범</span> : 로그인/대시보드/회원관리/</dd>
+        <dd><span>임*원</span> : 공지사항/Q&amp;A게시판/수강평게시판</dd>
+        <dd><span>최*석</span> : 강좌관리/쿠폰관리/</dd>
+      </dl>
+    </div>
+
+    <hr>
+
+    <div class="close_wrap d-flex justify-content-between">
+      <div class="checkbox">
+        <input type="checkbox" id="daycheck" class="hidden">
+        <label for="daycheck">
+          <i class="fa-solid fa-check"></i>
+          오늘 하루 안보기
+        </label>
+      </div>
+      <button type="button" id="close">닫기</button>
+    </div>
+  </dialog>
     <main class="d-flex flex-column align-items-center">
       <div id="logo">
         <img src="/helloworld/img/logo.png" alt="logo.jpg" />
