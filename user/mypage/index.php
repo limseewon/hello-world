@@ -1,13 +1,15 @@
 <?php
   $title = 'Dashboard';
   $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_dash.css"/>';
-  $cssRoute3 = '';
+  $cssRoute3 = "<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />";
   $cssRoute4 = '';
-  $script2 = '<script defer src="/helloworld/user/js/mypage_index.js"></script>';
-  $script3 ='';
-  $script4 ='';
+  
+  $script2 ="<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>";
+  $script3 ='<script defer src="/helloworld/user/js/mypage_index.js"></script>';
   include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/leftSide.php';     
     
+
+
 $userid = $_SESSION['UID'];
 $midSql = "SELECT * FROM members WHERE userid = '{$userid}'";
 $mid_result = $mysqli->query($midSql);
@@ -21,16 +23,16 @@ while( $notice_rs = $notice_result->fetch_object()){
   $noticeArr [] = $notice_rs;
 };
 
-$qnaSql = "SELECT title from qna ORDER BY idx DESC LIMIT 4";
+$qnaSql = "SELECT title from qna WHERE user_id = '{$userid}' ORDER BY idx DESC LIMIT 4";
 $qnaResult = $mysqli->query($qnaSql);
 while( $qnaRs = $qnaResult->fetch_object()){
   $qnaArr [] = $qnaRs;
 };
-// $msgSql = "SELECT * from msg WHERE mid='{$member->mid}' ORDER BY msgidx DESC LIMIT 4";
-// $msgResult = $mysqli->query($msgSql);
-// while( $msgRs = $msgResult->fetch_object()){
-//   $msgArr [] = $msgRs;
-// };
+$msgSql = "SELECT * from msg WHERE mid='{$member->mid}' ORDER BY regdate DESC LIMIT 4";
+$msgResult = $mysqli->query($msgSql);
+while( $msgRs = $msgResult->fetch_object()){
+  $msgArr [] = $msgRs;
+};
 
 $courseSql = "SELECT c.name from courses c JOIN ordered_courses oc ON c.cid = oc.course_id WHERE oc.member_id = '{$member->mid}' LIMIT 4";
 $courseResult = $mysqli->query($courseSql);
@@ -38,10 +40,16 @@ while( $courseRs = $courseResult->fetch_object()){
   $courseArr [] = $courseRs;
 };
 
+$attendSql = "SELECT count(*) cnt FROM attendance WHERE userid = '{$userid}' AND YEAR(login_date) = YEAR(CURDATE()) AND MONTH(login_date) = MONTH(CURDATE())";
+$attendResult = $mysqli->query($attendSql);
+$attendRs = $attendResult->fetch_object();
+
 ?>
+
         <section class="mainContainer">
           <h2 class="title">대시 보드</h2>
           <div class="mainContents">
+            
             <div class="d-flex flex-column justify-content-center align-items-center content-box profile_box">
               <div class="d-flex justify-content-start align-items-center profile_info">
                 <div class="d-flex flex-column align-items-center profile_img_con">
@@ -72,8 +80,66 @@ while( $courseRs = $courseResult->fetch_object()){
               </div>
             </div>
             <div class="content-box attendance_box">
-              <h3 class="p bold">5월 출석 현황</h3>
-              <div class="calandar">달력</div>
+              <h4 class="bold mb-4">출석 현황</h4>
+              <p class="p mb-3">이번 달 출석일 : <?=$attendRs->cnt?>일</p>
+              <div id="calendar" class="content-box">
+              </div>
+            </div>
+            <div class="content-box recent_notice board">
+              <h3 class="p bold">최근 공지사항</h3>
+              <ul>
+                <?php
+                if (isset($noticeArr)) {
+                  foreach($noticeArr as $na) {
+                ?>
+                <li><a href="#"><?php
+                
+                $str = $na->title;
+                  $returnStr = '';
+                  $maxLength = 25;
+                  if (mb_strlen($str) >= $maxLength) {
+                    $returnStr = mb_substr($str, 0, $maxLength - 3) . '...';
+                  } else {
+                    $returnStr = $str;
+                  }
+                  echo $returnStr;
+                ?></a></li>
+                <?php
+                }
+                }else {
+                ?>
+                <li><a href="#">없음</a></li>
+                <?php
+                }?>
+              </ul>
+            </div>
+            
+            
+            <div class="content-box mycourses board">
+              <h3 class="p bold">수강 강의</h3>
+              <ul>
+                <?php
+                if(isset($courseArr)) {
+                  foreach($courseArr as $ca) {
+                ?>
+                <li><a href="#"><?php
+                $str = $ca->name; 
+                  $returnStr = '';
+                  $maxLength = 25;
+                  if (mb_strlen($str) >= $maxLength) {
+                    $returnStr = mb_substr($str, 0, $maxLength - 3) . '...';
+                  } else {
+                    $returnStr = $str;
+                  }
+                  echo $returnStr;
+                ?></a></li>
+                <?php
+                  }} else {
+                ?>
+                <li><a href="#">없음</a></li>
+                <?php
+                }?>
+              </ul>
             </div>
             <div class="content-box recent_qna board">
               <h3 class="p bold">최근 질문</h3>
@@ -82,7 +148,18 @@ while( $courseRs = $courseResult->fetch_object()){
                 if(count($qnaArr) > 0) {
                   foreach($qnaArr as $ar) {
                 ?>
-                <li><a href="#"><?= $ar->title?></a></li>
+                <li><a href="#"><?php
+                  
+                  $str = $ar->title; 
+                  $returnStr = '';
+                  $maxLength = 25;
+                  if (mb_strlen($str) >= $maxLength) {
+                    $returnStr = mb_substr($str, 0, $maxLength - 3) . '...';
+                  } else {
+                    $returnStr = $str;
+                  }
+                  echo $returnStr;
+                  ?></a></li>
                 
                 <?php
                   }} else {
@@ -93,22 +170,6 @@ while( $courseRs = $courseResult->fetch_object()){
                 ?>
               </ul>
             </div>
-            <div class="content-box mycourses board">
-              <h3 class="p bold">수강 강의</h3>
-              <ul>
-                <?php
-                if(isset($courseArr)) {
-                  foreach($courseArr as $ca) {
-                ?>
-                <li><a href="#"><?=$ca->name;?></a></li>
-                <?php
-                  }} else {
-                ?>
-                <li><a href="#">없음</a></li>
-                <?php
-                }?>
-              </ul>
-            </div>
             <div class="content-box recent_msg board">
               <h3 class="p bold">최근 메시지</h3>
               <ul>
@@ -116,7 +177,17 @@ while( $courseRs = $courseResult->fetch_object()){
                 if(isset($msgArr)) {
                   foreach($msgArr as $ma) {
                 ?>
-                <li><a href="#"><?=$ma->content?></a></li>
+                <li><a href="#"><?php
+                  $str = $ma->content; 
+                  $returnStr = '';
+                  $maxLength = 25;
+                  if (mb_strlen($str) >= $maxLength) {
+                    $returnStr = mb_substr($str, 0, $maxLength - 3) . '...';
+                  } else {
+                    $returnStr = $str;
+                  }
+                  echo $returnStr;
+                  ?></a></li>
                 <?php
                   }} else {
                 ?>
@@ -125,26 +196,13 @@ while( $courseRs = $courseResult->fetch_object()){
                 }?>
               </ul>
             </div>
-            <div class="content-box course_progress board">
+            
+            
+            <div class="content-box course_progress board nowrap">
               <h3 class="p bold">강의별 진도율</h3>
-              <div class="chart">차트</div>
-            </div>
-            <div class="content-box recent_notice board">
-              <h3 class="p bold">최근 공지사항</h3>
-              <ul>
-                <?php
-                if (isset($noticeArr)) {
-                  foreach($noticeArr as $na) {
-                ?>
-                <li><a href="#"><?= $na->title;?></a></li>
-                <?php
-                }
-                }else {
-                ?>
-                <li><a href="#">없음</a></li>
-                <?php
-                }?>
-              </ul>
+              <div div class="chart-container">
+                <canvas id="bar-chart"></canvas>
+              </div>
             </div>
           </div>
         </section>
@@ -198,6 +256,7 @@ while( $courseRs = $courseResult->fetch_object()){
             </div>
           </div>
         </div>
+        
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/rightSide.php';    
   ?>

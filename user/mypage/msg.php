@@ -3,7 +3,7 @@
   $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_msg.css"/>';
   $cssRoute3 ='';
   $cssRoute4 ='';
-  $script2 = '';
+  $script2 = '<script defer src="/helloworld/user/js/mypage_msg.js"></script>';
   $script3 = '';
   include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/leftSide.php';     
   $paginationTarget = 'msg';
@@ -128,7 +128,7 @@ $msgResult = $mysqli->query($msgSql);
                               }
       
                           ?>
-                              <tr>
+                              <tr data-msgId="<?=$ma->msgidx;?>">
                                   <th scope="row"><?= $sendername; ?></th>
                                   <th scope="row"><?= $content; ?></th>
                                   <td class="text_center"><?=  $ma->regdate; ?></td>
@@ -184,6 +184,25 @@ $msgResult = $mysqli->query($msgSql);
                 </div>
           </section>
         </div>
+        <div class="member_modal modal" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content content-box ">
+              <div class="modal-header">
+                <h4 class="modal-title bold">발신자 : <span id="sender"></span></h4>                
+                <h4 id="regdate"> </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <hr>
+              <div class="modal-body">
+                <p id="content"></p>
+              </div>
+              <!-- <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-danger member_del" data-bs-dismiss="modal">회원 삭제</button>
+                <button type="button" class="btn btn-success modeal_sleep"></button>
+              </div> -->
+            </div>
+          </div>
+        </div> 
   <?php
     include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/user/mypage/rightSide.php';    
     ?>
