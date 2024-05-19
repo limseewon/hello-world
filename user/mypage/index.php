@@ -21,16 +21,16 @@ while( $notice_rs = $notice_result->fetch_object()){
   $noticeArr [] = $notice_rs;
 };
 
-$qnaSql = "SELECT title from qna ORDER BY idx DESC LIMIT 4";
+$qnaSql = "SELECT title from qna WHERE user_id = '{$userid}' ORDER BY idx DESC LIMIT 4";
 $qnaResult = $mysqli->query($qnaSql);
 while( $qnaRs = $qnaResult->fetch_object()){
   $qnaArr [] = $qnaRs;
 };
-// $msgSql = "SELECT * from msg WHERE mid='{$member->mid}' ORDER BY msgidx DESC LIMIT 4";
-// $msgResult = $mysqli->query($msgSql);
-// while( $msgRs = $msgResult->fetch_object()){
-//   $msgArr [] = $msgRs;
-// };
+$msgSql = "SELECT * from msg WHERE mid='{$member->mid}' ORDER BY regdate DESC LIMIT 4";
+$msgResult = $mysqli->query($msgSql);
+while( $msgRs = $msgResult->fetch_object()){
+  $msgArr [] = $msgRs;
+};
 
 $courseSql = "SELECT c.name from courses c JOIN ordered_courses oc ON c.cid = oc.course_id WHERE oc.member_id = '{$member->mid}' LIMIT 4";
 $courseResult = $mysqli->query($courseSql);
@@ -78,9 +78,7 @@ $attendRs = $attendResult->fetch_object();
             <div class="content-box attendance_box">
               <h4 class="bold mb-4">출석 현황</h4>
               <p class="p mb-3">이번 달 출석일 : <?=$attendRs->cnt?>일</p>
-              
               <div id="calendar" class="content-box">
-                
               </div>
             </div>
             <div class="content-box recent_qna board">
@@ -90,7 +88,18 @@ $attendRs = $attendResult->fetch_object();
                 if(count($qnaArr) > 0) {
                   foreach($qnaArr as $ar) {
                 ?>
-                <li><a href="#"><?= $ar->title?></a></li>
+                <li><a href="#"><?php
+                  
+                  $str = $ar->title; 
+                  $returnStr = '';
+                  $maxLength = 25;
+                  if (mb_strlen($str) >= $maxLength) {
+                    $returnStr = mb_substr($str, 0, $maxLength - 3) . '...';
+                  } else {
+                    $returnStr = $str;
+                  }
+                  echo $returnStr;
+                  ?></a></li>
                 
                 <?php
                   }} else {
@@ -112,7 +121,17 @@ $attendRs = $attendResult->fetch_object();
                 if(isset($courseArr)) {
                   foreach($courseArr as $ca) {
                 ?>
-                <li><a href="#"><?=$ca->name;?></a></li>
+                <li><a href="#"><?php
+                $str = $ca->name; 
+                  $returnStr = '';
+                  $maxLength = 25;
+                  if (mb_strlen($str) >= $maxLength) {
+                    $returnStr = mb_substr($str, 0, $maxLength - 3) . '...';
+                  } else {
+                    $returnStr = $str;
+                  }
+                  echo $returnStr;
+                ?></a></li>
                 <?php
                   }} else {
                 ?>
@@ -128,7 +147,17 @@ $attendRs = $attendResult->fetch_object();
                 if(isset($msgArr)) {
                   foreach($msgArr as $ma) {
                 ?>
-                <li><a href="#"><?=$ma->content?></a></li>
+                <li><a href="#"><?php
+                  $str = $ma->content; 
+                  $returnStr = '';
+                  $maxLength = 25;
+                  if (mb_strlen($str) >= $maxLength) {
+                    $returnStr = mb_substr($str, 0, $maxLength - 3) . '...';
+                  } else {
+                    $returnStr = $str;
+                  }
+                  echo $returnStr;
+                  ?></a></li>
                 <?php
                   }} else {
                 ?>
@@ -145,7 +174,18 @@ $attendRs = $attendResult->fetch_object();
                 if (isset($noticeArr)) {
                   foreach($noticeArr as $na) {
                 ?>
-                <li><a href="#"><?= $na->title;?></a></li>
+                <li><a href="#"><?php
+                
+                $str = $na->title;
+                  $returnStr = '';
+                  $maxLength = 25;
+                  if (mb_strlen($str) >= $maxLength) {
+                    $returnStr = mb_substr($str, 0, $maxLength - 3) . '...';
+                  } else {
+                    $returnStr = $str;
+                  }
+                  echo $returnStr;
+                ?></a></li>
                 <?php
                 }
                 }else {

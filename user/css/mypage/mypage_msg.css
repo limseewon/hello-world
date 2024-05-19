@@ -17,3 +17,10 @@ tr {
 .pagination {
   padding-top: 50px;
 }
+
+.modal-title {
+  margin-right: 30px;
+}
+#content {
+  line-height: 1.618;
+}
