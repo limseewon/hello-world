@@ -19,7 +19,6 @@ if ($keyword) {
 }
 
 $date_option = isset($_GET['date']) ? $_GET['date'] : '';
-$view_option = isset($_GET['view']) ? $_GET['view'] : '';
 
 $order_by = "";
 
