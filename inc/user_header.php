@@ -68,7 +68,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
     <?=$script2?>
     <?=$script3?>
     <title><?=$title?> | Hello World</title>
-    
+    <link rel="icon" href="/helloworld/imges/favicon.ico" type="image/x-icon">
 </head>
 <body>
 
