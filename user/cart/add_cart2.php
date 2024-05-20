@@ -28,7 +28,7 @@ if (isset($_SESSION['UID'])) { // 코드 블록에서 $_SESSION['UID']가 설정
       echo "<script>history.back();</script>";
     }
   } else{
-    echo "<script>alert('구매 페이지로 이동합니다.');location.href = '/helloworld/user/cart/cart.php';</script>";
+    echo "<script>alert('이미 장바구니에 담겨있는 강의입니다. 구매 페이지로 이동합니다.');location.href = '/helloworld/user/cart/cart.php';</script>";
   }
 } else {
   //UID 없다면, 로그인 페이지로 이동
