@@ -1,4 +1,4 @@
-$(function () {
+$(function (){
 let all_check = $('.all_check'); // HTML 요소에서 선택한 클래스를 변수에 할당
 let select_del = $('.select_del');
 // let discount = 0; //쿠폰 금액을 저장하는 변수
@@ -48,7 +48,7 @@ function cartInfo(){
 // function couponPrice(total_price){ // 선택한 쿠폰에 따라 적용할 수 있는 할인 금액을 계산하고 표시하는 함수
 
 //   //쿠폰선택
-//     let target = $('.coupon_select').find('option:selected');
+    let target = $('.coupon_select').find('option:selected');
 //     let limit;
 //     // if(!target.hasClass('default')){
 //     //   limit = Number(target.attr('data-limit'));

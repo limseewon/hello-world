@@ -1,4 +1,5 @@
 <?php
+
 ob_start(); // 최근 본 강의
 $title = '강의상세페이지';
 $cssRoute1 = '<link rel="stylesheet" href="/helloworld/user/css/common.css"/>';
@@ -23,6 +24,13 @@ $result = $mysqli->query($imgsql);
 while ($is = $result->fetch_object()) {
     $addImgs[] = $is;
 }
+
+
+
+
+
+
+
 ?>
 
 <link rel="stylesheet" href="/helloworld/user/css/class/class_view.css"/>
@@ -183,7 +191,7 @@ while ($is = $result->fetch_object()) {
                             </div>
                         </div>
                         <div>
-                            <a href="<?= $ai->youtube_url ?>" onclick="return false" target="_blank"><i
+                            <a href="<?= $ai->youtube_url ?>"class="youtube-link" onclick="return false" target="_blank"><i
                                         class="fa-regular fa-circle-play"></i></a>
                         </div>
                     </li>
@@ -332,6 +340,7 @@ while ($is = $result->fetch_object()) {
         });
     });
 </script>
+
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_footer.php';
 ?>

@@ -16,6 +16,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $content = $_POST['content'];
     $lecture_name = $_POST['lecture_name'];
 
+     // 파일 업로드 처리
+     $uploaded_file = '';
+     if (isset($_FILES['files']) && $_FILES['files']['name'] != '') {
+         $upload_dir = '../../uploads/';
+         $uploaded_file = date('YmdHis') . '_' . $_FILES['files']['name'];
+         move_uploaded_file($_FILES['files']['tmp_name'], $upload_dir . $uploaded_file);
+     }
+
     // 업데이트 쿼리 실행
     $sql = "UPDATE qna SET title = '$title', content = '$content', lecture_name = '$lecture_name' WHERE idx = $qna_id";
     $result = $mysqli->query($sql);

@@ -103,7 +103,8 @@
                       <!-- <span class="price content_stt contpo2">
                         <span class="number"><?=$item->price; ?></span><span> 원</span>
                       </span> -->
-                      <a href="" class="nowrap btn btn-primary">학습 하기</a>
+                      <a href="" class="nowrap btn btn-primary"></a>
+                      
                     </div>
                   </div>
                 </li>
