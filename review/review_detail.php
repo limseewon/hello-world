@@ -10,8 +10,13 @@ $review_id = $_GET['id'];
 $sql = "UPDATE review SET view = view + 1 WHERE idx = $review_id";
 $result = $mysqli->query($sql);
 
+// // 질문 데이터 가져오기
+// $sql = "SELECT * FROM review WHERE idx = '$review_id'";
+// $result = $mysqli->query($sql);
+// $row = $result->fetch_assoc();
+
 // 질문 데이터 가져오기
-$sql = "SELECT * FROM review WHERE idx = '$review_id'";
+$sql = "SELECT r.*, c.name AS course_name FROM review r JOIN courses c ON r.cid = c.cid WHERE r.idx = '$review_id'";
 $result = $mysqli->query($sql);
 $row = $result->fetch_assoc();
 
@@ -186,6 +191,9 @@ $next_id = $row_next['next_id'];
        .edit {
            padding-right: 10px;
        }
+       .content_p{
+        padding-left: 17px;
+       }
    </style>
 </head>
 <body>
@@ -193,12 +201,12 @@ $next_id = $row_next['next_id'];
 <h2>수강평</h2>
 <div class="regist">
    <div class="mb-3 d-flex title">
-       <p class="tt">제목</p>
-       <p class="question"><?= $row['title']; ?></p>
+       <p class="tt">강의명</p>
+       <p><?= $row['course_name']; ?></p>
        <div class="pos d-flex">
            <p class="lock d-flex">작성자: <?= $row['name']; ?></p>
            <p>조회수: <?= $row['view']; ?></p>
-           <p>점수: <?= $row['hit']; ?>/5</p>
+           <p>점수: <?= $row['rating']; ?>/5</p>
            <p><?= $row['date']; ?></p>
            <p>
                <a href="review_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
@@ -209,12 +217,7 @@ $next_id = $row_next['next_id'];
    </div>
    <div class="mb-3 d-flex con">
        <p>내용</p>
-       <?= $row['content']; ?>
-   </div>
-   <!-- 첨부 파일 출력 부분 -->
-   <div class="d-flex file">
-       <p>첨부 파일</p>
-       <!-- <p><?= $row['file']; ?></p> -->
+       <p class="content_p"><?= $row['content']; ?></p>
    </div>
    <div class="notice-btn d-flex">
        <div class="left-button">

@@ -7,33 +7,52 @@ if (!isset($_SESSION['UID'])) {
     exit;
 }
 
+// 폼 데이터 처리
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cid = $_POST['cid'];
     $rating = $_POST['rating'];
     $content = $_POST['content'];
-    $user_id = $_SESSION['UID']; 
+    $user_id = $_SESSION['UID']; // 로그인한 사용자의 ID
 
-    // 사용자의 이름 가져오기
-    $sql = "SELECT username FROM members WHERE userid = ?";
-    $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("s", $user_id);
+    // 사용자가 해당 강의를 구매했는지 확인
+    $purchaseSql = "SELECT * FROM ordered_courses WHERE user_id = ? AND course_id = ?";
+    $stmt = $mysqli->prepare($purchaseSql);
+    $stmt->bind_param("ii", $user_id, $cid);
     $stmt->execute();
-    $result = $stmt->get_result();
-    $row = $result->fetch_assoc();
-    $name = $row['username'];
+    $purchaseResult = $stmt->get_result();
 
-    // 리뷰 데이터 저장
-    $sql = "INSERT INTO review (cid, name, content, rating, date, user_id) VALUES (?, ?, ?, ?, NOW(), ?)";
-    $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("issii", $cid, $name, $content, $rating, $user_id);
+    if ($purchaseResult->num_rows > 0) {
+        // 사용자의 이름 가져오기
+        $sql = "SELECT username FROM members WHERE userid = ?";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("s", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        $name = $row['username'];
 
-    if ($stmt->execute()) {
-        echo "<script>alert('리뷰가 등록되었습니다.'); location.href='course_view.php?cid=$cid';</script>";
+        // 리뷰 데이터 저장
+        $user_id = $_SESSION['UID']; // 로그인한 사용자의 ID
+        $sql = "INSERT INTO review (cid, name, content, rating, date, hit, view, user_id) VALUES (?, ?, ?, ?, NOW(), 0, 0, ?)";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("issii", $cid, $name, $content, $rating, $user_id);
+        if ($stmt->execute()) {
+            echo "<script>alert('리뷰가 등록되었습니다.');</script>";
+            $stmt->close();
+            $mysqli->close();
+            header("Location: course_view.php?cid=$cid"); // 강의 상세 페이지로 리디렉션
+            exit;
+        } else {
+            echo "Error: " . $stmt->error;
+            $stmt->close();
+            $mysqli->close();
+        }
     } else {
-        echo "Error: " . $stmt->error;
+        echo "<script>alert('강의를 구매한 회원만 리뷰를 작성할 수 있습니다.');</script>";
+        $stmt->close();
+        $mysqli->close();
+        header("Location: course_view.php?cid=$cid"); // 강의 상세 페이지로 리디렉션
+        exit;
     }
-
-    $stmt->close();
-    $mysqli->close();
 }
 ?>
