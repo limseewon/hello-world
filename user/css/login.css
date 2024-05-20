@@ -46,7 +46,7 @@ form > div + div {
 
 .cart{ position: relative; }
 .cart-list {
-  display: block;
+  display: noned;
   top:37px;
   left:-103px;
   position: absolute;
