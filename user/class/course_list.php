@@ -429,4 +429,3 @@ while($rs = $result -> fetch_object()){
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_footer.php';
 ?>
-<script src="js/index.js"></script>
