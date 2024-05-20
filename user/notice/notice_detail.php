@@ -9,6 +9,7 @@ $script1 = '';
 $script2 = '';
 $script3 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
+
 // 공지사항 ID 받아오기
 $notice_id = $_GET['id'];
 
@@ -62,11 +63,11 @@ $next_id = $row_next['next_id'];
                 <div class="notice-content h5">
                   <p><?= $row['content']; ?></p>
                 </div>
-                <?php if ($row['is_img'] == 1) : ?>
-                <div class="notice-image">
-                    <img src="/helloworld/user/img/event_notice.png" id="notice_img" alt="이벤트 프로모션 이미지">
-                </div>
-                <?php endif; ?>
+                <?php if (!empty($row['image'])) : ?>
+                      <div class="notice-image">
+                          <img src="/helloworld/announce/uploads/<?= $row['image']; ?>" alt="공지사항 이미지" class="announce_img">
+                      </div>
+                  <?php endif; ?>
             </div>
             <!-- 첨부 파일 출력 부분 -->
             <div class="d-flex file">
@@ -92,7 +93,7 @@ $next_id = $row_next['next_id'];
             <button type="button" class="btn btn-secondary"><a href="">다음</a></button> -->
         </div>
         <div>
-            <button type="button" class="btn btn-danger bd"><a href="/helloworld/user/notice/notice.php">닫기</a></button>
+            <button type="button" class="btn btn-danger bd"><a href="/helloworld/user/notice/notice.php">목록</a></button>
         </div>
     </div>
 </div>
