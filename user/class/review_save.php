@@ -15,9 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = $_SESSION['UID']; // 로그인한 사용자의 ID
 
     // 사용자가 해당 강의를 구매했는지 확인
-    $purchaseSql = "SELECT * FROM ordered_courses WHERE user_id = ? AND course_id = ?";
+    $purchaseSql = "SELECT * FROM ordered_courses WHERE member_id = (SELECT mid FROM members WHERE userid = ?) AND course_id = ?";
     $stmt = $mysqli->prepare($purchaseSql);
-    $stmt->bind_param("ii", $user_id, $cid);
+    $stmt->bind_param("si", $user_id, $cid);
     $stmt->execute();
     $purchaseResult = $stmt->get_result();
 
@@ -32,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $name = $row['username'];
 
         // 리뷰 데이터 저장
-        $user_id = $_SESSION['UID']; // 로그인한 사용자의 ID
         $sql = "INSERT INTO review (cid, name, content, rating, date, hit, view, user_id) VALUES (?, ?, ?, ?, NOW(), 0, 0, ?)";
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("issii", $cid, $name, $content, $rating, $user_id);
