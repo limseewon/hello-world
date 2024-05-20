@@ -30,3 +30,6 @@ h3 {
 .nowrap {
   white-space: nowrap;
 }
+.my_course {
+  font-weight: bold !important;
+}

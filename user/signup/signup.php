@@ -1141,19 +1141,16 @@ Hello World은 원칙적으로 이용자의 동의 없이 개인정보를 외부
 
         let emptyFields = false;
         $(this).find("input").each(function () {
-          if ($(this).attr("id") !== 'userimg'){
-            return false;
-          }
-          if ($(this).val() === "" ) {
-            emptyFields = true;
+          if ($(this).attr("id") != 'userimg'){
+            if ($(this).val() == "" ) {
+              emptyFields = true;
+            }
           }
         });
         if (emptyFields) {
           alert("모든 정보를 입력하셔야합니다.");
-          emptyFields = false;
           $(this).find("input").each(function () {
-          if ($(this).attr("id") !== 'userimg' && $(this).val() === "") {
-            
+          if ($(this).attr("id") !== 'userimg' && $(this).val() == "") {
             $(this).focus();
             return false;
           }

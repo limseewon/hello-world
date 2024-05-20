@@ -24,3 +24,11 @@ tr {
 #content {
   line-height: 1.618;
 }
+
+.my_msg {
+  font-weight: bold !important;
+}
+
+tbody tr {
+  cursor: pointer;
+}

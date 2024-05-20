@@ -26,7 +26,16 @@ if ($rs) {
     // $result = $mysqli->query($cartSql);
     
     // 출석 업데이트
-    $attendSql = "INSERT INTO attendance (userid, login_date) VALUES ('{$_SESSION['UID']}', CURDATE() )";
+    // $attendSql = "INSERT INTO attendance (userid, login_date) VALUES ('{$_SESSION['UID']}', CURDATE() )";
+    $attendSql = "INSERT INTO attendance (userid, login_date)
+    SELECT '{$_SESSION['UID']}', CURDATE()
+    FROM DUAL
+    WHERE NOT EXISTS (
+        SELECT 1
+        FROM attendance
+        WHERE userid = '{$_SESSION['UID']}' AND login_date = CURDATE()
+    )";
+    
     $attendRs = $mysqli->query($attendSql);
 
     if ($attendRs){
