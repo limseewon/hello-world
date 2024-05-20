@@ -50,7 +50,7 @@ if(isset($_SESSION['UID'])) {
   
     // 주문이 성공적으로 추가되면 알림을 띄우고 구매 페이지로 이동
     if ($result) {
-      echo "<script>alert('강의가 구매되었습니다.'); location.href = '/helloworld/user/mypage/courses.php';</script>";
+      echo "<script>alert('강의가 구매되었습니다.'); location.href = '/helloworld/user/cart/cart_complete.php';</script>";
     } else {
       // 주문이 실패하면 이전 페이지로 이동
       echo "<script>history.back();</script>";
