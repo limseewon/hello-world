@@ -17,13 +17,13 @@ $member = $mid_result->fetch_object();
 
 
 
-$notice_sql = "SELECT title from notice ORDER BY idx DESC LIMIT 4";
+$notice_sql = "SELECT * from notice ORDER BY idx DESC LIMIT 4";
 $notice_result = $mysqli->query($notice_sql);
 while( $notice_rs = $notice_result->fetch_object()){
   $noticeArr [] = $notice_rs;
 };
 
-$qnaSql = "SELECT title from qna WHERE user_id = '{$userid}' ORDER BY idx DESC LIMIT 4";
+$qnaSql = "SELECT * from qna WHERE user_id = '{$userid}' ORDER BY idx DESC LIMIT 4";
 $qnaResult = $mysqli->query($qnaSql);
 while( $qnaRs = $qnaResult->fetch_object()){
   $qnaArr [] = $qnaRs;
@@ -34,7 +34,7 @@ while( $msgRs = $msgResult->fetch_object()){
   $msgArr [] = $msgRs;
 };
 
-$courseSql = "SELECT c.name from courses c JOIN ordered_courses oc ON c.cid = oc.course_id WHERE oc.member_id = '{$member->mid}' LIMIT 4";
+$courseSql = "SELECT c.name, c.cid as cid from courses c JOIN ordered_courses oc ON c.cid = oc.course_id WHERE oc.member_id = '{$member->mid}' LIMIT 4";
 $courseResult = $mysqli->query($courseSql);
 while( $courseRs = $courseResult->fetch_object()){
   $courseArr [] = $courseRs;
@@ -92,7 +92,7 @@ $attendRs = $attendResult->fetch_object();
                 if (isset($noticeArr)) {
                   foreach($noticeArr as $na) {
                 ?>
-                <li><a href="#"><?php
+                <li><a href="/helloworld/user/notice/notice_detail.php?id=<?=$na->idx?>"><?php
                 
                 $str = $na->title;
                   $returnStr = '';
@@ -116,13 +116,13 @@ $attendRs = $attendResult->fetch_object();
             
             
             <div class="content-box mycourses board">
-              <h3 class="p bold">수강 강의</h3>
+              <h3 class="p bold">최근 강의</h3>
               <ul>
                 <?php
                 if(isset($courseArr)) {
                   foreach($courseArr as $ca) {
                 ?>
-                <li><a href="#"><?php
+                <li><a href="/helloworld/user/class/course_view.php?cid=<?=$ca->cid?>"><?php
                 $str = $ca->name; 
                   $returnStr = '';
                   $maxLength = 25;
@@ -148,7 +148,7 @@ $attendRs = $attendResult->fetch_object();
                 if(count($qnaArr) > 0) {
                   foreach($qnaArr as $ar) {
                 ?>
-                <li><a href="#"><?php
+                <li><a href="/helloworld/user/qna/qna_detail.php?id=<?=$ar->idx?>"><?php
                   
                   $str = $ar->title; 
                   $returnStr = '';
@@ -177,7 +177,7 @@ $attendRs = $attendResult->fetch_object();
                 if(isset($msgArr)) {
                   foreach($msgArr as $ma) {
                 ?>
-                <li><a href="#"><?php
+                <li><a href="/helloworld/user/mypage/msg.php"><?php
                   $str = $ma->content; 
                   $returnStr = '';
                   $maxLength = 25;
