@@ -84,9 +84,9 @@ $result = $mysqli->query($sql);
                 $buttonClass = ($row['reply'] === '답변') ? 'btn btn-success bs' : 'btn btn-secondary bn';
             ?>
                 <tr>
-                    <th scope="row"><?= $lecture_name; ?></th>
-                    <td><a href="qna_detail.php?id=<?= $row['idx']; ?>"><?= $title; ?></a></td>
-                    <td class="text_center"><?= $row['name']; ?></td>
+                    <td scope="row" class="ln"><?= $lecture_name; ?></td>
+                    <td class="tn"><a href="qna_detail.php?id=<?= $row['idx']; ?>"><?= $title; ?></a></td>
+                    <td class="text_center t_name"><?= $row['name']; ?></td>
                     <td class="text_center"><?= $row['view']; ?></td>
                     <td class="text_center text_btn"><button type="button" class="<?= $buttonClass ?>"><?= $row['reply']; ?></button></td>
                     <td><?= $row['date']; ?></td>
