@@ -161,7 +161,9 @@ if ($qna_id > 0) {
                     <h5 class="bold me-2">답변</h5>
                     <h5>[<?php echo $comment_result->num_rows; ?>]</h5>
                 </div>
-                <button type="button" class="btn btn-success p" id="commentToggle">댓글쓰기</button>
+                <?php if (isset($_SESSION['UID'])) : ?>
+                    <button type="button" class="btn btn-success p" id="commentToggle">댓글쓰기</button>
+                <?php endif; ?>
             </div>
             <hr>
             <div class="reply_comments">
