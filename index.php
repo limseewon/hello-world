@@ -690,12 +690,12 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
       <p><span>구현 완료 페이지</span> : <a href="http://worldhello.dothome.co.kr/helloworld/index.php" target="_blank" class="dothome"><span>HelloWorld 메인페이지</span></a></p>
     </div>
 
-    <hr>
+    <!-- <hr> -->
 
-    <div class="admin">
+    <!-- <div class="admin">
       <p><span>관리자 아이디</span> : admin</p>
       <p><span>관리자 비밀번호</span> : 1111</p>
-    </div>
+    </div> -->
 
     <hr>
 

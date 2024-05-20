@@ -79,7 +79,7 @@ if(isset($_SESSION['UID'])){ // 사용자가 로그인한 경우를 확인  만�
 else{ // 사용자가 로그인한 상태가 아니라면(else 블록), JavaScript 경고창을 띄워 로그인이 필요하다는 메시지를 출력
   echo "<script>
     alert('로그인이 필요합니다.');
-    //location.href = '/helloworld/user/index.php';
+    location.href = '/helloworld/user/index.php';
   </script>";
 }
 
