@@ -276,55 +276,55 @@ while ($is = $result->fetch_object()) {
                     <?php endif; ?>
                 <hr>
                 <div class="comment-list">
-                  <?php
-                  $reviewSql = "SELECT * FROM review WHERE cid = ? ORDER BY date DESC";
-                  $stmt = $mysqli->prepare($reviewSql);
-                  $stmt->bind_param("i", $cid);
-                  $stmt->execute();
-                  $result = $stmt->get_result();
+                    <?php
+                    $reviewSql = "SELECT * FROM review WHERE cid = ? ORDER BY date DESC";
+                    $stmt = $mysqli->prepare($reviewSql);
+                    $stmt->bind_param("i", $cid);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
 
-                  if ($result->num_rows > 0) {
-                      while ($review = $result->fetch_assoc()) {
-                          ?>
-                          <div class="comment-item mb-4">
-                              <div class="comment-header d-flex align-items-center justify-content-between">
-                                  <div class="comment-meta d-flex align-items-center">
-                                      <div class="comment-avatar me-2">
-                                          <i class="bi bi-person-circle"></i>
-                                      </div>
-                                      <span class="comment-author fw-bold me-2"><?= htmlspecialchars($review['name']); ?></span>
-                                      <span class="comment-date text-muted ms-2"><?= date('Y-m-d'); ?></span>
-                                      <div class="star-rating">
-                                          <?php
-                                          $rating = $review['rating'];
-                                          for ($i = 1; $i <= 5; $i++) {
-                                              $starClass = ($i <= $rating) ? 'fas fa-star text-warning' : 'far fa-star';
-                                              echo "<i class='$starClass'></i>";
-                                          }
-                                          ?>
-                                      </div>
-                                  </div>
-                                  <?php if (isset($_SESSION['UID']) && $_SESSION['UID'] == $review['user_id']) : ?>
-                                      <div class="comment-actions">
-                                          <a href="review_delete.php?cid=<?= $cid; ?>&idx=<?= $review['idx']; ?>" class="delete-link ms-3" onclick="return confirm('정말 삭제하시겠습니까?');">
-                                              <span class="material-symbols-outlined">delete</span>
-                                          </a>
-                                      </div>
-                                  <?php endif; ?>
-                              </div>
-                              <div class="comment-content mt-2">
-                                  <p><?= htmlspecialchars($review['content']); ?></p>
-                              </div>
-                          </div>
-                          <?php
-                      }
-                  } else {
-                      echo "<p class='text-center'>등록된 수강평이 없습니다.</p>";
-                  }
+                    if ($result->num_rows > 0) {
+                        while ($review = $result->fetch_assoc()) {
+                            ?>
+                            <div class="comment-item mb-4">
+                                <div class="comment-header d-flex align-items-center justify-content-between">
+                                    <div class="comment-meta d-flex align-items-center">
+                                        <div class="comment-avatar me-2">
+                                            <i class="bi bi-person-circle"></i>
+                                        </div>
+                                        <span class="comment-author fw-bold me-2"><?= htmlspecialchars($review['name']); ?></span>
+                                        <span class="comment-date text-muted ms-2"><?= date('Y-m-d', strtotime($review['date'])); ?></span>
+                                        <div class="star-rating">
+                                            <?php
+                                            $rating = $review['rating'];
+                                            for ($i = 1; $i <= 5; $i++) {
+                                                $starClass = ($i <= $rating) ? 'fas fa-star text-warning' : 'far fa-star';
+                                                echo "<i class='$starClass'></i>";
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                                    <?php if (isset($_SESSION['UID']) && $_SESSION['UID'] == $review['user_id']) : ?>
+                                        <div class="comment-actions">
+                                            <a href="review_delete.php?cid=<?= $cid; ?>&idx=<?= $review['idx']; ?>" class="delete-link ms-3" onclick="return confirm('정말 삭제하시겠습니까?');">
+                                                <span class="material-symbols-outlined">delete</span>
+                                            </a>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="comment-content mt-2">
+                                    <p><?= htmlspecialchars($review['content']); ?></p>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    } else {
+                        echo "<p class='text-center'>등록된 수강평이 없습니다.</p>";
+                    }
 
-                  $stmt->close();
-                  ?>
-                </div>
+                    $stmt->close();
+                    ?>
+                    </div>
             </div>
         </div>
     </div>
