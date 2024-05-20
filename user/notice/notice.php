@@ -22,16 +22,6 @@ $date_option = isset($_GET['date']) ? $_GET['date'] : '';
 
 $order_by = "";
 
-switch ($view_option) {
-    case '1':
-        $order_by = " ORDER BY view DESC";
-        break;
-    case '2':
-        $order_by = " ORDER BY view ASC";
-        break;
-    default:
-        $order_by = " ORDER BY idx DESC";
-}
 
 if ($date_option === 'latest') {
   $order_by = " ORDER BY regdate DESC";
