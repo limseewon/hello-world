@@ -257,7 +257,7 @@ while ($is = $result->fetch_object()) {
                     </div>
                 <?php else : ?>
                     <div class="comment-form">
-                        <p class="text-center">리뷰는 로그인한 회원만 작성할 수 있습니다.</p>
+                        <p class="text-center">리뷰는 로그인 및 구매한 회원만 작성할 수 있습니다.</p>
                         <div class="text-center">
                             <button type="button" class="btn btn-primary btn-sm login-btn" href="#" role="button"
                                     data-bs-toggle="modal" data-bs-target="#login_modal">로그인
