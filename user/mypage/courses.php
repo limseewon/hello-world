@@ -60,7 +60,7 @@
                         ?>
                       </ol>
                     </nav>
-                      <h3 class="course_list_title b_text01"><a href="course_view.php?cid=<?= $item->cid ?>"><?= $item->name ?></a>
+                      <h3 class="course_list_title b_text01"><a href="/helloworld/user/class/course_view.php?cid=<?=$item->cid?>"><?= $item->name ?></a>
                         <span class="badge rounded-pill blue_bg b-pd partdaa">
                           <?php
                           echo end($parts);
@@ -153,7 +153,7 @@
                         ?>
                       </ol>
                     </nav>
-                      <h3 class="course_list_title b_text01"><a href="course_view.php?cid=<?= $item->cid ?>"><?= $item->name ?></a>
+                      <h3 class="course_list_title b_text01"><a href="/helloworld/user/class/course_view.php?cid=<?=$item->cid?>"><?= $item->name ?></a>
                         <span class="badge rounded-pill blue_bg b-pd partdaa">
                           <?php
                           echo end($parts);
