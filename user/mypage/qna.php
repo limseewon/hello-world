@@ -90,6 +90,11 @@
               </nav>
             </div>
           </section> -->
+          <style>
+            .my_qna {
+              font-weight: bold;
+            }
+          </style>
           <section class="mainContainer">
               <h2 class="title">Q&amp;A</h2>
               <div class="mainContents">

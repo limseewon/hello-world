@@ -1,7 +1,7 @@
 <?php
   $title = 'Dashboard';
-  $cssRoute2 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_dash.css"/>';
-  $cssRoute3 = "<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />";
+  $cssRoute2 = "<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />";
+  $cssRoute3 ='<link rel="stylesheet" href="/helloworld/user/css/mypage/mypage_dash.css"/>';
   $cssRoute4 = '';
   
   $script2 ="<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>";
