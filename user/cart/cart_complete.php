@@ -10,18 +10,39 @@ $script2 = '';
 $script3 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
-
+  // 세션에서 UID를 가져옴
+  $userid = $_SESSION['UID'];
 
   // Post방식으로 넘어온 값들 변수에 할당
-  $pid = $_POST['pid'];
-  $pidstr = implode(',', $pid);
+  $pid = $_REQUEST['pid'];
 
-  $cartid = $_POST['cartid'];
-  $cartidstr = implode(',', $cartid);
+  if (is_array($pid)) {
+    $pidstr = implode(',', $pid);
+} else {
+  $pidstr =  $pid;
+}
+  print_r($pidstr);
+$price= 0;
 
-  $userid = $_POST['userid'];
-  $total = $_POST['totalprice'];  
+  $cartid = $_POST['cartid']??'';
+  if(isset($cartid) && $cartid !=''){
 
+    $cartidstr = implode(',', $cartid);
+  }else{
+  // 상품가격 조회
+  $pricesql = "SELECT price FROM courses WHERE cid = {$pid}";
+  $priceresult = $mysqli->query($pricesql);
+  $pricerow= $priceresult->fetch_object();
+  $price =$pricerow->price;
+
+  }
+
+  $userid = $_POST['userid']?? $_SESSION['UID'];
+
+  
+
+  $total = $_POST['totalprice']?? $price; 
+  
   //ordered_coused에는 userid가 아니라 member_id가 들어가게 설계되어 있네 왜!흠. 일단 members테이블에서 userid로 memberid 조회
   $msql =  "SELECT mid FROM members WHERE userid='{$userid}'";
   $mresult = $mysqli->query($msql);
@@ -29,17 +50,25 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
   $mid = $mresultRow ->mid;
 
 
-  $sql = "INSERT into ordered_courses
-  (course_id,member_id,total_price,regdate) values
-  ('{$pidstr}','{$mid}',{$total}, now())
-    ";
-$result = $mysqli -> query($sql);
+  $sql = "INSERT INTO ordered_courses (course_id, member_id ,progress,  regdate, total_price ) VALUES ('{$pidstr}', '{$mid}', 0, now() ,{$total})";
+    // echo $sql;
+    $result = $mysqli->query($sql);
+
+
+//   $sql = "INSERT into ordered_courses
+//   (course_id,member_id,total_price,regdate) values
+//   ('{$pidstr}','{$mid}',{$total}, now())
+//     ";
+// $result = $mysqli -> query($sql);
 
 if($result === true){ // INSERT가 성공한 경우
 
 //구매한 상품 삭제
-$sql2 = "DELETE from cart where cartid IN({$cartidstr})";
-$result2 = $mysqli->query($sql2);
+if(isset($cartid) && $cartid !=''){
+  $sql2 = "DELETE from cart where cartid IN({$cartidstr})";
+  $result2 = $mysqli->query($sql2);
+}
+
 ?>
 
 <div class="cart_completef">

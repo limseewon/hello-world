@@ -45,12 +45,12 @@ if(isset($_SESSION['UID'])) {
   if(!$rscuc2) {
     // 구매시 ordered_courses가 업데이트되는 구문을 수정했습니다. cart페이지에서 구매 시에도 동일하게 업데이트되도록 수정해주세요.
     $sql = "INSERT INTO ordered_courses (course_id, member_id ,progress, satisfaction, regdate, total_price ,use_max_date) VALUES ({$cid}, '{$member_id}', 0, '4.3',CURDATE() ,{$total},'{$limit}')";
-    // echo $sql;
+    echo $sql;
     $result = $mysqli->query($sql);
   
     // 주문이 성공적으로 추가되면 알림을 띄우고 구매 페이지로 이동
     if ($result) {
-      echo "<script>alert('강의가 구매되었습니다.'); location.href = '/helloworld/user/mypage/courses.php';</script>";
+      echo "<script>alert('강의가 구매되었습니다.'); location.href = '/helloworld/user/cart/cart_complete.php';</script>";
     } else {
       // 주문이 실패하면 이전 페이지로 이동
       echo "<script>history.back();</script>";

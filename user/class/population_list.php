@@ -11,17 +11,20 @@ $script3 = '';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 // 대분류명 조회
-
+$pageNumber = $_GET['pageNumber']?? 0;
+$startnumber= $pageNumber*9;
 $step1Sql = "SELECT * from category where step =1";
 $stepresult =  $mysqli->query($step1Sql);
 while($step1rs = $stepresult-> fetch_object()){
   $step1arr[]=$step1rs;
 }
-$orderSql = "SELECT course_id, COUNT(*) AS course_count FROM ordered_courses GROUP BY course_id ORDER BY course_count DESC LIMIT 8";
+$orderSql = "SELECT course_id, COUNT(*) AS course_count FROM ordered_courses GROUP BY course_id ORDER BY course_count DESC LIMIT $startnumber,9";
+echo $orderSql;
 $orderResult = $mysqli->query($orderSql);   
-while ($orderRs = $orderResult->fetch_row()) {
-  $orderArr[] = $orderRs[0];
+while ($orderRs = $orderResult->fetch_object()) {
+  $orderArr[] = $orderRs->course_id;
 }
+$count = $orderRs->cnt;
 // print_r($orderArr);
 $orderArr = implode(",", $orderArr);
 $recomSql = "SELECT * FROM courses WHERE cid IN ($orderArr)";
@@ -90,12 +93,12 @@ if(!isset($pagerwhere)){   // 변수가 설정되지 않았으면, 기본적으�
   $pagerwhere = " 1=1";
 }
 
-$sql2 = "SELECT COUNT(*) as count from courses where 1=1 ".$c_where;  // "courses" 테이블에서 조건을 충족하는 레코드의 수를 세는 쿼리를 생성
+// $sql2 = "SELECT COUNT(*) as count from courses where 1=1 ".$c_where;  // "courses" 테이블에서 조건을 충족하는 레코드의 수를 세는 쿼리를 생성
 
-$result4 = $mysqli->query($sql2);  // 데이터베이스에 쿼리를 실행하고 결과를 반환
+// $result4 = $mysqli->query($sql2);  // 데이터베이스에 쿼리를 실행하고 결과를 반환
 
-$rs = $result4->fetch_object(); // 쿼리 결과에서 첫 번째 레코드를 객체 형태로 가져옴
-$sales_page = $rs->count; // count" 별칭으로 반환된 레코드 수를 $sales_page 변수에 할당
+// $rs = $result4->fetch_object(); // 쿼리 결과에서 첫 번째 레코드를 객체 형태로 가져옴
+// $sales_page = $rs->count; // count" 별칭으로 반환된 레코드 수를 $sales_page 변수에 할당
 
 //필터 없으면 여기서부터 복사! *******
 $pagenationTarget = 'courses'; //pagenation 테이블 명
@@ -111,12 +114,8 @@ $sqlrc = $sql.$c_where.$order.$limit;
 
 
 
-// var_dump($sqlrc);
-// $result = $mysqli -> query($sqlrc);  // 데이터베이스에서 쿼리 $sqlrc를 실행하고, 그 결과를 변수 $result에 저장
-// while($rs = $result -> fetch_object()){
-//   $rsc[] = $rs;     //
-// }
- 
+
+
 //$result에서 각 레코드를 반복적으로 가져와서 객체로 변환. fetch_object() 메서드는 쿼리 결과의 다음 레코드를 객체로 반환. while 루프는 레코드를 하나씩 처리할 때까지 계속 실행
 // 각 레코드 객체 $rs를 배열 $rsc에 추가합니다. 이렇게 하면 $rsc 배열에는 쿼리 결과의 모든 레코드가 객체 형태로 저장
 
@@ -274,7 +273,7 @@ $sqlrc = $sql.$c_where.$order.$limit;
                       $parts = explode('/', $categoryText);
                       $lastPart = $parts[1];
 
-                      echo $lastPart;
+                      // echo $lastPart;
                     }
                     // var_dump($parts);
                   ?>

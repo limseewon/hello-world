@@ -21,3 +21,6 @@ h4 {
 .text_box > p + p {
   margin-top: 10px;
 }
+.my_coupon {
+  font-weight: bold !important;
+}
