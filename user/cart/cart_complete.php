@@ -57,8 +57,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
   $successINfo = false;
   for ($i=0; $i < count($pidArr); $i++) {
-    echo 'pidArr : '.$pidArr[$i];
-    echo 'limitArr : '.$limit[$i];
+    // echo 'pidArr : '.$pidArr[$i];
+    // echo 'limitArr : '.$limit[$i];
     $checkSql = "SELECT oc.* , c.name FROM ordered_courses oc JOIN courses c ON oc.course_id=c.cid WHERE oc.course_id='{$pidArr[$i]}' AND oc.member_id = '{$mid}'";
     $checkResult = $mysqli->query($checkSql);
     $checkRs = $checkResult->fetch_object();
