@@ -103,7 +103,7 @@
                       <!-- <span class="price content_stt contpo2">
                         <span class="number"><?=$item->price; ?></span><span> 원</span>
                       </span> -->
-                      <a href="" class="nowrap btn btn-primary"></a>
+                      <a href="/helloworld/user/class/course_view.php?cid=<?=$item->cid?>" class="nowrap btn btn-primary">학습 하기</a>
                       
                     </div>
                   </div>
@@ -199,7 +199,7 @@
                       <!-- <span class="price content_stt contpo2">
                         <span class="number"><?=$item->price; ?></span><span> 원</span>
                       </span> -->
-                      <a href="" class="nowrap btn btn-primary">학습 하기</a>
+                      <a href="/helloworld/user/class/course_view.php?cid=<?=$item->cid?>" class="nowrap btn btn-primary">학습 하기</a>
                     </div>
                   </div>
                 </li>
