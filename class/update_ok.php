@@ -85,7 +85,7 @@
       if($_FILES['thumbnail']['size']> 10240000){
         echo "<script>
           alert('10MB 이하만 첨부할 수 있습니다.');    
-        //  history.back();      
+          history.back();      
         </script>";
         exit;
       }
@@ -93,7 +93,7 @@
       if(strpos($_FILES['thumbnail']['type'], 'image') === false){
         echo "<script>
           alert('이미지만 첨부할 수 있습니다. 1');    
-        //  history.back();            
+          history.back();            
         </script>";
         exit;
       }
@@ -109,7 +109,7 @@
       } else{
         echo "<script>
           alert('이미지등록 실패!');    
-         // history.back();            
+          history.back();            
         </script>";
       }
     }
@@ -120,7 +120,7 @@
         if($_FILES['youtube_thumb']['size'][$i]> 10240000){
           echo "<script>
             alert('10MB 이하만 첨부할 수 있습니다. ');    
-           // history.back();      
+            history.back();      
           </script>";
           exit;
         }
@@ -128,7 +128,7 @@
         if(strpos($_FILES['youtube_thumb']['type'][$i], 'image') === false){
           echo "<script>
             alert('이미지만 첨부할 수 있습니다.3 ');
-           // history.back();            
+            history.back();            
           </script>";
           exit;
         }
@@ -146,7 +146,7 @@
           } else{
             echo "<script>
               alert('이미지등록 실패!');    
-            //  history.back();            
+             history.back();            
             </script>";
           }
           //강의영상 썸네일- lecture 테이블 업데이트 cid의 값이 course 번호와 같은 데이터 수정
@@ -184,7 +184,7 @@
         if($_FILES['course_file']['size'][$i]> 10240000){
           echo "<script>
             alert('10MB 이하만 첨부할 수 있습니다.');    
-          //  history.back();      
+            history.back();      
           </script>";
           exit;
         }
@@ -192,7 +192,7 @@
         if(strpos($_FILES['course_file']['type'][$i], 'image') === false){
           echo "<script>
             alert('이미지만 첨부할 수 있습니다.');
-           // history.back();            
+           history.back();            
           </script>";
           exit;
         }
@@ -210,7 +210,7 @@
           } else{
             echo "<script>
               alert('이미지등록 실패!');    
-            //  history.back();            
+              history.back();            
             </script>";
           }    
         }
@@ -272,14 +272,14 @@ if (isset($_POST['delete-file'])) {
    $mysqli->commit();
     echo "<script>
     alert('강의 수정 완료!');
-  // location.href='course_list.php';</script>";
+   location.href='course_list.php';</script>";
   }
 
     catch(Exception $e){
       $mysqli->rollback();
       echo "<script>
       alert('강의 수정 실패');
-     // history.back();
+      history.back();
       </script>";
       exit;
     }
