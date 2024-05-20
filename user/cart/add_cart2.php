@@ -21,14 +21,14 @@ if (isset($_SESSION['UID'])) { // 코드 블록에서 $_SESSION['UID']가 설정
     $result = $mysqli->query($sql);
   
     if (isset($result)) {
-      echo "<script>alert('강의가 구매되었습니다.');
+      echo "<script>alert('강의가 장바구니에 담겼습니다. 구매 페이지로 이동합니다.');
       location.href = '/helloworld/user/cart/cart.php';
       </script>";
     } else {
       echo "<script>history.back();</script>";
     }
   } else{
-    echo "<script>alert('이미 구매되었습니다.');history.back();</script>";
+    echo "<script>alert('구매 페이지로 이동합니다.');location.href = '/helloworld/user/cart/cart.php';</script>";
   }
 } else {
   //UID 없다면, 로그인 페이지로 이동

@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             console.log(cartid);
             cartids.push(cartid);
             subtotal += price;
-        });   
+        });
         console.log(subtotal);
          
         $('#pid').val(pids);  

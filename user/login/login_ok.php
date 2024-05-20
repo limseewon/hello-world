@@ -45,9 +45,7 @@ if ($rs) {
     </script>";
     exit();
     }
-    
   }
-
 } else {
   echo "<script>
     alert('아이디 또는 비번을 다시 확인해주세요');

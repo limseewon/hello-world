@@ -22,32 +22,26 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
   $pidstr =  $pid;
 }
   print_r($pidstr);
-$price= 0;
+  $price= 0;
 
-  $cartid = $_POST['cartid']??'';
-  if(isset($cartid) && $cartid !=''){
+  $cartid = $_POST['cartid']??'';  
+  $cartidstr = implode(',', $cartid);
 
-    $cartidstr = implode(',', $cartid);
-  }else{
   // 상품가격 조회
   $pricesql = "SELECT price FROM courses WHERE cid = {$pid}";
   $priceresult = $mysqli->query($pricesql);
   $pricerow= $priceresult->fetch_object();
   $price =$pricerow->price;
 
-  }
-
-  $userid = $_POST['userid']?? $_SESSION['UID'];
+  
+  $userid = $_POST['userid'] ?? $_SESSION['UID'];
 
   
 
   $total = $_POST['totalprice']?? $price; 
   
   //ordered_coused에는 userid가 아니라 member_id가 들어가게 설계되어 있네 왜!흠. 일단 members테이블에서 userid로 memberid 조회
-  $msql =  "SELECT mid FROM members WHERE userid='{$userid}'";
-  $mresult = $mysqli->query($msql);
-  $mresultRow = $mresult->fetch_object();
-  $mid = $mresultRow ->mid;
+  $mid = $_SESSION['UIDX'];
 
 
   $sql = "INSERT INTO ordered_courses (course_id, member_id ,progress,  regdate, total_price ) VALUES ('{$pidstr}', '{$mid}', 0, now() ,{$total})";
