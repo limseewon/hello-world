@@ -14,6 +14,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 
 $cid = $_GET['cid'];
 
+
+
 $sql = "SELECT * FROM courses where cid={$cid}";
 $result = $mysqli->query($sql);
 $rs = $result->fetch_object();
@@ -25,10 +27,18 @@ while ($is = $result->fetch_object()) {
     $addImgs[] = $is;
 }
 
+$orederedUser = false;
+ 
+if (isset($_SESSION['UIDX'])){
+    $mid =$_SESSION['UIDX'];
 
-
-
-
+    $orderedSql = "SELECT * FROM ordered_courses WHERE course_id = '{$cid}' AND member_id='{$mid}'";
+    $orderedResult = $mysqli->query($orderedSql);
+    
+    if ($orderedResult && $orderedResult->num_rows > 0) {
+        $orederedUser = true;
+    } 
+}
 
 
 ?>
@@ -36,9 +46,13 @@ while ($is = $result->fetch_object()) {
 <link rel="stylesheet" href="/helloworld/user/css/class/class_view.css"/>
 
 <main class="heigs">
+            <?php
+            if (!$orederedUser){
+            ?>
     <div class="viewTitleWrap viebox-t content-box">
         <div class="">
             <p class="content_tt"><?= $rs->name ?></p>
+            
             <div class="cartboxtwo d-flex">
                 <div class="viewBtn mt-2">
                     <a href="/helloworld/user/cart/add_cart.php?cid=<?= $rs->cid ?>" class="viewCart btn btn-primary dark cartboxb">
@@ -51,6 +65,8 @@ while ($is = $result->fetch_object()) {
                     </a>
                 </div>
             </div>
+            
+            
             <p class="content_tt"></p>
             <div class="viewPriceWrap">
                 <div class="mt-2">
@@ -72,7 +88,9 @@ while ($is = $result->fetch_object()) {
                 <?php } ?>
             </div>
         </div>
-    </div>
+    </div><?php
+            } 
+            ?>
     <input type="hidden" id="cid" value="<?= $cid; ?>">
     <input type="hidden" id="cnt" value="<?= $cnt->cnt ?? 0 ?>">
     <div class="container">
@@ -121,6 +139,9 @@ while ($is = $result->fetch_object()) {
                             </div>
                         </div>
                         <p class="content_tt mt-4"><?= $rs->name ?></p>
+                        <?php
+                        if (!$orederedUser){
+                        ?>
                         <div class="cartboxtwo d-flex">
                             <div class="viewBtn mt-5">
                                 <a href="/helloworld/user/cart/add_cart.php?cid=<?= $rs->cid ?>" class="viewCart btn btn-primary dark cartboxb">
@@ -133,6 +154,9 @@ while ($is = $result->fetch_object()) {
                                 </a>
                             </div>
                         </div>
+                        <?php
+                        }
+                        ?>
                         <p class="content_tt"></p>
                     </div>
                     <div class="viewPriceWrap">
@@ -146,6 +170,7 @@ while ($is = $result->fetch_object()) {
                                     }; ?></span>
                             </div>
                             <?php
+                            if (!$orederedUser){
                             if ($rs->price != 0) {
                                 ?>
                                 <div class="mt-4">
@@ -158,7 +183,7 @@ while ($is = $result->fetch_object()) {
                                     <span class="main_stt">무료</span>
                                 </div>
                                 <?php
-                            }
+                            }}
                             ?>
                         </div>
                         <div>
@@ -190,10 +215,16 @@ while ($is = $result->fetch_object()) {
                                 <span><?= $ai->youtube_name ?></span>
                             </div>
                         </div>
+                        <?php
+                        if ($orederedUser){
+                        ?>
                         <div>
-                            <a href="<?= $ai->youtube_url ?>"class="youtube-link" onclick="return false" target="_blank"><i
+                            <a href="<?= $ai->youtube_url ?>"class="youtube-link" target="_blank"><i
                                         class="fa-regular fa-circle-play"></i></a>
                         </div>
+                        <?php
+                        }
+                        ?>
                     </li>
                     <?php
                 }
