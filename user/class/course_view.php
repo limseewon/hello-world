@@ -128,7 +128,7 @@ while ($is = $result->fetch_object()) {
                                 </a>
                             </div>
                             <div class="viewBtn mt-5">
-                                <a href="/helloworld/user/cart/cart_complete.php?pid=<?= $rs->cid ?>" class="viewCart btn btn-primary cartboxbb">
+                                <a href="/helloworld/user/cart/add_cart2.php?cid=<?= $rs->cid ?>" class="viewCart btn btn-primary cartboxbb">
                                     구매
                                 </a>
                             </div>

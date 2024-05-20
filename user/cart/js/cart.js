@@ -143,11 +143,11 @@ function canUdel(target){
 //   couponPrice(cartInfo());
 // });
 
-// //아이템 체크박스 change
-// $('.cart_item_container').change(function(){
-//   cartInfo();
-//   couponPrice(cartInfo());
-// });
+//아이템 체크박스 change
+$('.cart_item_container').change(function(){
+  cartInfo();
+  couponPrice(cartInfo());
+});
 
 
 //전체선택 체크(전체선택) / 해제(전체해제)
