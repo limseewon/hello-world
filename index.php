@@ -142,7 +142,7 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
       
     </section>
     <section class="sec2">
-      <h2 class="jua dark sec_tt"></h2>
+      <!-- <h2 class="jua dark sec_tt"></h2> -->
       <form action="/helloworld/user/class/course_list.php" method="get" class="search">
         <label for="course_search" class="hidden"></label>
         <input type="text" id="course_search" name="course_search" placeholder="배우고 싶은 강의를 입력하세요.">
