@@ -19,12 +19,12 @@ while($step1rs = $stepresult-> fetch_object()){
   $step1arr[]=$step1rs;
 }
 $orderSql = "SELECT course_id, COUNT(*) AS course_count FROM ordered_courses GROUP BY course_id ORDER BY course_count DESC LIMIT $startnumber,9";
-echo $orderSql;
+// echo $orderSql;
 $orderResult = $mysqli->query($orderSql);   
 while ($orderRs = $orderResult->fetch_object()) {
   $orderArr[] = $orderRs->course_id;
 }
-$count = $orderRs->cnt;
+// $count = $orderRs->cnt;
 // print_r($orderArr);
 $orderArr = implode(",", $orderArr);
 $recomSql = "SELECT * FROM courses WHERE cid IN ($orderArr)";
