@@ -2,32 +2,6 @@
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
-
-
-// if(isset($_SESSION['UID'])){ // 사용자가 로그인한 경우를 확인  만약 세션 변수 UID가 설정되어 있다면(즉, 사용자가 로그인한 경우), 아래의 코드 블록을 실행
-//   $userid = $_SESSION['UID'];//유저아이디 저장
-
-//   //cart item 조회 사용자의 장바구니에 담긴 강의 정보를 조회
-//   $sqlct = "SELECT c.*,ct.cartid,ct.cid FROM cart ct    
-
-//             JOIN courses c ON c.cid = ct.cid
-//             WHERE ct.userid = '{$userid}'
-//             ORDER BY ct.cartid DESC";
-//             // echo $sqlct;
-//   // courses 테이블의 모든 열과 cart 테이블의 cartid 열을 선택
-//   // c.*는 courses 테이블의 모든 열을 선택 ct.cartid는 cart 테이블의 cartid 열을 선택
-//   // cart 테이블과 courses 테이블을 조인하여 해당 사용자의 장바구니에 담긴 강의들의 정보를 가져옴
-//   // cart 테이블(ct 별칭), merners 테이블(u 별칭) courses 테이블(c 별칭)을 조인 테이블은 각각 ct, u, c로 별칭이 지정
-//   // cart 테이블의 userid 열과 members 테이블의 userid 열, 그리고 courses 테이블의 cid 열과 cart 테이블의 cid 열을 기준으로 조인
-//   //merbers 테이블에서 userid 값이 $userid와 일치하는 행만 선택 현재 로그인한 사용자의 장바구니에 담긴 강의 정보만 가져옴
-//   // cart 테이블의 cartid 열을 기준으로 내림차순으로 정렬
-//   $result = $mysqli-> query($sqlct);
-  
-//   while($rs = $result->fetch_object()){
-//     $rscct[]=$rs;
-//     // print_r($rscct);
-// } 
-//   }
   
 
 ?>
@@ -35,6 +9,30 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="description"
+      content="강의 LMS 백엔드 프론트엔드 포트폴리오 사이트입니다."
+   >
+    <meta property="og:site_name" content="Helloworld LMS 포트폴리오 사이트">
+    <meta property="og:title" content="Helloworld LMS 포트폴리오 사이트">
+    <meta
+      property="og:url"
+      content="https://github.com/junb119/Team-sudo.git"
+   >
+   <meta
+      property="og:description"
+      content="Backend ,Frontend 강의 포트폴리오 사이트입니다."
+   >
+    <meta property="og:locale" content="ko">
+    <meta property="og:type" content="Website">
+    <meta property="og:image" content="/helloworld/img/logo.png">
+    <meta
+      name="keywords"
+    content="HTML, CSS, JAVASCRIPT, JQUERY, 프론트엔드, 백엔드 포트폴리오 부트스트랩"
+   >
+    <meta name="robots" content="index,follow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--  jquery-->
