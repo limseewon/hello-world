@@ -82,7 +82,7 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
 
 ?>
     
-<main>
+<main>    
     <section class="sec1">
       <!-- Swiper -->
       <div class="swiper sec1_slide">
