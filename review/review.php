@@ -6,22 +6,27 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/admin_check.php'
 $paginationTarget = 'review';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/pagination.php';
 
-$sql = "SELECT * FROM review WHERE 1=1";
+$sql = "SELECT c.name as course_name , r.* FROM review r JOIN courses c ON c.cid=r.cid WHERE 1=1";
 $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
 if ($keyword) {
-   $sql .= " AND title LIKE '%$keyword%'";
+   $sql .= " AND content LIKE '%$keyword%'";
 }
 
-$view_option = isset($_GET['view']) ? $_GET['view'] : '';
-switch ($view_option) {
+// 작성일 필터링 옵션 처리
+$date_filter = isset($_GET['date_filter']) ? $_GET['date_filter'] : '';
+
+switch ($date_filter) {
    case '1':
-       $sql .= " ORDER BY view DESC";
+       // 최신순
+       $sql .= " ORDER BY r.date DESC";
        break;
    case '2':
-       $sql .= " ORDER BY view ASC";
+       // 과거순
+       $sql .= " ORDER BY r.date ASC";
        break;
    default:
-       $sql .= " ORDER BY idx DESC";
+       // 기본 정렬 (작성일 기준)
+       $sql .= " ORDER BY r.date DESC";
 }
 
 $result_count = $mysqli->query($sql);
@@ -126,6 +131,9 @@ $result = $mysqli->query($sql);
            top: 830px;
            justify-content: center;
        }
+       .lecture_name{
+            width:250px;
+       }
    </style>
 </head>
 <body>
@@ -143,23 +151,19 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
            </form>
        </div>
    </nav>
-   <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-       <option selected>답변</option>
-       <option value="1">완료</option>
-       <option value="2">미완료</option>
-   </select>
-   <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-       <option selected>작성일</option>
-       <option value="1">최신순</option>
-       <option value="2">한달 이내</option>
-       <option value="3">일년 이내</option>
-   </select>
+<!-- 필터링 옵션 선택 -->
+    <select class="form-select form-select-lg mb-3" name="date_filter" aria-label="Large select example">
+    <option value="">작성일</option>
+    <option value="1" <?php if (isset($_GET['date_filter']) && $_GET['date_filter'] == '1') echo 'selected'; ?>>최신순</option>
+    <option value="2" <?php if (isset($_GET['date_filter']) && $_GET['date_filter'] == '2') echo 'selected'; ?>>과거순</option>
+    </select>
 </div>
 <table class="table table-hover table-striped">
    <thead class="table-dark">
    <tr>
-       <th scope="col">No&#46;</th>
-       <th scope="col">제목</th>
+       <!-- <th scope="col">No&#46;</th> -->
+       <th scope="col">강의명</th>
+       <th scope="col">내용</th>
        <th scope="col">작성자</th>
        <th scope="col">조회수</th>
        <th scope="col">점수</th>
@@ -170,26 +174,33 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
    <tbody>
    <?php
    while ($row = $result->fetch_assoc()) {
-       // title변수에 DB에서 가져온 title을 선택
-       $title = $row["title"];
-       if (iconv_strlen($title) > 30) {
-           // title이 30을 넘어서면 ...표시
-           $title = str_replace($row["title"], iconv_substr($row["title"], 0, 30, "utf-8") . "...", $row["title"]);
-       }
+    // content 변수에 DB에서 가져온 content을 선택
+    $content = $row["content"];
+    if (iconv_strlen($content) > 30) {
+        // content가 30을 넘어서면 ...표시
+        $content = iconv_substr($content, 0, 30, "utf-8") . "...";
+    }
+
+    // lecture_name 변수에 DB에서 가져온 course_name을 선택
+    $lecture_name = $row["course_name"];
+    if (iconv_strlen($lecture_name) > 20) {
+        // lecture_name이 20을 넘어서면 ...표시
+        $lecture_name = iconv_substr($lecture_name, 0, 20, "utf-8") . "...";
+    }
        ?>
        <tr>
-           <th scope="row" class="no_th"><?= $row['idx']; ?></th>
-           <td class="title_td"><a href="review_detail.php?id=<?= $row['idx']; ?>"><?= $title; ?></a></td>
-           <td class="lock d-flex"><?= $row['name']; ?></td>
-           <td><?= $row['view']; ?></td>
-           <td><?= $row['hit']; ?></td>
-           <td><?= $row['date']; ?></td>
-           <td class="delete_td">
-               <a href="review_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
-                   <span class="material-symbols-outlined">delete</span>
-               </a>
-           </td>
-       </tr>
+            <td class="lecture_name"><?= $lecture_name; ?></td>
+            <td class="title_td"><a href="review_detail.php?id=<?= $row['idx']; ?>"><?= $content; ?></a></td>
+            <td class="name d-flex"><?= $row['name']; ?></td>
+            <td class="view"><?= $row['view']; ?></td>
+            <td class="hit"><?= $row['rating']; ?></td>
+            <td><?= $row['date']; ?></td>
+            <td class="delete_td">
+                <a href="review_delete.php?id=<?= $row['idx']; ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
+                    <span class="material-symbols-outlined">delete</span>
+                </a>
+            </td>
+        </tr>
        <?php
    }
    ?>
