@@ -157,7 +157,7 @@
                   <img src="<?= $coupon->cp_image ?>" alt="<?= $coupon->cp_name ?>" class="border" />
                   <div class="text_box">
                     <h4 class="b_text01 bold" title="<?= $coupon->cp_name ?>"><?= $coupon->cp_name ?></h4>
-                    <p>사용기한 : <?php if($coupon->cp_date == '0'){echo '무제한';}else{echo $coupon->cp_date.'개월';} ?></p>
+                    <p>사용기한 : <?php if($coupon->cp_date == '0'){echo '무제한';}else{echo $coupon->use_max_date;} ?></p>
                     <p class="updownw">최소사용금액 : <span class="number"><?= $coupon->cp_limit ?></span>원</p>
                     <p class="updownw">
                     할인액 : 

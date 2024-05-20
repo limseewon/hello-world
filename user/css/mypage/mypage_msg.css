@@ -28,3 +28,7 @@ tr {
 .my_msg {
   font-weight: bold !important;
 }
+
+tbody tr {
+  cursor: pointer;
+}
