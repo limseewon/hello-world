@@ -156,7 +156,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                 <div class="input-group d-flex file">
                   <div class="add d-flex">
                     <label for="formGroupExampleInput" class="form-label">이미지</label>
-                    <input type="file" class="form-control img-box" id="image" name="image" accept="image/*">
+                    <input type="file" class="form-control img-box" id="image" name="image" accept="image/*" onchange="previewImage(event)">
+                    <img id="preview" src="#" alt="이미지 미리보기" style="display: none; max-width: 200px; max-height: 200px; margin-top: 10px;">
                   </div>
                 </div>
                 <div>
@@ -263,5 +264,14 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/footer.php';
           addHtml =  `<tr>${addHtml}</tr>`;
       $('#option1').append(addHtml);
     });
+    function previewImage(event) {
+  let reader = new FileReader();
+  reader.onload = function() {
+    let preview = document.getElementById('preview');
+    preview.src = reader.result;
+    preview.style.display = 'block';
+  }
+  reader.readAsDataURL(event.target.files[0]);
+};
   </script>
 </html>

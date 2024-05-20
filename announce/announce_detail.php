@@ -119,7 +119,6 @@ $next_id = $row_next['next_id'];
 
 .con {
   gap: 100px;
-  align-items: center;
   padding-left: 60px;
   padding-top: 35px;
 }
@@ -230,7 +229,13 @@ $next_id = $row_next['next_id'];
 .reply_control {
   width: 800px;
 }
-
+.announce_img{
+  width: 400px;
+  padding-left: 50px;
+}
+.notice-detail-box{
+  gap: 150px;
+}
 </style>
   </head>
   <body>
@@ -260,16 +265,24 @@ $next_id = $row_next['next_id'];
           </div>
           <div class="mb-3 d-flex con">
               <p>내용</p>
-              <?= $row['content']; ?>
-              <?php if (!empty($row['files'])) : ?>
-                <img src="/helloworld/user/uploads/<?= $row['files']; ?>" alt="#" class="img_qna">
-              <?php endif; ?>
+              <div class="notice-detail-box d-flex">
+                  <div class="notice-content">
+                      <?= $row['content']; ?>
+                  </div>
+                  <?php if (!empty($row['image'])) : ?>
+                      <div class="notice-image">
+                          <img src="/helloworld/announce/uploads/<?= $row['image']; ?>" alt="공지사항 이미지" class="announce_img">
+                      </div>
+                  <?php endif; ?>
+              </div>
           </div>
           <!-- 첨부 파일 출력 부분 -->
-          <div class="d-flex file">
+          <?php if (!empty($row['file'])) : ?>
+            <div class="d-flex file">
               <p>첨부 파일</p>
               <p><?= $row['file']; ?></p>
-          </div>
+            </div>
+          <?php endif; ?>
           <div class="notice-btn d-flex">
             <div class="left-button">
               <?php if ($prev_id !== null) : ?>
