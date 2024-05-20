@@ -353,3 +353,16 @@ footer {
 .sns ul {
   gap: 10px;
 }
+
+.cartFill {
+  animation: cart 1s infinite alternate;
+}
+
+@keyframes cart {
+  from {
+    color: black;
+  }
+  to {
+    color: red;
+  }
+}
