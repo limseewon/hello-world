@@ -44,7 +44,7 @@ form > div + div {
   background: #fdd70c;
 }
 
-.cart{ position: relative; }
+/* .cart{ position: relative; }
 .cart-list {
   display: noned;
   top:37px;
@@ -58,4 +58,4 @@ form > div + div {
 }
 
 .carimage { width: 25px; height: 25px;} 
-.carimage img { width: 100%; height: 100%;}
+.carimage img { width: 100%; height: 100%;} */
