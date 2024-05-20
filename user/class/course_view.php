@@ -218,11 +218,25 @@ while ($is = $result->fetch_object()) {
                 <p>전체 리뷰 [<?= $reviewCount; ?>]건</p>
             </div>
             <div class="content-box content_review">
-                <?php if (isset($_SESSION['UID'])) : ?>
+                        <?php
+                        // 로그인한 사용자의 ID
+                        $user_id = isset($_SESSION['UID']) ? $_SESSION['UID'] : null;
+
+                        // 사용자가 해당 강의를 구매했는지 확인
+                        $purchaseSql = "SELECT * FROM ordered_courses WHERE member_id = (SELECT mid FROM members WHERE userid = ?) AND course_id = ?";
+                        $stmt = $mysqli->prepare($purchaseSql);
+                        $stmt->bind_param("si", $user_id, $cid);
+                        $stmt->execute();
+                        $purchaseResult = $stmt->get_result();
+                        $isPurchased = $purchaseResult->num_rows > 0;
+                        $stmt->close();
+
+                        if ($isPurchased) :
+                        ?>
                     <div class="comment-form">
                         <form action="review_save.php" method="POST">
                             <input type="hidden" name="cid" value="<?= $cid; ?>">
-                            <input type="hidden" name="user_id" value="<?= $_SESSION['UID']; ?>">
+                            <input type="hidden" name="user_id" value="<?= $user_id; ?>">
                             <div class="mb-3">
                                 <div class="d-flex align-items-center">
                                     <i class="bi bi-person-circle me-2 h4"></i>
@@ -255,16 +269,11 @@ while ($is = $result->fetch_object()) {
                             </div>
                         </form>
                     </div>
-                <?php else : ?>
-                    <div class="comment-form">
-                        <p class="text-center">리뷰는 로그인 및 구매한 회원만 작성할 수 있습니다.</p>
-                        <div class="text-center">
-                            <button type="button" class="btn btn-primary btn-sm login-btn" href="#" role="button"
-                                    data-bs-toggle="modal" data-bs-target="#login_modal">로그인
-                            </button>
+                    <?php else : ?>
+                        <div class="comment-form">
+                            <p class="text-center">리뷰는 구매한 회원만 작성할 수 있습니다.</p>
                         </div>
-                    </div>
-                <?php endif; ?>
+                    <?php endif; ?>
                 <hr>
                 <div class="comment-list">
                   <?php
