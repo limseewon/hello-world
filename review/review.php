@@ -183,9 +183,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/header.php';
 
     // lecture_name 변수에 DB에서 가져온 course_name을 선택
     $lecture_name = $row["course_name"];
-    if (iconv_strlen($lecture_name) > 20) {
-        // lecture_name이 20을 넘어서면 ...표시
-        $lecture_name = iconv_substr($lecture_name, 0, 20, "utf-8") . "...";
+    if (iconv_strlen($lecture_name) > 15) {
+        // lecture_name이 15를 넘어서면 ...표시
+        $lecture_name = iconv_substr($lecture_name, 0, 15, "utf-8") . "...";
     }
        ?>
        <tr>
