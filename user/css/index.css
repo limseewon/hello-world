@@ -412,7 +412,8 @@ p {
 
 .swiper-button-prev,
 .swiper-button-next {
-  background: #d9d9d9;
+  background: var(--c-next-prev-button);
+  opacity: 0.2;
   width: 60px;
   height: 60px;
   border-radius: 50%;
