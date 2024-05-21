@@ -365,9 +365,9 @@ if ($qna_id > 0) {
                 </div>
                 <div class="comment-content"><?= $comment['comment'] ?></div>
                 <div class="comment-actions">
-                  <a href="#" class="edit-comment" data-comment-id="<?= $comment['id'] ?>" data-comment-content="<?= $comment['comment'] ?>">
+                  <!-- <a href="#" class="edit-comment" data-comment-id="<?= $comment['id'] ?>" data-comment-content="<?= $comment['comment'] ?>">
                     <span class="material-symbols-outlined">border_color</span>
-                  </a>
+                  </a> -->
                   <a href="qna_reply_delete.php?id=<?= $comment['id'] ?>" onclick="return confirm('정말 삭제하시겠습니까?');">
                     <span class="material-symbols-outlined">delete</span>
                   </a>
