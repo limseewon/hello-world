@@ -70,8 +70,8 @@
 }
 .chcekbox_h6 h6 {text-align: center;}
 .chekbox {margin-left: calc(var(--c-space_updown)*1); }
-.chekbox2 {margin-left: calc(var(--c-space_updown)*2.2); }
-.chekbox3 {margin-left: calc(var(--c-space_updown)*2.6); }
+.chekbox2 {margin-left: calc(var(--c-space_updown)*0.9); }
+.chekbox3 {margin-left: calc(var(--c-space_updown)*0.9); }
 
 .courseBox {
   width: 31%;
@@ -296,4 +296,4 @@
   background-color: var(--c-ribon-orange);
 }
 
-.magin-fo { margin-left: calc(var(--c-space_updown)* 2.4);}
+.magin-fo { margin-left: calc(var(--c-space_updown)* 0.8);}

@@ -43,6 +43,7 @@ form > div + div {
   color: #240d0d;
   background: #fdd70c;
 }
+.headerm_h > a:hover {color: var(--c-title-font); }
 
 /* .cart{ position: relative; }
 .cart-list {

@@ -202,7 +202,7 @@ if (isset($_SESSION['UID'])) {
           <h1 id=header_logo>logo</h1>
           <img src="/helloworld/user/img/logo_text.jpg" alt="Hello World 로고">
       </a>
-        <div class="center_menu d-flex aic bold h4 mb-0">
+        <div class="center_menu d-flex aic bold h4 mb-0 headerm_h">
           <a href="/helloworld/user/class/course_list.php">강의</a>
           <a href="/helloworld/user/notice/notice.php">공지사항</a>
           <a href="/helloworld/user/qna/qna.php">Q&amp;A</a>
