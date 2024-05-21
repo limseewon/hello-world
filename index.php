@@ -202,7 +202,7 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
         <a href="/helloworld/user/class/new_list.php">
           <div class="moreplus d-flex align-items-center">         
             <h4 class="moreview">더보기</h4>
-            <span class="material-symbols-outlined">add</span>
+            <span class="material-symbols-outlined moreview2">add</span>
           </div>
         </a>  
       </div>
@@ -347,13 +347,16 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
     </section>
   <section class="sec4 container">
   <div class="plusbox d-flex secc4">
-        <h2 class="jua dark sec_tt courset">추천강의</h2>
-        <a href="/helloworld/user/class/population_list.php"><div class="moreplus d-flex">
-          <h4 class="moreview">더보기</h4>
-          <span class="material-symbols-outlined">add</span>
+  <div class="plusbox d-flex secc5">
+      <h2 class="jua dark sec_tt courset">추천강의</h2>
+      <a href="/helloworld/user/class/suggestion_list.php">
+        <div class="moreplus d-flex align-items-center">
+        <h4 class="moreview">더보기</h4>
+        <span class="material-symbols-outlined moreview2">add</span>
         </div>
-        </a>  
       </div>
+      </a>  
+    </div>
     <!-- Swiper -->
     <div class="page_wrap">
         <div class="swiper new_slide">
@@ -499,7 +502,7 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
       <a href="/helloworld/user/class/suggestion_list.php">
         <div class="moreplus d-flex align-items-center">
         <h4 class="moreview">더보기</h4>
-        <span class="material-symbols-outlined">add</span>
+        <span class="material-symbols-outlined moreview2">add</span>
         </div>
       </div>
       </a>  

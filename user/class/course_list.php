@@ -229,7 +229,7 @@ while($rs = $result -> fetch_object()){
           <div class="checkBox_3 chcekbox_h6">
             <h3 class="chekbox3">가격</h3>
             
-            <div class="form-check mt-5">
+            <div class="form-check mt-5 magin-fo">
               <label class="form-check-label" for="free"> 무료 </label>
               <input
                 class="form-check-input"
@@ -239,7 +239,7 @@ while($rs = $result -> fetch_object()){
                 id="free"
               >
             </div>
-            <div class="form-check">
+            <div class="form-check magin-fo">
               <label class="form-check-label" for="pay"> 유료 </label>
               <input
                 class="form-check-input"
