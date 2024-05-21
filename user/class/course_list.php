@@ -155,103 +155,104 @@ while($rs = $result -> fetch_object()){
       <form action="/helloworld/user/class/course_list.php" id="filter-form" class="" method="GET">
         <!-- <input type="hidden" name="cate-array" id="cate-array" value=""> -->
         <div class="content-box categorybox">
-        <div class="checkBox_1 mb-3">
-          <div class="filterbox d-flex chcekbox_h6">
-            <h3 class="chekbox">카테고리</h3>
+          <div class="checkBox_1 mb-3">
+            <div class="filterbox d-flex chcekbox_h6">
+              <h3 class="chekbox">카테고리</h3>
+              
+            </div>
+            <!-- <div class="form-check mt-5">
+              <label class="form-check-label" for="total"> 전체선택 </label>
+              <input
+                class="form-check-input"
+                type="radio"
+                value="전체선택"
+                name="cate"
+                id="total"
+              >
+            </div> -->
+            <?php
+              if(isset($step1arr)){
+                foreach($step1arr as $item){
+            ?>  
+            <div class="form-check ">
+              <label class="form-check-label" for="<?= $item->code; ?>">
+              <?= $item->name; ?>
+              </label>
+              <input
+                class="form-check-input"
+                type="radio"
+                value="<?= $item->name;?>"
+                name="cate"
+                id="<?= $item->code; ?>"
+              >
+            </div>
             
-          </div>
-          <!-- <div class="form-check mt-5">
-            <label class="form-check-label" for="total"> 전체선택 </label>
-            <input
-              class="form-check-input"
-              type="radio"
-              value="전체선택"
-              name="cate"
-              id="total"
-            >
-          </div> -->
-          <?php
-            if(isset($step1arr)){
-              foreach($step1arr as $item){
-          ?>  
-          <div class="form-check ">
-            <label class="form-check-label" for="<?= $item->code; ?>">
-            <?= $item->name; ?>
-            </label>
-            <input
-              class="form-check-input"
-              type="radio"
-              value="<?= $item->name;?>"
-              name="cate"
-              id="<?= $item->code; ?>"
-            >
+            <?php
+                }
+              }
+              ?> 
           </div>
           
-          <?php
-              }
-            }
-            ?> 
+          <div class="checkBox_2 mb-3 chcekbox_h6">
+            <h3 class="chekbox2">난이도</h3>
+            <div class="form-check mt-5 magin-fo">
+              <label class="form-check-label" for="level1"> 초급 </label>
+              <input
+                class="form-check-input"
+                type="radio"
+                value="초급"
+                name="level"
+                id="level1"
+              >
+            </div>
+            <div class="form-check magin-fo">
+              <label class="form-check-label" for="level2"> 중급 </label>
+              <input
+                class="form-check-input"
+                type="radio"
+                value="중급"
+                name="level"
+                id="level2"
+              >
+            </div>
+            <div class="form-check magin-fo">
+              <label class="form-check-label" for="level3"> 고급 </label>
+              <input
+                class="form-check-input"
+                type="radio"
+                value="고급"
+                name="level"
+                id="level3"
+              >
+            </div>
+          </div>
+          <div class="checkBox_3 chcekbox_h6">
+            <h3 class="chekbox3">가격</h3>
+            
+            <div class="form-check mt-5">
+              <label class="form-check-label" for="free"> 무료 </label>
+              <input
+                class="form-check-input"
+                type="radio"
+                value="무료"
+                name="pay"
+                id="free"
+              >
+            </div>
+            <div class="form-check">
+              <label class="form-check-label" for="pay"> 유료 </label>
+              <input
+                class="form-check-input"
+                type="radio"
+                value="유료"
+                name="pay"
+                id="pay"
+              >
+            </div>
+          </div>
+          <button id="filter-submit-btn" class="btn btn-primary dark category_su">필터</button>
         </div>
         
-        <div class="checkBox_2 mb-3 chcekbox_h6">
-          <h3 class="chekbox2">난이도</h3>
-          <div class="form-check mt-5 magin-fo">
-            <label class="form-check-label" for="level1"> 초급 </label>
-            <input
-              class="form-check-input"
-              type="radio"
-              value="초급"
-              name="level"
-              id="level1"
-            >
-          </div>
-          <div class="form-check magin-fo">
-            <label class="form-check-label" for="level2"> 중급 </label>
-            <input
-              class="form-check-input"
-              type="radio"
-              value="중급"
-              name="level"
-              id="level2"
-            >
-          </div>
-          <div class="form-check magin-fo">
-            <label class="form-check-label" for="level3"> 고급 </label>
-            <input
-              class="form-check-input"
-              type="radio"
-              value="고급"
-              name="level"
-              id="level3"
-            >
-          </div>
-        </div>
-        <div class="checkBox_3 chcekbox_h6">
-          <h3 class="chekbox3">가격</h3>
-          
-          <div class="form-check mt-5">
-            <label class="form-check-label" for="free"> 무료 </label>
-            <input
-              class="form-check-input"
-              type="radio"
-              value="무료"
-              name="pay"
-              id="free"
-            >
-          </div>
-          <div class="form-check">
-            <label class="form-check-label" for="pay"> 유료 </label>
-            <input
-              class="form-check-input"
-              type="radio"
-              value="유료"
-              name="pay"
-              id="pay"
-            >
-          </div>
-        </div>
-        </div>
-        <button id="filter-submit-btn" class="btn btn-primary dark category_su">필터</button>
         
       </form>
       <div class="courseList">
