@@ -645,35 +645,34 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
   </section>
   </form>
   <section class="issue_coupons container d-flex align-items-center">
-  <div class="left_coupons">
-    <h3>회원가입시 3000원 할인 쿠폰 증정!</h3>
-    <p>지금 바로 회원가입하세요!</p>
-    <div class="signin_coupon d-flex flex-column align-items-center">
-      <img src="<?=$signRs->cp_image?>" alt="회원가입 쿠폰.jpg">
-      <a href="/helloworld/user/signup/signup.php"><button class="btn btn-primary">회원 가입</button></a>
-    </div>        
-  </div>
-  <div class="right_coupons">
-    <h3>이번 달까지 쿠폰 증정 이벤트</h3>
-    <p>회원 가입하고 추가 쿠폰으로 할인 받자!</p>
-    <ul>
-      <?php
-      if (isset($couponArr)) {
-        foreach($couponArr as $ca) {
-      ?>
-      <li class="d-flex flex-column align-items-center">
-        <h4><?=$ca->cp_name;?></h4>
-        <div class="event_coupon d-flex justify-content-center">
-          <img src="<?=$ca->cp_image;?>" alt="<?=$ca->cp_name;?>.jpg">
-        </div>
-        <button class="couponBtn btn btn-warning" data-couponId ="<?=$ca->cpid;?>">발급 받기</button>
-      </li>
-      <?php
-        }}
+    <div class="left_coupons">
+      <h3>회원가입시 3000원 할인 쿠폰 증정!</h3>
+      <p>지금 바로 회원가입하세요!</p>
+      <div class="signin_coupon d-flex flex-column align-items-center">
+        <img src="<?=$signRs->cp_image?>" alt="회원가입 쿠폰.jpg">
+        <a href="/helloworld/user/signup/signup.php"><button class="btn btn-primary">회원 가입</button></a>
+      </div>        
+    </div>
+    <div class="right_coupons">
+      <h3>이번 달까지 쿠폰 증정 이벤트</h3>
+      <p>회원 가입하고 추가 쿠폰으로 할인 받자!</p>
+      <ul>
+        <?php
+        if (isset($couponArr)) {
+          foreach($couponArr as $ca) {
         ?>
-    </ul>
-
-  </div>
+        <li class="d-flex flex-column align-items-center">
+          <h4><?=$ca->cp_name;?></h4>
+          <div class="event_coupon d-flex justify-content-center">
+            <img src="<?=$ca->cp_image;?>" alt="<?=$ca->cp_name;?>.jpg">
+          </div>
+          <button class="couponBtn btn btn-warning" data-couponId ="<?=$ca->cpid;?>">발급 받기</button>
+        </li>
+        <?php
+          }}
+          ?>
+      </ul>
+    </div>
   </section>
 </main>
 <dialog class="popup">

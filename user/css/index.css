@@ -477,7 +477,13 @@ p {
 
 .issue_coupons {
   /* height: 600px; */
-  background: beige;
+  /* background: beige; */
+  margin-top: calc(var(--c-space_updown));
+  margin-bottom: 50px;
+  box-shadow: 2px 5px 14px 0px rgba(116, 120, 128, 0.15);
+  /* border: none; */
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .left_coupons,
