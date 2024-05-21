@@ -238,8 +238,9 @@ $limit = " limit $startLimit, $pageCount"; //select sql문에 .limit 해서 이�
             >
           </div>
         </div>
-        </div>
         <button id="filter-submit-btn" class="btn btn-primary dark category_su">필터</button>
+        </div>
+        
         
       </form>
       <div class="courseList">
