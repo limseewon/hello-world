@@ -97,7 +97,7 @@ $profitRs = $profitResult->fetch_object();
                 <div class="profit contents-box d-flex align-items-center justify-content-between">
                   <span class="bold"><?=date('m');?>월 총 수익</span>
                   <span><?=number_format($profitRs->sum);?>원</span>
-                  <span class="material-symbols-outlined blue"> keyboard_double_arrow_down </span>
+                  <span class="material-symbols-outlined red"> keyboard_double_arrow_up </span>
                 </div>
                 <div class="student contents-box d-flex align-items-center justify-content-between">
                   <span class="bold">총 수강생 수</span>

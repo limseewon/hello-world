@@ -116,7 +116,7 @@ $attendRs = $attendResult->fetch_object();
             
             
             <div class="content-box mycourses board">
-              <h3 class="p bold">최근 강의</h3>
+              <h3 class="p bold">내 강의</h3>
               <ul>
                 <?php
                 if(isset($courseArr)) {
@@ -145,7 +145,7 @@ $attendRs = $attendResult->fetch_object();
               <h3 class="p bold">최근 질문</h3>
               <ul>
                 <?php
-                if(count($qnaArr) > 0) {
+                if(isset($qnaArr) && count($qnaArr) > 0) {
                   foreach($qnaArr as $ar) {
                 ?>
                 <li><a href="/helloworld/user/qna/qna_detail.php?id=<?=$ar->idx?>"><?php

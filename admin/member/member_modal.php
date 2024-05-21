@@ -2,8 +2,8 @@
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
-// $mid = $_POST['mid'];
-$mid = 5;
+$mid = $_POST['mid'];
+// $mid = 5;
 
 
 $userid = $_SESSION['AUID'];

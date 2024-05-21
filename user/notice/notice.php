@@ -12,7 +12,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/user_header.php';
 $paginationTarget = 'notice';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/admin/inc/pagination.php';
 
-$sql = "SELECT * FROM notice WHERE 1=1";
+$sql = "SELECT * FROM notice WHERE 1=1 ORDER BY idx DESC";
 $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
 if ($keyword) {
   $sql .= " AND title LIKE '%$keyword%'";

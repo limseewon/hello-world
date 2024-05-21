@@ -111,6 +111,9 @@ if($result === true){ // INSERT가 성공한 경우
 if(isset($cartid) && $cartid !=''){
   $sql2 = "DELETE from cart where cartid IN({$cartidstr})";
   $result2 = $mysqli->query($sql2);
+
+  $sql3 = "DELETE from user_coupons where userid='{$userid}'";
+  $result3 = $mysqli->query($sql3);
 }
 
 ?>

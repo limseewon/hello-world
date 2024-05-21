@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
+date_default_timezone_set('Asia/Seoul');
 
 // 제목, 내용, 이름 데이터 받아오기
 $title = $_POST['title'];
