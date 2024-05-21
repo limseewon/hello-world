@@ -173,7 +173,7 @@
                 name="all_agree"
                 class="form-check-input"
                 type="checkbox"
-                value=""
+                value="check1"
               />
               <label class="form-check-labe all_agreel" for="all_agree"
                 >전체 동의</label
@@ -186,7 +186,7 @@
                   name="agree"
                   class="form-check-input"
                   type="checkbox"
-                  value=""
+                  value="check2"
                 />
                 <label class="form-check-label" for="check_age"
                   >[필수] 만 14세 이상입니다</label
@@ -200,7 +200,7 @@
                     name="agree"
                     class="form-check-input"
                     type="checkbox"
-                    value=""
+                    value="check3"
                   />
                   <label class="form-check-label" for="agree_one"
                     >[필수] Hello World 이용약관 동의</label
@@ -222,7 +222,7 @@
                     name="agree"
                     class="form-check-input"
                     type="checkbox"
-                    value=""
+                    value="check4"
                   />
                   <label class="form-check-label" for="agree_two"
                     >[필수] 전자금융거래 이용약관 동의</label
@@ -244,7 +244,7 @@
                     name="agree"
                     class="form-check-input"
                     type="checkbox"
-                    value=""
+                    value="check5"
                   />
                   <label class="form-check-label" for="agree_three"
                     >[필수] 개인정보 수집 및 이용 동의</label
@@ -266,7 +266,7 @@
                     name="agree"
                     class="form-check-input"
                     type="checkbox"
-                    value=""
+                    value="check6"
                   />
                   <label class="form-check-label" for="agree_four"
                     >[필수] 개인정보 제공 동의</label
@@ -1141,10 +1141,10 @@ Hello World은 원칙적으로 이용자의 동의 없이 개인정보를 외부
 
         let emptyFields = false;
         $(this).find("input").each(function () {
-          if ($(this).attr("id") != 'userimg'){
-            if ($(this).val() == "" ) {
-              emptyFields = true;
-            }
+          if ($(this).attr("id") !== 'userimg' && $(this).val() == ""){            
+            console.log($(this).get(0))
+            emptyFields = true;
+            return false;
           }
         });
         if (emptyFields) {
