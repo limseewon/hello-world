@@ -199,11 +199,11 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
     <section class="sec3 container">
       <div class="plusbox d-flex secc3">
         <h2 class="jua dark sec_tt courset">최신 강의</h2>
-        <a href="/helloworld/user/class/new_list.php"><div class="moreplus d-flex">
-          
-          <h4 class="moreview">더보기</h4>
-          <span class="material-symbols-outlined">add</span>
-        </div>
+        <a href="/helloworld/user/class/new_list.php">
+          <div class="moreplus d-flex align-items-center">         
+            <h4 class="moreview">더보기</h4>
+            <span class="material-symbols-outlined">add</span>
+          </div>
         </a>  
       </div>
       <!-- Swiper -->
