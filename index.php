@@ -661,7 +661,7 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
         if (isset($couponArr)) {
           foreach($couponArr as $ca) {
         ?>
-        <li class="d-flex flex-column align-items-center">
+        <li class="d-flex flex-column align-items-center event_group">
           <h4><?=$ca->cp_name;?></h4>
           <div class="event_coupon d-flex justify-content-center">
             <img src="<?=$ca->cp_image;?>" alt="<?=$ca->cp_name;?>.jpg">
