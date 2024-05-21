@@ -477,7 +477,17 @@ p {
 
 .issue_coupons {
   /* height: 600px; */
-  background: beige;
+  /* background: beige; */
+  margin-top: calc(var(--c-space_updown));
+  margin-bottom: 50px;
+  box-shadow: 2px 5px 14px 0px rgba(116, 120, 128, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.issue_coupons .container{
+  height: 600px;
 }
 
 .left_coupons,
@@ -485,7 +495,14 @@ p {
   width: 50%;
 }
 .issue_coupons h3 {
-  margin: 24px 0 24px 0;
+  margin: 24px 0 24px 28px;
+}
+.issue_coupons p{
+  margin-left: 28px;
+}
+
+.right_coupons p{
+  margin-bottom: 30px;
 }
 .signin_coupon {
   margin: 30px 0 30px 0;
@@ -500,7 +517,7 @@ p {
   width: 100%;
 }
 .right_coupons img {
-  width: 50%;
+  width: 55%;
 }
 
 
