@@ -8,7 +8,6 @@ $notice_id = $_GET['id'];
 
 // 조회수 증가
 $sql = "UPDATE notice SET view = view + 1 WHERE idx = $notice_id";
-echo $sql;
 $result = $mysqli->query($sql);
 
 
