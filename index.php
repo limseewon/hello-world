@@ -81,7 +81,19 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
 // print_r($new_rsc);
 
 ?>
-    
+  <style>
+      .skip_to_content a{
+	width:150px;height: 150px; 	display:block;	background:rgba(0,0,0,0.9);	
+	text-align:center;		line-height:70px;	color:#fff; 
+	text-decoration:none;	text-transform:uppercase;
+	font-size:1.5em;	font-weight:bold;	position:absolute;
+	margin-top:-100%;	transition:margin-top 0.35s;
+	z-index:9999;
+}
+.skip_to_content a:focus{
+	margin-top:0;
+}
+  </style>  
 <main>    
     <section class="sec1">
       <!-- Swiper -->
@@ -147,7 +159,11 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
         <label for="course_search" class="hidden"></label>
         <input type="text" id="course_search" name="course_search" placeholder="배우고 싶은 강의를 입력하세요.">
         <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        
       </form>
+      <!-- <div id="content">
+          본문
+        </div> -->
       <div class="category_box radius_12">
         <ul>
           <li>

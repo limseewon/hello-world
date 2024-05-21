@@ -66,6 +66,8 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
     <?=$script2?>
     <?=$script3?>
     <title><?=$title?> | Hello World</title>
+
+    </style>
     <link rel="icon" href="/helloworld/imges/favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -179,6 +181,10 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
         </div>
       </div>
     </div>
+    <!-- <div class="skip_to_content">
+    <a href="#content">skip to content</a>
+    
+    </div>#아이디는 본문의 id와 연결 -->
 <header>
   <div class="header_con d-flex container jcsb aic">
       <a href="/helloworld/index.php" class="left_menu">

@@ -571,3 +571,19 @@ p {
 }
 /* DIALOG POPUP */
 /* 팝업 */
+/* skip css */
+/* .skip_to_content {width:150px; height: 150px;  } */
+/* .skip_to_content a{
+
+	width:150px;
+  height: 150px; 	display:block;	background:rgba(0,0,0,0.9);	
+	text-align:center;		line-height:70px;	color:#fff; 
+	text-decoration:none;	text-transform:uppercase;
+	font-size:1.5em;	font-weight:bold;	position:absolute;
+	margin-top:-100%;	transition:margin-top 0.35s;
+	z-index:9999;
+}
+.skip_to_content a:focus{
+	margin-top:0;
+} */
+
