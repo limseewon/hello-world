@@ -2,7 +2,18 @@
 session_start();
 include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
 
-  
+$cartFill = false;
+if (isset($_SESSION['UID'])) {
+  $userId = $_SESSION['UID'];
+  $sql = "SELECT * FROM cart WHERE userid = '{$userId}'";
+  $result = $mysqli->query($sql);
+
+ if ($result && $result->num_rows > 0) {
+    $cartFill = true;
+ } else {     
+    $cartFill = false;
+ }
+}
 
 ?>
 
@@ -201,14 +212,14 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
             if (isset($_SESSION['UID'])) {
           ?>
           <div class="icons d-flex align-items-center">
-            <a href="/helloworld/user/cart/cart.php" class="bi bi-cart">
+            <a href="/helloworld/user/cart/cart.php" class="bi bi-cart <?php if ($cartFill) { echo 'cartFill';}?>">
               <span>장바구니</span></a>
               <!-- Cart Area -->
                                     
               <div class="cart">
                 
                 <!-- Cart List Area Start -->
-                <ul class="cart-list">
+                <!-- <ul class="cart-list">
                   <?php
                       if(isset($rscct)){                              
                       foreach($rscct as $ca){
@@ -232,7 +243,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
                     ?>
                     
                     
-                </ul>
+                </ul> -->
               </div>
             
               <div class="profile_hoverBox d-flex align-items-center">

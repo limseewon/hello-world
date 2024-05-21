@@ -11,6 +11,7 @@
   --f-H6: 14px;
   --f-p: 16px;
 
+  
   --c-background: #fff;
   --c-main: #f5f5f5;
   --c-sub: #11359a;
@@ -50,6 +51,7 @@
   --c-ribon-pulple: #a020f0;
   --c-ribon-orange: #ff6347;
   --c-ribon-geeen: #1ee0ac;
+  --c-next-prev-button : #d9d9d9;
 }
 
 /* typography */
@@ -352,4 +354,17 @@ footer {
 }
 .sns ul {
   gap: 10px;
+}
+
+.cartFill {
+  animation: cart 1s infinite alternate;
+}
+
+@keyframes cart {
+  from {
+    color: black;
+  }
+  to {
+    color: red;
+  }
 }

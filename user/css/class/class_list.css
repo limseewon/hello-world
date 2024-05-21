@@ -37,11 +37,12 @@
   width: 80%;
   
 }
+.categorybox { position: relative;}
 .category_su { 
   background: var(--c-complete-button);
-  position: relative; 
-  left: 206px;
-  top:-812px;
+  position: absolute; 
+  right: 21px;
+  top:43px;
  
 }
 .category_su:hover { 
@@ -61,7 +62,7 @@
   margin-top: calc(var(--c-space_updown));
   margin-left: calc(var(--c-space_updown)*0.8);
 }
-
+.form-check-label { margin-top: 5px;}
 .courseCheckBox hr {
   position: absolute;
   width: 100%;
@@ -69,8 +70,8 @@
 }
 .chcekbox_h6 h6 {text-align: center;}
 .chekbox {margin-left: calc(var(--c-space_updown)*1); }
-.chekbox2 {margin-left: calc(var(--c-space_updown)*2); }
-.chekbox3 {margin-left: calc(var(--c-space_updown)*2); }
+.chekbox2 {margin-left: calc(var(--c-space_updown)*2.2); }
+.chekbox3 {margin-left: calc(var(--c-space_updown)*2.6); }
 
 .courseBox {
   width: 31%;
@@ -295,4 +296,4 @@
   background-color: var(--c-ribon-orange);
 }
 
-.magin-fo { margin-right: 55px;}
+.magin-fo { margin-left: calc(var(--c-space_updown)* 2.4);}

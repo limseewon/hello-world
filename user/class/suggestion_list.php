@@ -239,8 +239,9 @@ $sqlrc = $sql.$c_where.$order.$limit;
             >
           </div>
         </div>
-        </div>
         <button id="filter-submit-btn" class="btn btn-primary dark category_su">필터</button>
+        </div>
+        
         
       </form>
       <div class="courseList">

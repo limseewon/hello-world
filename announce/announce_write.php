@@ -133,6 +133,9 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/helloworld/inc/dbcon.php';
           height: 40px;
           margin-left: 20px;
         }
+        .img-box{
+          margin-left: 15px;
+        }
     </style>
   </head>
   <body>
