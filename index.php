@@ -201,7 +201,7 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
         <h2 class="jua dark sec_tt courset">최신 강의</h2>
         <a href="/helloworld/user/class/new_list.php"><div class="moreplus d-flex">
           
-          <h3 class="moreview">더보기</h3>
+          <h4 class="moreview">더보기</h4>
           <span class="material-symbols-outlined">add</span>
         </div>
         </a>  
@@ -349,7 +349,7 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
   <div class="plusbox d-flex secc4">
         <h2 class="jua dark sec_tt courset">추천강의</h2>
         <a href="/helloworld/user/class/population_list.php"><div class="moreplus d-flex">
-          <h3 class="moreview">더보기</h3>
+          <h4 class="moreview">더보기</h4>
           <span class="material-symbols-outlined">add</span>
         </div>
         </a>  
@@ -496,9 +496,11 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
   <section class="sec5 container">
     <div class="plusbox d-flex secc5">
       <h2 class="jua dark sec_tt courset">입문자를 위한 초급강의</h2>
-      <a href="/helloworld/user/class/suggestion_list.php"><div class="moreplus d-flex">
-        <h3 class="moreview">더보기</h3>
+      <a href="/helloworld/user/class/suggestion_list.php">
+        <div class="moreplus d-flex align-items-center">
+        <h4 class="moreview">더보기</h4>
         <span class="material-symbols-outlined">add</span>
+        </div>
       </div>
       </a>  
     </div>
