@@ -301,10 +301,16 @@ if (isset($_SESSION['UIDX'])){
                         </form>
                     </div>
                     <?php else : ?>
-                        <div class="comment-form text-center">
-                            <p>리뷰는 구매한 회원만 작성할 수 있습니다.</p>
-                            <button type="button" class="btn btn-primary btn-sm login-btn" href="#" role="button" data-bs-toggle="modal" data-bs-target="#login_modal">로그인</button>
-                        </div>
+                        <?php if (!isset($_SESSION['UID'])) : ?>
+                            <div class="comment-form text-center">
+                                <p>리뷰는 구매한 회원만 작성할 수 있습니다.</p>
+                                <button type="button" class="btn btn-primary btn-sm login-btn" href="#" role="button" data-bs-toggle="modal" data-bs-target="#login_modal">로그인</button>
+                            </div>
+                        <?php else : ?>
+                            <div class="comment-form text-center">
+                                <p>리뷰는 구매한 회원만 작성할 수 있습니다.</p>
+                            </div>
+                        <?php endif; ?>
                     <?php endif; ?>
                 <hr>
                 <div class="comment-list">
