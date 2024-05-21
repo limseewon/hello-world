@@ -273,9 +273,12 @@ header {
 }
 .bi-person-circle {
   display: inline-block;
-  color: var(--c-title-font);
+  
   line-height: 75px;
   height: 75px;
+}
+.bi-person-circle:hover { 
+  color: var(--c-title-font);
 }
 .icons {
   /* position: relative; */
