@@ -85,13 +85,24 @@
   list-style-type: disc;
 }
 .chart-container {
-  width: 100%;
+  width: 50%;
   /* height: 100%; */
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 4px;
 }
-
+.chart-container ul {
+  margin-left: 30px;
+}
+.chartLegend {
+  width: 30px;
+  height: 15px;
+  /* background: #000; */
+  margin-right: 10px;
+}
+.chartname {
+  white-space: nowrap;
+}
 .my_dash {
   font-weight: bold !important;
 }

@@ -47,8 +47,7 @@ $couponsSql = "SELECT * FROM coupons
 WHERE cp_status = 1
   AND (
         (cp_date = '0' AND cp_price = '2000')
-     OR (cp_date = '3' AND cp_price = '3000')
-     OR (cp_date = '1' AND cp_price = '1000')
+     
   );";
 $couponlistResult = $mysqli->query($couponsSql);   
 while ($couponlistRs = $couponlistResult->fetch_object()){

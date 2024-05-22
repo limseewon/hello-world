@@ -44,6 +44,11 @@ $attendSql = "SELECT count(*) cnt FROM attendance WHERE userid = '{$userid}' AND
 $attendResult = $mysqli->query($attendSql);
 $attendRs = $attendResult->fetch_object();
 
+$chartCourseSql = "SELECT * FROM ordered_courses oc JOIN courses c ON c.cid = oc.course_id WHERE member_id='{$member->mid}'";
+$chartCourseResult = $mysqli->query($chartCourseSql);
+while( $chartCourseRs = $chartCourseResult->fetch_object()){
+  $chartCourseArr [] = $chartCourseRs;
+};
 ?>
 
         <section class="mainContainer">
@@ -200,8 +205,31 @@ $attendRs = $attendResult->fetch_object();
             
             <div class="content-box course_progress board nowrap">
               <h3 class="p bold">강의별 진도율</h3>
-              <div div class="chart-container">
+              <div div class="chart-container d-flex">
                 <canvas id="bar-chart"></canvas>
+                <ul>
+                  <?php
+                  $legendColor = [ 'rgba(255, 99, 132, 0.2)',
+                  'rgba(255, 159, 64, 0.2)',
+                  'rgba(255, 205, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(201, 203, 207, 0.2)',
+                  'rgba(255, 99, 132, 0.2)']
+                  ;
+                  $i=0;
+
+                  if(isset($chartCourseArr)) {
+                    foreach($chartCourseArr as $cca) {
+                  ?>
+                  
+                  <li class="d-flex"><div class="chartLegend" style="background : <?=$legendColor[$i]; ?>"></div><span class="chartname"><?=$cca->name?></span></li>
+                  <?php
+                  $i++;
+                    }}
+                  ?>
+                </ul>
               </div>
             </div>
           </div>
