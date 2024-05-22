@@ -1,6 +1,6 @@
 @charset "utf-8";
 @import url(/helloworld/user/css/reset.css);
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 :root {
   --f-H2: 28px;
@@ -11,7 +11,6 @@
   --f-H6: 14px;
   --f-p: 16px;
 
-  
   --c-background: #fff;
   --c-main: #f5f5f5;
   --c-sub: #11359a;
@@ -51,7 +50,7 @@
   --c-ribon-pulple: #a020f0;
   --c-ribon-orange: #ff6347;
   --c-ribon-geeen: #1ee0ac;
-  --c-next-prev-button : #d9d9d9;
+  --c-next-prev-button: #d9d9d9;
 }
 
 /* typography */
@@ -93,7 +92,7 @@ p,
 /* breadcrumb */
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: var(--c-font);
   box-sizing: border-box;
 }
@@ -172,11 +171,7 @@ body {
 /*  ==================== HEADER : 임시원 ====================  */
 header {
   background: rgb(255, 255, 255);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 1) 80px,
-    rgba(238, 238, 238, 1) 80px
-  );
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 80px, rgba(238, 238, 238, 1) 80px);
   width: 100%;
   height: 75px;
   position: relative;
@@ -184,7 +179,7 @@ header {
   right: 0;
   padding: 20px 0;
   box-sizing: border-box;
-  z-index: 9999;
+  z-index: 1000;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
 }
 .header_con {
@@ -273,11 +268,11 @@ header {
 }
 .bi-person-circle {
   display: inline-block;
-  
+
   line-height: 75px;
   height: 75px;
 }
-.bi-person-circle:hover { 
+.bi-person-circle:hover {
   color: var(--c-title-font);
 }
 .icons {
@@ -370,4 +365,16 @@ footer {
   to {
     color: red;
   }
+}
+.direct {
+  background: #000;
+  color: #fff;
+  position: absolute;
+  top: -100%;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.direct:focus {
+  top: 0;
 }

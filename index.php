@@ -213,7 +213,7 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
     </section>
     <form action="index_ok.php" method="POST" id="course_form" class="product_save">
     <section class="sec3 container">
-      <div class="plusbox d-flex secc3">
+      <div class="plusbox d-flex secc3" id="newlecture">
         <h2 class="jua dark sec_tt courset">최신 강의</h2>
         <a href="/helloworld/user/class/new_list.php">
           <div class="moreplus d-flex align-items-center">         
@@ -363,7 +363,7 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
     </section>
   <section class="sec4 container">
   <div class="plusbox d-flex secc4">
-  <div class="plusbox d-flex secc5">
+    <div class="plusbox d-flex secc5" id="recomlecture">
       <h2 class="jua dark sec_tt courset">추천강의</h2>
       <a href="/helloworld/user/class/suggestion_list.php">
         <div class="moreplus d-flex align-items-center">
@@ -513,7 +513,7 @@ while ($couponlistRs = $couponlistResult->fetch_object()){
       </div>
   </section>
   <section class="sec5 container">
-    <div class="plusbox d-flex secc5">
+    <div class="plusbox d-flex secc5" id="newbielecture">
       <h2 class="jua dark sec_tt courset">입문자를 위한 초급강의</h2>
       <a href="/helloworld/user/class/suggestion_list.php">
         <div class="moreplus d-flex align-items-center">

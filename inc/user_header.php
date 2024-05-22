@@ -82,6 +82,10 @@ if (isset($_SESSION['UID'])) {
     <link rel="icon" href="/helloworld/imges/favicon.ico" type="image/x-icon">
 </head>
 <body>
+    <a href="#course_search" class="direct">강의 검색</a>
+    <a href="#newlecture" class="direct">최신 강의</a>
+    <a href="#recomlecture" class="direct">추천 강의</a>
+    <a href="#newbielecture" class="direct">초급 강의</a>
 
     <!-- Modal -->
     <div
