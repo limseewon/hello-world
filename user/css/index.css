@@ -9,13 +9,13 @@
 }
 .moreplus {
   position: relative;
-  top:1px;
+  top: 1px;
 }
 .moreview2 {
   margin-bottom: 2px;
 }
 .moreview::after {
-  content: "";
+  content: '';
   display: block;
   height: 2px;
   background: var(--c-menu-BG);
@@ -205,7 +205,7 @@ p {
 }
 
 .card:after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   top: 0;
@@ -376,7 +376,7 @@ p {
 .sec4 .recom_slide .card img,
 .sec5 .new_slide .card img {
   width: 100%;
-  
+
   object-fit: cover;
 }
 
@@ -404,8 +404,7 @@ p {
   padding-top: 10px;
 }
 
-.sec4 .swiper
- {
+.sec4 .swiper {
   width: 1161px;
   height: 425px;
 }
@@ -490,7 +489,7 @@ p {
   position: relative;
 }
 
-.issue_coupons .container{
+.issue_coupons .container {
   height: 600px;
 }
 
@@ -501,11 +500,11 @@ p {
 .issue_coupons h3 {
   margin: 24px 0 24px 28px;
 }
-.issue_coupons p{
+.issue_coupons p {
   margin-left: 28px;
 }
 
-.right_coupons p{
+.right_coupons p {
   margin-bottom: 30px;
 }
 .signin_coupon {
@@ -517,15 +516,17 @@ p {
 .left_coupons img {
   width: 90%;
 }
+.event_group h4 {
+  color: var(--c-title-font);
+  font-weight: bold;
+}
 .event_coupon {
   width: 100%;
+  margin: 20px;
 }
 .right_coupons img {
   width: 55%;
 }
-
-
-
 
 /* 팝업 */
 /* DIALOG POPUP */
@@ -609,4 +610,3 @@ p {
 .skip_to_content a:focus{
 	margin-top:0;
 } */
-
