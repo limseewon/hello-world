@@ -1,7 +1,7 @@
 <?php
  $hostname = 'localhost';
  $dbuserid = 'seewon';
- $dbpasswd = 'mina0523!';
+ $dbpasswd = 'sudo0212!';
  $dbname = 'seewon';
  
  $mysqli = new mysqli($hostname, $dbuserid, $dbpasswd, $dbname);
